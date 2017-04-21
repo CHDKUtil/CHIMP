@@ -22,7 +22,7 @@ Following are inexhaustive lists of advantages and disadvantages (mostly vis-a-v
 ## Limitations:
 
 - Little code to show off (needs cleanup)
-- Doesn't handle multiple partitions on Windows 10 Creators Update
+- Doesn't handle multiple partitions on [Windows 10 Creators Update](https://thewincentral.com/windows-10-creators-update-allows-multiple-partitions-usb-drive/)
 - Doesn't handle cards larger than 32GB ([general Windows issue](http://www.ridgecrop.demon.co.uk/guiformat.htm))
 - Doesn't allow images dropped from non-administrator applications ([general Windows issue](https://superuser.com/questions/59051/drag-and-drop-file-into-application-under-run-as-administrator)) 
 
