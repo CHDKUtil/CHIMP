@@ -12,11 +12,12 @@ Following are inexhaustive lists of advantages and disadvantages (mostly vis-a-v
 + Doesn't require Java
 + Doesn't require special permission handling
 + Doesn't require [special image handling](http://www.zenoshrdlu.com/stick/stickextra.html)
++ Doesn't require removing/reinserting after partitioning
 + [Free as in freedom](https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt)
 
 ## Cons:
 
-- Windows only
+- Windows only (Vista SP2 or later)
 - Requires .NET Framework 4.5.2
 
 ## Limitations:
@@ -24,7 +25,6 @@ Following are inexhaustive lists of advantages and disadvantages (mostly vis-a-v
 - Little code to show off (needs cleanup)
 - Requires administrator permissions (general Windows issue)
 - Doesn't handle multiple partitions on [Windows 10 Creators Update](https://thewincentral.com/windows-10-creators-update-allows-multiple-partitions-usb-drive/)
-- Doesn't handle cards larger than 32GB ([general Windows issue](http://www.ridgecrop.demon.co.uk/guiformat.htm))
 - Doesn't allow images dropped from non-administrator applications ([general Windows issue](https://superuser.com/questions/59051/drag-and-drop-file-into-application-under-run-as-administrator)) 
 
 ## Thanks:
