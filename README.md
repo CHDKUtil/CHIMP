@@ -34,3 +34,7 @@ The author wishes to thank:
 * **reyalp**, CHDK guru, for his cooperation and assistance
 * **Dave Mitchell**, author of [STICK](http://www.zenoshrdlu.com/stick/stick.html), [ASSIST](http://zenoshrdlu.com/assist/assist.html) and [more](http://www.zenoshrdlu.com/kapstuff/zchdkstuff.html), for his invaluable assistance, including sharing parts of STICK code
 * **Phil Harvey**, author of [ExifTool](http://www.sno.phy.queensu.ca/~phil/exiftool/), for his generous assistance
+
+## Download
+
+A ZIP file with the latest binaries is attached to the top post in the [development thread](https://chdk.setepontos.com/index.php?topic=13091).
