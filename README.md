@@ -18,7 +18,7 @@ It's intended as a user-friendly replacement for:
 ## Pros:
 
 + Easy to use
-+ Doesn't require running programs
++ Doesn't require running multiple programs
 + Doesn't require Java
 + Doesn't require special permission handling
 + Doesn't require [special image handling](http://www.zenoshrdlu.com/stick/stickextra.html)
