@@ -1,6 +1,6 @@
-# CHDK Utility
+# CHIMP
 
-A Windows utility for installing/updating CHDK.
+Canon Hack Installation and Management Platform.
 
 It's intended as a somewhat friendlier alternative to [STICK](http://www.zenoshrdlu.com/stick/stick.html). If you're a happy STICK user, you may stop reading.
 
