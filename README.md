@@ -1,8 +1,6 @@
 # CHIMP
 
-Canon Hack Installation and Management Platform.
-
-It's intended as a user-friendly replacement for:
+Canon Hack Installation and Management Platform, a user-friendly replacement for:
 
 * [STICK](http://www.zenoshrdlu.com/stick/stick.html)
 * [ASSIST](http://www.zenoshrdlu.com/assist/assist.html)
