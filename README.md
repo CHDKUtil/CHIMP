@@ -1,3 +1,5 @@
+![CHIMP](https://raw.githubusercontent.com/CHDKUtil/CHIMP/master/small.png)
+
 # CHIMP
 
 Canon Hack Installation and Management Platform, a user-friendly replacement for:
