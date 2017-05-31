@@ -2,13 +2,23 @@
 
 Canon Hack Installation and Management Platform.
 
-It's intended as a somewhat friendlier alternative to [STICK](http://www.zenoshrdlu.com/stick/stick.html). If you're a happy STICK user, you may stop reading.
+It's intended as a user-friendly replacement for:
 
-Following are inexhaustive lists of advantages and disadvantages (mostly vis-a-vis STICK) and limitations (mostly shared with STICK).
+* [STICK](http://www.zenoshrdlu.com/stick/stick.html)
+* [ASSIST](http://www.zenoshrdlu.com/assist/assist.html)
+* [WASP](http://www.zenoshrdlu.com/wasp/wasp.html)
+* [EOSCard](http://pel.hu/eoscard/)
+
+## Supported software:
+
+* [CHDK](http://chdk.wikia.com/wiki/CHDK)
+* [SDM](http://sdm.camera/)
+* [Magic Lantern](http://www.magiclantern.fm/)
 
 ## Pros:
 
-+ Easier to use
++ Easy to use
++ Doesn't require running programs
 + Doesn't require Java
 + Doesn't require special permission handling
 + Doesn't require [special image handling](http://www.zenoshrdlu.com/stick/stickextra.html)
@@ -32,7 +42,7 @@ Following are inexhaustive lists of advantages and disadvantages (mostly vis-a-v
 The author wishes to thank:
 
 * **reyalp**, CHDK guru, for his cooperation and assistance
-* **Dave Mitchell**, author of [STICK](http://www.zenoshrdlu.com/stick/stick.html), [ASSIST](http://zenoshrdlu.com/assist/assist.html) and [more](http://www.zenoshrdlu.com/kapstuff/zchdkstuff.html), for his invaluable assistance, including sharing parts of STICK code
+* **Dave Mitchell**, author of [STICK](http://www.zenoshrdlu.com/stick/stick.html), [ASSIST](http://zenoshrdlu.com/assist/assist.html), [WASP](http://www.zenoshrdlu.com/wasp/wasp.html) and [more](http://www.zenoshrdlu.com/kapstuff/zchdkstuff.html), for his invaluable assistance, including sharing parts of STICK code
 * **Phil Harvey**, author of [ExifTool](http://www.sno.phy.queensu.ca/~phil/exiftool/), for his generous assistance
 
 ## Download
