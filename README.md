@@ -16,11 +16,11 @@ Canon Hack Installation and Management Platform, a user-friendly replacement for
 ## Pros:
 
 + Easy to use
-+ Doesn't require running multiple programs
 + Doesn't require Java
++ Doesn't require running multiple programs
 + Doesn't require special permission handling
 + Doesn't require [special image handling](http://www.zenoshrdlu.com/stick/stickextra.html)
-+ Doesn't require removing/reinserting after partitioning
++ Doesn't require removing/reinserting after creating/switching partitions
 + [Free as in freedom](https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt)
 
 ## Cons:
