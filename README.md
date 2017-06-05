@@ -14,6 +14,7 @@ Canon Hack Installation and Management Platform, a user-friendly replacement for
 * [CHDK](http://chdk.wikia.com/wiki/CHDK)
 * [SDM](http://sdm.camera/)
 * [Magic Lantern](http://www.magiclantern.fm/)
+* [400plus](https://github.com/400plus/400plus) (detection only)
 
 ## Pros:
 
