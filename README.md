@@ -48,4 +48,4 @@ The author wishes to thank:
 
 ## Download
 
-A ZIP file with the latest binaries is attached to the top post in the [development thread](https://chdk.setepontos.com/index.php?topic=13091).
+A ZIP file with the latest binaries is attached to the [development thread](https://chdk.setepontos.com/index.php?topic=13091.msg132256#msg132256).
