@@ -48,7 +48,7 @@ The author wishes to thank:
 
 ## SDM
 
-The author of SDM has been asked to provide the source according to the terms of its license. Since he has so far only provided the sources for SDM 2.1, that will be the version CHIMP is offering to install starting with 0.9.3 and until further notice.
+The author of SDM has been asked to provide the sources according to the terms of its license. Since he has so far only provided the sources for SDM 2.1, that's the version CHIMP will be offering to install starting with 0.9.3 and until further notice.
 
 ## Download
 
