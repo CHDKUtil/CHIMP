@@ -5,14 +5,14 @@
 Canon Hack Installation and Management Platform, a user-friendly replacement for:
 
 * [STICK](http://www.zenoshrdlu.com/stick/stick.html)
-* [ASSIST](http://www.zenoshrdlu.com/assist/assist.html)
+* [ASSIST](http://www.zenoshrdlu.com/assist/assist.html) (partial, see SDM section below)
 * [WASP](http://www.zenoshrdlu.com/wasp/wasp.html)
 * [EOSCard](http://pel.hu/eoscard/)
 
 ## Supported software:
 
 * [CHDK](http://chdk.wikia.com/wiki/CHDK)
-* SDM 2.1 (see below)
+* SDM 2.1 (see SDM section below)
 * [Magic Lantern](http://www.magiclantern.fm/)
 * [400plus](https://github.com/400plus/400plus) (detection only)
 
