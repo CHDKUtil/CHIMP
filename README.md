@@ -5,14 +5,14 @@
 Canon Hack Installation and Management Platform, a user-friendly replacement for:
 
 * [STICK](http://www.zenoshrdlu.com/stick/stick.html)
-* [ASSIST](http://www.zenoshrdlu.com/assist/assist.html) (partial, see SDM section below)
+* [ASSIST](http://www.zenoshrdlu.com/assist/assist.html)
 * [WASP](http://www.zenoshrdlu.com/wasp/wasp.html)
 * [EOSCard](http://pel.hu/eoscard/)
 
 ## Supported software:
 
 * [CHDK](http://chdk.wikia.com/wiki/CHDK)
-* SDM 2.1 (see SDM section below)
+* [SDM](http://sdm.camera/)
 * [Magic Lantern](http://www.magiclantern.fm/)
 * [400plus](https://github.com/400plus/400plus) (detection only)
 
@@ -45,10 +45,6 @@ The author wishes to thank:
 * **reyalp**, CHDK guru, for his cooperation and assistance
 * **Dave Mitchell**, author of [STICK](http://www.zenoshrdlu.com/stick/stick.html), [ASSIST](http://zenoshrdlu.com/assist/assist.html), [WASP](http://www.zenoshrdlu.com/wasp/wasp.html) and [more](http://www.zenoshrdlu.com/kapstuff/zchdkstuff.html), for his invaluable assistance, including sharing parts of STICK code
 * **Phil Harvey**, author of [ExifTool](http://www.sno.phy.queensu.ca/~phil/exiftool/), for his generous assistance
-
-## SDM
-
-The author of SDM has been asked to provide the sources according to the terms of its license. Since he has so far only provided the sources for SDM 2.1, that's the version CHIMP will be offering to install starting with 0.9.3 and until further notice.
 
 ## Download
 
