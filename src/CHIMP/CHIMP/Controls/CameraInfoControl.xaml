@@ -1,0 +1,87 @@
+﻿<UserControl x:Class="Chimp.Controls.CameraInfoControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:Chimp.Controls"
+             xmlns:properties="clr-namespace:Chimp.Properties">
+
+    <UserControl.Style>
+        <Style TargetType="UserControl">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding [Camera].Info}" Value="{x:Null}">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Style>
+    
+    <Grid Style="{StaticResource InfoGrid}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Label Content="{x:Static properties:Resources.Camera_Make_Content}" Grid.Row="0"
+               Visibility="{Binding [Camera].Info.Base, Converter={StaticResource NullToVisibilityConverter}}" />
+        <TextBlock Text="{Binding [Camera].Info.Base.Make}" Grid.Row="0" />
+
+        <Label Content="{x:Static properties:Resources.Camera_Model_Content}" Grid.Row="1"
+               Visibility="{Binding [Camera].Info.Base, Converter={StaticResource NullToVisibilityConverter}}" />
+        <TextBlock Text="{Binding [Camera].Info.Base.Model}" Grid.Row="1"
+                   Visibility="{Binding [Camera].IsSelect, Converter={StaticResource InverseBooleanToVisibilityConverter}}" />
+        <controls:SelectItemControl DataContext="{Binding [Camera]}" Grid.Column="1" Grid.Row="1" Margin="4"
+                                    Visibility="{Binding IsSelect, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+        <Label Content="{x:Static properties:Resources.Camera_FirmwareVersion_Content}" Grid.Row="2">
+            <Label.Style>
+                <Style TargetType="Label" BasedOn="{StaticResource InfoLabel}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding [Camera].Info.Canon}" Value="{x:Null}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding [Camera].Info.Canon.FirmwareRevision}" Value="0" />
+                                <Condition Binding="{Binding [Camera].Info.Canon.FirmwareVersion}" Value="{x:Null}" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+        <TextBlock Text="{Binding [Camera].Info.Canon.FirmwareRevision, Converter={StaticResource FirmwareVersionConverter}}" Grid.Row="2">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource InfoTextBlock}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding [Camera].Info.Canon}" Value="{x:Null}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding [Camera].Info.Canon.FirmwareRevision}" Value="0">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <TextBlock Text="{Binding [Camera].Info.Canon.FirmwareVersion}" Grid.Row="2">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource InfoTextBlock}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding [Camera].Info.Canon.FirmwareVersion}" Value="{x:Null}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+    </Grid>
+
+</UserControl>

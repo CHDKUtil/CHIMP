@@ -1,0 +1,167 @@
+﻿{
+  "modules": {
+    "path": "ML\\modules",
+    "extension": ".mo",
+    "children": {
+      "adv_int.mo": {
+        "title": "Advanced Intervalometer",
+        "files": [
+          "ML\\modules\\adv_int.mo"
+        ]
+      },
+      "arkanoid.mo": {
+        "title": "Arkanoid game",
+        "files": [
+          "ML\\modules\\arkanoid.mo"
+        ]
+      },
+      "autoexpo.mo": {
+        "title": "Auto exposure",
+        "files": [
+          "ML\\modules\\autoexpo.mo"
+        ]
+      },
+      "bench.mo": {
+        "title": "Benchmarks",
+        "files": [
+          "ML\\modules\\bench.mo"
+        ]
+      },
+      "deflick.mo": {
+        "title": "Post Deflicker",
+        "files": [
+          "ML\\modules\\deflick.mo"
+        ]
+      },
+      "dual_iso.mo": {
+        "title": "Dual ISO",
+        "files": [
+          "ML\\modules\\dual_iso.mo"
+        ]
+      },
+      "ettr.mo": {
+        "title": "Expose To The Right",
+        "files": [
+          "ML\\modules\\ettr.mo"
+        ]
+      },
+      "file_man.mo": {
+        "title": "File Manager",
+        "files": [
+          "ML\\modules\\file_man.mo"
+        ]
+      },
+      "lua.mo": {
+        "title": "Lua scripting",
+        "files": [
+          "ML\\modules\\lua.mo"
+        ]
+      },
+      "video": {
+        "title": "Raw video",
+        "children": {
+          "mlv_lite.mo": {
+            "title": "Raw video v1.1 (MLV Lite)",
+            "files": [
+              "ML\\modules\\mlv_lite.mo"
+            ]
+          },
+          "mlv_play.mo": {
+            "title": "MLV Player",
+            "files": [
+              "ML\\modules\\mlv_play.mo"
+            ]
+          },
+          "mlv_rec.mo": {
+            "title": "Raw video v2.0 (MLV)",
+            "files": [
+              "ML\\modules\\mlv_rec.mo"
+            ]
+          },
+          "mlv_snd.mo": {
+            "title": "MLV Sound Support",
+            "files": [
+              "ML\\modules\\mlv_snd.mo"
+            ]
+          }
+        }
+      },
+      "pic_view.mo": {
+        "title": "Picture Viewer",
+        "files": [
+          "ML\\modules\\pic_view.mo"
+        ]
+      },
+      "selftest.mo": {
+        "title": "Self-testing routines",
+        "files": [
+          "ML\\modules\\selftest.mo"
+        ]
+      },
+      "silent.mo": {
+        "title": "Silent Pictures",
+        "files": [
+          "ML\\modules\\silent.mo"
+        ]
+      },
+      "additional": {
+        "title": "Additional Modules",
+        "children": {
+          "bulb_nd.mo": {
+            "title": "Bulb ND Utilities",
+            "files": [
+              "ML\\modules\\bulb_nd.mo"
+            ]
+          },
+          "burst.mo": {
+            "title": "Burst mode tweaks",
+            "files": [
+              "ML\\modules\\burst.mo"
+            ]
+          },
+          "ime_base": {
+            "title": "Input Method Editor",
+            "children": {
+              "ime_base.mo": {
+                "title": "",
+                "files": [
+                  "ML\\modules\\ime_base.mo"
+                ]
+              },
+              "ime_rot.mo": {
+                "title": "Input Method for Wheel",
+                "files": [
+                  "ML\\modules\\ime_rot.mo"
+                ]
+              },
+              "ime_std.mo": {
+                "title": "Standard Input Method",
+                "files": [
+                  "ML\\modules\\ime_std.mo"
+                ]
+              }
+            }
+          },
+          "io_crypt.mo": {
+            "title": "io_crypt",
+            "files": [
+              "ML\\modules\\io_crypt.mo"
+            ]
+          },
+          "raw_diag.mo": {
+            "title": "RAW Diagnostics",
+            "files": [
+              "ML\\modules\\raw_diag.mo"
+            ]
+          },
+          "tiltcalc.mo": {
+            "title": "Tilt Calculator",
+            "files": [
+              "ML\\modules\\tiltcalc.mo"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

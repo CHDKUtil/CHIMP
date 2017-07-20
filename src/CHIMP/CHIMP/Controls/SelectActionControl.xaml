@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="Chimp.Controls.SelectActionControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ListBox ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}"
+             BorderThickness="0" Background="Transparent">
+        <ListBox.ItemTemplate>
+            <DataTemplate>
+                <RadioButton IsChecked="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ListBoxItem}}"
+                             Focusable="False">
+                    <TextBlock Text="{Binding DisplayName}" />
+                </RadioButton>
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+        <ListBox.ItemContainerStyle>
+            <Style TargetType="{x:Type ListBoxItem}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                            <ContentPresenter />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ListBox.ItemContainerStyle>
+    </ListBox>
+</UserControl>

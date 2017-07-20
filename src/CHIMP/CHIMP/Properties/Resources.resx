@@ -1,0 +1,698 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Licenses_Accept_Content" xml:space="preserve">
+    <value>Accept</value>
+  </data>
+  <data name="Licenses_AcceptAll_Content" xml:space="preserve">
+    <value>Accept All</value>
+  </data>
+  <data name="Intro_Message_Text" xml:space="preserve">
+    <value>This utility installs Canon hacks onto memory cards and manages existing installations.</value>
+  </data>
+  <data name="Licenses_Reject_Text" xml:space="preserve">
+    <value>Reject</value>
+  </data>
+  <data name="Licenses_RejectAll_Text" xml:space="preserve">
+    <value>Reject All</value>
+  </data>
+  <data name="Card_NoCard_Text" xml:space="preserve">
+    <value>This page will refresh automatically after the card is inserted.</value>
+  </data>
+  <data name="Camera_Title_Detecting_Text" xml:space="preserve">
+    <value>Detecting Camera</value>
+  </data>
+  <data name="Card_Detecting_Title_Text" xml:space="preserve">
+    <value>Detecting Card</value>
+  </data>
+  <data name="Software_Title_Detecting_Text" xml:space="preserve">
+    <value>Detecting Camera Software</value>
+  </data>
+  <data name="Camera_NoCanonMakernote_Text" xml:space="preserve">
+    <value>Canon Metadata Not Found</value>
+  </data>
+  <data name="Camera_NonCanon_Text" xml:space="preserve">
+    <value>Unsupported Manufacturer</value>
+  </data>
+  <data name="Camera_NoFirmwareRevision_Text" xml:space="preserve">
+    <value>Canon Firmware Revision Not Found</value>
+  </data>
+  <data name="Camera_NoImage_Text" xml:space="preserve">
+    <value>No Valid Images</value>
+  </data>
+  <data name="Camera_NoModelId_Text" xml:space="preserve">
+    <value>Canon Model ID Not Found</value>
+  </data>
+  <data name="MessageBox_Abort_Text" xml:space="preserve">
+    <value>Are you sure you want to abort the installation?</value>
+  </data>
+  <data name="Summary_Aborted_Title_Text" xml:space="preserve">
+    <value>Installation Aborted</value>
+  </data>
+  <data name="Summary_Completed_Title_Text" xml:space="preserve">
+    <value>Installation Complete</value>
+  </data>
+  <data name="Wizard_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Wizard_Continue" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="DiskSpace_Bytes_Format" xml:space="preserve">
+    <value>{0} B</value>
+  </data>
+  <data name="DiskSpace_GBytes_Format" xml:space="preserve">
+    <value>{0:.##} GB</value>
+  </data>
+  <data name="DiskSpace_KBytes_Format" xml:space="preserve">
+    <value>{0:.##} KB</value>
+  </data>
+  <data name="DiskSpace_MBytes_Format" xml:space="preserve">
+    <value>{0:.##} MB</value>
+  </data>
+  <data name="Card_Drive_Content" xml:space="preserve">
+    <value>Drive:</value>
+  </data>
+  <data name="Card_Drive_Format" xml:space="preserve">
+    <value>{0} ({1})</value>
+  </data>
+  <data name="Card_FileSystem_Content" xml:space="preserve">
+    <value>File System:</value>
+  </data>
+  <data name="Wizard_Finish" xml:space="preserve">
+    <value>Finish</value>
+  </data>
+  <data name="Wizard_GoBack" xml:space="preserve">
+    <value>Go back</value>
+  </data>
+  <data name="Card_Space_Content" xml:space="preserve">
+    <value>Space:</value>
+  </data>
+  <data name="DiskSpace_Format" xml:space="preserve">
+    <value>{0} free of {1}</value>
+  </data>
+  <data name="Step_Camera_Text" xml:space="preserve">
+    <value>Detect Camera</value>
+  </data>
+  <data name="Step_Card_Text" xml:space="preserve">
+    <value>Detect Card</value>
+  </data>
+  <data name="Step_Action_Text" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="Step_Install_Text" xml:space="preserve">
+    <value>Installation</value>
+  </data>
+  <data name="Step_Intro_Text" xml:space="preserve">
+    <value>Introduction</value>
+  </data>
+  <data name="Step_Licenses_Text" xml:space="preserve">
+    <value>Licenses</value>
+  </data>
+  <data name="Step_Summary_Text" xml:space="preserve">
+    <value>Summary</value>
+  </data>
+  <data name="Card_Detected_Title_Text" xml:space="preserve">
+    <value>Card Detected</value>
+  </data>
+  <data name="MessageBox_Error_Caption" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Camera_FirmwareVersion_Content" xml:space="preserve">
+    <value>Firmware Version:</value>
+  </data>
+  <data name="Camera_FirmwareVersion_Format" xml:space="preserve">
+    <value>{0}.{1}{2} rev {3}.{4}{5}</value>
+  </data>
+  <data name="_FontFamily" xml:space="preserve">
+    <value>Default</value>
+    <comment>Do not translate</comment>
+  </data>
+  <data name="_FontSize" xml:space="preserve">
+    <value>14</value>
+    <comment>Do not translate</comment>
+  </data>
+  <data name="Camera_Make_Content" xml:space="preserve">
+    <value>Manufacturer:</value>
+  </data>
+  <data name="Camera_Model_Content" xml:space="preserve">
+    <value>Model:</value>
+  </data>
+  <data name="Summary_CameraNotes_Content" xml:space="preserve">
+    <value>Show camera-specific notes</value>
+  </data>
+  <data name="Licenses_Title_Text" xml:space="preserve">
+    <value>Accept Licenses</value>
+  </data>
+  <data name="Camera_Browse_Content" xml:space="preserve">
+    <value>Browse...</value>
+  </data>
+  <data name="Camera_Title_Detected_Text" xml:space="preserve">
+    <value>Camera Detected</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="intro_tips" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\intro_tips.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="Card_Select_Title_Text" xml:space="preserve">
+    <value>Select Card Drive</value>
+  </data>
+  <data name="Action_Select_Text" xml:space="preserve">
+    <value>Select Action</value>
+  </data>
+  <data name="Step_Software_Text" xml:space="preserve">
+    <value>Detect Software</value>
+  </data>
+  <data name="Summary_AltMode_Format" xml:space="preserve">
+    <value>Press the {0} button to enter the {1} ALT mode.</value>
+  </data>
+  <data name="Summary_AltMode_Print_Text" xml:space="preserve">
+    <value>In order to print a photo, hold the Print button for 1 sec.</value>
+  </data>
+  <data name="Summary_AltMode_Header" xml:space="preserve">
+    <value>ALT mode</value>
+  </data>
+  <data name="Summary_SwitchLanguage_Format" xml:space="preserve">
+    <value>{0} is installed with {1} as the menu language.</value>
+  </data>
+  <data name="Summary_SwitchLanguage_Header" xml:space="preserve">
+    <value>Switch to English</value>
+    <comment>Replace with your language if it is supported by CHDK</comment>
+  </data>
+  <data name="Summary_SwitchLanguage_2_Text" xml:space="preserve">
+    <value>Press the Shutter Release button in ALT mode to switch to English.</value>
+  </data>
+  <data name="Summary_LockCard_Format" xml:space="preserve">
+    <value>The card must be locked in order for {0} to load.</value>
+  </data>
+  <data name="Summary_SplashScreen_CHDK_Text" xml:space="preserve">
+    <value>The CHDK splash screen should appear shortly after the camera is powered up.</value>
+  </data>
+  <data name="Summary_LockCard_Header" xml:space="preserve">
+    <value>Lock and load</value>
+  </data>
+  <data name="Summary_Menu_CHDK_Text" xml:space="preserve">
+    <value>Press the Menu button in ALT mode to access the CHDK menu.</value>
+  </data>
+  <data name="Summary_Menu_Header_Format" xml:space="preserve">
+    <value>{0} menu</value>
+  </data>
+  <data name="Card_NoCard_Title_Text" xml:space="preserve">
+    <value>Insert Card</value>
+  </data>
+  <data name="Software_Title_None_Text" xml:space="preserve">
+    <value>No Camera Software Detected</value>
+  </data>
+  <data name="Software_Title_Detected_Text" xml:space="preserve">
+    <value>Camera Software Detected</value>
+  </data>
+  <data name="Camera_AllFiles_Text" xml:space="preserve">
+    <value>All files</value>
+  </data>
+  <data name="Camera_CanonImages_Text" xml:space="preserve">
+    <value>Canon images</value>
+  </data>
+  <data name="Camera_SelectImage_Text" xml:space="preserve">
+    <value>Select Image</value>
+  </data>
+  <data name="MessageBox_Format_Message" xml:space="preserve">
+    <value>WARNING: This will erase ALL data on this disk.
+To continue, click OK. To quit, click CANCEL.</value>
+  </data>
+  <data name="Software_Language_Content" xml:space="preserve">
+    <value>Language:</value>
+  </data>
+  <data name="Software_Language_Unknown_Text" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="Software_Product_Content" xml:space="preserve">
+    <value>Product:</value>
+  </data>
+  <data name="Software_Product_Unknown_Text" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="Software_Version_Content" xml:space="preserve">
+    <value>Version:</value>
+  </data>
+  <data name="Software_Version_Unknown_Text" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="Step_Download_Text" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="Distro_CHDK_release" xml:space="preserve">
+    <value>CHDK Stable</value>
+  </data>
+  <data name="Distro_CHDK_trunk" xml:space="preserve">
+    <value>CHDK Development</value>
+  </data>
+  <data name="Software_Status_Content" xml:space="preserve">
+    <value>Status:</value>
+  </data>
+  <data name="Software_Status_Unknown" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="Distro_CHDK_DE_release" xml:space="preserve">
+    <value>CHDK_DE Stable</value>
+  </data>
+  <data name="Distro_CHDK_DE_trunk" xml:space="preserve">
+    <value>CHDK_DE Development</value>
+  </data>
+  <data name="Download_Completed_Text" xml:space="preserve">
+    <value>Ready to Install</value>
+  </data>
+  <data name="Download_Downloading_Text" xml:space="preserve">
+    <value>Downloading</value>
+  </data>
+  <data name="Download_Extracting_Text" xml:space="preserve">
+    <value>Extracting</value>
+  </data>
+  <data name="Download_FetchingData_Text" xml:space="preserve">
+    <value>Fetching Download Data</value>
+  </data>
+  <data name="Download_InvalidFormat_Text" xml:space="preserve">
+    <value>Invalid Data Format</value>
+  </data>
+  <data name="Download_MissingBuild_Text" xml:space="preserve">
+    <value>Build Not Found</value>
+  </data>
+  <data name="Download_MissingPlatform_Text" xml:space="preserve">
+    <value>Camera Not Found</value>
+  </data>
+  <data name="Download_MissingRevision_Text" xml:space="preserve">
+    <value>Revision Not Found</value>
+  </data>
+  <data name="Download_UpToDate_Text" xml:space="preserve">
+    <value>Already Up to Date</value>
+  </data>
+  <data name="Install_Copying_Text" xml:space="preserve">
+    <value>Copying Files</value>
+  </data>
+  <data name="Install_Formatting_Text" xml:space="preserve">
+    <value>Formatting</value>
+  </data>
+  <data name="Install_Initializing_Text" xml:space="preserve">
+    <value>Initializing</value>
+  </data>
+  <data name="Install_Partitioning_Text" xml:space="preserve">
+    <value>Creating Partitions</value>
+  </data>
+  <data name="Install_Switching_Text" xml:space="preserve">
+    <value>Switching Partitions</value>
+  </data>
+  <data name="Camera_NoMetadata_Text" xml:space="preserve">
+    <value>Metadata Not Found</value>
+  </data>
+  <data name="_Title" xml:space="preserve">
+    <value>CHIMP</value>
+    <comment>Do not translate</comment>
+  </data>
+  <data name="Eject_ToastBody_Format" xml:space="preserve">
+    <value>The device '{0}' can now be safely removed from the computer.</value>
+  </data>
+  <data name="Eject_ToastTitle" xml:space="preserve">
+    <value>Safe to Remove Hardware</value>
+  </data>
+  <data name="Intro_Welcome_Format" xml:space="preserve">
+    <value>Welcome to {0}</value>
+  </data>
+  <data name="Install_Format_Text" xml:space="preserve">
+    <value>Verify Card Details</value>
+  </data>
+  <data name="Summary_OpenCardDoor_Header" xml:space="preserve">
+    <value>Open card door</value>
+  </data>
+  <data name="Summary_OpenCardDoor_Format" xml:space="preserve">
+    <value>The card door must be open in order for {0} to load.</value>
+  </data>
+  <data name="Summary_Eject_Text" xml:space="preserve">
+    <value>Use the Safely Remove Hardware and Eject Media option before removing the card.</value>
+  </data>
+  <data name="Summary_Eject_Header" xml:space="preserve">
+    <value>Remove safely</value>
+  </data>
+  <data name="Eject_Ejecting_Text" xml:space="preserve">
+    <value>Ejecting Card</value>
+  </data>
+  <data name="Step_Eject_Text" xml:space="preserve">
+    <value>Eject Card</value>
+  </data>
+  <data name="Download_Updating_Text" xml:space="preserve">
+    <value>Updating Metadata</value>
+  </data>
+  <data name="Eject_CheckBox_Format" xml:space="preserve">
+    <value>Eject {0}</value>
+  </data>
+  <data name="Software_Platform_Content" xml:space="preserve">
+    <value>Platform:</value>
+  </data>
+  <data name="Software_Platform_Unknown_Text" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="Software_Revision_Content" xml:space="preserve">
+    <value>Revision:</value>
+  </data>
+  <data name="Software_Revision_Unknown_Text" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="Software_Date_Content" xml:space="preserve">
+    <value>Date:</value>
+  </data>
+  <data name="Software_Date_Format" xml:space="preserve">
+    <value>{0:dd MMM yyyy}</value>
+  </data>
+  <data name="Software_Date_Unknown_Text" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="Software_Time_Content" xml:space="preserve">
+    <value>Time:</value>
+  </data>
+  <data name="Software_Time_Format" xml:space="preserve">
+    <value>{0:T}</value>
+  </data>
+  <data name="Software_Time_Unknown_Text" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="Distro_SDM" xml:space="preserve">
+    <value>SDM</value>
+    <comment>Do not translate</comment>
+  </data>
+  <data name="Action_Unsupported_Text" xml:space="preserve">
+    <value>Unsupported Product</value>
+  </data>
+  <data name="Install_Completed_Text" xml:space="preserve">
+    <value>Installation Successful</value>
+  </data>
+  <data name="Install_Aborted_Text" xml:space="preserve">
+    <value>Installation Aborted</value>
+  </data>
+  <data name="Download_Progress_Format" xml:space="preserve">
+    <value>Downloaded {0} of {1}</value>
+  </data>
+  <data name="Distro_SDM_2_1" xml:space="preserve">
+    <value>SDM 2.1</value>
+    <comment>Do not translate</comment>
+  </data>
+  <data name="Action_Install_Format" xml:space="preserve">
+    <value>Install {0}</value>
+  </data>
+  <data name="Action_Update_Format" xml:space="preserve">
+    <value>Update {0}</value>
+  </data>
+  <data name="Action_Bootable_Clear_Completed_Text" xml:space="preserve">
+    <value>Autoboot Disabled</value>
+  </data>
+  <data name="Action_Bootable_Clear_Text" xml:space="preserve">
+    <value>Disable Autoboot</value>
+  </data>
+  <data name="Action_Bootable_Set_Completed_Text" xml:space="preserve">
+    <value>Autoboot Enabled</value>
+  </data>
+  <data name="Action_Bootable_Set_Text" xml:space="preserve">
+    <value>Enable Autoboot</value>
+  </data>
+  <data name="Action_Eject_Text" xml:space="preserve">
+    <value>Eject Card</value>
+  </data>
+  <data name="Action_Switch_Completed_Text" xml:space="preserve">
+    <value>Partitions Switched</value>
+  </data>
+  <data name="Action_Switch_Text" xml:space="preserve">
+    <value>Switch Partitions</value>
+  </data>
+  <data name="Software_Title_Unknown_Text" xml:space="preserve">
+    <value>Unknown Product Detected</value>
+  </data>
+  <data name="Software_Title_Unsupported_Text" xml:space="preserve">
+    <value>Unsupported Product Detected</value>
+  </data>
+  <data name="Download_UnsupportedModel_Text" xml:space="preserve">
+    <value>Unsupported Model</value>
+  </data>
+  <data name="Product_CHDK" xml:space="preserve">
+    <value>CHDK</value>
+    <comment>Do not translate</comment>
+  </data>
+  <data name="Product_ML" xml:space="preserve">
+    <value>Magic Lantern</value>
+    <comment>Do not translate</comment>
+  </data>
+  <data name="Product_SDM" xml:space="preserve">
+    <value>SDM</value>
+    <comment>Do not translate</comment>
+  </data>
+  <data name="Action_Scriptable_Clear_Completed_Text" xml:space="preserve">
+    <value>Canon BASIC Disabled</value>
+  </data>
+  <data name="Action_Scriptable_Clear_Text" xml:space="preserve">
+    <value>Disable Canon BASIC</value>
+  </data>
+  <data name="Action_Scriptable_Set_Completed_Text" xml:space="preserve">
+    <value>Canon BASIC Enabled</value>
+  </data>
+  <data name="Action_Scriptable_Set_Text" xml:space="preserve">
+    <value>Enable Canon BASIC</value>
+  </data>
+  <data name="Distro_ML" xml:space="preserve">
+    <value>Magic Lantern</value>
+    <comment>Do not translate</comment>
+  </data>
+  <data name="Software_Changeset_Content" xml:space="preserve">
+    <value>Changeset:</value>
+  </data>
+  <data name="Software_Creator_Content" xml:space="preserve">
+    <value>Created by:</value>
+  </data>
+  <data name="Software_Title_Select_Text" xml:space="preserve">
+    <value>Select Camera Software</value>
+  </data>
+  <data name="Software_Modules_Content" xml:space="preserve">
+    <value>Modules:</value>
+  </data>
+  <data name="Summary_EOS_Led_Header" xml:space="preserve">
+    <value>Wait for LED</value>
+  </data>
+  <data name="Summary_EOS_Led_Text" xml:space="preserve">
+    <value>Wait for LED confirmation (or for 5 seconds) before removing the card from camera.</value>
+  </data>
+  <data name="Summary_Menu_Format" xml:space="preserve">
+    <value>Press the Delete button to access the {0} menu.</value>
+  </data>
+  <data name="Summary_EOS_Remove_Format" xml:space="preserve">
+    <value>Do NOT delete the {0} files from the card.</value>
+  </data>
+  <data name="Summary_EOS_Remove_2_Text" xml:space="preserve">
+    <value>To uninstall from the card, format it in the camera.</value>
+  </data>
+  <data name="Summary_EOS_Remove_3_Text" xml:space="preserve">
+    <value>To uninstall from the camera, launch Firmware Update and follow the instructions.</value>
+  </data>
+  <data name="Summary_Remove_Header" xml:space="preserve">
+    <value>Uninstalling</value>
+  </data>
+  <data name="Camera_UnsupportedModel_Text" xml:space="preserve">
+    <value>Unsupported Model</value>
+  </data>
+  <data name="Download_UnsupportedFirmware_Text" xml:space="preserve">
+    <value>Unsupported Firmware Version</value>
+  </data>
+  <data name="Action_Switch_1_Text" xml:space="preserve">
+    <value>Switch to 2nd Partition</value>
+  </data>
+  <data name="Action_Switch_2_Text" xml:space="preserve">
+    <value>Switch to 3rd Partition</value>
+  </data>
+  <data name="Action_Switch_3_Text" xml:space="preserve">
+    <value>Switch to 4th Partition</value>
+  </data>
+  <data name="Camera_Title_Select_Text" xml:space="preserve">
+    <value>Select Camera Model</value>
+  </data>
+  <data name="Card_FileSystem_None" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="Software_Status_alpha" xml:space="preserve">
+    <value>Alpha</value>
+  </data>
+  <data name="Software_Status_beta" xml:space="preserve">
+    <value>Beta</value>
+  </data>
+  <data name="Software_Status_final" xml:space="preserve">
+    <value>Final</value>
+  </data>
+  <data name="Software_Status_prealpha" xml:space="preserve">
+    <value>Pre-alpha</value>
+  </data>
+  <data name="Summary_Completed_Format" xml:space="preserve">
+    <value>{0} {1} has been successfully installed onto {3}.</value>
+  </data>
+  <data name="Key_Menu" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="Key_Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="Product_Version_400plus_Format" xml:space="preserve">
+    <value>{1:D4}{2:D2}{3:D2}-{5:D2}</value>
+    <comment>Do not translate</comment>
+  </data>
+  <data name="Product_Version_400plus_Format_3" xml:space="preserve">
+    <value>{1:D4}{2:D2}{3:D2}-{4}</value>
+    <comment>Do not translate</comment>
+  </data>
+  <data name="Product_Version_ML_Date_Format" xml:space="preserve">
+    <value>{0}.{1:yyyyMMMdd}</value>
+    <comment>Do not translate</comment>
+  </data>
+  <data name="Summary_AltMode_Menu_Text" xml:space="preserve">
+    <value>In order to access the camera's built-in menu, hold the Menu button for 1 sec.</value>
+  </data>
+  <data name="Summary_Menu_SDM_Text" xml:space="preserve">
+    <value>Hold the Menu button for 1 sec in ALT mode to access the SDM menu.</value>
+  </data>
+  <data name="Summary_SplashScreen_SDM_Text" xml:space="preserve">
+    <value>The SDM welcome screen should appear shortly after starting in Playback mode.</value>
+  </data>
+  <data name="Summary_CHDK_CameraNotes_FileName" xml:space="preserve">
+    <value>camnotes.txt</value>
+    <comment>Do not translate</comment>
+  </data>
+  <data name="Summary_SDM_UserManual_Url" xml:space="preserve">
+    <value>http://sdm.camera/sdm/documentation/SDM_User_Manual.pdf</value>
+  </data>
+  <data name="Summary_UserManual_Content" xml:space="preserve">
+    <value>Open the User Manual</value>
+  </data>
+  <data name="Install_UnsupportedCardSize_Text" xml:space="preserve">
+    <value>Card Size Not Supported by Camera</value>
+  </data>
+  <data name="Product_400plus" xml:space="preserve">
+    <value>400plus</value>
+    <comment>Do not translate</comment>
+  </data>
+  <data name="Key_Playback" xml:space="preserve">
+    <value>Playback</value>
+  </data>
+  <data name="Key_Shrtcut" xml:space="preserve">
+    <value>Shortcut</value>
+  </data>
+  <data name="Summary_AltMode_Playback_Text" xml:space="preserve">
+    <value>In order to switch to Playback mode, hold the Playback button for 1 sec.</value>
+  </data>
+</root>

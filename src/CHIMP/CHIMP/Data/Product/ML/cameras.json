@@ -1,0 +1,432 @@
+﻿{
+  "0x80000176": {
+    "models": [
+      {
+        "names": [
+          "Canon EOS Digital Rebel XSi",
+          "Canon EOS 450D",
+          "Canon EOS Kiss X2"
+        ],
+        "platform": "450D",
+        "versions": {
+          "1.1.0": {
+            "version": "110"
+          }
+        }
+      }
+    ],
+    "boot": {
+      "fs": "exFAT"
+    },
+    "encoding": {
+      "name": ""
+    }
+  },
+  "0x80000190": {
+    "models": [
+      {
+        "names": [
+          "Canon EOS 40D"
+        ],
+        "platform": "40D",
+        "versions": {
+          "1.1.1": {
+            "version": "111"
+          }
+        }
+      }
+    ],
+    "boot": {
+      "fs": "exFAT"
+    },
+    "encoding": {
+      "name": ""
+    }
+  },
+  "0x80000213": {
+    "models": [
+      {
+        "names": [
+          "Canon EOS 5D"
+        ],
+        "platform": "5DC",
+        "versions": {
+          "1.1.1": {
+            "version": "111"
+          }
+        }
+      }
+    ],
+    "boot": {
+      "fs": "exFAT"
+    },
+    "encoding": {
+      "name": ""
+    }
+  },
+  "0x80000218": {
+    "models": [
+      {
+        "names": [
+          "Canon EOS 5D Mark II"
+        ],
+        "platform": "5D2",
+        "versions": {
+          "2.1.2": {
+            "version": "212"
+          }
+        }
+      }
+    ],
+    "boot": {
+      "fs": "exFAT"
+    },
+    "encoding": {
+      "name": ""
+    }
+  },
+  "0x80000250": {
+    "models": [
+      {
+        "names": [
+          "Canon EOS 7D"
+        ],
+        "platform": "7D",
+        "versions": {
+          "2.0.3": {
+            "version": "203"
+          }
+        }
+      }
+    ],
+    "boot": {
+      "fs": "exFAT"
+    },
+    "encoding": {
+      "name": ""
+    }
+  },
+  "0x80000252": {
+    "models": [
+      {
+        "names": [
+          "Canon EOS Rebel T1i",
+          "Canon EOS 500D",
+          "Canon EOS Kiss X3"
+        ],
+        "platform": "500D",
+        "versions": {
+          "1.1.1": {
+            "version": "111"
+          }
+        }
+      }
+    ],
+    "boot": {
+      "fs": "exFAT"
+    },
+    "encoding": {
+      "name": ""
+    }
+  },
+  "0x80000261": {
+    "models": [
+      {
+        "names": [
+          "Canon EOS 50D"
+        ],
+        "platform": "50D",
+        "versions": {
+          "1.0.9": {
+            "version": "109"
+          }
+        }
+      }
+    ],
+    "boot": {
+      "fs": "exFAT"
+    },
+    "encoding": {
+      "name": ""
+    }
+  },
+  "0x80000270": {
+    "models": [
+      {
+        "names": [
+          "Canon EOS Rebel T2i",
+          "Canon EOS 550D",
+          "Canon EOS Kiss X4"
+        ],
+        "platform": "550D",
+        "versions": {
+          "1.0.9": {
+            "version": "109"
+          }
+        }
+      }
+    ],
+    "boot": {
+      "fs": "exFAT"
+    },
+    "encoding": {
+      "name": ""
+    }
+  },
+  "0x80000287": {
+    "models": [
+      {
+        "names": [
+          "Canon EOS 60D"
+        ],
+        "platform": "60D",
+        "versions": {
+          "1.1.1": {
+            "version": "111"
+          }
+        }
+      }
+    ],
+    "boot": {
+      "fs": "exFAT"
+    },
+    "encoding": {
+      "name": ""
+    }
+  },
+  "0x80000285": {
+    "models": [
+      {
+        "names": [
+          "Canon EOS 5D Mark III"
+        ],
+        "platform": "5D3",
+        "versions": {
+          "1.1.3": {
+            "version": "113"
+          },
+          "1.2.3": {
+            "version": "123"
+          },
+          "1.3.4": {
+            "version": "134"
+          }
+        }
+      }
+    ],
+    "boot": {
+      "fs": "exFAT"
+    },
+    "encoding": {
+      "name": ""
+    }
+  },
+  "0x80000288": {
+    "models": [
+      {
+        "names": [
+          "Canon EOS Rebel T3",
+          "Canon EOS 1100D",
+          "Canon EOS Kiss X50"
+        ],
+        "platform": "1100D",
+        "versions": {
+          "1.0.5": {
+            "version": "105"
+          }
+        }
+      }
+    ],
+    "boot": {
+      "fs": "exFAT"
+    },
+    "encoding": {
+      "name": ""
+    }
+  },
+  "0x80000286": {
+    "models": [
+      {
+        "names": [
+          "Canon EOS Rebel T3i",
+          "Canon EOS 600D",
+          "Canon EOS Kiss X5"
+        ],
+        "platform": "600D",
+        "versions": {
+          "1.0.2": {
+            "version": "102"
+          }
+        }
+      }
+    ],
+    "boot": {
+      "fs": "exFAT"
+    },
+    "encoding": {
+      "name": ""
+    }
+  },
+  "0x80000301": {
+    "models": [
+      {
+        "names": [
+          "Canon EOS Rebel T4i",
+          "Canon EOS 650D",
+          "Canon EOS Kiss X6i"
+        ],
+        "platform": "650D",
+        "versions": {
+          "1.0.4": {
+            "version": "104"
+          }
+        }
+      }
+    ],
+    "boot": {
+      "fs": "exFAT"
+    },
+    "encoding": {
+      "name": ""
+    }
+  },
+  "0x80000302": {
+    "models": [
+      {
+        "names": [
+          "Canon EOS 6D"
+        ],
+        "platform": "6D",
+        "versions": {
+          "1.1.6": {
+            "version": "116"
+          }
+        }
+      }
+    ],
+    "boot": {
+      "fs": "exFAT"
+    },
+    "encoding": {
+      "name": ""
+    }
+  },
+  "0x80000325": {
+    "models": [
+      {
+        "names": [
+          "Canon EOS 70D"
+        ],
+        "platform": "70D",
+        "versions": {
+          "1.1.2": {
+            "version": "112"
+          }
+        }
+      }
+    ],
+    "boot": {
+      "fs": "exFAT"
+    },
+    "encoding": {
+      "name": ""
+    }
+  },
+  "0x80000326": {
+    "models": [
+      {
+        "names": [
+          "Canon EOS Rebel T5i",
+          "Canon EOS 700D",
+          "Canon EOS Kiss X7i"
+        ],
+        "platform": "700D",
+        "versions": {
+          "1.1.4": {
+            "version": "114"
+          },
+          "1.1.5": {
+            "version": "115"
+          }
+        }
+      }
+    ],
+    "boot": {
+      "fs": "exFAT"
+    },
+    "encoding": {
+      "name": ""
+    }
+  },
+  "0x80000327": {
+    "models": [
+      {
+        "names": [
+          "Canon EOS Rebel T5",
+          "Canon EOS 1200D",
+          "Canon EOS Kiss X70"
+        ],
+        "platform": "1200D",
+        "versions": {
+          "1.0.1": {
+            "version": "101",
+            "status": "ALPHA"
+          }
+        }
+      }
+    ],
+    "boot": {
+      "fs": "exFAT"
+    },
+    "encoding": {
+      "name": ""
+    }
+  },
+  "0x80000331": {
+    "models": [
+      {
+        "names": [
+          "Canon EOS M"
+        ],
+        "platform": "EOSM",
+        "versions": {
+          "2.0.2": {
+            "version": "202"
+          },
+          "2.0.3": {
+            "version": "203"
+          }
+        }
+      }
+    ],
+    "boot": {
+      "fs": "exFAT"
+    },
+    "encoding": {
+      "name": ""
+    }
+  },
+  "0x80000346": {
+    "models": [
+      {
+        "names": [
+          "Canon EOS Rebel SL1",
+          "Canon EOS 100D",
+          "Canon EOS Kiss X7"
+        ],
+        "platform": "100D",
+        "versions": {
+          "1.0.1": {
+            "version": "101"
+          }
+        }
+      }
+    ],
+    "boot": {
+      "fs": "exFAT"
+    },
+    "encoding": {
+      "name": ""
+    }
+  }
+}

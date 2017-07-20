@@ -1,0 +1,17 @@
+﻿{
+  "files": {
+    "script.req": "for DC_scriptdisk\n"
+  },
+  "sizes": {
+    "FAT": "0x200",
+    "FAT32": "0x200"
+  },
+  "strings": {
+    "FAT": {
+      "0x1f0": "SCRIPT"
+    },
+    "FAT32": {
+      "0x1f0": "SCRIPT"
+    }
+  }
+}

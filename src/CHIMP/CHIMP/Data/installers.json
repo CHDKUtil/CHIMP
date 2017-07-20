@@ -1,0 +1,18 @@
+﻿{
+  "": {
+    "assembly": "CHIMP",
+    "type": "Format"
+  },
+  "FAT": {
+    "assembly": "CHIMP",
+    "type": "Fat"
+  },
+  "FAT32": {
+    "assembly": "CHIMP",
+    "type": "Fat32"
+  },
+  "exFAT": {
+    "assembly": "CHIMP",
+    "type": "ExFat"
+  }
+}

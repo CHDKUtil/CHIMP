@@ -1,0 +1,10 @@
+﻿<Page x:Class="Chimp.Pages.LicensesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:controls="clr-namespace:Chimp.Controls"
+      Style="{StaticResource {x:Type Page}}"
+      Title="{Binding [Licenses].Title}">
+
+    <controls:LicensesControl />
+
+</Page>

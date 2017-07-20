@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="Chimp.Controls.LicensesControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:properties="clr-namespace:Chimp.Properties">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ScrollViewer>
+            <ItemsControl ItemsSource="{Binding [Licenses].Licenses}" Focusable="False">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Expander IsExpanded="{Binding IsExpanded}" Margin="0,4">
+                            <Expander.Header>
+                                <TextBlock Text="{Binding Product}" FontWeight="Bold"/>
+                            </Expander.Header>
+                            <Expander.Content>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <ItemsControl ItemsSource="{Binding Contents}" FlowDirection="LeftToRight"
+                                                  FontFamily="Consolas" FontSize="12" Margin="24,4,0,8" />
+                                    <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                                        <RadioButton Content="{x:Static properties:Resources.Licenses_Accept_Content}"
+                                                     IsChecked="{Binding IsAccepted}" />
+                                        <RadioButton Content="{x:Static properties:Resources.Licenses_Reject_Text}"
+                                                     IsChecked="{Binding IsAccepted, Converter={StaticResource InverseBooleanConverter}}" />
+                                    </StackPanel>
+                                </Grid>
+                            </Expander.Content>
+                        </Expander>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                    Visibility="{Binding [Licenses].Licenses, Converter={StaticResource NullToVisibilityConverter}}">
+            <RadioButton Content="{x:Static properties:Resources.Licenses_AcceptAll_Content}"
+                         IsChecked="{Binding [Licenses].IsAllAccepted}" />
+            <RadioButton Content="{x:Static properties:Resources.Licenses_RejectAll_Text}"
+                         IsChecked="{Binding [Licenses].IsAllRejected}" />
+        </StackPanel>
+
+    </Grid>
+</UserControl>

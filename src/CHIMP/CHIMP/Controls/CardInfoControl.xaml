@@ -1,0 +1,96 @@
+﻿<UserControl x:Class="Chimp.Controls.CardInfoControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:Chimp.Controls"
+             xmlns:properties="clr-namespace:Chimp.Properties">
+
+    <UserControl.Style>
+        <Style TargetType="UserControl">
+            <Setter Property="Visibility" Value="{Binding Converter={StaticResource NullToVisibilityConverter}}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Items.Count}" Value="0">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Style>
+    
+    <Grid Style="{StaticResource InfoGrid}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <!-- Drive -->
+        <Label Content="{x:Static properties:Resources.Card_Drive_Content}" />
+        <TextBlock Text="{Binding SelectedItem.DisplayName}"
+                   Visibility="{Binding IsSelect, Converter={StaticResource InverseBooleanToVisibilityConverter}}" />
+        <controls:SelectItemControl Grid.Column="1" Margin="4"
+                                    Visibility="{Binding IsSelect, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+        <!-- File System -->
+        <Label Content="{x:Static properties:Resources.Card_FileSystem_Content}" Grid.Row="1"
+               Visibility="{Binding SelectedItem, Converter={StaticResource NullToVisibilityConverter}, ConverterParameter=Hidden}" />
+
+        <TextBlock Grid.Row="1"
+                   Visibility="{Binding SelectedItem, Converter={StaticResource NullToVisibilityConverter}}">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource InfoTextBlock}">
+                    <Setter Property="Text" Value="{Binding SelectedItem.Info.FileSystem}" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding SelectedItem.Info.FileSystem}" Value="{x:Null}">
+                            <Setter Property="Text" Value="{x:Static properties:Resources.Card_FileSystem_None}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+        <!-- Space -->
+        <Label Content="{x:Static properties:Resources.Card_Space_Content}" Grid.Row="2">
+            <Label.Style>
+                <Style TargetType="Label" BasedOn="{StaticResource InfoLabel}">
+                    <Setter Property="Visibility" Value="{Binding SelectedItem, Converter={StaticResource NullToVisibilityConverter}, ConverterParameter=Hidden}" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding SelectedItem.Info.Capacity}" Value="{x:Null}">
+                            <Setter Property="Visibility" Value="Hidden" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+
+        <TextBlock Grid.Row="2">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource InfoTextBlock}">
+                    <Setter Property="Text">
+                        <Setter.Value>
+                            <MultiBinding StringFormat="{x:Static properties:Resources.DiskSpace_Format}">
+                                <Binding Path="SelectedItem.Info.FreeSpace" Converter="{StaticResource SizeConverter}" />
+                                <Binding Path="SelectedItem.Info.Capacity" Converter="{StaticResource SizeConverter}" />
+                            </MultiBinding>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Visibility" Value="{Binding SelectedItem, Converter={StaticResource NullToVisibilityConverter}}" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding SelectedItem.Info.FreeSpace}" Value="{x:Null}">
+                            <Setter Property="Text" Value="{Binding SelectedItem.Info.Capacity, Converter={StaticResource SizeConverter}}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding SelectedItem.Info.Capacity}" Value="{x:Null}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        
+    </Grid>
+    
+</UserControl>

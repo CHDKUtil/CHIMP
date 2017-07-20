@@ -1,0 +1,14 @@
+﻿<Page x:Class="Chimp.Pages.SummaryPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:controls="clr-namespace:Chimp.Controls"
+      Style="{StaticResource {x:Type Page}}"
+      Title="{Binding [Summary].Title, Converter={StaticResource ResourceConverter}}">
+    
+    <Grid>
+        
+        <controls:SummaryControl />
+        
+    </Grid>
+    
+</Page>

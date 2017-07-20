@@ -1,0 +1,28 @@
+{
+  "0x80000236": {
+    "models": [
+      {
+        "versions": {
+          "1.1.1": {
+            "version": "111"
+          }
+        },
+        "names": [
+          "Canon EOS Digital Rebel XTi",
+          "Canon EOS 400D",
+          "Canon EOS Kiss Digital X"
+        ],
+        "platform": "400D"
+      }
+    ],
+    "encoding": {
+      "name": ""
+    },
+    "card": {
+      "type": "CF"
+    },
+    "boot": {
+      "fs": "FAT32"
+    }
+  }
+}

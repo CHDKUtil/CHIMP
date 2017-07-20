@@ -1,0 +1,46 @@
+﻿<Page x:Class="Chimp.Pages.CardPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:controls="clr-namespace:Chimp.Controls"
+      xmlns:properties="clr-namespace:Chimp.Properties">
+
+    <Page.Style>
+        <Style TargetType="Page" BasedOn="{StaticResource {x:Type Page}}">
+            <Setter Property="Title" Value="{x:Static properties:Resources.Card_Detected_Title_Text}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding [Card]}" Value="{x:Null}">
+                    <Setter Property="Title" Value="{x:Static properties:Resources.Card_Detecting_Title_Text}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding [Card].IsSelect}" Value="True">
+                    <Setter Property="Title" Value="{x:Static properties:Resources.Card_Select_Title_Text}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding [Card].Items.Count}" Value="0">
+                    <Setter Property="Title" Value="{x:Static properties:Resources.Card_NoCard_Title_Text}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Style>
+
+    <Grid>
+
+        <ProgressBar IsIndeterminate="True"
+                     Visibility="{Binding [Card], Converter={StaticResource NullToVisibilityConverter}, ConverterParameter=Visible}" />
+
+        <controls:CardInfoControl DataContext="{Binding [Card]}" />
+
+        <TextBlock Text="{x:Static properties:Resources.Card_NoCard_Text}" Margin="4">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding [Card].Items.Count}" Value="0">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+    </Grid>
+
+</Page>

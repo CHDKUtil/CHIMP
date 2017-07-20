@@ -1,0 +1,28 @@
+﻿<Page x:Class="Chimp.Pages.SoftwarePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:properties="clr-namespace:Chimp.Properties"
+      xmlns:controls="clr-namespace:Chimp.Controls">
+
+    <Page.Style>
+        <Style TargetType="Page" BasedOn="{StaticResource {x:Type Page}}">
+            <Setter Property="Title" Value="{Binding [Software].Title, Converter={StaticResource ResourceConverter}}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding [Software]}" Value="{x:Null}">
+                    <Setter Property="Title" Value="{x:Static properties:Resources.Software_Title_Detecting_Text}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Style>
+
+    <Grid>
+
+        <ProgressBar Value="{Binding ProgressValue}" Maximum="1" IsIndeterminate="{Binding IsIndeterminate}"
+                     Visibility="{Binding [Software], Converter={StaticResource NullToVisibilityConverter}, ConverterParameter=Visible}" />
+
+        <controls:SoftwareControl DataContext="{Binding [Software]}"
+                                  Visibility="{Binding Converter={StaticResource NullToVisibilityConverter}}" />
+
+    </Grid>
+    
+</Page>

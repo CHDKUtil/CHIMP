@@ -1,0 +1,122 @@
+﻿<Window x:Class="Chimp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:properties="clr-namespace:Chimp.Properties"
+        Title="{x:Static properties:Resources._Title}"
+        FontFamily="{Binding Source={x:Static properties:Resources._FontFamily}}"
+        FontSize="{Binding Source={x:Static properties:Resources._FontSize}}"
+        FlowDirection="{Binding Dispatcher.Thread.CurrentUICulture, Source={x:Static Application.Current}, Converter={StaticResource FlowDirectionConverter}}"
+        Height="540" Width="720"
+        WindowStyle="SingleBorderWindow"
+        ResizeMode="NoResize">
+
+    <Window.TaskbarItemInfo>
+        <TaskbarItemInfo>
+            <TaskbarItemInfo.ProgressState>
+                <MultiBinding Converter="{StaticResource ProgressStateConverter}">
+                    <Binding />
+                    <Binding Path="IsWarning" />
+                    <Binding Path="IsError" />
+                    <Binding Path="IsAborted" />
+                </MultiBinding>
+            </TaskbarItemInfo.ProgressState>
+            <TaskbarItemInfo.ProgressValue>
+                <MultiBinding Converter="{StaticResource ProgressValueConverter}">
+                    <Binding Path="Step" />
+                    <Binding Path="Step.SelectedIndex" />
+                </MultiBinding>
+            </TaskbarItemInfo.ProgressValue>
+        </TaskbarItemInfo>
+    </Window.TaskbarItemInfo>
+
+    <Grid>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="132" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ItemsControl Grid.RowSpan="2"
+                      ItemsSource="{Binding Step.Items}"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                      Focusable="False"
+                      Margin="8">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name, Converter={StaticResource ResourceConverter}, ConverterParameter='{}Step_{0}_Text'}"
+                               Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+                               Margin="4,2" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemContainerStyle>
+                <Style TargetType="ContentPresenter">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                            <Setter Property="TextBlock.FontWeight" Value="Bold" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+        </ItemsControl>
+        
+        <Grid Grid.Column="1">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            
+            <TextBlock Text="{Binding Content.Title, ElementName=frame}"
+                       FontSize="18" FontWeight="Bold"
+                       Margin="12,12,0,0" />
+            
+            <Frame x:Name="frame" Grid.Row="1"
+                   NavigationUIVisibility="Hidden"
+                   Focusable="False"
+                   Padding="8" />
+            
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="1" Margin="2" HorizontalAlignment="Right">
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Button Content="{x:Static properties:Resources.Wizard_GoBack}" Click="GoBack_Click" Grid.Column="0"
+                    IsEnabled="{Binding Step.CanGoBack}">
+            </Button>
+
+            <Button Content="{x:Static properties:Resources.Wizard_Continue}" Click="Continue_Click" Grid.Column="1"
+                    IsEnabled="{Binding Step.CanContinue}">
+                <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsCompleted}" Value="True">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsAborted}" Value="True">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+            <Button Content="{x:Static properties:Resources.Wizard_Finish}" Click="Finish_Click" Grid.Column="1"
+                    Visibility="{Binding IsCompleted, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+            <Button Content="{x:Static properties:Resources.Wizard_Close}" Click="Close_Click" Grid.Column="1"
+                    Visibility="{Binding IsAborted, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+        </Grid>
+        
+    </Grid>
+    
+</Window>

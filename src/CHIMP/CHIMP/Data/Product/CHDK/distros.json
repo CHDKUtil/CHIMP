@@ -1,0 +1,52 @@
+﻿{
+  "CHDK_release": {
+    "assembly": "CHIMP",
+    "matchType": "Chdk",
+    "productType": "Chdk",
+    "baseUrl": "http://mighty-hoernsche.de/",
+    "language": "en"
+  },
+  "CHDK_trunk": {
+    "assembly": "CHIMP",
+    "matchType": "Chdk",
+    "productType": "Chdk",
+    "baseUrl": "http://mighty-hoernsche.de/trunk/",
+    "language": "en"
+  },
+  "CHDK_mirror_release": {
+    "assembly": "CHIMP",
+    "matchType": "Chdk",
+    "productType": "Chdk",
+    "baseUrl": "http://hacki.someserver.de/",
+    "language": "en"
+  },
+  "CHDK_mirror_trunk": {
+    "assembly": "CHIMP",
+    "matchType": "Chdk",
+    "productType": "Chdk",
+    "baseUrl": "http://hacki.someserver.de/trunk/",
+    "language": "en"
+  },
+  "CHDK_DE_release": {
+    "assembly": "CHIMP",
+    "matchType": "ChdkDe",
+    "productType": "Chdk",
+    "baseUrl": "http://autobuild.akalab.de/",
+    "builds": {
+      "": "release.txt",
+      "full": "release_full.txt"
+    },
+    "language": "de"
+  },
+  "CHDK_DE_trunk": {
+    "assembly": "CHIMP",
+    "matchType": "ChdkDe",
+    "productType": "Chdk",
+    "baseUrl": "http://autobuild.akalab.de/",
+    "builds": {
+      "": "trunk.txt",
+      "full": "trunk_full.txt"
+    },
+    "language": "de"
+  }
+}

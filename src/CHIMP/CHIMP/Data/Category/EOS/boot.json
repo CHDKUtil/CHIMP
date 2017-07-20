@@ -1,0 +1,25 @@
+﻿{
+  "files": {
+    "AUTOEXEC.BIN": null
+  },
+  "sizes": {
+    "FAT": "0x200",
+    "FAT32": "0x200"
+  },
+  "strings": {
+    "FAT": {
+      "0x2b": "EOS_DEVELOP",
+      "0x40": "BOOTDISK"
+    },
+    "FAT32": {
+      "0x47": "EOS_DEVELOP",
+      "0x5c": "BOOTDISK"
+    },
+    "exFAT": {
+      "0x82": "EOS_DEVELOP",
+      "0x7a": "BOOTDISK",
+      "0x1882": "EOS_DEVELOP",
+      "0x187a": "BOOTDISK"
+    }
+  }
+}

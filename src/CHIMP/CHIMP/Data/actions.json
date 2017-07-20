@@ -1,0 +1,8 @@
+﻿{
+  "Update": "CHIMP",
+  "Install": "CHIMP",
+  "Bootable": "CHIMP",
+  "Scriptable": "CHIMP",
+  "Switch": "CHIMP",
+  "Eject": "CHIMP"
+}

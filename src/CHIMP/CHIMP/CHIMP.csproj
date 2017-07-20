@@ -1,0 +1,848 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3B3D05D1-2FF1-4EFD-86A9-FEB0D9864FD7}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Chimp</RootNamespace>
+    <AssemblyName>CHIMP</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <Prefer32Bit>false</Prefer32Bit>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <Prefer32Bit>false</Prefer32Bit>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Chimp.Logging.Core, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Chimp.Logging.Core.0.2.0-alpha\lib\net45\Chimp.Logging.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Chimp.Logging.Extensions, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Chimp.Logging.Extensions.0.3.0-alpha\lib\netstandard1.1\Chimp.Logging.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="DesktopToast, Version=0.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DesktopToast.0.7.0-alpha\lib\net452\DesktopToast.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="MetadataExtractor, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetadataExtractor.2.0.0\lib\net45\MetadataExtractor.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.1.1.2\lib\netstandard1.1\Microsoft.Extensions.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.1.1.2\lib\netstandard1.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Binder, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Binder.1.1.2\lib\netstandard1.1\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.FileExtensions, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.FileExtensions.1.1.2\lib\net451\Microsoft.Extensions.Configuration.FileExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Json, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Json.1.1.2\lib\net451\Microsoft.Extensions.Configuration.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.1.1.1\lib\netstandard1.1\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.1.1.1\lib\netstandard1.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileProviders.Abstractions, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileProviders.Abstractions.1.1.1\lib\netstandard1.0\Microsoft.Extensions.FileProviders.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileProviders.Physical, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileProviders.Physical.1.1.1\lib\net451\Microsoft.Extensions.FileProviders.Physical.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileSystemGlobbing, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileSystemGlobbing.1.1.1\lib\net45\Microsoft.Extensions.FileSystemGlobbing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.1.1.2\lib\netstandard1.1\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.1.1.2\lib\netstandard1.1\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.1.1.2\lib\netstandard1.0\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options.ConfigurationExtensions, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.ConfigurationExtensions.1.1.2\lib\netstandard1.1\Microsoft.Extensions.Options.ConfigurationExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.1.1.1\lib\netstandard1.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Win32.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Core, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Core.0.3.0-alpha\lib\netstandard1.0\Net.Chdk.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Detectors.Base, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Detectors.Base.0.1.0-alpha\lib\netstandard1.3\Net.Chdk.Detectors.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Detectors.Camera, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Detectors.Camera.0.1.0-alpha\lib\netstandard1.3\Net.Chdk.Detectors.Camera.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Detectors.Camera.Core, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Detectors.Camera.Core.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Detectors.Camera.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Detectors.CameraModel, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Detectors.CameraModel.0.1.0-alpha\lib\netstandard1.3\Net.Chdk.Detectors.CameraModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Detectors.CameraModel.Core, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Detectors.CameraModel.Core.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Detectors.CameraModel.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Detectors.Card, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Detectors.Card.0.1.0-alpha\lib\net45\Net.Chdk.Detectors.Card.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Detectors.Card.Core, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Detectors.Card.Core.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Detectors.Card.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Detectors.Software, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Detectors.Software.0.1.0-alpha\lib\netstandard1.3\Net.Chdk.Detectors.Software.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Detectors.Software.Chdk, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Detectors.Software.Chdk.0.3.0-alpha\lib\netstandard1.3\Net.Chdk.Detectors.Software.Chdk.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Detectors.Software.Core, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Detectors.Software.Core.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Detectors.Software.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Detectors.Software.Fhp, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Detectors.Software.Fhp.0.3.0-alpha\lib\netstandard1.3\Net.Chdk.Detectors.Software.Fhp.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Detectors.Software.Ml, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Detectors.Software.Ml.0.3.0-alpha\lib\netstandard1.3\Net.Chdk.Detectors.Software.Ml.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Detectors.Software.Product, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Detectors.Software.Product.0.3.0-alpha\lib\netstandard1.3\Net.Chdk.Detectors.Software.Product.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Detectors.Software.Sdm, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Detectors.Software.Sdm.0.3.0-alpha\lib\netstandard1.3\Net.Chdk.Detectors.Software.Sdm.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Encoders.Binary, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Encoders.Binary.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Encoders.Binary.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Encoders.Binary.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Encoders.Binary.Core.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Encoders.Binary.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Json, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Json.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Meta.Model.Camera, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Meta.Model.Camera.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Meta.Model.Camera.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Meta.Model.Camera.Eos, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Meta.Model.Camera.Eos.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Meta.Model.Camera.Eos.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Meta.Model.Camera.Ps, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Meta.Model.Camera.Ps.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Meta.Model.Camera.Ps.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Model.Camera, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Model.Camera.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Model.Camera.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Model.CameraModel, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Model.CameraModel.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Model.CameraModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Model.Card, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Model.Card.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Model.Card.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Model.Category, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Model.Category.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Model.Category.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Model.Software, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Model.Software.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Model.Software.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Providers.Base, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Providers.Base.0.2.0-alpha\lib\netstandard1.3\Net.Chdk.Providers.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Providers.Boot, Version=0.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Providers.Boot.0.3.1-alpha\lib\netstandard1.3\Net.Chdk.Providers.Boot.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Providers.Boot.Core, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Providers.Boot.Core.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Providers.Boot.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Providers.Camera, Version=0.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Providers.Camera.0.4.1-alpha\lib\netstandard1.3\Net.Chdk.Providers.Camera.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Providers.Camera.Core, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Providers.Camera.Core.0.4.0-alpha\lib\netstandard1.0\Net.Chdk.Providers.Camera.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Providers.Category.Core, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Providers.Category.Core.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Providers.Category.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Providers.Crypto, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Providers.Crypto.0.1.0-alpha\lib\netstandard1.3\Net.Chdk.Providers.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Providers.Crypto.Core, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Providers.Crypto.Core.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Providers.Crypto.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Providers.Product, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Providers.Product.0.4.0-alpha\lib\netstandard1.3\Net.Chdk.Providers.Product.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Providers.Product.Core, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Providers.Product.Core.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Providers.Product.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Providers.Software, Version=0.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Providers.Software.0.3.2-alpha\lib\netstandard1.3\Net.Chdk.Providers.Software.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Providers.Software.Chdk, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Providers.Software.Chdk.0.4.1-alpha\lib\netstandard1.3\Net.Chdk.Providers.Software.Chdk.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Providers.Software.Core, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Providers.Software.Core.0.3.1-alpha\lib\netstandard1.0\Net.Chdk.Providers.Software.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Providers.Software.Ml, Version=0.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Providers.Software.Ml.0.4.1-alpha\lib\netstandard1.3\Net.Chdk.Providers.Software.Ml.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Providers.Software.Product, Version=0.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Providers.Software.Product.0.4.2-alpha\lib\netstandard1.3\Net.Chdk.Providers.Software.Product.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Providers.Software.Sdm, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Providers.Software.Sdm.0.4.1-alpha\lib\netstandard1.3\Net.Chdk.Providers.Software.Sdm.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Validators.Base, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Validators.Base.0.1.0-alpha\lib\netstandard1.1\Net.Chdk.Validators.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Validators.Core, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Validators.Core.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Validators.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Validators.Software, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Validators.Software.0.1.0-alpha\lib\netstandard1.3\Net.Chdk.Validators.Software.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Watchers.Volume, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Watchers.Volume.0.1.0-alpha\lib\net45\Net.Chdk.Watchers.Volume.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.Chdk.Watchers.Volume.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Watchers.Volume.Core.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Watchers.Volume.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.2.5.0\lib\net46\Serilog.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Extensions.Logging.1.4.0\lib\net46\Serilog.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Extensions.Logging.File, Version=1.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Extensions.Logging.File.1.1.0\lib\net45\Serilog.Extensions.Logging.File.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Formatting.Compact, Version=1.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Formatting.Compact.1.0.0\lib\net45\Serilog.Formatting.Compact.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Sinks.Async, Version=1.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Sinks.Async.1.1.0\lib\net45\Serilog.Sinks.Async.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Sinks.File, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Sinks.File.3.2.0\lib\net45\Serilog.Sinks.File.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Sinks.RollingFile, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Sinks.RollingFile.3.3.0\lib\net45\Serilog.Sinks.RollingFile.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.AppContext, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.AppContext.4.3.0\lib\net46\System.AppContext.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.ComponentModel.Primitives, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Primitives.4.3.0\lib\net45\System.ComponentModel.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.TypeConverter, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.TypeConverter.4.3.0\lib\net45\System.ComponentModel.TypeConverter.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Console, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Console.4.3.0\lib\net46\System.Console.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.3.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Globalization.Calendars, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Globalization.Calendars.4.3.0\lib\net46\System.Globalization.Calendars.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.IO.Compression.ZipFile, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.ZipFile.4.3.0\lib\net46\System.IO.Compression.ZipFile.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.4.3.0\lib\net46\System.IO.FileSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.3.0\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Net.Http, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.0\lib\net46\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Sockets, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Sockets.4.3.0\lib\net46\System.Net.Sockets.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.3.0\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net46\System.Security.Cryptography.Algorithms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net46\System.Security.Cryptography.X509Certificates.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Thread, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Thread.4.3.0\lib\net46\System.Threading.Thread.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.ReaderWriter, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Xml.ReaderWriter.4.3.0\lib\net46\System.Xml.ReaderWriter.dll</HintPath>
+    </Reference>
+    <Reference Include="UsbEject, Version=3.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UsbEject.3.2.1-alpha\lib\net45\UsbEject.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="XmpCore, Version=5.1.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XmpCore.5.1.3\lib\net35\XmpCore.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Actions\ActionBase.cs" />
+    <Compile Include="Actions\BootableAction.cs" />
+    <Compile Include="Actions\EjectAction.cs" />
+    <Compile Include="Actions\InstallActionBase.cs" />
+    <Compile Include="Actions\ScriptableAction.cs" />
+    <Compile Include="Actions\SwitchAction.cs" />
+    <Compile Include="Controllers\Controller.cs" />
+    <Compile Include="Controllers\CameraController.cs" />
+    <Compile Include="Controllers\CardController.cs" />
+    <Compile Include="Controllers\ActionController.cs" />
+    <Compile Include="Controllers\DownloadController.cs" />
+    <Compile Include="Controllers\EjectController.cs" />
+    <Compile Include="Controllers\SoftwareController.cs" />
+    <Compile Include="Controllers\InstallController.cs" />
+    <Compile Include="Controllers\IntroController.cs" />
+    <Compile Include="Controllers\LicensesController.cs" />
+    <Compile Include="Controllers\SummaryController.cs" />
+    <Compile Include="Controls\CameraInfoControl.xaml.cs">
+      <DependentUpon>CameraInfoControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CardInfoControl.xaml.cs">
+      <DependentUpon>CardInfoControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EjectControl.xaml.cs">
+      <DependentUpon>EjectControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SoftwareControl.xaml.cs">
+      <DependentUpon>SoftwareControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SummaryControl.xaml.cs">
+      <DependentUpon>SummaryControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LicensesControl.xaml.cs">
+      <DependentUpon>LicensesControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SelectItemControl.xaml.cs">
+      <DependentUpon>SelectItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SelectActionControl.xaml.cs">
+      <DependentUpon>SelectActionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SoftwareInfoControl.xaml.cs">
+      <DependentUpon>SoftwareInfoControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TipsControl.xaml.cs">
+      <DependentUpon>TipsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\BuildStatusConverter.cs" />
+    <Compile Include="Converters\DebugConverter.cs" />
+    <Compile Include="Converters\ProductVersionConverter.cs" />
+    <Compile Include="Converters\SizeConverter.cs" />
+    <Compile Include="Converters\FirmwareVersionConverter.cs" />
+    <Compile Include="Converters\FlowDirectionConverter.cs" />
+    <Compile Include="Converters\InverseBooleanConverter.cs" />
+    <Compile Include="Converters\InverseBooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\NullToVisibilityConverter.cs" />
+    <Compile Include="Converters\ProgressStateConverter.cs" />
+    <Compile Include="Converters\ProgressValueConverter.cs" />
+    <Compile Include="Converters\ResourceConverter.cs" />
+    <Compile Include="Device.cs" />
+    <Compile Include="Disk.cs" />
+    <Compile Include="Downloaders\BrowseDownloader.cs" />
+    <Compile Include="Interfaces\IAction.cs" />
+    <Compile Include="Interfaces\Providers\IActionProvider.cs" />
+    <Compile Include="Interfaces\Providers\IMatchProvider.cs" />
+    <Compile Include="Interfaces\Services\IBootService.cs" />
+    <Compile Include="Interfaces\Services\IMetadataService.cs" />
+    <Compile Include="Interfaces\Services\IExtractService.cs" />
+    <Compile Include="Interfaces\Services\IDialogService.cs" />
+    <Compile Include="Interfaces\Services\IDownloadService.cs" />
+    <Compile Include="Interfaces\Services\IEjectService.cs" />
+    <Compile Include="Interfaces\Services\IInstallService.cs" />
+    <Compile Include="Interfaces\IController.cs" />
+    <Compile Include="Interfaces\Containers\IControllerContainer.cs" />
+    <Compile Include="Interfaces\Providers\IDownloaderProvider.cs" />
+    <Compile Include="Interfaces\Services\IFormatService.cs" />
+    <Compile Include="Interfaces\Providers\IInstallerProvider.cs" />
+    <Compile Include="Interfaces\Containers\IPageContainer.cs" />
+    <Compile Include="Interfaces\Providers\IStepProvider.cs" />
+    <Compile Include="Interfaces\Containers\IVolumeContainer.cs" />
+    <Compile Include="Interfaces\IServiceActivator.cs" />
+    <Compile Include="Interfaces\Services\IPartitionService.cs" />
+    <Compile Include="Interfaces\Services\IScriptService.cs" />
+    <Compile Include="Interfaces\Providers\IResourceProvider.cs" />
+    <Compile Include="Model\Distro.cs" />
+    <Compile Include="Model\DownloadData.cs" />
+    <Compile Include="Model\InstallerData.cs" />
+    <Compile Include="Model\PartitionType.cs" />
+    <Compile Include="Pages\EjectPage.xaml.cs">
+      <DependentUpon>EjectPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Containers\ControllerContainer.cs" />
+    <Compile Include="Providers\Action\BootableActionProvider.cs" />
+    <Compile Include="Actions\BrowseAction.cs" />
+    <Compile Include="Providers\Action\BrowseActionProvider.cs" />
+    <Compile Include="Providers\Action\EjectActionProvider.cs" />
+    <Compile Include="Providers\Action\InstallActionProvider.cs" />
+    <Compile Include="Providers\Action\InstallActionProviderBase.cs" />
+    <Compile Include="Providers\Action\ScriptableActionProvider.cs" />
+    <Compile Include="Providers\Action\SwitchActionProvider.cs" />
+    <Compile Include="Providers\Action\UpdateActionProvider.cs" />
+    <Compile Include="Providers\Build\MlBuildProvider.cs" />
+    <Compile Include="Providers\ChdkResourceProvider.cs" />
+    <Compile Include="Providers\Downloads\ChdkDownloadProvider.cs" />
+    <Compile Include="Providers\Downloads\DownloadProvider.cs" />
+    <Compile Include="Interfaces\Providers\IDownloadProvider.cs" />
+    <Compile Include="Providers\Downloads\MlDownloadProvider.cs" />
+    <Compile Include="Providers\Downloads\SdmDownloadProvider.cs" />
+    <Compile Include="Providers\Matches\ChdkDeMatchProvider.cs" />
+    <Compile Include="Providers\Matches\ChdkMatchProvider.cs" />
+    <Compile Include="Providers\Matches\MatchProvider.cs" />
+    <Compile Include="Providers\Matches\MlMatchProvider.cs" />
+    <Compile Include="Providers\Matches\SdmMatchProvider.cs" />
+    <Compile Include="Providers\Action\ActionProvider.cs" />
+    <Compile Include="Containers\ActionContainer.cs" />
+    <Compile Include="Providers\ProductTipProvider.cs" />
+    <Compile Include="Providers\Software\MlSoftwareProvider.cs" />
+    <Compile Include="Providers\Tips\LedTipProvider.cs" />
+    <Compile Include="Providers\Tips\RemoveTipProvider.cs" />
+    <Compile Include="Resolvers\BuildProviderResolver.cs" />
+    <Compile Include="Providers\Build\BuildProvider.cs" />
+    <Compile Include="Interfaces\Providers\IBuildProvider.cs" />
+    <Compile Include="Providers\Build\ChdkBuildProvider.cs" />
+    <Compile Include="Providers\Build\SdmBuildProvider.cs" />
+    <Compile Include="Providers\AggregateDownloaderProvider.cs" />
+    <Compile Include="Providers\InstallerProvider.cs" />
+    <Compile Include="Interfaces\IInstaller.cs" />
+    <Compile Include="Interfaces\Services\IToastService.cs" />
+    <Compile Include="Resolvers\DownloaderResolver.cs" />
+    <Compile Include="Resolvers\DownloadProviderResolver.cs" />
+    <Compile Include="Resolvers\MatchProviderResolver.cs" />
+    <Compile Include="Resolvers\SoftwareProviderResolver.cs" />
+    <Compile Include="Providers\Provider.cs" />
+    <Compile Include="Containers\PageContainer.cs" />
+    <Compile Include="Providers\AggregateTipProvider.cs" />
+    <Compile Include="Downloaders\Downloader.cs" />
+    <Compile Include="Interfaces\IDownloader.cs" />
+    <Compile Include="Resolvers\ProviderResolver.cs" />
+    <Compile Include="Providers\Software\ChdkSoftwareProvider.cs" />
+    <Compile Include="Interfaces\Providers\ISoftwareProvider.cs" />
+    <Compile Include="Providers\Software\SdmSoftwareProvider.cs" />
+    <Compile Include="Providers\Software\SoftwareProvider.cs" />
+    <Compile Include="Providers\Tips\EjectTipProvider.cs" />
+    <Compile Include="Containers\VolumeContainer.cs" />
+    <Compile Include="ServiceActivator.cs" />
+    <Compile Include="Services\BootService.cs" />
+    <Compile Include="Services\BootServiceBase.cs" />
+    <Compile Include="Services\DialogService.cs" />
+    <Compile Include="Interfaces\Providers\ITipProvider.cs" />
+    <Compile Include="Installers\ExFatInstaller.cs" />
+    <Compile Include="Installers\Fat32Installer.cs" />
+    <Compile Include="Installers\FatInstaller.cs" />
+    <Compile Include="Installers\FormatInstaller.cs" />
+    <Compile Include="Installers\Installer.cs" />
+    <Compile Include="Model\SoftwareData.cs" />
+    <Compile Include="LoggerExtensions.cs" />
+    <Compile Include="Model\Tip.cs" />
+    <Compile Include="OperatingSystem.cs" />
+    <Compile Include="Pages\CardPage.xaml.cs">
+      <DependentUpon>CardPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CameraPage.xaml.cs">
+      <DependentUpon>CameraPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DownloadPage.xaml.cs">
+      <DependentUpon>DownloadPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SoftwarePage.xaml.cs">
+      <DependentUpon>SoftwarePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ActionPage.xaml.cs">
+      <DependentUpon>ActionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\InstallPage.xaml.cs">
+      <DependentUpon>InstallPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\IntroPage.xaml.cs">
+      <DependentUpon>IntroPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SummaryPage.xaml.cs">
+      <DependentUpon>SummaryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Providers\Tips\AltTipProvider.cs" />
+    <Compile Include="Providers\Tips\LanguageTipProvider.cs" />
+    <Compile Include="Providers\Tips\LockTipProvider.cs" />
+    <Compile Include="Providers\Tips\MenuTipProvider.cs" />
+    <Compile Include="Providers\Tips\TipProvider.cs" />
+    <Compile Include="Services\DownloadService.cs" />
+    <Compile Include="Services\EjectService.cs" />
+    <Compile Include="Services\ExtractService.cs" />
+    <Compile Include="Services\FormatService.cs" />
+    <Compile Include="Services\InstallService.cs" />
+    <Compile Include="Services\MetadataService.cs" />
+    <Compile Include="Services\PartitionService.cs" />
+    <Compile Include="Services\ScriptService.cs" />
+    <Compile Include="Services\ToastService.cs" />
+    <Compile Include="SoftwareProductInfoExtensions.cs" />
+    <Compile Include="ViewModels\CameraItemViewModel.cs" />
+    <Compile Include="ViewModels\CardViewModel.cs" />
+    <Compile Include="ViewModels\EjectViewModel.cs" />
+    <Compile Include="ViewModels\ItemsViewModel.cs" />
+    <Compile Include="ViewModels\ModulesItemViewModel.cs" />
+    <Compile Include="ViewModels\ModulesViewModel.cs" />
+    <Compile Include="ViewModels\SoftwareItemViewModel.cs" />
+    <Compile Include="ViewModels\SummaryViewModel.cs" />
+    <Compile Include="ViewModels\ActionItemViewModel.cs" />
+    <Compile Include="ViewModels\ActionViewModel.cs" />
+    <Compile Include="ViewModels\CameraViewModel.cs" />
+    <Compile Include="ViewModels\DownloadViewModel.cs" />
+    <Compile Include="ViewModels\InstallViewModel.cs" />
+    <Compile Include="ViewModels\IntroViewModel.cs" />
+    <Compile Include="ViewModels\LicensesViewModel.cs" />
+    <Compile Include="ViewModels\CardItemViewModel.cs" />
+    <Compile Include="ViewModels\SoftwareViewModel.cs" />
+    <Compile Include="Model\License.cs" />
+    <Compile Include="Pages\LicensesPage.xaml.cs">
+      <DependentUpon>LicensesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\LicensesItemViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\StepItemViewModel.cs" />
+    <Compile Include="ViewModels\StepViewModel.cs" />
+    <Compile Include="ViewModels\ViewModel.cs" />
+    <Compile Include="Volume.cs" />
+    <Page Include="Controls\CameraInfoControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CardInfoControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\EjectControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SoftwareControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SummaryControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\LicensesControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SelectItemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SelectActionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SoftwareInfoControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TipsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\CardPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\CameraPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Pages\DownloadPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\EjectPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SoftwarePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ActionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\InstallPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\IntroPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\LicensesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SummaryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Data\appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Product\400PLUS\components.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Product\ML\tips.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Resources\intro_tips_de.txt" />
+    <None Include="Resources\intro_tips_ru.txt" />
+    <EmbeddedResource Include="Properties\Resources.de.resx" />
+    <EmbeddedResource Include="Properties\Resources.ru.resx" />
+    <None Include="Data\actions.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Category\EOS\hash2sw.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Category\PS\hash2sw.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Product\400PLUS\cameras.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Product\CHDK\cameras.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Product\CHDK\distros.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Product\CHDK\sources.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Category\EOS\boot.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Product\ML\cameras.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Product\ML\distros.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Product\ML\sources.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\products.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Product\CHDK\components.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Product\CHDK\LANG\english.lng">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Product\CHDK\LANG\german.lng">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Product\CHDK\LANG\russian.lng">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Product\ML\components.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Product\400PLUS\tips.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Product\SDM\cameras.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Product\SDM\components.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Product\CHDK\tips.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Product\SDM\tips.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\script.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Product\SDM\distros.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Product\SDM\sources.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="app.manifest">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Data\Category\PS\boot.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Resource Include="app.ico" />
+    <None Include="Assets\app.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Assets\app.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="fat32format.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <SplashScreen Include="logo.png" />
+    <None Include="Data\installers.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\steps.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\tips.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="LICENSE">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="NOTICE">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\licenses.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Resources\intro_tips.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>del "$(TargetDir)*.xml"</PostBuildEvent>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,182 @@
+﻿<UserControl x:Class="Chimp.Controls.SoftwareInfoControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:properties="clr-namespace:Chimp.Properties">
+
+    <Grid Style="{StaticResource InfoGrid}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <!-- Product -->
+        <Label Content="{x:Static properties:Resources.Software_Product_Content}" />
+        <TextBlock>
+            <TextBlock.Style>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource InfoTextBlock}">
+                    <Setter Property="Text" Value="{Binding Product.Name, Converter={StaticResource ResourceConverter}, ConverterParameter='{}Product_{0}'}" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Product.Name}" Value="{x:Null}">
+                            <Setter Property="Text" Value="{x:Static properties:Resources.Software_Product_Unknown_Text}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+        <!-- Version -->
+        <Label Content="{x:Static properties:Resources.Software_Version_Content}" Grid.Row="1" />
+        <TextBlock Grid.Row="1">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource InfoTextBlock}">
+                    <Setter Property="Text" Value="{Binding Product, Converter={StaticResource ProductVersionConverter}}" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Product.Version}" Value="{x:Null}">
+                            <Setter Property="Text" Value="{x:Static properties:Resources.Software_Version_Unknown_Text}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+        <!-- Status -->
+        <Label Content="{x:Static properties:Resources.Software_Status_Content}" Grid.Row="2"
+               Visibility="{Binding Build, Converter={StaticResource NullToVisibilityConverter}}" />
+        <TextBlock Grid.Row="2"
+                   Visibility="{Binding Build, Converter={StaticResource NullToVisibilityConverter}}">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource InfoTextBlock}">
+                    <Setter Property="Text" Value="{Binding Build.Status, Converter={StaticResource BuildStatusConverter}}" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Build.Status}" Value="{x:Null}">
+                            <Setter Property="Text" Value="{x:Static properties:Resources.Software_Status_Unknown}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        
+        <!-- Language -->
+        <Label Content="{x:Static properties:Resources.Software_Language_Content}" Grid.Row="3" />
+        <TextBlock Grid.Row="3">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource InfoTextBlock}">
+                    <Setter Property="Text" Value="{Binding Product.Language.DisplayName}" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Product.Language}" Value="{x:Null}">
+                            <Setter Property="Text" Value="{x:Static properties:Resources.Software_Language_Unknown_Text}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+        <!-- Platform -->
+        <Label Content="{x:Static properties:Resources.Software_Platform_Content}" Grid.Row="4"
+               Style="{StaticResource DebugInfoLabel}" />
+        <TextBlock Grid.Row="4">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource DebugInfoTextBlock}">
+                    <Setter Property="Text" Value="{Binding Camera.Platform}" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Camera.Platform}" Value="{x:Null}">
+                            <Setter Property="Text" Value="{x:Static properties:Resources.Software_Platform_Unknown_Text}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+        <!-- Revision -->
+        <Label Content="{x:Static properties:Resources.Software_Revision_Content}" Grid.Row="5"
+               Style="{StaticResource DebugInfoLabel}"  />
+        <TextBlock Grid.Row="5">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource DebugInfoTextBlock}">
+                    <Setter Property="Text" Value="{Binding Camera.Revision}" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Camera.Revision}" Value="{x:Null}">
+                            <Setter Property="Text" Value="{x:Static properties:Resources.Software_Revision_Unknown_Text}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+        <!-- Date -->
+        <Label Content="{x:Static properties:Resources.Software_Date_Content}" Grid.Row="6" />
+        <TextBlock Grid.Row="6">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource InfoTextBlock}">
+                    <Setter Property="Text" Value="{Binding Product.Created, StringFormat={x:Static properties:Resources.Software_Date_Format}}" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Product.Created}" Value="{x:Null}">
+                            <Setter Property="Text" Value="{x:Static properties:Resources.Software_Date_Unknown_Text}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+        <!-- Time -->
+        <Label Content="{x:Static properties:Resources.Software_Time_Content}" Grid.Row="7" />
+        <TextBlock Grid.Row="7">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource InfoTextBlock}">
+                    <Setter Property="Text" Value="{Binding Product.Created, StringFormat={x:Static properties:Resources.Software_Time_Format}}" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Product.Created}" Value="{x:Null}">
+                            <Setter Property="Text" Value="{x:Static properties:Resources.Software_Time_Unknown_Text}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+        <!-- Changeset -->
+        <Label Content="{x:Static properties:Resources.Software_Changeset_Content}" Grid.Row="8"
+               Visibility="{Binding Build, Converter={StaticResource NullToVisibilityConverter}}" />
+        <TextBlock Text="{Binding Build.Changeset}" Grid.Row="8"
+                   Visibility="{Binding Build, Converter={StaticResource NullToVisibilityConverter}}" />
+
+        <!-- Creator -->
+        <Label Content="{x:Static properties:Resources.Software_Creator_Content}" Grid.Row="9">
+            <Label.Style>
+                <Style TargetType="Label" BasedOn="{StaticResource InfoLabel}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Build.Creator}" Value="{x:Null}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+        <TextBlock Text="{Binding Build.Creator}" Grid.Row="9">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource InfoTextBlock}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Build.Creator}" Value="{x:Null}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        
+    </Grid>
+    
+</UserControl>

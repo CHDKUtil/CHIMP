@@ -1,0 +1,71 @@
+﻿<Page x:Class="Chimp.Pages.CameraPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:controls="clr-namespace:Chimp.Controls"
+      xmlns:properties="clr-namespace:Chimp.Properties">
+
+    <Page.Style>
+        <Style TargetType="Page" BasedOn="{StaticResource {x:Type Page}}">
+            <Setter Property="Title" Value="{Binding [Camera].Error}" />
+            <Setter Property="AllowDrop" Value="True" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding [Camera].Error}" Value="{x:Null}">
+                    <Setter Property="Title" Value="{x:Static properties:Resources.Camera_Title_Detected_Text}" />
+                    <Setter Property="AllowDrop" Value="False" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding [Camera].IsSelect}" Value="True">
+                    <Setter Property="Title" Value="{x:Static properties:Resources.Camera_Title_Select_Text}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding [Camera]}" Value="{x:Null}">
+                    <Setter Property="Title" Value="{x:Static properties:Resources.Camera_Title_Detecting_Text}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Style>
+    
+    <Grid>
+
+        <ProgressBar IsIndeterminate="True"
+                     Visibility="{Binding [Camera], Converter={StaticResource NullToVisibilityConverter}, ConverterParameter=Visible}" />
+
+        <Grid>
+            
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding [Camera]}" Value="{x:Null}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid>
+
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding [Camera].Error}" Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+
+                <Button Content="{x:Static properties:Resources.Camera_Browse_Content}" Click="Browse_Click"
+                        HorizontalAlignment="Right" />
+
+            </Grid>
+
+            <controls:CameraInfoControl Grid.Row="1" />
+
+        </Grid>
+        
+    </Grid>
+    
+</Page>

@@ -1,0 +1,12 @@
+﻿{
+  "SDM": {
+    "name": "SDM",
+    "channel": "",
+    "url": "http://sdm.camera/"
+  },
+  "SDM_2_1": {
+    "name": "SDM_2_1",
+    "channel": "",
+    "url": "http://sdm.camera/"
+  }
+}

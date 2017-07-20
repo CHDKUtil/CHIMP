@@ -1,0 +1,266 @@
+﻿{
+  "modules": {
+    "path": "CHDK\\MODULES",
+    "extension": ".flt",
+    "children": {
+      "system": {
+        "children": {
+          "_dng.flt": {
+            "title": "DNG",
+            "files": [
+              "CHDK\\MODULES\\_dng.flt"
+            ]
+          },
+          "_hexbox.flt": {
+            "title": "Hex Number Editor",
+            "id": "670",
+            "files": [
+              "CHDK\\MODULES\\_hexbox.flt"
+            ]
+          },
+          "_osd_le.flt": {
+            "title": "OSD Layout Editor",
+            "id": "27",
+            "files": [
+              "CHDK\\MODULES\\_osd_le.flt"
+            ]
+          },
+          "_rawop.flt": {
+            "title": "RAW Operations",
+            "id": "668",
+            "files": [
+              "CHDK\\MODULES\\_rawop.flt"
+            ]
+          },
+          "_tbox.flt": {
+            "title": "Text Box",
+            "id": "671",
+            "files": [
+              "CHDK\\MODULES\\_tbox.flt"
+            ]
+          },
+          "mpopup.flt": {
+            "title": "Popup Menu",
+            "id": "667",
+            "files": [
+              "CHDK\\MODULES\\mpopup.flt"
+            ]
+          }
+        }
+      },
+      "main": {
+        "title": "Main",
+        "id": "1",
+        "children": {
+          "edgeovr.flt": {
+            "title": "Edge overlay",
+            "id": "370",
+            "files": [
+              "CHDK\\MODULES\\edgeovr.flt"
+            ]
+          },
+          "histo.flt": {
+            "title": "Histogram",
+            "id": "29",
+            "files": [
+              "CHDK\\MODULES\\histo.flt"
+            ]
+          },
+          "shothist.flt": {
+            "title": "Shot Histogram",
+            "id": "669",
+            "files": [
+              "CHDK\\MODULES\\shothist.flt"
+            ]
+          },
+          "zebra.flt": {
+            "title": "Zebra",
+            "id": "36",
+            "files": [
+              "CHDK\\MODULES\\zebra.flt"
+            ]
+          }
+        }
+      },
+      "misc": {
+        "title": "Miscellaneous",
+        "id": "67",
+        "children": {
+          "fselect.flt": {
+            "title": "File Browser",
+            "id": "68",
+            "files": [
+              "CHDK\\MODULES\\fselect.flt"
+            ]
+          },
+          "calend.flt": {
+            "title": "Calendar",
+            "id": "69",
+            "files": [
+              "CHDK\\MODULES\\calend.flt"
+            ]
+          },
+          "txtread.flt": {
+            "title": "Text File Reader",
+            "id": "70",
+            "files": [
+              "CHDK\\MODULES\\txtread.flt"
+            ]
+          },
+          "grids.flt": {
+            "title": "Grid Lines",
+            "id": "202",
+            "files": [
+              "CHDK\\MODULES\\grids.flt"
+            ]
+          },
+          "curves.flt": {
+            "title": "Custom Curves",
+            "id": "365",
+            "files": [
+              "CHDK\\MODULES\\curves.flt",
+              "CHDK\\syscurves.CVF"
+            ]
+          },
+          "mdetect.flt": {
+            "title": "Motion Detection",
+            "id": "666",
+            "files": [
+              "CHDK\\MODULES\\mdetect.flt"
+            ]
+          },
+          "palette.flt": {
+            "title": "Draw Palette",
+            "id": "76",
+            "files": [
+              "CHDK\\MODULES\\palette.flt"
+            ]
+          },
+          "useredit.flt": {
+            "title": "User Menu Edit",
+            "id": "301",
+            "files": [
+              "CHDK\\MODULES\\useredit.flt"
+            ]
+          }
+        }
+      },
+      "tools": {
+        "title": "Tools",
+        "id": "15",
+        "children": {
+          "modinsp.flt": {
+            "title": "Module Inspector",
+            "id": "577",
+            "files": [
+              "CHDK\\MODULES\\modinsp.flt"
+            ]
+          },
+          "benchm.flt": {
+            "title": "Benchmark",
+            "id": "175",
+            "files": [
+              "CHDK\\MODULES\\benchm.flt"
+            ]
+          },
+          "cpuinfo.flt": {
+            "title": "CPU Info",
+            "id": "639",
+            "files": [
+              "CHDK\\MODULES\\cpuinfo.flt"
+            ]
+          },
+          "eyefi.flt": {
+            "title": "EyeFi Config",
+            "id": "599",
+            "files": [
+              "CHDK\\MODULES\\eyefi.flt"
+            ]
+          },
+          "memview.flt": {
+            "title": "Memory Browser",
+            "id": "83",
+            "files": [
+              "CHDK\\MODULES\\memview.flt"
+            ]
+          }
+        }
+      },
+      "games": {
+        "title": "Games",
+        "id": "71",
+        "children": {
+          "4wins.flt": {
+            "title": "Connect 4",
+            "id": "428",
+            "files": [
+              "CHDK\\MODULES\\4wins.flt"
+            ]
+          },
+          "mastmind.flt": {
+            "title": "Mastermind",
+            "id": "441",
+            "files": [
+              "CHDK\\MODULES\\mastmind.flt"
+            ]
+          },
+          "reversi.flt": {
+            "title": "Reversi",
+            "id": "102",
+            "files": [
+              "CHDK\\MODULES\\reversi.flt"
+            ]
+          },
+          "snake.flt": {
+            "title": "Snake",
+            "id": "662",
+            "files": [
+              "CHDK\\MODULES\\snake.flt"
+            ]
+          },
+          "sokoban.flt": {
+            "title": "Sokoban",
+            "id": "103",
+            "files": [
+              "CHDK\\MODULES\\sokoban.flt",
+              "CHDK\\GAMES\\SOKOBAN.LEV"
+            ]
+          },
+          "sudoku.flt": {
+            "title": "Sudoku",
+            "id": "641",
+            "files": [
+              "CHDK\\MODULES\\sudoku.flt"
+            ]
+          },
+          "tetris.flt": {
+            "title": "Tetris",
+            "id": "483",
+            "files": [
+              "CHDK\\MODULES\\tetris.flt"
+            ]
+          }
+        }
+      },
+      "script": {
+        "title": "Scripting",
+        "children": {
+          "ubasic.flt": {
+            "title": "uBASIC Scripting",
+            "id": "664",
+            "files": [
+              "CHDK\\MODULES\\ubasic.flt"
+            ]
+          },
+          "lua.flt": {
+            "title": "Lua Scripting",
+            "id": "665",
+            "files": [
+              "CHDK\\MODULES\\lua.flt"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

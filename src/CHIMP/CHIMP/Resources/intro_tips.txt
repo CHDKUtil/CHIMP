@@ -1,0 +1,26 @@
+﻿[
+  {
+    "header": "SD cards only",
+    "contents": [ "MMC cards are unsupported (a microSD with an adapter is OK)." ]
+  },
+  {
+    "header": "Ready to lock",
+    "contents": [ "The card must have a lock switch (barring a microSD camera)." ]
+  },
+  {
+    "header": "Take a picture",
+    "contents": [ "At least one picture taken with the camera must be present." ]
+  },
+  {
+    "header": "Use a card reader",
+    "contents": [ "Connecting the camera with a cable is unsupported." ]
+  },
+  {
+    "header": "Back it up",
+    "contents": [ "It is recommended that you back up all data present of your card." ]
+  },
+  {
+	"header": "Disclaimer",
+	"contents": [ "Neither CHIMP nor any of the hacks are endorsed by or affiliated with Canon."]
+  }
+]

@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="Chimp.Controls.TipsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Focusable="False">
+    <Grid>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="{Binding Message}" TextWrapping="Wrap"
+                   Visibility="{Binding Message, Converter={StaticResource NullToVisibilityConverter}}" />
+
+        <ItemsControl ItemsSource="{Binding Tips}"
+                      Grid.Row="1" Focusable="False">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="{Binding Header}" FontWeight="Bold" Margin="0,16,0,0" />
+                        <ItemsControl ItemsSource="{Binding Contents}" Grid.Row="1" Margin="4" />
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        
+    </Grid>
+</UserControl>
