@@ -1,4 +1,4 @@
-![CHIMP](https://raw.githubusercontent.com/CHDKUtil/CHIMP/master/small.png)
+![CHIMP](https://raw.githubusercontent.com/CHDKUtil/CHIMP/master/tiny.png)
 
 # CHIMP
 
@@ -16,27 +16,10 @@ Canon Hack Installation and Management Platform, a user-friendly replacement for
 * [Magic Lantern](http://www.magiclantern.fm/)
 * [400plus](https://github.com/400plus/400plus) (detection only)
 
-## Pros:
+## Requirements:
 
-+ Easy to use
-+ Doesn't require Java
-+ Doesn't require running multiple programs
-+ Doesn't require special permission handling
-+ Doesn't require [special image handling](http://www.zenoshrdlu.com/stick/stickextra.html)
-+ Doesn't require removing/reinserting after creating/switching partitions
-+ [Free as in freedom](https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt)
-
-## Cons:
-
-- Windows only (Vista SP2 or later)
-- Requires .NET Framework 4.5.2
-
-## Limitations
-
-- Little code to show off (needs cleanup)
-- Requires administrator permissions (general Windows issue)
-- Doesn't handle multiple partitions on [Windows 10 Creators Update](https://thewincentral.com/windows-10-creators-update-allows-multiple-partitions-usb-drive/)
-- Doesn't allow images dropped from non-administrator applications ([general Windows issue](https://superuser.com/questions/59051/drag-and-drop-file-into-application-under-run-as-administrator)) 
+- Windows Vista SP2 or later
+- .NET Framework 4.5.2
 
 ## Thanks
 
