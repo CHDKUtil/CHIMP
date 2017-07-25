@@ -1,5 +1,6 @@
 ﻿using Net.Chdk.Model.Category;
 using Net.Chdk.Model.Software;
+using Net.Chdk.Providers.Product;
 using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
@@ -10,11 +11,13 @@ namespace Chimp.Providers.Software
     {
         private static readonly Version Version = new Version("1.0");
 
+        private IProductProvider ProductProvider { get; }
         protected SoftwareSourceInfo Source { get; }
         private CultureInfo Language { get; }
 
-        protected SoftwareProvider(SoftwareSourceInfo source, CultureInfo language)
+        protected SoftwareProvider(IProductProvider productProvider, SoftwareSourceInfo source, CultureInfo language)
         {
+            ProductProvider = productProvider;
             Source = source;
             Language = language;
         }
@@ -34,7 +37,7 @@ namespace Chimp.Providers.Software
 
         protected abstract string ProductName { get; }
 
-        protected abstract string CategoryName { get; }
+        private string CategoryName => ProductProvider.GetCategoryName(ProductName);
 
         protected abstract Version GetVersion(Match match);
 
@@ -44,7 +47,7 @@ namespace Chimp.Providers.Software
         {
             return new CategoryInfo
             {
-                Name = CategoryName,
+                Name = CategoryName
             };
         }
 

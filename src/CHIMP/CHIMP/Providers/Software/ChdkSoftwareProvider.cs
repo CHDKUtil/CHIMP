@@ -1,4 +1,5 @@
 ﻿using Net.Chdk.Model.Software;
+using Net.Chdk.Providers.Product;
 using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
@@ -7,12 +8,10 @@ namespace Chimp.Providers.Software
 {
     sealed class ChdkSoftwareProvider : SoftwareProvider
     {
-        public ChdkSoftwareProvider(SoftwareSourceInfo source, CultureInfo language)
-            : base(source, language)
+        public ChdkSoftwareProvider(IProductProvider productProvider, SoftwareSourceInfo source, CultureInfo language)
+            : base(productProvider, source, language)
         {
         }
-
-        protected override string CategoryName => "PS";
 
         protected override string ProductName => "CHDK";
 
