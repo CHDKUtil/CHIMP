@@ -2,9 +2,15 @@
 
 namespace Chimp
 {
-    public sealed partial class Volume
+    public sealed class Volume
     {
+        #region Fields
+
         private string DriveLetter { get; }
+
+        #endregion
+
+        #region Constructor
 
         public Volume(string driveLetter)
         {
@@ -13,6 +19,8 @@ namespace Chimp
             _disk = new Lazy<Disk>(GetDisk);
             _deviceName = new Lazy<string>(GetDeviceName);
         }
+
+        #endregion
 
         #region Disk
 
