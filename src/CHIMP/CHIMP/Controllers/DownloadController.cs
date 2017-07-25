@@ -10,13 +10,13 @@ namespace Chimp.Controllers
 {
     sealed class DownloadController : Controller<DownloadController, DownloadViewModel>
     {
-        protected override string StepName => "Download";
         protected override bool CanSkipStep => ViewModel.IsCompleted;
 
         private ICameraProvider CameraProvider { get; }
 
-        public DownloadController(ICameraProvider cameraProvider, MainViewModel mainViewModel, ILoggerFactory loggerFactory)
-            : base(mainViewModel, loggerFactory)
+        public DownloadController(ICameraProvider cameraProvider,
+            MainViewModel mainViewModel, IStepProvider stepProvider, string stepName, ILoggerFactory loggerFactory)
+            : base(mainViewModel, stepProvider, stepName, loggerFactory)
         {
             CameraProvider = cameraProvider;
         }

@@ -1,5 +1,6 @@
 ﻿using Chimp.Containers;
 using Chimp.Logging.Extensions;
+using Chimp.Model;
 using Chimp.Providers;
 using Chimp.Services;
 using Chimp.ViewModels;
@@ -168,7 +169,9 @@ namespace Chimp
                 .AddSoftwareHashProvider()
                 .AddCameraProvider()
                 .AddSingleton<IResourceProvider, ChdkResourceProvider>()
+                .AddSingleton<IStepProvider, StepProvider>()
                 .AddSingleton<IActionProvider, ActionContainer>()
+                .AddSingleton<ILicenseProvider, LicenseProvider>()
                 .AddSingleton<IDownloaderProvider, AggregateDownloaderProvider>()
                 .AddSingleton<IInstallerProvider, InstallerProvider>()
                 .AddSingleton<ITipProvider, AggregateTipProvider>()
@@ -179,7 +182,6 @@ namespace Chimp
         {
             serviceCollection
                 .AddSingleton<IServiceActivator, ServiceActivator>()
-                .AddSingleton<IStepProvider, PageContainer>()
                 .AddSingleton<IPageContainer, PageContainer>()
                 .AddSingleton<IControllerContainer, ControllerContainer>()
                 .AddSingleton<IVolumeContainer, VolumeContainer>();
@@ -212,7 +214,10 @@ namespace Chimp
             serviceCollection
                 .AddOptions()
                 .Configure<SoftwareDetectorSettings>(configuration.GetSection("softwareDetector"))
-                .Configure<WizardSettings>(configuration.GetSection("wizard"));
+                .Configure<StepsData>(configuration)
+                .Configure<ActionsData>(configuration)
+                .Configure<LicensesData>(configuration)
+                .Configure<InstallersData>(configuration);
         }
 
         protected override void OnStartup(StartupEventArgs e)

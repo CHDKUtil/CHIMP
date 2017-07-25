@@ -1,30 +1,31 @@
-﻿using Chimp.Model;
-using Net.Chdk;
-using System.IO;
+﻿using Chimp.Installers;
+using Chimp.Model;
+using Microsoft.Extensions.Options;
+using System.Collections.Generic;
 
 namespace Chimp.Providers
 {
     sealed class InstallerProvider : Provider<InstallerData, IInstaller>, IInstallerProvider
     {
-        public InstallerProvider(IServiceActivator serviceProvider)
+        private InstallersData InstallersData { get; }
+
+        public InstallerProvider(IServiceActivator serviceProvider, IOptions<InstallersData> options)
             : base(serviceProvider)
         {
+            InstallersData = options.Value;
         }
 
         public IInstaller GetInstaller(string fileSystem)
         {
             if (!Data.TryGetValue(fileSystem ?? string.Empty, out InstallerData data))
                 return null;
-            return CreateProvider(data.Assembly, data.Type);
+            return CreateProvider(fileSystem, data.Assembly, data.Type);
         }
 
-        protected override string GetFilePath()
-        {
-            return Path.Combine(Directories.Data, "installers.json");
-        }
+        protected override IDictionary<string, InstallerData> Data => InstallersData.Installers;
 
-        protected override string Namespace => "Chimp.Installers";
+        protected override string Namespace => typeof(Installer).Namespace;
 
-        protected override string TypeSuffix => "Installer";
+        protected override string TypeSuffix => nameof(Installer);
     }
 }

@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Chimp.Resolvers
 {
-    abstract class ProviderResolver<TProvider, TProviderImpl> : Provider<Distro, TProvider>
+    abstract class ProviderResolver<TProvider, TProviderImpl> : DataProvider<Distro, TProvider>
         where TProviderImpl : TProvider
         where TProvider : class
     {
@@ -39,7 +39,7 @@ namespace Chimp.Resolvers
             var types = GetTypes().ToArray();
             var values = GetValues(sourceName, source, distro).ToArray();
 
-            return CreateProvider(assemblyName, typeName, types, values);
+            return CreateProvider(sourceName, assemblyName, typeName, types, values);
         }
 
         protected abstract string GetTypeName(Distro distro);

@@ -11,13 +11,12 @@ namespace Chimp.Controllers
 {
     sealed class SummaryController : Controller<SummaryController, SummaryViewModel>
     {
-        protected override string StepName => "Summary";
         protected override bool CanSkipStep => MainViewModel.IsCompleted || MainViewModel.IsAborted;
 
         private IEnumerable<ITipProvider> TipProviders { get; }
 
-        public SummaryController(IEnumerable<ITipProvider> tipProviders, MainViewModel mainViewModel, ILoggerFactory loggerFactory)
-            : base(mainViewModel, loggerFactory)
+        public SummaryController(IEnumerable<ITipProvider> tipProviders, MainViewModel mainViewModel, IStepProvider stepProvider, string stepName, ILoggerFactory loggerFactory)
+            : base(mainViewModel, stepProvider, stepName, loggerFactory)
         {
             TipProviders = tipProviders;
         }

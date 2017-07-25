@@ -15,6 +15,7 @@ namespace Chimp
     public partial class MainWindow
     {
         private IServiceProvider ServiceProvider { get; }
+        private IStepProvider StepProvider { get; }
         private IPageContainer PageContainer { get; }
         private IControllerContainer ControllerContainer { get; }
         private IDialogService DialogService { get; }
@@ -24,13 +25,14 @@ namespace Chimp
         public MainWindow(IServiceProvider serviceProvider, IStepProvider stepProvider, IPageContainer pageContainer, IControllerContainer controllerContainer, IDialogService dialogService)
         {
             ServiceProvider = serviceProvider;
+            StepProvider = stepProvider;
             PageContainer = pageContainer;
             ControllerContainer = controllerContainer;
             DialogService = dialogService;
 
             ViewModel.Set("Eject", CreateEjectViewModel());
 
-            ViewModel.Step = CreateSteps(stepProvider);
+            ViewModel.Step = CreateSteps();
             ViewModel.Step.PropertyChanging += Step_PropertyChanging;
             ViewModel.Step.PropertyChanged += Step_PropertyChanged;
 
@@ -42,13 +44,13 @@ namespace Chimp
         {
             return new EjectViewModel
             {
-                IsEject = ViewModel.Settings.SkipSteps?.Contains("Eject", StringComparer.OrdinalIgnoreCase) != true,
+                IsEject = !StepProvider.IsSkip("Eject"),
             };
         }
 
-        private StepViewModel CreateSteps(IStepProvider stepProvider)
+        private StepViewModel CreateSteps()
         {
-            var steps = stepProvider.GetSteps();
+            var steps = StepProvider.GetSteps();
             var items = steps.Select(CreateStep).ToArray();
             return new StepViewModel
             {
@@ -56,12 +58,12 @@ namespace Chimp
             };
         }
 
-        private static StepItemViewModel CreateStep(string name)
+        private StepItemViewModel CreateStep(string name)
         {
             return new StepItemViewModel
             {
                 Name = name,
-                IsVisible = true
+                IsVisible = !StepProvider.IsHidden(name)
             };
         }
 

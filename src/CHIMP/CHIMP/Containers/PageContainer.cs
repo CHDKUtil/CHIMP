@@ -1,23 +1,26 @@
-﻿using Chimp.Providers;
+﻿using Chimp.Model;
+using Chimp.Providers;
 using Chimp.ViewModels;
-using Net.Chdk;
+using Microsoft.Extensions.Options;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.IO;
+using System.Linq;
 using System.Windows.Controls;
 
 namespace Chimp.Containers
 {
-    sealed class PageContainer : Provider<Page>, IPageContainer, IStepProvider
+    sealed class PageContainer : Provider<StepData, Page>, IPageContainer
     {
         private readonly ConcurrentDictionary<string, Page> pages = new ConcurrentDictionary<string, Page>();
 
         private MainViewModel MainViewModel { get; }
+        private StepsData StepsData { get; }
 
-        public PageContainer(IServiceActivator serviceProvider, MainViewModel mainViewModel)
-            : base(serviceProvider)
+        public PageContainer(IServiceActivator serviceActivator, MainViewModel mainViewModel, IOptions<StepsData> options)
+            : base(serviceActivator)
         {
             MainViewModel = mainViewModel;
+            StepsData = options.Value;
         }
 
         public Page GetPage(string name)
@@ -27,22 +30,21 @@ namespace Chimp.Containers
 
         private Page CreatePage(string name)
         {
-            var page = CreateProvider(Data[name], name);
+            var page = CreateProvider(name, Data[name].Assembly, name);
             page.DataContext = MainViewModel;
             return page;
         }
 
-        public IEnumerable<string> GetSteps()
-        {
-            return Data.Keys;
-        }
+        protected override IDictionary<string, StepData> Data =>
+            StepsData.Steps.ToDictionary(
+                s => s.Name,
+                s => s);
 
-        protected override string GetFilePath()
+        protected override string GetNamespace(string key)
         {
-            return Path.Combine(Directories.Data, "steps.json");
+            return Data[key].Namespace
+                ?? "Chimp.Pages";
         }
-
-        protected override string Namespace => "Chimp.Pages";
 
         protected override string TypeSuffix => "Page";
     }

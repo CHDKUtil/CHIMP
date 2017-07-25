@@ -1,21 +1,21 @@
 ﻿using Chimp.Properties;
 using Chimp.ViewModels;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using System.ComponentModel;
-using System.IO;
 using System.Linq;
 
 namespace Chimp.Controllers
 {
     sealed class LicensesController : Controller<LicensesController, LicensesViewModel>
     {
-        protected override string StepName => "Licenses";
         protected override bool CanSkipStep => true;
 
-        public LicensesController(MainViewModel viewModel, ILoggerFactory loggerFactory)
-            : base(viewModel, loggerFactory)
+        private ILicenseProvider LicenseProvider { get; }
+
+        public LicensesController(ILicenseProvider licenseProvider, MainViewModel mainViewModel, IStepProvider stepProvider, string stepName, ILoggerFactory loggerFactory)
+            : base(mainViewModel, stepProvider, stepName, loggerFactory)
         {
+            LicenseProvider = licenseProvider;
         }
 
         protected override void Initialize()
@@ -86,22 +86,12 @@ namespace Chimp.Controllers
         {
             if (SkipStep)
                 return null;
-            return DoGetLicenses()
+            return LicenseProvider.GetLicenses()
                 .Select(CreateLicense)
                 .ToArray();
         }
 
-        private static Model.License[] DoGetLicenses()
-        {
-            var filePath = Path.Combine("Data", "licenses.json");
-            using (var reader = File.OpenText(filePath))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                return JsonSerializer.CreateDefault().Deserialize<Model.License[]>(jsonReader);
-            }
-        }
-
-        private static LicensesItemViewModel CreateLicense(Model.License license)
+        private static LicensesItemViewModel CreateLicense(Model.LicenseData license)
         {
             return new LicensesItemViewModel
             {

@@ -8,7 +8,6 @@ namespace Chimp.Controllers
 {
     sealed class ActionController : Controller<ActionController, ActionViewModel>
     {
-        protected override string StepName => "Action";
         protected override bool CanSkipStep => IsCanSkipStep(ViewModel);
         protected override bool SkipStep => IsSkipStep(ViewModel);
 
@@ -24,8 +23,8 @@ namespace Chimp.Controllers
 
         private IActionProvider ActionProvider { get; }
 
-        public ActionController(IActionProvider actionProvider, MainViewModel mainViewModel, ILoggerFactory loggerFactory)
-            : base(mainViewModel, loggerFactory)
+        public ActionController(IActionProvider actionProvider, MainViewModel mainViewModel, IStepProvider stepProvider, string stepName, ILoggerFactory loggerFactory)
+            : base(mainViewModel, stepProvider, stepName, loggerFactory)
         {
             ActionProvider = actionProvider;
         }
@@ -88,8 +87,9 @@ namespace Chimp.Controllers
 
         private ActionViewModel CreateViewModel()
         {
-            var items = ActionProvider.GetActions()
-                .Select(kvp => CreateAction(kvp))
+            var actions = ActionProvider.GetActions();
+            var items = actions
+                .Select(CreateAction)
                 .ToArray();
 
             var viewModel = new ActionViewModel

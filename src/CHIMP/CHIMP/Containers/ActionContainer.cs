@@ -1,18 +1,21 @@
-﻿using Chimp.Providers;
+﻿using Chimp.Model;
+using Chimp.Providers;
 using Chimp.Providers.Action;
-using Net.Chdk;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 namespace Chimp.Containers
 {
-    sealed class ActionContainer : Provider<IActionProvider>, IActionProvider
+    sealed class ActionContainer : Provider<ActionData, IActionProvider>, IActionProvider
     {
-        public ActionContainer(IServiceActivator serviceActivator)
+        private ActionsData ActionsData { get; }
+
+        public ActionContainer(IServiceActivator serviceActivator, IOptions<ActionsData> options)
             : base(serviceActivator)
         {
+            ActionsData = options.Value;
             _actions = new Lazy<IEnumerable<IAction>>(CreateActions);
         }
 
@@ -21,17 +24,21 @@ namespace Chimp.Containers
             return Actions;
         }
 
-        private IActionProvider CreateProvider(KeyValuePair<string, string> kvp)
+        private IActionProvider CreateProvider(KeyValuePair<string, ActionData> kvp)
         {
-            return CreateProvider(kvp.Value, kvp.Key);
+            return CreateProvider(kvp.Key, kvp.Value.Assembly, kvp.Key);
         }
 
-        protected override string GetFilePath()
-        {
-            return Path.Combine(Directories.Data, "actions.json");
-        }
+        protected override IDictionary<string, ActionData> Data =>
+            ActionsData.Actions.ToDictionary(
+                a => a.Name,
+                a => a);
 
-        protected override string Namespace => typeof(ActionProvider).Namespace;
+        protected override string GetNamespace(string key)
+        {
+            return Data[key].Namespace
+                ?? typeof(ActionProvider).Namespace;
+        }
 
         protected override string TypeSuffix => nameof(ActionProvider);
 

@@ -1,19 +1,15 @@
-﻿using Microsoft.Extensions.Options;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Chimp.ViewModels
 {
     public sealed class MainViewModel : ViewModel
     {
-        public MainViewModel(IOptions<WizardSettings> settings)
+        public MainViewModel()
         {
             ViewModels = new Dictionary<string, ViewModel>();
-            Settings = settings.Value;
         }
 
         private Dictionary<string, ViewModel> ViewModels { get; }
-
-        public WizardSettings Settings { get; }
 
         public T Get<T>(string name)
             where T : ViewModel

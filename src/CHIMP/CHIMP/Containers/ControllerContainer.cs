@@ -1,18 +1,23 @@
-﻿using Chimp.Providers;
-using Net.Chdk;
+﻿using Chimp.Controllers;
+using Chimp.Model;
+using Chimp.Providers;
+using Microsoft.Extensions.Options;
 using System.Collections.Generic;
-using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Chimp.Containers
 {
-    sealed class ControllerContainer : Provider<IController>, IControllerContainer
+    sealed class ControllerContainer : Provider<StepData, IController>, IControllerContainer
     {
         private readonly Dictionary<string, IController> controllers = new Dictionary<string, IController>();
 
-        public ControllerContainer(IServiceActivator serviceProvider)
-            : base(serviceProvider)
+        private StepsData StepsData { get; }
+
+        public ControllerContainer(IServiceActivator serviceActivator, IOptions<StepsData> options)
+            : base(serviceActivator)
         {
+            StepsData = options.Value;
         }
 
         public void Dispose()
@@ -34,17 +39,23 @@ namespace Chimp.Containers
 
         private async Task<IController> CreateControllerAsync(string name)
         {
-            var controller = CreateProvider(Data[name], name);
+            var types = new[] { typeof(string) };
+            var values = new[] { name };
+            var controller = CreateProvider(name, Data[name].Assembly, name, types, values);
             await controller.InitializeAsync();
             return controller;
         }
 
-        protected override string GetFilePath()
-        {
-            return Path.Combine(Directories.Data, "steps.json");
-        }
+        protected override IDictionary<string, StepData> Data =>
+            StepsData.Steps.ToDictionary(
+                s => s.Name,
+                s => s);
 
-        protected override string Namespace => "Chimp.Controllers";
+        protected override string GetNamespace(string key)
+        {
+            return Data[key].Namespace
+                ?? typeof(Controller<>).Namespace;
+        }
 
         protected override string TypeSuffix => "Controller";
     }

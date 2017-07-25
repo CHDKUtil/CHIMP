@@ -15,7 +15,6 @@ namespace Chimp.Controllers
 {
     sealed class CardController : Controller<CardController, CardViewModel>
     {
-        protected override string StepName => "Card";
         protected override bool CanSkipStep => ViewModel.SelectedItem != null;
 
         private SynchronizationContext SynchronizationContext { get; }
@@ -26,8 +25,9 @@ namespace Chimp.Controllers
         private IBootService BootService { get; }
         private IScriptService ScriptService { get; }
 
-        public CardController(SynchronizationContext synchronizationContext, ICardDetector cardDetector, IVolumeWatcher volumeWatcher, IVolumeContainer volumeContainer, IPartitionService partitionService, IBootService bootService, IScriptService scriptService, MainViewModel mainViewModel, ILoggerFactory loggerFactory)
-            : base(mainViewModel, loggerFactory)
+        public CardController(SynchronizationContext synchronizationContext, ICardDetector cardDetector, IVolumeWatcher volumeWatcher, IVolumeContainer volumeContainer, IPartitionService partitionService, IBootService bootService, IScriptService scriptService,
+            MainViewModel mainViewModel, IStepProvider stepProvider, string stepName, ILoggerFactory loggerFactory)
+            : base(mainViewModel, stepProvider, stepName, loggerFactory)
         {
             SynchronizationContext = synchronizationContext;
             CardDetector = cardDetector;

@@ -15,7 +15,6 @@ namespace Chimp.Controllers
 {
     sealed class SoftwareController : Controller<SoftwareController, SoftwareViewModel>
     {
-        protected override string StepName => "Software";
         protected override bool CanSkipStep => ViewModel?.IsCompleted == true;
 
         private SynchronizationContext SynchronizationContext { get; }
@@ -25,9 +24,10 @@ namespace Chimp.Controllers
         private IProductProvider ProductProvider { get; }
         private IResourceProvider ResourceProvider { get; }
 
-        public SoftwareController(MainViewModel mainViewModel, SynchronizationContext synchronizationContext, ISoftwareDetector softwareDetector, IModulesDetector modulesDetector,
-            IModuleProvider moduleProvider, IProductProvider productProvider, IResourceProvider resourceProvider, ILoggerFactory loggerFactory)
-            : base(mainViewModel, loggerFactory)
+        public SoftwareController(SynchronizationContext synchronizationContext, ISoftwareDetector softwareDetector, IModulesDetector modulesDetector,
+            IModuleProvider moduleProvider, IProductProvider productProvider, IResourceProvider resourceProvider,
+            MainViewModel mainViewModel, IStepProvider stepProvider, string stepName, ILoggerFactory loggerFactory)
+            : base(mainViewModel, stepProvider, stepName, loggerFactory)
         {
             SynchronizationContext = synchronizationContext;
             SoftwareDetector = softwareDetector;

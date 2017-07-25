@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Chimp.Providers
 {
-    sealed class ProductTipProvider : Provider<ITipProvider>, ITipProvider
+    sealed class ProductTipProvider : DataProvider<string, ITipProvider>, ITipProvider
     {
         private const string DataFileName = "tips.json";
 
@@ -22,7 +22,7 @@ namespace Chimp.Providers
         public IEnumerable<Tip> GetTips(string productText)
         {
             return Data
-                .Select(kvp => CreateProvider(kvp.Value, kvp.Key))
+                .Select(kvp => CreateProvider(kvp.Key, kvp.Value, kvp.Key))
                 .SelectMany(p => p.GetTips(productText));
         }
 

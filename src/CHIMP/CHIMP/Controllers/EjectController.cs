@@ -9,7 +9,6 @@ namespace Chimp.Controllers
 {
     sealed class EjectController : Controller<EjectController, EjectViewModel>
     {
-        protected override string StepName => "Eject";
         protected override bool CanSkipStep => true;
         protected override bool SkipStep => true; //Always skip, the setting indicates whether should eject
 
@@ -18,8 +17,9 @@ namespace Chimp.Controllers
         private IToastService ToastService { get; }
 		private IVolumeWatcher VolumeWatcher { get; }
 
-		public EjectController(ICardDetector cardDetector, IEjectService ejectService, IToastService toastService, IVolumeWatcher volumeWatcher, MainViewModel mainViewModel, ILoggerFactory loggerFactory)
-            : base(mainViewModel, loggerFactory)
+		public EjectController(ICardDetector cardDetector, IEjectService ejectService, IToastService toastService, IVolumeWatcher volumeWatcher,
+            MainViewModel mainViewModel, IStepProvider stepProvider, string stepName, ILoggerFactory loggerFactory)
+            : base(mainViewModel, stepProvider, stepName, loggerFactory)
         {
             CardDetector = cardDetector;
             EjectService = ejectService;

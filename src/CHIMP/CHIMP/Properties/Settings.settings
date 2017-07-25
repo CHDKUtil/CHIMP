@@ -2,9 +2,6 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Chimp.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="HashAlgorithm" Type="System.String" Scope="User">
-      <Value Profile="(Default)">sha256</Value>
-    </Setting>
     <Setting Name="ExtractBufferSize" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">4096</Value>
     </Setting>

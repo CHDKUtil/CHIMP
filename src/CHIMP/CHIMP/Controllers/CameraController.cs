@@ -16,8 +16,6 @@ namespace Chimp.Controllers
 {
     sealed class CameraController : Controller<CameraController, CameraViewModel>
     {
-        protected override string StepName => "Camera";
-
         protected override bool CanSkipStep =>
             ViewModel.SelectedItem != null
             && SoftwareViewModel.SelectedItem?.Info?.Product?.Version?.MinorRevision >= 0;
@@ -27,8 +25,9 @@ namespace Chimp.Controllers
         private ICameraProvider CameraProvider { get; }
         private IDialogService DialogService { get; }
 
-        public CameraController(ICameraModelDetector cameraModelDetector, IFileCameraModelDetector fileCameraModelDetector, ICameraProvider cameraProvider, IDialogService dialogService, MainViewModel mainViewModel, ILoggerFactory loggerFactory)
-            : base(mainViewModel, loggerFactory)
+        public CameraController(ICameraModelDetector cameraModelDetector, IFileCameraModelDetector fileCameraModelDetector, ICameraProvider cameraProvider, IDialogService dialogService,
+            MainViewModel mainViewModel, IStepProvider stepProvider, string stepName, ILoggerFactory loggerFactory)
+            : base(mainViewModel, stepProvider, stepName, loggerFactory)
         {
             CameraModelDetector = cameraModelDetector;
             FileCameraModelDetector = fileCameraModelDetector;

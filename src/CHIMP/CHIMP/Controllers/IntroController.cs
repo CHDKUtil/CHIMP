@@ -7,11 +7,10 @@ namespace Chimp.Controllers
 {
     sealed class IntroController : Controller<IntroController, IntroViewModel>
     {
-        protected override string StepName => "Intro";
         protected override bool CanSkipStep => true;
 
-        public IntroController(MainViewModel viewModel, ILoggerFactory loggerFactory)
-            : base(viewModel, loggerFactory)
+        public IntroController(MainViewModel mainViewModel, IStepProvider stepProvider, string stepName, ILoggerFactory loggerFactory)
+            : base(mainViewModel, stepProvider, stepName, loggerFactory)
         {
         }
 

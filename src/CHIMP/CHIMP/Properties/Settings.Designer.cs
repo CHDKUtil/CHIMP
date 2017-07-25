@@ -25,18 +25,6 @@ namespace Chimp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("sha256")]
-        public string HashAlgorithm {
-            get {
-                return ((string)(this["HashAlgorithm"]));
-            }
-            set {
-                this["HashAlgorithm"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("4096")]
         public int ExtractBufferSize {
             get {

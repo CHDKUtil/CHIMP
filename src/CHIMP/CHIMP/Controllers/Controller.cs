@@ -1,8 +1,6 @@
 ﻿using Chimp.ViewModels;
 using Microsoft.Extensions.Logging;
-using System;
 using System.ComponentModel;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -13,11 +11,13 @@ namespace Chimp.Controllers
     {
         protected CancellationTokenSource cts;
 
-        protected Controller(MainViewModel mainViewModel, ILoggerFactory loggerFactory)
+        protected Controller(MainViewModel mainViewModel, IStepProvider stepProvider, string stepName, ILoggerFactory loggerFactory)
         {
             LoggerFactory = loggerFactory;
             Logger = LoggerFactory.CreateLogger<T>();
             MainViewModel = mainViewModel;
+            StepProvider = stepProvider;
+            StepName = stepName;
         }
 
         public virtual void Dispose()
@@ -90,12 +90,13 @@ namespace Chimp.Controllers
             }
         }
 
-        protected abstract string StepName { get; }
+        private IStepProvider StepProvider { get; }
+
+        protected string StepName { get; }
 
         protected abstract bool CanSkipStep { get; }
 
-        protected virtual bool SkipStep =>
-            MainViewModel.Settings.SkipSteps?.Contains(StepName, StringComparer.OrdinalIgnoreCase) == true;
+        protected virtual bool SkipStep => StepProvider.IsSkip(StepName);
 
         protected ILoggerFactory LoggerFactory { get; }
 
@@ -117,8 +118,8 @@ namespace Chimp.Controllers
         where TController : Controller<TController, TViewModel>
         where TViewModel : ViewModel
     {
-        public Controller(MainViewModel mainViewModel, ILoggerFactory loggerFactory)
-            : base(mainViewModel, loggerFactory)
+        protected Controller(MainViewModel mainViewModel, IStepProvider stepProvider, string stepName, ILoggerFactory loggerFactory)
+            : base(mainViewModel, stepProvider, stepName, loggerFactory)
         {
         }
 

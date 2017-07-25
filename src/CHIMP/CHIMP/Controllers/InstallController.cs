@@ -11,15 +11,15 @@ namespace Chimp.Controllers
 {
     sealed class InstallController : Controller<InstallController, InstallViewModel>
     {
-        protected override string StepName => "Install";
         protected override bool CanSkipStep => MainViewModel.IsAborted || ViewModel.IsCompleted;
         protected override bool SkipStep => MainViewModel.IsAborted || base.SkipStep;
 
         private IInstallerProvider InstallerProvider { get; }
         private IVolumeWatcher VolumeWatcher { get; }
 
-        public InstallController(IInstallerProvider installerProvider, IVolumeWatcher volumeWatcher, MainViewModel mainViewModel, ILoggerFactory loggerFactory)
-            : base(mainViewModel, loggerFactory)
+        public InstallController(IInstallerProvider installerProvider, IVolumeWatcher volumeWatcher,
+            MainViewModel mainViewModel, IStepProvider stepProvider, string stepName, ILoggerFactory loggerFactory)
+            : base(mainViewModel, stepProvider, stepName, loggerFactory)
         {
             InstallerProvider = installerProvider;
             VolumeWatcher = volumeWatcher;
