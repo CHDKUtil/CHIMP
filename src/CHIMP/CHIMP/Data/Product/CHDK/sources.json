@@ -9,16 +9,6 @@
     "channel": "trunk",
     "url": "http://mighty-hoernsche.de/trunk/"
   },
-  //"CHDK_mirror_release": {
-  //  "name": "CHDK",
-  //  "channel": "release",
-  //  "url": "http://hacki.someserver.de/"
-  //},
-  //"CHDK_mirror_trunk": {
-  //  "name": "CHDK",
-  //  "channel": "trunk",
-  //  "url": "http://hacki.someserver.de/trunk/"
-  //},
   "CHDK_DE_release": {
     "name": "CHDK_DE",
     "channel": "release",
