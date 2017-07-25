@@ -122,11 +122,11 @@
     <Reference Include="Net.Chdk.Detectors.Camera.Core, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Net.Chdk.Detectors.Camera.Core.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Detectors.Camera.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Net.Chdk.Detectors.CameraModel, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Net.Chdk.Detectors.CameraModel.0.1.0-alpha\lib\netstandard1.3\Net.Chdk.Detectors.CameraModel.dll</HintPath>
+    <Reference Include="Net.Chdk.Detectors.CameraModel, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Detectors.CameraModel.0.2.0-alpha\lib\netstandard1.3\Net.Chdk.Detectors.CameraModel.dll</HintPath>
     </Reference>
-    <Reference Include="Net.Chdk.Detectors.CameraModel.Core, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Net.Chdk.Detectors.CameraModel.Core.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Detectors.CameraModel.Core.dll</HintPath>
+    <Reference Include="Net.Chdk.Detectors.CameraModel.Core, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Detectors.CameraModel.Core.0.2.0-alpha\lib\netstandard1.0\Net.Chdk.Detectors.CameraModel.Core.dll</HintPath>
     </Reference>
     <Reference Include="Net.Chdk.Detectors.Card, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Net.Chdk.Detectors.Card.0.1.0-alpha\lib\net45\Net.Chdk.Detectors.Card.dll</HintPath>
@@ -134,26 +134,26 @@
     <Reference Include="Net.Chdk.Detectors.Card.Core, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Net.Chdk.Detectors.Card.Core.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Detectors.Card.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Net.Chdk.Detectors.Software, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Net.Chdk.Detectors.Software.0.1.0-alpha\lib\netstandard1.3\Net.Chdk.Detectors.Software.dll</HintPath>
+    <Reference Include="Net.Chdk.Detectors.Software, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Detectors.Software.0.2.0-alpha\lib\netstandard1.3\Net.Chdk.Detectors.Software.dll</HintPath>
     </Reference>
-    <Reference Include="Net.Chdk.Detectors.Software.Chdk, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Net.Chdk.Detectors.Software.Chdk.0.3.0-alpha\lib\netstandard1.3\Net.Chdk.Detectors.Software.Chdk.dll</HintPath>
+    <Reference Include="Net.Chdk.Detectors.Software.Chdk, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Detectors.Software.Chdk.0.4.0-alpha\lib\netstandard1.3\Net.Chdk.Detectors.Software.Chdk.dll</HintPath>
     </Reference>
-    <Reference Include="Net.Chdk.Detectors.Software.Core, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Net.Chdk.Detectors.Software.Core.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Detectors.Software.Core.dll</HintPath>
+    <Reference Include="Net.Chdk.Detectors.Software.Core, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Detectors.Software.Core.0.2.0-alpha\lib\netstandard1.0\Net.Chdk.Detectors.Software.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Net.Chdk.Detectors.Software.Fhp, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Net.Chdk.Detectors.Software.Fhp.0.3.0-alpha\lib\netstandard1.3\Net.Chdk.Detectors.Software.Fhp.dll</HintPath>
+    <Reference Include="Net.Chdk.Detectors.Software.Fhp, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Detectors.Software.Fhp.0.4.0-alpha\lib\netstandard1.3\Net.Chdk.Detectors.Software.Fhp.dll</HintPath>
     </Reference>
-    <Reference Include="Net.Chdk.Detectors.Software.Ml, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Net.Chdk.Detectors.Software.Ml.0.3.0-alpha\lib\netstandard1.3\Net.Chdk.Detectors.Software.Ml.dll</HintPath>
+    <Reference Include="Net.Chdk.Detectors.Software.Ml, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Detectors.Software.Ml.0.4.0-alpha\lib\netstandard1.3\Net.Chdk.Detectors.Software.Ml.dll</HintPath>
     </Reference>
-    <Reference Include="Net.Chdk.Detectors.Software.Product, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Net.Chdk.Detectors.Software.Product.0.3.0-alpha\lib\netstandard1.3\Net.Chdk.Detectors.Software.Product.dll</HintPath>
+    <Reference Include="Net.Chdk.Detectors.Software.Product, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Detectors.Software.Product.0.4.0-alpha\lib\netstandard1.3\Net.Chdk.Detectors.Software.Product.dll</HintPath>
     </Reference>
-    <Reference Include="Net.Chdk.Detectors.Software.Sdm, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Net.Chdk.Detectors.Software.Sdm.0.3.0-alpha\lib\netstandard1.3\Net.Chdk.Detectors.Software.Sdm.dll</HintPath>
+    <Reference Include="Net.Chdk.Detectors.Software.Sdm, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Detectors.Software.Sdm.0.4.0-alpha\lib\netstandard1.3\Net.Chdk.Detectors.Software.Sdm.dll</HintPath>
     </Reference>
     <Reference Include="Net.Chdk.Encoders.Binary, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Net.Chdk.Encoders.Binary.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Encoders.Binary.dll</HintPath>
@@ -164,14 +164,14 @@
     <Reference Include="Net.Chdk.Json, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Net.Chdk.Json.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Net.Chdk.Meta.Model.Camera, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Net.Chdk.Meta.Model.Camera.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Meta.Model.Camera.dll</HintPath>
+    <Reference Include="Net.Chdk.Meta.Model.Camera, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Meta.Model.Camera.0.2.0-alpha\lib\netstandard1.0\Net.Chdk.Meta.Model.Camera.dll</HintPath>
     </Reference>
-    <Reference Include="Net.Chdk.Meta.Model.Camera.Eos, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Net.Chdk.Meta.Model.Camera.Eos.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Meta.Model.Camera.Eos.dll</HintPath>
+    <Reference Include="Net.Chdk.Meta.Model.Camera.Eos, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Meta.Model.Camera.Eos.0.2.0-alpha\lib\netstandard1.0\Net.Chdk.Meta.Model.Camera.Eos.dll</HintPath>
     </Reference>
-    <Reference Include="Net.Chdk.Meta.Model.Camera.Ps, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Net.Chdk.Meta.Model.Camera.Ps.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Meta.Model.Camera.Ps.dll</HintPath>
+    <Reference Include="Net.Chdk.Meta.Model.Camera.Ps, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Meta.Model.Camera.Ps.0.2.0-alpha\lib\netstandard1.0\Net.Chdk.Meta.Model.Camera.Ps.dll</HintPath>
     </Reference>
     <Reference Include="Net.Chdk.Model.Camera, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Net.Chdk.Model.Camera.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Model.Camera.dll</HintPath>
@@ -185,8 +185,8 @@
     <Reference Include="Net.Chdk.Model.Category, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Net.Chdk.Model.Category.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Model.Category.dll</HintPath>
     </Reference>
-    <Reference Include="Net.Chdk.Model.Software, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Net.Chdk.Model.Software.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Model.Software.dll</HintPath>
+    <Reference Include="Net.Chdk.Model.Software, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Model.Software.0.2.0-alpha\lib\netstandard1.0\Net.Chdk.Model.Software.dll</HintPath>
     </Reference>
     <Reference Include="Net.Chdk.Providers.Base, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Net.Chdk.Providers.Base.0.2.0-alpha\lib\netstandard1.3\Net.Chdk.Providers.Base.dll</HintPath>
@@ -197,11 +197,11 @@
     <Reference Include="Net.Chdk.Providers.Boot.Core, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Net.Chdk.Providers.Boot.Core.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Providers.Boot.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Net.Chdk.Providers.Camera, Version=0.4.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Net.Chdk.Providers.Camera.0.4.1-alpha\lib\netstandard1.3\Net.Chdk.Providers.Camera.dll</HintPath>
+    <Reference Include="Net.Chdk.Providers.Camera, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Providers.Camera.0.5.0-alpha\lib\netstandard1.3\Net.Chdk.Providers.Camera.dll</HintPath>
     </Reference>
-    <Reference Include="Net.Chdk.Providers.Camera.Core, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Net.Chdk.Providers.Camera.Core.0.4.0-alpha\lib\netstandard1.0\Net.Chdk.Providers.Camera.Core.dll</HintPath>
+    <Reference Include="Net.Chdk.Providers.Camera.Core, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Providers.Camera.Core.0.5.0-alpha\lib\netstandard1.0\Net.Chdk.Providers.Camera.Core.dll</HintPath>
     </Reference>
     <Reference Include="Net.Chdk.Providers.Category.Core, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Net.Chdk.Providers.Category.Core.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Providers.Category.Core.dll</HintPath>
@@ -224,8 +224,8 @@
     <Reference Include="Net.Chdk.Providers.Software.Chdk, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Net.Chdk.Providers.Software.Chdk.0.4.1-alpha\lib\netstandard1.3\Net.Chdk.Providers.Software.Chdk.dll</HintPath>
     </Reference>
-    <Reference Include="Net.Chdk.Providers.Software.Core, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Net.Chdk.Providers.Software.Core.0.3.1-alpha\lib\netstandard1.0\Net.Chdk.Providers.Software.Core.dll</HintPath>
+    <Reference Include="Net.Chdk.Providers.Software.Core, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Providers.Software.Core.0.4.0-alpha\lib\netstandard1.0\Net.Chdk.Providers.Software.Core.dll</HintPath>
     </Reference>
     <Reference Include="Net.Chdk.Providers.Software.Ml, Version=0.4.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Net.Chdk.Providers.Software.Ml.0.4.1-alpha\lib\netstandard1.3\Net.Chdk.Providers.Software.Ml.dll</HintPath>
@@ -242,8 +242,8 @@
     <Reference Include="Net.Chdk.Validators.Core, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Net.Chdk.Validators.Core.0.1.0-alpha\lib\netstandard1.0\Net.Chdk.Validators.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Net.Chdk.Validators.Software, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Net.Chdk.Validators.Software.0.1.0-alpha\lib\netstandard1.3\Net.Chdk.Validators.Software.dll</HintPath>
+    <Reference Include="Net.Chdk.Validators.Software, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Net.Chdk.Validators.Software.0.2.0-alpha\lib\netstandard1.3\Net.Chdk.Validators.Software.dll</HintPath>
     </Reference>
     <Reference Include="Net.Chdk.Watchers.Volume, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Net.Chdk.Watchers.Volume.0.1.0-alpha\lib\net45\Net.Chdk.Watchers.Volume.dll</HintPath>
