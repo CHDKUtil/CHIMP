@@ -16,7 +16,6 @@ namespace Chimp.Controllers
     sealed class CardController : Controller<CardController, CardViewModel>
     {
         protected override string StepName => "Card";
-        protected override bool SkipStep => Settings.Default.SkipCardStep;
         protected override bool CanSkipStep => ViewModel.SelectedItem != null;
 
         private SynchronizationContext SynchronizationContext { get; }

@@ -10,14 +10,12 @@ using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading;
-using Settings = Chimp.Properties.Settings;
 
 namespace Chimp.Controllers
 {
     sealed class SoftwareController : Controller<SoftwareController, SoftwareViewModel>
     {
         protected override string StepName => "Software";
-        protected override bool SkipStep => Settings.Default.SkipSoftwareStep;
         protected override bool CanSkipStep => ViewModel?.IsCompleted == true;
 
         private SynchronizationContext SynchronizationContext { get; }

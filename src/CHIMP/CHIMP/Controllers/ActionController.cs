@@ -17,9 +17,9 @@ namespace Chimp.Controllers
             return viewModel.SelectedItem != null;
         }
 
-        private static bool IsSkipStep(ActionViewModel viewModel)
+        private bool IsSkipStep(ActionViewModel viewModel)
         {
-            return viewModel.Items.Length == 1 || Settings.Default.SkipActionStep;
+            return viewModel.Items.Length == 1 || base.SkipStep;
         }
 
         private IActionProvider ActionProvider { get; }

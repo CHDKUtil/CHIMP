@@ -5,11 +5,10 @@ using Newtonsoft.Json;
 
 namespace Chimp.Controllers
 {
-	sealed class IntroController : Controller<IntroController, IntroViewModel>
+    sealed class IntroController : Controller<IntroController, IntroViewModel>
     {
         protected override string StepName => "Intro";
         protected override bool CanSkipStep => true;
-        protected override bool SkipStep => Settings.Default.SkipIntroStep;
 
         public IntroController(MainViewModel viewModel, ILoggerFactory loggerFactory)
             : base(viewModel, loggerFactory)

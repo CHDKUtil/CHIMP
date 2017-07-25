@@ -1,8 +1,10 @@
 ﻿using Chimp.ViewModels;
 using Microsoft.Extensions.Logging;
+using System;
 using System.ComponentModel;
-using System.Threading.Tasks;
+using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Chimp.Controllers
 {
@@ -92,7 +94,8 @@ namespace Chimp.Controllers
 
         protected abstract bool CanSkipStep { get; }
 
-        protected abstract bool SkipStep { get; }
+        protected virtual bool SkipStep =>
+            MainViewModel.Settings.SkipSteps?.Contains(StepName, StringComparer.OrdinalIgnoreCase) == true;
 
         protected ILoggerFactory LoggerFactory { get; }
 

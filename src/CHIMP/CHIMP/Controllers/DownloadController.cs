@@ -3,7 +3,6 @@ using Chimp.Properties;
 using Chimp.ViewModels;
 using Microsoft.Extensions.Logging;
 using Net.Chdk.Providers.Camera;
-using Net.Chdk.Providers.Software;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -13,7 +12,6 @@ namespace Chimp.Controllers
     {
         protected override string StepName => "Download";
         protected override bool CanSkipStep => ViewModel.IsCompleted;
-        protected override bool SkipStep => Settings.Default.SkipDownloadStep;
 
         private ICameraProvider CameraProvider { get; }
 

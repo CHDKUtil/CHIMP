@@ -6,7 +6,6 @@ using Net.Chdk.Detectors.CameraModel;
 using Net.Chdk.Model.Camera;
 using Net.Chdk.Model.CameraModel;
 using Net.Chdk.Providers.Camera;
-using Net.Chdk.Providers.Software;
 using System;
 using System.ComponentModel;
 using System.Linq;
@@ -22,8 +21,6 @@ namespace Chimp.Controllers
         protected override bool CanSkipStep =>
             ViewModel.SelectedItem != null
             && SoftwareViewModel.SelectedItem?.Info?.Product?.Version?.MinorRevision >= 0;
-
-        protected override bool SkipStep => Settings.Default.SkipCameraStep;
 
         private ICameraModelDetector CameraModelDetector { get; }
         private IFileCameraModelDetector FileCameraModelDetector { get; }

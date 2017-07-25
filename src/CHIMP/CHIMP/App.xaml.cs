@@ -1,8 +1,8 @@
 ﻿using Chimp.Containers;
+using Chimp.Logging.Extensions;
 using Chimp.Providers;
 using Chimp.Services;
 using Chimp.ViewModels;
-using Chimp.Logging.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -211,7 +211,8 @@ namespace Chimp
 
             serviceCollection
                 .AddOptions()
-                .Configure<SoftwareDetectorSettings>(configuration.GetSection("softwareDetector"));
+                .Configure<SoftwareDetectorSettings>(configuration.GetSection("softwareDetector"))
+                .Configure<WizardSettings>(configuration.GetSection("wizard"));
         }
 
         protected override void OnStartup(StartupEventArgs e)

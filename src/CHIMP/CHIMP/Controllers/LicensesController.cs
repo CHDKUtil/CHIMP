@@ -12,7 +12,6 @@ namespace Chimp.Controllers
     {
         protected override string StepName => "Licenses";
         protected override bool CanSkipStep => true;
-        protected override bool SkipStep => Settings.Default.SkipLicensesStep;
 
         public LicensesController(MainViewModel viewModel, ILoggerFactory loggerFactory)
             : base(viewModel, loggerFactory)

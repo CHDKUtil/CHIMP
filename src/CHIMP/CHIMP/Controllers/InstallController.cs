@@ -2,9 +2,6 @@
 using Chimp.ViewModels;
 using Microsoft.Extensions.Logging;
 using Net.Chdk.Watchers.Volume;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -16,7 +13,7 @@ namespace Chimp.Controllers
     {
         protected override string StepName => "Install";
         protected override bool CanSkipStep => MainViewModel.IsAborted || ViewModel.IsCompleted;
-        protected override bool SkipStep => MainViewModel.IsAborted || Settings.Default.SkipInstallStep;
+        protected override bool SkipStep => MainViewModel.IsAborted || base.SkipStep;
 
         private IInstallerProvider InstallerProvider { get; }
         private IVolumeWatcher VolumeWatcher { get; }

@@ -588,6 +588,7 @@
     <Compile Include="ViewModels\StepViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
     <Compile Include="Volume.cs" />
+    <Compile Include="WizardSettings.cs" />
     <Page Include="Controls\CameraInfoControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

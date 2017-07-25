@@ -1,5 +1,4 @@
-﻿using Chimp.Properties;
-using Chimp.ViewModels;
+﻿using Chimp.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
@@ -29,28 +28,23 @@ namespace Chimp
             ControllerContainer = controllerContainer;
             DialogService = dialogService;
 
-            ViewModel.Set("Eject", new EjectViewModel
-            {
-                IsEject = !Settings.Default.SkipEjectStep
-            });
+            ViewModel.Set("Eject", CreateEjectViewModel());
 
             ViewModel.Step = CreateSteps(stepProvider);
             ViewModel.Step.PropertyChanging += Step_PropertyChanging;
             ViewModel.Step.PropertyChanged += Step_PropertyChanged;
 
-            //The right order for FlowDirection?
             InitializeComponent();
             DataContext = ViewModel;
         }
 
-        //private void ViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        //{
-        //    switch (e.PropertyName)
-        //    {
-        //        default:
-        //            break;
-        //    }
-        //}
+        private EjectViewModel CreateEjectViewModel()
+        {
+            return new EjectViewModel
+            {
+                IsEject = ViewModel.Settings.SkipSteps?.Contains("Eject", StringComparer.OrdinalIgnoreCase) != true,
+            };
+        }
 
         private StepViewModel CreateSteps(IStepProvider stepProvider)
         {

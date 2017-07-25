@@ -2,7 +2,6 @@
 using Chimp.Properties;
 using Chimp.ViewModels;
 using Microsoft.Extensions.Logging;
-using Net.Chdk.Model.Card;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -14,7 +13,6 @@ namespace Chimp.Controllers
     {
         protected override string StepName => "Summary";
         protected override bool CanSkipStep => MainViewModel.IsCompleted || MainViewModel.IsAborted;
-        protected override bool SkipStep => Settings.Default.SkipSummaryStep;
 
         private IEnumerable<ITipProvider> TipProviders { get; }
 
