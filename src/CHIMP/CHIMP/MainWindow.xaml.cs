@@ -10,35 +10,35 @@ using System.Windows;
 
 namespace Chimp
 {
-	/// <summary>
-	/// Interaction logic for MainWindow.xaml
-	/// </summary>
-	public partial class MainWindow
-	{
-		private IServiceProvider ServiceProvider { get; }
-		private IPageContainer PageContainer { get; }
-		private IControllerContainer ControllerContainer { get; }
-		private IDialogService DialogService { get; }
-		private ILogger Logger => ServiceProvider.GetService<ILogger<MainWindow>>();
-		private MainViewModel ViewModel => ServiceProvider.GetService<MainViewModel>();
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow
+    {
+        private IServiceProvider ServiceProvider { get; }
+        private IPageContainer PageContainer { get; }
+        private IControllerContainer ControllerContainer { get; }
+        private IDialogService DialogService { get; }
+        private ILogger Logger => ServiceProvider.GetService<ILogger<MainWindow>>();
+        private MainViewModel ViewModel => ServiceProvider.GetService<MainViewModel>();
 
-		public MainWindow(IServiceProvider serviceProvider, IStepProvider stepProvider, IPageContainer pageContainer, IControllerContainer controllerContainer, IDialogService dialogService)
-		{
-			ServiceProvider = serviceProvider;
-			PageContainer = pageContainer;
-			ControllerContainer = controllerContainer;
-			DialogService = dialogService;
+        public MainWindow(IServiceProvider serviceProvider, IStepProvider stepProvider, IPageContainer pageContainer, IControllerContainer controllerContainer, IDialogService dialogService)
+        {
+            ServiceProvider = serviceProvider;
+            PageContainer = pageContainer;
+            ControllerContainer = controllerContainer;
+            DialogService = dialogService;
 
             ViewModel.Set("Eject", new EjectViewModel
             {
                 IsEject = !Settings.Default.SkipEjectStep
             });
 
-			ViewModel.Step = CreateSteps(stepProvider);
-			ViewModel.Step.PropertyChanging += Step_PropertyChanging;
-			ViewModel.Step.PropertyChanged += Step_PropertyChanged;
+            ViewModel.Step = CreateSteps(stepProvider);
+            ViewModel.Step.PropertyChanging += Step_PropertyChanging;
+            ViewModel.Step.PropertyChanged += Step_PropertyChanged;
 
-			//The right order for FlowDirection?
+            //The right order for FlowDirection?
             InitializeComponent();
             DataContext = ViewModel;
         }
@@ -53,173 +53,173 @@ namespace Chimp
         //}
 
         private StepViewModel CreateSteps(IStepProvider stepProvider)
-		{
-			var steps = stepProvider.GetSteps();
-			var items = steps.Select(CreateStep).ToArray();
-			return new StepViewModel
-			{
-				Items = items,
-			};
-		}
+        {
+            var steps = stepProvider.GetSteps();
+            var items = steps.Select(CreateStep).ToArray();
+            return new StepViewModel
+            {
+                Items = items,
+            };
+        }
 
-		private static StepItemViewModel CreateStep(string name)
-		{
-			return new StepItemViewModel
-			{
-				Name = name,
-				IsVisible = true
-			};
-		}
+        private static StepItemViewModel CreateStep(string name)
+        {
+            return new StepItemViewModel
+            {
+                Name = name,
+                IsVisible = true
+            };
+        }
 
-		private async void Step_PropertyChanging(object sender, PropertyChangingEventArgs e)
-		{
-			switch (e.PropertyName)
-			{
-				case nameof(StepViewModel.SelectedIndex):
-					await OnSelectedIndexChangingAsync();
-					break;
-				default:
-					break;
-			}
-		}
+        private async void Step_PropertyChanging(object sender, PropertyChangingEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(StepViewModel.SelectedIndex):
+                    await OnSelectedIndexChangingAsync();
+                    break;
+                default:
+                    break;
+            }
+        }
 
-		private async void Step_PropertyChanged(object sender, PropertyChangedEventArgs e)
-		{
-			switch (e.PropertyName)
-			{
-				case nameof(StepViewModel.SelectedIndex):
-					await OnSelectedIndexChangedAsync();
-					break;
-				default:
-					break;
-			}
-		}
+        private async void Step_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(StepViewModel.SelectedIndex):
+                    await OnSelectedIndexChangedAsync();
+                    break;
+                default:
+                    break;
+            }
+        }
 
-		protected override async void OnInitialized(EventArgs e)
-		{
-			base.OnInitialized(e);
-			await OnSelectedIndexChangedAsync();
-		}
+        protected override async void OnInitialized(EventArgs e)
+        {
+            base.OnInitialized(e);
+            await OnSelectedIndexChangedAsync();
+        }
 
-		protected override void OnClosing(CancelEventArgs e)
-		{
-			base.OnClosing(e);
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            base.OnClosing(e);
 
-			if (ViewModel.IsAborted)
-				return;
+            if (ViewModel.IsAborted)
+                return;
 
-			if (ViewModel.IsCompleted)
-			{
-				return;
-			}
+            if (ViewModel.IsCompleted)
+            {
+                return;
+            }
 
-			Logger.LogTrace("Closing");
+            Logger.LogTrace("Closing");
 
-			if (ShowClosingMessage())
-			{
-				if (!ViewModel.IsCompleted)
-					ViewModel.IsAborted = true;
-				ViewModel.Step.SelectedIndex = ViewModel.Step.Items.Length - 1;
-			}
+            if (ShowClosingMessage())
+            {
+                if (!ViewModel.IsCompleted)
+                    ViewModel.IsAborted = true;
+                ViewModel.Step.SelectedIndex = ViewModel.Step.Items.Length - 1;
+            }
 
-			e.Cancel = true;
-		}
+            e.Cancel = true;
+        }
 
-		protected override async void OnClosed(EventArgs e)
-		{
-			base.OnClosed(e);
-			await OnSelectedIndexChangingAsync();
-			ControllerContainer.Dispose();
-		}
+        protected override async void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            await OnSelectedIndexChangingAsync();
+            ControllerContainer.Dispose();
+        }
 
-		private void GoBack_Click(object sender, RoutedEventArgs e)
-		{
-			Logger.LogTrace("Clicked GoBack");
-			GoBack();
-		}
+        private void GoBack_Click(object sender, RoutedEventArgs e)
+        {
+            Logger.LogTrace("Clicked GoBack");
+            GoBack();
+        }
 
-		private void Continue_Click(object sender, RoutedEventArgs e)
-		{
-			Logger.LogTrace("Clicked Continue");
-			Continue();
-		}
+        private void Continue_Click(object sender, RoutedEventArgs e)
+        {
+            Logger.LogTrace("Clicked Continue");
+            Continue();
+        }
 
-		private void Finish_Click(object sender, RoutedEventArgs e)
-		{
-			Logger.LogTrace("Clicked Finish");
-			Close();
-		}
+        private void Finish_Click(object sender, RoutedEventArgs e)
+        {
+            Logger.LogTrace("Clicked Finish");
+            Close();
+        }
 
-		private void Close_Click(object sender, RoutedEventArgs e)
-		{
-			Logger.LogTrace("Clicked Close");
-			Close();
-		}
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            Logger.LogTrace("Clicked Close");
+            Close();
+        }
 
-		private void GoBack()
-		{
-			int index = ViewModel.Step.SelectedIndex;
-			while (--index >= 0 && ViewModel.Step.Items[index].IsSkipped) ;
-			if (index >= 0)
-				ViewModel.Step.SelectedIndex = index;
-		}
+        private void GoBack()
+        {
+            int index = ViewModel.Step.SelectedIndex;
+            while (--index >= 0 && ViewModel.Step.Items[index].IsSkipped) ;
+            if (index >= 0)
+                ViewModel.Step.SelectedIndex = index;
+        }
 
-		private void Continue()
-		{
-			var index = ViewModel.Step.SelectedIndex;
-			while (++index < ViewModel.Step.Items.Length && ViewModel.Step.Items[index].IsSkipped) ;
-			if (index < ViewModel.Step.Items.Length)
-				ViewModel.Step.SelectedIndex = index;
-		}
+        private void Continue()
+        {
+            var index = ViewModel.Step.SelectedIndex;
+            while (++index < ViewModel.Step.Items.Length && ViewModel.Step.Items[index].IsSkipped) ;
+            if (index < ViewModel.Step.Items.Length)
+                ViewModel.Step.SelectedIndex = index;
+        }
 
-		private async Task OnSelectedIndexChangingAsync()
-		{
-			int index = ViewModel.Step.SelectedIndex;
-			var length = ViewModel.Step.Items.Length;
-			if (index == length)
-			{
-				return;
-			}
-			var item = ViewModel.Step.Items[index];
-			Logger.LogTrace("Leaving {0}", item.Name);
-			item.IsSelected = false;
-			var controller = await ControllerContainer.GetControllerAsync(item.Name);
-			await controller.LeaveStepAsync();
-		}
+        private async Task OnSelectedIndexChangingAsync()
+        {
+            int index = ViewModel.Step.SelectedIndex;
+            var length = ViewModel.Step.Items.Length;
+            if (index == length)
+            {
+                return;
+            }
+            var item = ViewModel.Step.Items[index];
+            Logger.LogTrace("Leaving {0}", item.Name);
+            item.IsSelected = false;
+            var controller = await ControllerContainer.GetControllerAsync(item.Name);
+            await controller.LeaveStepAsync();
+        }
 
-		private async Task OnSelectedIndexChangedAsync()
-		{
-			int index = ViewModel.Step.SelectedIndex;
-			var length = ViewModel.Step.Items.Length;
-			if (index == length)
-			{
-				Close();
-				return;
-			}
+        private async Task OnSelectedIndexChangedAsync()
+        {
+            int index = ViewModel.Step.SelectedIndex;
+            var length = ViewModel.Step.Items.Length;
+            if (index == length)
+            {
+                Close();
+                return;
+            }
 
-			var item = ViewModel.Step.Items[index];
-			Logger.LogTrace("Entering {0}", item.Name);
-			item.IsSelected = true;
-			ViewModel.Step.CanGoBack = CanGoBack(index);
-			var page = PageContainer.GetPage(item.Name);
-			frame.Navigate(page);
-			var controller = await ControllerContainer.GetControllerAsync(item.Name);
-			await controller.EnterStepAsync();
-		}
+            var item = ViewModel.Step.Items[index];
+            Logger.LogTrace("Entering {0}", item.Name);
+            item.IsSelected = true;
+            ViewModel.Step.CanGoBack = CanGoBack(index);
+            var page = PageContainer.GetPage(item.Name);
+            frame.Navigate(page);
+            var controller = await ControllerContainer.GetControllerAsync(item.Name);
+            await controller.EnterStepAsync();
+        }
 
-		private bool CanGoBack(int index)
-		{
-			for (int i = index - 1; i >= 0; i--)
-				if (!ViewModel.Step.Items[i].IsSkipped)
-					return true;
-			return false;
-		}
+        private bool CanGoBack(int index)
+        {
+            for (int i = index - 1; i >= 0; i--)
+                if (!ViewModel.Step.Items[i].IsSkipped)
+                    return true;
+            return false;
+        }
 
-		private bool ShowClosingMessage()
-		{
-			var message = Properties.Resources.MessageBox_Abort_Text;
-			var caption = Properties.Resources._Title;
-			return DialogService.ShowYesNoMessage(message, caption);
-		}
-	}
+        private bool ShowClosingMessage()
+        {
+            var message = Properties.Resources.MessageBox_Abort_Text;
+            var caption = Properties.Resources._Title;
+            return DialogService.ShowYesNoMessage(message, caption);
+        }
+    }
 }
