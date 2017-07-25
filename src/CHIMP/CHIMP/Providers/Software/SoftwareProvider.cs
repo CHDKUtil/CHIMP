@@ -43,6 +43,8 @@ namespace Chimp.Providers.Software
 
         protected virtual string GetVersionPrefix(Match match) => null;
 
+        protected virtual string GetVersionSuffix(Match match) => null;
+
         private CategoryInfo GetCategory(Match match)
         {
             return new CategoryInfo
@@ -59,6 +61,7 @@ namespace Chimp.Providers.Software
                 Language = Language,
                 Version = GetVersion(match),
                 VersionPrefix = GetVersionPrefix(match),
+                VersionSuffix = GetVersionSuffix(match),
                 Created = GetCreationDate(match),
             };
         }
