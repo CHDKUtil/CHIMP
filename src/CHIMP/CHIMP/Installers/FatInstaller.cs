@@ -14,17 +14,17 @@ namespace Chimp.Installers
 
         protected override bool Install(CancellationToken cancellationToken)
         {
-            switch (TestSwitchedPartitions())
-            {
-                default:
-                    return CopySingle();
+            var switched = TestSwitchedPartitions();
+            if (switched == null)
+                return CopySingle();
 
-                case false:
-                    return CopyDual();
+            if (!IsCameraMultiPartition)
+                return CopyFormat(FAT32);
 
-                case true:
-                    return CopySwitchedDual();
-            }
+            if (switched == false)
+                return CopyDual();
+
+            return CopySwitchedDual();
         }
     }
 }

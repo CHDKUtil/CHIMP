@@ -14,7 +14,7 @@ namespace Chimp.Installers
 
         protected override bool Install(CancellationToken cancellationToken)
         {
-            if (TestSwitchedPartitions() == true)
+            if (TestSwitchedPartitions() == true && IsCameraMultiPartition)
                 return CopySwitchedDual();
 
             if (IsCameraFat32Bootable)

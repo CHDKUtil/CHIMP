@@ -54,6 +54,7 @@ namespace Chimp.Installers
             var cameraModels = cameraProvider.GetCameraModels(Camera);
             CardSubtype = cameraModels?.CardSubtype;
             BootFileSystem = cameraModels?.BootFileSystem;
+            IsCameraMultiPartition = cameraModels?.IsMultiPartition == true;
         }
 
         public async Task<bool> InstallAsync(CancellationToken cancellationToken)
@@ -92,6 +93,8 @@ namespace Chimp.Installers
         }
 
         protected abstract bool Install(CancellationToken cancellationToken);
+
+        protected bool IsCameraMultiPartition { get; }
 
         protected bool IsCardFatFormattable =>
             Card.Capacity <= MaxFatCardSize;
