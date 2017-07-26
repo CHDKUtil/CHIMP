@@ -124,7 +124,7 @@
     <value>Accepter Tout</value>
   </data>
   <data name="Intro_Message_Text" xml:space="preserve">
-    <value>This utility installs Canon hacks onto memory cards and manages existing installations.</value>
+    <value>Cet utilitaire install CHDK/SDM/ML sur une carte mémoire et gère les installations existantes.</value>
   </data>
   <data name="Licenses_Reject_Text" xml:space="preserve">
     <value>Refuser</value>
@@ -133,19 +133,19 @@
     <value>Refuser tout</value>
   </data>
   <data name="Card_NoCard_Text" xml:space="preserve">
-    <value>This page will refresh automatically after the card is inserted.</value>
+    <value>Cette page sera mise à jour après l'insertion d'une carte mémoire.</value>
   </data>
   <data name="Camera_Title_Detecting_Text" xml:space="preserve">
-    <value>Detection appareil</value>
+    <value>Détection APN</value>
   </data>
   <data name="Card_Detecting_Title_Text" xml:space="preserve">
-    <value>Detection carte</value>
+    <value>Détection carte</value>
   </data>
   <data name="Software_Title_Detecting_Text" xml:space="preserve">
-    <value>Detection du logiciel de l'appareil</value>
+    <value>Détection du logiciel de l'appareil</value>
   </data>
   <data name="Camera_NoCanonMakernote_Text" xml:space="preserve">
-    <value>Metadonnées Canon absentes</value>
+    <value>Métadonnées Canon absentes</value>
   </data>
   <data name="Camera_NonCanon_Text" xml:space="preserve">
     <value>Fabricant inconnu</value>
@@ -154,13 +154,13 @@
     <value>Version Firmware Canon Non trouvé</value>
   </data>
   <data name="Camera_NoImage_Text" xml:space="preserve">
-    <value>Pas d'image trouvee</value>
+    <value>Pas d'image trouvée</value>
   </data>
   <data name="Camera_NoModelId_Text" xml:space="preserve">
-    <value>Modele appareil non trouvé</value>
+    <value>Modèle d'appareil non trouvé</value>
   </data>
   <data name="MessageBox_Abort_Text" xml:space="preserve">
-    <value>Voulez vous abandonner l'installation?</value>
+  <value>Voulez-vous abandonner l'installation?</value>
   </data>
   <data name="Summary_Aborted_Title_Text" xml:space="preserve">
     <value>Installation interrompue</value>
@@ -208,10 +208,10 @@
     <value>{0} libre sur {1}</value>
   </data>
   <data name="Step_Camera_Text" xml:space="preserve">
-    <value>Detection Appareil</value>
+    <value>Détection APN</value>
   </data>
   <data name="Step_Card_Text" xml:space="preserve">
-    <value>Detection Carte</value>
+    <value>Détection Carte</value>
   </data>
   <data name="Step_Action_Text" xml:space="preserve">
     <value>Action</value>
@@ -223,13 +223,13 @@
     <value>Introduction</value>
   </data>
   <data name="Step_Licenses_Text" xml:space="preserve">
-    <value>Licenses</value>
+    <value>Licences</value>
   </data>
   <data name="Step_Summary_Text" xml:space="preserve">
-    <value>synthese</value>
+    <value>synthèse</value>
   </data>
   <data name="Card_Detected_Title_Text" xml:space="preserve">
-    <value>Carte Detectee</value>
+    <value>Carte détectée</value>
   </data>
   <data name="MessageBox_Error_Caption" xml:space="preserve">
     <value>Erreur</value>
@@ -252,10 +252,10 @@
     <value>Fabricant:</value>
   </data>
   <data name="Camera_Model_Content" xml:space="preserve">
-    <value>Modele:</value>
+    <value>Modèle:</value>
   </data>
   <data name="Summary_CameraNotes_Content" xml:space="preserve">
-    <value>notes specifiques à l'appareil</value>
+    <value>notes spécifiques à l'appareil</value>
   </data>
   <data name="Licenses_Title_Text" xml:space="preserve">
     <value>Accepter License</value>
@@ -264,7 +264,7 @@
     <value>parcourir...</value>
   </data>
   <data name="Camera_Title_Detected_Text" xml:space="preserve">
-    <value>Appareil detecté </value>
+    <value>Appareil détecté </value>
   </data>
   <data name="Card_Select_Title_Text" xml:space="preserve">
     <value>choisir lecteur de carte</value>
@@ -273,7 +273,7 @@
     <value>choisir Action</value>
   </data>
   <data name="Step_Software_Text" xml:space="preserve">
-    <value>Detection logiciel</value>
+   <value>Détection logiciel</value>
   </data>
   <data name="Summary_AltMode_Format" xml:space="preserve">
     <value>Presser la touche {0} pour entrer dans le mode ALT {1}.</value>
@@ -391,7 +391,7 @@
     <value>Version Appareil non trouvé</value>
   </data>
   <data name="Download_MissingRevision_Text" xml:space="preserve">
-    <value>Mise a jour non trouvée</value>
+    <value>Mise à jour non trouvée</value>
   </data>
   <data name="Download_UpToDate_Text" xml:space="preserve">
     <value>Version à jour</value>
@@ -406,10 +406,10 @@
     <value>Initialisation</value>
   </data>
   <data name="Install_Partitioning_Text" xml:space="preserve">
-    <value>Creation des Partitions</value>
+    <value>Création des partitions</value>
   </data>
   <data name="Install_Switching_Text" xml:space="preserve">
-    <value>Permuter les Partitions</value>
+    <value>Permuter les partitions</value>
   </data>
   <data name="Camera_NoMetadata_Text" xml:space="preserve">
     <value>Metadonées non trouvées</value>
@@ -419,25 +419,25 @@
     <comment>Do not translate</comment>
   </data>
   <data name="Eject_ToastBody_Format" xml:space="preserve">
-    <value>le périphérique '{0}' peut maintenant etre retiré de l'ordinateur.</value>
+    <value>le périphérique '{0}' peut maintenant être retiré de l'ordinateur.</value>
   </data>
   <data name="Eject_ToastTitle" xml:space="preserve">
-    <value>Safe to Remove Hardware</value>
+    <value>Vous pouvez retirer le matériel</value>
   </data>
   <data name="Intro_Welcome_Format" xml:space="preserve">
-    <value>Bienvenue pour {0}</value>
+    <value>Bienvenue dans {0}</value>
   </data>
   <data name="Install_Format_Text" xml:space="preserve">
-    <value>Verifier les détails de la carte</value>
+    <value>Vérifier les détails de la carte</value>
   </data>
   <data name="Summary_OpenCardDoor_Header" xml:space="preserve">
     <value>ouvrir la porte de la carte</value>
   </data>
   <data name="Summary_OpenCardDoor_Format" xml:space="preserve">
-    <value>la porte de la carte doit etre ouverte pour permettre à {0} de charger.</value>
+    <value>la porte de la carte doit être ouverte pour permettre à {0} de charger.</value>
   </data>
   <data name="Summary_Eject_Text" xml:space="preserve">
-    <value>Utiliser la fonction retirer le périphérique en toute sécurité avant ejection.</value>
+    <value>Utiliser la fonction retirer le périphérique en toute sécurité avant éjection.</value>
   </data>
   <data name="Summary_Eject_Header" xml:space="preserve">
     <value>retirer en toute sécurité</value>
@@ -449,7 +449,7 @@
     <value>Ejecter la carte</value>
   </data>
   <data name="Download_Updating_Text" xml:space="preserve">
-    <value>mise a jour des metadonnées</value>
+    <value>mise à jour des metadonnées</value>
   </data>
   <data name="Eject_CheckBox_Format" xml:space="preserve">
     <value>Ejecter {0}</value>
@@ -461,7 +461,7 @@
     <value>inconnue</value>
   </data>
   <data name="Software_Revision_Content" xml:space="preserve">
-    <value>Revision:</value>
+    <value>Révision:</value>
   </data>
   <data name="Software_Revision_Unknown_Text" xml:space="preserve">
     <value>inconnue</value>
@@ -492,7 +492,7 @@
     <value>Non supporté</value>
   </data>
   <data name="Install_Completed_Text" xml:space="preserve">
-    <value>Installation reussie</value>
+    <value>Installation réussie</value>
   </data>
   <data name="Install_Aborted_Text" xml:space="preserve">
     <value>Installation annulée</value>
@@ -511,10 +511,10 @@
     <value>Mise à jour {0}</value>
   </data>
   <data name="Action_Bootable_Clear_Completed_Text" xml:space="preserve">
-    <value>Autoboot desactivé</value>
+    <value>Autoboot désactivé</value>
   </data>
   <data name="Action_Bootable_Clear_Text" xml:space="preserve">
-    <value>desactive Autoboot</value>
+    <value>désactive Autoboot</value>
   </data>
   <data name="Action_Bootable_Set_Completed_Text" xml:space="preserve">
     <value>Autoboot activé</value>
@@ -526,10 +526,10 @@
     <value>Ejecter Carte</value>
   </data>
   <data name="Action_Switch_Completed_Text" xml:space="preserve">
-    <value>Partitions Switched</value>
+    <value>Partitions échangées</value>
   </data>
   <data name="Action_Switch_Text" xml:space="preserve">
-    <value>echanger les partitions</value>
+    <value>échanger les partitions</value>
   </data>
   <data name="Software_Title_Unknown_Text" xml:space="preserve">
     <value>produit inconnu</value>
@@ -538,7 +538,7 @@
     <value>non supporté</value>
   </data>
   <data name="Download_UnsupportedModel_Text" xml:space="preserve">
-    <value>Modele non supporté</value>
+    <value>Modèle non supporté</value>
   </data>
   <data name="Product_CHDK" xml:space="preserve">
     <value>CHDK</value>
@@ -556,7 +556,7 @@
     <value>Canon BASIC desactivé</value>
   </data>
   <data name="Action_Scriptable_Clear_Text" xml:space="preserve">
-    <value>desactive Canon BASIC</value>
+    <value>désactive Canon BASIC</value>
   </data>
   <data name="Action_Scriptable_Set_Completed_Text" xml:space="preserve">
     <value>Canon BASIC activé</value>
@@ -599,7 +599,7 @@
     <value>Pour désinstaller depuis l'appareil, démarrez la mise à jour et suivez les instructions.</value>
   </data>
   <data name="Summary_Remove_Header" xml:space="preserve">
-    <value>desinstallation</value>
+    <value>désinstallation</value>
   </data>
   <data name="Camera_UnsupportedModel_Text" xml:space="preserve">
     <value>Modèle non supporté</value>
@@ -656,7 +656,7 @@
     <comment>Do not translate</comment>
   </data>
   <data name="Summary_AltMode_Menu_Text" xml:space="preserve">
-    <value>Pour accéder au menu CANON pressez la touche menu plus d'1 seconde.</value>
+    <value>Pour accéder au menu CANON pressez la touche MENU plus d'1 seconde.</value>
   </data>
   <data name="Summary_Menu_SDM_Text" xml:space="preserve">
     <value>appuyer sur la touche Menu plus d'1 sec  en mode ALT pour entrer dans le menu SDM.</value>
