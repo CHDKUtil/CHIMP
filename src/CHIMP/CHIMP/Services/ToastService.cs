@@ -60,9 +60,9 @@ namespace Chimp.Services
 		{
 			var filePath = Assembly.GetEntryAssembly().Location;
 			var workPath = Path.GetDirectoryName(filePath);
-			var dataPath = Path.Combine(workPath, "Assets");
-			var logoPath = Path.Combine(dataPath, "app.png");
-			var iconPath = Path.Combine(dataPath, "app.ico");
+			var assetsPath = Path.Combine(workPath, "Assets");
+			var logoPath = Path.Combine(assetsPath, "app.png");
+			var iconPath = Path.Combine(assetsPath, "app.ico");
 			var toastTitle = Resources.Eject_ToastTitle;
 			var toastBody = string.Format(Resources.Eject_ToastBody_Format, displayName);
 			var shortcutFileName = string.Format("{0}.lnk", Resources._Title);
