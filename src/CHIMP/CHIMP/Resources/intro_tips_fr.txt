@@ -1,0 +1,26 @@
+﻿[
+  {
+    "header": "Cartes SD seulement",
+    "contents": [ "Les cartes MMC ne sont pas supportées (sauf avec un adpatateur SD)." ]
+  },
+  {
+    "header": "Prêt à verrouiller",
+    "contents": [ "la carte doit avoir un verrou (exluant les microSD)." ]
+  },
+  {
+    "header": "Prendre une photo",
+    "contents": [ "Au moins une image prise avec l'appareil doit être présente." ]
+  },
+  {
+    "header": "utiliser un lecteur de carte",
+    "contents": [ "la connexion de l'appareil par cable n'est pas prévu" ]
+  },
+  {
+    "header": "Sauvegarde",
+    "contents": [ "Il est recommandé de sauvegarder les données sur la carte." ]
+  },
+  {
+	"header": "Mise en garde",
+	"contents": [ "Ni CHIMP ni les hacks ne sont supportés ou recommandés par Canon."]
+  }
+]
