@@ -19,7 +19,7 @@ Canon Hack Installation and Management Platform, a user-friendly replacement for
 ## Requirements:
 
 - Windows Vista SP2 or later
-- .NET Framework 4.5.2
+- .NET Framework 4.6
 
 ## Thanks
 
@@ -31,4 +31,5 @@ The author wishes to thank:
 
 ## Download
 
-A ZIP file with the latest binaries is attached to the [development thread](https://chdk.setepontos.com/index.php?topic=13091.msg132256#msg132256).
+https://github.com/CHDKUtil/CHIMP/releases/
+
