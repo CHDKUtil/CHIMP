@@ -124,7 +124,7 @@
     <value>Accepter Tout</value>
   </data>
   <data name="Intro_Message_Text" xml:space="preserve">
-    <value>Cet utilitaire install CHDK/SDM/ML sur une carte mémoire et gère les installations existantes.</value>
+    <value>Cet utilitaire installe CHDK/SDM/ML/400plus... sur une carte mémoire et gère les installations existantes.</value>
   </data>
   <data name="Licenses_Reject_Text" xml:space="preserve">
     <value>Refuser</value>
@@ -226,7 +226,7 @@
     <value>Licences</value>
   </data>
   <data name="Step_Summary_Text" xml:space="preserve">
-    <value>synthèse</value>
+    <value>Synthèse</value>
   </data>
   <data name="Card_Detected_Title_Text" xml:space="preserve">
     <value>Carte détectée</value>
@@ -261,16 +261,16 @@
     <value>Accepter License</value>
   </data>
   <data name="Camera_Browse_Content" xml:space="preserve">
-    <value>parcourir...</value>
+    <value>Parcourir...</value>
   </data>
   <data name="Camera_Title_Detected_Text" xml:space="preserve">
     <value>Appareil détecté </value>
   </data>
   <data name="Card_Select_Title_Text" xml:space="preserve">
-    <value>choisir lecteur de carte</value>
+    <value>Choisir lecteur de carte</value>
   </data>
   <data name="Action_Select_Text" xml:space="preserve">
-    <value>choisir Action</value>
+    <value>Choisir Action</value>
   </data>
   <data name="Step_Software_Text" xml:space="preserve">
    <value>Détection logiciel</value>
@@ -282,7 +282,7 @@
     <value>Pour imprimer une image appuyer sur la touche print plus d'une seconde.</value>
   </data>
   <data name="Summary_AltMode_Header" xml:space="preserve">
-    <value>mode ALT</value>
+    <value>Mode ALT</value>
   </data>
   <data name="Summary_SwitchLanguage_Format" xml:space="preserve">
     <value>{0} est installé en {1}.</value>
@@ -292,7 +292,7 @@
     <comment>Replace with your language if it is supported by CHDK</comment>
   </data>
   <data name="Summary_SwitchLanguage_2_Text" xml:space="preserve">
-    <value>presser le déclencheur en mode Alt pour passer en anglais.</value>
+    <value>Presser le déclencheur en mode Alt pour passer en anglais.</value>
   </data>
   <data name="Summary_LockCard_Format" xml:space="preserve">
     <value>La carte doit être verrouillée pour permettre le chargement de {0}.</value>
@@ -304,7 +304,7 @@
     <value>Verrouiller la carte et chargez-la</value>
   </data>
   <data name="Summary_Menu_CHDK_Text" xml:space="preserve">
-    <value>presser la touche Menu en mode ALT pour accéser au menu CHDK.</value>
+    <value>Presser la touche Menu en mode ALT pour accéder au menu CHDK.</value>
   </data>
   <data name="Summary_Menu_Header_Format" xml:space="preserve">
     <value>{0} menu</value>
@@ -313,10 +313,10 @@
     <value>Insérer la carte</value>
   </data>
   <data name="Software_Title_None_Text" xml:space="preserve">
-    <value>Pas de logiciel détecté sur l'appareil</value>
+    <value>Pas de logiciel détecté dans l'appareil</value>
   </data>
   <data name="Software_Title_Detected_Text" xml:space="preserve">
-    <value>Logiciel détecté sur l'appareil</value>
+    <value>Logiciel détecté dans l'appareil</value>
   </data>
   <data name="Camera_AllFiles_Text" xml:space="preserve">
     <value>Tous les fichiers</value>
@@ -388,7 +388,7 @@
     <value>Version non trouvée</value>
   </data>
   <data name="Download_MissingPlatform_Text" xml:space="preserve">
-    <value>Version Appareil non trouvé</value>
+    <value>Version d'appareil non trouvée</value>
   </data>
   <data name="Download_MissingRevision_Text" xml:space="preserve">
     <value>Mise à jour non trouvée</value>
@@ -412,14 +412,14 @@
     <value>Permuter les partitions</value>
   </data>
   <data name="Camera_NoMetadata_Text" xml:space="preserve">
-    <value>Metadonées non trouvées</value>
+    <value>Metadonnées non trouvées</value>
   </data>
   <data name="_Title" xml:space="preserve">
     <value>CHIMP</value>
     <comment>Do not translate</comment>
   </data>
   <data name="Eject_ToastBody_Format" xml:space="preserve">
-    <value>le périphérique '{0}' peut maintenant être retiré de l'ordinateur.</value>
+    <value>Le périphérique '{0}' peut maintenant être retiré de l'ordinateur.</value>
   </data>
   <data name="Eject_ToastTitle" xml:space="preserve">
     <value>Vous pouvez retirer le matériel</value>
@@ -431,16 +431,16 @@
     <value>Vérifier les détails de la carte</value>
   </data>
   <data name="Summary_OpenCardDoor_Header" xml:space="preserve">
-    <value>ouvrir la porte de la carte</value>
+    <value>Ouvrir la porte de la carte</value>
   </data>
   <data name="Summary_OpenCardDoor_Format" xml:space="preserve">
-    <value>la porte de la carte doit être ouverte pour permettre à {0} de charger.</value>
+    <value>La porte de la carte doit être ouverte pour permettre à {0} de charger.</value>
   </data>
   <data name="Summary_Eject_Text" xml:space="preserve">
     <value>Utiliser la fonction retirer le périphérique en toute sécurité avant éjection.</value>
   </data>
   <data name="Summary_Eject_Header" xml:space="preserve">
-    <value>retirer en toute sécurité</value>
+    <value>Retirer en toute sécurité</value>
   </data>
   <data name="Eject_Ejecting_Text" xml:space="preserve">
     <value>Ejection de la carte</value>
@@ -449,7 +449,7 @@
     <value>Ejecter la carte</value>
   </data>
   <data name="Download_Updating_Text" xml:space="preserve">
-    <value>mise à jour des metadonnées</value>
+    <value>Mise à jour des metadonnées</value>
   </data>
   <data name="Eject_CheckBox_Format" xml:space="preserve">
     <value>Ejecter {0}</value>
@@ -458,13 +458,13 @@
     <value>Plateforme:</value>
   </data>
   <data name="Software_Platform_Unknown_Text" xml:space="preserve">
-    <value>inconnue</value>
+    <value>Inconnue</value>
   </data>
   <data name="Software_Revision_Content" xml:space="preserve">
     <value>Révision:</value>
   </data>
   <data name="Software_Revision_Unknown_Text" xml:space="preserve">
-    <value>inconnue</value>
+    <value>Inconnue</value>
   </data>
   <data name="Software_Date_Content" xml:space="preserve">
     <value>Date:</value>
@@ -473,7 +473,7 @@
     <value>{0:dd MMM yyyy}</value>
   </data>
   <data name="Software_Date_Unknown_Text" xml:space="preserve">
-    <value>inconnu(e)</value>
+    <value>Inconnu(e)</value>
   </data>
   <data name="Software_Time_Content" xml:space="preserve">
     <value>Heure:</value>
@@ -482,7 +482,7 @@
     <value>{0:T}</value>
   </data>
   <data name="Software_Time_Unknown_Text" xml:space="preserve">
-    <value>inconnue</value>
+    <value>Inconnue</value>
   </data>
   <data name="Distro_SDM" xml:space="preserve">
     <value>SDM</value>
@@ -498,7 +498,7 @@
     <value>Installation annulée</value>
   </data>
   <data name="Download_Progress_Format" xml:space="preserve">
-    <value>téléchargé {0} de {1}</value>
+    <value>Téléchargé(s) {0} de {1}</value>
   </data>
   <data name="Distro_SDM_2_1" xml:space="preserve">
     <value>SDM 2.1</value>
@@ -514,7 +514,7 @@
     <value>Autoboot désactivé</value>
   </data>
   <data name="Action_Bootable_Clear_Text" xml:space="preserve">
-    <value>désactive Autoboot</value>
+    <value>Désactive Autoboot</value>
   </data>
   <data name="Action_Bootable_Set_Completed_Text" xml:space="preserve">
     <value>Autoboot activé</value>
@@ -529,13 +529,13 @@
     <value>Partitions échangées</value>
   </data>
   <data name="Action_Switch_Text" xml:space="preserve">
-    <value>échanger les partitions</value>
+    <value>Echanger les partitions</value>
   </data>
   <data name="Software_Title_Unknown_Text" xml:space="preserve">
-    <value>produit inconnu</value>
+    <value>Produit inconnu</value>
   </data>
   <data name="Software_Title_Unsupported_Text" xml:space="preserve">
-    <value>non supporté</value>
+    <value>Non supporté</value>
   </data>
   <data name="Download_UnsupportedModel_Text" xml:space="preserve">
     <value>Modèle non supporté</value>
@@ -556,7 +556,7 @@
     <value>Canon BASIC desactivé</value>
   </data>
   <data name="Action_Scriptable_Clear_Text" xml:space="preserve">
-    <value>désactive Canon BASIC</value>
+    <value>Désactive Canon BASIC</value>
   </data>
   <data name="Action_Scriptable_Set_Completed_Text" xml:space="preserve">
     <value>Canon BASIC activé</value>
@@ -587,19 +587,19 @@
     <value>Attendre la confirmation de la LED (ou 5 secondes) avant le retrait de la carte.</value>
   </data>
   <data name="Summary_Menu_Format" xml:space="preserve">
-    <value>Pressez la touche "efface" pour ouvrir le menu  {0}.</value>
+    <value>Pressez la touche "EFFACE" pour ouvrir le menu  {0}.</value>
   </data>
   <data name="Summary_EOS_Remove_Format" xml:space="preserve">
-    <value>NE PAS effacer les fichiers {0} files de la carte.</value>
+    <value>NE PAS effacer les fichiers {0} de la carte.</value>
   </data>
   <data name="Summary_EOS_Remove_2_Text" xml:space="preserve">
-    <value>Pour désinstaller depuis la carte, formattez là dans l'appareil.</value>
+    <value>Pour désinstaller depuis la carte, formattez-la dans l'appareil.</value>
   </data>
   <data name="Summary_EOS_Remove_3_Text" xml:space="preserve">
     <value>Pour désinstaller depuis l'appareil, démarrez la mise à jour et suivez les instructions.</value>
   </data>
   <data name="Summary_Remove_Header" xml:space="preserve">
-    <value>désinstallation</value>
+    <value>Désinstallation</value>
   </data>
   <data name="Camera_UnsupportedModel_Text" xml:space="preserve">
     <value>Modèle non supporté</value>
@@ -659,10 +659,10 @@
     <value>Pour accéder au menu CANON pressez la touche MENU plus d'1 seconde.</value>
   </data>
   <data name="Summary_Menu_SDM_Text" xml:space="preserve">
-    <value>appuyer sur la touche Menu plus d'1 sec  en mode ALT pour entrer dans le menu SDM.</value>
+    <value>Appuyer sur la touche Menu plus d'1 sec  en mode ALT pour entrer dans le menu SDM.</value>
   </data>
   <data name="Summary_SplashScreen_SDM_Text" xml:space="preserve">
-    <value>l'écran d'accueil SDM devrait apparaitre au démarrage en mode lecture.</value>
+    <value>L'écran d'accueil SDM devrait apparaitre au démarrage en mode lecture.</value>
   </data>
   <data name="Summary_CHDK_CameraNotes_FileName" xml:space="preserve">
     <value>camnotes.txt</value>
@@ -675,7 +675,7 @@
     <value>Ouvrir le mode d'emploi</value>
   </data>
   <data name="Install_UnsupportedCardSize_Text" xml:space="preserve">
-    <value>taille de carte no suppportée par l'appareil</value>
+    <value>Taille de carte non suppportée par l'appareil</value>
   </data>
   <data name="Product_400plus" xml:space="preserve">
     <value>400plus</value>
@@ -688,7 +688,7 @@
     <value>Raccourci</value>
   </data>
   <data name="Summary_AltMode_Playback_Text" xml:space="preserve">
-    <value>pour passer en lecture, appuyer sur la touche LECTURE plus d'une seconde.</value>
+    <value>Pour passer en lecture, appuyer sur la touche LECTURE plus d'une seconde.</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="intro_tips" type="System.Resources.ResXFileRef, System.Windows.Forms">

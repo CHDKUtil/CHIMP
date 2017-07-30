@@ -5,15 +5,15 @@
   },
   {
     "header": "Prêt à verrouiller",
-    "contents": [ "la carte doit avoir un verrou (exluant les microSD)." ]
+    "contents": [ "La carte doit avoir un verrou (exluant les microSD)." ]
   },
   {
     "header": "Prendre une photo",
     "contents": [ "Au moins une image prise avec l'appareil doit être présente." ]
   },
   {
-    "header": "utiliser un lecteur de carte",
-    "contents": [ "la connexion de l'appareil par cable n'est pas prévu" ]
+    "header": "Utiliser un lecteur de carte",
+    "contents": [ "La connexion de l'appareil par cable n'est pas prévu." ]
   },
   {
     "header": "Sauvegarde",
