@@ -9,14 +9,14 @@ Canon Hack Installation and Management Platform, a user-friendly replacement for
 * [WASP](http://www.zenoshrdlu.com/wasp/wasp.html)
 * [EOSCard](http://pel.hu/eoscard/)
 
-## Supported software:
+## Supported software
 
 * [CHDK](http://chdk.wikia.com/wiki/CHDK)
 * [SDM](http://sdm.camera/)
 * [Magic Lantern](http://www.magiclantern.fm/)
 * [400plus](https://github.com/400plus/400plus) (detection only)
 
-## Requirements:
+## Requirements
 
 - Windows Vista SP2 or later
 - .NET Framework 4.6
@@ -33,3 +33,7 @@ The author wishes to thank:
 
 https://github.com/CHDKUtil/CHIMP/releases/
 
+## Links
+
+* [CHDK forum thread](https://chdk.setepontos.com/index.php?topic=13091.new#new)
+* [Magic Lantern forum thread](https://www.magiclantern.fm/forum/index.php?topic=19608.new#new)
