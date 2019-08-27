@@ -40,7 +40,7 @@ namespace Chimp.Controllers
 
         protected override void Initialize()
         {
-			base.Initialize();
+            base.Initialize();
 
             ViewModel = CreateViewModel();
 
@@ -49,11 +49,12 @@ namespace Chimp.Controllers
             VolumeWatcher.VolumeRemoved += VolumeWatcher_VolumeRemoved;
             VolumeWatcher.Start();
 
-			UpdateCanContinue();
-			UpdateIsPaused();
-		}
+            UpdateEject();
+            UpdateCanContinue();
+            UpdateIsPaused();
+        }
 
-		public override void Dispose()
+        public override void Dispose()
         {
             base.Dispose();
 
@@ -88,6 +89,7 @@ namespace Chimp.Controllers
             if (ViewModel.SelectedItem != null)
                 Logger.LogObject(LogLevel.Information, "Selected {0}", ViewModel.SelectedItem.Info);
 
+            UpdateEject();
             UpdateCanContinue();
             UpdateIsPaused();
 
@@ -190,6 +192,17 @@ namespace Chimp.Controllers
         private void UpdateIsPaused()
         {
             MainViewModel.IsWarning = ViewModel?.SelectedItem == null;
+        }
+
+        private void UpdateEject()
+        {
+            if (ViewModel.SelectedItem != null)
+            {
+                var volume = VolumeContainer.GetVolume(ViewModel.SelectedItem.Info.DriveLetter);
+                var isHotplug = volume.IsHotplugDevice();
+                EjectViewModel.IsEject = !isHotplug;
+                EjectViewModel.IsCompleted = isHotplug;
+            }
         }
 
         private CardItemViewModel CreateCardItem(CardInfo card)
