@@ -10,6 +10,7 @@ namespace Chimp.Providers.Action
         protected CardViewModel CardViewModel => CardViewModel.Get(MainViewModel);
         protected SoftwareViewModel SoftwareViewModel => SoftwareViewModel.Get(MainViewModel);
         protected CameraViewModel CameraViewModel => CameraViewModel.Get(MainViewModel);
+        protected EjectViewModel EjectViewModel => EjectViewModel.Get(MainViewModel);
 
         protected IServiceActivator ServiceActivator { get; }
 
