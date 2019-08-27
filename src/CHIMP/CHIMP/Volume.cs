@@ -47,5 +47,20 @@ namespace Chimp
         }
 
         #endregion
+
+        #region IsHotplugDevice
+
+        public bool IsHotplugDevice()
+        {
+            using (var hDevice = Device.OpenRead(DeviceName))
+            {
+                Device.STORAGE_HOTPLUG_INFO hotplugInfo;
+                return Device.TryGet(hDevice, Device.IOCTL_STORAGE_GET_HOTPLUG_INFO, out hotplugInfo)
+                    ? hotplugInfo.DeviceHotplug
+                    : false;
+            }
+        }
+
+        #endregion
     }
 }

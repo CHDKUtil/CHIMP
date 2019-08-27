@@ -146,6 +146,24 @@ namespace Chimp
             public uint PartitionNumber;
         }
 
+        [StructLayout(LayoutKind.Sequential)]
+        public struct STORAGE_HOTPLUG_INFO
+        {
+            public uint Size;
+
+            [MarshalAs(UnmanagedType.I1)]
+            public bool MediaRemovable;
+
+            [MarshalAs(UnmanagedType.I1)]
+            public bool MediaHotplug;
+
+            [MarshalAs(UnmanagedType.I1)]
+            public bool DeviceHotplug;
+
+            [MarshalAs(UnmanagedType.I1)]
+            public bool WriteCacheEnableOverride;
+        }
+
         public const int FSCTL_LOCK_VOLUME = 0x00090018;
         public const int FSCTL_DISMOUNT_VOLUME = 0x00090020;
 
@@ -154,6 +172,7 @@ namespace Chimp
         public const int IOCTL_VOLUME_UPDATE_PROPERTIES = 0x70140;
         public const int IOCTL_VOLUME_ONLINE = 0x0056c008;
         public const int IOCTL_VOLUME_OFFLINE = 0x0056c00c;
+        public const int IOCTL_STORAGE_GET_HOTPLUG_INFO = 0x2d0c14;
         public const int IOCTL_STORAGE_GET_DEVICE_NUMBER = 0x2d1080;
         public const int IOCTL_STORAGE_MEDIA_REMOVAL = 0x2d4804;
         public const int IOCTL_STORAGE_EJECT_MEDIA = 0x2d4808;
