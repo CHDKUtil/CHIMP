@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:properties="clr-namespace:Chimp.Properties">
 
-    <CheckBox IsChecked="{Binding [Eject].IsEject}" Margin="8">
+    <CheckBox Visibility="{Binding [Eject].IsCompleted, Converter={StaticResource InverseBooleanToVisibilityConverter}}"
+              IsChecked="{Binding [Eject].IsEject}" Margin="8">
         <CheckBox.Content>
             <TextBlock Text="{Binding [Card].SelectedItem.DisplayName, StringFormat={x:Static properties:Resources.Eject_CheckBox_Format}}" />
         </CheckBox.Content>
