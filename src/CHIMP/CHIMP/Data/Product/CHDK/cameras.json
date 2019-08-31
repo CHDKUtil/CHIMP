@@ -289,6 +289,9 @@
         "revisions": {
           "0x1000700": {
             "revision": "100g"
+          },
+          "0x1010200": {
+            "revision": "101b"
           }
         },
         "names": [
@@ -2914,6 +2917,9 @@
           "0x1020200": {
             "revision": "102b"
           },
+          "0x1020300": {
+            "revision": "102c"
+          },
           "0x1020400": {
             "revision": "102d"
           },
@@ -4747,6 +4753,49 @@
       "fs": "FAT32"
     }
   },
+  "0x3540000": {
+    "alt": {
+      "button": "Video",
+      "buttons": [
+        "Video",
+        "Playback",
+        "Shortcut"
+      ]
+    },
+    "models": [
+      {
+        "revisions": {
+          "0x1000800": {
+            "revision": "100h"
+          },
+          "0x1010100": {
+            "revision": "101a"
+          },
+          "0x1010200": {
+            "revision": "101b"
+          },
+          "0x1010300": {
+            "revision": "101c"
+          }
+        },
+        "names": [
+          "Canon PowerShot G16"
+        ],
+        "platform": "g16"
+      }
+    ],
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x57413620"
+    },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
+    "boot": {
+      "fs": "FAT32"
+    }
+  },
   "0x3560000": {
     "alt": {
       "button": "Playback",
@@ -4847,6 +4896,43 @@
     "encoding": {
       "name": "dancingbits",
       "data": "0x42750136"
+    },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
+    "boot": {
+      "fs": "FAT32"
+    }
+  },
+  "0x3660000": {
+    "alt": {
+      "button": "Playback",
+      "buttons": [
+        "Playback",
+        "Video",
+        "WiFi"
+      ]
+    },
+    "models": [
+      {
+        "revisions": {
+          "0x1000400": {
+            "revision": "100d"
+          },
+          "0x1000500": {
+            "revision": "100e"
+          }
+        },
+        "names": [
+          "Canon PowerShot SX700 HS"
+        ],
+        "platform": "sx700hs"
+      }
+    ],
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x45136072"
     },
     "card": {
       "type": "SD",
@@ -4983,6 +5069,12 @@
           },
           "0x1000600": {
             "revision": "100f"
+          },
+          "0x1000700": {
+            "revision": "100g"
+          },
+          "0x1000800": {
+            "revision": "100h"
           }
         },
         "names": [
@@ -5151,6 +5243,77 @@
       "fs": "FAT32"
     }
   },
+  "0x3820000": {
+    "alt": {
+      "button": "Playback",
+      "buttons": [
+        "Playback",
+        "Video",
+        "Wifi"
+      ]
+    },
+    "models": [
+      {
+        "revisions": {
+          "0x1000100": {
+            "revision": "100a"
+          },
+          "0x1010100": {
+            "revision": "101a"
+          }
+        },
+        "names": [
+          "Canon PowerShot SX710 HS"
+        ],
+        "platform": "sx710hs"
+      }
+    ],
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x14207356"
+    },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
+    "boot": {
+      "fs": "FAT32"
+    }
+  },
+  "0x3830000": {
+    "alt": {
+      "button": "Playback",
+      "buttons": [
+        "Playback",
+        "Video",
+        "Wifi"
+      ]
+    },
+    "models": [
+      {
+        "revisions": {
+          "0x1000100": {
+            "revision": "100a"
+          }
+        },
+        "names": [
+          "Canon PowerShot SX610 HS"
+        ],
+        "platform": "sx610hs"
+      }
+    ],
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x14207356"
+    },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
+    "boot": {
+      "fs": "FAT32"
+    }
+  },
   "0x3840000": {
     "alt": {
       "button": "Playback",
@@ -5168,6 +5331,9 @@
           },
           "0x1100600": {
             "revision": "110f"
+          },
+          "0x1100700": {
+            "revision": "110g"
           }
         },
         "names": [
@@ -5225,6 +5391,40 @@
       "fs": "FAT32"
     }
   },
+  "0x3890000": {
+    "alt": {
+      "button": "Playback",
+      "buttons": [
+        "Playback",
+        "Help"
+      ]
+    },
+    "models": [
+      {
+        "revisions": {
+          "0x1000100": {
+            "revision": "100a"
+          }
+        },
+        "names": [
+          "Canon PowerShot ELPH 170 IS",
+          "Canon IXUS 170"
+        ],
+        "platform": "ixus170_elph170"
+      }
+    ],
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x14207356"
+    },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
+    "boot": {
+      "fs": "FAT32"
+    }
+  },
   "0x3910000": {
     "alt": {
       "button": "Playback",
@@ -5253,6 +5453,262 @@
     "encoding": {
       "name": "dancingbits",
       "data": "0x14207356"
+    },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
+    "boot": {
+      "fs": "FAT32"
+    }
+  },
+  "0x3950000": {
+    "alt": {
+      "button": "WiFi",
+      "buttons": [
+        "WiFi",
+        "Video",
+        "Display",
+        "Playback"
+      ]
+    },
+    "models": [
+      {
+        "revisions": {
+          "0x1000300": {
+            "revision": "100c"
+          },
+          "0x1010100": {
+            "revision": "101a"
+          },
+          "0x1010200": {
+            "revision": "101b"
+          }
+        },
+        "names": [
+          "Canon PowerShot G5 X"
+        ],
+        "platform": "g5x"
+      }
+    ],
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x64371205"
+    },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
+    "boot": {
+      "fs": "FAT32"
+    }
+  },
+  "0x3970000": {
+    "alt": {
+      "button": "WiFi",
+      "buttons": [
+        "WiFi",
+        "Video",
+        "Display",
+        "Playback"
+      ]
+    },
+    "models": [
+      {
+        "revisions": {
+          "0x1010100": {
+            "revision": "101a"
+          }
+        },
+        "names": [
+          "Canon PowerShot G7 X Mark II"
+        ],
+        "platform": "g7x2"
+      }
+    ],
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x20654731"
+    },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
+    "boot": {
+      "fs": "FAT32"
+    }
+  },
+  "0x3990000": {
+    "alt": {
+      "button": "Playback",
+      "buttons": [
+        "Playback",
+        "Video",
+        "Wifi"
+      ]
+    },
+    "models": [
+      {
+        "revisions": {
+          "0x1000200": {
+            "revision": "100b"
+          }
+        },
+        "names": [
+          "Canon PowerShot ELPH 360 HS",
+          "Canon IXUS 285 HS",
+          "Canon IXY 650"
+        ],
+        "platform": "ixus285_elph360hs"
+      }
+    ],
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x20654731"
+    },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
+    "boot": {
+      "fs": "FAT32"
+    }
+  },
+  "0x4020000": {
+    "alt": {
+      "button": "Playback",
+      "buttons": [
+        "Playback",
+        "Video"
+      ]
+    },
+    "models": [
+      {
+        "revisions": {
+          "0x1000100": {
+            "revision": "100a"
+          }
+        },
+        "names": [
+          "Canon PowerShot SX420 IS"
+        ],
+        "platform": "sx420is"
+      }
+    ],
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x20654731"
+    },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
+    "boot": {
+      "fs": "FAT32"
+    }
+  },
+  "0x4040001": {
+    "alt": {
+      "button": "Playback",
+      "buttons": [
+        "Playback",
+        "Erase",
+        "Video"
+      ]
+    },
+    "models": [
+      {
+        "revisions": {
+          "0x1000100": {
+            "revision": "100a"
+          },
+          "0x1000200": {
+            "revision": "100b"
+          },
+          "0x1000300": {
+            "revision": "100c"
+          }
+        },
+        "names": [
+          "Canon PowerShot ELPH 180 IS",
+          "Canon IXUS 175",
+          "Canon IXY 180"
+        ],
+        "platform": "ixus175_elph180"
+      }
+    ],
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x20654731"
+    },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
+    "boot": {
+      "fs": "FAT32"
+    }
+  },
+  "0x4150000": {
+    "alt": {
+      "button": "Playback",
+      "buttons": [
+        "Playback",
+        "Video"
+      ]
+    },
+    "models": [
+      {
+        "revisions": {
+          "0x1000100": {
+            "revision": "100a"
+          }
+        },
+        "names": [
+          "Canon PowerShot ELPH 185",
+          "Canon IXUS 185",
+          "Canon IXY 200"
+        ],
+        "platform": "ixus185_elph185"
+      }
+    ],
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x02316574"
+    },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
+    "boot": {
+      "fs": "FAT32"
+    }
+  },
+  "0x4160000": {
+    "alt": {
+      "button": "Playback",
+      "buttons": [
+        "Playback",
+        "Video",
+        "Wifi"
+      ]
+    },
+    "models": [
+      {
+        "revisions": {
+          "0x1000200": {
+            "revision": "100b"
+          }
+        },
+        "names": [
+          "Canon PowerShot SX430 IS"
+        ],
+        "platform": "sx430is"
+      }
+    ],
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x02316574"
     },
     "card": {
       "type": "SD",
