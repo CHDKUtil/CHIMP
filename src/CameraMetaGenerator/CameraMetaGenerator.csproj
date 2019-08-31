@@ -1,0 +1,71 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <Description>CHIMP camera metadata generator</Description>
+    <RootNamespace>Net.Chdk.Meta.Providers.Camera</RootNamespace>
+    <AssemblyName>gen_meta_cameras</AssemblyName>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Version>0.1.1</Version>
+    <Product>CHIMP</Product>
+    <Authors>Dmitry Shechtman</Authors>
+    <Copyright>Copyright © 2017 Dmitry Shechtman</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <TreatSpecificWarningsAsErrors />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <TreatSpecificWarningsAsErrors />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="microsoft.extensions.dependencyinjection" Version="1.1.1" />
+    <PackageReference Include="microsoft.extensions.logging" Version="1.1.2" />
+    <PackageReference Include="Net.Chdk.Meta.Generators.Platform" Version="0.2.0-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Generators.Platform.Eos" Version="0.4.0-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Generators.Platform.Ps" Version="0.4.0-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Providers" Version="0.4.0-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Providers.Camera" Version="0.4.1-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Providers.Camera.Chdk" Version="0.4.1-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Providers.Camera.Fhp" Version="0.4.1-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Providers.Camera.Ml" Version="0.4.1-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Providers.Camera.Sdm" Version="0.4.1-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Providers.CameraList" Version="0.4.1-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Providers.CameraList.Csv" Version="0.4.1-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Providers.CameraList.Json" Version="0.4.1-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Providers.CameraList.Zip" Version="0.4.1-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Providers.CameraTree" Version="0.4.1-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Providers.CameraTree.Csv" Version="0.4.1-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Providers.CameraTree.Json" Version="0.4.1-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Providers.CameraTree.Src" Version="0.4.1-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Providers.Platform" Version="0.4.1-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Providers.Platform.Html" Version="0.4.1-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Providers.Platform.Xml" Version="0.4.1-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Providers.Sdm" Version="0.3.1-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Writers.Camera.Eos" Version="0.4.1-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Writers.Camera.Eos.Json" Version="0.4.1-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Writers.Camera.Eos.Props" Version="0.4.1-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Writers.Camera.Ps" Version="0.4.1-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Writers.Camera.Ps.Json" Version="0.4.1-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Writers.Camera.Ps.Props" Version="0.4.1-alpha" />
+    <PackageReference Include="Net.Chdk.Providers.Boot" Version="0.4.1-alpha" />
+    <PackageReference Include="Net.Chdk.Providers.Product" Version="0.5.1-alpha" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Data\Category\PS\boot.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\products.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
