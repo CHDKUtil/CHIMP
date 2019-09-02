@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>0.2.0</Version>
+    <Version>0.2.1</Version>
     <Product>CHIMP</Product>
     <Authors>Dmitry Shechtman</Authors>
     <Copyright>Copyright © 2017 Dmitry Shechtman</Copyright>
@@ -33,10 +33,10 @@
     <PackageReference Include="Net.Chdk.Meta.Generators.Platform.Ps" Version="0.5.0-alpha" />
     <PackageReference Include="Net.Chdk.Meta.Providers" Version="0.4.0-alpha" />
     <PackageReference Include="Net.Chdk.Meta.Providers.Camera" Version="0.4.1-alpha" />
-    <PackageReference Include="Net.Chdk.Meta.Providers.Camera.Chdk" Version="0.4.1-alpha" />
-    <PackageReference Include="Net.Chdk.Meta.Providers.Camera.Fhp" Version="0.4.1-alpha" />
-    <PackageReference Include="Net.Chdk.Meta.Providers.Camera.Ml" Version="0.4.1-alpha" />
-    <PackageReference Include="Net.Chdk.Meta.Providers.Camera.Sdm" Version="0.4.1-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Providers.Camera.Chdk" Version="0.5.1-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Providers.Camera.Fhp" Version="0.5.0-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Providers.Camera.Ml" Version="0.5.0-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Providers.Camera.Sdm" Version="0.5.1-alpha" />
     <PackageReference Include="Net.Chdk.Meta.Providers.CameraList" Version="0.4.1-alpha" />
     <PackageReference Include="Net.Chdk.Meta.Providers.CameraList.Csv" Version="0.4.1-alpha" />
     <PackageReference Include="Net.Chdk.Meta.Providers.CameraList.Json" Version="0.4.1-alpha" />
@@ -44,11 +44,11 @@
     <PackageReference Include="Net.Chdk.Meta.Providers.CameraTree" Version="0.4.1-alpha" />
     <PackageReference Include="Net.Chdk.Meta.Providers.CameraTree.Csv" Version="0.4.1-alpha" />
     <PackageReference Include="Net.Chdk.Meta.Providers.CameraTree.Json" Version="0.4.1-alpha" />
-    <PackageReference Include="Net.Chdk.Meta.Providers.CameraTree.Src" Version="0.4.1-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Providers.CameraTree.Src" Version="0.4.2-alpha" />
     <PackageReference Include="Net.Chdk.Meta.Providers.Platform" Version="0.5.0-alpha" />
-    <PackageReference Include="Net.Chdk.Meta.Providers.Platform.Html" Version="0.5.0-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Providers.Platform.Html" Version="0.5.2-alpha" />
     <PackageReference Include="Net.Chdk.Meta.Providers.Platform.Txt" Version="0.5.0-alpha" />
-    <PackageReference Include="Net.Chdk.Meta.Providers.Platform.Xml" Version="0.5.0-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Providers.Platform.Xml" Version="0.5.2-alpha" />
     <PackageReference Include="Net.Chdk.Meta.Providers.Sdm" Version="0.3.1-alpha" />
     <PackageReference Include="Net.Chdk.Meta.Writers.Camera.Eos" Version="0.4.1-alpha" />
     <PackageReference Include="Net.Chdk.Meta.Writers.Camera.Eos.Json" Version="0.4.1-alpha" />
