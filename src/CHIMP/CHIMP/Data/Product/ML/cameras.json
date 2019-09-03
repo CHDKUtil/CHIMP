@@ -22,27 +22,6 @@
       "name": ""
     }
   },
-  "0x80000190": {
-    "models": [
-      {
-        "names": [
-          "Canon EOS 40D"
-        ],
-        "platform": "40D",
-        "versions": {
-          "1.1.1": {
-            "version": "111"
-          }
-        }
-      }
-    ],
-    "boot": {
-      "fs": "exFAT"
-    },
-    "encoding": {
-      "name": ""
-    }
-  },
   "0x80000213": {
     "models": [
       {
@@ -95,6 +74,9 @@
         "versions": {
           "2.0.3": {
             "version": "203"
+          },
+          "2.0.6": {
+            "version": "206"
           }
         }
       }
@@ -162,6 +144,9 @@
         "versions": {
           "1.0.9": {
             "version": "109"
+          },
+          "1.1.0": {
+            "version": "110"
           }
         }
       }
@@ -342,9 +327,6 @@
         ],
         "platform": "700D",
         "versions": {
-          "1.1.4": {
-            "version": "114"
-          },
           "1.1.5": {
             "version": "115"
           }
@@ -368,8 +350,8 @@
         ],
         "platform": "1200D",
         "versions": {
-          "1.0.1": {
-            "version": "101",
+          "1.0.2": {
+            "version": "102",
             "status": "ALPHA"
           }
         }
