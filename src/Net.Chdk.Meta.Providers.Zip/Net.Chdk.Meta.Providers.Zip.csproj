@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <Description>CHIMP ZIP metadata provider</Description>
+    <RootNamespace>Net.Chdk.Meta.Providers.Zip</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Version>0.4.2</Version>
+    <VersionSuffix>alpha</VersionSuffix>
+    <Product>CHIMP</Product>
+    <Authors>Dmitry Shechtman</Authors>
+    <Copyright>Copyright © 2017 Dmitry Shechtman</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <TreatSpecificWarningsAsErrors />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <TreatSpecificWarningsAsErrors />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="microsoft.extensions.logging.abstractions" Version="1.1.2" />
+    <PackageReference Include="Net.Chdk.Providers.Boot.Core" Version="0.1.1-alpha" />
+    <PackageReference Include="Net.Chdk.Providers.Product.Core" Version="0.2.1-alpha" />
+    <PackageReference Include="SharpZipLib.NETStandard" Version="0.86.0.1" />
+  </ItemGroup>
+
+</Project>

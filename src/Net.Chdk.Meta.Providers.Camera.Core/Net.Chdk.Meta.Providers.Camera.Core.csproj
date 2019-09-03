@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.0</TargetFramework>
+    <Description>CHIMP camera metadata providers API</Description>
+    <RootNamespace>Net.Chdk.Meta.Providers.Camera</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Version>0.5.0</Version>
+    <VersionSuffix>alpha</VersionSuffix>
+    <Product>CHIMP</Product>
+    <Authors>Dmitry Shechtman</Authors>
+    <Copyright>Copyright © 2017 Dmitry Shechtman</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <TreatSpecificWarningsAsErrors />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <TreatSpecificWarningsAsErrors />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Net.Chdk.Meta.Model.CameraList\Net.Chdk.Meta.Model.CameraList.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Meta.Model.CameraTree\Net.Chdk.Meta.Model.CameraTree.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Meta.Model.Camera\Net.Chdk.Meta.Model.Camera.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Meta.Model.Platform\Net.Chdk.Meta.Model.Platform.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Meta.Providers.Core\Net.Chdk.Meta.Providers.Core.csproj" />
+  </ItemGroup>
+
+</Project>

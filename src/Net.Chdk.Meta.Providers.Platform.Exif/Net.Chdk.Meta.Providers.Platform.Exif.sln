@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29209.62
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Chdk.Meta.Providers.Platform.Exif", "Net.Chdk.Meta.Providers.Platform.Exif.csproj", "{EC374C72-9218-4BF4-84C3-80E66883C5E5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC374C72-9218-4BF4-84C3-80E66883C5E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC374C72-9218-4BF4-84C3-80E66883C5E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC374C72-9218-4BF4-84C3-80E66883C5E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC374C72-9218-4BF4-84C3-80E66883C5E5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {50F3A063-428B-4C58-A562-078003D041FC}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net.Chdk.Meta.Generators.Platform", "Net.Chdk.Meta.Generators.Platform.csproj", "{FD3B6D28-84F4-4BD7-94B0-F8BE35229A01}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FD3B6D28-84F4-4BD7-94B0-F8BE35229A01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD3B6D28-84F4-4BD7-94B0-F8BE35229A01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD3B6D28-84F4-4BD7-94B0-F8BE35229A01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD3B6D28-84F4-4BD7-94B0-F8BE35229A01}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

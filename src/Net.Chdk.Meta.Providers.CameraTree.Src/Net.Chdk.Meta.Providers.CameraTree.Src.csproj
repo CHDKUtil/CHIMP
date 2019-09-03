@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <Description>CHIMP source camera tree metadata provider</Description>
+    <RootNamespace>Net.Chdk.Meta.Providers.CameraTree.Src</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Version>0.5.0</Version>
+    <VersionSuffix>alpha</VersionSuffix>
+    <Product>CHIMP</Product>
+    <Authors>Dmitry Shechtman</Authors>
+    <Copyright>Copyright © 2017 Dmitry Shechtman</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <TreatSpecificWarningsAsErrors />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <TreatSpecificWarningsAsErrors />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="microsoft.extensions.dependencyinjection.abstractions" Version="1.1.1" />
+    <PackageReference Include="microsoft.extensions.logging.abstractions" Version="1.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Net.Chdk.Meta.Providers.CameraTree.Core\Net.Chdk.Meta.Providers.CameraTree.Core.csproj" />
+  </ItemGroup>
+  
+</Project>
