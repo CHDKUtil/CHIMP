@@ -33,10 +33,10 @@
     <PackageReference Include="Net.Chdk.Meta.Generators.Platform.Ps" Version="0.5.0-alpha" />
     <PackageReference Include="Net.Chdk.Meta.Providers" Version="0.4.0-alpha" />
     <PackageReference Include="Net.Chdk.Meta.Providers.Camera" Version="0.4.1-alpha" />
-    <PackageReference Include="Net.Chdk.Meta.Providers.Camera.Chdk" Version="0.5.1-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Providers.Camera.Chdk" Version="0.5.2-alpha" />
     <PackageReference Include="Net.Chdk.Meta.Providers.Camera.Fhp" Version="0.5.0-alpha" />
     <PackageReference Include="Net.Chdk.Meta.Providers.Camera.Ml" Version="0.5.0-alpha" />
-    <PackageReference Include="Net.Chdk.Meta.Providers.Camera.Sdm" Version="0.5.1-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Providers.Camera.Sdm" Version="0.5.2-alpha" />
     <PackageReference Include="Net.Chdk.Meta.Providers.CameraList" Version="0.4.1-alpha" />
     <PackageReference Include="Net.Chdk.Meta.Providers.CameraList.Csv" Version="0.4.1-alpha" />
     <PackageReference Include="Net.Chdk.Meta.Providers.CameraList.Json" Version="0.4.1-alpha" />
