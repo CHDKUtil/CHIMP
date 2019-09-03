@@ -83,7 +83,8 @@ namespace Net.Chdk.Meta.Providers.CameraTree.Src
         private TreeIdData GetId(string platformPath, string sourcePlatform, string platform, IDictionary<string, TreeRevisionData> revisions)
         {
             return GetPlatformId(platformPath, sourcePlatform, platform)
-                ?? GetRevisionId(revisions, platform);
+                ?? GetRevisionId(revisions, platform)
+                ?? throw new InvalidOperationException($"{platform}: Missing ID");
         }
 
         private TreeIdData GetPlatformId(string platformPath, string sourcePlatform, string platform)
@@ -97,8 +98,6 @@ namespace Net.Chdk.Meta.Providers.CameraTree.Src
                 .Select(kvp => kvp.Value.Id)
                 .Where(i => i != null);
             var id = ids.FirstOrDefault();
-            if (id == null)
-                throw new InvalidOperationException($"{platform}: Missing ID");
             if (ids.Any(i => !Equals(i.Id, id?.Id)))
                 throw new InvalidOperationException($"{platform}: Mismatching IDs");
             return id;
