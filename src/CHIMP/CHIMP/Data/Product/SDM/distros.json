@@ -1,13 +1,11 @@
 ﻿{
   "SDM": {
-    "assembly": "CHIMP",
     "matchType": "Sdm",
     "productType": "Sdm",
     "baseUrl": "http://sdm.camera/sdm/builds/",
     "language": "en"
   },
   "SDM_2_1": {
-    "assembly": "CHIMP",
     "matchType": "Sdm",
     "productType": "Sdm",
     "baseUrl": "http://sdm.camera/sdm/builds/SDM_2.1/",

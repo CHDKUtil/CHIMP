@@ -22,7 +22,7 @@ namespace Chimp.Providers
         public IEnumerable<Tip> GetTips(string productText)
         {
             return Data
-                .Select(kvp => CreateProvider(kvp.Key, kvp.Value, kvp.Key))
+                .Select(kvp => CreateProvider(kvp.Key, kvp.Key))
                 .SelectMany(p => p.GetTips(productText));
         }
 

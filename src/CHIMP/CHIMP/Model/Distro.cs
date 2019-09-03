@@ -6,7 +6,6 @@ namespace Chimp.Model
 {
     sealed class Distro
     {
-        public string Assembly { get; set; }
         public string MatchType { get; set; }
         public string ProductType { get; set; }
         public CultureInfo Language { get; set; }

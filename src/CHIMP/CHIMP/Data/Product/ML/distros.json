@@ -1,6 +1,5 @@
 ﻿{
   "ML": {
-    "assembly": "CHIMP",
     "matchType": "Ml",
     "productType": "Ml",
     "baseUrl": "https://builds.magiclantern.fm/jenkins/view/ML%20Platforms/api/json?tree=jobs[lastSuccessfulBuild[url,artifacts[relativePath]]]",

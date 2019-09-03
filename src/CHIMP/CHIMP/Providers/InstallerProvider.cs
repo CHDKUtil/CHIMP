@@ -19,7 +19,7 @@ namespace Chimp.Providers
         {
             if (!Data.TryGetValue(fileSystem ?? string.Empty, out InstallerData data))
                 return null;
-            return CreateProvider(fileSystem, data.Assembly, data.Type);
+            return CreateProvider(fileSystem, data.Type);
         }
 
         protected override IDictionary<string, InstallerData> Data => InstallersData.Installers;

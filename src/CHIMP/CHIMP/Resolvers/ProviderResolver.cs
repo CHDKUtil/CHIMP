@@ -34,12 +34,11 @@ namespace Chimp.Resolvers
             if (!Data.TryGetValue(sourceName, out Distro distro))
                 return null;
 
-            var assemblyName = distro.Assembly;
             var typeName = GetTypeName(distro);
             var types = GetTypes().ToArray();
             var values = GetValues(sourceName, source, distro).ToArray();
 
-            return CreateProvider(sourceName, assemblyName, typeName, types, values);
+            return CreateProvider(sourceName, typeName, types, values);
         }
 
         protected abstract string GetTypeName(Distro distro);

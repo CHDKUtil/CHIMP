@@ -26,7 +26,7 @@ namespace Chimp.Containers
 
         private IActionProvider CreateProvider(KeyValuePair<string, ActionData> kvp)
         {
-            return CreateProvider(kvp.Key, kvp.Value.Assembly, kvp.Key);
+            return CreateProvider(kvp.Key, kvp.Key);
         }
 
         protected override IDictionary<string, ActionData> Data =>

@@ -41,7 +41,7 @@ namespace Chimp.Containers
         {
             var types = new[] { typeof(string) };
             var values = new[] { name };
-            var controller = CreateProvider(name, Data[name].Assembly, name, types, values);
+            var controller = CreateProvider(name, name, types, values);
             await controller.InitializeAsync();
             return controller;
         }

@@ -30,7 +30,7 @@ namespace Chimp.Containers
 
         private Page CreatePage(string name)
         {
-            var page = CreateProvider(name, Data[name].Assembly, name);
+            var page = CreateProvider(name, name);
             page.DataContext = MainViewModel;
             return page;
         }
