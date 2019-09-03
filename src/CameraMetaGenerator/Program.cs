@@ -23,7 +23,6 @@ using Net.Chdk.Meta.Providers.CameraTree.Json;
 using Net.Chdk.Meta.Providers.CameraTree.Src;
 using Net.Chdk.Meta.Providers.Platform;
 using Net.Chdk.Meta.Providers.Platform.Html;
-using Net.Chdk.Meta.Providers.Platform.Txt;
 using Net.Chdk.Meta.Providers.Platform.Xml;
 using Net.Chdk.Meta.Providers.Sdm;
 using Net.Chdk.Meta.Writers.Camera.Eos;
@@ -51,7 +50,7 @@ namespace Net.Chdk.Meta.Providers.Camera
                 Console.WriteLine($"{name} product-name exiftool-meta camera-list [camera-tree] output");
                 Console.WriteLine();
                 Console.WriteLine("\tproduct-name   CHDK, SDM, ML or 400plus");
-                Console.WriteLine("\tplatform-meta  exiftool.xml, Canon.html or usb.ids.txt");
+                Console.WriteLine("\tplatform-meta  exiftool.xml or Canon.html");
                 Console.WriteLine("\tcamera-list    camera_list.csv, camera_list.json or ALL.zip");
                 Console.WriteLine("\tcamera-tree    camera_list.csv, camera_list.json or CHDK source root");
                 Console.WriteLine("\toutput         cameras.json or cameras.properties");
@@ -83,7 +82,6 @@ namespace Net.Chdk.Meta.Providers.Camera
                 .AddPlatformProvider()
                 .AddHtmlPlatformProvider()
                 .AddXmlPlatformProvider()
-                .AddTxtPlatformProvider()
 
                 .AddCameraListProvider()
                 .AddCsvCameraListProvider()

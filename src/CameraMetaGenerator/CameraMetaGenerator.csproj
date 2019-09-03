@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>0.2.1</Version>
+    <Version>0.2.2</Version>
     <Product>CHIMP</Product>
     <Authors>Dmitry Shechtman</Authors>
     <Copyright>Copyright © 2017 Dmitry Shechtman</Copyright>
@@ -47,7 +47,6 @@
     <PackageReference Include="Net.Chdk.Meta.Providers.CameraTree.Src" Version="0.4.2-alpha" />
     <PackageReference Include="Net.Chdk.Meta.Providers.Platform" Version="0.5.0-alpha" />
     <PackageReference Include="Net.Chdk.Meta.Providers.Platform.Html" Version="0.5.2-alpha" />
-    <PackageReference Include="Net.Chdk.Meta.Providers.Platform.Txt" Version="0.5.0-alpha" />
     <PackageReference Include="Net.Chdk.Meta.Providers.Platform.Xml" Version="0.5.2-alpha" />
     <PackageReference Include="Net.Chdk.Meta.Providers.Sdm" Version="0.3.1-alpha" />
     <PackageReference Include="Net.Chdk.Meta.Writers.Camera.Eos" Version="0.4.1-alpha" />
