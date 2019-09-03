@@ -1,4 +1,5 @@
-﻿using Chimp.Properties;
+﻿using Chimp.Model;
+using Chimp.Properties;
 using Chimp.ViewModels;
 using Microsoft.Extensions.Logging;
 using Net.Chdk.Detectors.Card;
@@ -9,6 +10,7 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading;
 
 namespace Chimp.Controllers
@@ -220,7 +222,16 @@ namespace Chimp.Controllers
                 return null;
             }
 
-            var partTypes = PartitionService.GetPartitionTypes(card.DriveLetter);
+            // Catch pCloud drive error
+            PartitionType[] partTypes;
+            try
+            {
+                partTypes = PartitionService.GetPartitionTypes(card.DriveLetter);
+            }
+            catch (COMException)
+            {
+                return null;
+            }
 
             return new CardItemViewModel
             {
