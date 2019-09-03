@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.1</TargetFramework>
-    <Description>CHIMP CHDK camera metadata providers</Description>
-    <RootNamespace>Net.Chdk.Meta.Providers.Camera.Chdk</RootNamespace>
+    <Description>CHIMP EOS camera metadata base providers</Description>
+    <RootNamespace>Net.Chdk.Meta.Providers.Camera.Eos</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -25,12 +25,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="microsoft.extensions.dependencyinjection.abstractions" Version="1.1.1" />
-    <PackageReference Include="microsoft.extensions.logging.abstractions" Version="1.1.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Net.Chdk.Meta.Providers.Camera.Ps.Base\Net.Chdk.Meta.Providers.Camera.Ps.Base.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Meta.Providers.Camera.Base\Net.Chdk.Meta.Providers.Camera.Base.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Meta.Providers.Camera.Eos.Core\Net.Chdk.Meta.Providers.Camera.Eos.Core.csproj" />
   </ItemGroup>
 
 </Project>

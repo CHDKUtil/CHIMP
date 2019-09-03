@@ -37,8 +37,10 @@
     <ProjectReference Include="..\Net.Chdk.Meta.Generators.Platform.Ps\Net.Chdk.Meta.Generators.Platform.Ps.csproj" />
     <ProjectReference Include="..\Net.Chdk.Meta.Generators.Platform\Net.Chdk.Meta.Generators.Platform.csproj" />
     <ProjectReference Include="..\Net.Chdk.Meta.Providers.Camera.Chdk\Net.Chdk.Meta.Providers.Camera.Chdk.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Meta.Providers.Camera.Eos\Net.Chdk.Meta.Providers.Camera.Eos.csproj" />
     <ProjectReference Include="..\Net.Chdk.Meta.Providers.Camera.Fhp\Net.Chdk.Meta.Providers.Camera.Fhp.csproj" />
     <ProjectReference Include="..\Net.Chdk.Meta.Providers.Camera.Ml\Net.Chdk.Meta.Providers.Camera.Ml.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Meta.Providers.Camera.Ps\Net.Chdk.Meta.Providers.Camera.Ps.csproj" />
     <ProjectReference Include="..\Net.Chdk.Meta.Providers.Camera.Sdm\Net.Chdk.Meta.Providers.Camera.Sdm.csproj" />
     <ProjectReference Include="..\Net.Chdk.Meta.Providers.CameraList.Csv\Net.Chdk.Meta.Providers.CameraList.Csv.csproj" />
     <ProjectReference Include="..\Net.Chdk.Meta.Providers.CameraList.Json\Net.Chdk.Meta.Providers.CameraList.Json.csproj" />
