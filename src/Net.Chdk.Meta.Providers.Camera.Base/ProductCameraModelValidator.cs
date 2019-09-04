@@ -44,6 +44,9 @@ namespace Net.Chdk.Meta.Providers.Camera
             var revision = kvp.Key;
             if (!tree.Revisions.ContainsKey(revision))
                 OnTreeRevisionMissing(platform, revision);
+            var sourceRevision = kvp.Value?.Source?.Revision;
+            if (sourceRevision != null && !tree.Revisions.ContainsKey(sourceRevision))
+                throw new InvalidOperationException($"{platform}-{revision}: {sourceRevision} missing from tree");
         }
 
         protected virtual void OnListRevisionMissing(string platform, string revision)
