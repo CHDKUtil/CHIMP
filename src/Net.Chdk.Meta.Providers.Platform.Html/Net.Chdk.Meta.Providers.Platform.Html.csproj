@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Net.Chdk.Meta.Providers.Platform.Exif\Net.Chdk.Meta.Providers.Platform.Exif.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Meta.Providers.Platform.Base\Net.Chdk.Meta.Providers.Platform.Base.csproj" />
   </ItemGroup>
 
 </Project>

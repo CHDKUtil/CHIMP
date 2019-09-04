@@ -2,9 +2,9 @@
 using System.IO;
 using System.Linq;
 
-namespace Net.Chdk.Meta.Providers.Platform.Exif
+namespace Net.Chdk.Meta.Providers.Platform
 {
-    public abstract class ExifPlatformProvider : IInnerPlatformProvider
+    public abstract class InnerPlatformProvider : IInnerPlatformProvider
     {
         private static readonly KeyValuePair<string, string>[] AddedPlatforms =
         {

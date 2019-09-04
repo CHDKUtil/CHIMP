@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.0</TargetFramework>
     <Description>CHIMP EXIF platform metadata base provider</Description>
-    <RootNamespace>Net.Chdk.Meta.Providers.Platform.Exif</RootNamespace>
+    <RootNamespace>Net.Chdk.Meta.Providers.Platform</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup>

@@ -87,7 +87,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Chdk.Meta.Providers.Cam
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Chdk.Meta.Providers.CameraTree.Src", "..\Net.Chdk.Meta.Providers.CameraTree.Src\Net.Chdk.Meta.Providers.CameraTree.Src.csproj", "{F3494454-26F0-4EE5-82EA-8954D826F3A6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Chdk.Meta.Providers.Platform.Exif", "..\Net.Chdk.Meta.Providers.Platform.Exif\Net.Chdk.Meta.Providers.Platform.Exif.csproj", "{B63D6CAD-BCF7-4030-859E-08209737FEB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Chdk.Meta.Providers.Platform.Base", "..\Net.Chdk.Meta.Providers.Platform.Base\Net.Chdk.Meta.Providers.Platform.Base.csproj", "{B63D6CAD-BCF7-4030-859E-08209737FEB0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Chdk.Meta.Providers.Platform.Html", "..\Net.Chdk.Meta.Providers.Platform.Html\Net.Chdk.Meta.Providers.Platform.Html.csproj", "{E41E6C0A-4AE9-4552-AEE8-CB697E11F679}"
 EndProject

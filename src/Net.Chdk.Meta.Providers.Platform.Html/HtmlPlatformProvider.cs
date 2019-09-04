@@ -1,11 +1,10 @@
-﻿using Net.Chdk.Meta.Providers.Platform.Exif;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 
 namespace Net.Chdk.Meta.Providers.Platform.Html
 {
-    sealed class HtmlPlatformProvider : ExifPlatformProvider
+    sealed class HtmlPlatformProvider : InnerPlatformProvider
     {
         private static readonly Regex regex = new Regex("<tr><td class=r>(0x[0-9a-f]+)</td><td>= (.+)</td>$");
 
