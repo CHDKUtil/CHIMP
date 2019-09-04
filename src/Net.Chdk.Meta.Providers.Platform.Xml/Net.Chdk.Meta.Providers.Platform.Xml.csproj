@@ -26,11 +26,11 @@
 
   <ItemGroup>
     <PackageReference Include="microsoft.extensions.dependencyinjection.abstractions" Version="1.1.1" />
+    <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Net.Chdk.Meta.Providers.Platform.Base\Net.Chdk.Meta.Providers.Platform.Base.csproj" />
-    <ProjectReference Include="..\Net.Chdk.Meta.Providers.Platform.Xml.Model\Net.Chdk.Meta.Providers.Platform.Xml.Model.csproj" />
   </ItemGroup>
 
 </Project>
