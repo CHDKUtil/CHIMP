@@ -122,13 +122,13 @@ namespace Net.Chdk.Meta.Providers.CameraTree.Src
         {
             var first = str[0];
             if (first != '{')
-                throw new InvalidOperationException($"Unexpected character {first}");
+                throw new InvalidOperationException($"{platform}: Unexpected character {first}");
 
             str = str.Substring(1).TrimStart();
 
             var last = str[str.Length - 1];
             if (last != '}')
-                throw new InvalidOperationException($"Unexpected character {last}");
+                throw new InvalidOperationException($"{platform}: Unexpected character {last}");
 
             return str.Substring(0, str.Length - 1).TrimEnd();
         }
@@ -137,13 +137,13 @@ namespace Net.Chdk.Meta.Providers.CameraTree.Src
         {
             var first = str[0];
             if (first != '"')
-                throw new InvalidOperationException($"Unexpected character {first}");
+                throw new InvalidOperationException($"{platform}: Unexpected character {first}");
 
             str = str.Substring(1);
 
             var last = str[str.Length - 1];
             if (last != '"')
-                throw new InvalidOperationException($"Unexpected character {last}");
+                throw new InvalidOperationException($"{platform}: Unexpected character {last}");
 
             return str.Substring(0, str.Length - 1);
         }
