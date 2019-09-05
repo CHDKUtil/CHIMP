@@ -9,6 +9,11 @@ namespace Net.Chdk.Meta.Providers.Camera.Chdk
         {
         }
 
+        protected override void OnListPlatformMissing(string platform)
+        {
+            Logger.LogWarning("{0} missing from list", platform);
+        }
+
         public override string ProductName => "CHDK";
     }
 }
