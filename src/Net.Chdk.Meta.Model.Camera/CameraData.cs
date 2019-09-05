@@ -1,6 +1,6 @@
 ﻿namespace Net.Chdk.Meta.Model.Camera
 {
-    public abstract class CameraData<TCamera, TModel, TCard>
+    public abstract class CameraData<TCamera, TModel, TCard> : ICameraData
         where TCamera : CameraData<TCamera, TModel, TCard>
         where TModel : CameraModelData
         where TCard : CardData
@@ -9,5 +9,8 @@
         public EncodingData Encoding { get; set; }
         public TCard Card { get; set; }
         public BootData Boot { get; set; }
+
+        ICameraModelData[] ICameraData.Models => Models;
+        CardData ICameraData.Card => Card;
     }
 }
