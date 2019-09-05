@@ -7,5 +7,7 @@ namespace Net.Chdk.Meta.Model.Camera.Eos
         public IDictionary<string, VersionData> Versions { get; set; }
 
         protected override IDictionary<string, VersionData> GetRevisions() => Versions;
+
+        protected override void SetRevisions(IDictionary<string, VersionData> value) => Versions = value;
     }
 }

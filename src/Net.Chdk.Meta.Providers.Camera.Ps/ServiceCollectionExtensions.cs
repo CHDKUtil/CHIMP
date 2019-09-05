@@ -11,8 +11,7 @@ namespace Net.Chdk.Meta.Providers.Camera.Ps
                 .AddSingleton<IPsCameraProvider, PsCameraProvider>()
                 .AddSingleton<IPsCameraModelProvider, PsCameraModelProvider>()
                 .AddSingleton<ICategoryEncodingProvider, PsEncodingProvider>()
-                .AddSingleton<IAltProvider, AltProvider>()
-                .AddSingleton<IRevisionProvider, RevisionProvider>();
+                .AddSingleton<IAltProvider, AltProvider>();
         }
     }
 }

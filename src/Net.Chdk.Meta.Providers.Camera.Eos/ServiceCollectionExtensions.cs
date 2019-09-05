@@ -10,8 +10,7 @@ namespace Net.Chdk.Meta.Providers.Camera.Eos
                 .AddSingleton<IEosBuildProvider, EosBuildProvider>()
                 .AddSingleton<IEosCameraProvider, EosCameraProvider>()
                 .AddSingleton<IEosCameraModelProvider, EosCameraModelProvider>()
-                .AddSingleton<ICategoryEncodingProvider, EosEncodingProvider>()
-                .AddSingleton<IVersionProvider, VersionProvider>();
+                .AddSingleton<ICategoryEncodingProvider, EosEncodingProvider>();
         }
     }
 }

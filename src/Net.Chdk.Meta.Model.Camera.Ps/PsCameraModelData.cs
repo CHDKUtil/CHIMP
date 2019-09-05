@@ -7,5 +7,7 @@ namespace Net.Chdk.Meta.Model.Camera.Ps
         public IDictionary<string, RevisionData> Revisions { get; set; }
 
         protected override IDictionary<string, RevisionData> GetRevisions() => Revisions;
+
+        protected override void SetRevisions(IDictionary<string, RevisionData> value) => Revisions = value;
     }
 }

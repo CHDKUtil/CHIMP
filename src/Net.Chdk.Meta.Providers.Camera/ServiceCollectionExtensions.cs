@@ -8,6 +8,7 @@ namespace Net.Chdk.Meta.Providers.Camera
         {
             return serviceCollection
                 .AddSingleton<IEncodingProvider, EncodingProvider>()
+                .AddSingleton<IRevisionProvider, RevisionProvider>()
                 .AddSingleton<ICameraPlatformProvider, CameraPlatformProvider>()
                 .AddSingleton<ICameraBootProvider, CameraBootProvider>()
                 .AddSingleton<ICameraValidator, CameraValidator>()
