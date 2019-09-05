@@ -1,4 +1,6 @@
-﻿namespace Net.Chdk.Meta.Model.Camera
+﻿using System.Linq;
+
+namespace Net.Chdk.Meta.Model.Camera
 {
     public abstract class CameraData<TCamera, TModel, TCard> : ICameraData
         where TCamera : CameraData<TCamera, TModel, TCard>
@@ -10,7 +12,12 @@
         public TCard Card { get; set; }
         public BootData Boot { get; set; }
 
-        ICameraModelData[] ICameraData.Models => Models;
+        ICameraModelData[] ICameraData.Models
+        {
+            get => Models;
+            set => Models = value?.Cast<TModel>().ToArray();
+        }
+
         CardData ICameraData.Card => Card;
     }
 }

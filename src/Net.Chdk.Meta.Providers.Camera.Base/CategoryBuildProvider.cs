@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Net.Chdk.Meta.Providers.Camera
 {
-    public abstract class BuildProvider<TCamera, TModel, TCard>
+    public abstract class CategoryBuildProvider<TCamera, TModel, TCard> : ICategoryBuildProvider
         where TCamera : CameraData<TCamera, TModel, TCard>
         where TModel : CameraModelData
         where TCard : CardData
@@ -18,7 +18,9 @@ namespace Net.Chdk.Meta.Providers.Camera
         private ICameraPlatformProvider PlatformProvider { get; }
         private ICameraValidator CameraValidator { get; }
 
-        protected BuildProvider(ICameraProvider<TCamera, TModel, TCard> cameraProvider, ICameraModelProvider<TModel> modelProvider,
+        public abstract string CategoryName { get; }
+
+        protected CategoryBuildProvider(ICameraProvider<TCamera, TModel, TCard> cameraProvider, ICameraModelProvider<TModel> modelProvider,
             ICameraPlatformProvider platformProvider, ICameraValidator cameraValidator)
         {
             CameraProvider = cameraProvider;
@@ -27,17 +29,17 @@ namespace Net.Chdk.Meta.Providers.Camera
             CameraValidator = cameraValidator;
         }
 
-        public IDictionary<string, TCamera> GetCameras(IDictionary<string, PlatformData> platforms, IDictionary<string, ListPlatformData> list, IDictionary<string, TreePlatformData> tree,
+        public IDictionary<string, ICameraData> GetCameras(IDictionary<string, PlatformData> platforms, IDictionary<string, ListPlatformData> list, IDictionary<string, TreePlatformData> tree,
             string productName)
         {
             CameraValidator.Validate(list, tree, productName);
-            var cameras = new SortedDictionary<uint, TCamera>();
+            var cameras = new SortedDictionary<uint, ICameraData>();
             foreach (var kvp in list)
                 AddModel(cameras, platforms, tree, kvp.Key, kvp.Value, productName);
             return cameras.ToDictionary(kvp => $"0x{kvp.Key:x}", kvp => kvp.Value);
         }
 
-        private void AddModel(SortedDictionary<uint, TCamera> cameras, IDictionary<string, PlatformData> platforms, IDictionary<string, TreePlatformData> treeCameras,
+        private void AddModel(IDictionary<uint, ICameraData> cameras, IDictionary<string, PlatformData> platforms, IDictionary<string, TreePlatformData> treeCameras,
             string key, ListPlatformData list, string productName)
         {
             var platform = PlatformProvider.GetPlatform(key, platforms, productName);
@@ -48,9 +50,9 @@ namespace Net.Chdk.Meta.Providers.Camera
             camera.Models = camera.Models.Concat(new[] { model }).ToArray();
         }
 
-        private TCamera GetOrAddCamera(uint modelId, string platform, ListPlatformData list, TreePlatformData tree, SortedDictionary<uint, TCamera> cameras, string productName)
+        private ICameraData GetOrAddCamera(uint modelId, string platform, ListPlatformData list, TreePlatformData tree, IDictionary<uint, ICameraData> cameras, string productName)
         {
-            if (!cameras.TryGetValue(modelId, out TCamera camera))
+            if (!cameras.TryGetValue(modelId, out ICameraData camera))
             {
                 camera = CameraProvider.GetCamera(modelId, platform, list, tree, productName);
                 cameras.Add(modelId, camera);

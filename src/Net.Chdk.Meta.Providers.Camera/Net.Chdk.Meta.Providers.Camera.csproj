@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <PackageReference Include="microsoft.extensions.dependencyinjection.abstractions" Version="1.1.1" />
+    <PackageReference Include="Net.Chdk.Providers.Product.Core" Version="0.2.1-alpha" />
   </ItemGroup>
 
   <ItemGroup>

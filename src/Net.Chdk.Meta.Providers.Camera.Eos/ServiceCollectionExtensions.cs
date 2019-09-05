@@ -7,7 +7,7 @@ namespace Net.Chdk.Meta.Providers.Camera.Eos
         public static IServiceCollection AddEosBuildProvider(this IServiceCollection serviceCollection)
         {
             return serviceCollection
-                .AddSingleton<IEosBuildProvider, EosBuildProvider>()
+                .AddSingleton<ICategoryBuildProvider, EosBuildProvider>()
                 .AddSingleton<IEosCameraProvider, EosCameraProvider>()
                 .AddSingleton<IEosCameraModelProvider, EosCameraModelProvider>()
                 .AddSingleton<ICategoryEncodingProvider, EosEncodingProvider>();

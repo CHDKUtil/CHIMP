@@ -2,11 +2,13 @@
 
 namespace Net.Chdk.Meta.Providers.Camera.Ps
 {
-    sealed class PsBuildProvider : BuildProvider<PsCameraData, PsCameraModelData, PsCardData>, IPsBuildProvider
+    sealed class PsBuildProvider : CategoryBuildProvider<PsCameraData, PsCameraModelData, PsCardData>
     {
         public PsBuildProvider(IPsCameraProvider cameraProvider, IPsCameraModelProvider modelProvider, ICameraPlatformProvider platformProvider, ICameraValidator cameraValidator)
             : base(cameraProvider, modelProvider, platformProvider, cameraValidator)
         {
         }
+
+        public override string CategoryName => "PS";
     }
 }

@@ -31,7 +31,6 @@ using Net.Chdk.Providers.Boot;
 using Net.Chdk.Providers.Product;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 
 namespace Net.Chdk.Meta.Providers.Camera
@@ -64,7 +63,7 @@ namespace Net.Chdk.Meta.Providers.Camera
                 .AddEosPlatformGenerator()
                 .AddPsPlatformGenerator()
 
-                .AddBuildProviders()
+                .AddBuildProvider()
                 .AddEosBuildProvider()
                 .AddPsBuildProvider()
 
@@ -139,33 +138,8 @@ namespace Net.Chdk.Meta.Providers.Camera
         private static IDictionary<string, ICameraData> GetCameras(IServiceProvider serviceProvider, IDictionary<string, PlatformData> platforms,
             IDictionary<string, ListPlatformData> list, IDictionary<string, TreePlatformData> tree, string productName)
         {
-            var productProvider = serviceProvider.GetService<IProductProvider>();
-            var categoryName = productProvider.GetCategoryName(productName);
-            switch (categoryName)
-            {
-                case "EOS":
-                    return GetEosCameras(serviceProvider, platforms, list, tree, productName);
-                case "PS":
-                    return GetPsCameras(serviceProvider, platforms, list, tree, productName);
-                default:
-                    return null;
-            }
-        }
-
-        private static IDictionary<string, ICameraData> GetEosCameras(IServiceProvider serviceProvider, IDictionary<string, PlatformData> platforms,
-            IDictionary<string, ListPlatformData> list, IDictionary<string, TreePlatformData> tree, string productName)
-        {
-            return serviceProvider.GetService<IEosBuildProvider>()
-                .GetCameras(platforms, list, tree, productName)
-                .ToDictionary(kvp => kvp.Key, kvp => (ICameraData)kvp.Value);
-        }
-
-        private static IDictionary<string, ICameraData> GetPsCameras(IServiceProvider serviceProvider, IDictionary<string, PlatformData> platforms,
-            IDictionary<string, ListPlatformData> list, IDictionary<string, TreePlatformData> tree, string productName)
-        {
-            return serviceProvider.GetService<IPsBuildProvider>()
-                .GetCameras(platforms, list, tree, productName)
-                .ToDictionary(kvp => kvp.Key, kvp => (ICameraData)kvp.Value);
+            return serviceProvider.GetService<IBuildProvider>()
+                .GetCameras(platforms, list, tree, productName);
         }
 
         private static void WriteCameras(IServiceProvider serviceProvider, string path, IDictionary<string, ICameraData> cameras)
