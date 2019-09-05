@@ -107,7 +107,8 @@ namespace Net.Chdk.Meta.Providers.Camera
             var list = GetCameraList(serviceProvider, listPath, productName);
             var tree = GetCameraTree(serviceProvider, treePath);
 
-            WriteCameras(serviceProvider, platforms, list, tree, productName, outPath);
+            var cameras = GetCameras(serviceProvider, platforms, list, tree, productName);
+            WriteCameras(serviceProvider, outPath, cameras);
         }
 
         private static IDictionary<string, PlatformData> GetPlatforms(IServiceProvider serviceProvider, string path)
@@ -126,13 +127,6 @@ namespace Net.Chdk.Meta.Providers.Camera
         {
             return serviceProvider.GetService<ICameraTreeProvider>()
                 .GetCameraTree(path);
-        }
-
-        private static void WriteCameras(IServiceProvider serviceProvider, IDictionary<string, PlatformData> platforms, IDictionary<string, ListPlatformData> list, IDictionary<string, TreePlatformData> tree, string productName, string outPath)
-        {
-            var cameras = GetCameras(serviceProvider, platforms, list, tree, productName);
-            if (cameras != null)
-                WriteCameras(serviceProvider, outPath, cameras);
         }
 
         private static IDictionary<string, ICameraData> GetCameras(IServiceProvider serviceProvider, IDictionary<string, PlatformData> platforms,
