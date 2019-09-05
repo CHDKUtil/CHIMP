@@ -56,12 +56,9 @@
     <ProjectReference Include="..\Net.Chdk.Meta.Providers.Platform\Net.Chdk.Meta.Providers.Platform.csproj" />
     <ProjectReference Include="..\Net.Chdk.Meta.Providers.Sdm\Net.Chdk.Meta.Providers.Sdm.csproj" />
     <ProjectReference Include="..\Net.Chdk.Meta.Providers\Net.Chdk.Meta.Providers.csproj" />
-    <ProjectReference Include="..\Net.Chdk.Meta.Writers.Camera.Eos.Json\Net.Chdk.Meta.Writers.Camera.Eos.Json.csproj" />
-    <ProjectReference Include="..\Net.Chdk.Meta.Writers.Camera.Eos.Props\Net.Chdk.Meta.Writers.Camera.Eos.Props.csproj" />
-    <ProjectReference Include="..\Net.Chdk.Meta.Writers.Camera.Eos\Net.Chdk.Meta.Writers.Camera.Eos.csproj" />
-    <ProjectReference Include="..\Net.Chdk.Meta.Writers.Camera.Ps.Json\Net.Chdk.Meta.Writers.Camera.Ps.Json.csproj" />
-    <ProjectReference Include="..\Net.Chdk.Meta.Writers.Camera.Ps.Props\Net.Chdk.Meta.Writers.Camera.Ps.Props.csproj" />
-    <ProjectReference Include="..\Net.Chdk.Meta.Writers.Camera.Ps\Net.Chdk.Meta.Writers.Camera.Ps.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Meta.Writers.Camera.Json\Net.Chdk.Meta.Writers.Camera.Json.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Meta.Writers.Camera.Props\Net.Chdk.Meta.Writers.Camera.Props.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Meta.Writers.Camera\Net.Chdk.Meta.Writers.Camera.csproj" />
   </ItemGroup>
 
   <ItemGroup>

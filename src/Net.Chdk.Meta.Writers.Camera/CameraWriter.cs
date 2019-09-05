@@ -5,17 +5,14 @@ using System.Collections.Generic;
 
 namespace Net.Chdk.Meta.Writers.Camera
 {
-    public abstract class CameraWriter<TCamera, TModel, TCard> : SingleExtensionProvider<IInnerCameraWriter<TCamera, TModel, TCard>>
-        where TCamera : CameraData<TCamera, TModel, TCard>
-        where TModel : CameraModelData
-        where TCard : CardData
+    sealed class CameraWriter : SingleExtensionProvider<IInnerCameraWriter>, ICameraWriter
     {
-        protected CameraWriter(IEnumerable<IInnerCameraWriter<TCamera, TModel, TCard>> innerWriters)
+        public CameraWriter(IEnumerable<IInnerCameraWriter> innerWriters)
             : base(innerWriters)
         {
         }
 
-        public void WriteCameras(string path, IDictionary<string, TCamera> cameras)
+        public void WriteCameras(string path, IDictionary<string, ICameraData> cameras)
         {
             var writer = GetInnerProvider(path, out string ext);
             if (writer == null)

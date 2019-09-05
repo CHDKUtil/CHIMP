@@ -2,8 +2,7 @@
 using Net.Chdk.Meta.Generators.Platform;
 using Net.Chdk.Meta.Generators.Platform.Eos;
 using Net.Chdk.Meta.Generators.Platform.Ps;
-using Net.Chdk.Meta.Model.Camera.Eos;
-using Net.Chdk.Meta.Model.Camera.Ps;
+using Net.Chdk.Meta.Model.Camera;
 using Net.Chdk.Meta.Model.CameraList;
 using Net.Chdk.Meta.Model.CameraTree;
 using Net.Chdk.Meta.Model.Platform;
@@ -25,16 +24,14 @@ using Net.Chdk.Meta.Providers.Platform;
 using Net.Chdk.Meta.Providers.Platform.Html;
 using Net.Chdk.Meta.Providers.Platform.Xml;
 using Net.Chdk.Meta.Providers.Sdm;
-using Net.Chdk.Meta.Writers.Camera.Eos;
-using Net.Chdk.Meta.Writers.Camera.Eos.Json;
-using Net.Chdk.Meta.Writers.Camera.Eos.Props;
-using Net.Chdk.Meta.Writers.Camera.Ps;
-using Net.Chdk.Meta.Writers.Camera.Ps.Json;
-using Net.Chdk.Meta.Writers.Camera.Ps.Props;
+using Net.Chdk.Meta.Writers.Camera.Json;
+using Net.Chdk.Meta.Writers.Camera.Props;
+using Net.Chdk.Meta.Writers.Camera;
 using Net.Chdk.Providers.Boot;
 using Net.Chdk.Providers.Product;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace Net.Chdk.Meta.Providers.Camera
@@ -93,13 +90,9 @@ namespace Net.Chdk.Meta.Providers.Camera
                 .AddJsonCameraTreeProvider()
                 .AddSrcCameraTreeProvider()
 
-                .AddEosCameraWriter()
-                .AddJsonEosCameraWriter()
-                .AddPropsEosCameraWriter()
-
-                .AddPsCameraWriter()
-                .AddJsonPsCameraWriter()
-                .AddPropsPsCameraWriter()
+                .AddCameraWriter()
+                .AddJsonCameraWriter()
+                .AddPropsCameraWriter()
 
                 .BuildServiceProvider();
 
@@ -138,58 +131,46 @@ namespace Net.Chdk.Meta.Providers.Camera
 
         private static void WriteCameras(IServiceProvider serviceProvider, IDictionary<string, PlatformData> platforms, IDictionary<string, ListPlatformData> list, IDictionary<string, TreePlatformData> tree, string productName, string outPath)
         {
+            var cameras = GetCameras(serviceProvider, platforms, list, tree, productName);
+            if (cameras != null)
+                WriteCameras(serviceProvider, outPath, cameras);
+        }
+
+        private static IDictionary<string, ICameraData> GetCameras(IServiceProvider serviceProvider, IDictionary<string, PlatformData> platforms,
+            IDictionary<string, ListPlatformData> list, IDictionary<string, TreePlatformData> tree, string productName)
+        {
             var productProvider = serviceProvider.GetService<IProductProvider>();
             var categoryName = productProvider.GetCategoryName(productName);
             switch (categoryName)
             {
                 case "EOS":
-                    WriteEosCameras(serviceProvider, platforms, list, tree, outPath, productName);
-                    break;
+                    return GetEosCameras(serviceProvider, platforms, list, tree, productName);
                 case "PS":
-                    WritePsCameras(serviceProvider, platforms, list, tree, outPath, productName);
-                    break;
+                    return GetPsCameras(serviceProvider, platforms, list, tree, productName);
                 default:
-                    break;
+                    return null;
             }
         }
 
-        private static void WriteEosCameras(IServiceProvider serviceProvider, IDictionary<string, PlatformData> platforms,
-            IDictionary<string, ListPlatformData> list, IDictionary<string, TreePlatformData> tree, string outPath, string productName)
-        {
-            var cameras = GetEosCameras(serviceProvider, platforms, list, tree, productName);
-            WriteCameras(serviceProvider, outPath, cameras);
-        }
-
-        private static void WritePsCameras(IServiceProvider serviceProvider, IDictionary<string, PlatformData> platforms,
-            IDictionary<string, ListPlatformData> list, IDictionary<string, TreePlatformData> tree, string outPath, string productName)
-        {
-            var cameras = GetPsCameras(serviceProvider, platforms, list, tree, productName);
-            WriteCameras(serviceProvider, outPath, cameras);
-        }
-
-        private static IDictionary<string, EosCameraData> GetEosCameras(IServiceProvider serviceProvider, IDictionary<string, PlatformData> platforms,
+        private static IDictionary<string, ICameraData> GetEosCameras(IServiceProvider serviceProvider, IDictionary<string, PlatformData> platforms,
             IDictionary<string, ListPlatformData> list, IDictionary<string, TreePlatformData> tree, string productName)
         {
             return serviceProvider.GetService<IEosBuildProvider>()
-                .GetCameras(platforms, list, tree, productName);
+                .GetCameras(platforms, list, tree, productName)
+                .ToDictionary(kvp => kvp.Key, kvp => (ICameraData)kvp.Value);
         }
 
-        private static IDictionary<string, PsCameraData> GetPsCameras(IServiceProvider serviceProvider, IDictionary<string, PlatformData> platforms,
+        private static IDictionary<string, ICameraData> GetPsCameras(IServiceProvider serviceProvider, IDictionary<string, PlatformData> platforms,
             IDictionary<string, ListPlatformData> list, IDictionary<string, TreePlatformData> tree, string productName)
         {
             return serviceProvider.GetService<IPsBuildProvider>()
-                .GetCameras(platforms, list, tree, productName);
+                .GetCameras(platforms, list, tree, productName)
+                .ToDictionary(kvp => kvp.Key, kvp => (ICameraData)kvp.Value);
         }
 
-        private static void WriteCameras(IServiceProvider serviceProvider, string path, IDictionary<string, EosCameraData> cameras)
+        private static void WriteCameras(IServiceProvider serviceProvider, string path, IDictionary<string, ICameraData> cameras)
         {
-            serviceProvider.GetService<IEosCameraWriter>()
-                .WriteCameras(path, cameras);
-        }
-
-        private static void WriteCameras(IServiceProvider serviceProvider, string path, IDictionary<string, PsCameraData> cameras)
-        {
-            serviceProvider.GetService<IPsCameraWriter>()
+            serviceProvider.GetService<ICameraWriter>()
                 .WriteCameras(path, cameras);
         }
     }
