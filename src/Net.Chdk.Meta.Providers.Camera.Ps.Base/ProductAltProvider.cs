@@ -1,13 +1,22 @@
-﻿using Net.Chdk.Meta.Model.Camera.Ps;
+﻿using Microsoft.Extensions.Logging;
+using Net.Chdk.Meta.Model.Camera.Ps;
 using Net.Chdk.Meta.Model.CameraTree;
 
 namespace Net.Chdk.Meta.Providers.Camera.Ps
 {
     public abstract class ProductAltProvider : IProductAltProvider
     {
+        protected ILogger Logger { get; }
+
+        protected ProductAltProvider(ILogger logger)
+        {
+            Logger = logger;
+        }
+
         public AltData GetAlt(string platform, TreeAltData tree)
         {
             Validate(platform, tree);
+
 
             return new AltData
             {

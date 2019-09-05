@@ -6,5 +6,6 @@
         public string Default { get; set; }
         public string[] Names { get; set; }
         public string[] Options { get; set; }
+        public string DisplayOption { get; set; }
     }
 }

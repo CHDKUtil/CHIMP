@@ -36,6 +36,9 @@ namespace Net.Chdk.Meta.Providers.CameraTree.Src
                 case "CAM_ALT_BUTTON_NAMES":
                     GetAlt(ref camera).Names = GetAltButtonNames(split, platform);
                     break;
+                case "CAM_DISP_BUTTON_NAME":
+                    GetAlt(ref camera).DisplayOption = GetDispButtonName(split, platform);
+                    break;
                 case "CAM_MULTIPART":
                     GetCamera(ref camera).MultiCard = GetBoolean(split, platform);
                     break;
@@ -83,6 +86,11 @@ namespace Net.Chdk.Meta.Providers.CameraTree.Src
                 split[i] = TrimQuotes(split[i], platform);
 
             return split;
+        }
+
+        private string GetDispButtonName(string[] split, string platform)
+        {
+            return TrimQuotes(split[split.Length - 1], platform);
         }
 
         private string[] ParseArray(string[] split, string platform)
