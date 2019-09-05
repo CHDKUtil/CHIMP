@@ -30,11 +30,11 @@ namespace Net.Chdk.Meta.Providers.CameraTree.Src
 
             var id = GetId(platformPath, sourcePlatform, sourceRevision);
             if (id != null)
-                Logger.LogTrace("ID: {0}", id.Id);
+                Logger.LogTrace("ID: {0}", id);
 
             var encoding = GetEncoding(platformPath, sourcePlatform, sourceRevision);
             if (encoding != null)
-                Logger.LogTrace("Encoding: {0}", encoding.Version);
+                Logger.LogTrace("Encoding: {0}", encoding);
 
             var revisionData = new TreeRevisionData
             {
@@ -52,12 +52,12 @@ namespace Net.Chdk.Meta.Providers.CameraTree.Src
             return SourceProvider.GetSource(platformPath, platform, revision);
         }
 
-        private TreeIdData GetId(string platformPath, string platform, string revision)
+        private ushort? GetId(string platformPath, string platform, string revision)
         {
             return IdProvider.GetId(platformPath, platform, revision);
         }
 
-        private TreeEncodingData GetEncoding(string platformPath, string platform, string revision)
+        private byte? GetEncoding(string platformPath, string platform, string revision)
         {
             return EncodingProvider.GetEncoding(platformPath, platform, revision);
         }

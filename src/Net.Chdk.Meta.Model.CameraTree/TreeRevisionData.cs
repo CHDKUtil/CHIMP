@@ -2,7 +2,7 @@
 {
     public sealed class TreeRevisionData : RevisionData<TreeRevisionData, TreeSourceData>
     {
-        public TreeIdData Id { get; set; }
-        public TreeEncodingData Encoding { get; set; }
+        public ushort? Id { get; set; }
+        public byte? Encoding { get; set; }
     }
 }

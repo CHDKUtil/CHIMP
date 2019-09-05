@@ -1,12 +1,11 @@
 ﻿using Net.Chdk.Meta.Model.Camera;
-using Net.Chdk.Meta.Model.CameraTree;
 
 namespace Net.Chdk.Meta.Providers.Camera
 {
     public abstract class ProductCameraCardProvider<TCard> : IProductCameraCardProvider<TCard>
         where TCard : CardData, new()
     {
-        public virtual TCard GetCard(uint modelId, TreeCardData card)
+        public virtual TCard GetCard(uint modelId, bool multi)
         {
             return new TCard
             {

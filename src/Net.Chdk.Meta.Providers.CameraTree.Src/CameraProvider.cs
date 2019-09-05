@@ -37,7 +37,7 @@ namespace Net.Chdk.Meta.Providers.CameraTree.Src
                     GetAlt(ref camera).Names = GetAltButtonNames(split, platform);
                     break;
                 case "CAM_MULTIPART":
-                    GetCard(ref camera).Multi = GetBoolean(split, platform);
+                    GetCamera(ref camera).MultiCard = GetBoolean(split, platform);
                     break;
                 default:
                     break;
@@ -47,11 +47,6 @@ namespace Net.Chdk.Meta.Providers.CameraTree.Src
         private static TreeAltData GetAlt(ref CameraData camera)
         {
             return GetCamera(ref camera).Alt;
-        }
-
-        private static TreeCardData GetCard(ref CameraData camera)
-        {
-            return GetCamera(ref camera).Card;
         }
 
         private static CameraData GetCamera(ref CameraData camera)

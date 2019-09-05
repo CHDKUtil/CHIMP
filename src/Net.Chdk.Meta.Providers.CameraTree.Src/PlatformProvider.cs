@@ -40,7 +40,7 @@ namespace Net.Chdk.Meta.Providers.CameraTree.Src
                 Id = id,
                 Encoding = encoding,
                 Alt = GetAlt(camera),
-                Card = GetCard(camera),
+                MultiCard = IsMultiCard(camera),
             };
 
             Logger.LogTrace("Leave {0}", platform);
@@ -80,62 +80,52 @@ namespace Net.Chdk.Meta.Providers.CameraTree.Src
                 : new TreeAltData();
         }
 
-        private TreeIdData GetId(string platformPath, string sourcePlatform, string platform, IDictionary<string, TreeRevisionData> revisions)
+        private ushort? GetId(string platformPath, string sourcePlatform, string platform, IDictionary<string, TreeRevisionData> revisions)
         {
             return GetPlatformId(platformPath, sourcePlatform, platform)
                 ?? GetRevisionId(revisions, platform)
                 ?? throw new InvalidOperationException($"{platform}: Missing ID");
         }
 
-        private TreeIdData GetPlatformId(string platformPath, string sourcePlatform, string platform)
+        private ushort? GetPlatformId(string platformPath, string sourcePlatform, string platform)
         {
             return IdProvider.GetId(platformPath, sourcePlatform ?? platform);
         }
 
-        private TreeIdData GetRevisionId(IDictionary<string, TreeRevisionData> revisions, string platform)
+        private ushort? GetRevisionId(IDictionary<string, TreeRevisionData> revisions, string platform)
         {
             var ids = revisions
                 .Select(kvp => kvp.Value.Id)
                 .Where(i => i != null);
             var id = ids.FirstOrDefault();
-            if (ids.Any(i => !Equals(i.Id, id?.Id)))
+            if (ids.Any(i => !Equals(i, id)))
                 throw new InvalidOperationException($"{platform}: Mismatching IDs");
             return id;
         }
 
-        private static TreeCardData GetCard(CameraData camera)
+        private static bool IsMultiCard(CameraData camera)
         {
-            return camera != null
-                ? camera.Card
-                : new TreeCardData();
+            return camera?.MultiCard == true;
         }
 
-        private TreeEncodingData GetEncoding(string platformPath, string sourcePlatform, string platform, IDictionary<string, TreeRevisionData> revisions)
+        private byte? GetEncoding(string platformPath, string sourcePlatform, string platform, IDictionary<string, TreeRevisionData> revisions)
         {
             return GetPlatformEncoding(platformPath, sourcePlatform, platform)
                 ?? GetRevisionEncoding(revisions, platform)
-                ?? GetEmptyEncoding();
+                ?? 0;
         }
 
-        private TreeEncodingData GetPlatformEncoding(string platformPath, string sourcePlatform, string platform)
+        private byte? GetPlatformEncoding(string platformPath, string sourcePlatform, string platform)
         {
             return EncodingProvider.GetEncoding(platformPath, sourcePlatform ?? platform);
         }
 
-        private TreeEncodingData GetRevisionEncoding(IDictionary<string, TreeRevisionData> revisions, string platform)
+        private byte? GetRevisionEncoding(IDictionary<string, TreeRevisionData> revisions, string platform)
         {
             var encoding = revisions.First().Value.Encoding;
-            if (revisions.Any(kvp => !Equals(kvp.Value.Encoding?.Version, encoding?.Version)))
+            if (revisions.Any(kvp => !Equals(kvp.Value.Encoding, encoding)))
                 throw new InvalidOperationException($"{platform}: Mismatching encodings");
             return encoding;
-        }
-
-        private static TreeEncodingData GetEmptyEncoding()
-        {
-            return new TreeEncodingData
-            {
-                Version = 0
-            };
         }
     }
 }

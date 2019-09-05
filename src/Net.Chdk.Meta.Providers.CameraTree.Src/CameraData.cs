@@ -7,10 +7,9 @@ namespace Net.Chdk.Meta.Providers.CameraTree.Src
         public CameraData()
         {
             Alt = new TreeAltData();
-            Card = new TreeCardData();
         }
 
         public TreeAltData Alt { get; }
-        public TreeCardData Card { get; }
+        public bool MultiCard { get; set; }
     }
 }

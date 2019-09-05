@@ -1,5 +1,4 @@
 ﻿using Net.Chdk.Meta.Model.Camera;
-using Net.Chdk.Meta.Model.CameraTree;
 using System.Collections.Generic;
 
 namespace Net.Chdk.Meta.Providers.Camera
@@ -12,9 +11,9 @@ namespace Net.Chdk.Meta.Providers.Camera
         {
         }
 
-        public TCard GetCard(uint modelId, TreeCardData card, string productName)
+        public TCard GetCard(uint modelId, bool multi, string productName)
         {
-            return GetInnerProvider(productName).GetCard(modelId, card);
+            return GetInnerProvider(productName).GetCard(modelId, multi);
         }
     }
 }

@@ -4,7 +4,7 @@ using System.IO;
 namespace Net.Chdk.Meta.Providers.CameraTree.Src
 {
     abstract class ParsingProvider<T> : ValueProvider
-        where T : class
+        //TODO where T : class
     {
         protected ParsingProvider(ILogger logger)
             : base(logger)
@@ -13,7 +13,7 @@ namespace Net.Chdk.Meta.Providers.CameraTree.Src
 
         protected T GetValue(string platformPath, string platform, string revision)
         {
-            T value = null;
+            T value = default(T);
 
             var filePath = GetFilePath(platformPath, platform, revision);
             using (var reader = File.OpenText(filePath))

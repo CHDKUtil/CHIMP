@@ -1,23 +1,22 @@
 ﻿using Microsoft.Extensions.Logging;
-using Net.Chdk.Meta.Model.CameraTree;
 
 namespace Net.Chdk.Meta.Providers.CameraTree.Src
 {
-    sealed class EncodingProvider : MakefileParsingProvider<TreeEncodingData>
+    sealed class EncodingProvider : MakefileParsingProvider<byte?>
     {
         public EncodingProvider(ILogger<EncodingProvider> logger)
             : base(logger)
         {
         }
 
-        public TreeEncodingData GetEncoding(string platformPath, string platform, string revision = null)
+        public byte? GetEncoding(string platformPath, string platform, string revision = null)
         {
             return GetValue(platformPath, platform, revision);
         }
 
         protected override string Prefix => string.Empty;
 
-        protected override void UpdateValue(ref TreeEncodingData value, string line, string platform)
+        protected override void UpdateValue(ref byte? value, string line, string platform)
         {
             var split = line.Split('=');
             switch (split[0].Trim())
@@ -30,12 +29,9 @@ namespace Net.Chdk.Meta.Providers.CameraTree.Src
             }
         }
 
-        private TreeEncodingData GetEncodingValue(string version)
+        private byte? GetEncodingValue(string version)
         {
-            return new TreeEncodingData
-            {
-                Version = uint.Parse(version)
-            };
+            return byte.Parse(version);
         }
     }
 }

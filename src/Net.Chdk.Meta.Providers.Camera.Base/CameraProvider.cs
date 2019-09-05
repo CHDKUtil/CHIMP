@@ -31,14 +31,14 @@ namespace Net.Chdk.Meta.Providers.Camera
                 Models = new TModel[0],
                 Encoding = GetEncoding(platform, tree.Encoding, categoryName),
                 Boot = GetBoot(modelId, productName),
-                Card = GetCard(modelId, tree.Card, productName),
+                Card = GetCard(modelId, tree.MultiCard, productName),
             };
         }
 
-        private EncodingData GetEncoding(string platform, TreeEncodingData encoding, string categoryName)
+        private EncodingData GetEncoding(string platform, byte? encoding, string categoryName)
         {
             return encoding != null
-                ? EncodingProvider.GetEncoding(platform, encoding.Version, categoryName)
+                ? EncodingProvider.GetEncoding(platform, encoding.Value, categoryName)
                 : null;
         }
 
@@ -47,11 +47,9 @@ namespace Net.Chdk.Meta.Providers.Camera
             return BootProvider.GetBoot(modelId, productName);
         }
 
-        private TCard GetCard(uint modelId, TreeCardData card, string productName)
+        private TCard GetCard(uint modelId, bool multi, string productName)
         {
-            return card != null
-                ? CardProvider.GetCard(modelId, card, productName)
-                : null;
+            return CardProvider.GetCard(modelId, multi, productName);
         }
     }
 }

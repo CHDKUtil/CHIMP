@@ -1,5 +1,4 @@
 ﻿using Net.Chdk.Meta.Model.Camera.Ps;
-using Net.Chdk.Meta.Model.CameraTree;
 using System.Linq;
 
 namespace Net.Chdk.Meta.Providers.Camera.Ps
@@ -13,10 +12,10 @@ namespace Net.Chdk.Meta.Providers.Camera.Ps
         private static readonly uint[] MicroSdModelIds = { 0x3240000, 0x3250000, 0x3380000 };
         private static readonly uint[] SdhcModelIds = { 0x1950000, 0x1980000 };
 
-        public override PsCardData GetCard(uint modelId, TreeCardData card)
+        public override PsCardData GetCard(uint modelId, bool multi)
         {
-            var cardData = base.GetCard(modelId, card);
-            cardData.Multi = card.Multi;
+            var cardData = base.GetCard(modelId, multi);
+            cardData.Multi = multi;
             return cardData;
         }
 
