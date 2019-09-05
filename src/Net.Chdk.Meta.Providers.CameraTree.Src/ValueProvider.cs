@@ -1,12 +1,11 @@
 ﻿using Microsoft.Extensions.Logging;
-using System;
 using System.IO;
 
 namespace Net.Chdk.Meta.Providers.CameraTree.Src
 {
     abstract class ValueProvider
     {
-        private ILogger Logger { get; }
+        protected ILogger Logger { get; }
 
         protected ValueProvider(ILogger logger)
         {

@@ -3,7 +3,7 @@
 namespace Net.Chdk.Meta.Providers.CameraTree.Src
 {
     abstract class MakefileParsingProvider<T> : ParsingProvider<T>
-        //TODO where T : class
+        where T : class
     {
         protected MakefileParsingProvider(ILogger logger)
             : base(logger)

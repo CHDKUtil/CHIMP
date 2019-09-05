@@ -7,14 +7,12 @@ namespace Net.Chdk.Meta.Providers.CameraTree.Src
     {
         private ILogger Logger { get; }
         private SourceProvider SourceProvider { get; }
-        private IdProvider IdProvider { get; }
-        private EncodingProvider EncodingProvider { get; }
+        private DataProvider DataProvider { get; }
 
-        public RevisionProvider(SourceProvider sourceProvider, IdProvider idProvider, EncodingProvider encodingProvider, ILogger<RevisionProvider> logger)
+        public RevisionProvider(SourceProvider sourceProvider, DataProvider dataProvider, ILogger<RevisionProvider> logger)
         {
             SourceProvider = sourceProvider;
-            IdProvider = idProvider;
-            EncodingProvider = encodingProvider;
+            DataProvider = dataProvider;
             Logger = logger;
         }
 
@@ -28,11 +26,11 @@ namespace Net.Chdk.Meta.Providers.CameraTree.Src
             if (!sourcePlatform.Equals(platform) || !sourceRevision.Equals(revision))
                 Logger.LogTrace("Source: {0}-{1}", sourcePlatform, sourceRevision);
 
-            var id = GetId(platformPath, sourcePlatform, sourceRevision);
+            var data = GetData(platformPath, sourcePlatform, sourceRevision);
+            var id = data?.Id;
             if (id != null)
                 Logger.LogTrace("ID: {0}", id);
-
-            var encoding = GetEncoding(platformPath, sourcePlatform, sourceRevision);
+            var encoding = data?.Encoding;
             if (encoding != null)
                 Logger.LogTrace("Encoding: {0}", encoding);
 
@@ -52,14 +50,9 @@ namespace Net.Chdk.Meta.Providers.CameraTree.Src
             return SourceProvider.GetSource(platformPath, platform, revision);
         }
 
-        private ushort? GetId(string platformPath, string platform, string revision)
+        private RevisionData GetData(string platformPath, string platform, string revision)
         {
-            return IdProvider.GetId(platformPath, platform, revision);
-        }
-
-        private byte? GetEncoding(string platformPath, string platform, string revision)
-        {
-            return EncodingProvider.GetEncoding(platformPath, platform, revision);
+            return DataProvider.GetData(platformPath, platform, revision);
         }
 
         private string GetPlatform(TreeSourceData source, string platform)

@@ -4,7 +4,7 @@ using System.IO;
 namespace Net.Chdk.Meta.Providers.CameraTree.Src
 {
     abstract class ParsingProvider<T> : ValueProvider
-        //TODO where T : class
+        where T : class
     {
         protected ParsingProvider(ILogger logger)
             : base(logger)

@@ -11,15 +11,13 @@ namespace Net.Chdk.Meta.Providers.CameraTree.Src
     {
         private ILogger Logger { get; }
         private RevisionProvider RevisionProvider { get; }
-        private IdProvider IdProvider { get; }
-        private EncodingProvider EncodingProvider { get; }
+        private DataProvider DataProvider { get; }
         private CameraProvider CameraProvider { get; }
 
-        public PlatformProvider(RevisionProvider revisionProvider, IdProvider idProvider, EncodingProvider encodingProvider, CameraProvider cameraProvider, ILogger<PlatformProvider> logger)
+        public PlatformProvider(RevisionProvider revisionProvider, DataProvider dataProvider, CameraProvider cameraProvider, ILogger<PlatformProvider> logger)
         {
             RevisionProvider = revisionProvider;
-            IdProvider = idProvider;
-            EncodingProvider = encodingProvider;
+            DataProvider = dataProvider;
             CameraProvider = cameraProvider;
             Logger = logger;
         }
@@ -30,8 +28,9 @@ namespace Net.Chdk.Meta.Providers.CameraTree.Src
 
             var revisions = GetRevisions(platformPath, platform);
             var sourcePlatform = GetSourcePlatform(revisions, platform);
-            var id = GetId(platformPath, sourcePlatform, platform, revisions);
-            var encoding = GetEncoding(platformPath, sourcePlatform, platform, revisions);
+            var data = GetData(platformPath, sourcePlatform, platform);
+            var id = GetId(data, platform, revisions);
+            var encoding = GetEncoding(data, platform, revisions);
             var camera = GetCamera(platformPath, sourcePlatform ?? platform);
 
             var platformData = new TreePlatformData
@@ -80,49 +79,45 @@ namespace Net.Chdk.Meta.Providers.CameraTree.Src
                 : new TreeAltData();
         }
 
-        private ushort? GetId(string platformPath, string sourcePlatform, string platform, IDictionary<string, TreeRevisionData> revisions)
-        {
-            return GetPlatformId(platformPath, sourcePlatform, platform)
-                ?? GetRevisionId(revisions, platform)
-                ?? throw new InvalidOperationException($"{platform}: Missing ID");
-        }
-
-        private ushort? GetPlatformId(string platformPath, string sourcePlatform, string platform)
-        {
-            return IdProvider.GetId(platformPath, sourcePlatform ?? platform);
-        }
-
-        private ushort? GetRevisionId(IDictionary<string, TreeRevisionData> revisions, string platform)
-        {
-            var ids = revisions
-                .Select(kvp => kvp.Value.Id)
-                .Where(i => i != null);
-            var id = ids.FirstOrDefault();
-            if (ids.Any(i => !Equals(i, id)))
-                throw new InvalidOperationException($"{platform}: Mismatching IDs");
-            return id;
-        }
-
         private static bool IsMultiCard(CameraData camera)
         {
             return camera?.MultiCard == true;
         }
 
-        private byte? GetEncoding(string platformPath, string sourcePlatform, string platform, IDictionary<string, TreeRevisionData> revisions)
+        private RevisionData GetData(string platformPath, string sourcePlatform, string platform)
         {
-            return GetPlatformEncoding(platformPath, sourcePlatform, platform)
+            return DataProvider.GetData(platformPath, sourcePlatform ?? platform);
+        }
+
+        private static ushort GetId(RevisionData data, string platform, IDictionary<string, TreeRevisionData> revisions)
+        {
+            return data?.Id
+                ?? GetRevisionId(revisions, platform)
+                ?? throw new InvalidOperationException($"{platform}: Missing ID");
+        }
+
+        private static byte GetEncoding(RevisionData data, string platform, IDictionary<string, TreeRevisionData> revisions)
+        {
+            return data?.Encoding
                 ?? GetRevisionEncoding(revisions, platform)
                 ?? 0;
         }
 
-        private byte? GetPlatformEncoding(string platformPath, string sourcePlatform, string platform)
+        private static ushort? GetRevisionId(IDictionary<string, TreeRevisionData> revisions, string platform)
         {
-            return EncodingProvider.GetEncoding(platformPath, sourcePlatform ?? platform);
+            var id = revisions
+                .Select(kvp => kvp.Value.Id)
+                .FirstOrDefault(i => i != null);
+            if (revisions.Any(kvp => !Equals(kvp.Value.Id, id)))
+                throw new InvalidOperationException($"{platform}: Mismatching IDs");
+            return id;
         }
 
-        private byte? GetRevisionEncoding(IDictionary<string, TreeRevisionData> revisions, string platform)
+        private static byte? GetRevisionEncoding(IDictionary<string, TreeRevisionData> revisions, string platform)
         {
-            var encoding = revisions.First().Value.Encoding;
+            var encoding = revisions
+                .Select(kvp => kvp.Value.Encoding)
+                .FirstOrDefault(e => e != null);
             if (revisions.Any(kvp => !Equals(kvp.Value.Encoding, encoding)))
                 throw new InvalidOperationException($"{platform}: Mismatching encodings");
             return encoding;
