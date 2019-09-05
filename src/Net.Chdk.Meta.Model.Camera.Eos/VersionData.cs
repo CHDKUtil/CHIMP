@@ -4,6 +4,10 @@
     {
         public string Version { get; set; }
 
-        string IRevisionData.Revision => Version;
+        string IRevisionData.Revision
+        {
+            get => Version;
+            set { Version = value; }
+        }
     }
 }

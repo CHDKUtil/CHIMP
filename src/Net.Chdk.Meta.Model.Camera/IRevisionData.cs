@@ -2,6 +2,6 @@
 {
     public interface IRevisionData
     {
-        string Revision { get; }
+        string Revision { get; set; }
     }
 }

@@ -1,22 +1,13 @@
-﻿using Net.Chdk.Meta.Model.Camera;
-using Net.Chdk.Meta.Model.Camera.Ps;
+﻿using Net.Chdk.Meta.Model.Camera.Ps;
 
 namespace Net.Chdk.Meta.Providers.Camera.Ps
 {
-    public abstract class PsRevisionProvider : ProductRevisionProvider
+    public abstract class PsRevisionProvider : ProductRevisionProvider<RevisionData>
     {
         protected override string GetRevisionKey(string revisionStr)
         {
             var revision = GetFirmwareRevision(revisionStr);
             return $"0x{revision:x}";
-        }
-
-        protected override IRevisionData GetRevision(string revision)
-        {
-            return new RevisionData
-            {
-                Revision = revision,
-            };
         }
 
         private static uint GetFirmwareRevision(string revision)

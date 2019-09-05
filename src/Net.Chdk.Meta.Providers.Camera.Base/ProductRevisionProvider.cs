@@ -5,7 +5,8 @@ using Net.Chdk.Meta.Model.CameraTree;
 
 namespace Net.Chdk.Meta.Providers.Camera
 {
-    public abstract class ProductRevisionProvider : IProductRevisionProvider
+    public abstract class ProductRevisionProvider<TRevision> : IProductRevisionProvider
+        where TRevision : IRevisionData, new()
     {
         public IDictionary<string, IRevisionData> GetRevisions(ListPlatformData list, TreePlatformData tree)
         {
@@ -31,7 +32,13 @@ namespace Net.Chdk.Meta.Providers.Camera
             return GetRevision(key);
         }
 
-        protected abstract IRevisionData GetRevision(string key);
+        protected IRevisionData GetRevision(string key)
+        {
+            return new TRevision
+            {
+                Revision = key
+            };
+        }
 
         protected abstract string GetRevisionKey(string revison);
 
