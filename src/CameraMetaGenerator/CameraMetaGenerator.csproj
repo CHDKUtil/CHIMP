@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
     <Description>CHIMP camera metadata generator</Description>
     <RootNamespace>Net.Chdk.Meta.Providers.Camera</RootNamespace>
     <AssemblyName>gen_meta_cameras</AssemblyName>
@@ -27,7 +27,8 @@
 
   <ItemGroup>
     <PackageReference Include="microsoft.extensions.dependencyinjection" Version="1.1.1" />
-    <PackageReference Include="microsoft.extensions.logging" Version="1.1.2" />
+    <PackageReference Include="microsoft.extensions.logging" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.0.0" />
     <PackageReference Include="Net.Chdk.Providers.Boot" Version="0.4.1-alpha" />
     <PackageReference Include="Net.Chdk.Providers.Product" Version="0.5.1-alpha" />
   </ItemGroup>

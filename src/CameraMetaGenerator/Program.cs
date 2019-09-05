@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Net.Chdk.Meta.Generators.Platform;
 using Net.Chdk.Meta.Generators.Platform.Eos;
 using Net.Chdk.Meta.Generators.Platform.Ps;
@@ -54,7 +55,7 @@ namespace Net.Chdk.Meta.Providers.Camera
             }
 
             var serviceProvider = new ServiceCollection()
-                .AddLogging()
+                .AddLogging(cfg => cfg.AddConsole())
 
                 .AddProductProvider()
                 .AddBootProvider()
