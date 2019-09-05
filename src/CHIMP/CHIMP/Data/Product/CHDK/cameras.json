@@ -1897,7 +1897,7 @@
       "button": "Print",
       "buttons": [
         "Print",
-        "Disp",
+        "Display",
         "AELock",
         "Jump"
       ]
@@ -2356,7 +2356,7 @@
       "button": "Print",
       "buttons": [
         "Print",
-        "Disp",
+        "Display",
         "AELock",
         "Jump"
       ]
@@ -2676,7 +2676,7 @@
       "buttons": [
         "Playback",
         "Face",
-        "Disp"
+        "Display"
       ]
     },
     "models": [
@@ -2953,7 +2953,7 @@
       "button": "Print",
       "buttons": [
         "Print",
-        "Disp",
+        "Display",
         "AELock",
         "Jump"
       ]
@@ -3084,8 +3084,8 @@
       "button": "Print",
       "buttons": [
         "Print",
-        "Play",
-        "Disp",
+        "Playback",
+        "Display",
         "RingFunc"
       ]
     },
@@ -3130,7 +3130,7 @@
       "buttons": [
         "Playback",
         "Face",
-        "Disp"
+        "Display"
       ]
     },
     "models": [
@@ -3170,7 +3170,7 @@
       "buttons": [
         "Playback",
         "Face",
-        "Disp"
+        "Display"
       ]
     },
     "models": [
@@ -3424,7 +3424,7 @@
       "buttons": [
         "Playback",
         "Face",
-        "Disp"
+        "Display"
       ]
     },
     "models": [
@@ -3464,7 +3464,7 @@
       "buttons": [
         "Playback",
         "Face",
-        "Disp"
+        "Display"
       ]
     },
     "models": [
@@ -3914,7 +3914,7 @@
       "button": "Playback",
       "buttons": [
         "Playback",
-        "VIDEO"
+        "Video"
       ]
     },
     "models": [
@@ -4759,7 +4759,7 @@
       "buttons": [
         "Video",
         "Playback",
-        "Shortcut"
+        "Shrtcut"
       ]
     },
     "models": [
@@ -4801,7 +4801,7 @@
       "button": "Playback",
       "buttons": [
         "Playback",
-        "Disp",
+        "Display",
         "Video"
       ]
     },
@@ -4838,7 +4838,7 @@
       "button": "Playback",
       "buttons": [
         "Playback",
-        "Disp",
+        "Display",
         "Video"
       ]
     },
@@ -4911,7 +4911,7 @@
       "buttons": [
         "Playback",
         "Video",
-        "WiFi"
+        "Wifi"
       ]
     },
     "models": [
@@ -5055,7 +5055,7 @@
       "buttons": [
         "Playback",
         "Video",
-        "WiFi"
+        "Wifi"
       ]
     },
     "models": [
@@ -5137,7 +5137,7 @@
       "button": "Playback",
       "buttons": [
         "Playback",
-        "Disp",
+        "Display",
         "Video"
       ]
     },
@@ -5430,7 +5430,7 @@
       "button": "Playback",
       "buttons": [
         "Playback",
-        "Disp",
+        "Display",
         "Video"
       ]
     },
@@ -5464,9 +5464,9 @@
   },
   "0x3950000": {
     "alt": {
-      "button": "WiFi",
+      "button": "Wifi",
       "buttons": [
-        "WiFi",
+        "Wifi",
         "Video",
         "Display",
         "Playback"
@@ -5505,9 +5505,9 @@
   },
   "0x3970000": {
     "alt": {
-      "button": "WiFi",
+      "button": "Wifi",
       "buttons": [
-        "WiFi",
+        "Wifi",
         "Video",
         "Display",
         "Playback"
