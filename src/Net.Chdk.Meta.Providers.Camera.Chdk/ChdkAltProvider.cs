@@ -66,8 +66,8 @@ namespace Net.Chdk.Meta.Providers.Camera.Chdk
             var name = tree.Names[index];
             if (ButtonNames.TryGetValue(name, out string name2))
             {
+                Logger.LogWarning("{0}: {1} should be {1}", platform, name, name2);
                 name = name2;
-                Logger.LogWarning($"{0}: {1} should be {1}", platform, name, name2);
             }
             return name;
         }
