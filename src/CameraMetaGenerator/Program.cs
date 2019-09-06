@@ -33,6 +33,7 @@ using Net.Chdk.Providers.Product;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Diagnostics;
 
 namespace Net.Chdk.Meta.Providers.Camera
 {
@@ -53,6 +54,8 @@ namespace Net.Chdk.Meta.Providers.Camera
                 Console.WriteLine("\toutput         cameras.json or cameras.properties");
                 return;
             }
+
+            var watch = Stopwatch.StartNew();
 
             var serviceProvider = new ServiceCollection()
                 .AddLogging(cfg => cfg.AddConsole())
@@ -96,6 +99,9 @@ namespace Net.Chdk.Meta.Providers.Camera
 
                 .BuildServiceProvider();
 
+            var loggerFactory = serviceProvider.GetService<ILoggerFactory>();
+            var logger = loggerFactory.CreateLogger<Program>();
+
             var productName = args[0];
             var platformPath = args[1];
             var listPath = args[2];
@@ -110,6 +116,9 @@ namespace Net.Chdk.Meta.Providers.Camera
 
             var cameras = GetCameras(serviceProvider, platforms, list, tree, productName);
             WriteCameras(serviceProvider, outPath, cameras);
+
+            watch.Stop();
+            logger.LogInformation("Completed in {0}", watch.Elapsed);
         }
 
         private static IDictionary<string, PlatformData> GetPlatforms(IServiceProvider serviceProvider, string path)
