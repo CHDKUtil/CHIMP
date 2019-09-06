@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using Net.Chdk.Meta.Model.CameraTree;
 using System;
 using System.Linq;
 
@@ -24,20 +23,8 @@ namespace Net.Chdk.Meta.Providers.CameraTree.Src
             var split = line.Split();
             switch (split[0])
             {
-                case "CAM_ADJUSTABLE_ALT_BUTTON":
-                    GetAlt(ref camera).Adjustable = GetBoolean(split, platform);
-                    break;
-                case "CAM_DEFAULT_ALT_BUTTON":
-                    GetAlt(ref camera).Default = GetAltButtonDefault(split, platform);
-                    break;
-                case "CAM_ALT_BUTTON_OPTIONS":
-                    GetAlt(ref camera).Options = GetAltButtonOptions(split, platform);
-                    break;
                 case "CAM_ALT_BUTTON_NAMES":
-                    GetAlt(ref camera).Names = GetAltButtonNames(split, platform);
-                    break;
-                case "CAM_DISP_BUTTON_NAME":
-                    GetAlt(ref camera).DisplayOption = GetDispButtonName(split, platform);
+                    GetCamera(ref camera).AltNames = GetAltButtonNames(split, platform);
                     break;
                 case "CAM_MULTIPART":
                     GetCamera(ref camera).MultiCard = GetBoolean(split, platform);
@@ -45,11 +32,6 @@ namespace Net.Chdk.Meta.Providers.CameraTree.Src
                 default:
                     break;
             }
-        }
-
-        private static TreeAltData GetAlt(ref CameraData camera)
-        {
-            return GetCamera(ref camera).Alt;
         }
 
         private static CameraData GetCamera(ref CameraData camera)
@@ -68,16 +50,6 @@ namespace Net.Chdk.Meta.Providers.CameraTree.Src
             return true;
         }
 
-        private static string GetAltButtonDefault(string[] split, string platform)
-        {
-            return split[split.Length - 1];
-        }
-
-        private string[] GetAltButtonOptions(string[] split, string platform)
-        {
-            return ParseArray(split, platform);
-        }
-
         private string[] GetAltButtonNames(string[] split, string platform)
         {
             split = ParseArray(split, platform);
@@ -86,11 +58,6 @@ namespace Net.Chdk.Meta.Providers.CameraTree.Src
                 split[i] = TrimQuotes(split[i], platform);
 
             return split;
-        }
-
-        private string GetDispButtonName(string[] split, string platform)
-        {
-            return TrimQuotes(split[split.Length - 1], platform);
         }
 
         private string[] ParseArray(string[] split, string platform)

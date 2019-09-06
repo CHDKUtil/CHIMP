@@ -1,7 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-using Net.Chdk.Meta.Model.CameraTree;
 using Net.Chdk.Meta.Providers.Camera.Ps;
-using System;
 using System.Collections.Generic;
 
 namespace Net.Chdk.Meta.Providers.Camera.Chdk
@@ -24,46 +22,26 @@ namespace Net.Chdk.Meta.Providers.Camera.Chdk
 
         public override string ProductName => "CHDK";
 
-        protected override void Validate(string platform, TreeAltData tree)
+        protected override string GetAltButton(string platform, string[] altNames)
         {
-            if (tree.Adjustable)
-            {
-                if ((tree.Names == null || tree.Options == null))
-                    throw new InvalidOperationException($"{platform}: Mismatching button options");
-
-                if (tree.Names.Length != tree.Options.Length)
-                    throw new InvalidOperationException($"{platform}: Mismatching button options");
-            }
-            else
-            {
-                if (tree.Names != null || tree.Options != null)
-                    throw new InvalidOperationException($"{platform}: Invalid button options");
-            }
-
-            if (tree.Default != null && tree.Options != null && tree.Default != tree.Options[0])
-                throw new InvalidOperationException($"{platform}: Mismatching buttons");
-        }
-
-        protected override string GetAltButton(string platform, TreeAltData tree)
-        {
-            if (!tree.Adjustable)
+            if (altNames == null)
                 return "Print";
-            return GetAltButton(platform, tree, 0);
+            return GetAltButton(platform, altNames, 0);
         }
 
-        protected override string[] GetAltButtons(string platform, TreeAltData tree)
+        protected override string[] GetAltButtons(string platform, string[] altNames)
         {
-            if (!tree.Adjustable)
+            if (altNames == null)
                 return null;
-            var names = new string[tree.Names.Length];
+            var names = new string[altNames.Length];
             for (int i = 0; i < names.Length; i++)
-                names[i] = GetAltButton(platform, tree, i);
+                names[i] = GetAltButton(platform, altNames, i);
             return names;
         }
 
-        private string GetAltButton(string platform, TreeAltData tree, int index)
+        private string GetAltButton(string platform, string[] altNames, int index)
         {
-            var name = tree.Names[index];
+            var name = altNames[index];
             if (ButtonNames.TryGetValue(name, out string name2))
             {
                 Logger.LogWarning("{0}: {1} should be {1}", platform, name, name2);

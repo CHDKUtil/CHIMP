@@ -5,6 +5,6 @@
         public ushort? Id { get; set; }
         public byte? Encoding { get; set; }
         public bool MultiCard { get; set; }
-        public TreeAltData Alt { get; set; }
+        public string[] AltNames { get; set; }
     }
 }

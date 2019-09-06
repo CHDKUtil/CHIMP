@@ -1,5 +1,4 @@
 ﻿using Net.Chdk.Meta.Model.Camera.Ps;
-using Net.Chdk.Meta.Model.CameraTree;
 using System.Collections.Generic;
 
 namespace Net.Chdk.Meta.Providers.Camera.Ps
@@ -11,9 +10,9 @@ namespace Net.Chdk.Meta.Providers.Camera.Ps
         {
         }
 
-        public AltData GetAlt(string platform, TreeAltData tree, string productName)
+        public AltData GetAlt(string platform, string[] altNames, string productName)
         {
-            return GetInnerProvider(productName).GetAlt(platform, tree);
+            return GetInnerProvider(productName).GetAlt(platform, altNames);
         }
     }
 }

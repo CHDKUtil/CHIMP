@@ -38,7 +38,7 @@ namespace Net.Chdk.Meta.Providers.CameraTree.Src
                 Revisions = revisions,
                 Id = id,
                 Encoding = encoding,
-                Alt = GetAlt(camera),
+                AltNames = GetAltNames(camera),
                 MultiCard = IsMultiCard(camera),
             };
 
@@ -72,11 +72,9 @@ namespace Net.Chdk.Meta.Providers.CameraTree.Src
             return CameraProvider.GetCamera(platformPath, platform);
         }
 
-        private static TreeAltData GetAlt(CameraData camera)
+        private static string[] GetAltNames(CameraData camera)
         {
-            return camera != null
-                ? camera.Alt
-                : new TreeAltData();
+            return camera?.AltNames;
         }
 
         private static bool IsMultiCard(CameraData camera)

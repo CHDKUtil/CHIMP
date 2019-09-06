@@ -19,15 +19,13 @@ namespace Net.Chdk.Meta.Providers.Camera.Ps
         public override PsCameraData GetCamera(uint modelId, string platform, ListPlatformData list, TreePlatformData tree, string productName)
         {
             var camera = base.GetCamera(modelId, platform, list, tree, productName);
-            camera.Alt = GetAlt(platform, tree.Alt, productName);
+            camera.Alt = GetAlt(platform, tree.AltNames, productName);
             return camera;
         }
 
-        private AltData GetAlt(string platform, TreeAltData alt, string productName)
+        private AltData GetAlt(string platform, string[] altNames, string productName)
         {
-            return alt != null
-                ? AltProvider.GetAlt(platform, alt, productName)
-                : null;
+            return AltProvider.GetAlt(platform, altNames, productName);
         }
     }
 }

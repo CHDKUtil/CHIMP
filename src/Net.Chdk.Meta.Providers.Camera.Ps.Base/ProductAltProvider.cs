@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
 using Net.Chdk.Meta.Model.Camera.Ps;
-using Net.Chdk.Meta.Model.CameraTree;
 
 namespace Net.Chdk.Meta.Providers.Camera.Ps
 {
@@ -13,30 +12,19 @@ namespace Net.Chdk.Meta.Providers.Camera.Ps
             Logger = logger;
         }
 
-        public AltData GetAlt(string platform, TreeAltData tree)
+        public AltData GetAlt(string platform, string[] altNames)
         {
-            Validate(platform, tree);
-
-
             return new AltData
             {
-                Button = GetAltButton(platform, tree),
-                Buttons = GetAltButtons(platform, tree),
+                Button = GetAltButton(platform, altNames),
+                Buttons = GetAltButtons(platform, altNames),
             };
         }
 
         public abstract string ProductName { get; }
 
-        protected virtual void Validate(string platform, TreeAltData tree)
-        {
-            //Do nothing
-        }
+        protected abstract string[] GetAltButtons(string platform, string[] altNames);
 
-        protected virtual string[] GetAltButtons(string platform, TreeAltData tree)
-        {
-            return null;
-        }
-
-        protected abstract string GetAltButton(string platform, TreeAltData tree);
+        protected abstract string GetAltButton(string platform, string[] altNames);
     }
 }
