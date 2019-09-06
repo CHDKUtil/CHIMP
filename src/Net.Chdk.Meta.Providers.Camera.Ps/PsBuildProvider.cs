@@ -4,8 +4,9 @@ namespace Net.Chdk.Meta.Providers.Camera.Ps
 {
     sealed class PsBuildProvider : CategoryBuildProvider<PsCameraData, PsCameraModelData, PsCardData>
     {
-        public PsBuildProvider(IPsCameraProvider cameraProvider, IPsCameraModelProvider modelProvider, ICameraPlatformProvider platformProvider, ICameraValidator cameraValidator)
-            : base(cameraProvider, modelProvider, platformProvider, cameraValidator)
+        public PsBuildProvider(ICameraProvider<PsCameraData, PsCameraModelData, PsCardData> cameraProvider, ICameraModelProvider<PsCameraModelData> modelProvider,
+            ICameraPlatformProvider platformProvider, ICameraValidator cameraValidator)
+                : base(cameraProvider, modelProvider, platformProvider, cameraValidator)
         {
         }
 

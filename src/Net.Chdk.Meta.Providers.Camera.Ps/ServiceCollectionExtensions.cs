@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Net.Chdk.Meta.Model.Camera.Ps;
 
 namespace Net.Chdk.Meta.Providers.Camera.Ps
 {
@@ -8,8 +9,7 @@ namespace Net.Chdk.Meta.Providers.Camera.Ps
         {
             return serviceCollection
                 .AddSingleton<ICategoryBuildProvider, PsBuildProvider>()
-                .AddSingleton<IPsCameraProvider, PsCameraProvider>()
-                .AddSingleton<IPsCameraModelProvider, PsCameraModelProvider>()
+                .AddSingleton<ICameraProvider<PsCameraData, PsCameraModelData, PsCardData>, PsCameraProvider>()
                 .AddSingleton<ICategoryEncodingProvider, PsEncodingProvider>()
                 .AddSingleton<IAltProvider, AltProvider>();
         }

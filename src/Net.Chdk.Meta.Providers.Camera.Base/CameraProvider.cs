@@ -5,7 +5,7 @@ using Net.Chdk.Providers.Product;
 
 namespace Net.Chdk.Meta.Providers.Camera
 {
-    public abstract class CameraProvider<TCamera, TModel, TCard>
+    public abstract class CameraProvider<TCamera, TModel, TCard> : ICameraProvider<TCamera, TModel, TCard>
         where TCamera : CameraData<TCamera, TModel, TCard>, new()
         where TModel : CameraModelData
         where TCard : CardData

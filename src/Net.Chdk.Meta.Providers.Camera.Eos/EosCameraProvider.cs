@@ -3,7 +3,7 @@ using Net.Chdk.Providers.Product;
 
 namespace Net.Chdk.Meta.Providers.Camera.Eos
 {
-    sealed class EosCameraProvider : CameraProvider<EosCameraData, EosCameraModelData, EosCardData>, IEosCameraProvider
+    sealed class EosCameraProvider : CameraProvider<EosCameraData, EosCameraModelData, EosCardData>, ICameraProvider<EosCameraData, EosCameraModelData, EosCardData>
     {
         public EosCameraProvider(IProductProvider productProvider, IEncodingProvider encodingProvider, ICameraBootProvider bootProvider, ICameraCardProvider<EosCardData> cardProvider)
             : base(productProvider, encodingProvider, bootProvider, cardProvider)

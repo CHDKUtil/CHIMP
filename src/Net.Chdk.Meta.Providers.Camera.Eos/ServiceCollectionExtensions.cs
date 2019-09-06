@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Net.Chdk.Meta.Model.Camera.Eos;
 
 namespace Net.Chdk.Meta.Providers.Camera.Eos
 {
@@ -8,8 +9,7 @@ namespace Net.Chdk.Meta.Providers.Camera.Eos
         {
             return serviceCollection
                 .AddSingleton<ICategoryBuildProvider, EosBuildProvider>()
-                .AddSingleton<IEosCameraProvider, EosCameraProvider>()
-                .AddSingleton<IEosCameraModelProvider, EosCameraModelProvider>()
+                .AddSingleton<ICameraProvider<EosCameraData, EosCameraModelData, EosCardData>, EosCameraProvider>()
                 .AddSingleton<ICategoryEncodingProvider, EosEncodingProvider>();
         }
     }

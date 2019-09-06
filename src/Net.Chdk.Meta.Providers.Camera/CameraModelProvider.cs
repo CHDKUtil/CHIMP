@@ -4,19 +4,19 @@ using Net.Chdk.Meta.Model.CameraTree;
 
 namespace Net.Chdk.Meta.Providers.Camera
 {
-    public abstract class CameraModelProvider<TModel>
-        where TModel : CameraModelData, ICameraModelData, new() //TODO Reduntant ICameraModelData
+    sealed class CameraModelProvider<TModel> : ICameraModelProvider<TModel>
+        where TModel : CameraModelData, ICameraModelData, new()
     {
         private ICameraModelValidator ModelValidator { get; }
         private IRevisionProvider RevisionProvider { get; }
 
-        protected CameraModelProvider(ICameraModelValidator modelValidator, IRevisionProvider revisionProvider)
+        public CameraModelProvider(ICameraModelValidator modelValidator, IRevisionProvider revisionProvider)
         {
             ModelValidator = modelValidator;
             RevisionProvider = revisionProvider;
         }
 
-        public virtual TModel GetModel(string platform, string[] names, ListPlatformData list, TreePlatformData tree, string productName)
+        public TModel GetModel(string platform, string[] names, ListPlatformData list, TreePlatformData tree, string productName)
         {
             ModelValidator.Validate(platform, list, tree, productName);
             return new TModel
