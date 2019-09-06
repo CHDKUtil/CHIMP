@@ -1,0 +1,74 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <Description>CHIMP SDM software metadata generator</Description>
+    <RootNamespace>Net.Chdk.Meta.Providers.Software.Sdm</RootNamespace>
+    <AssemblyName>hash2sw</AssemblyName>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Version>0.1.0</Version>
+    <Product>CHIMP</Product>
+    <Authors>Dmitry Shechtman</Authors>
+    <Copyright>Copyright © 2017 Dmitry Shechtman</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <TreatSpecificWarningsAsErrors />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <TreatSpecificWarningsAsErrors />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Chimp.Logging.Extensions" Version="0.3.0-alpha" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="1.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.1.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="1.1.2" />
+    <PackageReference Include="Net.Chdk.Detectors.Software" Version="0.2.0-alpha" />
+    <PackageReference Include="Net.Chdk.Detectors.Software.Sdm" Version="0.4.0-alpha" />
+    <PackageReference Include="Net.Chdk.Encoders.Binary" Version="0.1.0-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Providers" Version="0.3.0-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Providers.Sdm" Version="0.3.0-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Providers.Software" Version="0.3.0-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Providers.Software.Sdm" Version="0.3.0-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Providers.Software.Zip" Version="0.3.0-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Writers.Software.Core" Version="0.2.0-alpha" />
+    <PackageReference Include="Net.Chdk.Meta.Writers.Software.Json" Version="0.2.0-alpha" />
+    <PackageReference Include="Net.Chdk.Providers.Boot" Version="0.3.1-alpha" />
+    <PackageReference Include="Net.Chdk.Providers.Camera" Version="0.5.0-alpha" />
+    <PackageReference Include="Net.Chdk.Providers.Crypto" Version="0.1.0-alpha" />
+    <PackageReference Include="Net.Chdk.Providers.Product" Version="0.4.0-alpha" />
+    <PackageReference Include="Net.Chdk.Providers.Software" Version="0.3.2-alpha" />
+    <PackageReference Include="Net.Chdk.Providers.Software.Sdm" Version="0.4.1-alpha" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Data\appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\Category\PS\boot.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\products.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\Product\SDM\builds.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\Product\SDM\compilers.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\Product\SDM\sources.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

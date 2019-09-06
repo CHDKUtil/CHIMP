@@ -1,0 +1,12 @@
+﻿[
+  {
+    "Name": "GCC",
+    "Platform": "arm-elf",
+    "Version": "3.4.6"
+  },
+  {
+    "Name": "GCC",
+    "Platform": "arm-none-eabi",
+    "Version": "4.9.3"
+  }
+]
