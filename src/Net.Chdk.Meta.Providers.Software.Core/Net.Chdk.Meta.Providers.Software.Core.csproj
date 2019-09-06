@@ -24,7 +24,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Net.Chdk.Model.Software" Version="0.2.1-alpha" />
+    <ProjectReference Include="..\Net.Chdk.Model.Software\Net.Chdk.Model.Software.csproj" />
   </ItemGroup>
 
 </Project>

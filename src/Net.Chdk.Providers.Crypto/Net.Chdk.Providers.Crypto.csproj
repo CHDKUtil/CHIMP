@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.0</TargetFramework>
-    <Description>CHIMP software metadata writer API</Description>
-    <RootNamespace>Net.Chdk.Meta.Writers.Software</RootNamespace>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <Description>CHIMP crypto providers</Description>
+    <RootNamespace>Net.Chdk.Providers.Crypto</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>0.4.0</Version>
+    <Version>0.2.0</Version>
     <VersionSuffix>alpha</VersionSuffix>
     <Product>CHIMP</Product>
     <Authors>Dmitry Shechtman</Authors>
@@ -25,7 +25,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Net.Chdk.Model.Software\Net.Chdk.Model.Software.csproj" />
+    <PackageReference Include="microsoft.extensions.dependencyinjection.abstractions" Version="1.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Net.Chdk.Providers.Crypto.Core\Net.Chdk.Providers.Crypto.Core.csproj" />
   </ItemGroup>
 
 </Project>

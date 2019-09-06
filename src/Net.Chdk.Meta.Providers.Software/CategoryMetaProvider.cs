@@ -1,6 +1,6 @@
 ﻿using Net.Chdk.Model.Category;
 using Net.Chdk.Model.Software;
-using Net.Chdk.Providers.Category;
+using Net.Chdk.Providers.Product;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,11 +10,19 @@ namespace Net.Chdk.Meta.Providers.Software
     {
         private Dictionary<string, CategoryInfo> Categories { get; }
 
-        public CategoryMetaProvider(ICategoryProvider categoryProvider)
+        public CategoryMetaProvider(IProductProvider productProvider)
         {
-            Categories = categoryProvider.GetCategories().ToDictionary(
-                c => c.Name,
-                c => c);
+            Categories = productProvider.GetCategoryNames().ToDictionary(
+                n => n,
+                CreateCategoryInfo);
+        }
+
+        private CategoryInfo CreateCategoryInfo(string name)
+        {
+            return new CategoryInfo
+            {
+                Name = name
+            };
         }
 
         public CategoryInfo GetCategory(SoftwareInfo software)

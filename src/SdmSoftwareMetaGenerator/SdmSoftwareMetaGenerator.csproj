@@ -35,12 +35,7 @@
     <PackageReference Include="Net.Chdk.Detectors.Software" Version="0.2.0-alpha" />
     <PackageReference Include="Net.Chdk.Detectors.Software.Sdm" Version="0.4.0-alpha" />
     <PackageReference Include="Net.Chdk.Encoders.Binary" Version="0.1.0-alpha" />
-    <PackageReference Include="Net.Chdk.Providers.Boot" Version="0.3.1-alpha" />
     <PackageReference Include="Net.Chdk.Providers.Camera" Version="0.5.0-alpha" />
-    <PackageReference Include="Net.Chdk.Providers.Crypto" Version="0.1.0-alpha" />
-    <PackageReference Include="Net.Chdk.Providers.Product" Version="0.4.0-alpha" />
-    <PackageReference Include="Net.Chdk.Providers.Software" Version="0.3.2-alpha" />
-    <PackageReference Include="Net.Chdk.Providers.Software.Sdm" Version="0.4.1-alpha" />
   </ItemGroup>
 
   <ItemGroup>
@@ -50,6 +45,11 @@
     <ProjectReference Include="..\Net.Chdk.Meta.Providers.Software\Net.Chdk.Meta.Providers.Software.csproj" />
     <ProjectReference Include="..\Net.Chdk.Meta.Providers\Net.Chdk.Meta.Providers.csproj" />
     <ProjectReference Include="..\Net.Chdk.Meta.Writers.Software.Json\Net.Chdk.Meta.Writers.Software.Json.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Providers.Boot\Net.Chdk.Providers.Boot.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Providers.Crypto\Net.Chdk.Providers.Crypto.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Providers.Product\Net.Chdk.Providers.Product.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Providers.Software.Sdm\Net.Chdk.Providers.Software.Sdm.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Providers.Software\Net.Chdk.Providers.Software.csproj" />
   </ItemGroup>
 
   <ItemGroup>
