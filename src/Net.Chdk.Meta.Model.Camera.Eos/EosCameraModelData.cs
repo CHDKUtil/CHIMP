@@ -2,7 +2,7 @@
 
 namespace Net.Chdk.Meta.Model.Camera.Eos
 {
-    public sealed class EosCameraModelData : CameraModelData<VersionData>
+    public sealed class EosCameraModelData : CameraModelData<EosCameraModelData, VersionData>
     {
         public IDictionary<string, VersionData> Versions { get; set; }
 

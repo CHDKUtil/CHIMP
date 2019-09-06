@@ -2,7 +2,7 @@
 
 namespace Net.Chdk.Meta.Model.Camera.Ps
 {
-    public sealed class PsCameraModelData : CameraModelData<RevisionData>
+    public sealed class PsCameraModelData : CameraModelData<PsCameraModelData, RevisionData>
     {
         public IDictionary<string, RevisionData> Revisions { get; set; }
 

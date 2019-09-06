@@ -5,7 +5,7 @@ using Net.Chdk.Providers.Product;
 
 namespace Net.Chdk.Meta.Providers.Camera.Ps
 {
-    sealed class PsCameraProvider : CameraProvider<PsCameraData, PsCameraModelData, PsCardData>
+    sealed class PsCameraProvider : CameraProvider<PsCameraData, PsCameraModelData, RevisionData, PsCardData>
     {
         private IAltProvider AltProvider { get; }
 

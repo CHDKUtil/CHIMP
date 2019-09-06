@@ -3,35 +3,33 @@ using System.Linq;
 
 namespace Net.Chdk.Meta.Model.Camera
 {
-    public abstract class CameraModelData : ICameraModelData
+    public abstract class CameraModelData<TModel, TRevision> : ICameraModelData<TModel, TRevision>, ICameraModelData
+        where TModel : CameraModelData<TModel, TRevision>
+        where TRevision : IRevisionData
     {
         public string[] Names { get; set; }
         public string Platform { get; set; }
 
         IDictionary<string, IRevisionData> ICameraModelData.Revisions
         {
-            get => GetRevisionsInternal();
-            set => SetRevisions(value);
+            get
+            {
+                return GetRevisions()
+                    .ToDictionary(kvp => kvp.Key, kvp => (IRevisionData)kvp.Value);
+            }
+
+            set
+            {
+                var revisions = value
+                    .ToDictionary(kvp => kvp.Key, kvp => (TRevision)kvp.Value);
+                SetRevisions(revisions);
+            }
         }
 
-        internal abstract IDictionary<string, IRevisionData> GetRevisionsInternal();
-        internal abstract void SetRevisions(IDictionary<string, IRevisionData> value);
-    }
-
-    public abstract class CameraModelData<TRevision> : CameraModelData
-        where TRevision : IRevisionData
-    {
-        internal sealed override IDictionary<string, IRevisionData> GetRevisionsInternal()
+        IDictionary<string, TRevision> ICameraModelData<TModel, TRevision>.Revisions
         {
-            return GetRevisions()
-                .ToDictionary(kvp => kvp.Key, kvp => (IRevisionData)kvp.Value);
-        }
-
-        internal sealed override void SetRevisions(IDictionary<string, IRevisionData> value)
-        {
-            var revisions = value
-                .ToDictionary(kvp => kvp.Key, kvp => (TRevision)kvp.Value);
-            SetRevisions(revisions);
+            get => GetRevisions();
+            set { SetRevisions(value); }
         }
 
         protected abstract IDictionary<string, TRevision> GetRevisions();

@@ -5,12 +5,12 @@ using Net.Chdk.Meta.Model.CameraTree;
 
 namespace Net.Chdk.Meta.Providers.Camera
 {
-    public abstract class ProductRevisionProvider<TRevision> : IProductRevisionProvider
-        where TRevision : IRevisionData, new()
+    public abstract class ProductRevisionProvider<TRevision> : IProductRevisionProvider<TRevision>
+        where TRevision : class, IRevisionData, new()
     {
-        public IDictionary<string, IRevisionData> GetRevisions(ListPlatformData list, TreePlatformData tree)
+        public IDictionary<string, TRevision> GetRevisions(ListPlatformData list, TreePlatformData tree)
         {
-            var revisions = new SortedDictionary<string, IRevisionData>();
+            var revisions = new SortedDictionary<string, TRevision>();
             foreach (var kvp in list.Revisions)
             {
                 var revision = GetRevision(kvp.Key, kvp.Value, list);
@@ -23,7 +23,7 @@ namespace Net.Chdk.Meta.Providers.Camera
             return revisions;
         }
 
-        protected virtual IRevisionData GetRevision(string revision, ListRevisionData listRevision, ListPlatformData list)
+        protected virtual TRevision GetRevision(string revision, ListRevisionData listRevision, ListPlatformData list)
         {
             var key = listRevision.Source?.Revision ?? revision;
             if (!list.Revisions.ContainsKey(key))
@@ -32,7 +32,7 @@ namespace Net.Chdk.Meta.Providers.Camera
             return GetRevision(key);
         }
 
-        protected IRevisionData GetRevision(string key)
+        protected TRevision GetRevision(string key)
         {
             return new TRevision
             {

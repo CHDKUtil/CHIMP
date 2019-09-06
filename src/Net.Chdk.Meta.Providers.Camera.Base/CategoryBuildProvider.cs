@@ -8,19 +8,20 @@ using System.Linq;
 
 namespace Net.Chdk.Meta.Providers.Camera
 {
-    public abstract class CategoryBuildProvider<TCamera, TModel, TCard> : ICategoryBuildProvider
-        where TCamera : CameraData<TCamera, TModel, TCard>
-        where TModel : CameraModelData
+    public abstract class CategoryBuildProvider<TCamera, TModel, TRevision, TCard> : ICategoryBuildProvider
+        where TCamera : CameraData<TCamera, TModel, TRevision, TCard>
+        where TModel : CameraModelData<TModel, TRevision>
+        where TRevision : IRevisionData
         where TCard : CardData
     {
-        private ICameraProvider<TCamera, TModel, TCard> CameraProvider { get; }
-        private ICameraModelProvider<TModel> ModelProvider { get; }
+        private ICameraProvider<TCamera, TModel, TRevision, TCard> CameraProvider { get; }
+        private ICameraModelProvider<TModel, TRevision> ModelProvider { get; }
         private ICameraPlatformProvider PlatformProvider { get; }
         private ICameraValidator CameraValidator { get; }
 
         public abstract string CategoryName { get; }
 
-        protected CategoryBuildProvider(ICameraProvider<TCamera, TModel, TCard> cameraProvider, ICameraModelProvider<TModel> modelProvider,
+        protected CategoryBuildProvider(ICameraProvider<TCamera, TModel, TRevision, TCard> cameraProvider, ICameraModelProvider<TModel, TRevision> modelProvider,
             ICameraPlatformProvider platformProvider, ICameraValidator cameraValidator)
         {
             CameraProvider = cameraProvider;

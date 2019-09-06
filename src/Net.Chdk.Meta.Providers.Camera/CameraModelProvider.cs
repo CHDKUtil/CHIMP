@@ -4,13 +4,14 @@ using Net.Chdk.Meta.Model.CameraTree;
 
 namespace Net.Chdk.Meta.Providers.Camera
 {
-    sealed class CameraModelProvider<TModel> : ICameraModelProvider<TModel>
-        where TModel : CameraModelData, ICameraModelData, new()
+    sealed class CameraModelProvider<TModel, TRevision> : ICameraModelProvider<TModel, TRevision>
+        where TModel : CameraModelData<TModel, TRevision>, ICameraModelData<TModel, TRevision>, new()
+        where TRevision : IRevisionData
     {
         private ICameraModelValidator ModelValidator { get; }
-        private IRevisionProvider RevisionProvider { get; }
+        private IRevisionProvider<TRevision> RevisionProvider { get; }
 
-        public CameraModelProvider(ICameraModelValidator modelValidator, IRevisionProvider revisionProvider)
+        public CameraModelProvider(ICameraModelValidator modelValidator, IRevisionProvider<TRevision> revisionProvider)
         {
             ModelValidator = modelValidator;
             RevisionProvider = revisionProvider;

@@ -9,12 +9,12 @@ namespace Net.Chdk.Meta.Providers.Camera
             return serviceCollection
                 .AddSingleton<IBuildProvider, BuildProvider>()
                 .AddSingleton<IEncodingProvider, EncodingProvider>()
-                .AddSingleton<IRevisionProvider, RevisionProvider>()
                 .AddSingleton<ICameraPlatformProvider, CameraPlatformProvider>()
                 .AddSingleton<ICameraBootProvider, CameraBootProvider>()
                 .AddSingleton<ICameraValidator, CameraValidator>()
                 .AddSingleton<ICameraModelValidator, CameraModelValidator>()
-                .AddSingleton(typeof(ICameraModelProvider<>), typeof(CameraModelProvider<>))
+                .AddSingleton(typeof(IRevisionProvider<>), typeof(RevisionProvider<>))
+                .AddSingleton(typeof(ICameraModelProvider<,>), typeof(CameraModelProvider<,>))
                 .AddSingleton(typeof(ICameraCardProvider<>), typeof(CameraCardProvider<>));
         }
     }

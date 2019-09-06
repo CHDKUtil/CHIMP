@@ -5,14 +5,15 @@ using System.Collections.Generic;
 
 namespace Net.Chdk.Meta.Providers.Camera
 {
-    sealed class RevisionProvider : SingleProductProvider<IProductRevisionProvider>, IRevisionProvider
+    sealed class RevisionProvider<TRevision> : SingleProductProvider<IProductRevisionProvider<TRevision>>, IRevisionProvider<TRevision>
+        where TRevision : IRevisionData
     {
-        public RevisionProvider(IEnumerable<IProductRevisionProvider> innerProviders)
+        public RevisionProvider(IEnumerable<IProductRevisionProvider<TRevision>> innerProviders)
             : base(innerProviders)
         {
         }
 
-        public IDictionary<string, IRevisionData> GetRevisions(string productName, ListPlatformData list, TreePlatformData tree)
+        public IDictionary<string, TRevision> GetRevisions(string productName, ListPlatformData list, TreePlatformData tree)
         {
             return GetInnerProvider(productName).GetRevisions(list, tree);
         }

@@ -5,8 +5,9 @@ using Net.Chdk.Meta.Model.CameraTree;
 
 namespace Net.Chdk.Meta.Providers.Camera
 {
-    public interface IRevisionProvider
+    public interface IRevisionProvider<TRevision>
+        where TRevision: IRevisionData
     {
-        IDictionary<string, IRevisionData> GetRevisions(string productName, ListPlatformData list, TreePlatformData tree);
+        IDictionary<string, TRevision> GetRevisions(string productName, ListPlatformData list, TreePlatformData tree);
     }
 }
