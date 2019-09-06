@@ -1,27 +1,27 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.0</TargetFramework>
-    <Description>CHIMP camera metadata providers</Description>
-    <RootNamespace>Net.Chdk.Meta.Providers.Camera</RootNamespace>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <Description>CHIMP product providers</Description>
+    <RootNamespace>Net.Chdk.Providers.Product</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>0.5.0</Version>
+    <Version>0.5.1</Version>
     <VersionSuffix>alpha</VersionSuffix>
-    <Product>CHIMP</Product>
     <Authors>Dmitry Shechtman</Authors>
+    <Product>CHIMP</Product>
     <Copyright>Copyright © 2017 Dmitry Shechtman</Copyright>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
-    <TreatSpecificWarningsAsErrors />
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
-    <TreatSpecificWarningsAsErrors />
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
   </PropertyGroup>
 
   <ItemGroup>
@@ -29,9 +29,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Net.Chdk.Meta.Providers.Base\Net.Chdk.Meta.Providers.Base.csproj" />
-    <ProjectReference Include="..\Net.Chdk.Meta.Providers.Camera.Core\Net.Chdk.Meta.Providers.Camera.Core.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Core\Net.Chdk.Core.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Providers.Base\Net.Chdk.Providers.Base.csproj" />
     <ProjectReference Include="..\Net.Chdk.Providers.Product.Core\Net.Chdk.Providers.Product.Core.csproj" />
   </ItemGroup>
-
+  
 </Project>

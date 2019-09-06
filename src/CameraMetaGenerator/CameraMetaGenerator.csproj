@@ -29,8 +29,6 @@
     <PackageReference Include="microsoft.extensions.dependencyinjection" Version="1.1.1" />
     <PackageReference Include="microsoft.extensions.logging" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.0.0" />
-    <PackageReference Include="Net.Chdk.Providers.Boot" Version="0.4.1-alpha" />
-    <PackageReference Include="Net.Chdk.Providers.Product" Version="0.5.1-alpha" />
   </ItemGroup>
 
   <ItemGroup>
@@ -60,6 +58,8 @@
     <ProjectReference Include="..\Net.Chdk.Meta.Writers.Camera.Json\Net.Chdk.Meta.Writers.Camera.Json.csproj" />
     <ProjectReference Include="..\Net.Chdk.Meta.Writers.Camera.Props\Net.Chdk.Meta.Writers.Camera.Props.csproj" />
     <ProjectReference Include="..\Net.Chdk.Meta.Writers.Camera\Net.Chdk.Meta.Writers.Camera.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Providers.Boot\Net.Chdk.Providers.Boot.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Providers.Product\Net.Chdk.Providers.Product.csproj" />
   </ItemGroup>
 
   <ItemGroup>

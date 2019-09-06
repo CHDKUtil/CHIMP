@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.1</TargetFramework>
-    <Description>CHIMP camera metadata base providers</Description>
-    <RootNamespace>Net.Chdk.Meta.Providers.Camera</RootNamespace>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <Description>CHIMP boot/script providers</Description>
+    <RootNamespace>Net.Chdk.Providers.Boot</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>0.5.0</Version>
+    <Version>0.4.1</Version>
     <VersionSuffix>alpha</VersionSuffix>
     <Product>CHIMP</Product>
     <Authors>Dmitry Shechtman</Authors>
@@ -25,11 +25,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="microsoft.extensions.logging.abstractions" Version="1.1.2" />
+    <PackageReference Include="microsoft.extensions.dependencyinjection.abstractions" Version="1.1.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Net.Chdk.Meta.Providers.Camera.Core\Net.Chdk.Meta.Providers.Camera.Core.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Core\Net.Chdk.Core.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Json\Net.Chdk.Json.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Providers.Base\Net.Chdk.Providers.Base.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Providers.Boot.Core\Net.Chdk.Providers.Boot.Core.csproj" />
     <ProjectReference Include="..\Net.Chdk.Providers.Product.Core\Net.Chdk.Providers.Product.Core.csproj" />
   </ItemGroup>
 

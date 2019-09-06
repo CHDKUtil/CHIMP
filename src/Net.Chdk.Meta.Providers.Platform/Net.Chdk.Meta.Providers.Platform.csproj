@@ -26,10 +26,10 @@
 
   <ItemGroup>
     <PackageReference Include="microsoft.extensions.dependencyinjection.abstractions" Version="1.1.1" />
-    <PackageReference Include="Net.Chdk.Core" Version="0.4.0-alpha" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Net.Chdk.Core\Net.Chdk.Core.csproj" />
     <ProjectReference Include="..\Net.Chdk.Meta.Generators.Platform.Core\Net.Chdk.Meta.Generators.Platform.Core.csproj" />
     <ProjectReference Include="..\Net.Chdk.Meta.Providers.Base\Net.Chdk.Meta.Providers.Base.csproj" />
     <ProjectReference Include="..\Net.Chdk.Meta.Providers.Platform.Core\Net.Chdk.Meta.Providers.Platform.Core.csproj" />

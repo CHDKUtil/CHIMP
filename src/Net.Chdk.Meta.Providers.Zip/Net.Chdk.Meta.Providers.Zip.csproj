@@ -26,9 +26,12 @@
 
   <ItemGroup>
     <PackageReference Include="microsoft.extensions.logging.abstractions" Version="1.1.2" />
-    <PackageReference Include="Net.Chdk.Providers.Boot.Core" Version="0.1.1-alpha" />
-    <PackageReference Include="Net.Chdk.Providers.Product.Core" Version="0.2.1-alpha" />
     <PackageReference Include="SharpZipLib.NETStandard" Version="0.86.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Net.Chdk.Providers.Boot.Core\Net.Chdk.Providers.Boot.Core.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Providers.Product.Core\Net.Chdk.Providers.Product.Core.csproj" />
   </ItemGroup>
 
 </Project>
