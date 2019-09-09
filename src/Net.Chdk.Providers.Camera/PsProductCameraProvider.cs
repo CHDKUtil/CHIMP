@@ -1,27 +1,21 @@
 ﻿using Microsoft.Extensions.Logging;
 using Net.Chdk.Meta.Model.Camera.Ps;
 using Net.Chdk.Model.Camera;
-using Net.Chdk.Model.CameraModel;
 using Net.Chdk.Model.Software;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Net.Chdk.Providers.Camera
 {
-    sealed class PsProductCameraProvider : ProductCameraProvider<PsCameraData, PsCameraModelData, PsCardData, PsReverseCameraData, RevisionData, uint>
+    sealed class PsProductCameraProvider : ProductCameraProvider<PsCameraData, PsCameraModelData, RevisionData, PsCardData>
     {
         public PsProductCameraProvider(string productName, ILoggerFactory loggerFactory)
             : base(productName, loggerFactory.CreateLogger<PsProductCameraProvider>())
         {
         }
 
-        protected override string GetRevision(CameraInfo cameraInfo, PsCameraModelData model)
+        protected override string GetRevision(CameraInfo cameraInfo)
         {
-            var revisionStr = $"0x{cameraInfo.Canon.FirmwareRevision:x}";
-            return model.Revisions.TryGetValue(revisionStr, out RevisionData revision)
-                ? revision.Revision
-                : null;
+            return GetFirmwareRevision(cameraInfo.Canon.FirmwareRevision);
         }
 
         protected override bool IsInvalid(CameraInfo cameraInfo)
@@ -29,32 +23,9 @@ namespace Net.Chdk.Providers.Camera
             return cameraInfo.Canon?.ModelId == null || cameraInfo.Canon?.FirmwareRevision == 0;
         }
 
-        protected override CanonInfo CreateCanonInfo(PsReverseCameraData camera, uint revision)
+        protected override bool IsMultiPartition(PsCameraData camera)
         {
-            return new CanonInfo
-            {
-                ModelId = camera.ModelId,
-                FirmwareRevision = revision
-            };
-        }
-
-        protected override bool GetCamera(PsReverseCameraData reverse, SoftwareCameraInfo camera, out uint revision)
-        {
-            return reverse.Revisions.TryGetValue(camera.Revision, out revision);
-        }
-
-        protected override PsReverseCameraData CreateReverseCamera(string key, PsCameraData camera, PsCameraModelData model)
-        {
-            var reverse = base.CreateReverseCamera(key, camera, model);
-            reverse.Revisions = GetRevisions(model);
-            return reverse;
-        }
-
-        protected override CameraModelsInfo GetCameraModels(PsCameraData camera, CameraModelInfo[] models)
-        {
-            var cameraModels = base.GetCameraModels(camera, models);
-            cameraModels.IsMultiPartition = camera.Card?.Multi == true;
-            return cameraModels;
+            return camera.Card?.Multi == true;
         }
 
         protected override SoftwareEncodingInfo GetEncoding(PsCameraData camera)
@@ -75,21 +46,16 @@ namespace Net.Chdk.Providers.Camera
             };
         }
 
-        private static Dictionary<string, uint> GetRevisions(PsCameraModelData model)
+        protected override uint GetFirmwareRevision(string revision)
         {
-            return model.Revisions.ToDictionary(GetKey, GetValue);
+            return
+                (uint)(revision[0] - 0x30 << 24) +
+                (uint)((revision[1] - 0x30) << 20) +
+                (uint)((revision[2] - 0x30) << 16) +
+                (uint)((revision[3] - 0x60) << 8);
         }
 
-        private static string GetKey(KeyValuePair<string, RevisionData> kvp)
-        {
-            var revision = GetValue(kvp);
-            return GetFirmwareRevision(revision);
-        }
-
-        private static uint GetValue(KeyValuePair<string, RevisionData> kvp)
-        {
-            return Convert.ToUInt32(kvp.Key, 16);
-        }
+        protected override Version GetFirmwareVersion(string revision) => null;
 
         private static string GetFirmwareRevision(uint revision)
         {

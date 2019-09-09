@@ -2,7 +2,7 @@
 
 namespace Net.Chdk.Providers.Camera
 {
-    abstract class ReverseCameraData
+    sealed class ReverseCameraData
     {
         public string[] Models { get; set; }
         public uint ModelId { get; set; }

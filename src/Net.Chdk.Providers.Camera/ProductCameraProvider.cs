@@ -10,12 +10,11 @@ using System.Linq;
 
 namespace Net.Chdk.Providers.Camera
 {
-    abstract class ProductCameraProvider<TCamera, TModel, TCard, TReverse, TRevision, TVersion> : DataProvider<Dictionary<string, TCamera>>, IProductCameraProvider
+    abstract class ProductCameraProvider<TCamera, TModel, TRevision, TCard> : DataProvider<Dictionary<string, TCamera>>, IProductCameraProvider
         where TCamera : CameraData<TCamera, TModel, TRevision, TCard>
         where TModel : CameraModelData<TModel, TRevision>
         where TCard : CardData
         where TRevision : IRevisionData
-        where TReverse : ReverseCameraData, new()
     {
         private const string DataFileName = "cameras.json";
 
@@ -25,7 +24,7 @@ namespace Net.Chdk.Providers.Camera
             : base(logger)
         {
             ProductName = productName;
-            _reverseCameras = new Lazy<Dictionary<string, TReverse>>(GetReverseCameras);
+            _reverseCameras = new Lazy<Dictionary<string, ReverseCameraData>>(GetReverseCameras);
         }
 
         public SoftwareCameraInfo GetCamera(CameraInfo cameraInfo, CameraModelInfo cameraModelInfo)
@@ -41,22 +40,22 @@ namespace Net.Chdk.Providers.Camera
             return new SoftwareCameraInfo
             {
                 Platform = model.Platform,
-                Revision = GetRevision(cameraInfo, model),
+                Revision = GetRevision(cameraInfo),
             };
         }
 
-        protected abstract string GetRevision(CameraInfo cameraInfo, TModel model);
+        protected abstract string GetRevision(CameraInfo cameraInfo);
 
         public SoftwareEncodingInfo GetEncoding(SoftwareCameraInfo cameraInfo)
         {
-            return GetCameraModel(cameraInfo, out TReverse camera)
+            return GetCameraModel(cameraInfo, out ReverseCameraData camera)
                 ? camera.Encoding
                 : null;
         }
 
         public AltInfo GetAlt(SoftwareCameraInfo cameraInfo)
         {
-            return GetCameraModel(cameraInfo, out TReverse reverse)
+            return GetCameraModel(cameraInfo, out ReverseCameraData reverse)
                 ? reverse.Alt
                 : null;
         }
@@ -78,7 +77,7 @@ namespace Net.Chdk.Providers.Camera
             return GetCameraModels(camera, models);
         }
 
-        protected virtual CameraModelsInfo GetCameraModels(TCamera camera, CameraModelInfo[] models)
+        private CameraModelsInfo GetCameraModels(TCamera camera, CameraModelInfo[] models)
         {
             return new CameraModelsInfo
             {
@@ -86,21 +85,19 @@ namespace Net.Chdk.Providers.Camera
                 CardType = camera.Card?.Type,
                 CardSubtype = camera.Card?.Subtype,
                 BootFileSystem = camera.Boot?.Fs,
+                IsMultiPartition = IsMultiPartition(camera),
             };
         }
 
         public CameraModelsInfo GetCameraModels(SoftwareCameraInfo camera)
         {
-            if (!GetCameraModel(camera, out TReverse reverse))
+            if (!GetCameraModel(camera, out ReverseCameraData reverse))
                 return null;
 
-            if (!GetCamera(reverse, camera, out TVersion version))
-                return null;
-
-            return GetCameraModels(reverse, version);
+            return GetCameraModels(reverse, camera.Revision);
         }
 
-        protected virtual CameraModelsInfo GetCameraModels(TReverse camera, TVersion version)
+        private CameraModelsInfo GetCameraModels(ReverseCameraData camera, string version)
         {
             return new CameraModelsInfo
             {
@@ -119,11 +116,7 @@ namespace Net.Chdk.Providers.Camera
             };
         }
 
-        protected abstract bool IsInvalid(CameraInfo cameraInfo);
-
-        protected abstract CanonInfo CreateCanonInfo(TReverse camera, TVersion version);
-
-        private static BaseInfo CreateBaseInfo(TReverse camera)
+        private static BaseInfo CreateBaseInfo(ReverseCameraData camera)
         {
             return new BaseInfo
             {
@@ -132,7 +125,15 @@ namespace Net.Chdk.Providers.Camera
             };
         }
 
-        protected abstract bool GetCamera(TReverse reverse, SoftwareCameraInfo camera, out TVersion version);
+        private CanonInfo CreateCanonInfo(ReverseCameraData camera, string revision)
+        {
+            return new CanonInfo
+            {
+                ModelId = camera.ModelId,
+                FirmwareRevision = GetFirmwareRevision(revision),
+                FirmwareVersion = GetFirmwareVersion(revision),
+            };
+        }
 
         private TCamera GetCamera(CameraInfo cameraInfo)
         {
@@ -146,7 +147,7 @@ namespace Net.Chdk.Providers.Camera
             return camera;
         }
 
-        protected bool GetCameraModel(SoftwareCameraInfo camera, out TReverse reverse)
+        protected bool GetCameraModel(SoftwareCameraInfo camera, out ReverseCameraData reverse)
         {
             reverse = null;
 
@@ -161,29 +162,37 @@ namespace Net.Chdk.Providers.Camera
             return Path.Combine(Directories.Data, Directories.Product, ProductName, DataFileName);
         }
 
+        protected abstract bool IsInvalid(CameraInfo cameraInfo);
+
+        protected abstract bool IsMultiPartition(TCamera camera);
+
+        protected abstract uint GetFirmwareRevision(string revision);
+
+        protected abstract Version GetFirmwareVersion(string revision);
+
         #region ReverseCameras
 
-        private readonly Lazy<Dictionary<string, TReverse>> _reverseCameras;
+        private readonly Lazy<Dictionary<string, ReverseCameraData>> _reverseCameras;
 
-        private Dictionary<string, TReverse> ReverseCameras => _reverseCameras.Value;
+        private Dictionary<string, ReverseCameraData> ReverseCameras => _reverseCameras.Value;
 
-        private Dictionary<string, TReverse> GetReverseCameras()
+        private Dictionary<string, ReverseCameraData> GetReverseCameras()
         {
-            var reverseCameras = new Dictionary<string, TReverse>();
+            var reverseCameras = new Dictionary<string, ReverseCameraData>();
             foreach (var kvp in Data)
             {
                 foreach (var model in kvp.Value.Models)
                 {
-                    var camera = CreateReverseCamera(kvp.Key, kvp.Value, model);
+                    var camera = GetReverseCamera(kvp.Key, kvp.Value, model);
                     reverseCameras.Add(model.Platform, camera);
                 }
             }
             return reverseCameras;
         }
 
-        protected virtual TReverse CreateReverseCamera(string key, TCamera camera, TModel model)
+        private ReverseCameraData GetReverseCamera(string key, TCamera camera, TModel model)
         {
-            return new TReverse
+            return new ReverseCameraData
             {
                 ModelId = Convert.ToUInt32(key, 16),
                 Encoding = GetEncoding(camera),

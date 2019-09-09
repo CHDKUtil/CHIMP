@@ -3,24 +3,20 @@ using Net.Chdk.Meta.Model.Camera.Eos;
 using Net.Chdk.Model.Camera;
 using Net.Chdk.Model.Software;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Net.Chdk.Providers.Camera
 {
-    sealed class EosProductCameraProvider : ProductCameraProvider<EosCameraData, EosCameraModelData, EosCardData, EosReverseCameraData, VersionData, Version>
+    sealed class EosProductCameraProvider : ProductCameraProvider<EosCameraData, EosCameraModelData, VersionData, EosCardData>
     {
         public EosProductCameraProvider(string productName, ILoggerFactory loggerFactory)
             : base(productName, loggerFactory.CreateLogger<EosProductCameraProvider>())
         {
         }
 
-        protected override string GetRevision(CameraInfo cameraInfo, EosCameraModelData model)
+        protected override string GetRevision(CameraInfo cameraInfo)
         {
-            var versionStr = cameraInfo.Canon.FirmwareVersion.ToString();
-            return model.Versions.TryGetValue(versionStr, out VersionData version)
-                ? version.Version
-                : null;
+            var version = cameraInfo.Canon.FirmwareVersion;
+            return $"{version.Major}{version.Minor}{version.Build}";
         }
 
         protected override bool IsInvalid(CameraInfo cameraInfo)
@@ -28,25 +24,9 @@ namespace Net.Chdk.Providers.Camera
             return cameraInfo.Canon?.ModelId == null || cameraInfo.Canon?.FirmwareVersion == null;
         }
 
-        protected override CanonInfo CreateCanonInfo(EosReverseCameraData camera, Version version)
+        protected override bool IsMultiPartition(EosCameraData camera)
         {
-            return new CanonInfo
-            {
-                ModelId = camera.ModelId,
-                FirmwareVersion = version
-            };
-        }
-
-        protected override bool GetCamera(EosReverseCameraData reverse, SoftwareCameraInfo camera, out Version version)
-        {
-            return reverse.Versions.TryGetValue(camera.Revision, out version);
-        }
-
-        protected override EosReverseCameraData CreateReverseCamera(string key, EosCameraData camera, EosCameraModelData model)
-        {
-            var reverse = base.CreateReverseCamera(key, camera, model);
-            reverse.Versions = GetVersions(model);
-            return reverse;
+            return false;
         }
 
         protected override SoftwareEncodingInfo GetEncoding(EosCameraData camera)
@@ -59,19 +39,12 @@ namespace Net.Chdk.Providers.Camera
             return AltInfo.Empty;
         }
 
-        private static Dictionary<string, Version> GetVersions(EosCameraModelData model)
-        {
-            return model.Versions.ToDictionary(GetKey, GetValue);
-        }
+        protected override uint GetFirmwareRevision(string revision) => 0;
 
-        private static string GetKey(KeyValuePair<string, VersionData> kvp)
+        protected override Version GetFirmwareVersion(string revision)
         {
-            return kvp.Value.Version;
-        }
-
-        private static Version GetValue(KeyValuePair<string, VersionData> kvp)
-        {
-            return Version.Parse(kvp.Key);
+            string version = $"{revision[0]}.{revision[1]}.{revision[2]}";
+            return Version.Parse(version);
         }
     }
 }
