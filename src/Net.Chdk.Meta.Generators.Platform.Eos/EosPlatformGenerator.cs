@@ -5,6 +5,8 @@ namespace Net.Chdk.Meta.Generators.Platform.Eos
 {
     sealed class EosPlatformGenerator : InnerPlatformGenerator
     {
+        private static readonly string[] PsEosModels = new[] { "M3", "M5", "M6", "M10", "M100" };
+
         public override string GetPlatform(string[] models)
         {
             if (models[0].Contains("Rebel"))
@@ -27,11 +29,13 @@ namespace Net.Chdk.Meta.Generators.Platform.Eos
             if (!Keyword.Equals(split[0]))
                 return null;
 
-            if (split[1].Equals("M"))
-                return new[] { "EOSM" };
-
-            if (split[1].StartsWith("M"))
-                return null;
+            var model = split[1];
+            if (model.StartsWith("M"))
+            {
+                if (PsEosModels.Contains(model))
+                    return null;
+                split[1] = $"EOS{model}";
+            }
 
             split = AdaptMark(split);
 
