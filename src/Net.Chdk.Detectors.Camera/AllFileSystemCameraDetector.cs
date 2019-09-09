@@ -15,6 +15,8 @@ namespace Net.Chdk.Detectors.Camera
             "*.JPG",
             "*.THM",
             "*.CR2",
+            "*.CR3",
+            "*.CRM",
         };
 
         public override string PatternsDescription => "CompatibleImages";

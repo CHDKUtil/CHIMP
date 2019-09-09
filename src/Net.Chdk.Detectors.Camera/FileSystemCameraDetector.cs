@@ -17,6 +17,10 @@ namespace Net.Chdk.Detectors.Camera
             "MVI_????.THM",
             "IMG_????.CR2",
             "_MG_????.CR2",
+            "IMG_????.CR3",
+            "_MG_????.CR3",
+            "MVI_????.CRM",
+            "_VI_????.CRM",
         };
 
         public override string PatternsDescription => "CanonImages";
