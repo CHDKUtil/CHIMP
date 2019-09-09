@@ -169,10 +169,6 @@
   <data name="Intro_Message_Text" xml:space="preserve">
     <value>Данная программа устанавливает стороннее ПО на фотоаппараты Canon.</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="intro_tips" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\intro_tips_ru.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
   <data name="Intro_Welcome_Format" xml:space="preserve">
     <value>Вас приветствует {0}</value>
   </data>
@@ -633,5 +629,9 @@
   </data>
   <data name="Summary_SDM_UserManual_Url" xml:space="preserve">
     <value>http://sdm.camera/sdm/documentation/SDM_User_Manual.pdf</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="intro_tips" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\intro_tips_ru.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>

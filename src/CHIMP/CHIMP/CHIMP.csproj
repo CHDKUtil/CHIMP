@@ -615,7 +615,7 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Resources\intro_tips_ru.txt" />
+    <None Include="Resources\intro_tips_ru.json" />
     <EmbeddedResource Include="Properties\Resources.fr.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -728,8 +728,8 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Content Include="Resources\intro_tips_fr.txt" />
-    <Content Include="Resources\intro_tips.txt" />
+    <None Include="Resources\intro_tips_fr.json" />
+    <None Include="Resources\intro_tips.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

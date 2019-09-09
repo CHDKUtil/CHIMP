@@ -266,10 +266,6 @@
   <data name="Camera_Title_Detected_Text" xml:space="preserve">
     <value>Camera Detected</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="intro_tips" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\intro_tips.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
   <data name="Card_Select_Title_Text" xml:space="preserve">
     <value>Select Card Drive</value>
   </data>
@@ -697,5 +693,9 @@ To continue, click OK. To quit, click CANCEL.</value>
   </data>
   <data name="Summary_AltMode_Playback_Text" xml:space="preserve">
     <value>In order to switch to Playback mode, hold the Playback button for 1 sec.</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="intro_tips" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\intro_tips.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>
