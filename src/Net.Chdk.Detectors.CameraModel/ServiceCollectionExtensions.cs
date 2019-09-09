@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System;
 
 namespace Net.Chdk.Detectors.CameraModel
 {
@@ -11,13 +10,6 @@ namespace Net.Chdk.Detectors.CameraModel
                 .AddSingleton<ICameraModelDetector, CameraModelDetector>()
                 .AddSingleton<IOuterCameraModelDetector, SoftwareCameraModelDetector>()
                 .AddSingleton<IOuterCameraModelDetector, DerivedCameraModelDetector>();
-        }
-
-        [Obsolete]
-        public static IServiceCollection AddMetadataCameraModelDetector(this IServiceCollection serviceCollection)
-        {
-            return serviceCollection
-                .AddSingleton<IInnerCameraModelDetector, MetadataCameraModelDetector>();
         }
 
         public static IServiceCollection AddFileSystemCameraModelDetector(this IServiceCollection serviceCollection)
