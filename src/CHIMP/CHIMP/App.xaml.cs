@@ -167,7 +167,7 @@ namespace Chimp
                 .AddHashProvider()
                 .AddSourceProvider()
                 .AddChdkSourceProvider()
-                .AddSdmSourceProvider()
+                //.AddSdmSourceProvider()
                 .AddMlSourceProvider()
                 .AddSoftwareHashProvider()
                 .AddCameraProvider()
