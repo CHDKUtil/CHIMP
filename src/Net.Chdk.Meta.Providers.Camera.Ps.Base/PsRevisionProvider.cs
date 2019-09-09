@@ -2,7 +2,7 @@
 
 namespace Net.Chdk.Meta.Providers.Camera.Ps
 {
-    public abstract class PsRevisionProvider : ProductRevisionProvider<RevisionData>
+    public abstract class PsRevisionProvider : ProductRevisionProvider<PsRevisionData>
     {
         protected override string GetRevisionKey(string revisionStr)
         {

@@ -2,12 +2,12 @@
 
 namespace Net.Chdk.Meta.Model.Camera.Eos
 {
-    public sealed class EosCameraModelData : CameraModelData<EosCameraModelData, VersionData>
+    public sealed class EosCameraModelData : CameraModelData<EosCameraModelData, EosRevisionData>
     {
-        public IDictionary<string, VersionData> Versions { get; set; }
+        public IDictionary<string, EosRevisionData> Versions { get; set; }
 
-        protected override IDictionary<string, VersionData> GetRevisions() => Versions;
+        protected override IDictionary<string, EosRevisionData> GetRevisions() => Versions;
 
-        protected override void SetRevisions(IDictionary<string, VersionData> value) => Versions = value;
+        protected override void SetRevisions(IDictionary<string, EosRevisionData> value) => Versions = value;
     }
 }

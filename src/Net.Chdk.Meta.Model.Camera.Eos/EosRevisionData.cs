@@ -1,6 +1,6 @@
 ﻿namespace Net.Chdk.Meta.Model.Camera.Eos
 {
-    public sealed class VersionData : IRevisionData
+    public sealed class EosRevisionData : IRevisionData
     {
         public string Version { get; set; }
 

@@ -2,9 +2,9 @@
 
 namespace Net.Chdk.Meta.Providers.Camera.Eos
 {
-    sealed class EosBuildProvider : CategoryBuildProvider<EosCameraData, EosCameraModelData, VersionData, EosCardData>
+    sealed class EosBuildProvider : CategoryBuildProvider<EosCameraData, EosCameraModelData, EosRevisionData, EosCardData>
     {
-        public EosBuildProvider(ICameraProvider<EosCameraData, EosCameraModelData, VersionData, EosCardData> cameraProvider, ICameraModelProvider<EosCameraModelData, VersionData> modelProvider,
+        public EosBuildProvider(ICameraProvider<EosCameraData, EosCameraModelData, EosRevisionData, EosCardData> cameraProvider, ICameraModelProvider<EosCameraModelData, EosRevisionData> modelProvider,
             ICameraPlatformProvider platformProvider, ICameraValidator cameraValidator)
                 : base(cameraProvider, modelProvider, platformProvider, cameraValidator)
         {

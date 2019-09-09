@@ -9,7 +9,7 @@ namespace Net.Chdk.Meta.Providers.Camera.Eos
         {
             return serviceCollection
                 .AddSingleton<ICategoryBuildProvider, EosBuildProvider>()
-                .AddSingleton<ICameraProvider<EosCameraData, EosCameraModelData, VersionData, EosCardData>, EosCameraProvider>();
+                .AddSingleton<ICameraProvider<EosCameraData, EosCameraModelData, EosRevisionData, EosCardData>, EosCameraProvider>();
         }
     }
 }

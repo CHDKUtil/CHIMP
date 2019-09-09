@@ -2,7 +2,7 @@
 
 namespace Net.Chdk.Meta.Providers.Camera.Eos
 {
-    public abstract class EosRevisionProvider : ProductRevisionProvider<VersionData>
+    public abstract class EosRevisionProvider : ProductRevisionProvider<EosRevisionData>
     {
         protected override string GetRevisionKey(string versionStr)
         {

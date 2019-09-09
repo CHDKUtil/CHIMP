@@ -9,7 +9,7 @@ namespace Net.Chdk.Meta.Providers.Camera.Ps
         {
             return serviceCollection
                 .AddSingleton<ICategoryBuildProvider, PsBuildProvider>()
-                .AddSingleton<ICameraProvider<PsCameraData, PsCameraModelData, RevisionData, PsCardData>, PsCameraProvider>()
+                .AddSingleton<ICameraProvider<PsCameraData, PsCameraModelData, PsRevisionData, PsCardData>, PsCameraProvider>()
                 .AddSingleton<IEncodingProvider, EncodingProvider>()
                 .AddSingleton<IAltProvider, AltProvider>();
         }

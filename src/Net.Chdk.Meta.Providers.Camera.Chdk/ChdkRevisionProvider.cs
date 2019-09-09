@@ -8,7 +8,7 @@ namespace Net.Chdk.Meta.Providers.Camera.Chdk
     {
         public override string ProductName => "CHDK";
 
-        protected override RevisionData GetRevision(string revision, ListRevisionData listRevision, ListPlatformData list)
+        protected override PsRevisionData GetRevision(string revision, ListRevisionData listRevision, ListPlatformData list)
         {
             return GetRevision(revision);
         }

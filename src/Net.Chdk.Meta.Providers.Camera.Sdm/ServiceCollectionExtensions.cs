@@ -10,7 +10,7 @@ namespace Net.Chdk.Meta.Providers.Camera.Sdm
         {
             return serviceCollection
                 .AddSingleton<IProductAltProvider, SdmAltProvider>()
-                .AddSingleton<IProductRevisionProvider<RevisionData>, SdmRevisionProvider>()
+                .AddSingleton<IProductRevisionProvider<PsRevisionData>, SdmRevisionProvider>()
                 .AddSingleton<IProductCameraCardProvider<PsCardData>, SdmCameraCardProvider>()
                 .AddSingleton<IProductCameraPlatformProvider, SdmCameraPlatformProvider>()
                 .AddSingleton<IProductCameraBootProvider, SdmCameraBootProvider>()
