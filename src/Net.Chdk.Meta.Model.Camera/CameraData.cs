@@ -9,7 +9,6 @@ namespace Net.Chdk.Meta.Model.Camera
         where TCard : CardData
     {
         public TModel[] Models { get; set; }
-        public EncodingData Encoding { get; set; }
         public TCard Card { get; set; }
         public BootData Boot { get; set; }
 

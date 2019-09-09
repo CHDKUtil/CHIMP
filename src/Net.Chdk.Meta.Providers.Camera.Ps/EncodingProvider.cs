@@ -1,4 +1,4 @@
-﻿using Net.Chdk.Meta.Model.Camera;
+﻿using Net.Chdk.Meta.Model.Camera.Ps;
 using Net.Chdk.Providers.Boot;
 using System;
 
