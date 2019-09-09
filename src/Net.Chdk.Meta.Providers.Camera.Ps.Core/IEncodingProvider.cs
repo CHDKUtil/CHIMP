@@ -1,8 +1,8 @@
 ﻿using Net.Chdk.Meta.Model.Camera;
 
-namespace Net.Chdk.Meta.Providers.Camera
+namespace Net.Chdk.Meta.Providers.Camera.Ps
 {
-    public interface ICategoryEncodingProvider : ICategoryNameProvider
+    public interface IEncodingProvider
     {
         EncodingData GetEncoding(string platform, uint version);
     }
