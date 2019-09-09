@@ -160,7 +160,7 @@
     <value>Modèle d'appareil non trouvé</value>
   </data>
   <data name="MessageBox_Abort_Text" xml:space="preserve">
-  <value>Voulez-vous abandonner l'installation?</value>
+    <value>Voulez-vous abandonner l'installation?</value>
   </data>
   <data name="Summary_Aborted_Title_Text" xml:space="preserve">
     <value>Installation interrompue</value>
@@ -273,7 +273,7 @@
     <value>Choisir Action</value>
   </data>
   <data name="Step_Software_Text" xml:space="preserve">
-   <value>Détection logiciel</value>
+    <value>Détection logiciel</value>
   </data>
   <data name="Summary_AltMode_Format" xml:space="preserve">
     <value>Presser la touche {0} pour entrer dans le mode ALT {1}.</value>
@@ -323,6 +323,9 @@
   </data>
   <data name="Camera_CanonImages_Text" xml:space="preserve">
     <value>Images Canon</value>
+  </data>
+  <data name="Camera_CompatibleImages_Text" xml:space="preserve">
+    <value>Images compatibles</value>
   </data>
   <data name="Camera_SelectImage_Text" xml:space="preserve">
     <value>Choisir une Image</value>

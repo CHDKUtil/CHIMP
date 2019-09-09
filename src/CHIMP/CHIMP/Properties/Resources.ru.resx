@@ -374,6 +374,9 @@
   <data name="Camera_CanonImages_Text" xml:space="preserve">
     <value>Изображения Canon</value>
   </data>
+  <data name="Camera_CompatibleImages_Text" xml:space="preserve">
+    <value>Совместимые изображения</value>
+  </data>
   <data name="Camera_FirmwareVersion_Content" xml:space="preserve">
     <value>Версия прошивки</value>
   </data>

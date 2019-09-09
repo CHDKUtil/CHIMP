@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <Description>CHIMP software detectors</Description>
+    <RootNamespace>Net.Chdk.Detectors.Software</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Version>0.2.0</Version>
+    <VersionSuffix>alpha</VersionSuffix>
+    <Product>CHIMP</Product>
+    <Authors>Dmitry Shechtman</Authors>
+    <Copyright>Copyright © 2017 Dmitry Shechtman</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <TreatSpecificWarningsAsErrors />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <TreatSpecificWarningsAsErrors />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="microsoft.extensions.dependencyinjection.abstractions" Version="1.1.1" />
+    <PackageReference Include="microsoft.extensions.logging.abstractions" Version="1.1.2" />
+    <PackageReference Include="microsoft.extensions.options" Version="1.1.2" />
+    <PackageReference Include="System.Threading.Thread" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Net.Chdk.Detectors.Base\Net.Chdk.Detectors.Base.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Detectors.Software.Core\Net.Chdk.Detectors.Software.Core.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Encoders.Binary.Core\Net.Chdk.Encoders.Binary.Core.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Providers.Boot.Core\Net.Chdk.Providers.Boot.Core.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Providers.Camera.Core\Net.Chdk.Providers.Camera.Core.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Providers.Category.Core\Net.Chdk.Providers.Category.Core.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Providers.Crypto.Core\Net.Chdk.Providers.Crypto.Core.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Providers.Software.Core\Net.Chdk.Providers.Software.Core.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Validators.Core\Net.Chdk.Validators.Core.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.Win32;
 using Net.Chdk.Detectors.Camera;
+using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -14,11 +16,13 @@ namespace Chimp.Pages
     {
         private ILogger Logger { get; }
         private IControllerContainer ControllerProvider { get; }
+        private IEnumerable<IFilePatternProvider> FilePatternProviders { get; }
 
-        public CameraPage(IControllerContainer controllerProvider, ILoggerFactory loggerFactory)
+        public CameraPage(IControllerContainer controllerProvider, ILoggerFactory loggerFactory, IEnumerable<IFilePatternProvider> filePatternProviders)
         {
             Logger = loggerFactory.CreateLogger<CameraPage>();
             ControllerProvider = controllerProvider;
+            FilePatternProviders = filePatternProviders;
 
             InitializeComponent();
         }
@@ -27,18 +31,33 @@ namespace Chimp.Pages
         {
             Logger.LogTrace("Browse clicked");
 
-            var canonFilter = string.Join(";", FileSystemCameraDetector.Patterns);
-            var filter = $"{Properties.Resources.Camera_CanonImages_Text}|{canonFilter}|{Properties.Resources.Camera_AllFiles_Text}|*.*";
-            var title = Properties.Resources.Camera_SelectImage_Text;
             var dlg = new OpenFileDialog
             {
-                Title = title,
-                Filter = filter
+                Title = Properties.Resources.Camera_SelectImage_Text,
+                Filter = GetFilter()
             };
             if (dlg.ShowDialog() == true)
             {
                 await DetectFromBrowsedFileAsync(dlg.FileName);
             }
+        }
+
+        private string GetFilter()
+        {
+            var sb = new StringBuilder();
+            foreach (var provider in FilePatternProviders)
+            {
+                var key = $"Camera_{provider.PatternsDescription}_Text";
+                var description = Properties.Resources.ResourceManager.GetString(key);
+                sb.Append(description);
+                sb.Append('|');
+                var patterns = string.Join(";", provider.Patterns);
+                sb.Append(patterns);
+                sb.Append('|');
+            }
+            sb.Append(Properties.Resources.Camera_AllFiles_Text);
+            sb.Append("|*.*");
+            return sb.ToString();
         }
 
         protected override void OnDragEnter(DragEventArgs e)

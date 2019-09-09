@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.0</TargetFramework>
+    <Description>CHIMP camera providers API</Description>
+    <RootNamespace>Net.Chdk.Providers.Camera</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Version>0.5.1</Version>
+    <VersionSuffix>alpha</VersionSuffix>
+    <Product>CHIMP</Product>
+    <Authors>Dmitry Shechtman</Authors>
+    <Copyright>Copyright © 2017 Dmitry Shechtman</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <TreatSpecificWarningsAsErrors />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Net.Chdk.Model.Camera\Net.Chdk.Model.Camera.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Model.CameraModel\Net.Chdk.Model.CameraModel.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Model.Software\Net.Chdk.Model.Software.csproj" />
+  </ItemGroup>
+
+</Project>

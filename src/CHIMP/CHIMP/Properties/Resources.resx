@@ -328,6 +328,9 @@
   <data name="Camera_CanonImages_Text" xml:space="preserve">
     <value>Canon images</value>
   </data>
+  <data name="Camera_CompatibleImages_Text" xml:space="preserve">
+    <value>Compatible images</value>
+  </data>
   <data name="Camera_SelectImage_Text" xml:space="preserve">
     <value>Select Image</value>
   </data>
