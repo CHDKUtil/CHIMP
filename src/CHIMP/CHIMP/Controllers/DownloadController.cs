@@ -2,7 +2,6 @@
 using Chimp.Properties;
 using Chimp.ViewModels;
 using Microsoft.Extensions.Logging;
-using Net.Chdk.Providers.Camera;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -12,13 +11,10 @@ namespace Chimp.Controllers
     {
         protected override bool CanSkipStep => ViewModel.IsCompleted;
 
-        private ICameraProvider CameraProvider { get; }
-
-        public DownloadController(ICameraProvider cameraProvider,
-            MainViewModel mainViewModel, IStepProvider stepProvider, string stepName, ILoggerFactory loggerFactory)
+        public DownloadController(MainViewModel mainViewModel,
+            IStepProvider stepProvider, string stepName, ILoggerFactory loggerFactory)
             : base(mainViewModel, stepProvider, stepName, loggerFactory)
         {
-            CameraProvider = cameraProvider;
         }
 
         public override async Task EnterStepAsync()
