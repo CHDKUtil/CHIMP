@@ -17,19 +17,17 @@ namespace Chimp.Controllers
     {
         protected override bool CanSkipStep => ViewModel?.IsCompleted == true;
 
-        private SynchronizationContext SynchronizationContext { get; }
         private ISoftwareDetector SoftwareDetector { get; }
         private IModulesDetector ModulesDetector { get; }
         private IModuleProvider ModuleProvider { get; }
         private IProductProvider ProductProvider { get; }
         private IResourceProvider ResourceProvider { get; }
 
-        public SoftwareController(SynchronizationContext synchronizationContext, ISoftwareDetector softwareDetector, IModulesDetector modulesDetector,
+        public SoftwareController(ISoftwareDetector softwareDetector, IModulesDetector modulesDetector,
             IModuleProvider moduleProvider, IProductProvider productProvider, IResourceProvider resourceProvider,
             MainViewModel mainViewModel, IStepProvider stepProvider, string stepName, ILoggerFactory loggerFactory)
             : base(mainViewModel, stepProvider, stepName, loggerFactory)
         {
-            SynchronizationContext = synchronizationContext;
             SoftwareDetector = softwareDetector;
             ModulesDetector = modulesDetector;
             ModuleProvider = moduleProvider;
