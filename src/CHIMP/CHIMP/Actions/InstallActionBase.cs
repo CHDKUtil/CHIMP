@@ -2,7 +2,6 @@
 using Chimp.Properties;
 using Chimp.ViewModels;
 using Net.Chdk.Model.Software;
-using Net.Chdk.Providers.Camera;
 using Net.Chdk.Providers.Software;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,7 +10,7 @@ namespace Chimp.Actions
 {
     abstract class InstallActionBase : ActionBase
     {
-        private ICameraProvider CameraProvider { get; }
+        private SoftwareCameraInfo Camera { get; }
         private IDownloaderProvider DownloaderProvider { get; }
         private ProductSource ProductSource { get; }
 
@@ -19,10 +18,10 @@ namespace Chimp.Actions
         private string SourceName => ProductSource.SourceName;
         private SoftwareSourceInfo Source => ProductSource.Source;
 
-        protected InstallActionBase(MainViewModel mainViewModel, ICameraProvider cameraProvider, IDownloaderProvider downloaderProvider, ProductSource productSource)
+        protected InstallActionBase(MainViewModel mainViewModel, IDownloaderProvider downloaderProvider, SoftwareCameraInfo camera, ProductSource productSource)
             : base(mainViewModel)
         {
-            CameraProvider = cameraProvider;
+            Camera = camera;
             DownloaderProvider = downloaderProvider;
             ProductSource = productSource;
 
@@ -36,18 +35,7 @@ namespace Chimp.Actions
         public override async Task<SoftwareData> PerformAsync(CancellationToken token)
         {
             var software = SoftwareViewModel.SelectedItem?.Info;
-            var camera = CameraProvider.GetCamera(ProductName, CameraViewModel.Info, CameraViewModel.SelectedItem.Model);
-            if (camera == null)
-            {
-                DownloadViewModel.Title = nameof(Resources.Download_UnsupportedModel_Text);
-                return null;
-            }
-            if (camera.Revision == null)
-            {
-                DownloadViewModel.Title = nameof(Resources.Download_UnsupportedFirmware_Text);
-                return null;
-            }
-            return await GetDownloader().DownloadAsync(camera, software, token);
+            return await GetDownloader().DownloadAsync(Camera, software, token);
         }
 
         private IDownloader GetDownloader()
@@ -60,8 +48,8 @@ namespace Chimp.Actions
 
     sealed class InstallAction : InstallActionBase
     {
-        public InstallAction(MainViewModel mainViewModel, ICameraProvider cameraProvider, IDownloaderProvider downloaderProvider, ProductSource productSource)
-            : base(mainViewModel, cameraProvider, downloaderProvider, productSource)
+        public InstallAction(MainViewModel mainViewModel, IDownloaderProvider downloaderProvider, SoftwareCameraInfo camera, ProductSource productSource)
+            : base(mainViewModel, downloaderProvider, camera, productSource)
         {
         }
 
@@ -70,8 +58,8 @@ namespace Chimp.Actions
 
     sealed class UpdateAction : InstallActionBase
     {
-        public UpdateAction(MainViewModel mainViewModel, ICameraProvider cameraProvider, IDownloaderProvider downloaderProvider, ProductSource productSource)
-            : base(mainViewModel, cameraProvider, downloaderProvider, productSource)
+        public UpdateAction(MainViewModel mainViewModel, IDownloaderProvider downloaderProvider, SoftwareCameraInfo camera, ProductSource productSource)
+            : base(mainViewModel, downloaderProvider, camera, productSource)
         {
         }
 

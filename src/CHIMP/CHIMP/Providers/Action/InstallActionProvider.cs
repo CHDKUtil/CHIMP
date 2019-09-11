@@ -1,6 +1,7 @@
 ﻿using Chimp.Actions;
 using Chimp.ViewModels;
 using Net.Chdk.Model.Software;
+using Net.Chdk.Providers.Camera;
 using Net.Chdk.Providers.Product;
 using Net.Chdk.Providers.Software;
 using System.Collections.Generic;
@@ -12,10 +13,21 @@ namespace Chimp.Providers.Action
     {
         private IProductProvider ProductProvider { get; }
 
-        public InstallActionProvider(MainViewModel mainViewModel, IProductProvider productProvider, ISourceProvider sourceProvider, IServiceActivator serviceActivator)
-            : base(mainViewModel, sourceProvider, serviceActivator)
+        public InstallActionProvider(MainViewModel mainViewModel, IProductProvider productProvider, ISourceProvider sourceProvider, ICameraProvider cameraProvider, IServiceActivator serviceActivator)
+            : base(mainViewModel, sourceProvider, cameraProvider, serviceActivator)
         {
             ProductProvider = productProvider;
+        }
+
+        protected override IEnumerable<IAction> GetActions(SoftwareProductInfo product)
+        {
+            if (product == null)
+                return base.GetActions(product);
+            var camera = CameraProvider.GetCamera(product.Name, CameraViewModel.Info, CameraViewModel.SelectedItem.Model);
+            if (camera == null)
+                return Enumerable.Empty<IAction>();
+            return GetSources(product)
+                .Select(s => CreateAction(camera, s));
         }
 
         protected override IEnumerable<ProductSource> GetSources(SoftwareProductInfo product)
@@ -30,10 +42,21 @@ namespace Chimp.Providers.Action
 
         protected override IEnumerable<SoftwareProductInfo> GetProducts()
         {
-            var product = SoftwareViewModel.SelectedItem?.Info.Product;
-            yield return new SoftwareProductInfo
+            return ProductProvider.GetProductNames()
+                .Where(IsValidProduct)
+                .Select(CreateProduct);
+        }
+
+        private bool IsValidProduct(string productName)
+        {
+            return ProductProvider.GetCategoryName(productName).Equals(CategoryName);
+        }
+
+        private static SoftwareProductInfo CreateProduct(string productName)
+        {
+            return new SoftwareProductInfo
             {
-                Name = product?.Name,
+                Name = productName,
             };
         }
     }

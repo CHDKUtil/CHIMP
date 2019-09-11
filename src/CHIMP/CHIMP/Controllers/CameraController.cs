@@ -171,14 +171,12 @@ namespace Chimp.Controllers
                 return;
             }
 
-            viewModel.Items = camera.Models
-                .Select(m => CreateItem(camera.Info, m))
-                .ToArray();
+            viewModel.Items = CreateItems(camera);
 
             var cameraModels = CameraProvider.GetCameraModels(camera.Info);
             viewModel.CardType = cameraModels?.CardType;
 
-            if (camera.Models.Length == 1)
+            if (viewModel.Items.Length == 1)
             {
                 viewModel.SelectedItem = viewModel.Items[0];
                 return;
@@ -208,13 +206,30 @@ namespace Chimp.Controllers
             if (camera.Info.Canon.FirmwareRevision == 0 && camera.Info.Canon.FirmwareVersion == null)
                 return Resources.Camera_NoFirmwareRevision_Text;
 
-            if (camera.Models == null)
-                return Resources.Camera_UnsupportedModel_Text;
-
             return null;
         }
 
-        private CameraItemViewModel CreateItem(CameraInfo info, CameraModelInfo model)
+        private static CameraItemViewModel[] CreateItems(CameraModels camera)
+        {
+            var models = camera.Models
+               ?? CreateCameraModels(camera);
+            return models
+                .Select(m => CreateItem(camera.Info, m))
+                .ToArray();
+        }
+
+        private static CameraModelInfo[] CreateCameraModels(CameraModels camera)
+        {
+            return new[]
+            {
+                new CameraModelInfo
+                {
+                    Names = new[]{ camera.Info.Base.Model }
+                }
+            };
+        }
+
+        private static CameraItemViewModel CreateItem(CameraInfo info, CameraModelInfo model)
         {
             return new CameraItemViewModel
             {

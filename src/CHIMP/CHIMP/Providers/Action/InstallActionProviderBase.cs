@@ -2,8 +2,8 @@
 using Chimp.ViewModels;
 using Net.Chdk.Model.Category;
 using Net.Chdk.Model.Software;
+using Net.Chdk.Providers.Camera;
 using Net.Chdk.Providers.Software;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,11 +13,17 @@ namespace Chimp.Providers.Action
         where TAction : InstallActionBase
     {
         protected ISourceProvider SourceProvider { get; }
+        protected ICameraProvider CameraProvider { get; }
+        protected string CategoryName { get; }
 
-        public InstallActionProvider(MainViewModel mainViewModel, ISourceProvider sourceProvider, IServiceActivator serviceActivator)
+        public InstallActionProvider(MainViewModel mainViewModel, ISourceProvider sourceProvider, ICameraProvider cameraProvider, IServiceActivator serviceActivator)
             : base(mainViewModel, serviceActivator)
         {
             SourceProvider = sourceProvider;
+            CameraProvider = cameraProvider;
+            CategoryName = CameraViewModel.Info.Canon.FirmwareRevision > 0
+                ? "PS"
+                : "EOS";
         }
 
         public override IEnumerable<IAction> GetActions()
@@ -26,7 +32,7 @@ namespace Chimp.Providers.Action
                 .SelectMany(GetActions);
         }
 
-        private IEnumerable<IAction> GetActions(SoftwareProductInfo product)
+        protected virtual IEnumerable<IAction> GetActions(SoftwareProductInfo product)
         {
             return GetSources(product)
                 .Select(CreateAction);
@@ -44,12 +50,20 @@ namespace Chimp.Providers.Action
 
         private IAction CreateAction(ProductSource productSource)
         {
+            var camera = CameraProvider.GetCamera(productSource.ProductName, CameraViewModel.Info, CameraViewModel.SelectedItem.Model);
+            return CreateAction(camera, productSource);
+        }
+
+        protected IAction CreateAction(SoftwareCameraInfo camera, ProductSource productSource)
+        {
             var types = new[]
             {
+                typeof(SoftwareCameraInfo),
                 typeof(ProductSource)
             };
             var values = new object[]
             {
+                camera,
                 productSource
             };
             return ServiceActivator.Create<TAction>(types, values);
@@ -59,15 +73,8 @@ namespace Chimp.Providers.Action
         {
             return new CategoryInfo
             {
-                Name = GetCategoryName()
+                Name = CategoryName
             };
-        }
-
-        private string GetCategoryName()
-        {
-            return CameraViewModel.Info.Canon.FirmwareRevision > 0
-                ? "PS"
-                : "EOS";
         }
     }
 }
