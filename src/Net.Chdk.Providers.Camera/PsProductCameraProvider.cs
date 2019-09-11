@@ -6,7 +6,7 @@ using System;
 
 namespace Net.Chdk.Providers.Camera
 {
-    sealed class PsProductCameraProvider : ProductCameraProvider<PsCameraData, PsCameraModelData, PsRevisionData, PsCardData>
+    sealed class PsProductCameraProvider : ProductCameraProvider<PsCameraData, PsCardData>
     {
         public PsProductCameraProvider(string productName, ILoggerFactory loggerFactory)
             : base(productName, loggerFactory.CreateLogger<PsProductCameraProvider>())

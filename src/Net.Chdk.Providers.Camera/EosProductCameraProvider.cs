@@ -6,7 +6,7 @@ using System;
 
 namespace Net.Chdk.Providers.Camera
 {
-    sealed class EosProductCameraProvider : ProductCameraProvider<EosCameraData, EosCameraModelData, EosRevisionData, EosCardData>
+    sealed class EosProductCameraProvider : ProductCameraProvider<EosCameraData, EosCardData>
     {
         public EosProductCameraProvider(string productName, ILoggerFactory loggerFactory)
             : base(productName, loggerFactory.CreateLogger<EosProductCameraProvider>())

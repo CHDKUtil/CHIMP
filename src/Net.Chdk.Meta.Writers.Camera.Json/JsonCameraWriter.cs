@@ -6,7 +6,7 @@ namespace Net.Chdk.Meta.Writers.Camera
 {
     sealed class JsonCameraWriter : JsonMetaWriter, IInnerCameraWriter
     {
-        public void WriteCameras(string path, IDictionary<string, ICameraData> cameras)
+        public void WriteCameras(string path, IDictionary<string, CameraData> cameras)
         {
             WriteJson(path, cameras);
         }

@@ -26,7 +26,6 @@ using Net.Chdk.Meta.Providers.Platform.Html;
 using Net.Chdk.Meta.Providers.Platform.Xml;
 using Net.Chdk.Meta.Providers.Sdm;
 using Net.Chdk.Meta.Writers.Camera.Json;
-using Net.Chdk.Meta.Writers.Camera.Props;
 using Net.Chdk.Meta.Writers.Camera;
 using Net.Chdk.Providers.Boot;
 using Net.Chdk.Providers.Product;
@@ -51,7 +50,7 @@ namespace Net.Chdk.Meta.Providers.Camera
                 Console.WriteLine("\tplatform-meta  exiftool.xml or Canon.html");
                 Console.WriteLine("\tcamera-list    camera_list.csv, camera_list.json or ALL.zip");
                 Console.WriteLine("\tcamera-tree    camera_list.csv, camera_list.json or CHDK source root");
-                Console.WriteLine("\toutput         cameras.json or cameras.properties");
+                Console.WriteLine("\toutput         cameras.json");
                 return;
             }
 
@@ -95,7 +94,6 @@ namespace Net.Chdk.Meta.Providers.Camera
 
                 .AddCameraWriter()
                 .AddJsonCameraWriter()
-                .AddPropsCameraWriter()
 
                 .BuildServiceProvider();
 
@@ -139,14 +137,14 @@ namespace Net.Chdk.Meta.Providers.Camera
                 .GetCameraTree(path);
         }
 
-        private static IDictionary<string, ICameraData> GetCameras(IServiceProvider serviceProvider, IDictionary<string, PlatformData> platforms,
+        private static IDictionary<string, CameraData> GetCameras(IServiceProvider serviceProvider, IDictionary<string, PlatformData> platforms,
             IDictionary<string, ListPlatformData> list, IDictionary<string, TreePlatformData> tree, string productName)
         {
             return serviceProvider.GetService<IBuildProvider>()
                 .GetCameras(platforms, list, tree, productName);
         }
 
-        private static void WriteCameras(IServiceProvider serviceProvider, string path, IDictionary<string, ICameraData> cameras)
+        private static void WriteCameras(IServiceProvider serviceProvider, string path, IDictionary<string, CameraData> cameras)
         {
             serviceProvider.GetService<ICameraWriter>()
                 .WriteCameras(path, cameras);

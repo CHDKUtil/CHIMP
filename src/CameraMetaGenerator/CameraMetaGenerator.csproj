@@ -56,7 +56,6 @@
     <ProjectReference Include="..\Net.Chdk.Meta.Providers.Sdm\Net.Chdk.Meta.Providers.Sdm.csproj" />
     <ProjectReference Include="..\Net.Chdk.Meta.Providers\Net.Chdk.Meta.Providers.csproj" />
     <ProjectReference Include="..\Net.Chdk.Meta.Writers.Camera.Json\Net.Chdk.Meta.Writers.Camera.Json.csproj" />
-    <ProjectReference Include="..\Net.Chdk.Meta.Writers.Camera.Props\Net.Chdk.Meta.Writers.Camera.Props.csproj" />
     <ProjectReference Include="..\Net.Chdk.Meta.Writers.Camera\Net.Chdk.Meta.Writers.Camera.csproj" />
     <ProjectReference Include="..\Net.Chdk.Providers.Boot\Net.Chdk.Providers.Boot.csproj" />
     <ProjectReference Include="..\Net.Chdk.Providers.Product\Net.Chdk.Providers.Product.csproj" />

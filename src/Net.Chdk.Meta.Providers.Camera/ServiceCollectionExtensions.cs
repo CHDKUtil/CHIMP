@@ -12,8 +12,7 @@ namespace Net.Chdk.Meta.Providers.Camera
                 .AddSingleton<ICameraBootProvider, CameraBootProvider>()
                 .AddSingleton<ICameraValidator, CameraValidator>()
                 .AddSingleton<ICameraModelValidator, CameraModelValidator>()
-                .AddSingleton(typeof(IRevisionProvider<>), typeof(RevisionProvider<>))
-                .AddSingleton(typeof(ICameraModelProvider<,>), typeof(CameraModelProvider<,>))
+                .AddSingleton<ICameraModelProvider, CameraModelProvider>()
                 .AddSingleton(typeof(ICameraCardProvider<>), typeof(CameraCardProvider<>));
         }
     }

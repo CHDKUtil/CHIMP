@@ -4,10 +4,8 @@ using Net.Chdk.Meta.Model.CameraTree;
 
 namespace Net.Chdk.Meta.Providers.Camera
 {
-    public abstract class CameraProvider<TCamera, TModel, TRevision, TCard> : ICameraProvider<TCamera, TModel, TRevision, TCard>
-        where TCamera : CameraData<TCamera, TModel, TRevision, TCard>, new()
-        where TModel : CameraModelData<TModel, TRevision>
-        where TRevision : IRevisionData
+    public abstract class CameraProvider<TCamera, TCard> : ICameraProvider<TCamera, TCard>
+        where TCamera : CameraData<TCamera, TCard>, new()
         where TCard : CardData
     {
         private ICameraBootProvider BootProvider { get; }
@@ -23,7 +21,7 @@ namespace Net.Chdk.Meta.Providers.Camera
         {
             return new TCamera
             {
-                Models = new TModel[0],
+                Models = new CameraModelData[0],
                 Boot = GetBoot(modelId, productName),
                 Card = GetCard(modelId, tree.MultiCard, productName),
             };

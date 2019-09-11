@@ -4,10 +4,8 @@ using Net.Chdk.Meta.Model.CameraTree;
 
 namespace Net.Chdk.Meta.Providers.Camera
 {
-    public interface ICameraProvider<TCamera, TModel, TRevision, TCard>
-        where TCamera : CameraData<TCamera, TModel, TRevision, TCard>
-        where TModel : CameraModelData<TModel, TRevision>
-        where TRevision : IRevisionData
+    public interface ICameraProvider<TCamera, TCard>
+        where TCamera : CameraData<TCamera, TCard>
         where TCard : CardData
     {
         TCamera GetCamera(uint modelId, string platform, ListPlatformData list, TreePlatformData tree, string productName);

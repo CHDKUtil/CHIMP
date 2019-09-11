@@ -4,7 +4,7 @@ using Net.Chdk.Meta.Model.CameraTree;
 
 namespace Net.Chdk.Meta.Providers.Camera.Ps
 {
-    sealed class PsCameraProvider : CameraProvider<PsCameraData, PsCameraModelData, PsRevisionData, PsCardData>
+    sealed class PsCameraProvider : CameraProvider<PsCameraData, PsCardData>
     {
         private IEncodingProvider EncodingProvider { get; }
         private IAltProvider AltProvider { get; }

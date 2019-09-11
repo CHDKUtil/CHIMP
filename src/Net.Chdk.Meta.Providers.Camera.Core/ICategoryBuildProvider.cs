@@ -8,7 +8,7 @@ namespace Net.Chdk.Meta.Providers.Camera
 {
     public interface ICategoryBuildProvider : ICategoryNameProvider
     {
-        IDictionary<string, ICameraData> GetCameras(IDictionary<string, PlatformData> platforms, IDictionary<string, ListPlatformData> list, IDictionary<string, TreePlatformData> tree,
+        IDictionary<string, CameraData> GetCameras(IDictionary<string, PlatformData> platforms, IDictionary<string, ListPlatformData> list, IDictionary<string, TreePlatformData> tree,
             string productName);
     }
 }

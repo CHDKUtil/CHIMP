@@ -10,11 +10,9 @@ using System.Linq;
 
 namespace Net.Chdk.Providers.Camera
 {
-    abstract class ProductCameraProvider<TCamera, TModel, TRevision, TCard> : DataProvider<Dictionary<string, TCamera>>, IProductCameraProvider
-        where TCamera : CameraData<TCamera, TModel, TRevision, TCard>
-        where TModel : CameraModelData<TModel, TRevision>
+    abstract class ProductCameraProvider<TCamera, TCard> : DataProvider<Dictionary<string, TCamera>>, IProductCameraProvider
+        where TCamera : CameraData<TCamera, TCard>
         where TCard : CardData
-        where TRevision : IRevisionData
     {
         private const string DataFileName = "cameras.json";
 
@@ -190,7 +188,7 @@ namespace Net.Chdk.Providers.Camera
             return reverseCameras;
         }
 
-        private ReverseCameraData GetReverseCamera(string key, TCamera camera, TModel model)
+        private ReverseCameraData GetReverseCamera(string key, TCamera camera, CameraModelData model)
         {
             return new ReverseCameraData
             {

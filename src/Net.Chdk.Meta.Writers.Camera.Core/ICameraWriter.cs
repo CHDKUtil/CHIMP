@@ -5,6 +5,6 @@ namespace Net.Chdk.Meta.Writers.Camera
 {
     public interface ICameraWriter
     {
-        void WriteCameras(string path, IDictionary<string, ICameraData> cameras);
+        void WriteCameras(string path, IDictionary<string, CameraData> cameras);
     }
 }

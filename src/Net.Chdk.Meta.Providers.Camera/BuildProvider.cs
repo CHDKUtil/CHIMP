@@ -17,7 +17,7 @@ namespace Net.Chdk.Meta.Providers.Camera
             ProductProvider = productProvider;
         }
 
-        public IDictionary<string, ICameraData> GetCameras(IDictionary<string, PlatformData> platforms, IDictionary<string, ListPlatformData> list, IDictionary<string, TreePlatformData> tree,
+        public IDictionary<string, CameraData> GetCameras(IDictionary<string, PlatformData> platforms, IDictionary<string, ListPlatformData> list, IDictionary<string, TreePlatformData> tree,
             string productName)
         {
             var categoryName = ProductProvider.GetCategoryName(productName);

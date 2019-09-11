@@ -12,7 +12,7 @@ namespace Net.Chdk.Meta.Writers.Camera
         {
         }
 
-        public void WriteCameras(string path, IDictionary<string, ICameraData> cameras)
+        public void WriteCameras(string path, IDictionary<string, CameraData> cameras)
         {
             var writer = GetInnerProvider(path, out string ext);
             if (writer == null)
