@@ -664,33 +664,6 @@ namespace Chimp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Build Not Found.
-        /// </summary>
-        public static string Download_MissingBuild_Text {
-            get {
-                return ResourceManager.GetString("Download_MissingBuild_Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Camera Not Found.
-        /// </summary>
-        public static string Download_MissingPlatform_Text {
-            get {
-                return ResourceManager.GetString("Download_MissingPlatform_Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Revision Not Found.
-        /// </summary>
-        public static string Download_MissingRevision_Text {
-            get {
-                return ResourceManager.GetString("Download_MissingRevision_Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Downloaded {0} of {1}.
         /// </summary>
         public static string Download_Progress_Format {

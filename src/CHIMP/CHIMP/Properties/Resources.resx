@@ -388,15 +388,6 @@ To continue, click OK. To quit, click CANCEL.</value>
   <data name="Download_InvalidFormat_Text" xml:space="preserve">
     <value>Invalid Data Format</value>
   </data>
-  <data name="Download_MissingBuild_Text" xml:space="preserve">
-    <value>Build Not Found</value>
-  </data>
-  <data name="Download_MissingPlatform_Text" xml:space="preserve">
-    <value>Camera Not Found</value>
-  </data>
-  <data name="Download_MissingRevision_Text" xml:space="preserve">
-    <value>Revision Not Found</value>
-  </data>
   <data name="Download_UpToDate_Text" xml:space="preserve">
     <value>Already Up to Date</value>
   </data>

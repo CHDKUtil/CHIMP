@@ -387,15 +387,6 @@
   <data name="Download_InvalidFormat_Text" xml:space="preserve">
     <value>Mauvais format de données</value>
   </data>
-  <data name="Download_MissingBuild_Text" xml:space="preserve">
-    <value>Version non trouvée</value>
-  </data>
-  <data name="Download_MissingPlatform_Text" xml:space="preserve">
-    <value>Version d'appareil non trouvée</value>
-  </data>
-  <data name="Download_MissingRevision_Text" xml:space="preserve">
-    <value>Mise à jour non trouvée</value>
-  </data>
   <data name="Download_UpToDate_Text" xml:space="preserve">
     <value>Version à jour</value>
   </data>

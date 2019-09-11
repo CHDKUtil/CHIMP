@@ -445,15 +445,6 @@
   <data name="Download_InvalidFormat_Text" xml:space="preserve">
     <value>Неверный формат данных</value>
   </data>
-  <data name="Download_MissingBuild_Text" xml:space="preserve">
-    <value>Сборка не найдена</value>
-  </data>
-  <data name="Download_MissingPlatform_Text" xml:space="preserve">
-    <value>Фотоаппарат не найден</value>
-  </data>
-  <data name="Download_MissingRevision_Text" xml:space="preserve">
-    <value>Версия не найдена</value>
-  </data>
   <data name="Download_Progress_Format" xml:space="preserve">
     <value>Загрузка {0} из {1}</value>
   </data>

@@ -62,12 +62,12 @@ namespace Chimp.Providers.Matches
                 return nameof(Resources.Download_InvalidFormat_Text);
 
             if (!hasPlatform)
-                return nameof(Resources.Download_MissingPlatform_Text);
+                return nameof(Resources.Download_UnsupportedModel_Text);
 
             if (!hasRevision)
-                return nameof(Resources.Download_MissingRevision_Text);
+                return nameof(Resources.Download_UnsupportedFirmware_Text);
 
-            return nameof(Resources.Download_MissingRevision_Text);
+            return nameof(Resources.Download_UnsupportedFirmware_Text);
         }
 
         private async Task<Match[]> GetMatchesAsync(SoftwareCameraInfo camera, string buildName, TextReader reader)
