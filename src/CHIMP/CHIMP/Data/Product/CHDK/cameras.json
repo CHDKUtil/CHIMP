@@ -1,18 +1,17 @@
 {
   "0x1540000": {
+    "encoding": {
+      "name": ""
+    },
     "alt": {
       "button": "Print"
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDSC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000a00": {
-            "revision": "100j"
-          },
-          "0x1000b00": {
-            "revision": "100k"
-          }
-        },
         "names": [
           "Canon PowerShot SD300",
           "Canon Digital IXUS 40",
@@ -21,28 +20,23 @@
         "platform": "ixus40_sd300"
       }
     ],
-    "encoding": {
-      "name": ""
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDSC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x1550000": {
+    "encoding": {
+      "name": ""
+    },
     "alt": {
       "button": "Print"
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDSC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000b00": {
-            "revision": "100k"
-          }
-        },
         "names": [
           "Canon PowerShot SD200",
           "Canon Digital IXUS 30",
@@ -51,18 +45,14 @@
         "platform": "ixus30_sd200"
       }
     ],
-    "encoding": {
-      "name": ""
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDSC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x1640000": {
+    "encoding": {
+      "name": ""
+    },
     "alt": {
       "button": "Shrtcut",
       "buttons": [
@@ -73,50 +63,36 @@
         "Video"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDSC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000500": {
-            "revision": "100e"
-          },
-          "0x1000600": {
-            "revision": "100f"
-          },
-          "0x1000700": {
-            "revision": "100g"
-          },
-          "0x1000900": {
-            "revision": "100i"
-          }
-        },
         "names": [
           "Canon PowerShot S2 IS"
         ],
         "platform": "s2is"
       }
     ],
-    "encoding": {
-      "name": ""
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDSC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x1650000": {
+    "encoding": {
+      "name": ""
+    },
     "alt": {
       "button": "Print"
     },
+    "card": {
+      "multi": true,
+      "type": "SD",
+      "subtype": "SDSC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1100100": {
-            "revision": "110a"
-          }
-        },
         "names": [
           "Canon PowerShot SD430",
           "Canon Digital IXUS Wireless",
@@ -125,32 +101,24 @@
         "platform": "ixusw_sd430"
       }
     ],
+    "boot": {
+      "fs": "FAT"
+    }
+  },
+  "0x1660000": {
     "encoding": {
       "name": ""
+    },
+    "alt": {
+      "button": "Print"
     },
     "card": {
       "multi": true,
       "type": "SD",
       "subtype": "SDSC"
     },
-    "boot": {
-      "fs": "FAT"
-    }
-  },
-  "0x1660000": {
-    "alt": {
-      "button": "Print"
-    },
     "models": [
       {
-        "revisions": {
-          "0x1010100": {
-            "revision": "101a"
-          },
-          "0x1010200": {
-            "revision": "101b"
-          }
-        },
         "names": [
           "Canon PowerShot SD500",
           "Canon Digital IXUS 700",
@@ -159,35 +127,23 @@
         "platform": "ixus700_sd500"
       }
     ],
-    "encoding": {
-      "name": ""
-    },
-    "card": {
-      "multi": true,
-      "type": "SD",
-      "subtype": "SDSC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x1700000": {
+    "encoding": {
+      "name": ""
+    },
     "alt": {
       "button": "Print"
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDSC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000600": {
-            "revision": "100f"
-          },
-          "0x1000700": {
-            "revision": "100g"
-          },
-          "0x1000800": {
-            "revision": "100h"
-          }
-        },
         "names": [
           "Canon PowerShot SD30",
           "Canon Digital IXUS i Zoom",
@@ -196,18 +152,14 @@
         "platform": "ixusizoom_sd30"
       }
     ],
-    "encoding": {
-      "name": ""
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDSC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x1740000": {
+    "encoding": {
+      "name": ""
+    },
     "alt": {
       "button": "Print",
       "buttons": [
@@ -215,31 +167,26 @@
         "Display"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDSC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          }
-        },
         "names": [
           "Canon PowerShot A430"
         ],
         "platform": "a430"
       }
     ],
-    "encoding": {
-      "name": ""
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDSC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x1750000": {
+    "encoding": {
+      "name": ""
+    },
     "alt": {
       "button": "Print",
       "buttons": [
@@ -247,34 +194,26 @@
         "Display"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDSC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000500": {
-            "revision": "100e"
-          },
-          "0x1000600": {
-            "revision": "100f"
-          }
-        },
         "names": [
           "Canon PowerShot A410"
         ],
         "platform": "a410"
       }
     ],
-    "encoding": {
-      "name": ""
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDSC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x1760000": {
+    "encoding": {
+      "name": ""
+    },
     "alt": {
       "button": "Shrtcut",
       "buttons": [
@@ -284,34 +223,26 @@
         "Jump"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDSC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000700": {
-            "revision": "100g"
-          },
-          "0x1010200": {
-            "revision": "101b"
-          }
-        },
         "names": [
           "Canon PowerShot S80"
         ],
         "platform": "s80"
       }
     ],
-    "encoding": {
-      "name": ""
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDSC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x1780000": {
+    "encoding": {
+      "name": ""
+    },
     "alt": {
       "button": "Print",
       "buttons": [
@@ -319,70 +250,54 @@
         "Display"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDSC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000600": {
-            "revision": "100f"
-          }
-        },
         "names": [
           "Canon PowerShot A620"
         ],
         "platform": "a620"
       }
     ],
-    "encoding": {
-      "name": ""
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDSC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x1790000": {
+    "encoding": {
+      "name": ""
+    },
     "alt": {
       "button": "Print",
       "buttons": [
         "Print",
         "Display"
       ]
-    },
-    "models": [
-      {
-        "revisions": {
-          "0x1000400": {
-            "revision": "100d"
-          },
-          "0x1000500": {
-            "revision": "100e"
-          },
-          "0x1000600": {
-            "revision": "100f"
-          }
-        },
-        "names": [
-          "Canon PowerShot A610"
-        ],
-        "platform": "a610"
-      }
-    ],
-    "encoding": {
-      "name": ""
     },
     "card": {
       "multi": true,
       "type": "SD",
       "subtype": "SDSC"
     },
+    "models": [
+      {
+        "names": [
+          "Canon PowerShot A610"
+        ],
+        "platform": "a610"
+      }
+    ],
     "boot": {
       "fs": "FAT"
     }
   },
   "0x1800000": {
+    "encoding": {
+      "name": ""
+    },
     "alt": {
       "button": "Print",
       "buttons": [
@@ -390,13 +305,12 @@
         "Display"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDSC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          }
-        },
         "names": [
           "Canon PowerShot SD630",
           "Canon Digital IXUS 65",
@@ -405,34 +319,23 @@
         "platform": "ixus65_sd630"
       }
     ],
-    "encoding": {
-      "name": ""
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDSC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x1810000": {
+    "encoding": {
+      "name": ""
+    },
     "alt": {
       "button": "Print"
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDSC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          },
-          "0x1000300": {
-            "revision": "100c"
-          },
-          "0x1000400": {
-            "revision": "100d"
-          }
-        },
         "names": [
           "Canon PowerShot SD450",
           "Canon Digital IXUS 55",
@@ -441,63 +344,47 @@
         "platform": "ixus55_sd450"
       }
     ],
-    "encoding": {
-      "name": ""
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDSC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x1820000": {
-    "alt": {
-      "button": "Print"
-    },
-    "models": [
-      {
-        "revisions": {
-          "0x1000700": {
-            "revision": "100g"
-          },
-          "0x1010200": {
-            "revision": "101b"
-          }
-        },
-        "names": [
-          "Canon PowerShot TX1"
-        ],
-        "platform": "tx1"
-      }
-    ],
     "encoding": {
       "name": ""
+    },
+    "alt": {
+      "button": "Print"
     },
     "card": {
       "multi": true,
       "type": "SD",
       "subtype": "SDSC"
     },
+    "models": [
+      {
+        "names": [
+          "Canon PowerShot TX1"
+        ],
+        "platform": "tx1"
+      }
+    ],
     "boot": {
       "fs": "FAT"
     }
   },
   "0x1870000": {
+    "encoding": {
+      "name": ""
+    },
     "alt": {
       "button": "Print"
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDSC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1010100": {
-            "revision": "101a"
-          },
-          "0x1010200": {
-            "revision": "101b"
-          }
-        },
         "names": [
           "Canon PowerShot SD400",
           "Canon Digital IXUS 50",
@@ -506,18 +393,14 @@
         "platform": "ixus50_sd400"
       }
     ],
-    "encoding": {
-      "name": ""
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDSC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x1880000": {
+    "encoding": {
+      "name": ""
+    },
     "alt": {
       "button": "Print",
       "buttons": [
@@ -525,41 +408,36 @@
         "Display"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDSC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          }
-        },
         "names": [
           "Canon PowerShot A420"
         ],
         "platform": "a420"
       }
     ],
-    "encoding": {
-      "name": ""
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDSC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x1890000": {
+    "encoding": {
+      "name": ""
+    },
     "alt": {
       "button": "Print"
     },
+    "card": {
+      "multi": true,
+      "type": "SD",
+      "subtype": "SDSC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000300": {
-            "revision": "100c"
-          }
-        },
         "names": [
           "Canon PowerShot SD900",
           "Canon Digital IXUS 900 Ti",
@@ -568,35 +446,24 @@
         "platform": "ixus900_sd900"
       }
     ],
+    "boot": {
+      "fs": "FAT"
+    }
+  },
+  "0x1900000": {
     "encoding": {
       "name": ""
+    },
+    "alt": {
+      "button": "Print"
     },
     "card": {
       "multi": true,
       "type": "SD",
       "subtype": "SDSC"
     },
-    "boot": {
-      "fs": "FAT"
-    }
-  },
-  "0x1900000": {
-    "alt": {
-      "button": "Print"
-    },
     "models": [
       {
-        "revisions": {
-          "0x1000600": {
-            "revision": "100f"
-          },
-          "0x1000700": {
-            "revision": "100g"
-          },
-          "0x1000800": {
-            "revision": "100h"
-          }
-        },
         "names": [
           "Canon PowerShot SD550",
           "Canon Digital IXUS 750",
@@ -605,19 +472,14 @@
         "platform": "ixus750_sd550"
       }
     ],
-    "encoding": {
-      "name": ""
-    },
-    "card": {
-      "multi": true,
-      "type": "SD",
-      "subtype": "SDSC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x1920000": {
+    "encoding": {
+      "name": ""
+    },
     "alt": {
       "button": "Print",
       "buttons": [
@@ -625,31 +487,26 @@
         "Display"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDSC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          }
-        },
         "names": [
           "Canon PowerShot A700"
         ],
         "platform": "a700"
       }
     ],
-    "encoding": {
-      "name": ""
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDSC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x1940000": {
+    "encoding": {
+      "name": ""
+    },
     "alt": {
       "button": "Print",
       "buttons": [
@@ -657,19 +514,12 @@
         "Display"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDSC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          },
-          "0x1010100": {
-            "revision": "101a"
-          },
-          "0x1010200": {
-            "revision": "101b"
-          }
-        },
         "names": [
           "Canon PowerShot SD700 IS",
           "Canon Digital IXUS 800 IS",
@@ -678,18 +528,14 @@
         "platform": "ixus800_sd700"
       }
     ],
-    "encoding": {
-      "name": ""
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDSC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x1950000": {
+    "encoding": {
+      "name": ""
+    },
     "alt": {
       "button": "Shrtcut",
       "buttons": [
@@ -700,32 +546,27 @@
         "Video"
       ]
     },
+    "card": {
+      "multi": true,
+      "type": "SD",
+      "subtype": "SDHC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          }
-        },
         "names": [
           "Canon PowerShot S3 IS"
         ],
         "platform": "s3is"
       }
     ],
-    "encoding": {
-      "name": ""
-    },
-    "card": {
-      "multi": true,
-      "type": "SD",
-      "subtype": "SDHC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x1960000": {
+    "encoding": {
+      "name": ""
+    },
     "alt": {
       "button": "Print",
       "buttons": [
@@ -733,44 +574,35 @@
         "Display"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDSC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          }
-        },
         "names": [
           "Canon PowerShot A540"
         ],
         "platform": "a540"
       }
     ],
-    "encoding": {
-      "name": ""
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDSC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x1970000": {
+    "encoding": {
+      "name": ""
+    },
     "alt": {
       "button": "Print"
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDSC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          },
-          "0x1000400": {
-            "revision": "100d"
-          }
-        },
         "names": [
           "Canon PowerShot SD600",
           "Canon Digital IXUS 60",
@@ -779,18 +611,14 @@
         "platform": "ixus60_sd600"
       }
     ],
-    "encoding": {
-      "name": ""
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDSC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x1980000": {
+    "encoding": {
+      "name": ""
+    },
     "alt": {
       "button": "Print",
       "buttons": [
@@ -798,41 +626,27 @@
         "FE"
       ]
     },
+    "card": {
+      "multi": true,
+      "type": "SD",
+      "subtype": "SDHC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000500": {
-            "revision": "100e"
-          },
-          "0x1000700": {
-            "revision": "100g"
-          },
-          "0x1000900": {
-            "revision": "100i"
-          },
-          "0x1000a00": {
-            "revision": "100j"
-          }
-        },
         "names": [
           "Canon PowerShot G7"
         ],
         "platform": "g7"
       }
     ],
-    "encoding": {
-      "name": ""
-    },
-    "card": {
-      "multi": true,
-      "type": "SD",
-      "subtype": "SDHC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x1990000": {
+    "encoding": {
+      "name": ""
+    },
     "alt": {
       "button": "Print",
       "buttons": [
@@ -840,44 +654,36 @@
         "Display"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDSC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          }
-        },
         "names": [
           "Canon PowerShot A530"
         ],
         "platform": "a530"
       }
     ],
-    "encoding": {
-      "name": ""
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDSC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x2000000": {
+    "encoding": {
+      "name": ""
+    },
     "alt": {
       "button": "Print"
     },
+    "card": {
+      "multi": true,
+      "type": "SD",
+      "subtype": "SDHC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000400": {
-            "revision": "100d"
-          },
-          "0x1000500": {
-            "revision": "100e"
-          }
-        },
         "names": [
           "Canon PowerShot SD800 IS",
           "Canon Digital IXUS 850 IS",
@@ -886,19 +692,14 @@
         "platform": "ixus850_sd800"
       }
     ],
-    "encoding": {
-      "name": ""
-    },
-    "card": {
-      "multi": true,
-      "type": "SD",
-      "subtype": "SDHC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x2020000": {
+    "encoding": {
+      "name": ""
+    },
     "alt": {
       "button": "Print",
       "buttons": [
@@ -906,32 +707,27 @@
         "Display"
       ]
     },
+    "card": {
+      "multi": true,
+      "type": "SD",
+      "subtype": "SDHC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          }
-        },
         "names": [
           "Canon PowerShot A710 IS"
         ],
         "platform": "a710"
       }
     ],
-    "encoding": {
-      "name": ""
-    },
-    "card": {
-      "multi": true,
-      "type": "SD",
-      "subtype": "SDHC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x2030000": {
+    "encoding": {
+      "name": ""
+    },
     "alt": {
       "button": "Print",
       "buttons": [
@@ -939,32 +735,27 @@
         "Display"
       ]
     },
+    "card": {
+      "multi": true,
+      "type": "SD",
+      "subtype": "SDHC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          }
-        },
         "names": [
           "Canon PowerShot A640"
         ],
         "platform": "a640"
       }
     ],
-    "encoding": {
-      "name": ""
-    },
-    "card": {
-      "multi": true,
-      "type": "SD",
-      "subtype": "SDHC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x2040000": {
+    "encoding": {
+      "name": ""
+    },
     "alt": {
       "button": "Print",
       "buttons": [
@@ -972,32 +763,27 @@
         "Display"
       ]
     },
+    "card": {
+      "multi": true,
+      "type": "SD",
+      "subtype": "SDHC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000300": {
-            "revision": "100c"
-          }
-        },
         "names": [
           "Canon PowerShot A630"
         ],
         "platform": "a630"
       }
     ],
-    "encoding": {
-      "name": ""
-    },
-    "card": {
-      "multi": true,
-      "type": "SD",
-      "subtype": "SDHC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x2090000": {
+    "encoding": {
+      "name": ""
+    },
     "alt": {
       "button": "Shrtcut",
       "buttons": [
@@ -1008,73 +794,60 @@
         "Video"
       ]
     },
+    "card": {
+      "multi": true,
+      "type": "SD",
+      "subtype": "SDHC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1010100": {
-            "revision": "101a"
-          },
-          "0x1010200": {
-            "revision": "101b"
-          }
-        },
         "names": [
           "Canon PowerShot S5 IS"
         ],
         "platform": "s5is"
       }
     ],
-    "encoding": {
-      "name": ""
-    },
-    "card": {
-      "multi": true,
-      "type": "SD",
-      "subtype": "SDHC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x2100000": {
+    "encoding": {
+      "name": ""
+    },
     "alt": {
       "button": "Print"
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDHC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000400": {
-            "revision": "100d"
-          }
-        },
         "names": [
           "Canon PowerShot A460"
         ],
         "platform": "a460"
       }
     ],
-    "encoding": {
-      "name": ""
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDHC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x2120000": {
+    "encoding": {
+      "name": ""
+    },
     "alt": {
       "button": "Print"
     },
+    "card": {
+      "multi": true,
+      "type": "SD",
+      "subtype": "SDHC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000300": {
-            "revision": "100c"
-          }
-        },
         "names": [
           "Canon PowerShot SD850 IS",
           "Canon Digital IXUS 950 IS",
@@ -1083,19 +856,14 @@
         "platform": "ixus950_sd850"
       }
     ],
-    "encoding": {
-      "name": ""
-    },
-    "card": {
-      "multi": true,
-      "type": "SD",
-      "subtype": "SDHC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x2130000": {
+    "encoding": {
+      "name": ""
+    },
     "alt": {
       "button": "Print",
       "buttons": [
@@ -1103,83 +871,61 @@
         "Display"
       ]
     },
+    "card": {
+      "multi": true,
+      "type": "SD",
+      "subtype": "SDHC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000500": {
-            "revision": "100e"
-          },
-          "0x1010100": {
-            "revision": "101a"
-          }
-        },
         "names": [
           "Canon PowerShot A570 IS"
         ],
         "platform": "a570"
       }
     ],
+    "boot": {
+      "fs": "FAT"
+    }
+  },
+  "0x2140000": {
     "encoding": {
       "name": ""
+    },
+    "alt": {
+      "button": "Print"
     },
     "card": {
       "multi": true,
       "type": "SD",
       "subtype": "SDHC"
     },
-    "boot": {
-      "fs": "FAT"
-    }
-  },
-  "0x2140000": {
-    "alt": {
-      "button": "Print"
-    },
     "models": [
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          }
-        },
         "names": [
           "Canon PowerShot A560"
         ],
         "platform": "a560"
       }
     ],
+    "boot": {
+      "fs": "FAT"
+    }
+  },
+  "0x2150000": {
     "encoding": {
       "name": ""
+    },
+    "alt": {
+      "button": "Print"
     },
     "card": {
       "multi": true,
       "type": "SD",
       "subtype": "SDHC"
     },
-    "boot": {
-      "fs": "FAT"
-    }
-  },
-  "0x2150000": {
-    "alt": {
-      "button": "Print"
-    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          },
-          "0x1010100": {
-            "revision": "101a"
-          },
-          "0x1010200": {
-            "revision": "101b"
-          },
-          "0x1020100": {
-            "revision": "102a"
-          }
-        },
         "names": [
           "Canon PowerShot SD750",
           "Canon Digital IXUS 75",
@@ -1188,38 +934,24 @@
         "platform": "ixus75_sd750"
       }
     ],
+    "boot": {
+      "fs": "FAT"
+    }
+  },
+  "0x2160000": {
     "encoding": {
       "name": ""
+    },
+    "alt": {
+      "button": "Print"
     },
     "card": {
       "multi": true,
       "type": "SD",
       "subtype": "SDHC"
     },
-    "boot": {
-      "fs": "FAT"
-    }
-  },
-  "0x2160000": {
-    "alt": {
-      "button": "Print"
-    },
     "models": [
       {
-        "revisions": {
-          "0x1000300": {
-            "revision": "100c"
-          },
-          "0x1010100": {
-            "revision": "101a"
-          },
-          "0x1010200": {
-            "revision": "101b"
-          },
-          "0x1020100": {
-            "revision": "102a"
-          }
-        },
         "names": [
           "Canon PowerShot SD1000",
           "Canon Digital IXUS 70",
@@ -1228,76 +960,61 @@
         "platform": "ixus70_sd1000"
       }
     ],
+    "boot": {
+      "fs": "FAT"
+    }
+  },
+  "0x2180000": {
     "encoding": {
       "name": ""
+    },
+    "alt": {
+      "button": "Print"
     },
     "card": {
       "multi": true,
       "type": "SD",
       "subtype": "SDHC"
     },
-    "boot": {
-      "fs": "FAT"
-    }
-  },
-  "0x2180000": {
-    "alt": {
-      "button": "Print"
-    },
     "models": [
       {
-        "revisions": {
-          "0x1000300": {
-            "revision": "100c"
-          }
-        },
         "names": [
           "Canon PowerShot A550"
         ],
         "platform": "a550"
       }
     ],
-    "encoding": {
-      "name": ""
-    },
-    "card": {
-      "multi": true,
-      "type": "SD",
-      "subtype": "SDHC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x2190000": {
+    "encoding": {
+      "name": ""
+    },
     "alt": {
       "button": "Print"
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDHC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000400": {
-            "revision": "100d"
-          }
-        },
         "names": [
           "Canon PowerShot A450"
         ],
         "platform": "a450"
       }
     ],
-    "encoding": {
-      "name": ""
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDHC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x2230000": {
+    "encoding": {
+      "name": ""
+    },
     "alt": {
       "button": "Print",
       "buttons": [
@@ -1305,44 +1022,27 @@
         "FE"
       ]
     },
+    "card": {
+      "multi": true,
+      "type": "SD",
+      "subtype": "SDHC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000400": {
-            "revision": "100d"
-          },
-          "0x1000600": {
-            "revision": "100f"
-          },
-          "0x1000700": {
-            "revision": "100g"
-          },
-          "0x1000800": {
-            "revision": "100h"
-          },
-          "0x1000900": {
-            "revision": "100i"
-          }
-        },
         "names": [
           "Canon PowerShot G9"
         ],
         "platform": "g9"
       }
     ],
-    "encoding": {
-      "name": ""
-    },
-    "card": {
-      "multi": true,
-      "type": "SD",
-      "subtype": "SDHC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x2240000": {
+    "encoding": {
+      "name": ""
+    },
     "alt": {
       "button": "Print",
       "buttons": [
@@ -1350,32 +1050,27 @@
         "ISO"
       ]
     },
+    "card": {
+      "multi": true,
+      "type": "SD",
+      "subtype": "SDHC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000400": {
-            "revision": "100d"
-          }
-        },
         "names": [
           "Canon PowerShot A650 IS"
         ],
         "platform": "a650"
       }
     ],
-    "encoding": {
-      "name": ""
-    },
-    "card": {
-      "multi": true,
-      "type": "SD",
-      "subtype": "SDHC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x2260000": {
+    "encoding": {
+      "name": ""
+    },
     "alt": {
       "button": "Print",
       "buttons": [
@@ -1383,32 +1078,27 @@
         "Display"
       ]
     },
+    "card": {
+      "multi": true,
+      "type": "SD",
+      "subtype": "SDHC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000300": {
-            "revision": "100c"
-          }
-        },
         "names": [
           "Canon PowerShot A720 IS"
         ],
         "platform": "a720"
       }
     ],
-    "encoding": {
-      "name": ""
-    },
-    "card": {
-      "multi": true,
-      "type": "SD",
-      "subtype": "SDHC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x2290000": {
+    "encoding": {
+      "name": ""
+    },
     "alt": {
       "button": "Print",
       "buttons": [
@@ -1416,48 +1106,37 @@
         "Face"
       ]
     },
+    "card": {
+      "multi": true,
+      "type": "SD",
+      "subtype": "SDHC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          },
-          "0x1000300": {
-            "revision": "100c"
-          }
-        },
         "names": [
           "Canon PowerShot SX100 IS"
         ],
         "platform": "sx100is"
       }
     ],
+    "boot": {
+      "fs": "FAT"
+    }
+  },
+  "0x2300000": {
     "encoding": {
       "name": ""
+    },
+    "alt": {
+      "button": "Print"
     },
     "card": {
       "multi": true,
       "type": "SD",
       "subtype": "SDHC"
     },
-    "boot": {
-      "fs": "FAT"
-    }
-  },
-  "0x2300000": {
-    "alt": {
-      "button": "Print"
-    },
     "models": [
       {
-        "revisions": {
-          "0x1000300": {
-            "revision": "100c"
-          },
-          "0x1000400": {
-            "revision": "100d"
-          }
-        },
         "names": [
           "Canon PowerShot SD950 IS",
           "Canon Digital IXUS 960 IS",
@@ -1466,29 +1145,24 @@
         "platform": "ixus960_sd950"
       }
     ],
+    "boot": {
+      "fs": "FAT"
+    }
+  },
+  "0x2310000": {
     "encoding": {
       "name": ""
+    },
+    "alt": {
+      "button": "Print"
     },
     "card": {
       "multi": true,
       "type": "SD",
       "subtype": "SDHC"
     },
-    "boot": {
-      "fs": "FAT"
-    }
-  },
-  "0x2310000": {
-    "alt": {
-      "button": "Print"
-    },
     "models": [
       {
-        "revisions": {
-          "0x1000300": {
-            "revision": "100c"
-          }
-        },
         "names": [
           "Canon PowerShot SD870 IS",
           "Canon Digital IXUS 860 IS",
@@ -1497,38 +1171,25 @@
         "platform": "ixus860_sd870"
       }
     ],
+    "boot": {
+      "fs": "FAT"
+    }
+  },
+  "0x2320000": {
     "encoding": {
-      "name": ""
+      "name": "dancingbits",
+      "data": "0x35270164"
+    },
+    "alt": {
+      "button": "Print"
     },
     "card": {
       "multi": true,
       "type": "SD",
       "subtype": "SDHC"
     },
-    "boot": {
-      "fs": "FAT"
-    }
-  },
-  "0x2320000": {
-    "alt": {
-      "button": "Print"
-    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          },
-          "0x1000300": {
-            "revision": "100c"
-          },
-          "0x1000400": {
-            "revision": "100d"
-          },
-          "0x1000600": {
-            "revision": "100f"
-          }
-        },
         "names": [
           "Canon PowerShot SD890 IS",
           "Canon Digital IXUS 970 IS",
@@ -1537,36 +1198,25 @@
         "platform": "ixus970_sd890"
       }
     ],
+    "boot": {
+      "fs": "FAT"
+    }
+  },
+  "0x2360000": {
     "encoding": {
       "name": "dancingbits",
       "data": "0x35270164"
+    },
+    "alt": {
+      "button": "Print"
     },
     "card": {
       "multi": true,
       "type": "SD",
       "subtype": "SDHC"
     },
-    "boot": {
-      "fs": "FAT"
-    }
-  },
-  "0x2360000": {
-    "alt": {
-      "button": "Print"
-    },
     "models": [
       {
-        "revisions": {
-          "0x1000300": {
-            "revision": "100c"
-          },
-          "0x1000400": {
-            "revision": "100d"
-          },
-          "0x1000500": {
-            "revision": "100e"
-          }
-        },
         "names": [
           "Canon PowerShot SD790 IS",
           "Canon Digital IXUS 90 IS",
@@ -1575,33 +1225,25 @@
         "platform": "ixus90_sd790"
       }
     ],
+    "boot": {
+      "fs": "FAT"
+    }
+  },
+  "0x2370000": {
     "encoding": {
       "name": "dancingbits",
       "data": "0x35270164"
+    },
+    "alt": {
+      "button": "Print"
     },
     "card": {
       "multi": true,
       "type": "SD",
       "subtype": "SDHC"
     },
-    "boot": {
-      "fs": "FAT"
-    }
-  },
-  "0x2370000": {
-    "alt": {
-      "button": "Print"
-    },
     "models": [
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          },
-          "0x1000200": {
-            "revision": "100b"
-          }
-        },
         "names": [
           "Canon PowerShot SD770 IS",
           "Canon Digital IXUS 85 IS",
@@ -1610,20 +1252,15 @@
         "platform": "ixus85_sd770"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x35270164"
-    },
-    "card": {
-      "multi": true,
-      "type": "SD",
-      "subtype": "SDHC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x2380000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x35270164"
+    },
     "alt": {
       "button": "Print",
       "buttons": [
@@ -1631,36 +1268,28 @@
         "Display"
       ]
     },
+    "card": {
+      "multi": true,
+      "type": "SD",
+      "subtype": "SDHC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000500": {
-            "revision": "100e"
-          },
-          "0x1010200": {
-            "revision": "101b"
-          }
-        },
         "names": [
           "Canon PowerShot A590 IS"
         ],
         "platform": "a590"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x35270164"
-    },
-    "card": {
-      "multi": true,
-      "type": "SD",
-      "subtype": "SDHC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x2390000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x35270164"
+    },
     "alt": {
       "button": "Print",
       "buttons": [
@@ -1668,91 +1297,63 @@
         "Display"
       ]
     },
+    "card": {
+      "multi": true,
+      "type": "SD",
+      "subtype": "SDHC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000300": {
-            "revision": "100c"
-          },
-          "0x1010200": {
-            "revision": "101b"
-          }
-        },
         "names": [
           "Canon PowerShot A580"
         ],
         "platform": "a580"
       }
     ],
+    "boot": {
+      "fs": "FAT"
+    }
+  },
+  "0x2420000": {
     "encoding": {
       "name": "dancingbits",
       "data": "0x35270164"
+    },
+    "alt": {
+      "button": "Print"
     },
     "card": {
       "multi": true,
       "type": "SD",
       "subtype": "SDHC"
     },
-    "boot": {
-      "fs": "FAT"
-    }
-  },
-  "0x2420000": {
-    "alt": {
-      "button": "Print"
-    },
     "models": [
       {
-        "revisions": {
-          "0x1000500": {
-            "revision": "100e"
-          },
-          "0x1010100": {
-            "revision": "101a"
-          },
-          "0x1010200": {
-            "revision": "101b"
-          },
-          "0x1020300": {
-            "revision": "102c"
-          }
-        },
         "names": [
           "Canon PowerShot A470"
         ],
         "platform": "a470"
       }
     ],
+    "boot": {
+      "fs": "FAT"
+    }
+  },
+  "0x2430000": {
     "encoding": {
       "name": "dancingbits",
       "data": "0x35270164"
+    },
+    "alt": {
+      "button": "Print"
     },
     "card": {
       "multi": true,
       "type": "SD",
       "subtype": "SDHC"
     },
-    "boot": {
-      "fs": "FAT"
-    }
-  },
-  "0x2430000": {
-    "alt": {
-      "button": "Print"
-    },
     "models": [
       {
-        "revisions": {
-          "0x1000300": {
-            "revision": "100c"
-          },
-          "0x1010100": {
-            "revision": "101a"
-          },
-          "0x1010200": {
-            "revision": "101b"
-          }
-        },
         "names": [
           "Canon PowerShot SD1100 IS",
           "Canon Digital IXUS 80 IS",
@@ -1761,20 +1362,15 @@
         "platform": "ixus80_sd1100"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x35270164"
-    },
-    "card": {
-      "multi": true,
-      "type": "SD",
-      "subtype": "SDHC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x2460000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x35270164"
+    },
     "alt": {
       "button": "Shrtcut",
       "buttons": [
@@ -1783,36 +1379,28 @@
         "Video"
       ]
     },
+    "card": {
+      "multi": true,
+      "type": "SD",
+      "subtype": "SDHC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x2000800": {
-            "revision": "200h"
-          },
-          "0x2010100": {
-            "revision": "201a"
-          }
-        },
         "names": [
           "Canon PowerShot SX1 IS"
         ],
         "platform": "sx1"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x35270164"
-    },
-    "card": {
-      "multi": true,
-      "type": "SD",
-      "subtype": "SDHC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x2470000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x35270164"
+    },
     "alt": {
       "button": "Shrtcut",
       "buttons": [
@@ -1821,78 +1409,53 @@
         "Video"
       ]
     },
+    "card": {
+      "multi": true,
+      "type": "SD",
+      "subtype": "SDHC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000300": {
-            "revision": "100c"
-          },
-          "0x1010100": {
-            "revision": "101a"
-          },
-          "0x1010200": {
-            "revision": "101b"
-          },
-          "0x1020200": {
-            "revision": "102b"
-          },
-          "0x1030100": {
-            "revision": "103a"
-          }
-        },
         "names": [
           "Canon PowerShot SX10 IS"
         ],
         "platform": "sx10"
       }
     ],
+    "boot": {
+      "fs": "FAT"
+    }
+  },
+  "0x2480000": {
     "encoding": {
       "name": "dancingbits",
       "data": "0x35270164"
+    },
+    "alt": {
+      "button": "Print"
     },
     "card": {
       "multi": true,
       "type": "SD",
       "subtype": "SDHC"
     },
-    "boot": {
-      "fs": "FAT"
-    }
-  },
-  "0x2480000": {
-    "alt": {
-      "button": "Print"
-    },
     "models": [
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          },
-          "0x1000200": {
-            "revision": "100b"
-          }
-        },
         "names": [
           "Canon PowerShot A1000 IS"
         ],
         "platform": "a1000"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x35270164"
-    },
-    "card": {
-      "multi": true,
-      "type": "SD",
-      "subtype": "SDHC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x2490000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x35270164"
+    },
     "alt": {
       "button": "Print",
       "buttons": [
@@ -1902,75 +1465,53 @@
         "Jump"
       ]
     },
+    "card": {
+      "multi": true,
+      "type": "SD",
+      "subtype": "SDHC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1020100": {
-            "revision": "102a"
-          },
-          "0x1030200": {
-            "revision": "103b"
-          },
-          "0x1040100": {
-            "revision": "104a"
-          }
-        },
         "names": [
           "Canon PowerShot G10"
         ],
         "platform": "g10"
       }
     ],
+    "boot": {
+      "fs": "FAT"
+    }
+  },
+  "0x2510000": {
     "encoding": {
       "name": "dancingbits",
       "data": "0x35270164"
+    },
+    "alt": {
+      "button": "Print"
     },
     "card": {
       "multi": true,
       "type": "SD",
       "subtype": "SDHC"
     },
-    "boot": {
-      "fs": "FAT"
-    }
-  },
-  "0x2510000": {
-    "alt": {
-      "button": "Print"
-    },
     "models": [
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          },
-          "0x1000200": {
-            "revision": "100b"
-          },
-          "0x1000300": {
-            "revision": "100c"
-          }
-        },
         "names": [
           "Canon PowerShot A2000 IS"
         ],
         "platform": "a2000"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x35270164"
-    },
-    "card": {
-      "multi": true,
-      "type": "SD",
-      "subtype": "SDHC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x2520000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x35270164"
+    },
     "alt": {
       "button": "Print",
       "buttons": [
@@ -1978,46 +1519,38 @@
         "Face"
       ]
     },
+    "card": {
+      "multi": true,
+      "type": "SD",
+      "subtype": "SDHC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          }
-        },
         "names": [
           "Canon PowerShot SX110 IS"
         ],
         "platform": "sx110is"
       }
     ],
+    "boot": {
+      "fs": "FAT"
+    }
+  },
+  "0x2530000": {
     "encoding": {
       "name": "dancingbits",
       "data": "0x35270164"
+    },
+    "alt": {
+      "button": "Print"
     },
     "card": {
       "multi": true,
       "type": "SD",
       "subtype": "SDHC"
     },
-    "boot": {
-      "fs": "FAT"
-    }
-  },
-  "0x2530000": {
-    "alt": {
-      "button": "Print"
-    },
     "models": [
       {
-        "revisions": {
-          "0x1000500": {
-            "revision": "100e"
-          },
-          "0x1010200": {
-            "revision": "101b"
-          }
-        },
         "names": [
           "Canon PowerShot SD990 IS",
           "Canon Digital IXUS 980 IS",
@@ -2026,36 +1559,25 @@
         "platform": "ixus980_sd990"
       }
     ],
+    "boot": {
+      "fs": "FAT"
+    }
+  },
+  "0x2540000": {
     "encoding": {
       "name": "dancingbits",
       "data": "0x35270164"
+    },
+    "alt": {
+      "button": "Print"
     },
     "card": {
       "multi": true,
       "type": "SD",
       "subtype": "SDHC"
     },
-    "boot": {
-      "fs": "FAT"
-    }
-  },
-  "0x2540000": {
-    "alt": {
-      "button": "Print"
-    },
     "models": [
       {
-        "revisions": {
-          "0x1000500": {
-            "revision": "100e"
-          },
-          "0x1010100": {
-            "revision": "101a"
-          },
-          "0x1020200": {
-            "revision": "102b"
-          }
-        },
         "names": [
           "Canon PowerShot SD880 IS",
           "Canon Digital IXUS 870 IS",
@@ -2064,72 +1586,50 @@
         "platform": "ixus870_sd880"
       }
     ],
+    "boot": {
+      "fs": "FAT"
+    }
+  },
+  "0x2560000": {
     "encoding": {
       "name": "dancingbits",
-      "data": "0x35270164"
+      "data": "0x40721635"
+    },
+    "alt": {
+      "button": "Print"
     },
     "card": {
       "multi": true,
       "type": "SD",
       "subtype": "SDHC"
     },
-    "boot": {
-      "fs": "FAT"
-    }
-  },
-  "0x2560000": {
-    "alt": {
-      "button": "Print"
-    },
     "models": [
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          },
-          "0x1000200": {
-            "revision": "100b"
-          }
-        },
         "names": [
           "Canon PowerShot D10"
         ],
         "platform": "d10"
       }
     ],
+    "boot": {
+      "fs": "FAT"
+    }
+  },
+  "0x2570000": {
     "encoding": {
       "name": "dancingbits",
       "data": "0x40721635"
+    },
+    "alt": {
+      "button": "Print"
     },
     "card": {
       "multi": true,
       "type": "SD",
       "subtype": "SDHC"
     },
-    "boot": {
-      "fs": "FAT"
-    }
-  },
-  "0x2570000": {
-    "alt": {
-      "button": "Print"
-    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          },
-          "0x1010400": {
-            "revision": "101d"
-          },
-          "0x1010600": {
-            "revision": "101f"
-          },
-          "0x1010700": {
-            "revision": "101g"
-          }
-        },
         "names": [
           "Canon PowerShot SD960 IS",
           "Canon Digital IXUS 110 IS",
@@ -2138,113 +1638,90 @@
         "platform": "ixus110_sd960"
       }
     ],
+    "boot": {
+      "fs": "FAT"
+    }
+  },
+  "0x2580000": {
     "encoding": {
       "name": "dancingbits",
       "data": "0x40721635"
+    },
+    "alt": {
+      "button": "Print"
     },
     "card": {
       "multi": true,
       "type": "SD",
       "subtype": "SDHC"
     },
-    "boot": {
-      "fs": "FAT"
-    }
-  },
-  "0x2580000": {
-    "alt": {
-      "button": "Print"
-    },
     "models": [
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          }
-        },
         "names": [
           "Canon PowerShot A2100 IS"
         ],
         "platform": "a2100"
       }
     ],
+    "boot": {
+      "fs": "FAT"
+    }
+  },
+  "0x2590000": {
     "encoding": {
       "name": "dancingbits",
       "data": "0x40721635"
+    },
+    "alt": {
+      "button": "Print"
     },
     "card": {
       "multi": true,
       "type": "SD",
       "subtype": "SDHC"
     },
-    "boot": {
-      "fs": "FAT"
-    }
-  },
-  "0x2590000": {
-    "alt": {
-      "button": "Print"
-    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          }
-        },
         "names": [
           "Canon PowerShot A480"
         ],
         "platform": "a480"
       }
     ],
+    "boot": {
+      "fs": "FAT"
+    }
+  },
+  "0x2600000": {
     "encoding": {
       "name": "dancingbits",
       "data": "0x40721635"
+    },
+    "alt": {
+      "button": "Print"
     },
     "card": {
       "multi": true,
       "type": "SD",
       "subtype": "SDHC"
     },
-    "boot": {
-      "fs": "FAT"
-    }
-  },
-  "0x2600000": {
-    "alt": {
-      "button": "Print"
-    },
     "models": [
       {
-        "revisions": {
-          "0x1000300": {
-            "revision": "100c"
-          },
-          "0x1000400": {
-            "revision": "100d"
-          }
-        },
         "names": [
           "Canon PowerShot SX200 IS"
         ],
         "platform": "sx200is"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x40721635"
-    },
-    "card": {
-      "multi": true,
-      "type": "SD",
-      "subtype": "SDHC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x2620000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x40721635"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -2252,16 +1729,13 @@
         "Display"
       ]
     },
+    "card": {
+      "multi": true,
+      "type": "SD",
+      "subtype": "SDHC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          },
-          "0x1000300": {
-            "revision": "100c"
-          }
-        },
         "names": [
           "Canon PowerShot SD780 IS",
           "Canon Digital IXUS 100 IS",
@@ -2270,66 +1744,50 @@
         "platform": "ixus100_sd780"
       }
     ],
+    "boot": {
+      "fs": "FAT"
+    }
+  },
+  "0x2630000": {
     "encoding": {
       "name": "dancingbits",
       "data": "0x40721635"
+    },
+    "alt": {
+      "button": "Print"
     },
     "card": {
       "multi": true,
       "type": "SD",
       "subtype": "SDHC"
     },
-    "boot": {
-      "fs": "FAT"
-    }
-  },
-  "0x2630000": {
-    "alt": {
-      "button": "Print"
-    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          },
-          "0x1000300": {
-            "revision": "100c"
-          }
-        },
         "names": [
           "Canon PowerShot A1100 IS"
         ],
         "platform": "a1100"
       }
     ],
+    "boot": {
+      "fs": "FAT"
+    }
+  },
+  "0x2640000": {
     "encoding": {
       "name": "dancingbits",
       "data": "0x40721635"
+    },
+    "alt": {
+      "button": "Print"
     },
     "card": {
       "multi": true,
       "type": "SD",
       "subtype": "SDHC"
     },
-    "boot": {
-      "fs": "FAT"
-    }
-  },
-  "0x2640000": {
-    "alt": {
-      "button": "Print"
-    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          },
-          "0x1000300": {
-            "revision": "100c"
-          }
-        },
         "names": [
           "Canon PowerShot SD1200 IS",
           "Canon Digital IXUS 95 IS",
@@ -2338,20 +1796,15 @@
         "platform": "ixus95_sd1200"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x40721635"
-    },
-    "card": {
-      "multi": true,
-      "type": "SD",
-      "subtype": "SDHC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x2700000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x73164052"
+    },
     "alt": {
       "button": "Print",
       "buttons": [
@@ -2361,114 +1814,78 @@
         "Jump"
       ]
     },
+    "card": {
+      "multi": true,
+      "type": "SD",
+      "subtype": "SDHC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000600": {
-            "revision": "100f"
-          },
-          "0x1000800": {
-            "revision": "100h"
-          },
-          "0x1000a00": {
-            "revision": "100j"
-          },
-          "0x1000b00": {
-            "revision": "100k"
-          },
-          "0x1000c00": {
-            "revision": "100l"
-          }
-        },
         "names": [
           "Canon PowerShot G11"
         ],
         "platform": "g11"
       }
     ],
+    "boot": {
+      "fs": "FAT"
+    }
+  },
+  "0x2710000": {
     "encoding": {
       "name": "dancingbits",
       "data": "0x73164052"
+    },
+    "alt": {
+      "button": "Print"
     },
     "card": {
       "multi": true,
       "type": "SD",
       "subtype": "SDHC"
     },
-    "boot": {
-      "fs": "FAT"
-    }
-  },
-  "0x2710000": {
-    "alt": {
-      "button": "Print"
-    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          }
-        },
         "names": [
           "Canon PowerShot SX120 IS"
         ],
         "platform": "sx120is"
       }
     ],
+    "boot": {
+      "fs": "FAT"
+    }
+  },
+  "0x2720000": {
     "encoding": {
       "name": "dancingbits",
       "data": "0x73164052"
+    },
+    "alt": {
+      "button": "Print"
     },
     "card": {
       "multi": true,
       "type": "SD",
       "subtype": "SDHC"
     },
-    "boot": {
-      "fs": "FAT"
-    }
-  },
-  "0x2720000": {
-    "alt": {
-      "button": "Print"
-    },
     "models": [
       {
-        "revisions": {
-          "0x1000300": {
-            "revision": "100c"
-          },
-          "0x1010100": {
-            "revision": "101a"
-          },
-          "0x1010200": {
-            "revision": "101b"
-          },
-          "0x1010300": {
-            "revision": "101c"
-          }
-        },
         "names": [
           "Canon PowerShot S90"
         ],
         "platform": "s90"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x73164052"
-    },
-    "card": {
-      "multi": true,
-      "type": "SD",
-      "subtype": "SDHC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x2750000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x73164052"
+    },
     "alt": {
       "button": "Shrtcut",
       "buttons": [
@@ -2477,58 +1894,38 @@
         "Video"
       ]
     },
+    "card": {
+      "multi": true,
+      "type": "SD",
+      "subtype": "SDHC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000600": {
-            "revision": "100f"
-          },
-          "0x1020200": {
-            "revision": "102b"
-          },
-          "0x1020300": {
-            "revision": "102c"
-          },
-          "0x1020400": {
-            "revision": "102d"
-          }
-        },
         "names": [
           "Canon PowerShot SX20 IS"
         ],
         "platform": "sx20"
       }
     ],
+    "boot": {
+      "fs": "FAT"
+    }
+  },
+  "0x2760000": {
     "encoding": {
       "name": "dancingbits",
       "data": "0x73164052"
+    },
+    "alt": {
+      "button": "Print"
     },
     "card": {
       "multi": true,
       "type": "SD",
       "subtype": "SDHC"
     },
-    "boot": {
-      "fs": "FAT"
-    }
-  },
-  "0x2760000": {
-    "alt": {
-      "button": "Print"
-    },
     "models": [
       {
-        "revisions": {
-          "0x1000300": {
-            "revision": "100c"
-          },
-          "0x1010300": {
-            "revision": "101c"
-          },
-          "0x1010400": {
-            "revision": "101d"
-          }
-        },
         "names": [
           "Canon PowerShot SD980 IS",
           "Canon Digital IXUS 200 IS",
@@ -2537,20 +1934,15 @@
         "platform": "ixus200_sd980"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x73164052"
-    },
-    "card": {
-      "multi": true,
-      "type": "SD",
-      "subtype": "SDHC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x2770000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x73164052"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -2558,25 +1950,13 @@
         "Display"
       ]
     },
+    "card": {
+      "multi": true,
+      "type": "SD",
+      "subtype": "SDHC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000500": {
-            "revision": "100e"
-          },
-          "0x1010100": {
-            "revision": "101a"
-          },
-          "0x1020300": {
-            "revision": "102c"
-          },
-          "0x1030200": {
-            "revision": "103b"
-          },
-          "0x1030300": {
-            "revision": "103c"
-          }
-        },
         "names": [
           "Canon PowerShot SD940 IS",
           "Canon Digital IXUS 120 IS",
@@ -2585,92 +1965,65 @@
         "platform": "ixus120_sd940"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x73164052"
-    },
-    "card": {
-      "multi": true,
-      "type": "SD",
-      "subtype": "SDHC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x2800000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x10562374"
+    },
     "alt": {
       "button": "Print"
     },
+    "card": {
+      "multi": true,
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000400": {
-            "revision": "100d"
-          },
-          "0x1000500": {
-            "revision": "100e"
-          },
-          "0x1000600": {
-            "revision": "100f"
-          }
-        },
         "names": [
           "Canon PowerShot A495"
         ],
         "platform": "a495"
       }
     ],
+    "boot": {
+      "fs": "FAT"
+    }
+  },
+  "0x2810000": {
     "encoding": {
       "name": "dancingbits",
       "data": "0x10562374"
+    },
+    "alt": {
+      "button": "Print"
     },
     "card": {
       "multi": true,
       "type": "SD",
       "subtype": "SDXC"
     },
-    "boot": {
-      "fs": "FAT"
-    }
-  },
-  "0x2810000": {
-    "alt": {
-      "button": "Print"
-    },
     "models": [
       {
-        "revisions": {
-          "0x1000400": {
-            "revision": "100d"
-          },
-          "0x1000500": {
-            "revision": "100e"
-          },
-          "0x1000600": {
-            "revision": "100f"
-          }
-        },
         "names": [
           "Canon PowerShot A490"
         ],
         "platform": "a490"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x10562374"
-    },
-    "card": {
-      "multi": true,
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x2820000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x10562374"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -2679,19 +2032,13 @@
         "Display"
       ]
     },
+    "card": {
+      "multi": true,
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          },
-          "0x1000200": {
-            "revision": "100b"
-          },
-          "0x1000400": {
-            "revision": "100d"
-          }
-        },
         "names": [
           "Canon PowerShot A3100 IS",
           "Canon PowerShot A3150 IS"
@@ -2699,69 +2046,50 @@
         "platform": "a3100"
       }
     ],
+    "boot": {
+      "fs": "FAT"
+    }
+  },
+  "0x2830000": {
     "encoding": {
       "name": "dancingbits",
       "data": "0x10562374"
+    },
+    "alt": {
+      "button": "Print"
     },
     "card": {
       "multi": true,
       "type": "SD",
       "subtype": "SDXC"
     },
-    "boot": {
-      "fs": "FAT"
-    }
-  },
-  "0x2830000": {
-    "alt": {
-      "button": "Print"
-    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          },
-          "0x1000300": {
-            "revision": "100c"
-          },
-          "0x1000400": {
-            "revision": "100d"
-          }
-        },
         "names": [
           "Canon PowerShot A3000 IS"
         ],
         "platform": "a3000"
       }
     ],
+    "boot": {
+      "fs": "FAT"
+    }
+  },
+  "0x2840000": {
     "encoding": {
       "name": "dancingbits",
       "data": "0x10562374"
+    },
+    "alt": {
+      "button": "Print"
     },
     "card": {
       "multi": true,
       "type": "SD",
       "subtype": "SDXC"
     },
-    "boot": {
-      "fs": "FAT"
-    }
-  },
-  "0x2840000": {
-    "alt": {
-      "button": "Print"
-    },
     "models": [
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          },
-          "0x1000300": {
-            "revision": "100c"
-          }
-        },
         "names": [
           "Canon PowerShot SD1400 IS",
           "Canon IXUS 130",
@@ -2770,20 +2098,15 @@
         "platform": "ixus130_sd1400"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x10562374"
-    },
-    "card": {
-      "multi": true,
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x2850000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x10562374"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -2791,19 +2114,13 @@
         "Display"
       ]
     },
+    "card": {
+      "multi": true,
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          },
-          "0x1000300": {
-            "revision": "100c"
-          },
-          "0x1000400": {
-            "revision": "100d"
-          }
-        },
         "names": [
           "Canon PowerShot SD1300 IS",
           "Canon IXUS 105",
@@ -2812,20 +2129,15 @@
         "platform": "ixus105_sd1300"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x10562374"
-    },
-    "card": {
-      "multi": true,
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x2870000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x10562374"
+    },
     "alt": {
       "button": "Video",
       "buttons": [
@@ -2833,43 +2145,38 @@
         "Playback"
       ]
     },
+    "card": {
+      "multi": true,
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000300": {
-            "revision": "100c"
-          }
-        },
         "names": [
           "Canon PowerShot SX210 IS"
         ],
         "platform": "sx210is"
       }
     ],
+    "boot": {
+      "fs": "FAT"
+    }
+  },
+  "0x2880000": {
     "encoding": {
       "name": "dancingbits",
       "data": "0x10562374"
+    },
+    "alt": {
+      "button": "Print"
     },
     "card": {
       "multi": true,
       "type": "SD",
       "subtype": "SDXC"
     },
-    "boot": {
-      "fs": "FAT"
-    }
-  },
-  "0x2880000": {
-    "alt": {
-      "button": "Print"
-    },
     "models": [
       {
-        "revisions": {
-          "0x1000400": {
-            "revision": "100d"
-          }
-        },
         "names": [
           "Canon PowerShot SD4000 IS",
           "Canon IXUS 300 HS",
@@ -2878,20 +2185,15 @@
         "platform": "ixus300_sd4000"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x10562374"
-    },
-    "card": {
-      "multi": true,
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x2890000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x06415723"
+    },
     "alt": {
       "button": "Video",
       "buttons": [
@@ -2899,34 +2201,13 @@
         "Playback"
       ]
     },
+    "card": {
+      "multi": true,
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          },
-          "0x1000400": {
-            "revision": "100d"
-          },
-          "0x1000600": {
-            "revision": "100f"
-          },
-          "0x1010100": {
-            "revision": "101a"
-          },
-          "0x1020200": {
-            "revision": "102b"
-          },
-          "0x1020300": {
-            "revision": "102c"
-          },
-          "0x1020400": {
-            "revision": "102d"
-          },
-          "0x1020500": {
-            "revision": "102e"
-          }
-        },
         "names": [
           "Canon PowerShot SD4500 IS",
           "Canon IXUS 1000 HS",
@@ -2935,20 +2216,15 @@
         "platform": "ixus1000_sd4500"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x06415723"
-    },
-    "card": {
-      "multi": true,
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x2920000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x06415723"
+    },
     "alt": {
       "button": "Print",
       "buttons": [
@@ -2958,42 +2234,28 @@
         "Jump"
       ]
     },
+    "card": {
+      "multi": true,
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000300": {
-            "revision": "100c"
-          },
-          "0x1000500": {
-            "revision": "100e"
-          },
-          "0x1000600": {
-            "revision": "100f"
-          },
-          "0x1000700": {
-            "revision": "100g"
-          }
-        },
         "names": [
           "Canon PowerShot G12"
         ],
         "platform": "g12"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x06415723"
-    },
-    "card": {
-      "multi": true,
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x2930000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x06415723"
+    },
     "alt": {
       "button": "Shrtcut",
       "buttons": [
@@ -3002,84 +2264,53 @@
         "Video"
       ]
     },
+    "card": {
+      "multi": true,
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000500": {
-            "revision": "100e"
-          },
-          "0x1000800": {
-            "revision": "100h"
-          },
-          "0x1000c00": {
-            "revision": "100l"
-          },
-          "0x1000d00": {
-            "revision": "100m"
-          },
-          "0x1000e00": {
-            "revision": "100n"
-          },
-          "0x1001000": {
-            "revision": "100p"
-          }
-        },
         "names": [
           "Canon PowerShot SX30 IS"
         ],
         "platform": "sx30"
       }
     ],
+    "boot": {
+      "fs": "FAT"
+    }
+  },
+  "0x2940000": {
     "encoding": {
       "name": "dancingbits",
       "data": "0x06415723"
+    },
+    "alt": {
+      "button": "Print"
     },
     "card": {
       "multi": true,
       "type": "SD",
       "subtype": "SDXC"
     },
-    "boot": {
-      "fs": "FAT"
-    }
-  },
-  "0x2940000": {
-    "alt": {
-      "button": "Print"
-    },
     "models": [
       {
-        "revisions": {
-          "0x1010300": {
-            "revision": "101c"
-          },
-          "0x1010400": {
-            "revision": "101d"
-          },
-          "0x1010600": {
-            "revision": "101f"
-          }
-        },
         "names": [
           "Canon PowerShot SX130 IS"
         ],
         "platform": "sx130is"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x06415723"
-    },
-    "card": {
-      "multi": true,
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x2950000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x06415723"
+    },
     "alt": {
       "button": "Print",
       "buttons": [
@@ -3089,42 +2320,28 @@
         "RingFunc"
       ]
     },
+    "card": {
+      "multi": true,
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000500": {
-            "revision": "100e"
-          },
-          "0x1000800": {
-            "revision": "100h"
-          },
-          "0x1000900": {
-            "revision": "100i"
-          },
-          "0x1000b00": {
-            "revision": "100k"
-          }
-        },
         "names": [
           "Canon PowerShot S95"
         ],
         "platform": "s95"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x06415723"
-    },
-    "card": {
-      "multi": true,
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT"
     }
   },
   "0x2980000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x15637240"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -3133,38 +2350,27 @@
         "Display"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          },
-          "0x1000300": {
-            "revision": "100c"
-          },
-          "0x1000400": {
-            "revision": "100d"
-          }
-        },
         "names": [
           "Canon PowerShot A3300 IS"
         ],
         "platform": "a3300"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x15637240"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x2990000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x15637240"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -3173,57 +2379,36 @@
         "Display"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          },
-          "0x1000300": {
-            "revision": "100c"
-          },
-          "0x1000400": {
-            "revision": "100d"
-          }
-        },
         "names": [
           "Canon PowerShot A3200 IS"
         ],
         "platform": "a3200"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x15637240"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3000000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x15637240"
+    },
     "alt": {
       "button": "Print"
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          },
-          "0x1010100": {
-            "revision": "101a"
-          },
-          "0x1010200": {
-            "revision": "101b"
-          },
-          "0x1010300": {
-            "revision": "101c"
-          }
-        },
         "names": [
           "Canon PowerShot ELPH 500 HS",
           "Canon IXUS 310 HS",
@@ -3232,51 +2417,39 @@
         "platform": "ixus310_elph500hs"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x15637240"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3010001": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x15637240"
+    },
     "alt": {
       "button": "Print"
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          },
-          "0x1000300": {
-            "revision": "100c"
-          }
-        },
         "names": [
           "Canon PowerShot A800"
         ],
         "platform": "a800"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x15637240"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3020000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x15637240"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -3285,22 +2458,12 @@
         "Set+ZoomIn"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000300": {
-            "revision": "100c"
-          },
-          "0x1010100": {
-            "revision": "101a"
-          },
-          "0x1010200": {
-            "revision": "101b"
-          },
-          "0x1010300": {
-            "revision": "101c"
-          }
-        },
         "names": [
           "Canon PowerShot ELPH 100 HS",
           "Canon IXUS 115 HS",
@@ -3309,19 +2472,15 @@
         "platform": "ixus115_elph100hs"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x15637240"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3030000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x15637240"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -3330,44 +2489,27 @@
         "Display"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000300": {
-            "revision": "100c"
-          },
-          "0x1010100": {
-            "revision": "101a"
-          },
-          "0x1010200": {
-            "revision": "101b"
-          },
-          "0x1010300": {
-            "revision": "101c"
-          },
-          "0x1010500": {
-            "revision": "101e"
-          }
-        },
         "names": [
           "Canon PowerShot SX230 HS"
         ],
         "platform": "sx230hs"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x15637240"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3040000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x15637240"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -3376,28 +2518,12 @@
         "Video"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000300": {
-            "revision": "100c"
-          },
-          "0x1010100": {
-            "revision": "101a"
-          },
-          "0x1010300": {
-            "revision": "101c"
-          },
-          "0x1010400": {
-            "revision": "101d"
-          },
-          "0x1010500": {
-            "revision": "101e"
-          },
-          "0x1010700": {
-            "revision": "101g"
-          }
-        },
         "names": [
           "Canon PowerShot ELPH 300 HS",
           "Canon IXUS 220 HS",
@@ -3406,19 +2532,15 @@
         "platform": "ixus220_elph300hs"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x15637240"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3050000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x15637240"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -3427,38 +2549,27 @@
         "Display"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          },
-          "0x1000300": {
-            "revision": "100c"
-          },
-          "0x1000400": {
-            "revision": "100d"
-          }
-        },
         "names": [
           "Canon PowerShot A2200"
         ],
         "platform": "a2200"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x15637240"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3060000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x15637240"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -3467,38 +2578,27 @@
         "Display"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          },
-          "0x1000200": {
-            "revision": "100b"
-          },
-          "0x1000300": {
-            "revision": "100c"
-          }
-        },
         "names": [
           "Canon PowerShot A1200"
         ],
         "platform": "a1200"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x15637240"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3070000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x15637240"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -3507,44 +2607,27 @@
         "Display"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          },
-          "0x1010100": {
-            "revision": "101a"
-          },
-          "0x1010200": {
-            "revision": "101b"
-          },
-          "0x1010300": {
-            "revision": "101c"
-          },
-          "0x1010500": {
-            "revision": "101e"
-          }
-        },
         "names": [
           "Canon PowerShot SX220 HS"
         ],
         "platform": "sx220hs"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x15637240"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3080000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x24603517"
+    },
     "alt": {
       "button": "Shrtcut",
       "buttons": [
@@ -3555,41 +2638,27 @@
         "Erase"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000500": {
-            "revision": "100e"
-          },
-          "0x1000600": {
-            "revision": "100f"
-          },
-          "0x1000700": {
-            "revision": "100g"
-          },
-          "0x1010100": {
-            "revision": "101a"
-          }
-        },
         "names": [
           "Canon PowerShot G1 X"
         ],
         "platform": "g1x"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x24603517"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3090000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x24603517"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -3598,32 +2667,27 @@
         "Display"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          }
-        },
         "names": [
           "Canon PowerShot SX150 IS"
         ],
         "platform": "sx150is"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x24603517"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3110000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x24603517"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -3631,44 +2695,27 @@
         "Video"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000400": {
-            "revision": "100d"
-          },
-          "0x1000500": {
-            "revision": "100e"
-          },
-          "0x1010100": {
-            "revision": "101a"
-          },
-          "0x1010200": {
-            "revision": "101b"
-          },
-          "0x1020100": {
-            "revision": "102a"
-          }
-        },
         "names": [
           "Canon PowerShot S100"
         ],
         "platform": "s100"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x24603517"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3120000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x24603517"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -3677,19 +2724,12 @@
         "Video"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          },
-          "0x1000200": {
-            "revision": "100b"
-          },
-          "0x1000500": {
-            "revision": "100e"
-          }
-        },
         "names": [
           "Canon PowerShot ELPH 310 HS",
           "Canon IXUS 230 HS",
@@ -3698,19 +2738,15 @@
         "platform": "ixus230_elph310hs"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x24603517"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3130000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x24603517"
+    },
     "alt": {
       "button": "Shrtcut",
       "buttons": [
@@ -3719,41 +2755,27 @@
         "Video"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000400": {
-            "revision": "100d"
-          },
-          "0x1000600": {
-            "revision": "100f"
-          },
-          "0x1000700": {
-            "revision": "100g"
-          },
-          "0x1000900": {
-            "revision": "100i"
-          }
-        },
         "names": [
           "Canon PowerShot SX40 HS"
         ],
         "platform": "sx40hs"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x24603517"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3160000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x42750136"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -3761,38 +2783,27 @@
         "Help"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          },
-          "0x1000400": {
-            "revision": "100d"
-          },
-          "0x1000500": {
-            "revision": "100e"
-          }
-        },
         "names": [
           "Canon PowerShot A1300"
         ],
         "platform": "a1300"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x42750136"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3170000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x42750136"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -3800,54 +2811,36 @@
         "Help"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          },
-          "0x1000400": {
-            "revision": "100d"
-          },
-          "0x1000500": {
-            "revision": "100e"
-          }
-        },
         "names": [
           "Canon PowerShot A810"
         ],
         "platform": "a810"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x42750136"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3180000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x42750136"
+    },
     "alt": {
       "button": "Print"
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000400": {
-            "revision": "100d"
-          },
-          "0x1010100": {
-            "revision": "101a"
-          },
-          "0x1020100": {
-            "revision": "102a"
-          }
-        },
         "names": [
           "Canon PowerShot ELPH 320 HS",
           "Canon IXUS 240 HS",
@@ -3856,19 +2849,15 @@
         "platform": "ixus240_elph320hs"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x42750136"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3190000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x42750136"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -3876,19 +2865,12 @@
         "Video"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000400": {
-            "revision": "100d"
-          },
-          "0x1000500": {
-            "revision": "100e"
-          },
-          "0x1010100": {
-            "revision": "101a"
-          }
-        },
         "names": [
           "Canon PowerShot ELPH 110 HS",
           "Canon IXUS 125 HS",
@@ -3897,19 +2879,15 @@
         "platform": "ixus125_elph110hs"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x42750136"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3200000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x42750136"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -3917,32 +2895,27 @@
         "Video"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          }
-        },
         "names": [
           "Canon PowerShot D20"
         ],
         "platform": "d20"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x42750136"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3210000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x42750136"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -3950,41 +2923,27 @@
         "Help"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000300": {
-            "revision": "100c"
-          },
-          "0x1010100": {
-            "revision": "101a"
-          },
-          "0x1010200": {
-            "revision": "101b"
-          },
-          "0x1020100": {
-            "revision": "102a"
-          }
-        },
         "names": [
           "Canon PowerShot A4000 IS"
         ],
         "platform": "a4000"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x42750136"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3220000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x42750136"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -3993,38 +2952,27 @@
         "Display"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          },
-          "0x1000300": {
-            "revision": "100c"
-          },
-          "0x1010100": {
-            "revision": "101a"
-          }
-        },
         "names": [
           "Canon PowerShot SX260 HS"
         ],
         "platform": "sx260hs"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x42750136"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3230000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x42750136"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -4033,38 +2981,27 @@
         "Display"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          },
-          "0x1000300": {
-            "revision": "100c"
-          },
-          "0x1010100": {
-            "revision": "101a"
-          }
-        },
         "names": [
           "Canon PowerShot SX240 HS"
         ],
         "platform": "sx240hs"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x42750136"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3260000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x42750136"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -4073,38 +3010,27 @@
         "Video"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000600": {
-            "revision": "100f"
-          },
-          "0x1010100": {
-            "revision": "101a"
-          },
-          "0x1010200": {
-            "revision": "101b"
-          }
-        },
         "names": [
           "Canon PowerShot A3400 IS"
         ],
         "platform": "a3400"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x42750136"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3270000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x42750136"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -4112,38 +3038,27 @@
         "Help"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000300": {
-            "revision": "100c"
-          },
-          "0x1000400": {
-            "revision": "100d"
-          },
-          "0x1000500": {
-            "revision": "100e"
-          }
-        },
         "names": [
           "Canon PowerShot A2400 IS"
         ],
         "platform": "a2400"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x42750136"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3280000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x42750136"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -4151,38 +3066,27 @@
         "Help"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000300": {
-            "revision": "100c"
-          },
-          "0x1000500": {
-            "revision": "100e"
-          },
-          "0x1000600": {
-            "revision": "100f"
-          }
-        },
         "names": [
           "Canon PowerShot A2300"
         ],
         "platform": "a2300"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x42750136"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3330000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x57326401"
+    },
     "alt": {
       "button": "Shrtcut",
       "buttons": [
@@ -4194,35 +3098,27 @@
         "Erase"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          },
-          "0x1000500": {
-            "revision": "100e"
-          }
-        },
         "names": [
           "Canon PowerShot G15"
         ],
         "platform": "g15"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x57326401"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3340000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x57326401"
+    },
     "alt": {
       "button": "Shrtcut",
       "buttons": [
@@ -4231,35 +3127,27 @@
         "Video"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          },
-          "0x1000300": {
-            "revision": "100c"
-          }
-        },
         "names": [
           "Canon PowerShot SX50 HS"
         ],
         "platform": "sx50hs"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x57326401"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3350000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x57326401"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -4268,32 +3156,27 @@
         "Display"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          }
-        },
         "names": [
           "Canon PowerShot SX160 IS"
         ],
         "platform": "sx160is"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x57326401"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3360000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x57326401"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -4302,38 +3185,27 @@
         "Display"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1010200": {
-            "revision": "101b"
-          },
-          "0x1020200": {
-            "revision": "102b"
-          },
-          "0x1030100": {
-            "revision": "103a"
-          }
-        },
         "names": [
           "Canon PowerShot S110"
         ],
         "platform": "s110"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x57326401"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3370000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x57326401"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -4342,78 +3214,57 @@
         "Display"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000300": {
-            "revision": "100c"
-          },
-          "0x1000400": {
-            "revision": "100d"
-          },
-          "0x1000500": {
-            "revision": "100e"
-          }
-        },
         "names": [
           "Canon PowerShot SX500 IS"
         ],
         "platform": "sx500is"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x57326401"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3380000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x01542763"
+    },
     "alt": {
       "button": "Print"
     },
+    "card": {
+      "type": "microSD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          }
-        },
         "names": [
           "Canon PowerShot N"
         ],
         "platform": "n"
       },
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          }
-        },
         "names": [
           "Canon PowerShot N Facebook"
         ],
         "platform": "n_facebook"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x01542763"
-    },
-    "card": {
-      "type": "microSD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3400000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x01542763"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -4422,38 +3273,27 @@
         "Display"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1020200": {
-            "revision": "102b"
-          },
-          "0x1020300": {
-            "revision": "102c"
-          },
-          "0x1020400": {
-            "revision": "102d"
-          }
-        },
         "names": [
           "Canon PowerShot SX280 HS"
         ],
         "platform": "sx280hs"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x01542763"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3410000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x01542763"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -4462,35 +3302,27 @@
         "Display"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1020200": {
-            "revision": "102b"
-          },
-          "0x1020300": {
-            "revision": "102c"
-          }
-        },
         "names": [
           "Canon PowerShot SX270 HS"
         ],
         "platform": "sx270hs"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x01542763"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3430000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x01542763"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -4498,35 +3330,27 @@
         "Help"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000300": {
-            "revision": "100c"
-          },
-          "0x1000400": {
-            "revision": "100d"
-          }
-        },
         "names": [
           "Canon PowerShot A2600"
         ],
         "platform": "a2600"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x01542763"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3440000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x01542763"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -4535,35 +3359,27 @@
         "Display"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1020200": {
-            "revision": "102b"
-          },
-          "0x1020300": {
-            "revision": "102c"
-          }
-        },
         "names": [
           "Canon PowerShot SX275 HS"
         ],
         "platform": "sx275hs"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x01542763"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3450000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x01542763"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -4571,32 +3387,27 @@
         "Help"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          }
-        },
         "names": [
           "Canon PowerShot A1400"
         ],
         "platform": "a1400"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x01542763"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3460000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x01542763"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -4604,16 +3415,12 @@
         "Video"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          },
-          "0x1000200": {
-            "revision": "100b"
-          }
-        },
         "names": [
           "Canon PowerShot ELPH 130 IS",
           "Canon IXUS 140",
@@ -4622,19 +3429,15 @@
         "platform": "ixus140_elph130"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x01542763"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3470000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x01542763"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -4642,13 +3445,12 @@
         "Video"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          }
-        },
         "names": [
           "Canon PowerShot ELPH 115 IS",
           "Canon IXUS 132",
@@ -4657,11 +3459,6 @@
         "platform": "ixus132_elph115"
       },
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          }
-        },
         "names": [
           "Canon PowerShot ELPH 120 IS",
           "Canon IXUS 135",
@@ -4670,19 +3467,15 @@
         "platform": "ixus135_elph120"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x01542763"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3490000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x01542763"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -4690,16 +3483,12 @@
         "Video"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000600": {
-            "revision": "100f"
-          },
-          "0x1000800": {
-            "revision": "100h"
-          }
-        },
         "names": [
           "Canon PowerShot ELPH 330 HS",
           "Canon IXUS 255 HS",
@@ -4708,19 +3497,15 @@
         "platform": "ixus255_elph330hs"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x01542763"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3510000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x01542763"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -4728,32 +3513,27 @@
         "Help"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          }
-        },
         "names": [
           "Canon PowerShot A2500"
         ],
         "platform": "a2500"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x01542763"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3540000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x57413620"
+    },
     "alt": {
       "button": "Video",
       "buttons": [
@@ -4762,41 +3542,27 @@
         "Shrtcut"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000800": {
-            "revision": "100h"
-          },
-          "0x1010100": {
-            "revision": "101a"
-          },
-          "0x1010200": {
-            "revision": "101b"
-          },
-          "0x1010300": {
-            "revision": "101c"
-          }
-        },
         "names": [
           "Canon PowerShot G16"
         ],
         "platform": "g16"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x57413620"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3560000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x57413620"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -4805,35 +3571,27 @@
         "Video"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          },
-          "0x1010100": {
-            "revision": "101a"
-          }
-        },
         "names": [
           "Canon PowerShot SX170 IS"
         ],
         "platform": "sx170is"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x57413620"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3580000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x57413620"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -4842,70 +3600,51 @@
         "Video"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          },
-          "0x1000300": {
-            "revision": "100c"
-          },
-          "0x1000400": {
-            "revision": "100d"
-          },
-          "0x1010100": {
-            "revision": "101a"
-          }
-        },
         "names": [
           "Canon PowerShot SX510 HS"
         ],
         "platform": "sx510hs"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x57413620"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3650000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x42750136"
+    },
     "alt": {
       "button": "Print"
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          }
-        },
         "names": [
           "Canon PowerShot D30"
         ],
         "platform": "d30"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x42750136"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3660000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x45136072"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -4914,35 +3653,27 @@
         "Wifi"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000400": {
-            "revision": "100d"
-          },
-          "0x1000500": {
-            "revision": "100e"
-          }
-        },
         "names": [
           "Canon PowerShot SX700 HS"
         ],
         "platform": "sx700hs"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x45136072"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3680000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x45136072"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -4950,13 +3681,12 @@
         "Help"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000300": {
-            "revision": "100c"
-          }
-        },
         "names": [
           "Canon PowerShot ELPH 140 IS",
           "Canon IXUS 150",
@@ -4965,19 +3695,15 @@
         "platform": "ixus150_elph140"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x45136072"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3690000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x45136072"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -4985,13 +3711,12 @@
         "Help"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000300": {
-            "revision": "100c"
-          }
-        },
         "names": [
           "Canon PowerShot ELPH 135",
           "Canon IXUS 145",
@@ -5000,19 +3725,15 @@
         "platform": "ixus145_elph135"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x45136072"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3740000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x63120547"
+    },
     "alt": {
       "button": "M-Fn",
       "buttons": [
@@ -5021,35 +3742,27 @@
         "Display"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1010100": {
-            "revision": "101a"
-          },
-          "0x1200600": {
-            "revision": "120f"
-          }
-        },
         "names": [
           "Canon EOS M3"
         ],
         "platform": "m3"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x63120547"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3750000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x63120547"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -5058,44 +3771,27 @@
         "Wifi"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          },
-          "0x1000300": {
-            "revision": "100c"
-          },
-          "0x1000600": {
-            "revision": "100f"
-          },
-          "0x1000700": {
-            "revision": "100g"
-          },
-          "0x1000800": {
-            "revision": "100h"
-          }
-        },
         "names": [
           "Canon PowerShot SX60 HS"
         ],
         "platform": "sx60hs"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x63120547"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3760000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x63120547"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -5104,35 +3800,27 @@
         "DriveMode"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          },
-          "0x1000300": {
-            "revision": "100c"
-          }
-        },
         "names": [
           "Canon PowerShot SX520 HS"
         ],
         "platform": "sx520hs"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x63120547"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3770000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x63120547"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -5141,32 +3829,27 @@
         "Video"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          }
-        },
         "names": [
           "Canon PowerShot SX400 IS"
         ],
         "platform": "sx400is"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x63120547"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3780000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x63120547"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -5175,38 +3858,27 @@
         "Wifi"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          },
-          "0x1000300": {
-            "revision": "100c"
-          },
-          "0x1000400": {
-            "revision": "100d"
-          }
-        },
         "names": [
           "Canon PowerShot G7 X"
         ],
         "platform": "g7x"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x63120547"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3800000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x63120547"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -5215,35 +3887,27 @@
         "Wifi"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          },
-          "0x1000300": {
-            "revision": "100c"
-          }
-        },
         "names": [
           "Canon PowerShot SX530 HS"
         ],
         "platform": "sx530hs"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x63120547"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3820000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x14207356"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -5252,35 +3916,27 @@
         "Wifi"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          },
-          "0x1010100": {
-            "revision": "101a"
-          }
-        },
         "names": [
           "Canon PowerShot SX710 HS"
         ],
         "platform": "sx710hs"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x14207356"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3830000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x14207356"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -5289,32 +3945,27 @@
         "Wifi"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          }
-        },
         "names": [
           "Canon PowerShot SX610 HS"
         ],
         "platform": "sx610hs"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x14207356"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3840000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x14207356"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -5323,38 +3974,27 @@
         "Wifi"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1100400": {
-            "revision": "110d"
-          },
-          "0x1100600": {
-            "revision": "110f"
-          },
-          "0x1100700": {
-            "revision": "110g"
-          }
-        },
         "names": [
           "Canon EOS M10"
         ],
         "platform": "m10"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x14207356"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3870000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x14207356"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -5362,16 +4002,12 @@
         "Help"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          },
-          "0x1000200": {
-            "revision": "100b"
-          }
-        },
         "names": [
           "Canon PowerShot ELPH 160",
           "Canon IXUS 160"
@@ -5379,19 +4015,15 @@
         "platform": "ixus160_elph160"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x14207356"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3890000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x14207356"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -5399,13 +4031,12 @@
         "Help"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          }
-        },
         "names": [
           "Canon PowerShot ELPH 170 IS",
           "Canon IXUS 170"
@@ -5413,19 +4044,15 @@
         "platform": "ixus170_elph170"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x14207356"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3910000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x14207356"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -5434,35 +4061,27 @@
         "Video"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          },
-          "0x1000300": {
-            "revision": "100c"
-          }
-        },
         "names": [
           "Canon PowerShot SX410 IS"
         ],
         "platform": "sx410is"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x14207356"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3950000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x64371205"
+    },
     "alt": {
       "button": "Wifi",
       "buttons": [
@@ -5472,38 +4091,27 @@
         "Playback"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000300": {
-            "revision": "100c"
-          },
-          "0x1010100": {
-            "revision": "101a"
-          },
-          "0x1010200": {
-            "revision": "101b"
-          }
-        },
         "names": [
           "Canon PowerShot G5 X"
         ],
         "platform": "g5x"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x64371205"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3970000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x20654731"
+    },
     "alt": {
       "button": "Wifi",
       "buttons": [
@@ -5513,32 +4121,27 @@
         "Playback"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1010100": {
-            "revision": "101a"
-          }
-        },
         "names": [
           "Canon PowerShot G7 X Mark II"
         ],
         "platform": "g7x2"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x20654731"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x3990000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x20654731"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -5547,13 +4150,12 @@
         "Wifi"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          }
-        },
         "names": [
           "Canon PowerShot ELPH 360 HS",
           "Canon IXUS 285 HS",
@@ -5562,19 +4164,15 @@
         "platform": "ixus285_elph360hs"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x20654731"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x4020000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x20654731"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -5582,32 +4180,27 @@
         "Video"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          }
-        },
         "names": [
           "Canon PowerShot SX420 IS"
         ],
         "platform": "sx420is"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x20654731"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x4040001": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x20654731"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -5616,19 +4209,12 @@
         "Video"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          },
-          "0x1000200": {
-            "revision": "100b"
-          },
-          "0x1000300": {
-            "revision": "100c"
-          }
-        },
         "names": [
           "Canon PowerShot ELPH 180 IS",
           "Canon IXUS 175",
@@ -5637,19 +4223,15 @@
         "platform": "ixus175_elph180"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x20654731"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x4150000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x02316574"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -5657,13 +4239,12 @@
         "Video"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000100": {
-            "revision": "100a"
-          }
-        },
         "names": [
           "Canon PowerShot ELPH 185",
           "Canon IXUS 185",
@@ -5672,19 +4253,15 @@
         "platform": "ixus185_elph185"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x02316574"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
   },
   "0x4160000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x02316574"
+    },
     "alt": {
       "button": "Playback",
       "buttons": [
@@ -5693,27 +4270,18 @@
         "Wifi"
       ]
     },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
     "models": [
       {
-        "revisions": {
-          "0x1000200": {
-            "revision": "100b"
-          }
-        },
         "names": [
           "Canon PowerShot SX430 IS"
         ],
         "platform": "sx430is"
       }
     ],
-    "encoding": {
-      "name": "dancingbits",
-      "data": "0x02316574"
-    },
-    "card": {
-      "type": "SD",
-      "subtype": "SDXC"
-    },
     "boot": {
       "fs": "FAT32"
     }
