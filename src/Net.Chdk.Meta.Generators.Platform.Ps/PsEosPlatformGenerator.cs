@@ -3,11 +3,11 @@ using System.Linq;
 
 namespace Net.Chdk.Meta.Generators.Platform.Ps
 {
-    sealed class PsEosPlatformGenerator : InnerPlatformGenerator
+    sealed class PsEosPlatformGenerator : PsPlatformGeneratorBase
     {
         protected override IEnumerable<string> Process(IEnumerable<string> split)
         {
-            if (split.Contains("Rebel") != false)
+            if (split.Contains("Rebel"))
                 return null;
 
             return split;

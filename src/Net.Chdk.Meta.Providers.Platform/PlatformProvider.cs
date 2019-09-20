@@ -2,6 +2,7 @@
 using Net.Chdk.Meta.Model.Platform;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 
@@ -34,7 +35,8 @@ namespace Net.Chdk.Meta.Providers.Platform
             var platforms = new SortedDictionary<string, PlatformData>();
             foreach (var kvp in values)
             {
-                var models = GetCameraModels(kvp.Value);
+                var modelId = uint.Parse(kvp.Key.TrimStart("0x"), NumberStyles.HexNumber);
+                var models = GetCameraModels(modelId, kvp.Value);
                 if (models.First() != null)
                 {
                     foreach (var model in models)
@@ -56,19 +58,19 @@ namespace Net.Chdk.Meta.Providers.Platform
             };
         }
 
-        private IEnumerable<CameraModel> GetCameraModels(string value)
+        private IEnumerable<CameraModel> GetCameraModels(uint modelId, string value)
         {
             var models = GetModels(value)
                 .Select(m => m.TrimEnd(" (new)"))
                 .ToArray();
 
             return GetModelMatrix(models)
-                .Select(GetCameraModel);
+                .Select(n => GetCameraModel(modelId, n));
         }
 
-        private CameraModel GetCameraModel(string[] names)
+        private CameraModel GetCameraModel(uint modelId, string[] names)
         {
-            var platform = GetPlatform(names);
+            var platform = GetPlatform(modelId, names);
             if (platform == null)
                 return null;
 
@@ -79,9 +81,9 @@ namespace Net.Chdk.Meta.Providers.Platform
             };
         }
 
-        private string GetPlatform(string[] names)
+        private string GetPlatform(uint modelId, string[] names)
         {
-            return PlatformGenerator.GetPlatform(names);
+            return PlatformGenerator.GetPlatform(modelId, names);
         }
 
         private static IEnumerable<string> GetNames(string[] names)

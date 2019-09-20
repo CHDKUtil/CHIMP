@@ -7,23 +7,21 @@ namespace Net.Chdk.Meta.Generators.Platform.Eos
     {
         private static readonly string[] PsEosModels = new[] { "M3", "M5", "M6", "M10", "M100" };
 
-        public override string GetPlatform(string[] models)
+        public override string GetPlatform(uint modelId, string[] models)
         {
             if (models[0].Contains("Rebel"))
             {
-                if (models.Length > 1)
-                {
-                    var model = models[1];
-                    if (!model.StartsWith("EOS "))
-                        model = $"EOS {model}";
-                    return base.GetPlatform(new[] { model });
-                }
-                return null;
+                if (models.Length < 2)
+                    return null;
+                var model = models[1];
+                if (!model.StartsWith("EOS "))
+                    model = $"EOS {model}";
+                models = new[] { model };
             }
-            return base.GetPlatform(models);
+            return base.GetPlatform(modelId, models);
         }
 
-        protected override IEnumerable<string> PreGenerate(string source)
+        protected override IEnumerable<string> PreGenerate(uint modelId, string source)
         {
             var split = source.Split(' ');
             if (!Keyword.Equals(split[0]))

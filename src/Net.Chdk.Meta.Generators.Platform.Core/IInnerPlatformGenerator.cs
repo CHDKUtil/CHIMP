@@ -2,6 +2,6 @@
 {
     public interface IInnerPlatformGenerator
     {
-        string GetPlatform(string[] models);
+        string GetPlatform(uint modelId, string[] models);
     }
 }

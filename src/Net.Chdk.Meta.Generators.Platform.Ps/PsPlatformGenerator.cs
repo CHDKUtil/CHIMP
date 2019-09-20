@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Net.Chdk.Meta.Generators.Platform.Ps
 {
-    sealed class PsPlatformGenerator : InnerPlatformGenerator
+    sealed class PsPlatformGenerator : PsPlatformGeneratorBase
     {
         protected override string Keyword => "PowerShot";
 
@@ -17,12 +17,12 @@ namespace Net.Chdk.Meta.Generators.Platform.Ps
             IxusGenerator = ixusGenerator;
         }
 
-        public override string GetPlatform(string[] models)
+        public override string GetPlatform(uint modelId, string[] models)
         {
-            var ps = base.GetPlatform(models);
+            var ps = base.GetPlatform(modelId, models);
             if (ps != null && models.Length > 1)
             {
-                var ixus = IxusGenerator.Generate(models[1]);
+                var ixus = IxusGenerator.Generate(modelId, models[1]);
                 if (ixus != null)
                 {
                     return $"{ixus}_{ps}";
@@ -31,18 +31,13 @@ namespace Net.Chdk.Meta.Generators.Platform.Ps
             return ps;
         }
 
-        protected override IEnumerable<string> PreGenerate(string source)
+        protected override IEnumerable<string> PreGenerate(uint modelId, string source)
         {
-            var split = source.Split(' ');
-            if (!Keyword.Equals(split[0]))
+            var split = base.PreGenerate(modelId, source);
+            if (split == null)
                 return null;
 
-            split = AdaptMark(split);
-
-            if (split[split.Length - 1].Equals("ELPH")) // Trim Digital ELPH
-                return split.Take(split.Length - 2).Skip(1);
-
-            return split.Skip(1);
+            return AdaptMark(split.ToArray());
         }
 
         protected override IEnumerable<string> Trim(IEnumerable<string> split)

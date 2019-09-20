@@ -13,7 +13,7 @@ namespace Net.Chdk.Meta.Generators.Platform
             Generators = generators;
         }
 
-        public string GetPlatform(string[] models)
+        public string GetPlatform(uint modelId, string[] models)
         {
             if (models == null)
                 throw new ArgumentNullException(nameof(models));
@@ -25,7 +25,7 @@ namespace Net.Chdk.Meta.Generators.Platform
                 throw new ArgumentException("Model names cannot be null or empty", nameof(models));
 
             return Generators
-                .Select(g => g.GetPlatform(models))
+                .Select(g => g.GetPlatform(modelId, models))
                 .FirstOrDefault(r => r != null);
         }
     }

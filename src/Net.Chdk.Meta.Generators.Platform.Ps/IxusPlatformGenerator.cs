@@ -1,19 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace Net.Chdk.Meta.Generators.Platform.Ps
 {
-    sealed class IxusPlatformGenerator : InnerPlatformGenerator, IIxusPlatformGenerator
+    sealed class IxusPlatformGenerator : PsPlatformGeneratorBase, IIxusPlatformGenerator
     {
-        protected override IEnumerable<string> PreGenerate(string source)
+        protected override IEnumerable<string> PreGenerate(uint modelId, string source)
         {
-            var split = source.Split(' ');
-            var index = Array.IndexOf(split, Keyword); //Skip Digital
-            if (index < 0)
+            var split = base.PreGenerate(modelId, source);
+            if (split == null)
                 return null;
 
-            return split.Skip(index);
+            if (!Keyword.Equals(split.First())) // No "Digital" prefix
+                split = new[] { Keyword }.Concat(split);
+
+            return split;
         }
 
         protected override IEnumerable<string> Process(IEnumerable<string> split)
