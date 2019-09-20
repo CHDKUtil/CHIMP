@@ -21,12 +21,11 @@ namespace Net.Chdk.Meta.Providers.Platform.Html
                 if (line.Length > 0)
                 {
                     var match = regex.Match(line);
-                    if (match.Success)
-                    {
-                        var modelId = match.Groups[1].Value;
-                        var modelsStr = match.Groups[2].Value;
-                        yield return new KeyValuePair<string, string>(modelId, modelsStr);
-                    }
+                    if (!match.Success)
+                        yield break;
+                    var modelId = match.Groups[1].Value;
+                    var modelsStr = match.Groups[2].Value;
+                    yield return new KeyValuePair<string, string>(modelId, modelsStr);
                 }
             }
         }
