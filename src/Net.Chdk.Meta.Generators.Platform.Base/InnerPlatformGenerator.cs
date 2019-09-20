@@ -33,11 +33,17 @@ namespace Net.Chdk.Meta.Generators.Platform
             var index = Array.IndexOf(split, "Mark");
             if (index <= 0)
                 return split;
+
             var m = RomanToInteger(split[index + 1]);
-            return split
+            split = split
                 .Take(index)
                 .Concat(new[] { m.ToString() })
                 .ToArray();
+
+            if (char.IsDigit(split[index - 1][split[index - 1].Length - 1]))
+                split[index] = '_' + split[index];
+
+            return split;
         }
 
         protected virtual IEnumerable<string> PreGenerate(string source)
