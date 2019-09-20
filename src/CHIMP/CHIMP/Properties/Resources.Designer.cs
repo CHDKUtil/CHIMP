@@ -610,15 +610,6 @@ namespace Chimp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SDM 2.1.
-        /// </summary>
-        public static string Distro_SDM_2_1 {
-            get {
-                return ResourceManager.GetString("Distro_SDM_2_1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Ready to Install.
         /// </summary>
         public static string Download_Completed_Text {

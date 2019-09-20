@@ -56,7 +56,7 @@ namespace Chimp.Providers.Matches
             }
         }
 
-        public string GetError()
+        public virtual string GetError()
         {
             if (!hasMatch)
                 return nameof(Resources.Download_InvalidFormat_Text);

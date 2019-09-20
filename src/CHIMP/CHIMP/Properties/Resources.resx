@@ -495,10 +495,6 @@ To continue, click OK. To quit, click CANCEL.</value>
   <data name="Download_Progress_Format" xml:space="preserve">
     <value>Downloaded {0} of {1}</value>
   </data>
-  <data name="Distro_SDM_2_1" xml:space="preserve">
-    <value>SDM 2.1</value>
-    <comment>Do not translate</comment>
-  </data>
   <data name="Action_Install_Format" xml:space="preserve">
     <value>Install {0}</value>
   </data>

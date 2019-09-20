@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Chimp.Properties;
+using Microsoft.Extensions.Logging;
 using Net.Chdk.Model.Software;
 using System;
 using System.Collections.Generic;
@@ -8,8 +9,8 @@ namespace Chimp.Providers.Matches
 {
     sealed class SdmMatchProvider : MatchProvider
     {
-        private static readonly Regex commonRegex = new Regex("<a href=\"(?<path>Common_files.zip)\">Common_files.zip</a> +(?<date>[0-9]{1,2}-[A-Z][a-z]{2}-[1-9][0-9]{3} [0-9]{2}:[0-9]{2}) +(?<size>[0-9]+K)");
-        private static readonly Regex regex = new Regex("<a href=\"(?<path>SDM-CA-(?<platform>[0-9a-z]+)-(?<revision>[0-9a-z]+)-(?<version>[0-9.]+).zip)\">.+</a> +(?<date>[0-9]{1,2}-[A-Z][a-z]{2}-[1-9][0-9]{3} [0-9]{2}:[0-9]{2}) +(?<size>[0-9]+K)");
+        private static readonly Regex commonRegex = new Regex("(?<path>Common_files.zip)");
+        private static readonly Regex regex = new Regex("(?<path>SDM-CA-(?<platform>[0-9a-z]+)-(?<revision>[0-9a-z]+)-(?<version>[0-9.]+).zip)");
 
         private Match commonMatch;
 
@@ -40,9 +41,16 @@ namespace Chimp.Providers.Matches
 
         protected override IEnumerable<Match> GetMatches(string buildName, Match match)
         {
-            if (commonMatch != null)
-                yield return commonMatch;
-            yield return match;
+            if (commonMatch == null)
+                return null;
+            return new[] { commonMatch, match };
+        }
+
+        public override string GetError()
+        {
+            if (commonMatch == null)
+                return nameof(Resources.Download_InvalidFormat_Text);
+            return base.GetError();
         }
     }
 }
