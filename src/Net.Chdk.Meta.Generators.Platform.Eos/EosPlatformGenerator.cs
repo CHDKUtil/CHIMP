@@ -43,16 +43,6 @@ namespace Net.Chdk.Meta.Generators.Platform.Eos
             return split.Skip(1);
         }
 
-        protected override IEnumerable<string> Process(IEnumerable<string> split)
-        {
-            return split;
-        }
-
-        protected override string PostProcess(IEnumerable<string> split)
-        {
-            return string.Join(string.Empty, split);
-        }
-
         protected override string Keyword => "EOS";
     }
 }

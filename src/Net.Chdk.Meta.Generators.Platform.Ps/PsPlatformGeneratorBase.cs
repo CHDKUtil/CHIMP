@@ -18,5 +18,11 @@ namespace Net.Chdk.Meta.Generators.Platform.Ps
 
             return split.Skip(1);
         }
+
+        protected override string PostProcess(IEnumerable<string> split)
+        {
+            return string.Join(string.Empty, split)
+                .ToLower();
+        }
     }
 }

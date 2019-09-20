@@ -53,8 +53,7 @@ namespace Net.Chdk.Meta.Generators.Platform
 
         protected virtual string PostProcess(IEnumerable<string> split)
         {
-            return string.Join(string.Empty, split)
-                .ToLower();
+            return string.Join(string.Empty, split);
         }
 
         protected virtual IEnumerable<string> Trim(IEnumerable<string> split)
