@@ -32,7 +32,7 @@ namespace Net.Chdk.Meta.Generators.Platform.Eos
             var model = split[1];
             if (model.StartsWith("M"))
             {
-                if (PsEosModels.Contains(model))
+                if (PsEosModels.Contains(model) && split.Length == 2)
                     return null;
                 split[1] = $"EOS{model}";
             }
