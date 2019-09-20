@@ -7,7 +7,8 @@ namespace Net.Chdk.Meta.Generators.Platform.Eos
         public static IServiceCollection AddEosPlatformGenerator(this IServiceCollection serviceCollection)
         {
             return serviceCollection
-                .AddSingleton<IInnerPlatformGenerator, EosPlatformGenerator>();
+                .AddSingleton<IInnerPlatformGenerator, EosPlatformGenerator>()
+                .AddSingleton<IInnerPlatformGenerator, EosPsPlatformGenerator>();
         }
     }
 }
