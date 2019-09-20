@@ -127,7 +127,6 @@ namespace Chimp
                 .AddChdkSoftwareDetector()
                 .AddChdkProductDetector()
                 .AddSdmSoftwareDetector()
-                //.AddSdmAdHocSoftwareDetector()
                 .AddSdmProductDetector()
                 .AddNightlyMlSoftwareDetector()
                 .AddBetaMlSoftwareDetector()
