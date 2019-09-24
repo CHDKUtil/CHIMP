@@ -5,13 +5,12 @@ namespace Net.Chdk.Detectors.Software
 {
     sealed class ProgressState
     {
-        private readonly IProgress<double> progress;
-        private readonly object @lock = new object();
+        private readonly IProgress<double>? progress;
         private readonly int count;
         private int index;
         private int completed;
 
-        public ProgressState(int count = 1, IProgress<double> progress = null)
+        public ProgressState(int count = 1, IProgress<double>? progress = null)
         {
             this.count = count;
             this.progress = progress;

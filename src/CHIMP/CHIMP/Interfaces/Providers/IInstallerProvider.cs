@@ -2,6 +2,6 @@
 {
     interface IInstallerProvider
     {
-        IInstaller GetInstaller(string fileSystem);
+        IInstaller? GetInstaller(string fileSystem);
     }
 }

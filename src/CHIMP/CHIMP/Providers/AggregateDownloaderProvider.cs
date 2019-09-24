@@ -29,7 +29,7 @@ namespace Chimp.Providers
                 .Select(CreateInnerProvider);
         }
 
-        public IDownloader GetDownloader(string productName, string sourceName, SoftwareSourceInfo source)
+        public IDownloader? GetDownloader(string productName, string sourceName, SoftwareSourceInfo source)
         {
             return DownloaderProviders
                 .Select(p => p.GetDownloader(productName, sourceName, source))

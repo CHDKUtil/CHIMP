@@ -4,6 +4,8 @@
     <TargetFramework>netstandard1.3</TargetFramework>
     <Description>CHIMP SDM software detectors</Description>
     <RootNamespace>Net.Chdk.Detectors.Software.Sdm</RootNamespace>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup>

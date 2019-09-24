@@ -36,13 +36,13 @@ namespace Net.Chdk.Detectors.Software.Chdk
 
         protected override string ProductName => "CHDK";
 
-        protected override Version GetVersion(string rootPath)
+        protected override Version? GetVersion(string rootPath)
         {
             var chdkPath = Path.Combine(rootPath, ProductName);
             return GetValue(chdkPath, ChdkVersions, Version.Parse);
         }
 
-        protected override CultureInfo GetLanguage(string rootPath)
+        protected override CultureInfo? GetLanguage(string rootPath)
         {
             var dataPath = Path.Combine(rootPath, ProductName, "DATA");
             return GetValue(dataPath, DataLanguages, GetCultureInfo);

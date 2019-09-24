@@ -12,7 +12,7 @@ namespace Net.Chdk.Detectors.Software
         {
         }
 
-        public ModuleInfo GetModule(SoftwareInfo software, byte[] buffer, string hashName)
+        public ModuleInfo? GetModule(SoftwareInfo software, byte[] buffer, string hashName)
         {
             var tuples = Detectors
                 .Select(d => GetBytes(d, software, hashName))
@@ -20,9 +20,9 @@ namespace Net.Chdk.Detectors.Software
             return GetValue(buffer, tuples);
         }
 
-        private static Tuple<Func<byte[], int, ModuleInfo>, byte[]> GetBytes(IProductBinaryModuleDetector detector, SoftwareInfo software, string hashName)
+        private static Tuple<Func<byte[], int, ModuleInfo?>, byte[]> GetBytes(IProductBinaryModuleDetector detector, SoftwareInfo software, string hashName)
         {
-            return Tuple.Create<Func<byte[], int, ModuleInfo>, byte[]>((b, i) => detector.GetModule(software, b, i, hashName), detector.Bytes);
+            return Tuple.Create<Func<byte[], int, ModuleInfo?>, byte[]>((b, i) => detector.GetModule(software, b, i, hashName), detector.Bytes);
         }
     }
 }

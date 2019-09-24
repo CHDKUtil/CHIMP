@@ -13,7 +13,7 @@ namespace Chimp.Providers.Action
 
         public override IEnumerable<IAction> GetActions()
         {
-            if (EjectViewModel.IsEject)
+            if (EjectViewModel?.IsEject == true)
                 yield return ServiceActivator.Create<EjectAction>();
         }
     }

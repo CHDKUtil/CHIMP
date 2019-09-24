@@ -4,13 +4,13 @@ namespace Chimp.ViewModels
 {
     public sealed class SummaryViewModel : ViewModel
     {
-        public static SummaryViewModel Get(MainViewModel mainViewModel) => mainViewModel.Get<SummaryViewModel>("Summary");
+        public static SummaryViewModel? Get(MainViewModel mainViewModel) => mainViewModel.Get<SummaryViewModel>("Summary");
 
-        public string Title { get; set; }
-        public string Message { get; set; }
-        public Tip[] Tips { get; set; }
-        public string UserManualUrl { get; set; }
-        public string CameraNotesFileName { get; set; }
+        public string? Title { get; set; }
+        public string? Message { get; set; }
+        public Tip[]? Tips { get; set; }
+        public string? UserManualUrl { get; set; }
+        public string? CameraNotesFileName { get; set; }
 
         private bool _IsOpenUserManual;
         public bool IsOpenUserManual

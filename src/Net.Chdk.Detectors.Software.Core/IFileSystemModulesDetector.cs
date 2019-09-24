@@ -6,6 +6,6 @@ namespace Net.Chdk.Detectors.Software
 {
     public interface IFileSystemModulesDetector
     {
-        ModulesInfo GetModules(SoftwareInfo software, string basePath, IProgress<double> progress, CancellationToken token);
+        ModulesInfo? GetModules(SoftwareInfo software, string basePath, IProgress<double>? progress, CancellationToken token);
     }
 }

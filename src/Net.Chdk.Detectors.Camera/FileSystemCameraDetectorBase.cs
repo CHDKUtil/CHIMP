@@ -22,7 +22,7 @@ namespace Net.Chdk.Detectors.Camera
         public abstract string[] Patterns { get; }
         public abstract string PatternsDescription { get; }
 
-        public CameraInfo GetCamera(CardInfo cardInfo, IProgress<double> progress, CancellationToken token)
+        public CameraInfo? GetCamera(CardInfo cardInfo, IProgress<double>? progress, CancellationToken token)
         {
             Logger.LogTrace("Detecting camera from {0} {1}", cardInfo.DriveLetter, PatternsDescription);
 
@@ -55,16 +55,16 @@ namespace Net.Chdk.Detectors.Camera
             return null;
         }
 
-        protected abstract bool IsValid(CameraInfo camera);
+        protected abstract bool IsValid(CameraInfo? camera);
 
-        private CameraInfo GetCameraFromDirectory(string dir)
+        private CameraInfo? GetCameraFromDirectory(string dir)
         {
             return Patterns
                 .Select(p => GetCameraFromDirectory(dir, p))
-                .FirstOrDefault(c => IsValid(c));
+                .FirstOrDefault(IsValid);
         }
 
-        private CameraInfo GetCameraFromDirectory(string dir, string pattern)
+        private CameraInfo? GetCameraFromDirectory(string dir, string pattern)
         {
             return Directory.EnumerateFiles(dir, pattern)
                 .Reverse()
@@ -72,7 +72,7 @@ namespace Net.Chdk.Detectors.Camera
                 .FirstOrDefault(IsValid);
         }
 
-        private CameraInfo GetCameraFromFile(string file)
+        private CameraInfo? GetCameraFromFile(string file)
         {
             try
             {

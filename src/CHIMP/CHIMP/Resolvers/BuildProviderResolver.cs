@@ -8,12 +8,12 @@ namespace Chimp.Resolvers
 {
     sealed class BuildProviderResolver : ProviderResolver<IBuildProvider, BuildProvider>
     {
-        public BuildProviderResolver(IServiceActivator serviceActivator, IDictionary<string, Distro> distros)
+        public BuildProviderResolver(IServiceActivator serviceActivator, IDictionary<string, Distro>? distros)
             : base(serviceActivator, distros)
         {
         }
 
-        protected override string GetTypeName(Distro distro)
+        protected override string? GetTypeName(Distro distro)
         {
             return distro.ProductType;
         }

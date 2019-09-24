@@ -12,9 +12,12 @@ namespace Net.Chdk.Detectors.Software.Ml
 
         protected override int StringCount => 3;
 
-        protected override string GetChangeset(string[] strings)
+        protected override string? GetChangeset(string?[] strings)
         {
-            var split = strings[2].Split(' ');
+            var versionStr = strings[2];
+            if (versionStr == null)
+                return null;
+            var split = versionStr.Split(' ');
             if (split.Length == 0)
                 return null;
             if (split[0].Length != 7)
@@ -22,14 +25,16 @@ namespace Net.Chdk.Detectors.Software.Ml
             return split[0];
         }
 
-        protected override DateTime? GetCreationDate(string[] strings)
+        protected override DateTime? GetCreationDate(string?[] strings)
         {
-            var split = strings[0].Split(' ');
+            var productStr = strings[0];
+            if (productStr == null)
+                return null;
+            var split = productStr.Split(' ');
             if (split.Length != 3)
                 return null;
             var dateStr = string.Format("{0} {1}", split[0], split[1]);
-            DateTime date;
-            if (!DateTime.TryParse(dateStr, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out date))
+            if (!DateTime.TryParse(dateStr, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out DateTime date))
                 return null;
             return date;
         }

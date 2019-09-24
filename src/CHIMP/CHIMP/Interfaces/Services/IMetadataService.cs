@@ -6,6 +6,6 @@ namespace Chimp
 {
     interface IMetadataService
     {
-        SoftwareInfo Update(SoftwareInfo software, string destPath, IProgress<double> progress, CancellationToken token);
+        SoftwareInfo Update(SoftwareInfo software, string destPath, IProgress<double>? progress, CancellationToken token);
     }
 }

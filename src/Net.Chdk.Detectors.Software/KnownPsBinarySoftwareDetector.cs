@@ -15,7 +15,7 @@ namespace Net.Chdk.Detectors.Software
         public KnownPsBinarySoftwareDetector(IEnumerable<IProductBinarySoftwareDetector> softwareDetectors, IBinaryDecoder binaryDecoder, IBootProvider bootProvider, ICameraProvider cameraProvider, ISoftwareHashProvider hashProvider, IOptions<SoftwareDetectorSettings> settings, ILoggerFactory loggerFactory)
             : base(softwareDetectors, binaryDecoder, bootProvider, cameraProvider, hashProvider, settings, loggerFactory.CreateLogger<KnownPsBinarySoftwareDetector>())
         {
-            Offsets = bootProvider.GetOffsets(CategoryName);
+            Offsets = bootProvider.GetOffsets(CategoryName)!;
         }
 
         protected override uint?[] GetOffsets()

@@ -13,14 +13,14 @@ namespace Net.Chdk.Providers.Camera
         {
         }
 
-        protected override string GetRevision(CameraInfo cameraInfo)
+        protected override string? GetRevision(CameraInfo cameraInfo)
         {
-            return GetFirmwareRevision(cameraInfo.Canon.FirmwareRevision);
+            return GetFirmwareRevision(cameraInfo.Canon!.FirmwareRevision);
         }
 
-        protected override bool IsInvalid(CameraInfo cameraInfo)
+        protected override bool IsInvalid(CameraInfo? cameraInfo)
         {
-            return cameraInfo.Canon?.ModelId == null || cameraInfo.Canon?.FirmwareRevision == 0;
+            return cameraInfo?.Canon?.ModelId == null || cameraInfo.Canon?.FirmwareRevision == 0;
         }
 
         protected override bool IsMultiPartition(PsCameraData camera)
@@ -46,8 +46,10 @@ namespace Net.Chdk.Providers.Camera
             };
         }
 
-        protected override uint GetFirmwareRevision(string revision)
+        protected override uint GetFirmwareRevision(string? revision)
         {
+            if (revision == null)
+                throw new ArgumentNullException(nameof(revision));
             return
                 (uint)(revision[0] - 0x30 << 24) +
                 (uint)((revision[1] - 0x30) << 20) +
@@ -55,7 +57,7 @@ namespace Net.Chdk.Providers.Camera
                 (uint)((revision[3] - 0x60) << 8);
         }
 
-        protected override Version GetFirmwareVersion(string revision) => null;
+        protected override Version? GetFirmwareVersion(string? revision) => null;
 
         private static string GetFirmwareRevision(uint revision)
         {

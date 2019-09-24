@@ -23,7 +23,7 @@ namespace Chimp.Resolvers
             _download = new Lazy<DownloadProviderResolver>(CreateDownload);
         }
 
-        public IDownloader GetDownloader(string productName, string sourceName, SoftwareSourceInfo source)
+        public IDownloader? GetDownloader(string productName, string sourceName, SoftwareSourceInfo source)
         {
             if (productName != null && !ProductName.Equals(productName))
                 return null;
@@ -45,10 +45,10 @@ namespace Chimp.Resolvers
 
         protected override IEnumerable<object> GetValues(string sourceName, SoftwareSourceInfo source, Distro distro)
         {
-            yield return Build.GetProvider(sourceName, source);
-            yield return Match.GetProvider(sourceName, source);
-            yield return Software.GetProvider(sourceName, source);
-            yield return Download.GetProvider(sourceName, source);
+            yield return Build.GetProvider(sourceName, source)!;
+            yield return Match.GetProvider(sourceName, source)!;
+            yield return Software.GetProvider(sourceName, source)!;
+            yield return Download.GetProvider(sourceName, source)!;
         }
 
         #region FileName

@@ -4,6 +4,8 @@
     <TargetFramework>netstandard1.3</TargetFramework>
     <Description>CHIMP Magic Lantern software detectors</Description>
     <RootNamespace>Net.Chdk.Detectors.Software.Ml</RootNamespace>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup>

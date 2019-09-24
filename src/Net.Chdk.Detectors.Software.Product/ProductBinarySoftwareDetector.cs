@@ -21,7 +21,7 @@ namespace Net.Chdk.Detectors.Software.Product
             SourceProvider = sourceProvider;
         }
 
-        public virtual SoftwareInfo GetSoftware(byte[] buffer, int index)
+        public virtual SoftwareInfo? GetSoftware(byte[] buffer, int index)
         {
             var strings = GetStrings(buffer, index, StringCount, SeparatorChar);
             if (strings == null)
@@ -45,15 +45,12 @@ namespace Net.Chdk.Detectors.Software.Product
 
         private CategoryInfo GetCategory()
         {
-            return new CategoryInfo
-            {
-                Name = CategoryName,
-            };
+            return new CategoryInfo(CategoryName);
         }
 
-        private SoftwareProductInfo GetProduct(string[] strings)
+        private SoftwareProductInfo? GetProduct(string?[] strings)
         {
-            if (!GetProductVersion(strings, out Version version, out string versionPrefix, out string versionSuffix))
+            if (!GetProductVersion(strings, out Version? version, out string? versionPrefix, out string? versionSuffix))
                 return null;
 
             return new SoftwareProductInfo
@@ -67,14 +64,16 @@ namespace Net.Chdk.Detectors.Software.Product
             };
         }
 
-        private SoftwareSourceInfo GetSource(string[] strings, SoftwareProductInfo product)
+        private SoftwareSourceInfo? GetSource(string?[] strings, SoftwareProductInfo product)
         {
             var sourceName = GetSourceName(strings);
+            if (sourceName == null)
+                return null;
             var sources = SourceProvider.GetSources(product, sourceName);
             return sources.FirstOrDefault();
         }
 
-        protected static Version GetVersion(string str)
+        protected static Version? GetVersion(string? str)
         {
             if (str == null)
                 return null;
@@ -85,7 +84,7 @@ namespace Net.Chdk.Detectors.Software.Product
             return version;
         }
 
-        protected static DateTime? GetCreationDate(string str)
+        protected static DateTime? GetCreationDate(string? str)
         {
             if (str == null)
                 return null;
@@ -96,7 +95,7 @@ namespace Net.Chdk.Detectors.Software.Product
             return creationDate;
         }
 
-        protected static SoftwareCameraInfo GetCamera(string platform, string revision)
+        protected static SoftwareCameraInfo? GetCamera(string? platform, string? revision)
         {
             if (platform == null || revision == null)
                 return null;
@@ -110,7 +109,7 @@ namespace Net.Chdk.Detectors.Software.Product
 
         public string CategoryName => ProductProvider.GetCategoryName(ProductName);
 
-        protected virtual bool GetProductVersion(string[] strings, out Version version, out string versionPrefix, out string versionSuffix)
+        protected virtual bool GetProductVersion(string?[] strings, out Version? version, out string? versionPrefix, out string? versionSuffix)
         {
             version = GetProductVersion(strings);
             versionPrefix = null;
@@ -118,27 +117,27 @@ namespace Net.Chdk.Detectors.Software.Product
             return version != null;
         }
 
-        protected virtual Version GetProductVersion(string[] strings) => null;
+        protected virtual Version? GetProductVersion(string?[] strings) => null;
 
-        protected virtual CultureInfo GetLanguage(string[] strings) => null;
+        protected virtual CultureInfo? GetLanguage(string?[] strings) => null;
 
-        protected virtual DateTime? GetCreationDate(string[] strings) => null;
+        protected virtual DateTime? GetCreationDate(string?[] strings) => null;
 
-        protected virtual SoftwareCameraInfo GetCamera(string[] strings)
+        protected virtual SoftwareCameraInfo? GetCamera(string?[] strings)
         {
             var platform = GetPlatform(strings);
             var revision = GetRevision(strings);
             return GetCamera(platform, revision);
         }
 
-        protected virtual SoftwareBuildInfo GetBuild(string[] strings) => null;
+        protected virtual SoftwareBuildInfo? GetBuild(string?[] strings) => null;
 
-        protected virtual SoftwareCompilerInfo GetCompiler(string[] strings) => null;
+        protected virtual SoftwareCompilerInfo? GetCompiler(string?[] strings) => null;
 
-        protected virtual string GetPlatform(string[] strings) => null;
+        protected virtual string? GetPlatform(string?[] strings) => null;
 
-        protected virtual string GetRevision(string[] strings) => null;
+        protected virtual string? GetRevision(string?[] strings) => null;
 
-        protected virtual string GetSourceName(string[] strings) => ProductName;
+        protected virtual string? GetSourceName(string?[] strings) => ProductName;
     }
 }

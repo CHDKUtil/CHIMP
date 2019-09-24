@@ -4,6 +4,7 @@ using Net.Chdk.Model.Category;
 using Net.Chdk.Model.Software;
 using Net.Chdk.Providers.Camera;
 using Net.Chdk.Providers.Software;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -21,7 +22,7 @@ namespace Chimp.Providers.Action
         {
             SourceProvider = sourceProvider;
             CameraProvider = cameraProvider;
-            CategoryName = CameraViewModel.Info.Canon.FirmwareRevision > 0
+            CategoryName = CameraViewModel?.Info?.Canon?.FirmwareRevision > 0
                 ? "PS"
                 : "EOS";
         }
@@ -32,7 +33,7 @@ namespace Chimp.Providers.Action
                 .SelectMany(GetActions);
         }
 
-        protected virtual IEnumerable<IAction> GetActions(SoftwareProductInfo product)
+        protected virtual IEnumerable<IAction> GetActions(SoftwareProductInfo? product)
         {
             return GetSources(product)
                 .Select(CreateAction);
@@ -40,7 +41,7 @@ namespace Chimp.Providers.Action
 
         protected abstract IEnumerable<SoftwareProductInfo> GetProducts();
 
-        protected virtual IEnumerable<ProductSource> GetSources(SoftwareProductInfo product)
+        protected virtual IEnumerable<ProductSource> GetSources(SoftwareProductInfo? product)
         {
             if (product?.Name != null)
                 return SourceProvider.GetSources(product);
@@ -50,12 +51,14 @@ namespace Chimp.Providers.Action
 
         private IAction CreateAction(ProductSource productSource)
         {
-            var camera = CameraProvider.GetCamera(productSource.ProductName, CameraViewModel.Info, CameraViewModel.SelectedItem.Model);
+            var camera = CameraProvider.GetCamera(productSource.ProductName, CameraViewModel?.Info, CameraViewModel?.SelectedItem?.Model);
             return CreateAction(camera, productSource);
         }
 
-        protected IAction CreateAction(SoftwareCameraInfo camera, ProductSource productSource)
+        protected IAction CreateAction(SoftwareCameraInfo? camera, ProductSource productSource)
         {
+            if (camera is null)
+                throw new ArgumentNullException(nameof(camera));
             var types = new[]
             {
                 typeof(SoftwareCameraInfo),
@@ -71,10 +74,7 @@ namespace Chimp.Providers.Action
 
         private CategoryInfo GetCategory()
         {
-            return new CategoryInfo
-            {
-                Name = CategoryName
-            };
+            return new CategoryInfo(CategoryName);
         }
     }
 }

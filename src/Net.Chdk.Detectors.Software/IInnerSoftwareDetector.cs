@@ -8,6 +8,6 @@ namespace Net.Chdk.Detectors.Software
 {
     interface IInnerSoftwareDetector
     {
-        SoftwareInfo GetSoftware(CardInfo cardInfo, CategoryInfo category, IProgress<double> progress, CancellationToken token);
+        SoftwareInfo? GetSoftware(CardInfo cardInfo, CategoryInfo category, IProgress<double>? progress, CancellationToken token);
     }
 }

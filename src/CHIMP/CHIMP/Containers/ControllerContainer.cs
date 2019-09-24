@@ -46,14 +46,14 @@ namespace Chimp.Containers
             return controller;
         }
 
-        protected override IDictionary<string, StepData> Data =>
-            StepsData.Steps.ToDictionary(
-                s => s.Name,
+        protected override IDictionary<string, StepData>? Data =>
+            StepsData.Steps?.ToDictionary(
+                s => s.Name!,
                 s => s);
 
         protected override string GetNamespace(string key)
         {
-            return Data[key].Namespace
+            return Data?[key].Namespace
                 ?? typeof(Controller<>).Namespace;
         }
 

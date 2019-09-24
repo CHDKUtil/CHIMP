@@ -15,7 +15,7 @@ namespace Chimp.Providers.Software
 
         protected override string ProductName => "CHDK";
 
-        protected override Version GetVersion(Match match)
+        protected override Version? GetVersion(Match match)
         {
             var version = match.Groups["version"].Value;
             var build = match.Groups["build"].Value;

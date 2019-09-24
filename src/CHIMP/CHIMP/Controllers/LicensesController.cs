@@ -38,7 +38,7 @@ namespace Chimp.Controllers
 
         private void Subscribe2()
         {
-            if (ViewModel.Licenses != null)
+            if (ViewModel?.Licenses != null)
             {
                 PropertyChangedEventManager.AddHandler(ViewModel, OnIsAllAcceptedChanged, nameof(LicensesViewModel.IsAllAccepted));
                 PropertyChangedEventManager.AddHandler(ViewModel, OnIsAllRejectedChanged, nameof(LicensesViewModel.IsAllRejected));
@@ -49,7 +49,7 @@ namespace Chimp.Controllers
 
         private void Unsubscribe2()
         {
-            if (ViewModel.Licenses != null)
+            if (ViewModel?.Licenses != null)
             {
                 PropertyChangedEventManager.RemoveHandler(ViewModel, OnIsAllAcceptedChanged, nameof(LicensesViewModel.IsAllAccepted));
                 PropertyChangedEventManager.RemoveHandler(ViewModel, OnIsAllRejectedChanged, nameof(LicensesViewModel.IsAllRejected));
@@ -60,33 +60,33 @@ namespace Chimp.Controllers
 
         private void UpdateCanContinue()
         {
-            StepViewModel.CanContinue = ViewModel.IsAllAccepted;
+            StepViewModel!.CanContinue = ViewModel?.IsAllAccepted == true;
         }
 
         private void UpdateIsPaused()
         {
-            MainViewModel.IsWarning = ViewModel.Licenses != null && !ViewModel.IsAllAccepted;
+            MainViewModel.IsWarning = ViewModel?.Licenses != null && !ViewModel.IsAllAccepted;
         }
 
         private LicensesViewModel CreateViewModel()
         {
-            var vms = GetLicenses();
-            if (vms != null)
-                vms[0].IsExpanded = true;
+            var licenses = GetLicenses();
+            if (licenses != null)
+                licenses[0].IsExpanded = true;
             var title = !SkipStep ? Resources.Licenses_Title_Text : null;
             return new LicensesViewModel
             {
                 Title = title,
-                Licenses = vms,
+                Licenses = licenses,
                 IsAllRejected = true,
             };
         }
 
-        private LicensesItemViewModel[] GetLicenses()
+        private LicensesItemViewModel[]? GetLicenses()
         {
             if (SkipStep)
                 return null;
-            return LicenseProvider.GetLicenses()
+            return LicenseProvider.GetLicenses()?
                 .Select(CreateLicense)
                 .ToArray();
         }
@@ -104,13 +104,13 @@ namespace Chimp.Controllers
 
         private void OnIsAllAcceptedChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (ViewModel.IsAllAccepted)
+            if (ViewModel!.IsAllAccepted)
             {
                 if (!isAcceptingAll)
                 {
                     isAcceptingAll = true;
                     Logger.LogTrace("Accepted All");
-                    foreach (var license in ViewModel.Licenses)
+                    foreach (var license in ViewModel.Licenses!)
                         license.IsAccepted = true;
                     isAcceptingAll = false;
                 }
@@ -124,13 +124,13 @@ namespace Chimp.Controllers
 
         private void OnIsAllRejectedChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (ViewModel.IsAllRejected)
+            if (ViewModel!.IsAllRejected)
             {
                 if (!isRejectingAll)
                 {
                     isRejectingAll = true;
                     Logger.LogTrace("Rejected All");
-                    foreach (var license in ViewModel.Licenses)
+                    foreach (var license in ViewModel.Licenses!)
                         license.IsAccepted = false;
                     isRejectingAll = false;
                 }
@@ -142,13 +142,15 @@ namespace Chimp.Controllers
             if (isAcceptingAll || isRejectingAll)
                 return;
 
-            var license = sender as LicensesItemViewModel;
+            if (!(sender is LicensesItemViewModel license))
+                return;
+
             if (license.IsAccepted)
                 Logger.LogTrace("Accepted {0}", license.Product);
             else
                 Logger.LogTrace("Rejected {0}", license.Product);
 
-            ViewModel.IsAllAccepted =
+            ViewModel!.IsAllAccepted =
                 ViewModel.Licenses.All(l => l.IsAccepted);
 
             ViewModel.IsAllRejected =

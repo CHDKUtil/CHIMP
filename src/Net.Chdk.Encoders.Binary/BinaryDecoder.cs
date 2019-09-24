@@ -9,7 +9,7 @@ namespace Net.Chdk.Encoders.Binary
         {
         }
 
-        public bool ValidatePrefix(byte[] encBuffer, int size, byte[] prefix)
+        public bool ValidatePrefix(byte[] encBuffer, int size, byte[]? prefix)
         {
             if (prefix == null || size < prefix.Length)
                 return false;

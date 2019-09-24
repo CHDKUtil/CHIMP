@@ -30,30 +30,29 @@ namespace Chimp.Providers.Matches
             BuildPaths = buildPaths;
         }
 
-        public async Task<Match[]> GetMatchesAsync(SoftwareCameraInfo camera, string buildName, CancellationToken cancellationToken)
+        public async Task<Match[]?> GetMatchesAsync(SoftwareCameraInfo camera, string buildName, CancellationToken cancellationToken)
         {
             var buildUri = GetBuildUri(buildName);
 
             Logger.LogTrace("Fetching {0}", buildUri);
 
-            using (var http = new HttpClient())
-            using (var resp = await http.GetAsync(buildUri, cancellationToken))
+            using var http = new HttpClient();
+            using var resp = await http.GetAsync(buildUri, cancellationToken);
+
+            try
             {
-                try
-                {
-                    resp.EnsureSuccessStatusCode();
-                }
-                catch (Exception ex)
-                {
-                    Logger.LogError(0, ex, "Error fetching");
-                    throw;
-                }
-                using (var stream = await resp.Content.ReadAsStreamAsync())
-                using (var reader = new StreamReader(stream))
-                {
-                    return await GetMatchesAsync(camera, buildName, reader);
-                }
+                resp.EnsureSuccessStatusCode();
             }
+            catch (Exception ex)
+            {
+                Logger.LogError(0, ex, "Error fetching");
+                throw;
+            }
+
+            using var stream = await resp.Content.ReadAsStreamAsync();
+            using var reader = new StreamReader(stream);
+
+            return await GetMatchesAsync(camera, buildName, reader);
         }
 
         public virtual string GetError()
@@ -70,7 +69,7 @@ namespace Chimp.Providers.Matches
             return nameof(Resources.Download_UnsupportedFirmware_Text);
         }
 
-        private async Task<Match[]> GetMatchesAsync(SoftwareCameraInfo camera, string buildName, TextReader reader)
+        private async Task<Match[]?> GetMatchesAsync(SoftwareCameraInfo camera, string buildName, TextReader reader)
         {
             hasMatch = hasPlatform = hasRevision = false;
 
@@ -85,15 +84,15 @@ namespace Chimp.Providers.Matches
             return null;
         }
 
-        protected abstract IEnumerable<Match> GetMatches(SoftwareCameraInfo camera, string buildName, string line);
+        protected abstract IEnumerable<Match>? GetMatches(SoftwareCameraInfo camera, string buildName, string line);
 
-        protected IEnumerable<Match> GetMatches(SoftwareCameraInfo camera, string buildName, Match match)
+        protected IEnumerable<Match>? GetMatches(SoftwareCameraInfo camera, string buildName, Match match)
         {
             hasMatch = true;
-            if (camera.Platform.Equals(match.Groups["platform"].Value))
+            if (camera.Platform?.Equals(match.Groups["platform"].Value) == true)
             {
                 hasPlatform = true;
-                if (camera.Revision.Equals(match.Groups["revision"].Value))
+                if (camera.Revision?.Equals(match.Groups["revision"].Value) == true)
                 {
                     hasRevision = true;
                     if (buildName.Equals(match.Groups["buildName"].Value))
@@ -105,14 +104,14 @@ namespace Chimp.Providers.Matches
             return null;
         }
 
-        protected virtual IEnumerable<Match> GetMatches(string buildName, Match match)
+        protected virtual IEnumerable<Match>? GetMatches(string buildName, Match match)
         {
             return new[] { match };
         }
 
         private Uri GetBuildUri(string buildName)
         {
-            string buildPath = null;
+            string? buildPath = null;
             BuildPaths?.TryGetValue(buildName, out buildPath);
             if (string.IsNullOrEmpty(buildPath))
                 return BaseUri;

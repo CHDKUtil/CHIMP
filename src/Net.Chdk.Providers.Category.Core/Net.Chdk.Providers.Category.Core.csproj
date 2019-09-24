@@ -4,6 +4,8 @@
     <TargetFramework>netstandard1.0</TargetFramework>
     <Description>CHIMP category provider API</Description>
     <RootNamespace>Net.Chdk.Providers.Category</RootNamespace>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup>

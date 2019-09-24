@@ -26,11 +26,11 @@ namespace Chimp.Providers.Tips
             }
         }
 
-        private static IEnumerable<string> GetContents(bool? isEjected)
+        private static IEnumerable<string> GetContents(bool? _)
         {
             yield return Resources.Summary_Eject_Text;
         }
 
-        private EjectViewModel EjectViewModel => EjectViewModel.Get(MainViewModel);
+        private EjectViewModel? EjectViewModel => EjectViewModel.Get(MainViewModel);
     }
 }

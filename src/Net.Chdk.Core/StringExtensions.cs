@@ -2,16 +2,16 @@
 {
     public static class StringExtensions
     {
-        public static string TrimStart(this string str, string prefix)
+        public static string? TrimStart(this string? str, string prefix)
         {
-            return str.StartsWith(prefix)
+            return str?.StartsWith(prefix) == true
                 ? str.Substring(prefix.Length)
                 : str;
         }
 
-        public static string TrimEnd(this string str, string suffix)
+        public static string? TrimEnd(this string? str, string suffix)
         {
-            return str.EndsWith(suffix)
+            return str?.EndsWith(suffix) == true
                 ? str.Substring(0, str.Length - suffix.Length)
                 : str;
         }

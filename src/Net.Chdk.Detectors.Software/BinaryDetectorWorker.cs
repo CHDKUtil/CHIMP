@@ -15,7 +15,7 @@ namespace Net.Chdk.Detectors.Software
             Detectors = detectors;
         }
 
-        protected static TData GetValue(byte[] buffer, Tuple<Func<byte[], int, TData>, byte[]>[] tuples)
+        protected static TData? GetValue(byte[] buffer, Tuple<Func<byte[], int, TData?>, byte[]>[] tuples)
         {
             if (tuples.Length == 0)
                 return null;

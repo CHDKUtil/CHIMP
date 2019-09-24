@@ -20,12 +20,10 @@ namespace Chimp.Services
             if (blockSize == 0 || bytes == null)
                 return false;
 
-            var volume = VolumeContainer.GetVolume(cardInfo.DriveLetter);
-            using (var hDevice = Device.OpenRead(volume.DeviceName))
-            {
-                var buffer = Device.ReadBlock(hDevice, blockSize);
-                return Test(buffer, bytes);
-            }
+            var volume = VolumeContainer.GetVolume(cardInfo.DriveLetter!);
+            using var hDevice = Device.OpenRead(volume.DeviceName);
+            var buffer = Device.ReadBlock(hDevice, blockSize);
+            return Test(buffer, bytes);
         }
 
         protected bool Set(CardInfo cardInfo, uint blockSize, IDictionary<int, byte[]> bytes, bool value)
@@ -33,17 +31,15 @@ namespace Chimp.Services
             if (blockSize == 0 || bytes == null)
                 return false;
 
-            var volume = VolumeContainer.GetVolume(cardInfo.DriveLetter);
-            using (var hDevice = Device.OpenReadWrite(volume.DeviceName))
+            var volume = VolumeContainer.GetVolume(cardInfo.DriveLetter!);
+            using var hDevice = Device.OpenReadWrite(volume.DeviceName);
+            var buffer = Device.ReadBlock(hDevice, blockSize);
+            var oldValue = Test(buffer, bytes);
+            if (oldValue != value)
             {
-                var buffer = Device.ReadBlock(hDevice, blockSize);
-                var oldValue = Test(buffer, bytes);
-                if (oldValue != value)
-                {
-                    Set(buffer, bytes, value);
-                    Device.MoveToStart(hDevice);
-                    Device.WriteBlock(hDevice, buffer, blockSize);
-                }
+                Set(buffer, bytes, value);
+                Device.MoveToStart(hDevice);
+                Device.WriteBlock(hDevice, buffer, blockSize);
             }
 
             return true;

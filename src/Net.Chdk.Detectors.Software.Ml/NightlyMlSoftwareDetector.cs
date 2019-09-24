@@ -17,12 +17,12 @@ namespace Net.Chdk.Detectors.Software.Ml
 
         protected override char SeparatorChar => '\n';
 
-        protected override string GetVersionString(string[] strings)
+        protected override string? GetVersionString(string?[] strings)
         {
             return strings[0];
         }
 
-        protected override string GetCreationDateString(string[] strings)
+        protected override string? GetCreationDateString(string?[] strings)
         {
             var builtStr = GetValue(strings, 1, "Built on ");
             if (builtStr == null)
@@ -33,7 +33,7 @@ namespace Net.Chdk.Detectors.Software.Ml
             return builtStr;
         }
 
-        protected override string GetCreator(string[] strings)
+        protected override string? GetCreator(string?[] strings)
         {
             var builtStr = GetValue(strings, 1, "Built on ");
             if (builtStr == null)
@@ -44,22 +44,22 @@ namespace Net.Chdk.Detectors.Software.Ml
             return null;
         }
 
-        protected override string GetPlatform(string[] strings)
+        protected override string? GetPlatform(string?[] strings)
         {
             return GetValue(strings, 1, "Camera");
         }
 
-        protected override string GetRevision(string[] strings)
+        protected override string? GetRevision(string?[] strings)
         {
             return GetValue(strings, 2, "Firmware");
         }
 
-        protected override string GetStatus(string[] strings)
+        protected override string? GetStatus(string?[] strings)
         {
             return string.Empty;
         }
 
-        protected override string GetChangeset(string[] strings)
+        protected override string? GetChangeset(string?[] strings)
         {
             var value = GetValue(strings, 3, "Changeset")
                 ?? GetValue(strings, 1, "Mercurial changeset");
@@ -68,11 +68,11 @@ namespace Net.Chdk.Detectors.Software.Ml
             return split2?[0];
         }
 
-        private static string GetValue(string[] strings, int skip, string prefix)
+        private static string? GetValue(string?[] strings, int skip, string prefix)
         {
             return strings
                 .Skip(skip)
-                .FirstOrDefault(s => s.StartsWith(prefix))
+                .FirstOrDefault(s => s?.StartsWith(prefix) == true)
                 ?.TrimStart(prefix)
                 ?.TrimStart(':', ' ');
         }

@@ -5,11 +5,11 @@ namespace Net.Chdk.Detectors.Software
 {
     sealed class DerivedModuleDetector : IInnerModuleDetector
     {
-        public ModuleInfo GetModule(SoftwareInfo software, byte[] buffer, string hashName)
+        public ModuleInfo? GetModule(SoftwareInfo software, byte[] buffer, string hashName)
         {
             return new ModuleInfo
             {
-                Created = software.Product.Created,
+                Created = software.Product?.Created,
                 Changeset = software.Build?.Changeset,
                 Hash = GetHash(hashName),
             };

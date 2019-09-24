@@ -6,7 +6,7 @@ namespace Net.Chdk.Detectors.Software.Product
 {
     public abstract class ProductBinaryModuleDetector : ProductBinaryDetector, IProductBinaryModuleDetector
     {
-        public ModuleInfo GetModule(SoftwareInfo software, byte[] buffer, int index, string hashName)
+        public ModuleInfo? GetModule(SoftwareInfo software, byte[] buffer, int index, string hashName)
         {
             var strings = GetStrings(buffer, index, StringCount, SeparatorChar);
             if (strings == null)
@@ -29,8 +29,8 @@ namespace Net.Chdk.Detectors.Software.Product
             };
         }
 
-        protected abstract string GetChangeset(string[] strings);
+        protected abstract string? GetChangeset(string?[] strings);
 
-        protected abstract DateTime? GetCreationDate(string[] strings);
+        protected abstract DateTime? GetCreationDate(string?[] strings);
     }
 }

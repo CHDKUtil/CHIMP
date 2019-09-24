@@ -21,13 +21,13 @@ namespace Net.Chdk.Detectors.Software
             SoftwareDetectors = softwareDetectors;
         }
 
-        public SoftwareInfo GetSoftware(CardInfo cardInfo, CategoryInfo category, IProgress<double> progress, CancellationToken token)
+        public SoftwareInfo? GetSoftware(CardInfo cardInfo, CategoryInfo category, IProgress<double>? progress, CancellationToken token)
         {
             var baseBath = cardInfo.GetRootPath();
             return GetSoftware(baseBath, category.Name, progress, token);
         }
 
-        public SoftwareInfo GetSoftware(string basePath, string categoryName, IProgress<double> progress, CancellationToken token)
+        public SoftwareInfo? GetSoftware(string basePath, string categoryName, IProgress<double>? progress, CancellationToken token)
         {
             Logger.LogTrace("Detecting {0} software from {1} binaries", categoryName, basePath);
 
@@ -36,7 +36,7 @@ namespace Net.Chdk.Detectors.Software
                 .FirstOrDefault(s => s != null);
         }
 
-        public SoftwareInfo GetSoftware(byte[] buffer, IProgress<double> progress, CancellationToken token)
+        public SoftwareInfo? GetSoftware(byte[] buffer, IProgress<double>? progress, CancellationToken token)
         {
             Logger.LogTrace("Detecting software from buffer");
 
@@ -47,7 +47,7 @@ namespace Net.Chdk.Detectors.Software
 
         public bool UpdateSoftware(SoftwareInfo software, byte[] buffer)
         {
-            var productName = software.Product.Name;
+            var productName = software.Product?.Name;
             Logger.LogTrace("Updating {0}", productName);
 
             return SoftwareDetectors

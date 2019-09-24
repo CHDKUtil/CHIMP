@@ -29,14 +29,14 @@ namespace Chimp.Containers
             return CreateProvider(kvp.Key, kvp.Key);
         }
 
-        protected override IDictionary<string, ActionData> Data =>
-            ActionsData.Actions.ToDictionary(
-                a => a.Name,
+        protected override IDictionary<string, ActionData>? Data =>
+            ActionsData.Actions?.ToDictionary(
+                a => a.Name!,
                 a => a);
 
         protected override string GetNamespace(string key)
         {
-            return Data[key].Namespace
+            return Data?[key].Namespace
                 ?? typeof(ActionProvider).Namespace;
         }
 

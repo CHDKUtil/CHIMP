@@ -1,6 +1,5 @@
 ﻿using Chimp.ViewModels;
 using System.Windows;
-using System;
 using Microsoft.Win32;
 
 namespace Chimp.Services
@@ -29,7 +28,7 @@ namespace Chimp.Services
             return ShowExclamationMessage(message, caption, MessageBoxButton.OKCancel, MessageBoxResult.OK);
         }
 
-        public string[] ShowOpenFileDialog(string title, string filter, bool multiselect)
+        public string[]? ShowOpenFileDialog(string title, string filter, bool multiselect)
         {
             var dlg = new OpenFileDialog
             {

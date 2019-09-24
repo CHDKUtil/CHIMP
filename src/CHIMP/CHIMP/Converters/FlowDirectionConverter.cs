@@ -7,18 +7,16 @@ namespace Chimp.Converters
 {
     public sealed class FlowDirectionConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object? value, Type targetType, object parameter, CultureInfo _)
         {
-            if (value != null)
-                culture = value as CultureInfo;
-            if (culture == null)
+            if (!(value is CultureInfo culture))
                 return null;
             return culture.TextInfo.IsRightToLeft
                 ? FlowDirection.RightToLeft
                 : FlowDirection.LeftToRight;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? ConvertBack(object? value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

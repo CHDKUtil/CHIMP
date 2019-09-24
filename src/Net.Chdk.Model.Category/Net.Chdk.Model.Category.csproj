@@ -4,6 +4,8 @@
     <TargetFramework>netstandard1.0</TargetFramework>
     <Description>CHIMP category model</Description>
     <RootNamespace>Net.Chdk.Model.Category</RootNamespace>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup>

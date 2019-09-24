@@ -10,8 +10,8 @@ namespace Chimp.Providers
     sealed class AggregateTipProvider : ProviderResolver<ITipProvider>, ITipProvider
     {
         private MainViewModel MainViewModel { get; }
-        private DownloadViewModel DownloadViewModel => DownloadViewModel.Get(MainViewModel);
-        private SoftwareViewModel SoftwareViewModel => SoftwareViewModel.Get(MainViewModel);
+        private DownloadViewModel? DownloadViewModel => DownloadViewModel.Get(MainViewModel);
+        private SoftwareViewModel? SoftwareViewModel => SoftwareViewModel.Get(MainViewModel);
 
         private IServiceActivator ServiceActivator { get; }
         private IProductProvider ProductProvider { get; }
@@ -27,9 +27,9 @@ namespace Chimp.Providers
         public IEnumerable<Tip> GetTips(string productText)
         {
             var productName =
-                DownloadViewModel?.Software?.Product.Name
-                ?? SoftwareViewModel?.SelectedItem?.Info.Product?.Name;
-            ITipProvider provider = null;
+                DownloadViewModel?.Software?.Product?.Name
+                ?? SoftwareViewModel?.SelectedItem?.Info?.Product?.Name;
+            ITipProvider? provider = null;
             if (productName != null)
                 provider = GetProvider(productName);
             if (provider == null)

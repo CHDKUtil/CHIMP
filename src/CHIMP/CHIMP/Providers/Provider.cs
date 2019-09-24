@@ -13,10 +13,14 @@ namespace Chimp.Providers
             ServiceActivator = serviceActivator;
         }
 
-        protected abstract IDictionary<string, TData> Data { get; }
+        protected abstract IDictionary<string, TData>? Data { get; }
 
-        protected TValue CreateProvider(string key, string type, Type[] argTypes = null, object[] argValues = null)
+        protected TValue CreateProvider(string? key, string? type, Type[]? argTypes = null, object[]? argValues = null)
         {
+            if (key == null)
+                throw new ArgumentNullException(nameof(key));
+            if (type == null)
+                throw new ArgumentNullException(nameof(type));
             var @namespace = GetNamespace(key);
             return ServiceActivator.Create<TValue>($"{@namespace}.{type}{TypeSuffix}", argTypes, argValues);
         }

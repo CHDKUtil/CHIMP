@@ -10,7 +10,7 @@ namespace Net.Chdk.Detectors.Card
     {
         private const string CardsQueryString = "SELECT * FROM Win32_Volume WHERE DriveType = 2";
 
-        private static readonly string[] SafeFileSystems = new[] { null, "FAT", "FAT32", "exFAT" };
+        private static readonly string?[] SafeFileSystems = new[] { null, "FAT", "FAT32", "exFAT" };
 
         private ILoggerFactory LoggerFactory { get; }
         private ILogger<CardDetector> Logger { get; }
@@ -25,29 +25,25 @@ namespace Net.Chdk.Detectors.Card
         {
             Logger.LogTrace("Detecting cards");
 
-            using (var searcher = new ManagementObjectSearcher(CardsQueryString))
-            using (var volumes = searcher.Get())
-            {
-                return volumes
-                    .Cast<ManagementObject>()
-                    .Where(IsSafe)
-                    .Select(GetCard)
-                    .ToArray();
-            }
+            using var searcher = new ManagementObjectSearcher(CardsQueryString);
+            using var volumes = searcher.Get();
+            return volumes
+                .Cast<ManagementObject>()
+                .Where(IsSafe)
+                .Select(GetCard)
+                .ToArray();
         }
 
         public CardInfo GetCard(string driveLetter)
         {
             Logger.LogTrace("Detecting card {0}", driveLetter);
 
-            using (var searcher = new ManagementObjectSearcher($"{CardsQueryString} AND DriveLetter = '{driveLetter}'"))
-            using (var volumes = searcher.Get())
-            {
-                return volumes
-                    .Cast<ManagementObject>()
-                    .Select(GetCard)
-                    .SingleOrDefault();
-            }
+            using var searcher = new ManagementObjectSearcher($"{CardsQueryString} AND DriveLetter = '{driveLetter}'");
+            using var volumes = searcher.Get();
+            return volumes
+                .Cast<ManagementObject>()
+                .Select(GetCard)
+                .SingleOrDefault();
         }
 
         private CardInfo GetCard(ManagementObject volume)

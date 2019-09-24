@@ -15,7 +15,7 @@ namespace Chimp.Providers.Matches
         {
         }
 
-        protected override IEnumerable<Match> GetMatches(SoftwareCameraInfo camera, string buildName, string line)
+        protected override IEnumerable<Match>? GetMatches(SoftwareCameraInfo camera, string buildName, string line)
         {
             var matches = regex.Matches(line);
             foreach (Match match in matches)

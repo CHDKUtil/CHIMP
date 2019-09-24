@@ -2,12 +2,12 @@
 {
     sealed class ActionData
     {
-        public string Name { get; set; }
-        public string Namespace { get; set; }
+        public string? Name { get; set; }
+        public string? Namespace { get; set; }
     }
 
     sealed class ActionsData
     {
-        public ActionData[] Actions { get; set; }
+        public ActionData[]? Actions { get; set; }
     }
 }

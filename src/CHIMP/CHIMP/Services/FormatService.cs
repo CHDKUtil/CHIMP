@@ -22,8 +22,8 @@ namespace Chimp.Services
         {
             var isCardFat32Formattable = card.Capacity <= MaxFat32CardSize;
             return isCardFat32Formattable || !"FAT32".Equals(fileSystem)
-                ? Format(card.DriveLetter, fileSystem, label)
-                : FormatFat32(card.DriveLetter, label);
+                ? Format(card.DriveLetter!, fileSystem, label)
+                : FormatFat32(card.DriveLetter!, label);
         }
 
         private bool Format(string driveLetter, string fileSystem, string label)
@@ -59,16 +59,14 @@ namespace Chimp.Services
             var filePath = Path.Combine(path, fileName);
             Logger.LogInformation("Run {0} {1}", filePath, args);
 
-            using (var process = new Process())
-            {
-                process.StartInfo.FileName = filePath;
-                process.StartInfo.Arguments = args;
-                process.StartInfo.UseShellExecute = false;
-                process.StartInfo.CreateNoWindow = true;
-                process.StartInfo.RedirectStandardOutput = true;
-                process.StartInfo.RedirectStandardError = true;
-                return Run(process);
-            }
+            using var process = new Process();
+            process.StartInfo.FileName = filePath;
+            process.StartInfo.Arguments = args;
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.CreateNoWindow = true;
+            process.StartInfo.RedirectStandardOutput = true;
+            process.StartInfo.RedirectStandardError = true;
+            return Run(process);
         }
 
         private bool Run(Process process)

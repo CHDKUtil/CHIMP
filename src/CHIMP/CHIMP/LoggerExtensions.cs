@@ -7,23 +7,23 @@ namespace Chimp
 {
     internal static class LoggerExtensions
     {
-        public static void LogObject(this ILogger logger, LogLevel level, object obj)
+        public static void LogObject(this ILogger logger, LogLevel level, object? obj)
         {
-            logger.Log(level, default(EventId), obj, null, GetValue);
+            logger.Log(level, default, obj, null, GetValue);
         }
 
-        public static void LogObject(this ILogger logger, LogLevel level, string format, object obj)
+        public static void LogObject(this ILogger logger, LogLevel level, string format, object? obj)
         {
-            logger.Log(level, default(EventId), obj, null, (v, e) => GetValue(format, v));
+            logger.Log(level, default, obj, null, (v, e) => GetValue(format, v));
         }
 
-        private static string GetValue(string format, object obj)
+        private static string GetValue(string format, object? obj)
         {
             var value = GetValue(obj, null);
             return string.Format(format, value);
         }
 
-        private static string GetValue(object obj, Exception ex)
+        private static string GetValue(object? obj, Exception? ex)
         {
             var settings = new JsonSerializerSettings
             {

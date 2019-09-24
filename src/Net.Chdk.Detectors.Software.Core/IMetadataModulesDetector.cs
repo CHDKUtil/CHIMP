@@ -6,6 +6,6 @@ namespace Net.Chdk.Detectors.Software
 {
     public interface IMetadataModulesDetector
     {
-        ModulesInfo GetModules(string basePath, string basePath2, SoftwareInfo software, IProgress<double> progress, CancellationToken token);
+        ModulesInfo? GetModules(string basePath, string basePath2, SoftwareInfo software, IProgress<double>? progress, CancellationToken token);
     }
 }

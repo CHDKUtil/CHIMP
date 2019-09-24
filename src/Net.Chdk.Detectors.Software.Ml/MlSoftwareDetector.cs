@@ -17,12 +17,15 @@ namespace Net.Chdk.Detectors.Software.Ml
 
         public sealed override string ProductName => "ML";
 
-        protected sealed override bool GetProductVersion(string[] strings, out Version version, out string versionPrefix, out string versionSuffix)
+        protected sealed override bool GetProductVersion(string?[] strings, out Version? version, out string? versionPrefix, out string? versionSuffix)
         {
             version = null;
             versionPrefix = null;
             versionSuffix = null;
-            var split = GetVersionString(strings).Split('.');
+            var str = GetVersionString(strings);
+            if (str == null)
+                return false;
+            var split = str.Split('.');
             if (split.Length < 3)
                 return false;
             var versionStr = split[split.Length - 2];
@@ -33,12 +36,12 @@ namespace Net.Chdk.Detectors.Software.Ml
             return true;
         }
 
-        protected override Version GetProductVersion(string[] strings)
+        protected override Version GetProductVersion(string?[] strings)
         {
             throw new NotImplementedException();
         }
 
-        protected sealed override DateTime? GetCreationDate(string[] strings)
+        protected sealed override DateTime? GetCreationDate(string?[] strings)
         {
             var dateStr = GetCreationDateString(strings);
             if (!DateTime.TryParse(dateStr, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out DateTime date))
@@ -46,7 +49,7 @@ namespace Net.Chdk.Detectors.Software.Ml
             return date;
         }
 
-        protected sealed override SoftwareBuildInfo GetBuild(string[] strings)
+        protected sealed override SoftwareBuildInfo GetBuild(string?[] strings)
         {
             return new SoftwareBuildInfo
             {
@@ -57,15 +60,15 @@ namespace Net.Chdk.Detectors.Software.Ml
             };
         }
 
-        protected sealed override CultureInfo GetLanguage(string[] strings)
+        protected sealed override CultureInfo GetLanguage(string?[] strings)
         {
             return GetCultureInfo("en");
         }
 
-        protected abstract string GetVersionString(string[] strings);
-        protected abstract string GetCreationDateString(string[] strings);
-        protected abstract string GetStatus(string[] strings);
-        protected abstract string GetChangeset(string[] strings);
-        protected abstract string GetCreator(string[] strings);
+        protected abstract string? GetVersionString(string?[] strings);
+        protected abstract string? GetCreationDateString(string?[] strings);
+        protected abstract string? GetStatus(string?[] strings);
+        protected abstract string? GetChangeset(string?[] strings);
+        protected abstract string? GetCreator(string?[] strings);
     }
 }

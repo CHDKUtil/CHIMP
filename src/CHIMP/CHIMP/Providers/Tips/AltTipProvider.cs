@@ -43,9 +43,9 @@ namespace Chimp.Providers.Tips
             }
         }
 
-        private string GetAltButton()
+        private string? GetAltButton()
         {
-            var software = DownloadViewModel.Software
+            var software = DownloadViewModel?.Software
                 ?? SoftwareViewModel?.SelectedItem?.Info;
             var alt = CameraProvider.GetAlt(software?.Product, software?.Camera);
             return alt?.Button;

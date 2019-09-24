@@ -39,19 +39,18 @@ namespace Chimp.Services
             var volume = VolumeContainer.GetVolume(driveLetter);
             var sectorSize = volume.Disk.SectorSize;
 
-            using (var hDevice = Device.OpenReadWrite(volume.Disk.DeviceName))
-            {
-                var buffer = new byte[sectorSize];
+            using var hDevice = Device.OpenReadWrite(volume.Disk.DeviceName);
+            
+            var buffer = new byte[sectorSize];
 
-                var start = SinglePartStart;
-                var length = (uint)volume.Disk.DriveSectors - start;
-                var type = PartitionType.PrimaryFAT_0;
-                SetPartition(buffer, part: 0, type: type, start: start, length: length);
+            var start = SinglePartStart;
+            var length = (uint)volume.Disk.DriveSectors - start;
+            var type = PartitionType.PrimaryFAT_0;
+            SetPartition(buffer, part: 0, type: type, start: start, length: length);
 
-                SetSignature(buffer);
+            SetSignature(buffer);
 
-                Device.WriteBlock(hDevice, buffer, sectorSize);
-            }
+            Device.WriteBlock(hDevice, buffer, sectorSize);
         }
 
         public void CreatePartitions(string driveLetter)
@@ -61,26 +60,25 @@ namespace Chimp.Services
             var volume = VolumeContainer.GetVolume(driveLetter);
             var sectorSize = volume.Disk.SectorSize;
 
-            using (var hDevice = Device.OpenReadWrite(volume.Disk.DeviceName))
-            {
-                var buffer = new byte[sectorSize];
+            using var hDevice = Device.OpenReadWrite(volume.Disk.DeviceName);
 
-                var start = 1u;
-                var length = (uint)Settings.Default.VolumeSmallSizeMB * BytesInMegabyte / sectorSize;
-                var type = PartitionType.PrimaryFAT;
-                SetPartition(buffer, part: 0, type: type, start: start, length: length);
+            var buffer = new byte[sectorSize];
 
-                start = start + length;
-                length = (uint)volume.Disk.DriveSectors - start - 1;
-                type = PartitionType.PrimaryFAT32;
-                SetPartition(buffer, part: 1, type: type, start: start, length: length);
+            var start = 1u;
+            var length = (uint)Settings.Default.VolumeSmallSizeMB * BytesInMegabyte / sectorSize;
+            var type = PartitionType.PrimaryFAT;
+            SetPartition(buffer, part: 0, type: type, start: start, length: length);
 
-                SetSignature(buffer);
+            start += length;
+            length = (uint)volume.Disk.DriveSectors - start - 1;
+            type = PartitionType.PrimaryFAT32;
+            SetPartition(buffer, part: 1, type: type, start: start, length: length);
 
-                Device.MoveToStart(hDevice);
+            SetSignature(buffer);
 
-                Device.WriteBlock(hDevice, buffer, sectorSize);
-            }
+            Device.MoveToStart(hDevice);
+
+            Device.WriteBlock(hDevice, buffer, sectorSize);
         }
 
         public bool SwitchPartitions(string driveLetter, int part)
@@ -90,16 +88,15 @@ namespace Chimp.Services
             var volume = VolumeContainer.GetVolume(driveLetter);
             var sectorSize = volume.Disk.SectorSize;
 
-            using (var hDevice = Device.OpenReadWrite(volume.Disk.DeviceName))
-            {
-                var buffer = Device.ReadBlock(hDevice, sectorSize);
+            using var hDevice = Device.OpenReadWrite(volume.Disk.DeviceName);
 
-                SwitchPartitions(buffer, part);
+            var buffer = Device.ReadBlock(hDevice, sectorSize);
 
-                Device.MoveToStart(hDevice);
+            SwitchPartitions(buffer, part);
 
-                Device.WriteBlock(hDevice, buffer, sectorSize);
-            }
+            Device.MoveToStart(hDevice);
+
+            Device.WriteBlock(hDevice, buffer, sectorSize);
 
             return true;
         }
@@ -110,11 +107,10 @@ namespace Chimp.Services
 
             var volume = VolumeContainer.GetVolume(driveLetter);
 
-            using (var hDevice = Device.OpenReadWrite(volume.DeviceName))
-            {
-                if (!Device.Invoke(hDevice, Device.IOCTL_VOLUME_UPDATE_PROPERTIES))
-                    Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
-            }
+            using var hDevice = Device.OpenReadWrite(volume.DeviceName);
+
+            if (!Device.Invoke(hDevice, Device.IOCTL_VOLUME_UPDATE_PROPERTIES))
+                Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
         }
 
         public PartitionType[] GetPartitionTypes(string driveLetter)
@@ -122,11 +118,10 @@ namespace Chimp.Services
             var volume = VolumeContainer.GetVolume(driveLetter);
             var sectorSize = volume.Disk.SectorSize;
 
-            using (var hDevice = Device.OpenRead(volume.Disk.DeviceName))
-            {
-                var buffer = Device.ReadBlock(hDevice, sectorSize);
-                return GetPartitionTypes(buffer);
-            }
+            using var hDevice = Device.OpenRead(volume.Disk.DeviceName);
+
+            var buffer = Device.ReadBlock(hDevice, sectorSize);
+            return GetPartitionTypes(buffer);
         }
 
         public bool? TestSwitchedPartitions(PartitionType[] partTypes)

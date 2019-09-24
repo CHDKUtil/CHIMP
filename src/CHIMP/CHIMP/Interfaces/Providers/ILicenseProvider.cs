@@ -4,6 +4,6 @@ namespace Chimp
 {
     interface ILicenseProvider
     {
-        LicenseData[] GetLicenses();
+        LicenseData[]? GetLicenses();
     }
 }

@@ -29,12 +29,12 @@ namespace Net.Chdk.Providers.Boot
             return Providers[categoryName].FileName;
         }
 
-        public int[][] GetOffsets(string categoryName)
+        public int[][]? GetOffsets(string categoryName)
         {
             return Providers[categoryName].Offsets;
         }
 
-        public byte[] GetPrefix(string categoryName)
+        public byte[]? GetPrefix(string categoryName)
         {
             return Providers[categoryName].Prefix;
         }

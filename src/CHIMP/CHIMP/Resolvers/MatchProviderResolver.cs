@@ -8,12 +8,12 @@ namespace Chimp.Resolvers
 {
     sealed class MatchProviderResolver : ProviderResolver<IMatchProvider, MatchProvider>
     {
-        public MatchProviderResolver(IServiceActivator serviceActivator, IDictionary<string, Distro> distros)
+        public MatchProviderResolver(IServiceActivator serviceActivator, IDictionary<string, Distro>? distros)
             : base(serviceActivator, distros)
         {
         }
 
-        protected override string GetTypeName(Distro distro)
+        protected override string? GetTypeName(Distro distro)
         {
             return distro.MatchType;
         }
@@ -26,8 +26,8 @@ namespace Chimp.Resolvers
 
         protected override IEnumerable<object> GetValues(string sourceName, SoftwareSourceInfo source, Distro distro)
         {
-            yield return distro.BaseUrl;
-            yield return distro.Builds;
+            yield return distro.BaseUrl!;
+            yield return distro.Builds!;
         }
     }
 }

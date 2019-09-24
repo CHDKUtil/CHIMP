@@ -13,7 +13,7 @@ namespace Chimp.Providers.Action
 
         public override IEnumerable<IAction> GetActions()
         {
-            if (SoftwareViewModel.SelectedItem == null)
+            if (SoftwareViewModel?.SelectedItem == null)
                 yield return ServiceActivator.Create<BrowseAction>();
         }
     }

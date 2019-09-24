@@ -5,7 +5,7 @@ namespace Chimp.ViewModels
 {
     public abstract class ViewModel : INotifyPropertyChanging, INotifyPropertyChanged
     {
-        protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
+        protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string? propertyName = null)
         {
             if (Equals(storage, value))
                 return false;
@@ -15,18 +15,18 @@ namespace Chimp.ViewModels
             return true;
         }
 
-        protected void SendPropertyChanging(string propertyName)
+        protected void SendPropertyChanging(string? propertyName)
         {
             PropertyChanging?.Invoke(this, new PropertyChangingEventArgs(propertyName));
         }
 
-        protected void SendPropertyChanged(string propertyName)
+        protected void SendPropertyChanged(string? propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public event PropertyChangingEventHandler PropertyChanging;
+        public event PropertyChangingEventHandler? PropertyChanging;
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
     }
 }

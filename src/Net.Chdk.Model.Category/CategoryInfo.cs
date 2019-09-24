@@ -2,7 +2,12 @@
 {
     public sealed class CategoryInfo
     {
-        public string Name { get; set; }
+        public CategoryInfo(string name)
+        {
+            Name = name;
+        }
+
+        public string Name { get; }
 
         public override bool Equals(object obj)
         {

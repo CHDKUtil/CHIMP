@@ -4,6 +4,6 @@ namespace Chimp
 {
     interface IBuildProvider
     {
-        string GetBuildName(SoftwareInfo softwareInfo);
+        string GetBuildName(SoftwareInfo? softwareInfo);
     }
 }

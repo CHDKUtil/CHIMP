@@ -4,6 +4,8 @@
     <TargetFramework>netstandard1.0</TargetFramework>
     <Description>CHIMP camera model detectors API</Description>
     <RootNamespace>Net.Chdk.Detectors.CameraModel</RootNamespace>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup>

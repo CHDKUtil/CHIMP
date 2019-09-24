@@ -46,7 +46,7 @@ namespace Net.Chdk.Providers.Category
 
         protected override LogLevel LogLevel => LogLevel.Information;
 
-        protected override string Format => "Categories: {0}";
+        protected override string? Format => "Categories: {0}";
 
         #endregion
 
@@ -54,10 +54,7 @@ namespace Net.Chdk.Providers.Category
 
         private static CategoryInfo GetCategory(string name)
         {
-            return new CategoryInfo
-            {
-                Name = name,
-            };
+            return new CategoryInfo(name);
         }
 
         #endregion

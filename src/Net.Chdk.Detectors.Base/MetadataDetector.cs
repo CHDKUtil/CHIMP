@@ -26,13 +26,13 @@ namespace Net.Chdk.Detectors
 
         protected abstract string FileName { get; }
 
-        protected TValue GetValue(string basePath, CategoryInfo category, IProgress<double> progress, CancellationToken token)
+        protected TValue? GetValue(string basePath, CategoryInfo category, IProgress<double>? progress, CancellationToken token)
         {
             var filePath = Path.Combine(basePath, Directories.Metadata, category.Name, FileName);
             return GetValue(basePath, filePath, progress, token);
         }
 
-        protected TValue GetValue(string basePath, string filePath, IProgress<double> progress, CancellationToken token)
+        protected TValue? GetValue(string? basePath, string filePath, IProgress<double>? progress, CancellationToken token)
         {
             if (!File.Exists(filePath))
             {
@@ -56,25 +56,23 @@ namespace Net.Chdk.Detectors
             return value;
         }
 
-        private TValue ReadValue(string filePath)
+        private TValue? ReadValue(string filePath)
         {
             Logger.LogInformation("Reading {0}", filePath);
 
-            using (var stream = File.OpenRead(filePath))
+            using var stream = File.OpenRead(filePath);
+            try
             {
-                try
-                {
-                    return JsonObject.Deserialize<TValue>(stream);
-                }
-                catch (JsonException ex)
-                {
-                    Logger.LogError(0, ex, "Deserialization error");
-                    return null;
-                }
+                return JsonObject.Deserialize<TValue>(stream);
+            }
+            catch (JsonException ex)
+            {
+                Logger.LogError(0, ex, "Deserialization error");
+                return null;
             }
         }
 
-        private bool TryValidate(TValue value, string basePath, IProgress<double> progress, CancellationToken token)
+        private bool TryValidate(TValue value, string basePath, IProgress<double>? progress, CancellationToken token)
         {
             Logger.LogTrace("Validating {0}", typeof(TValue).Name);
 

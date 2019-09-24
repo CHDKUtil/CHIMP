@@ -20,7 +20,7 @@ namespace Net.Chdk.Detectors.Software.Product
             BootProvider = bootProvider;
         }
 
-        public SoftwareProductInfo GetProduct(CardInfo cardInfo)
+        public SoftwareProductInfo? GetProduct(CardInfo cardInfo)
         {
             var rootPath = cardInfo.GetRootPath();
             var productPath = Path.Combine(rootPath, ProductName);
@@ -40,11 +40,11 @@ namespace Net.Chdk.Detectors.Software.Product
 
         protected abstract string ProductName { get; }
 
-        protected abstract Version GetVersion(string rootPath);
+        protected abstract Version? GetVersion(string rootPath);
 
-        protected abstract CultureInfo GetLanguage(string rootPath);
+        protected abstract CultureInfo? GetLanguage(string rootPath);
 
-        protected static T GetValue<T>(string basePath, IDictionary<string, string> mapping, Func<string, T> getValue)
+        protected static T? GetValue<T>(string basePath, IDictionary<string, string> mapping, Func<string, T> getValue)
             where T : class
         {
             foreach (var kvp in mapping)

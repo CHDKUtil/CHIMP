@@ -7,7 +7,7 @@ namespace Chimp.Converters
 {
     public sealed class ResourceConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object? value, Type targetType, object parameter, CultureInfo culture)
         {
             if (!(value is string key))
                 return null;
@@ -17,7 +17,7 @@ namespace Chimp.Converters
             return obj ?? name;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? ConvertBack(object? value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

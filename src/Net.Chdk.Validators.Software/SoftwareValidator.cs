@@ -9,6 +9,7 @@ using System.Threading;
 namespace Net.Chdk.Validators.Software
 {
     abstract class SoftwareValidator<T> : Validator<T>
+        where T : class
     {
         protected IValidator<SoftwareHashInfo> HashValidator { get; }
 
@@ -28,7 +29,7 @@ namespace Net.Chdk.Validators.Software
             BootProvider = bootProvider;
         }
 
-        protected override void DoValidate(SoftwareInfo software, string basePath, IProgress<double> progress, CancellationToken token)
+        protected override void DoValidate(SoftwareInfo software, string basePath, IProgress<double>? progress, CancellationToken token)
         {
             Validate(software.Version);
             Validate(software.Category);
@@ -38,21 +39,21 @@ namespace Net.Chdk.Validators.Software
             Validate(software.Compiler);
             Validate(software.Source);
             Validate(software.Encoding);
-            Validate(software.Hash, basePath, software.Category.Name, progress, token);
+            Validate(software.Hash, basePath, software.Category?.Name, progress, token);
         }
 
-        private void Validate(CategoryInfo category)
+        private void Validate(CategoryInfo? category)
         {
-            if (category == null)
+            if (category is null)
                 throw new ValidationException("Null category");
 
             if (string.IsNullOrEmpty(category.Name))
                 throw new ValidationException("Missing category name");
         }
 
-        private static void Validate(SoftwareProductInfo product)
+        private static void Validate(SoftwareProductInfo? product)
         {
-            if (product == null)
+            if (product is null)
                 throw new ValidationException("Null product");
 
             if (string.IsNullOrEmpty(product.Name))
@@ -76,9 +77,9 @@ namespace Net.Chdk.Validators.Software
                 throw new ValidationException("Invalid product language");
         }
 
-        private static void Validate(SoftwareCameraInfo camera)
+        private static void Validate(SoftwareCameraInfo? camera)
         {
-            if (camera == null)
+            if (camera is null)
                 throw new ValidationException("Null camera");
 
             if (string.IsNullOrEmpty(camera.Platform))
@@ -88,9 +89,9 @@ namespace Net.Chdk.Validators.Software
                 throw new ValidationException("Null camera revision");
         }
 
-        private static void Validate(SoftwareBuildInfo build)
+        private static void Validate(SoftwareBuildInfo? build)
         {
-            if (build == null)
+            if (build is null)
                 throw new ValidationException("Null build");
 
             // Empty in update
@@ -104,10 +105,10 @@ namespace Net.Chdk.Validators.Software
             ValidateChangeset(build.Changeset, () => "build");
         }
 
-        private static void Validate(SoftwareCompilerInfo compiler)
+        private static void Validate(SoftwareCompilerInfo? compiler)
         {
             // Unknown in download
-            if (compiler == null)
+            if (compiler is null)
                 return;
 
             if (string.IsNullOrEmpty(compiler.Name))
@@ -120,10 +121,10 @@ namespace Net.Chdk.Validators.Software
                 throw new ValidationException("Null compiler version");
         }
 
-        private static void Validate(SoftwareSourceInfo source)
+        private static void Validate(SoftwareSourceInfo? source)
         {
             // Missing in manual build
-            if (source == null)
+            if (source is null)
                 return;
 
             if (string.IsNullOrEmpty(source.Name))
@@ -136,10 +137,10 @@ namespace Net.Chdk.Validators.Software
                 throw new ValidationException("Missing source url");
         }
 
-        private void Validate(SoftwareEncodingInfo encoding)
+        private void Validate(SoftwareEncodingInfo? encoding)
         {
             // Missing if undetected
-            if (encoding == null)
+            if (encoding is null)
                 return;
 
             if (encoding.Name == null)
@@ -149,15 +150,17 @@ namespace Net.Chdk.Validators.Software
                 throw new ValidationException("Missing encoding data");
         }
 
-        private void Validate(SoftwareHashInfo hash, string basePath, string categoryName, IProgress<double> progress, CancellationToken token)
+        private void Validate(SoftwareHashInfo? hash, string basePath, string? categoryName, IProgress<double>? progress, CancellationToken token)
         {
-            if (hash == null)
-                ThrowValidationException("Null hash");
+            if (hash is null)
+                throw new ArgumentNullException(nameof(hash));
+            if (categoryName == null)
+                throw new ArgumentNullException(nameof(categoryName));
 
-            HashValidator.Validate(hash, basePath, progress, token);
+            HashValidator.Validate(hash!, basePath, progress, token);
 
             var fileName = BootProvider.GetFileName(categoryName);
-            if (!hash.Values.Keys.Contains(fileName, StringComparer.OrdinalIgnoreCase))
+            if (hash!.Values?.Keys.Contains(fileName, StringComparer.OrdinalIgnoreCase) != true)
                 ThrowValidationException("Missing {0}", fileName);
         }
     }

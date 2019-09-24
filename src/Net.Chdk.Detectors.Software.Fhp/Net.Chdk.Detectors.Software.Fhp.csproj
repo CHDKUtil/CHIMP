@@ -4,6 +4,8 @@
     <TargetFramework>netstandard1.3</TargetFramework>
     <Description>CHIMP 400plus software detectors</Description>
     <RootNamespace>Net.Chdk.Detectors.Software.Fhp</RootNamespace>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup>

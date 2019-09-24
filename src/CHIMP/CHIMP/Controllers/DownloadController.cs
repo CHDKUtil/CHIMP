@@ -9,7 +9,7 @@ namespace Chimp.Controllers
 {
     sealed class DownloadController : Controller<DownloadController, DownloadViewModel>
     {
-        protected override bool CanSkipStep => ViewModel.IsCompleted;
+        protected override bool CanSkipStep => ViewModel?.IsCompleted == true;
 
         public DownloadController(MainViewModel mainViewModel,
             IStepProvider stepProvider, string stepName, ILoggerFactory loggerFactory)
@@ -19,8 +19,8 @@ namespace Chimp.Controllers
 
         public override async Task EnterStepAsync()
         {
-            StepViewModel.CanGoBack = false;
-            StepViewModel.CanContinue = false;
+            StepViewModel!.CanGoBack = false;
+            StepViewModel!.CanContinue = false;
 
             if (!MainViewModel.IsAborted)
             {
@@ -33,14 +33,14 @@ namespace Chimp.Controllers
 
                 if (result)
                 {
-                    ViewModel.Title = nameof(Resources.Download_Completed_Text);
-                    ViewModel.FileName = string.Empty;
-                    ViewModel.IsCompleted = true;
+                    ViewModel!.Title = nameof(Resources.Download_Completed_Text);
+                    ViewModel!.FileName = string.Empty;
+                    ViewModel!.IsCompleted = true;
                 }
                 else
                 {
                     MainViewModel.IsWarning = true;
-                    ViewModel.IsAborted = true;
+                    ViewModel!.IsAborted = true;
                 }
             }
 
@@ -51,7 +51,7 @@ namespace Chimp.Controllers
         public override async Task LeaveStepAsync()
         {
             await base.LeaveStepAsync();
-            if (ViewModel.IsAborted)
+            if (ViewModel?.IsAborted == true)
             {
                 MainViewModel.IsAborted = true;
             }
@@ -61,7 +61,7 @@ namespace Chimp.Controllers
         {
             ViewModel = CreateViewModel();
 
-            var software = await DownloadAsync(cts.Token);
+            var software = await DownloadAsync(cts?.Token ?? default);
             if (software == null)
                 return false;
 
@@ -71,11 +71,13 @@ namespace Chimp.Controllers
             return true;
         }
 
-        private async Task<SoftwareData> DownloadAsync(CancellationToken cancellationToken)
+        private async Task<SoftwareData?> DownloadAsync(CancellationToken cancellationToken)
         {
             try
             {
-                var action = ActionViewModel.SelectedItem.Action;
+                var action = ActionViewModel?.SelectedItem?.Action;
+                if (action == null)
+                    return null;
                 return await action.PerformAsync(cancellationToken);
             }
             catch (TaskCanceledException ex)

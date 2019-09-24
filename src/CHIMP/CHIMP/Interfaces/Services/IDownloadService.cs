@@ -6,6 +6,6 @@ namespace Chimp
 {
     interface IDownloadService
     {
-        Task<string> DownloadAsync(Uri baseUri, string path, string filePath, CancellationToken cancellationToken);
+        Task<string?> DownloadAsync(Uri? baseUri, string? path, string filePath, CancellationToken cancellationToken);
     }
 }

@@ -16,19 +16,19 @@ namespace Chimp.Services
         private IBootService BootService { get; }
         private IDialogService DialogService { get; }
 
-        private CardViewModel CardViewModel => CardViewModel.Get(MainViewModel);
-        private DownloadViewModel DownloadViewModel => DownloadViewModel.Get(MainViewModel);
-        private InstallViewModel InstallViewModel => InstallViewModel.Get(MainViewModel);
+        private CardViewModel? CardViewModel => CardViewModel.Get(MainViewModel);
+        private DownloadViewModel? DownloadViewModel => DownloadViewModel.Get(MainViewModel);
+        private InstallViewModel? InstallViewModel => InstallViewModel.Get(MainViewModel);
 
-        private CardInfo Card => CardViewModel.SelectedItem.Info;
-        private string CategoryName => DownloadViewModel.Software.Category.Name;
+        private CardInfo? Card => CardViewModel?.SelectedItem?.Info;
+        private string? CategoryName => DownloadViewModel?.Software?.Category?.Name;
 
-        private string[] Paths => DownloadViewModel.Paths;
-        private string CommonPath => Paths.Length > 1
+        private string[]? Paths => DownloadViewModel?.Paths;
+        private string? CommonPath => Paths?.Length > 1
             ? Paths[0]
             : null;
-        private string SourcePath => Paths[Paths.Length - 1];
-        private string DestPath => Card.GetRootPath();
+        private string? SourcePath => Paths?[Paths.Length - 1];
+        private string? DestPath => Card?.GetRootPath();
 
         public InstallService(MainViewModel mainViewModel, IPartitionService partitionService, IFormatService formatService, IBootService bootService, IDialogService dialogService, ILoggerFactory loggerFactory)
         {
@@ -43,37 +43,42 @@ namespace Chimp.Services
 
         public bool? TestSwitchedPartitions()
         {
-            return CardViewModel.SelectedItem.Switched;
+            return CardViewModel?.SelectedItem?.Switched;
         }
 
         public void CreatePartitions()
         {
             SetTitle(nameof(Resources.Install_Partitioning_Text));
-            PartitionService.CreatePartitions(Card.DriveLetter);
-            PartitionService.UpdateProperties(Card.DriveLetter);
+            var driveLetter = Card?.DriveLetter!;
+            PartitionService.CreatePartitions(driveLetter);
+            PartitionService.UpdateProperties(driveLetter);
         }
 
         public void SwitchPartitions()
         {
             SetTitle(nameof(Resources.Install_Switching_Text));
-            PartitionService.SwitchPartitions(Card.DriveLetter, 1);
-            PartitionService.UpdateProperties(Card.DriveLetter);
+            var driveLetter = Card?.DriveLetter!;
+            PartitionService.SwitchPartitions(driveLetter, 1);
+            PartitionService.UpdateProperties(driveLetter);
         }
 
         public bool Format(string fileSystem, string label)
         {
             SetTitle(nameof(Resources.Install_Formatting_Text));
-            return FormatService.Format(Card, fileSystem, label);
+            return FormatService.Format(Card!, fileSystem, label);
         }
 
         public bool SetBootable(string fileSystem)
         {
-            return BootService.SetBootable(Card, fileSystem, CategoryName, true);
+            return BootService.SetBootable(Card!, fileSystem, CategoryName!, true);
         }
 
         public bool CopyPrimaryFiles()
         {
             SetTitle(nameof(Resources.Install_Copying_Text));
+
+            if (SourcePath == null || DestPath == null)
+                return false;
 
             CopyFiles(SourcePath, DestPath);
 
@@ -87,6 +92,9 @@ namespace Chimp.Services
         {
             SetTitle(nameof(Resources.Install_Copying_Text));
 
+            if (SourcePath == null || DestPath == null)
+                return false;
+
             if (CommonPath != null)
                 CopyAllDirectories(CommonPath, DestPath);
             return CopyAllFiles(SourcePath, DestPath);
@@ -95,6 +103,9 @@ namespace Chimp.Services
         public bool CopyAllFiles()
         {
             SetTitle(nameof(Resources.Install_Copying_Text));
+
+            if (SourcePath == null || DestPath == null)
+                return false;
 
             if (CommonPath != null)
                 CopyAllDirectories(CommonPath, DestPath);
@@ -106,7 +117,7 @@ namespace Chimp.Services
             SetTitle(nameof(Resources.Install_Format_Text));
 
             var message = Resources.MessageBox_Format_Message;
-            var caption = CardViewModel.SelectedItem.DisplayName;
+            var caption = CardViewModel?.SelectedItem?.DisplayName!;
             var result = DialogService.ShowOkCancelMessage(message, caption);
             if (!result)
                 SetTitle(nameof(Resources.Install_Aborted_Text));
@@ -153,7 +164,7 @@ namespace Chimp.Services
             UpdateEntryStart();
         }
 
-        private void CopyFile(string file, string destPath)
+        private void CopyFile(string file, string? destPath)
         {
             var fileName = Path.GetFileName(file);
             var destFilePath = Path.Combine(destPath, fileName);
@@ -165,19 +176,21 @@ namespace Chimp.Services
 
         private void UpdateEntryStart()
         {
-            InstallViewModel.ProgressValue++;
+            InstallViewModel!.ProgressValue++;
         }
 
         private void SetTitle(string title)
         {
             Logger.LogInformation(title);
-            InstallViewModel.Title = title;
-            InstallViewModel.FileName = string.Empty;
+            InstallViewModel!.Title = title;
+            InstallViewModel!.FileName = string.Empty;
         }
 
         private void SetFileName(string fileName)
         {
-            InstallViewModel.FileName = fileName
+            if (DestPath == null)
+                return;
+            InstallViewModel!.FileName = fileName
                 .Substring(DestPath.Length)
                 .Replace(Path.DirectorySeparatorChar, '/')
                 .ToUpperInvariant();

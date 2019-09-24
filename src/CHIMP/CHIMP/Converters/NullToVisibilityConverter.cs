@@ -7,7 +7,7 @@ namespace Chimp.Converters
 {
     public sealed class NullToVisibilityConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object? value, Type targetType, object parameter, CultureInfo culture)
         {
             if (parameter == null || !Enum.TryParse(parameter.ToString(), out Visibility visibility))
                 visibility = Visibility.Collapsed;
@@ -18,7 +18,7 @@ namespace Chimp.Converters
                 : Visibility.Visible;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? ConvertBack(object? value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

@@ -2,7 +2,7 @@
 {
     public sealed class Tip
     {
-        public string Header { get; set; }
-        public string[] Contents { get; set; }
+        public string? Header { get; set; }
+        public string[]? Contents { get; set; }
     }
 }

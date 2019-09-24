@@ -115,7 +115,7 @@ namespace Chimp
             {
                 if (!ViewModel.IsCompleted)
                     ViewModel.IsAborted = true;
-                ViewModel.Step.SelectedIndex = ViewModel.Step.Items.Length - 1;
+                ViewModel.Step!.SelectedIndex = ViewModel.Step.Items!.Length - 1;
             }
 
             e.Cancel = true;
@@ -154,39 +154,40 @@ namespace Chimp
 
         private void GoBack()
         {
-            int index = ViewModel.Step.SelectedIndex;
-            while (--index >= 0 && ViewModel.Step.Items[index].IsSkipped) ;
+            int index = ViewModel.Step!.SelectedIndex;
+            while (--index >= 0 && ViewModel.Step.Items![index].IsSkipped) ;
             if (index >= 0)
                 ViewModel.Step.SelectedIndex = index;
         }
 
         private void Continue()
         {
-            var index = ViewModel.Step.SelectedIndex;
-            while (++index < ViewModel.Step.Items.Length && ViewModel.Step.Items[index].IsSkipped) ;
+            var index = ViewModel.Step!.SelectedIndex;
+            while (++index < ViewModel.Step.Items!.Length && ViewModel.Step.Items[index].IsSkipped) ;
             if (index < ViewModel.Step.Items.Length)
                 ViewModel.Step.SelectedIndex = index;
         }
 
         private async Task OnSelectedIndexChangingAsync()
         {
-            int index = ViewModel.Step.SelectedIndex;
-            var length = ViewModel.Step.Items.Length;
+            int index = ViewModel.Step!.SelectedIndex;
+            var length = ViewModel.Step.Items!.Length;
             if (index == length)
             {
                 return;
             }
             var item = ViewModel.Step.Items[index];
-            Logger.LogTrace("Leaving {0}", item.Name);
+            var name = item.Name!;
+            Logger.LogTrace("Leaving {0}", name);
             item.IsSelected = false;
-            var controller = await ControllerContainer.GetControllerAsync(item.Name);
+            var controller = await ControllerContainer.GetControllerAsync(name);
             await controller.LeaveStepAsync();
         }
 
         private async Task OnSelectedIndexChangedAsync()
         {
-            int index = ViewModel.Step.SelectedIndex;
-            var length = ViewModel.Step.Items.Length;
+            int index = ViewModel.Step!.SelectedIndex;
+            var length = ViewModel.Step.Items!.Length;
             if (index == length)
             {
                 Close();
@@ -194,19 +195,20 @@ namespace Chimp
             }
 
             var item = ViewModel.Step.Items[index];
-            Logger.LogTrace("Entering {0}", item.Name);
+            var name = item.Name!;
+            Logger.LogTrace("Entering {0}", name);
             item.IsSelected = true;
             ViewModel.Step.CanGoBack = CanGoBack(index);
-            var page = PageContainer.GetPage(item.Name);
+            var page = PageContainer.GetPage(name);
             frame.Navigate(page);
-            var controller = await ControllerContainer.GetControllerAsync(item.Name);
+            var controller = await ControllerContainer.GetControllerAsync(name);
             await controller.EnterStepAsync();
         }
 
         private bool CanGoBack(int index)
         {
             for (int i = index - 1; i >= 0; i--)
-                if (!ViewModel.Step.Items[i].IsSkipped)
+                if (!ViewModel.Step!.Items![i].IsSkipped)
                     return true;
             return false;
         }

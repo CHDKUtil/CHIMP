@@ -21,8 +21,7 @@ namespace Chimp.Services
         private IMetadataSoftwareDetector MetadataSoftwareDetector { get; }
         private IMetadataModulesDetector MetadaModulesDetector { get; }
 
-        private SoftwareViewModel SoftwareViewModel => SoftwareViewModel.Get(MainViewModel);
-        private CameraViewModel CameraViewModel => CameraViewModel.Get(MainViewModel);
+        private SoftwareViewModel? SoftwareViewModel => SoftwareViewModel.Get(MainViewModel);
 
         public MetadataService(MainViewModel mainViewModel, IBootProvider bootProvider, IBinarySoftwareDetector binarySoftwareDetector, IFileSystemModulesDetector fileSystemModulesDetector,
             IMetadataSoftwareDetector metadataSoftwareDetector, IMetadataModulesDetector metadataModulesDetector, ILoggerFactory loggerFactory)
@@ -36,12 +35,12 @@ namespace Chimp.Services
             MetadaModulesDetector = metadataModulesDetector;
         }
 
-        public SoftwareInfo Update(SoftwareInfo software, string destPath, IProgress<double> progress, CancellationToken token)
+        public SoftwareInfo Update(SoftwareInfo software, string destPath, IProgress<double>? progress, CancellationToken token)
         {
             var updateSoftware = UpdateSoftware(ref software, destPath, progress, token);
-            var updateModules = UpdateModules(software, out ModulesInfo modules, destPath, progress, token);
+            var updateModules = UpdateModules(software, out ModulesInfo? modules, destPath, progress, token);
 
-            var categoryName = software.Category.Name;
+            var categoryName = software.Category?.Name;
             var metadataPath = Path.Combine(destPath, Directories.Metadata, categoryName);
             Directory.CreateDirectory(metadataPath);
             if (updateSoftware)
@@ -52,9 +51,12 @@ namespace Chimp.Services
             return software;
         }
 
-        private bool UpdateSoftware(ref SoftwareInfo software, string destPath, IProgress<double> progress, CancellationToken token)
+        private bool UpdateSoftware(ref SoftwareInfo software, string destPath, IProgress<double>? progress, CancellationToken token)
         {
             var category = software.Category;
+            if (category is null)
+                return false;
+
             var readSoftware = MetadataSoftwareDetector.GetSoftware(destPath, category, progress, token);
             if (readSoftware != null)
             {
@@ -62,7 +64,7 @@ namespace Chimp.Services
                 return false;
             }
 
-            software.Encoding = SoftwareViewModel.SelectedItem?.Info.Encoding;
+            software.Encoding = SoftwareViewModel?.SelectedItem?.Info?.Encoding;
 
             var fileName = BootProvider.GetFileName(category.Name);
             var filePath = Path.Combine(destPath, fileName);
@@ -74,7 +76,7 @@ namespace Chimp.Services
             return true;
         }
 
-        private bool UpdateModules(SoftwareInfo software, out ModulesInfo modules, string destPath, IProgress<double> progress, CancellationToken token)
+        private bool UpdateModules(SoftwareInfo software, out ModulesInfo? modules, string destPath, IProgress<double>? progress, CancellationToken token)
         {
             modules = MetadaModulesDetector.GetModules(destPath, destPath, software, progress, token);
             if (modules != null)
@@ -90,10 +92,8 @@ namespace Chimp.Services
         private void WriteMetadata<T>(T obj, string metadataPath, string fileName)
         {
             var filePath = Path.Combine(metadataPath, fileName);
-            using (var stream = File.Create(filePath))
-            {
-                JsonObject.Serialize(stream, obj);
-            }
+            using var stream = File.Create(filePath);
+            JsonObject.Serialize(stream, obj);
         }
     }
 }

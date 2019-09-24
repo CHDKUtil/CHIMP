@@ -14,10 +14,11 @@ namespace Chimp.Providers.Action
 
         public override IEnumerable<IAction> GetActions()
         {
-            if (CardViewModel.SelectedItem.PartitionTypes[0] != PartitionType.None)
+            var types = CardViewModel?.SelectedItem?.PartitionTypes;
+            if (types != null && types[0] != PartitionType.None)
             {
-                for (int i = 1; i < CardViewModel.SelectedItem.PartitionTypes.Length; i++)
-                    if (CardViewModel.SelectedItem.PartitionTypes[i] != PartitionType.None)
+                for (int i = 1; i < types.Length; i++)
+                    if (types[i] != PartitionType.None)
                         yield return CreateAction(i);
             }
         }

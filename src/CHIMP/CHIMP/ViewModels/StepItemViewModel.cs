@@ -2,7 +2,7 @@
 {
     public sealed class StepItemViewModel : ViewModel
     {
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         private bool _IsVisible;
         public bool IsVisible

@@ -1,5 +1,4 @@
 ﻿using Chimp.Model;
-using Chimp.Properties;
 using Chimp.ViewModels;
 using Microsoft.Extensions.Logging;
 using System.IO;
@@ -22,7 +21,7 @@ namespace Chimp.Actions
             ExtractService = extractService;
         }
 
-        public override async Task<SoftwareData> PerformAsync(CancellationToken cancellationToken)
+        public override async Task<SoftwareData?> PerformAsync(CancellationToken cancellationToken)
         {
             var fileNames = DialogService.ShowOpenFileDialog(
                 title: "Select Package",
@@ -49,7 +48,7 @@ namespace Chimp.Actions
             return null;
         }
 
-        private async Task<string> ExtractAsync(string path, string tempPath, CancellationToken cancellationToken)
+        private async Task<string?> ExtractAsync(string path, string tempPath, CancellationToken cancellationToken)
         {
             var dirName = Path.GetFileNameWithoutExtension(path);
             var dirPath = Path.Combine(tempPath, dirName);
@@ -67,10 +66,10 @@ namespace Chimp.Actions
             return await ExtractAsync(targetPath: targetPath, filePath: filePath, dirPath: dirPath, tempPath: tempPath, cancellationToken: cancellationToken);
         }
 
-        private async Task<string> ExtractAsync(string targetPath, string filePath, string dirPath, string tempPath, CancellationToken cancellationToken)
+        private async Task<string?> ExtractAsync(string targetPath, string filePath, string dirPath, string tempPath, CancellationToken cancellationToken)
         {
             //SetTitle(nameof(Resources.Download_Extracting_Text));
-            DownloadViewModel.ProgressMaximum = 0;
+            DownloadViewModel!.ProgressMaximum = 0;
 
             try
             {

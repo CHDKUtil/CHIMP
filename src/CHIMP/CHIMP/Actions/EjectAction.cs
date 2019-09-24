@@ -13,9 +13,9 @@ namespace Chimp.Actions
 
         public override string DisplayName => Resources.Action_Eject_Text;
 
-        protected override SoftwareData Perform()
+        protected override SoftwareData? Perform()
         {
-            DownloadViewModel.Title = DisplayName;
+            SetTitle(DisplayName);
             return null;
         }
     }

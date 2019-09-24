@@ -22,7 +22,7 @@ namespace Chimp.Providers.Action
 
         public override IEnumerable<IAction> GetActions()
         {
-            var categoryName = CardViewModel.SelectedItem.Bootable;
+            var categoryName = CardViewModel?.SelectedItem?.Bootable;
             if (categoryName != null)
             {
                 var types = new[] { typeof(string) };
@@ -37,19 +37,19 @@ namespace Chimp.Providers.Action
             }
         }
 
-        private string GetCategoryName()
+        private string? GetCategoryName()
         {
-            if (SoftwareViewModel.SelectedItem == null)
+            if (SoftwareViewModel?.SelectedItem == null)
                 return null;
 
-            var card = CardViewModel.SelectedItem;
-            if (card.Switched == true || card.Scriptable)
+            var card = CardViewModel?.SelectedItem;
+            if (card?.Switched == true || card?.Scriptable == true)
                 return null;
 
             return DoGetCategoryName();
         }
 
-        private string DoGetCategoryName()
+        private string? DoGetCategoryName()
         {
             var categoryNames = CategoryProvider.GetCategoryNames();
             foreach (var categoryName in categoryNames)
@@ -64,7 +64,7 @@ namespace Chimp.Providers.Action
 
         private string GetPath(string fileName)
         {
-            var rootPath = CardViewModel.SelectedItem.Info.GetRootPath();
+            var rootPath = CardViewModel?.SelectedItem?.Info?.GetRootPath();
             return Path.Combine(rootPath, fileName);
         }
     }

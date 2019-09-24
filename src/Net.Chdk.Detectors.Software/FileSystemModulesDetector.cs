@@ -14,8 +14,6 @@ namespace Net.Chdk.Detectors.Software
 {
     sealed class FileSystemModulesDetector : IInnerModulesDetector, IFileSystemModulesDetector
     {
-        private static Version Version => new Version("1.0");
-
         private SoftwareDetectorSettings Settings { get; }
         private ILogger Logger { get; }
         private IModuleProvider ModuleProvider { get; }
@@ -33,7 +31,7 @@ namespace Net.Chdk.Detectors.Software
             HashProvider = hashProvider;
         }
 
-        public ModulesInfo GetModules(CardInfo card, CardInfo card2, SoftwareInfo software, IProgress<double> progress, CancellationToken token)
+        public ModulesInfo? GetModules(CardInfo card, CardInfo? card2, SoftwareInfo software, IProgress<double>? progress, CancellationToken token)
         {
             if (card2 == null)
                 return null;
@@ -41,9 +39,9 @@ namespace Net.Chdk.Detectors.Software
             return GetModules(software, rootPath, progress, token);
         }
 
-        public ModulesInfo GetModules(SoftwareInfo software, string basePath, IProgress<double> progress, CancellationToken token)
+        public ModulesInfo GetModules(SoftwareInfo software, string basePath, IProgress<double>? progress, CancellationToken token)
         {
-            var productName = software.Product.Name;
+            var productName = software.Product?.Name;
             Logger.LogTrace("Detecting {0} modules from {1} file system", productName, basePath);
 
             return new ModulesInfo
@@ -57,9 +55,12 @@ namespace Net.Chdk.Detectors.Software
             };
         }
 
-        private Dictionary<string, ModuleInfo> DoGetModules(SoftwareInfo software, string basePath, IProgress<double> progress, CancellationToken token)
+        private Dictionary<string, ModuleInfo>? DoGetModules(SoftwareInfo software, string basePath, IProgress<double>? progress, CancellationToken token)
         {
-            var productName = software.Product.Name;
+            var productName = software.Product?.Name;
+            if (productName == null)
+                return null;
+
             var modulesPath = ModuleProvider.GetPath(productName);
             if (modulesPath == null)
                 return null;
@@ -94,7 +95,10 @@ namespace Net.Chdk.Detectors.Software
             var fileName = Path.GetFileName(file);
             var filePath = Path.Combine(modulesPath, fileName).ToLowerInvariant();
 
-            var productName = software.Product.Name;
+            var productName = software.Product?.Name;
+            if (productName == null)
+                return;
+
             var moduleName = ModuleProvider.GetModuleName(productName, filePath);
             if (moduleName == null)
             {
@@ -104,17 +108,20 @@ namespace Net.Chdk.Detectors.Software
 
             var buffer = File.ReadAllBytes(file);
 
-            if (!modules.TryGetValue(moduleName, out ModuleInfo moduleInfo))
+            if (!modules.TryGetValue(moduleName, out ModuleInfo? moduleInfo))
             {
                 moduleInfo = GetModule(software, buffer);
-                modules.Add(moduleName, moduleInfo);
+                modules.Add(moduleName, moduleInfo!);
             }
 
-            var hashString = HashProvider.GetHashString(buffer, HashName);
-            moduleInfo.Hash.Values.Add(filePath, hashString);
+            if (moduleInfo?.Hash?.Values != null)
+            {
+                var hashString = HashProvider.GetHashString(buffer, HashName);
+                moduleInfo.Hash.Values.Add(filePath, hashString);
+            }
         }
 
-        private ModuleInfo GetModule(SoftwareInfo software, byte[] buffer)
+        private ModuleInfo? GetModule(SoftwareInfo software, byte[] buffer)
         {
             return ModuleDetectors
                 .Select(d => d.GetModule(software, buffer, HashName))

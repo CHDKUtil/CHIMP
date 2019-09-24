@@ -7,6 +7,6 @@ namespace Net.Chdk.Detectors.Software
         string CategoryName { get; }
         string ProductName { get; }
         byte[] Bytes { get; }
-        SoftwareInfo GetSoftware(byte[] buffer, int index);
+        SoftwareInfo? GetSoftware(byte[] buffer, int index);
     }
 }

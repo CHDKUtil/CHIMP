@@ -5,6 +5,8 @@
     <Description>CHIMP binary encoder/decoder</Description>
     <AssemblyName>Net.Chdk.Encoders.Binary</AssemblyName>
     <RootNamespace>Net.Chdk.Encoders.Binary</RootNamespace>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup>

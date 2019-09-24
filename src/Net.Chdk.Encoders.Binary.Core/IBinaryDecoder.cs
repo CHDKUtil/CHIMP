@@ -2,7 +2,7 @@
 {
     public interface IBinaryDecoder
     {
-        bool ValidatePrefix(byte[] encBuffer, int size, byte[] prefix);
+        bool ValidatePrefix(byte[] encBuffer, int size, byte[]? prefix);
         void Decode(byte[] encBuffer, byte[] decBuffer, uint offsets);
     }
 }

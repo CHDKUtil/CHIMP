@@ -7,7 +7,7 @@ namespace Net.Chdk.Watchers.Volume
         void Initialize();
         void Start();
         void Stop();
-        event EventHandler<string> VolumeAdded;
-        event EventHandler<string> VolumeRemoved;
+        event EventHandler<string>? VolumeAdded;
+        event EventHandler<string>? VolumeRemoved;
     }
 }

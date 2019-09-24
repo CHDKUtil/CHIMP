@@ -4,6 +4,8 @@
     <TargetFramework>netstandard1.3</TargetFramework>
     <Description>CHIMP base detector</Description>
     <RootNamespace>Net.Chdk.Detectors</RootNamespace>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup>

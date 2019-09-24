@@ -14,18 +14,14 @@ namespace Net.Chdk.Json
 
         public static void Serialize<T>(Stream stream, T obj)
         {
-            using (var writer = new StreamWriter(stream))
-            {
-                Serializer.Serialize(writer, obj, typeof(T));
-            }
+            using var writer = new StreamWriter(stream);
+            Serializer.Serialize(writer, obj, typeof(T));
         }
 
         public static T Deserialize<T>(Stream stream)
         {
-            using (var reader = new StreamReader(stream))
-            {
-                return (T)Serializer.Deserialize(reader, typeof(T));
-            }
+            using var reader = new StreamReader(stream);
+            return (T)Serializer.Deserialize(reader, typeof(T));
         }
 
         private static JsonSerializer GetSerializer()

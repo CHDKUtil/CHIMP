@@ -24,7 +24,7 @@ namespace Chimp.Providers.Downloads
 
         private DownloadData GetCommonDownload(Match commonMatch, SoftwareInfo info)
         {
-            var version = info.Product.Version;
+            var version = info.Product?.Version;
             var download = GetDownload(commonMatch);
             download.TargetPath = $"{ProductName}-{version}-{download.Path}";
             download.RootDir = CommonRoot;

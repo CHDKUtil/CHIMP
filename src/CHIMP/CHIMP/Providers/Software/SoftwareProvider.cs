@@ -39,18 +39,15 @@ namespace Chimp.Providers.Software
 
         private string CategoryName => ProductProvider.GetCategoryName(ProductName);
 
-        protected abstract Version GetVersion(Match match);
+        protected abstract Version? GetVersion(Match match);
 
-        protected virtual string GetVersionPrefix(Match match) => null;
+        protected virtual string? GetVersionPrefix(Match match) => null;
 
-        protected virtual string GetVersionSuffix(Match match) => null;
+        protected virtual string? GetVersionSuffix(Match match) => null;
 
-        private CategoryInfo GetCategory(Match match)
+        private CategoryInfo GetCategory(Match _)
         {
-            return new CategoryInfo
-            {
-                Name = CategoryName
-            };
+            return new CategoryInfo(CategoryName);
         }
 
         private SoftwareProductInfo GetProduct(Match match)

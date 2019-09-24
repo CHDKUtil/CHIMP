@@ -2,10 +2,10 @@
 {
     public sealed class InstallViewModel : ViewModel
     {
-        public static InstallViewModel Get(MainViewModel mainViewModel) => mainViewModel.Get<InstallViewModel>("Install");
+        public static InstallViewModel? Get(MainViewModel mainViewModel) => mainViewModel.Get<InstallViewModel>("Install");
 
-        private string _Title;
-        public string Title
+        private string? _Title;
+        public string? Title
         {
             get { return _Title; }
             set { SetProperty(ref _Title, value); }
@@ -25,8 +25,8 @@
             set { SetProperty(ref _ProgressValue, value); }
         }
 
-        private string _FileName;
-        public string FileName
+        private string? _FileName;
+        public string? FileName
         {
             get { return _FileName; }
             set { SetProperty(ref _FileName, value); }

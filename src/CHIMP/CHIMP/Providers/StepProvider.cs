@@ -29,7 +29,7 @@ namespace Chimp.Providers
 
         IEnumerable<string> IStepProvider.GetSteps()
         {
-            return StepsData.Steps.Select(s => s.Name);
+            return StepsData.Steps.Select(s => s.Name)!;
         }
 
         public bool IsSkip(string name)
@@ -52,7 +52,7 @@ namespace Chimp.Providers
 
         private Dictionary<string, StepData> GetSteps()
         {
-            return StepsData.Steps.ToDictionary(s => s.Name, s => s);
+            return StepsData.Steps.ToDictionary(s => s.Name, s => s)!;
         }
 
         #endregion

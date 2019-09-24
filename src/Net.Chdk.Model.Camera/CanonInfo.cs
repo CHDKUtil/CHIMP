@@ -12,6 +12,6 @@ namespace Net.Chdk.Model.Camera
         [JsonConverter(typeof(HexStringJsonConverter))]
         public uint FirmwareRevision { get; set; }
 
-        public Version FirmwareVersion { get; set; }
+        public Version? FirmwareVersion { get; set; }
     }
 }

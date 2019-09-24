@@ -28,10 +28,9 @@ namespace Net.Chdk.Json
             writer.WriteValue(str);
         }
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        public override object? ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            var str = reader.Value as string;
-            if (str == null)
+            if (!(reader.Value is string str))
             {
                 if (objectType == typeof(uint?) || objectType == typeof(ulong?))
                     return null;

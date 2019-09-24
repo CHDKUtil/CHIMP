@@ -2,6 +2,11 @@
 {
     public sealed class CameraModelInfo
     {
-        public string[] Names { get; set; }
+        public CameraModelInfo(string[]? names)
+        {
+            Names = names;
+        }
+
+        public string[]? Names { get; set; }
     }
 }

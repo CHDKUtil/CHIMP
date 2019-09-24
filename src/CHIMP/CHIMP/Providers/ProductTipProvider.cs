@@ -11,9 +11,9 @@ namespace Chimp.Providers
     {
         private const string DataFileName = "tips.json";
 
-        private string ProductName { get; }
+        private string? ProductName { get; }
 
-        public ProductTipProvider(IServiceActivator serviceActivator, string productName = null)
+        public ProductTipProvider(IServiceActivator serviceActivator, string? productName = null)
             : base(serviceActivator)
         {
             ProductName = productName;

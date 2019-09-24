@@ -13,13 +13,13 @@ namespace Net.Chdk.Detectors.Camera
         private ILogger Logger { get; }
         private IEnumerable<IInnerCameraDetector> CameraDetectors { get; }
 
-        public CameraDetector(IEnumerable<IInnerCameraDetector> cameraDetectors, IFileCameraDetector fileCameraDetector, ILoggerFactory loggerFactory)
+        public CameraDetector(IEnumerable<IInnerCameraDetector> cameraDetectors, ILoggerFactory loggerFactory)
         {
             Logger = loggerFactory.CreateLogger<CameraDetector>();
             CameraDetectors = cameraDetectors;
         }
 
-        public CameraInfo GetCamera(CardInfo cardInfo, IProgress<double> progress, CancellationToken token)
+        public CameraInfo? GetCamera(CardInfo cardInfo, IProgress<double>? progress, CancellationToken token)
         {
             Logger.LogTrace("Detecting camera from {0}", cardInfo.DriveLetter);
 

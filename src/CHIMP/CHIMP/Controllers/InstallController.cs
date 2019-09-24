@@ -11,7 +11,7 @@ namespace Chimp.Controllers
 {
     sealed class InstallController : Controller<InstallController, InstallViewModel>
     {
-        protected override bool CanSkipStep => MainViewModel.IsAborted || ViewModel.IsCompleted;
+        protected override bool CanSkipStep => MainViewModel.IsAborted || ViewModel?.IsCompleted == true;
         protected override bool SkipStep => MainViewModel.IsAborted || base.SkipStep;
 
         private IInstallerProvider InstallerProvider { get; }
@@ -27,8 +27,8 @@ namespace Chimp.Controllers
 
         public override async Task EnterStepAsync()
         {
-            StepViewModel.CanGoBack = false;
-            StepViewModel.CanContinue = false;
+            StepViewModel!.CanGoBack = false;
+            StepViewModel!.CanContinue = false;
 
             if (!MainViewModel.IsAborted)
             {
@@ -48,12 +48,12 @@ namespace Chimp.Controllers
                 if (result)
                 {
                     SetTitle(nameof(Resources.Install_Completed_Text));
-                    ViewModel.IsCompleted = true;
+                    ViewModel!.IsCompleted = true;
                 }
                 else
                 {
                     MainViewModel.IsError = true;
-                    ViewModel.IsAborted = true;
+                    ViewModel!.IsAborted = true;
                 }
             }
 
@@ -78,8 +78,11 @@ namespace Chimp.Controllers
         {
             ViewModel = await CreateViewModelAsync();
 
-            var card = CardViewModel.SelectedItem.Info;
-            var installer = InstallerProvider.GetInstaller(card.FileSystem);
+            var fileSystem = CardViewModel?.SelectedItem?.Info?.FileSystem;
+            if (fileSystem == null)
+                return false;
+
+            var installer = InstallerProvider.GetInstaller(fileSystem);
             if (installer == null)
                 return false;
 
@@ -91,8 +94,8 @@ namespace Chimp.Controllers
         private async Task<InstallViewModel> CreateViewModelAsync()
         {
             //TODO Move to InstallService
-            var tempPaths = DownloadViewModel.Paths;
-            var items = await Task.Run(() => tempPaths.SelectMany(GetFileSystemEntries).ToArray());
+            var tempPaths = DownloadViewModel?.Paths;
+            var items = await Task.Run(() => tempPaths?.SelectMany(GetFileSystemEntries).ToArray());
             return new InstallViewModel
             {
                 Title = Resources.Install_Initializing_Text,
@@ -108,7 +111,7 @@ namespace Chimp.Controllers
         private void SetTitle(string title)
         {
             Logger.LogInformation(title);
-            ViewModel.Title = title;
+            ViewModel!.Title = title;
             ViewModel.FileName = string.Empty;
         }
     }

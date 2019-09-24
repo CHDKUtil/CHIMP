@@ -27,15 +27,15 @@ namespace Net.Chdk.Detectors.Software.Product
 
         protected virtual char SeparatorChar => '\0';
 
-        protected static string[] GetStrings(byte[] buffer, int index, int length, char separator)
+        protected static string?[] GetStrings(byte[] buffer, int index, int length, char separator)
         {
-            var strings = new string[length];
+            var strings = new string?[length];
             for (var i = 0; i < length; i++)
                 strings[i] = GetString(buffer, ref index, separator);
             return strings;
         }
 
-        private static string GetString(byte[] buffer, ref int index, char separator)
+        private static string? GetString(byte[] buffer, ref int index, char separator)
         {
             if (index >= buffer.Length)
                 return null;

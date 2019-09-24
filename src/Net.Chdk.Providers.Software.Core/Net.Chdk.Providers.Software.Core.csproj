@@ -4,6 +4,8 @@
     <TargetFramework>netstandard1.0</TargetFramework>
     <Description>CHIMP software providers API</Description>
     <RootNamespace>Net.Chdk.Providers.Software</RootNamespace>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup>

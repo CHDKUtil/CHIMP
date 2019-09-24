@@ -4,7 +4,13 @@ namespace Chimp.ViewModels
 {
     public sealed class CameraItemViewModel
     {
-        public string DisplayName { get; set; }
-        public CameraModelInfo Model { get; set; }
+        public CameraItemViewModel(string displayName, CameraModelInfo model)
+        {
+            DisplayName = displayName;
+            Model = model;
+        }
+
+        public string DisplayName { get; }
+        public CameraModelInfo Model { get; }
     }
 }

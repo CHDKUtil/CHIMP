@@ -2,9 +2,9 @@
 {
     sealed class EjectViewModel : ViewModel
     {
-        public static EjectViewModel Get(MainViewModel mainViewModel) => mainViewModel.Get<EjectViewModel>("Eject");
+        public static EjectViewModel? Get(MainViewModel mainViewModel) => mainViewModel.Get<EjectViewModel>("Eject");
 
-        public string Title { get; set; }
+        public string? Title { get; set; }
 
         private bool _IsEject;
         public bool IsEject

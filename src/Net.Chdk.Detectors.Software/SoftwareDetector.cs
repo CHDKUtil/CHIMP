@@ -23,17 +23,17 @@ namespace Net.Chdk.Detectors.Software
             SoftwareDetectors = softwareDetectors;
         }
 
-        public SoftwareInfo[] GetSoftware(CardInfo cardInfo, IProgress<double> progress, CancellationToken token)
+        public SoftwareInfo[] GetSoftware(CardInfo cardInfo, IProgress<double>? progress, CancellationToken token)
         {
             Logger.LogTrace("Detecting software from {0}", cardInfo.DriveLetter);
 
             return CategoryProvider.GetCategories()
                 .Select(c => GetSoftware(cardInfo, c, progress, token))
                 .Where(s => s != null)
-                .ToArray();
+                .ToArray()!;
         }
 
-        private SoftwareInfo GetSoftware(CardInfo cardInfo, CategoryInfo category, IProgress<double> progress, CancellationToken token)
+        private SoftwareInfo? GetSoftware(CardInfo cardInfo, CategoryInfo category, IProgress<double>? progress, CancellationToken token)
         {
             Logger.LogTrace("Detecting {0} software from {1}", category.Name, cardInfo.DriveLetter);
 

@@ -22,19 +22,17 @@ namespace Chimp.Controllers
 
         protected override void EnterStep()
         {
-            StepViewModel.CanContinue = true;
+            StepViewModel!.CanContinue = true;
         }
 
-        private IntroViewModel CreateViewModel()
+        private IntroViewModel? CreateViewModel()
         {
             if (SkipStep)
                 return null;
-            return new IntroViewModel
-            {
-                Title = string.Format(Resources.Intro_Welcome_Format, Resources._Title),
-                Message = Resources.Intro_Message_Text,
-                Tips = JsonConvert.DeserializeObject<Model.Tip[]>(Resources.intro_tips),
-            };
+            var title = string.Format(Resources.Intro_Welcome_Format, Resources._Title);
+            var message = Resources.Intro_Message_Text;
+            var tips = JsonConvert.DeserializeObject<Model.Tip[]>(Resources.intro_tips);
+            return new IntroViewModel(title, message, tips);
         }
     }
 }

@@ -6,6 +6,6 @@ namespace Net.Chdk.Detectors.Software
     {
         string ProductName { get; }
         byte[] Bytes { get; }
-        ModuleInfo GetModule(SoftwareInfo software, byte[] buffer, int index, string hashName);
+        ModuleInfo? GetModule(SoftwareInfo software, byte[] buffer, int index, string hashName);
     }
 }

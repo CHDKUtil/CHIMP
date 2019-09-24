@@ -13,7 +13,7 @@ namespace Chimp.Services
     {
         private ILogger Logger { get; }
         private MainViewModel MainViewModel { get; }
-        private DownloadViewModel ViewModel => DownloadViewModel.Get(MainViewModel);
+        private DownloadViewModel? ViewModel => DownloadViewModel.Get(MainViewModel);
 
         public DownloadService(MainViewModel mainViewModel, ILoggerFactory loggerFactory)
         {
@@ -21,7 +21,7 @@ namespace Chimp.Services
             MainViewModel = mainViewModel;
         }
 
-        public async Task<string> DownloadAsync(Uri baseUri, string path, string filePath, CancellationToken cancellationToken)
+        public async Task<string?> DownloadAsync(Uri? baseUri, string? path, string filePath, CancellationToken cancellationToken)
         {
             var tempFilePath = await DownloadAsync(baseUri, path, cancellationToken);
             if (tempFilePath == null)
@@ -32,7 +32,7 @@ namespace Chimp.Services
             return filePath;
         }
 
-        private async Task<string> DownloadAsync(Uri baseUri, string path, CancellationToken cancellationToken)
+        private async Task<string> DownloadAsync(Uri? baseUri, string? path, CancellationToken cancellationToken)
         {
             var ub = new UriBuilder(baseUri);
             ub.Path += path;
@@ -40,43 +40,40 @@ namespace Chimp.Services
 
             Logger.LogInformation("Downloading {0}", uri.OriginalString);
 
-            using (var http = new HttpClient())
-            using (var resp = await http.GetAsync(uri, cancellationToken))
+            using var http = new HttpClient();
+            using var resp = await http.GetAsync(uri, cancellationToken);
+            
+            try
             {
-                try
-                {
-                    resp.EnsureSuccessStatusCode();
-                }
-                catch (Exception ex)
-                {
-                    Logger.LogError(0, ex, "Error downloading");
-                    throw;
-                }
-
-                TryGetContentLength(resp, out int size);
-
-                return await DownloadAsync(resp, size, cancellationToken);
+                resp.EnsureSuccessStatusCode();
             }
+            catch (Exception ex)
+            {
+                Logger.LogError(0, ex, "Error downloading");
+                throw;
+            }
+
+            TryGetContentLength(resp, out int size);
+
+            return await DownloadAsync(resp, size, cancellationToken);
         }
 
         private async Task<string> DownloadAsync(HttpResponseMessage resp, int size, CancellationToken cancellationToken)
         {
-            ViewModel.ProgressValue = 0;
+            ViewModel!.ProgressValue = 0;
             if (size > 0)
                 ViewModel.ProgressMaximum = size;
 
             var fileName = Path.GetTempFileName();
-            using (var respStream = await resp.Content.ReadAsStreamAsync())
-            using (var fileStream = new FileStream(fileName, FileMode.Create))
+            using var respStream = await resp.Content.ReadAsStreamAsync();
+            using var fileStream = new FileStream(fileName, FileMode.Create);
+            var buffer = new byte[Settings.Default.DownloadBufferSize];
+            int read;
+            while ((read = await respStream.ReadAsync(buffer, 0, buffer.Length, cancellationToken)) > 0)
             {
-                var buffer = new byte[Settings.Default.DownloadBufferSize];
-                int read;
-                while ((read = await respStream.ReadAsync(buffer, 0, buffer.Length, cancellationToken)) > 0)
-                {
-                    await fileStream.WriteAsync(buffer, 0, read, cancellationToken);
-                    if (size > 0)
-                        ViewModel.ProgressValue += read;
-                }
+                await fileStream.WriteAsync(buffer, 0, read, cancellationToken);
+                if (size > 0)
+                    ViewModel!.ProgressValue += read;
             }
 
             return fileName;

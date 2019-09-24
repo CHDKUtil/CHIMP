@@ -6,10 +6,10 @@ namespace Net.Chdk.Providers.Camera
 {
     interface IProductCameraProvider
     {
-        CameraModelsInfo GetCameraModels(CameraInfo cameraInfo);
-        CameraModelsInfo GetCameraModels(SoftwareCameraInfo cameraInfo);
-        SoftwareCameraInfo GetCamera(CameraInfo cameraInfo, CameraModelInfo cameraModelInfo);
-        SoftwareEncodingInfo GetEncoding(SoftwareCameraInfo cameraInfo);
-        AltInfo GetAlt(SoftwareCameraInfo cameraInfo);
+        CameraModelsInfo? GetCameraModels(CameraInfo? cameraInfo);
+        CameraModelsInfo? GetCameraModels(SoftwareCameraInfo? cameraInfo);
+        SoftwareCameraInfo? GetCamera(CameraInfo? cameraInfo, CameraModelInfo? cameraModelInfo);
+        SoftwareEncodingInfo? GetEncoding(SoftwareCameraInfo? cameraInfo);
+        AltInfo? GetAlt(SoftwareCameraInfo? cameraInfo);
     }
 }

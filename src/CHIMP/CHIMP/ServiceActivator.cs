@@ -12,7 +12,7 @@ namespace Chimp
             ServiceProvider = serviceProvider;
         }
 
-        public T Create<T>(string typeName, Type[] argTypes, object[] argValues)
+        public T Create<T>(string typeName, Type[]? argTypes, object[]? argValues)
         {
             var type = Type.GetType(typeName);
             if (type == null)
@@ -30,14 +30,14 @@ namespace Chimp
             return Create<T>(typeof(T), typeof(T).Name, argTypes, argValues);
         }
 
-        private T Create<T>(Type type, string typeName, Type[] argTypes, object[] argValues)
+        private T Create<T>(Type type, string typeName, Type[]? argTypes, object[]? argValues)
         {
             try
             {
                 var ctors = type.GetConstructors();
                 var ctor = ctors.SingleOrDefault();
                 var parms = ctor.GetParameters();
-                var args = new object[parms.Length];
+                var args = new object?[parms.Length];
                 for (int i = 0; i < parms.Length; i++)
                     args[i] = GetArgument(parms[i].ParameterType, argTypes, argValues);
                 return (T)ctor.Invoke(args);
@@ -48,13 +48,13 @@ namespace Chimp
             }
         }
 
-        private object GetArgument(Type type, Type[] argTypes, object[] argValues)
+        private object? GetArgument(Type type, Type[]? argTypes, object[]? argValues)
         {
             if (argTypes != null)
             {
                 var index = Array.IndexOf(argTypes, type);
                 if (index >= 0)
-                    return argValues[index];
+                    return argValues?[index];
             }
             return ServiceProvider.GetService(type)
                 ?? throw new TypeLoadException($"Cannot resolve type {type}");

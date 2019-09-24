@@ -23,7 +23,7 @@ namespace Chimp.Controllers
 
         protected override void EnterStep()
         {
-            StepViewModel.CanGoBack = false;
+            StepViewModel!.CanGoBack = false;
             if (ViewModel == null)
                 ViewModel = CreateViewModel();
         }
@@ -64,14 +64,14 @@ namespace Chimp.Controllers
             return GetProductResource("Product_{0}");
         }
 
-        private string GetUserManualUrl()
+        private string? GetUserManualUrl()
         {
             return MainViewModel.IsCompleted
                 ? GetProductResource("Summary_{0}_UserManual_Url")
                 : null;
         }
 
-        private string GetCameraNotesFileName()
+        private string? GetCameraNotesFileName()
         {
             return MainViewModel.IsCompleted
                 ? GetProductResource("Summary_{0}_CameraNotes_FileName")
@@ -82,12 +82,12 @@ namespace Chimp.Controllers
         {
             var software = DownloadViewModel?.Software
                 ?? SoftwareViewModel?.SelectedItem?.Info;
-            var productName = software?.Product.Name;
+            var productName = software?.Product?.Name;
             var format = string.Format(keyFormat, productName);
             return Resources.ResourceManager.GetString(format);
         }
 
-        private string GetTitle()
+        private string? GetTitle()
         {
             if (SkipStep)
                 return null;
@@ -98,22 +98,22 @@ namespace Chimp.Controllers
             return null;
         }
 
-        private string GetMessage(string productText)
+        private string? GetMessage(string productText)
         {
             if (!MainViewModel.IsCompleted || SkipStep)
                 return null;
 
-            var software = DownloadViewModel.Software;
-            var versionText = software.Product.GetVersionText();
-            var model = CameraViewModel.IsSelect
-                ? CameraViewModel.SelectedItem.DisplayName
-                : CameraViewModel.Info?.Base?.Model;
-            var cardName = CardViewModel.SelectedItem.DisplayName;
+            var software = DownloadViewModel?.Software;
+            var versionText = software?.Product?.GetVersionText();
+            var model = CameraViewModel?.IsSelect == true
+                ? CameraViewModel.SelectedItem?.DisplayName
+                : CameraViewModel?.Info?.Base?.Model;
+            var cardName = CardViewModel?.SelectedItem?.DisplayName;
 
             return string.Format(Resources.Summary_Completed_Format, productText, versionText, model, cardName);
         }
 
-        private Tip[] GetTips(string productText)
+        private Tip[]? GetTips(string productText)
         {
             if (SkipStep)
                 return null;

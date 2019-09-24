@@ -59,14 +59,12 @@ namespace Net.Chdk.Providers
         private TData GetData()
         {
             var filePath = GetFilePath();
-            using (var reader = File.OpenText(filePath))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var data = Serializer.Deserialize<TData>(jsonReader);
-                if (LogLevel < LogLevel.None)
-                    Logger.Log(LogLevel, default(EventId), data, null, GetFormat);
-                return data;
-            }
+            using var reader = File.OpenText(filePath);
+            using var jsonReader = new JsonTextReader(reader);
+            var data = Serializer.Deserialize<TData>(jsonReader);
+            if (LogLevel < LogLevel.None)
+                Logger.Log(LogLevel, default, data, null, GetFormat);
+            return data;
         }
 
         private string GetFormat(TData data, Exception ex)
@@ -78,7 +76,7 @@ namespace Net.Chdk.Providers
 
         protected virtual LogLevel LogLevel => LogLevel.None;
 
-        protected virtual string Format => null;
+        protected virtual string? Format => null;
 
         #endregion
     }

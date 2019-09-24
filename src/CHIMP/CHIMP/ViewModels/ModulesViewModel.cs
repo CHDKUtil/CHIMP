@@ -2,6 +2,6 @@
 {
     sealed class ModulesViewModel
     {
-        public ModulesItemViewModel[] Items { get; set; }
+        public ModulesItemViewModel[]? Items { get; set; }
     }
 }

@@ -8,23 +8,13 @@ namespace Chimp.Actions
     {
         private int Part { get; }
         private IPartitionService PartitionService { get; }
-        public override string DisplayName
+        public override string? DisplayName => Part switch
         {
-            get
-            {
-                switch (Part)
-                {
-                    case 1:
-                        return Resources.Action_Switch_1_Text;
-                    case 2:
-                        return Resources.Action_Switch_2_Text;
-                    case 3:
-                        return Resources.Action_Switch_3_Text;
-                    default:
-                        return null;
-                }
-            }
-        }
+            1 => Resources.Action_Switch_1_Text,
+            2 => Resources.Action_Switch_2_Text,
+            3 => Resources.Action_Switch_3_Text,
+            _ => null,
+        };
 
         public SwitchAction(MainViewModel mainViewModel, IPartitionService partitionService, int part)
             : base(mainViewModel)
@@ -33,13 +23,13 @@ namespace Chimp.Actions
             Part = part;
         }
 
-        protected override SoftwareData Perform()
+        protected override SoftwareData? Perform()
         {
-            var driveLetter = CardViewModel.SelectedItem.Info.DriveLetter;
-            if (PartitionService.SwitchPartitions(driveLetter, Part))
+            var driveLetter = CardViewModel?.SelectedItem?.Info?.DriveLetter;
+            if (driveLetter != null && PartitionService.SwitchPartitions(driveLetter, Part))
             {
                 PartitionService.UpdateProperties(driveLetter);
-                DownloadViewModel.Title = Resources.Action_Switch_Completed_Text;
+                SetTitle(Resources.Action_Switch_Completed_Text);
             }
             return null;
         }

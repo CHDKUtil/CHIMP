@@ -12,13 +12,13 @@ namespace Chimp.Providers.Build
             Source = source;
         }
 
-        public override string GetBuildName(SoftwareInfo software)
+        public override string GetBuildName(SoftwareInfo? software)
         {
             var product = software?.Product;
             var source = software?.Source;
-            if (product == null || source == null)
+            if (product is null || source is null)
                 return "full";
-            return product.Version?.MinorRevision >= 0 && source.Name.Equals(Source.Name, StringComparison.InvariantCulture)
+            return product.Version?.MinorRevision >= 0 && source?.Name?.Equals(Source.Name, StringComparison.InvariantCulture) == true
                 ? string.Empty
                 : "full";
         }

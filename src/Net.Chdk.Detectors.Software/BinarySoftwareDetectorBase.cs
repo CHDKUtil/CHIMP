@@ -41,7 +41,7 @@ namespace Net.Chdk.Detectors.Software
             HashProvider = hashProvider;
         }
 
-        public SoftwareInfo GetSoftware(string basePath, string categoryName, IProgress<double> progress, CancellationToken token)
+        public SoftwareInfo? GetSoftware(string basePath, string categoryName, IProgress<double>? progress, CancellationToken token)
         {
             if (!CategoryName.Equals(categoryName, StringComparison.Ordinal))
                 return null;
@@ -59,7 +59,7 @@ namespace Net.Chdk.Detectors.Software
 
             var inBuffer = File.ReadAllBytes(diskbootPath);
             var software = GetSoftware(inBuffer, progress, token);
-            if (software != null)
+            if (!(software?.Product is null))
             {
                 if (software.Product.Created == null)
                     software.Product.Created = File.GetCreationTimeUtc(diskbootPath);
@@ -67,7 +67,7 @@ namespace Net.Chdk.Detectors.Software
             return software;
         }
 
-        public virtual SoftwareInfo GetSoftware(byte[] inBuffer, IProgress<double> progress, CancellationToken token)
+        public virtual SoftwareInfo? GetSoftware(byte[] inBuffer, IProgress<double>? progress, CancellationToken token)
         {
             var detectors = GetDetectors();
             var prefix = BootProvider.GetPrefix(CategoryName);
@@ -82,7 +82,10 @@ namespace Net.Chdk.Detectors.Software
 
         public virtual bool UpdateSoftware(SoftwareInfo software, byte[] inBuffer)
         {
-            if (!CategoryName.Equals(software.Category.Name, StringComparison.Ordinal))
+            if (!CategoryName.Equals(software.Category?.Name, StringComparison.Ordinal))
+                return false;
+
+            if (software.Product is null || software.Camera is null)
                 return false;
 
             var detectors = GetDetectors(software.Product);
@@ -94,12 +97,15 @@ namespace Net.Chdk.Detectors.Software
             var software2 = GetSoftware(detectors, inBuffer, encoding);
             if (software2 != null)
             {
-                if (software2.Product.Created != null)
+                if (software2.Product?.Created != null)
                     software.Product.Created = software2.Product.Created;
-                if (software2.Build.Changeset != null)
-                    software.Build.Changeset = software2.Build.Changeset;
-                if (software2.Build.Creator != null)
-                    software.Build.Creator = software2.Build.Creator;
+                if (!(software.Build is null))
+                {
+                    if (software2.Build?.Changeset != null)
+                        software.Build.Changeset = software2.Build.Changeset;
+                    if (software2.Build?.Creator != null)
+                        software.Build.Creator = software2.Build.Creator;
+                }
                 if (software2.Compiler != null)
                     software.Compiler = software2.Compiler;
                 if (software.Encoding == null)
@@ -110,8 +116,8 @@ namespace Net.Chdk.Detectors.Software
             return false;
         }
 
-        private SoftwareInfo GetSoftware(IEnumerable<IProductBinarySoftwareDetector> detectors, byte[] inBuffer, SoftwareEncodingInfo encoding,
-            IProgress<double> progress = null, CancellationToken token = default(CancellationToken))
+        private SoftwareInfo? GetSoftware(IEnumerable<IProductBinarySoftwareDetector> detectors, byte[] inBuffer, SoftwareEncodingInfo? encoding,
+            IProgress<double>? progress = null, CancellationToken token = default)
         {
             var prefix = BootProvider.GetPrefix(CategoryName);
             if (encoding == null)
@@ -119,26 +125,26 @@ namespace Net.Chdk.Detectors.Software
             return DoGetSoftware(detectors, prefix, inBuffer, encoding, token);
         }
 
-        private SoftwareInfo GetSoftware(IEnumerable<IProductBinarySoftwareDetector> detectors, byte[] prefix, byte[] inBuffer, IProgress<double> progress, CancellationToken token)
+        private SoftwareInfo? GetSoftware(IEnumerable<IProductBinarySoftwareDetector> detectors, byte[]? prefix, byte[] inBuffer, IProgress<double>? progress, CancellationToken token)
         {
             if (!BinaryDecoder.ValidatePrefix(inBuffer, inBuffer.Length, prefix))
                 return PlainGetSoftware(detectors, prefix, inBuffer, token);
             return DoGetSoftware(detectors, prefix, inBuffer, progress, token);
         }
 
-        protected SoftwareInfo PlainGetSoftware(IEnumerable<IProductBinarySoftwareDetector> detectors, byte[] prefix, byte[] inBuffer, CancellationToken token)
+        protected SoftwareInfo? PlainGetSoftware(IEnumerable<IProductBinarySoftwareDetector> detectors, byte[]? prefix, byte[] inBuffer, CancellationToken token)
         {
             var worker = new BinarySoftwareDetectorWorker(detectors, BinaryDecoder, prefix, inBuffer, new SoftwareEncodingInfo());
             return worker.GetSoftware(new ProgressState(), token);
         }
 
-        private SoftwareInfo DoGetSoftware(IEnumerable<IProductBinarySoftwareDetector> detectors, byte[] prefix, byte[] inBuffer, SoftwareEncodingInfo encoding, CancellationToken token)
+        private SoftwareInfo? DoGetSoftware(IEnumerable<IProductBinarySoftwareDetector> detectors, byte[]? prefix, byte[] inBuffer, SoftwareEncodingInfo encoding, CancellationToken token)
         {
             var worker = new BinarySoftwareDetectorWorker(detectors, BinaryDecoder, prefix, inBuffer, encoding);
             return worker.GetSoftware(new ProgressState(), token);
         }
 
-        protected virtual SoftwareInfo DoGetSoftware(IEnumerable<IProductBinarySoftwareDetector> detectors, byte[] prefix, byte[] inBuffer, IProgress<double> progress, CancellationToken token)
+        protected virtual SoftwareInfo? DoGetSoftware(IEnumerable<IProductBinarySoftwareDetector> detectors, byte[]? prefix, byte[] inBuffer, IProgress<double>? progress, CancellationToken token)
         {
             var processorCount = Environment.ProcessorCount;
             var count = MaxThreads > 0 && MaxThreads < processorCount
@@ -167,7 +173,7 @@ namespace Net.Chdk.Detectors.Software
             return software;
         }
 
-        private SoftwareInfo GetSoftware(BinarySoftwareDetectorWorker[] workers, int offsetCount, ProgressState progress, CancellationToken token)
+        private SoftwareInfo? GetSoftware(BinarySoftwareDetectorWorker[] workers, int offsetCount, ProgressState progress, CancellationToken token)
         {
             var workerCount = workers.Length;
             if (workerCount == 1)
@@ -179,7 +185,7 @@ namespace Net.Chdk.Detectors.Software
             Logger.LogDebug("Detecting software in {0} threads from {1} offsets", workerCount, offsetCount);
 
             var threads = new Thread[workerCount];
-            var results = new SoftwareInfo[workerCount];
+            var results = new SoftwareInfo?[workerCount];
             for (var j = 0; j < threads.Length; j++)
             {
                 var i = j;
@@ -196,7 +202,7 @@ namespace Net.Chdk.Detectors.Software
                 .FirstOrDefault(s => s != null);
         }
 
-        private SoftwareEncodingInfo GetEncoding(SoftwareProductInfo product, SoftwareCameraInfo camera, SoftwareEncodingInfo encoding)
+        private SoftwareEncodingInfo? GetEncoding(SoftwareProductInfo product, SoftwareCameraInfo camera, SoftwareEncodingInfo? encoding)
         {
             return encoding
                 ?? CameraProvider.GetEncoding(product, camera);

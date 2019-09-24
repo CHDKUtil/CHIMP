@@ -1,13 +1,11 @@
-﻿using Net.Chdk.Model.Software;
-
-namespace Chimp.ViewModels
+﻿namespace Chimp.ViewModels
 {
     sealed class SoftwareViewModel : ItemsViewModel<SoftwareItemViewModel>
     {
-        public static SoftwareViewModel Get(MainViewModel mainViewModel) => mainViewModel.Get<SoftwareViewModel>("Software");
+        public static SoftwareViewModel? Get(MainViewModel mainViewModel) => mainViewModel.Get<SoftwareViewModel>("Software");
 
-        private string _Title;
-        public string Title
+        private string? _Title;
+        public string? Title
         {
             get { return _Title; }
             set { SetProperty(ref _Title, value); }

@@ -11,14 +11,14 @@ namespace Chimp.ViewModels
 
         private Dictionary<string, ViewModel> ViewModels { get; }
 
-        public T Get<T>(string name)
+        public T? Get<T>(string name)
             where T : ViewModel
         {
             return this[name] as T;
         }
 
-        public void Set<T>(string name, T value)
-            where T:ViewModel
+        public void Set<T>(string name, T? value)
+            where T : ViewModel
         {
             SendPropertyChanging(string.Empty);
             if (value == null)
@@ -37,8 +37,8 @@ namespace Chimp.ViewModels
             }
         }
 
-        private StepViewModel _Step;
-        public StepViewModel Step
+        private StepViewModel? _Step;
+        public StepViewModel? Step
         {
             get { return _Step; }
             set { SetProperty(ref _Step, value); }

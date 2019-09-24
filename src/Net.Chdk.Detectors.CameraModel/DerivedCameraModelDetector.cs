@@ -22,7 +22,7 @@ namespace Net.Chdk.Detectors.CameraModel
             CameraDetector = cameraDetector;
         }
 
-        public CameraModels GetCameraModels(CardInfo cardInfo, SoftwareInfo softwareInfo, IProgress<double> progress, CancellationToken token)
+        public CameraModels? GetCameraModels(CardInfo cardInfo, SoftwareInfo softwareInfo, IProgress<double>? progress, CancellationToken token)
         {
             Logger.LogTrace("Detecting camera models from {0}", cardInfo.DriveLetter);
 

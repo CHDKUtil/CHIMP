@@ -35,10 +35,12 @@ namespace Net.Chdk.Detectors.Software
             _hash2software = new Lazy<IDictionary<byte[], SoftwareInfo>>(GetHash2Software);
         }
 
-        public override SoftwareInfo GetSoftware(byte[] inBuffer, IProgress<double> progress, CancellationToken token)
+        public override SoftwareInfo? GetSoftware(byte[] inBuffer, IProgress<double>? progress, CancellationToken token)
         {
             var fileName = BootProvider.GetFileName(CategoryName);
             var hash = HashProvider.GetHash(inBuffer, fileName, HashName);
+            if (hash.Values == null)
+                return null;
             var hashStr = hash.Values[fileName.ToLowerInvariant()];
             var hashBytes = GetHashBytes(hashStr);
             Hash2Software.TryGetValue(hashBytes, out SoftwareInfo software);
@@ -47,10 +49,10 @@ namespace Net.Chdk.Detectors.Software
 
         public override bool UpdateSoftware(SoftwareInfo software, byte[] inBuffer)
         {
-            if (!CategoryName.Equals(software.Category.Name, StringComparison.Ordinal))
+            if (!CategoryName.Equals(software.Category?.Name, StringComparison.Ordinal))
                 return false;
 
-            var software2 = GetSoftware(inBuffer, null, default(CancellationToken));
+            var software2 = GetSoftware(inBuffer, null, default);
             if (software2 != null)
             {
                 software.Hash = software2.Hash;
@@ -71,11 +73,8 @@ namespace Net.Chdk.Detectors.Software
         private IDictionary<byte[], SoftwareInfo> GetHash2Software()
         {
             var path = Path.Combine(Directories.Data, Directories.Category, CategoryName, "hash2sw.json");
-            IDictionary<string, SoftwareInfo> hash2sw;
-            using (var stream = File.OpenRead(path))
-            {
-                hash2sw = JsonObject.Deserialize<IDictionary<string, SoftwareInfo>>(stream);
-            }
+            using var stream = File.OpenRead(path);
+            var hash2sw = JsonObject.Deserialize<IDictionary<string, SoftwareInfo>>(stream);
             var result = new Dictionary<byte[], SoftwareInfo>(new BytesComparer());
             foreach (var kvp in hash2sw)
             {

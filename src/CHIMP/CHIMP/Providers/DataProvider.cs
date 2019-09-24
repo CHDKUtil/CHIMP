@@ -37,16 +37,14 @@ namespace Chimp.Providers
 
         private readonly Lazy<IDictionary<string, TData>> _data;
 
-        protected override IDictionary<string, TData> Data => _data.Value;
+        protected override IDictionary<string, TData>? Data => _data.Value;
 
         private IDictionary<string, TData> GetData()
         {
             var filePath = GetFilePath();
-            using (var reader = File.OpenText(filePath))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                return Serializer.Deserialize<IDictionary<string, TData>>(jsonReader);
-            }
+            using var reader = File.OpenText(filePath);
+            using var jsonReader = new JsonTextReader(reader);
+            return Serializer.Deserialize<IDictionary<string, TData>>(jsonReader);
         }
 
         #endregion

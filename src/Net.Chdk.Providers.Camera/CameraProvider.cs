@@ -19,34 +19,34 @@ namespace Net.Chdk.Providers.Camera
             ProductProvider = productProvider;
         }
 
-        public CameraModelsInfo GetCameraModels(SoftwareProductInfo productInfo, SoftwareCameraInfo cameraInfo)
+        public CameraModelsInfo? GetCameraModels(SoftwareProductInfo? productInfo, SoftwareCameraInfo? cameraInfo)
         {
             var productName = productInfo?.Name;
             return GetProvider(productName)?
                 .GetCameraModels(cameraInfo);
         }
 
-        public CameraModelsInfo GetCameraModels(CameraInfo cameraInfo)
+        public CameraModelsInfo? GetCameraModels(CameraInfo? cameraInfo)
         {
             return Providers.Values
                 .Select(p => p.GetCameraModels(cameraInfo))
                 .FirstOrDefault(c => c != null);
         }
 
-        public SoftwareCameraInfo GetCamera(string productName, CameraInfo cameraInfo, CameraModelInfo cameraModelInfo)
+        public SoftwareCameraInfo? GetCamera(string? productName, CameraInfo? cameraInfo, CameraModelInfo? cameraModelInfo)
         {
             return GetProvider(productName)?
                 .GetCamera(cameraInfo, cameraModelInfo);
         }
 
-        public SoftwareEncodingInfo GetEncoding(SoftwareProductInfo productInfo, SoftwareCameraInfo cameraInfo)
+        public SoftwareEncodingInfo? GetEncoding(SoftwareProductInfo productInfo, SoftwareCameraInfo cameraInfo)
         {
             var productName = productInfo?.Name;
             return GetProvider(productName)?
                 .GetEncoding(cameraInfo);
         }
 
-        public AltInfo GetAlt(SoftwareProductInfo productInfo, SoftwareCameraInfo cameraInfo)
+        public AltInfo? GetAlt(SoftwareProductInfo? productInfo, SoftwareCameraInfo? cameraInfo)
         {
             var productName = productInfo?.Name;
             return GetProvider(productName)?
@@ -61,15 +61,12 @@ namespace Net.Chdk.Providers.Camera
         protected override IProductCameraProvider CreateProvider(string productName)
         {
             var categoryName = ProductProvider.GetCategoryName(productName);
-            switch (categoryName)
+            return categoryName switch
             {
-                case "EOS":
-                    return new EosProductCameraProvider(productName, LoggerFactory);
-                case "PS":
-                    return new PsProductCameraProvider(productName, LoggerFactory);
-                default:
-                    throw new InvalidOperationException($"Unknown category: {categoryName}");
-            }
+                "EOS" => new EosProductCameraProvider(productName, LoggerFactory),
+                "PS" => new PsProductCameraProvider(productName, LoggerFactory),
+                _ => throw new InvalidOperationException($"Unknown category: {categoryName}"),
+            };
         }
     }
 }

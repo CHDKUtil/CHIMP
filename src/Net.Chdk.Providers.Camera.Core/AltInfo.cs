@@ -4,7 +4,7 @@
     {
         public static readonly AltInfo Empty = new AltInfo();
 
-        public string Button { get; set; }
-        public string[] Buttons { get; set; }
+        public string? Button { get; set; }
+        public string[]? Buttons { get; set; }
     }
 }

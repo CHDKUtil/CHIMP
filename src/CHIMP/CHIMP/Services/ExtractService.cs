@@ -12,7 +12,7 @@ namespace Chimp.Services
     {
         private ILogger Logger { get; }
         private MainViewModel MainViewModel { get; }
-        private DownloadViewModel ViewModel => DownloadViewModel.Get(MainViewModel);
+        private DownloadViewModel? ViewModel => DownloadViewModel.Get(MainViewModel);
 
         public ExtractService(MainViewModel mainViewModel, ILoggerFactory loggerFactory)
         {
@@ -20,7 +20,7 @@ namespace Chimp.Services
             MainViewModel = mainViewModel;
         }
 
-        public string Extract(string path, string filePath, string dirPath, string tempPath, CancellationToken cancellationToken)
+        public string? Extract(string? _, string filePath, string dirPath, string tempPath, CancellationToken cancellationToken)
         {
             var tempDirPath = Extract(filePath, tempPath, cancellationToken);
             if (tempDirPath == null)
@@ -31,30 +31,28 @@ namespace Chimp.Services
             return dirPath;
         }
 
-        private string Extract(string filePath, string tempPath, CancellationToken cancellationToken)
+        private string? Extract(string filePath, string tempPath, CancellationToken cancellationToken)
         {
             var tempDirPath = Path.Combine(tempPath, Path.GetRandomFileName());
             Directory.CreateDirectory(tempDirPath);
 
             Logger.LogTrace("Extracting {0} into {1}", filePath, tempDirPath);
 
-            using (var fileStream = File.OpenRead(filePath))
-            using (var zipStream = new ZipInputStream(fileStream))
+            using var fileStream = File.OpenRead(filePath);
+            using var zipStream = new ZipInputStream(fileStream);
+            var buffer = new byte[Settings.Default.ExtractBufferSize];
+            ZipEntry entry;
+            while ((entry = zipStream.GetNextEntry()) != null)
             {
-                var buffer = new byte[Settings.Default.ExtractBufferSize];
-                ZipEntry entry;
-                while ((entry = zipStream.GetNextEntry()) != null)
-                {
-                    if (cancellationToken.IsCancellationRequested)
-                        return null;
+                if (cancellationToken.IsCancellationRequested)
+                    return null;
 
-                    var outPath = Path.Combine(tempDirPath, entry.Name);
-                    var fileName = Path.GetFileName(outPath);
-                    if (fileName.Length == 0)
-                        ExtractDirectory(entry, outPath);
-                    else
-                        ExtractFile(zipStream, entry, outPath, buffer);
-                }
+                var outPath = Path.Combine(tempDirPath, entry.Name);
+                var fileName = Path.GetFileName(outPath);
+                if (fileName.Length == 0)
+                    ExtractDirectory(entry, outPath);
+                else
+                    ExtractFile(zipStream, entry, outPath, buffer);
             }
 
             return tempDirPath;
@@ -64,7 +62,7 @@ namespace Chimp.Services
         {
             Logger.LogTrace("Extracting directory {0}", entry.Name);
 
-            ViewModel.FileName = entry.Name;
+            ViewModel!.FileName = entry.Name;
 
             CreateDirectory(outPath);
 
@@ -75,15 +73,13 @@ namespace Chimp.Services
         {
             Logger.LogTrace("Extracting file {0}", entry.Name);
 
-            ViewModel.FileName = entry.Name;
+            ViewModel!.FileName = entry.Name;
 
             var dirPath = Path.GetDirectoryName(outPath);
             CreateDirectory(dirPath);
 
-            using (var outStream = File.Create(outPath))
-            {
-                StreamUtils.Copy(zipStream, outStream, buffer);
-            }
+            using var outStream = File.Create(outPath);
+            StreamUtils.Copy(zipStream, outStream, buffer);
 
             File.SetCreationTimeUtc(outPath, entry.DateTime);
         }

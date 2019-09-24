@@ -2,8 +2,8 @@
 {
     sealed class ActionViewModel : ItemsViewModel<ActionItemViewModel>
     {
-        public string Title { get; set; }
+        public string? Title { get; set; }
 
-        public static ActionViewModel Get(MainViewModel mainViewModel) => mainViewModel.Get<ActionViewModel>("Action");
+        public static ActionViewModel? Get(MainViewModel mainViewModel) => mainViewModel.Get<ActionViewModel>("Action");
     }
 }

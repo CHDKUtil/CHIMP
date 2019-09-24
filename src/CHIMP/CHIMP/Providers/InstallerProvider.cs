@@ -15,14 +15,14 @@ namespace Chimp.Providers
             InstallersData = options.Value;
         }
 
-        public IInstaller GetInstaller(string fileSystem)
+        public IInstaller? GetInstaller(string fileSystem)
         {
-            if (!Data.TryGetValue(fileSystem ?? string.Empty, out InstallerData data))
+            if (Data == null || !Data.TryGetValue(fileSystem ?? string.Empty, out InstallerData data))
                 return null;
             return CreateProvider(fileSystem, data.Type);
         }
 
-        protected override IDictionary<string, InstallerData> Data => InstallersData.Installers;
+        protected override IDictionary<string, InstallerData>? Data => InstallersData.Installers;
 
         protected override string Namespace => typeof(Installer).Namespace;
 

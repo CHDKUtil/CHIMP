@@ -26,7 +26,7 @@ namespace Net.Chdk.Detectors.Software
             BootProvider = bootProvider;
         }
 
-        public SoftwareInfo GetSoftware(CardInfo cardInfo, CategoryInfo category, IProgress<double> progress, CancellationToken token)
+        public SoftwareInfo? GetSoftware(CardInfo cardInfo, CategoryInfo category, IProgress<double>? progress, CancellationToken token)
         {
             Logger.LogTrace("Detecting {0} software from {1} file system", category.Name, cardInfo.DriveLetter);
 
@@ -43,7 +43,7 @@ namespace Net.Chdk.Detectors.Software
             };
         }
 
-        private SoftwareProductInfo GetProduct(CardInfo cardInfo, string categoryName)
+        private SoftwareProductInfo? GetProduct(CardInfo cardInfo, string categoryName)
         {
             return ProductDetectors
                 .Where(d => categoryName.Equals(d.CategoryName, StringComparison.Ordinal))

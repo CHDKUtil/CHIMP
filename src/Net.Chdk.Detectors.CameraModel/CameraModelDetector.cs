@@ -16,7 +16,7 @@ namespace Net.Chdk.Detectors.CameraModel
             CameraModelDetectors = cameraModelDetectors;
         }
 
-        public CameraModels GetCameraModels(CardInfo cardInfo, SoftwareInfo softwareInfo, IProgress<double> progress, CancellationToken token)
+        public CameraModels? GetCameraModels(CardInfo cardInfo, SoftwareInfo softwareInfo, IProgress<double>? progress, CancellationToken token)
         {
             return CameraModelDetectors
                 .Select(d => d.GetCameraModels(cardInfo, softwareInfo, progress, token))

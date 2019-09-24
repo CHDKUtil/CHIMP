@@ -22,7 +22,7 @@ namespace Net.Chdk.Detectors.Software.Fhp
 
         protected override int StringCount => 2;
 
-        protected override bool GetProductVersion(string[] strings, out Version version, out string versionPrefix, out string versionSuffix)
+        protected override bool GetProductVersion(string?[] strings, out Version? version, out string? versionPrefix, out string? versionSuffix)
         {
             version = null;
             versionPrefix = null;
@@ -31,7 +31,11 @@ namespace Net.Chdk.Detectors.Software.Fhp
             if (!"%u".Equals(strings[1], StringComparison.Ordinal))
                 return false;
 
-            var split = strings[0].Split('-');
+            var productStr = strings[0];
+            if (productStr == null)
+                return false;
+
+            var split = productStr.Split('-');
             if (split.Length != 2)
                 return false;
 
@@ -52,17 +56,17 @@ namespace Net.Chdk.Detectors.Software.Fhp
             return true;
         }
 
-        protected override CultureInfo GetLanguage(string[] strings)
+        protected override CultureInfo? GetLanguage(string?[] strings)
         {
             return GetCultureInfo("en");
         }
 
-        protected override string GetPlatform(string[] strings)
+        protected override string? GetPlatform(string?[] strings)
         {
             return CameraPlatform;
         }
 
-        protected override string GetRevision(string[] strings)
+        protected override string? GetRevision(string?[] strings)
         {
             return CameraRevision;
         }

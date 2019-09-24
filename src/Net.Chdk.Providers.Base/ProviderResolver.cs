@@ -27,11 +27,11 @@ namespace Net.Chdk.Providers
 
         #region Providers
 
-        protected TProvider GetProvider(string name)
+        protected TProvider? GetProvider(string? name)
         {
             if (name == null)
                 return null;
-            Providers.TryGetValue(name, out TProvider provider);
+            Providers.TryGetValue(name, out TProvider? provider);
             return provider;
         }
 

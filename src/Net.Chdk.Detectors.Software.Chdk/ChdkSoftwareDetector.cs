@@ -16,7 +16,7 @@ namespace Net.Chdk.Detectors.Software.Chdk
             "Firmware ",
         };
 
-        private static byte[][] PrefixBytes;
+        private static readonly byte[][] PrefixBytes;
 
         static ChdkSoftwareDetector()
         {
@@ -35,7 +35,7 @@ namespace Net.Chdk.Detectors.Software.Chdk
         protected override string String => "CHDK ";
         protected override int StringCount => 4;
 
-        public override SoftwareInfo GetSoftware(byte[] buffer, int index)
+        public override SoftwareInfo? GetSoftware(byte[] buffer, int index)
         {
             for (var i = 0; i < PrefixBytes.Length; i++)
                 if (Equals(buffer, PrefixBytes[i], index))
@@ -43,52 +43,51 @@ namespace Net.Chdk.Detectors.Software.Chdk
             return null;
         }
 
-        protected override Version GetProductVersion(string[] strings)
+        protected override Version? GetProductVersion(string?[] strings)
         {
-            var split = strings[0].Trim('\'').Split(' ');
-            if (split.Length != 2)
+            var split = GetProductSplit(strings);
+            if (split?.Length != 2)
                 return null;
             var str = GetVersionString(split[1].Split('-'));
             return GetVersion(str);
         }
 
-        protected override CultureInfo GetLanguage(string[] strings)
+        protected override CultureInfo? GetLanguage(string?[] strings)
         {
             var sourceName = GetSourceName(strings);
-            switch (sourceName)
+            return sourceName switch
             {
-                case "CHDK":
-                    return GetCultureInfo("en");
-                case "CHDK_DE":
-                    return GetCultureInfo("de");
-                default:
-                    return null;
-            }
+                "CHDK" => GetCultureInfo("en"),
+                "CHDK_DE" => GetCultureInfo("de"),
+                _ => null,
+            };
         }
 
-        protected override DateTime? GetCreationDate(string[] strings)
+        protected override DateTime? GetCreationDate(string?[] strings)
         {
             var str = strings[1].TrimStart("Build: ");
             return GetCreationDate(str);
         }
 
-        protected override SoftwareCameraInfo GetCamera(string[] strings)
+        protected override SoftwareCameraInfo? GetCamera(string?[] strings)
         {
-            var str = strings[2].TrimStart("Camera: ");
-            if (str == null)
+            var cameraStr = strings[2];
+            if (cameraStr == null)
                 return null;
-            var split = str.Split(new[] { " - " }, StringSplitOptions.None);
+            var str = cameraStr.TrimStart("Camera: ");
+            var split = str!.Split(new[] { " - " }, StringSplitOptions.None);
             if (split.Length != 2)
                 return null;
             return GetCamera(split[0], split[1]);
         }
 
-        protected override string GetSourceName(string[] strings)
+        protected override string? GetSourceName(string?[] strings)
         {
-            return strings[0].Trim('\'').Split(' ')[0];
+            var split = GetProductSplit(strings);
+            return split?[0];
         }
 
-        protected override SoftwareBuildInfo GetBuild(string[] strings)
+        protected override SoftwareBuildInfo GetBuild(string?[] strings)
         {
             return new SoftwareBuildInfo
             {
@@ -96,9 +95,12 @@ namespace Net.Chdk.Detectors.Software.Chdk
             };
         }
 
-        protected override SoftwareCompilerInfo GetCompiler(string[] strings)
+        protected override SoftwareCompilerInfo? GetCompiler(string?[] strings)
         {
-            var split = strings[3].Split(' ');
+            var compilerStr = strings[3];
+            if (compilerStr == null)
+                return null;
+            var split = compilerStr.Split(' ');
             if (split.Length != 2)
                 return null;
             if (!Version.TryParse(split[1], out Version version))
@@ -110,23 +112,28 @@ namespace Net.Chdk.Detectors.Software.Chdk
             };
         }
 
-        private string GetChangeset(string[] strings)
+        private static string[]? GetProductSplit(string?[] strings)
+        {
+            var productStr = strings[0];
+            if (productStr == null)
+                return null;
+            return productStr.Trim('\'').Split(' ');
+        }
+
+        private string? GetChangeset(string?[] strings)
         {
             var version = GetProductVersion(strings);
             return version?.MinorRevision.ToString();
         }
 
-        private static string GetVersionString(string[] versionSplit)
+        private static string? GetVersionString(string[] versionSplit)
         {
-            switch (versionSplit.Length)
+            return versionSplit.Length switch
             {
-                case 0:
-                    return null;
-                case 1:
-                    return versionSplit[0];
-                default:
-                    return string.Join(".", versionSplit[0], versionSplit[1]);
-            }
+                0 => null,
+                1 => versionSplit[0],
+                _ => string.Join(".", versionSplit[0], versionSplit[1]),
+            };
         }
 
         private static bool Equals(byte[] buffer, byte[] bytes, int start)

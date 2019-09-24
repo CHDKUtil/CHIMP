@@ -3,7 +3,6 @@ using Chimp.ViewModels;
 using Microsoft.Extensions.Logging;
 using Net.Chdk.Model.Camera;
 using Net.Chdk.Model.Card;
-using Net.Chdk.Model.Software;
 using Net.Chdk.Providers.Camera;
 using System;
 using System.Linq;
@@ -34,16 +33,14 @@ namespace Chimp.Installers
         private MainViewModel MainViewModel { get; }
         private IInstallService InstallService { get; }
 
-        private string CardSubtype { get; }
-        private string BootFileSystem { get; }
+        private string? CardSubtype { get; }
+        private string? BootFileSystem { get; }
 
-        private CardViewModel CardViewModel => CardViewModel.Get(MainViewModel);
-        private CameraViewModel CameraViewModel => CameraViewModel.Get(MainViewModel);
-        private DownloadViewModel DownloadViewModel => DownloadViewModel.Get(MainViewModel);
-        private InstallViewModel InstallViewModel => InstallViewModel.Get(MainViewModel);
-        private CardInfo Card => CardViewModel.SelectedItem.Info;
-        private CameraInfo Camera => CameraViewModel.Info;
-        private SoftwareProductInfo Product => DownloadViewModel.Software.Product;
+        private CardViewModel? CardViewModel => CardViewModel.Get(MainViewModel);
+        private CameraViewModel? CameraViewModel => CameraViewModel.Get(MainViewModel);
+        private InstallViewModel? InstallViewModel => InstallViewModel.Get(MainViewModel);
+        private CardInfo? Card => CardViewModel?.SelectedItem?.Info;
+        private CameraInfo? Camera => CameraViewModel?.Info;
 
         protected Installer(MainViewModel mainViewModel, IInstallService installService, ICameraProvider cameraProvider, ILogger logger)
         {
@@ -78,18 +75,13 @@ namespace Chimp.Installers
         private bool IsSupportedSize()
         {
             if (TestSwitchedPartitions() == true)
-            {
                 return true;
-            }
-            switch (CardSubtype)
+            return CardSubtype switch
             {
-                case SDSC:
-                    return Card.Capacity <= MaxSdscCardSize;
-                case SDHC:
-                    return Card.Capacity <= MaxSdhcCardSize;
-                default:
-                    return true;
-            }
+                SDSC => Card?.Capacity <= MaxSdscCardSize,
+                SDHC => Card?.Capacity <= MaxSdhcCardSize,
+                _ => true,
+            };
         }
 
         protected abstract bool Install(CancellationToken cancellationToken);
@@ -97,7 +89,7 @@ namespace Chimp.Installers
         protected bool IsCameraMultiPartition { get; }
 
         protected bool IsCardFatFormattable =>
-            Card.Capacity <= MaxFatCardSize;
+            Card?.Capacity <= MaxFatCardSize;
 
         protected bool IsCameraExFatBootable =>
             exFAT.Equals(BootFileSystem, StringComparison.InvariantCulture);
@@ -109,7 +101,7 @@ namespace Chimp.Installers
         {
             CopyAllFiles();
 
-            if (!SetBootable(Card.FileSystem))
+            if (!SetBootable(Card?.FileSystem!))
                 return false;
 
             return true;
@@ -144,7 +136,7 @@ namespace Chimp.Installers
             if (!ShowFormatWarning())
                 return false;
 
-            if (!Format(fileSystem, Card.Label ?? DefaultLabel))
+            if (!Format(fileSystem, Card?.Label ?? DefaultLabel))
                 return false;
 
             CopyAllFiles();
@@ -162,7 +154,7 @@ namespace Chimp.Installers
 
             CreatePartitions();
 
-            if (!Format(FAT, Card.Label ?? DefaultSmallLabel))
+            if (!Format(FAT, Card?.Label ?? DefaultSmallLabel))
                 return false;
 
             CopyPrimaryFiles();
@@ -227,7 +219,7 @@ namespace Chimp.Installers
         private void SetTitle(string title)
         {
             Logger.LogInformation(title);
-            InstallViewModel.Title = title;
+            InstallViewModel!.Title = title;
             InstallViewModel.FileName = string.Empty;
         }
     }

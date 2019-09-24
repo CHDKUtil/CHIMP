@@ -4,6 +4,8 @@
     <TargetFramework>netstandard1.0</TargetFramework>
     <Description>CHIMP JSON helpers</Description>
     <RootNamespace>Net.Chdk.Json</RootNamespace>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup>

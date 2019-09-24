@@ -2,11 +2,11 @@
 {
     interface IProductModuleProvider
     {
-        string Path { get; }
-        string Extension { get; }
+        string? Path { get; }
+        string? Extension { get; }
 
-        string GetModuleName(string filePath);
-        string GetModuleTitle(string moduleName);
-        string GetModuleId(string moduleName);
+        string? GetModuleName(string filePath);
+        string? GetModuleTitle(string moduleName);
+        string? GetModuleId(string moduleName);
     }
 }

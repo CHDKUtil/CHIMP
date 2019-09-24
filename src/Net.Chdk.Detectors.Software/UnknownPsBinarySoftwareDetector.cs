@@ -18,7 +18,7 @@ namespace Net.Chdk.Detectors.Software
         {
         }
 
-        protected override SoftwareInfo DoGetSoftware(IEnumerable<IProductBinarySoftwareDetector> detectors, byte[] prefix, byte[] inBuffer, IProgress<double> progress, CancellationToken token)
+        protected override SoftwareInfo? DoGetSoftware(IEnumerable<IProductBinarySoftwareDetector> detectors, byte[]? prefix, byte[] inBuffer, IProgress<double>? progress, CancellationToken token)
         {
             return PlainGetSoftware(detectors, prefix, inBuffer, token)
                 ?? base.DoGetSoftware(detectors, prefix, inBuffer, progress, token);

@@ -7,7 +7,7 @@ namespace Chimp.Converters
 {
     public class FirmwareVersionConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object? value, Type targetType, object parameter, CultureInfo culture)
         {
             if (!(value is uint v))
                 return null;
@@ -20,7 +20,7 @@ namespace Chimp.Converters
             return string.Format(Resources.Camera_FirmwareVersion_Format, major1, major2, major3, rev1, rev2, rev3);
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? ConvertBack(object? value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

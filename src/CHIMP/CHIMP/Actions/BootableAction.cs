@@ -8,7 +8,7 @@ namespace Chimp.Actions
     abstract class BootableAction : ActionBase
     {
         private IBootService BootService { get; }
-        private CardInfo Card => CardViewModel.SelectedItem.Info;
+        private CardInfo? Card => CardViewModel?.SelectedItem?.Info;
         private bool Value { get; }
         protected abstract string CompletedTitle { get; }
         private string CategoryName { get; }
@@ -21,14 +21,17 @@ namespace Chimp.Actions
             Value = value;
         }
 
-        protected override SoftwareData Perform()
+        protected override SoftwareData? Perform()
         {
-            if (BootService.SetBootable(Card, Card.FileSystem, CategoryName, Value))
+            var fileSystem = Card?.FileSystem;
+            if (fileSystem != null && BootService.SetBootable(Card!, fileSystem, CategoryName, Value))
             {
-                CardViewModel.SelectedItem.Bootable = BootService.TestBootable(Card, Card.FileSystem);
+                var card = CardViewModel?.SelectedItem;
+                if (card != null)
+                    card.Bootable = BootService.TestBootable(Card!, fileSystem);
                 //MainViewModel.Set<ActionViewModel>("Action", null);
                 //MainViewModel.Step.CanGoBack = true;
-                DownloadViewModel.Title = CompletedTitle;
+                SetTitle(CompletedTitle);
             }
             return null;
         }

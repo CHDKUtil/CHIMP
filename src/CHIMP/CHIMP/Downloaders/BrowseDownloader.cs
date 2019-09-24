@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Chimp.Model;
@@ -11,7 +8,7 @@ namespace Chimp.Downloaders
 {
     sealed class BrowseDownloader : IDownloader
     {
-        public Task<SoftwareData> DownloadAsync(SoftwareCameraInfo camera, SoftwareInfo software, CancellationToken cancellationToken)
+        public Task<SoftwareData?> DownloadAsync(SoftwareCameraInfo camera, SoftwareInfo software, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

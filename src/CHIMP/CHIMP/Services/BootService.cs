@@ -17,7 +17,7 @@ namespace Chimp.Services
             BootProvider = bootProvider;
         }
 
-        public string TestBootable(CardInfo cardInfo, string fileSystem)
+        public string? TestBootable(CardInfo cardInfo, string fileSystem)
         {
             if (fileSystem == null)
                 return null;

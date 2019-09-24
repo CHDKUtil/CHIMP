@@ -52,7 +52,7 @@ namespace Net.Chdk.Providers.Product
 
         protected override LogLevel LogLevel => LogLevel.Information;
 
-        protected override string Format => "Products: {0}";
+        protected override string? Format => "Products: {0}";
 
         #endregion
 

@@ -7,6 +7,7 @@ using Net.Chdk.Model.Software;
 using Net.Chdk.Providers.Product;
 using Net.Chdk.Providers.Software;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading;
@@ -104,7 +105,20 @@ namespace Chimp.Controllers
             return viewModel;
         }
 
-        private SoftwareItemViewModel CreateItemViewModel(SoftwareInfo software, ModulesInfo modules)
+        private IEnumerable<SoftwareItemViewModel> CreateItemViewModels(CardInfo card, CardInfo? card2, Progress<double> progress, SoftwareInfo[] software, CancellationToken token)
+        {
+            foreach (var item in software)
+            {
+                var modules = ModulesDetector.GetModules(card, card2, item, progress, token);
+                if (modules != null)
+                {
+                    Logger.LogObject(LogLevel.Information, "Detected {0}", modules);
+                    yield return CreateItemViewModel(item, modules);
+                }
+            }
+        }
+
+        private SoftwareItemViewModel CreateItemViewModel(SoftwareInfo software, ModulesInfo? modules)
         {
             return new SoftwareItemViewModel
             {
@@ -124,22 +138,22 @@ namespace Chimp.Controllers
                 ?? productName;
         }
 
-        private ModulesViewModel CreateModulesViewModel(SoftwareInfo software, ModulesInfo modules)
+        private ModulesViewModel? CreateModulesViewModel(SoftwareInfo software, ModulesInfo? modules)
         {
             var productName = software.Product?.Name;
             if (productName == null)
                 return null;
-            var items = modules.Modules?
+            ModulesItemViewModel[]? items = modules?.Modules?
                 .Select(kvp => CreateModuleItemViewModel(software, kvp.Key, kvp.Value))
                 .Where(vm => vm != null)
-                .ToArray();
+                .ToArray()!;
             return new ModulesViewModel
             {
                 Items = items,
             };
         }
 
-        private ModulesItemViewModel CreateModuleItemViewModel(SoftwareInfo software, string name, ModuleInfo module)
+        private ModulesItemViewModel? CreateModuleItemViewModel(SoftwareInfo software, string name, ModuleInfo module)
         {
             var displayName = GetModuleTitle(software, name);
             if (string.IsNullOrEmpty(displayName))
@@ -173,9 +187,9 @@ namespace Chimp.Controllers
         //    return CHDK.ResourceManager.GetString($"Module_{name}");
         //}
 
-        private string TryGetModuleTitle(SoftwareInfo software, string name)
+        private string? TryGetModuleTitle(SoftwareInfo software, string name)
         {
-            var productName = software.Product.Name;
+            var productName = software.Product?.Name!;
             var id = ModuleProvider.GetModuleId(productName, name);
             if (id == null)
                 return null;
@@ -191,13 +205,13 @@ namespace Chimp.Controllers
         //    return EnglishResourceProvider.GetString(id);
         //}
 
-        private string DoGetModuleTitle(SoftwareInfo software, string name)
+        private string? DoGetModuleTitle(SoftwareInfo software, string name)
         {
-            var productName = software.Product.Name;
+            var productName = software.Product?.Name!;
             return ModuleProvider.GetModuleTitle(productName, name);
         }
 
-        private string GetDefaultModuleTitle(SoftwareInfo software, string name)
+        private string GetDefaultModuleTitle(SoftwareInfo _, string name)
         {
             return name;
         }
@@ -206,21 +220,15 @@ namespace Chimp.Controllers
         {
             MainViewModel.IsIndeterminate = true;
 
-            var card = CardViewModel.SelectedItem.Info;
+            var card = CardViewModel?.SelectedItem?.Info!;
             var card2 = GetCard2();
             var progress = new Progress<double>(OnProgressChanged);
             var software = SoftwareDetector.GetSoftware(card, progress, token);
             foreach (var item in software)
                 Logger.LogObject(LogLevel.Information, "Detected {0}", item);
 
-            var vms = new SoftwareItemViewModel[software.Length];
-            for (var i = 0; i < software.Length; i++)
-            {
-                var modules = ModulesDetector.GetModules(card, card2, software[i], progress, token);
-                Logger.LogObject(LogLevel.Information, "Detected {0}", modules);
-                vms[i] = CreateItemViewModel(software[i], modules);
-            }
-            viewModel.Items = vms;
+            var vms = CreateItemViewModels(card, card2, progress, software, token);
+            viewModel.Items = vms.ToArray();
 
             viewModel.SelectedItem = viewModel.Items.Length == 1
                 ? viewModel.Items.Single()
@@ -232,13 +240,11 @@ namespace Chimp.Controllers
             viewModel.Title = title;
         }
 
-        private CardInfo GetCard2()
+        private CardInfo? GetCard2()
         {
-            var card = CardViewModel.SelectedItem;
-            if (card.Switched != false)
-            {
-                return card.Info;
-            }
+            var card = CardViewModel?.SelectedItem;
+            if (card?.Switched != false)
+                return card?.Info;
 
             //TODO Use the other volume on Windows 10.2
             return null;
@@ -271,12 +277,12 @@ namespace Chimp.Controllers
 
         private void UpdateCanContinue()
         {
-            StepViewModel.CanContinue = ViewModel != null && (ViewModel.Items.Length == 0 || ViewModel.SelectedItem != null);
+            StepViewModel!.CanContinue = ViewModel != null && (ViewModel.Items?.Length == 0 || ViewModel.SelectedItem != null);
         }
 
         private void UpdateIsPaused()
         {
-            MainViewModel.IsWarning = ViewModel != null && ViewModel.Items.Length > 0 && ViewModel.SelectedItem == null;
+            MainViewModel.IsWarning = ViewModel != null && ViewModel.Items?.Length > 0 && ViewModel.SelectedItem == null;
         }
 
         private void Software_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -284,7 +290,7 @@ namespace Chimp.Controllers
             switch (e.PropertyName)
             {
                 case nameof(SoftwareViewModel.SelectedItem):
-                    Logger.LogObject(LogLevel.Information, "Selected {0}", ViewModel.SelectedItem?.Info);
+                    Logger.LogObject(LogLevel.Information, "Selected {0}", ViewModel?.SelectedItem?.Info!);
                     UpdateCanContinue();
                     UpdateIsPaused();
                     break;
@@ -301,7 +307,7 @@ namespace Chimp.Controllers
         private bool IsSupported(SoftwareInfo software)
         {
             return ProductProvider.GetProductNames()
-                .Contains(software.Product.Name, StringComparer.InvariantCulture);
+                .Contains(software.Product?.Name, StringComparer.InvariantCulture);
         }
     }
 }

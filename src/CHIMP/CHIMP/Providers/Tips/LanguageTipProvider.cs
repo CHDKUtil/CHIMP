@@ -23,7 +23,7 @@ namespace Chimp.Providers.Tips
                     Header = Resources.Summary_SwitchLanguage_Header,
                     Contents = new[]
                     {
-                        string.Format(Resources.Summary_SwitchLanguage_Format, productText, Language.DisplayName),
+                        string.Format(Resources.Summary_SwitchLanguage_Format, productText, Language?.DisplayName),
                         Resources.Summary_SwitchLanguage_2_Text,
                     }
                 };
@@ -44,6 +44,6 @@ namespace Chimp.Providers.Tips
             }
         }
 
-        private CultureInfo Language => DownloadViewModel.Software.Product.Language;
+        private CultureInfo? Language => DownloadViewModel?.Software?.Product?.Language;
     }
 }

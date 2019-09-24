@@ -4,6 +4,6 @@ namespace Net.Chdk.Detectors.Camera
 {
     public interface IFileCameraDetector
     {
-        CameraInfo GetCamera(string filePath);
+        CameraInfo? GetCamera(string filePath);
     }
 }

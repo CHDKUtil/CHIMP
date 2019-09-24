@@ -19,14 +19,14 @@ namespace Net.Chdk.Validators.Software
             ModuleProvider = moduleProvider;
         }
 
-        protected override void DoValidate(ModulesInfo modules, string basePath, IProgress<double> progress, CancellationToken token)
+        protected override void DoValidate(ModulesInfo modules, string basePath, IProgress<double>? progress, CancellationToken token)
         {
             Validate(modules.Version);
             Validate(modules.Product);
-            Validate(modules.Product.Name, modules.Modules, basePath, progress, token);
+            Validate(modules.Product?.Name, modules.Modules, basePath, progress, token);
         }
 
-        private static void Validate(ModulesProductInfo product)
+        private static void Validate(ModulesProductInfo? product)
         {
             if (product == null)
                 throw new ValidationException("Null product");
@@ -35,7 +35,7 @@ namespace Net.Chdk.Validators.Software
                 throw new ValidationException("Missing product name");
         }
 
-        private void Validate(string productName, IDictionary<string, ModuleInfo> modules, string basePath, IProgress<double> progress, CancellationToken token)
+        private void Validate(string? productName, IDictionary<string, ModuleInfo>? modules, string basePath, IProgress<double>? progress, CancellationToken token)
         {
             if (modules == null)
                 ThrowValidationException("Null modules");
@@ -43,42 +43,49 @@ namespace Net.Chdk.Validators.Software
             token.ThrowIfCancellationRequested();
 
             var count = modules
-                .SelectMany(kvp => kvp.Value.Hash.Values)
+                .SelectMany(kvp => kvp.Value.Hash?.Values)
                 .Count();
             var index = 0;
             var values = new Dictionary<string, string>();
-            foreach (var kvp in modules)
+            foreach (var kvp in modules!)
             {
                 Validate(kvp.Key, kvp.Value, basePath, progress, token);
-                foreach (var kvp2 in kvp.Value.Hash.Values)
+                var values2 = kvp.Value.Hash?.Values;
+                if (values2 != null)
                 {
-                    values.Add(kvp2.Key, kvp2.Value);
-                    if (progress != null)
-                        progress.Report((double)(++index) / count);
+                    foreach (var kvp2 in values2)
+                    {
+                        values.Add(kvp2.Key, kvp2.Value);
+                        if (progress != null)
+                            progress.Report((double)(++index) / count);
+                    }
                 }
             }
 
             Validate(productName, values, basePath);
         }
 
-        private void Validate(string name, ModuleInfo module, string basePath, IProgress<double> progress, CancellationToken token)
+        private void Validate(string name, ModuleInfo module, string basePath, IProgress<double>? progress, CancellationToken token)
         {
             if (string.IsNullOrEmpty(name))
                 ThrowValidationException("Missing module name");
 
-            Func<string> formatter = () => string.Format("module {0}", name);
+            string formatter() => string.Format("module {0}", name);
 
             if (module == null)
                 ThrowValidationException("Null {0}", formatter);
 
-            ValidateCreated(module.Created, formatter);
+            ValidateCreated(module!.Created, formatter);
             ValidateChangeset(module.Changeset, formatter);
 
             HashValidator.Validate(module.Hash, basePath, progress, token);
         }
 
-        private void Validate(string productName, Dictionary<string, string> values, string basePath)
+        private void Validate(string? productName, Dictionary<string, string> values, string basePath)
         {
+            if (productName == null)
+                throw new ValidationException("Missing product name");
+
             var modulesPath = ModuleProvider.GetPath(productName);
             var path = Path.Combine(basePath, modulesPath);
             if (!Directory.Exists(path))

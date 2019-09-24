@@ -4,6 +4,6 @@ namespace Chimp
 {
     interface IDownloaderProvider
     {
-        IDownloader GetDownloader(string productName, string sourceName, SoftwareSourceInfo source);
+        IDownloader? GetDownloader(string productName, string sourceName, SoftwareSourceInfo source);
     }
 }

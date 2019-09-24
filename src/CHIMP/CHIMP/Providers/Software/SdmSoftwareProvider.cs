@@ -15,7 +15,7 @@ namespace Chimp.Providers.Software
 
         protected override string ProductName => "SDM";
 
-        protected override Version GetVersion(Match match)
+        protected override Version? GetVersion(Match match)
         {
             var version = match.Groups["version"].Value;
             return Version.Parse(version);

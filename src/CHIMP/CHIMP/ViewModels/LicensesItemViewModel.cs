@@ -2,9 +2,9 @@
 {
     public sealed class LicensesItemViewModel : ViewModel
     {
-        public string Product { get; set; }
+        public string? Product { get; set; }
 
-        public string[] Contents { get; set; }
+        public string[]? Contents { get; set; }
 
         private bool _IsAccepted;
         public bool IsAccepted

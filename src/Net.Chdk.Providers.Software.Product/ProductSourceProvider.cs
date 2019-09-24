@@ -47,8 +47,9 @@ namespace Net.Chdk.Providers.Software.Product
 
         public IEnumerable<ProductSource> GetSources(CategoryInfo category)
         {
+            if (!IsMatch(category))
+                return Enumerable.Empty<ProductSource>();
             return Data
-                .Where(kvp => IsMatch(kvp.Value, category))
                 .Select(CreateProductSource)
                 .OrderBy(GetProductSourceOrder);
         }
@@ -61,7 +62,7 @@ namespace Net.Chdk.Providers.Software.Product
                 .OrderBy(GetProductSourceOrder);
         }
 
-        public IEnumerable<SoftwareSourceInfo> GetSources(SoftwareProductInfo product, string sourceName)
+        public IEnumerable<SoftwareSourceInfo> GetSources(SoftwareProductInfo product, string? sourceName)
         {
             return Data
                 .Select(kvp => kvp.Value)
@@ -75,9 +76,9 @@ namespace Net.Chdk.Providers.Software.Product
 
         protected abstract string ProductName { get; }
 
-        protected virtual string GetChannelName(SoftwareProductInfo product) => null;
+        protected virtual string? GetChannelName(SoftwareProductInfo product) => null;
 
-        protected virtual CultureInfo GetLanguage(SoftwareSourceInfo source) => null;
+        protected virtual CultureInfo? GetLanguage(SoftwareSourceInfo source) => null;
 
         #endregion
 
@@ -85,7 +86,7 @@ namespace Net.Chdk.Providers.Software.Product
 
         private string CategoryName => ProductProvider.GetCategoryName(ProductName);
 
-        private bool IsMatch(SoftwareSourceInfo source, CategoryInfo category)
+        private bool IsMatch(CategoryInfo category)
         {
             if (category?.Name == null)
                 return true;
@@ -123,10 +124,10 @@ namespace Net.Chdk.Providers.Software.Product
             return language.Equals(product.Language);
         }
 
-        private bool IsMatch(SoftwareSourceInfo source, SoftwareProductInfo product, string sourceName)
+        private bool IsMatch(SoftwareSourceInfo source, SoftwareProductInfo product, string? sourceName)
         {
             return IsMatch(source, product)
-                && sourceName.Equals(source.Name, StringComparison.Ordinal);
+                && sourceName?.Equals(source.Name, StringComparison.Ordinal) == true;
         }
 
         private ProductSource CreateProductSource(KeyValuePair<string, SoftwareSourceInfo> kvp)
@@ -142,7 +143,7 @@ namespace Net.Chdk.Providers.Software.Product
         private int GetSourceOrder(SoftwareSourceInfo source)
         {
             var language = GetLanguage(source);
-            return language.IsCurrentUICulture()
+            return language?.IsCurrentUICulture() == true
                 ? -1
                 : 0;
         }

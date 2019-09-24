@@ -22,27 +22,21 @@ namespace Net.Chdk.Providers.Crypto
 
         private static byte[] ComputeHash(byte[] buffer, string hashName)
         {
-            return CreateHashAlgorithm(hashName)
-                .ComputeHash(buffer);
+            using var hash = CreateHashAlgorithm(hashName);
+            return hash.ComputeHash(buffer);
         }
 
         private static HashAlgorithm CreateHashAlgorithm(string hashName)
         {
-            switch (hashName)
+            return hashName switch
             {
-                case "md5":
-                    return MD5.Create();
-                case "sha1":
-                    return SHA1.Create();
-                case "sha256":
-                    return SHA256.Create();
-                case "sha384":
-                    return SHA384.Create();
-                case "sha512":
-                    return SHA512.Create();
-                default:
-                    throw new ArgumentException("Invalid hash name");
-            }
+                "md5" => MD5.Create(),
+                "sha1" => SHA1.Create(),
+                "sha256" => SHA256.Create(),
+                "sha384" => SHA384.Create(),
+                "sha512" => SHA512.Create(),
+                _ => throw new ArgumentException("Invalid hash name"),
+            };
         }
     }
 }

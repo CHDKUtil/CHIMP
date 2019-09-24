@@ -5,6 +5,6 @@ namespace Net.Chdk.Detectors.CameraModel
 {
     public interface IFileCameraModelDetector
     {
-        CameraModels GetCameraModels(string filePath, IProgress<double> progress, CancellationToken token);
+        CameraModels? GetCameraModels(string filePath, IProgress<double>? progress, CancellationToken token);
     }
 }

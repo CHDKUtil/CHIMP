@@ -25,8 +25,8 @@ namespace Net.Chdk.Providers.Boot
         #region IBootProvider Members
 
         public string FileName => Data.Files.First().Key;
-        public int[][] Offsets => Data.Offsets;
-        public byte[] Prefix => Data.Prefix;
+        public int[][]? Offsets => Data.Offsets;
+        public byte[]? Prefix => Data.Prefix;
 
         #endregion
 
@@ -34,8 +34,8 @@ namespace Net.Chdk.Providers.Boot
 
         internal sealed class BootData : DataBase
         {
-            public int[][] Offsets { get; set; }
-            public byte[] Prefix { get; set; }
+            public int[][]? Offsets { get; set; }
+            public byte[]? Prefix { get; set; }
         }
 
         private string CategoryName { get; }

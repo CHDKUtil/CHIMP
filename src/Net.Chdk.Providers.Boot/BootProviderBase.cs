@@ -3,6 +3,7 @@ using Net.Chdk.Json;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -26,6 +27,8 @@ namespace Net.Chdk.Providers.Boot
 
         public uint GetBlockSize(string fileSystem)
         {
+            if (Data.Sizes == null)
+                throw new InvalidDataException("Null sizes");
             Data.Sizes.TryGetValue(fileSystem, out uint size);
             return size;
         }
@@ -51,9 +54,9 @@ namespace Net.Chdk.Providers.Boot
 
         internal abstract class DataBase
         {
-            public Dictionary<string, uint> Sizes { get; set; }
-            public Dictionary<string, Dictionary<string, string>> Strings { get; set; }
-            public Dictionary<string, string> Files { get; set; }
+            public Dictionary<string, uint>? Sizes { get; set; }
+            public Dictionary<string, Dictionary<string, string>>? Strings { get; set; }
+            public Dictionary<string, string>? Files { get; set; }
         }
 
         #endregion
@@ -78,7 +81,7 @@ namespace Net.Chdk.Providers.Boot
 
         #region Files
 
-        private Lazy<Dictionary<string, byte[]>> files;
+        private readonly Lazy<Dictionary<string, byte[]>> files;
 
         protected Dictionary<string, byte[]> Files => files.Value;
 

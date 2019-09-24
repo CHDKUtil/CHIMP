@@ -8,9 +8,9 @@ namespace Chimp.Converters
 {
     sealed class ProgressStateConverter : IMultiValueConverter
     {
-        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object[]? values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (values.Length < 1 || !(values[0] is MainViewModel mainViewModel))
+            if (values == null || values.Length < 1 || !(values[0] is MainViewModel mainViewModel))
                 return null;
             if (mainViewModel.IsError)
                 return TaskbarItemProgressState.Error;
@@ -21,7 +21,7 @@ namespace Chimp.Converters
 			return TaskbarItemProgressState.Normal;
         }
 
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        public object[]? ConvertBack(object? value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

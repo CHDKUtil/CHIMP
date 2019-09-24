@@ -35,14 +35,14 @@ namespace Chimp.Containers
             return page;
         }
 
-        protected override IDictionary<string, StepData> Data =>
-            StepsData.Steps.ToDictionary(
-                s => s.Name,
+        protected override IDictionary<string, StepData>? Data =>
+            StepsData.Steps?.ToDictionary(
+                s => s.Name!,
                 s => s);
 
         protected override string GetNamespace(string key)
         {
-            return Data[key].Namespace
+            return Data?[key].Namespace
                 ?? "Chimp.Pages";
         }
 

@@ -49,10 +49,11 @@ namespace Chimp
 
         public static bool Invoke(SafeFileHandle hDevice, int controlCode)
         {
-            return DeviceIoControl(hDevice, controlCode, IntPtr.Zero, 0, IntPtr.Zero, 0, out int read, IntPtr.Zero);
+            return DeviceIoControl(hDevice, controlCode, IntPtr.Zero, 0, IntPtr.Zero, 0, out _, IntPtr.Zero);
         }
 
         public static bool TryGet<T>(SafeFileHandle hDevice, int ioControlCode, out T value)
+            where T : struct
         {
             var size = Marshal.SizeOf<T>();
             var buffer = Marshal.AllocHGlobal(size);
@@ -60,7 +61,7 @@ namespace Chimp
             {
                 if (!DeviceIoControl(hDevice, ioControlCode, IntPtr.Zero, 0, buffer, size, out int read, IntPtr.Zero))
                 {
-                    value = default(T);
+                    value = default;
                     return false;
                 }
 

@@ -7,6 +7,6 @@ namespace Net.Chdk.Detectors.Software
 {
     public interface IModulesDetector
     {
-        ModulesInfo GetModules(CardInfo card, CardInfo card2, SoftwareInfo software, IProgress<double> progress, CancellationToken token);
+        ModulesInfo? GetModules(CardInfo card, CardInfo? card2, SoftwareInfo software, IProgress<double>? progress, CancellationToken token);
     }
 }

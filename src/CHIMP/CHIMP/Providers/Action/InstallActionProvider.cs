@@ -19,20 +19,20 @@ namespace Chimp.Providers.Action
             ProductProvider = productProvider;
         }
 
-        protected override IEnumerable<IAction> GetActions(SoftwareProductInfo product)
+        protected override IEnumerable<IAction> GetActions(SoftwareProductInfo? product)
         {
-            if (product == null)
+            if (product is null)
                 return base.GetActions(product);
-            var camera = CameraProvider.GetCamera(product.Name, CameraViewModel.Info, CameraViewModel.SelectedItem.Model);
-            if (camera == null)
+            var camera = CameraProvider.GetCamera(product.Name, CameraViewModel?.Info, CameraViewModel?.SelectedItem?.Model);
+            if (camera is null)
                 return Enumerable.Empty<IAction>();
             return GetSources(product)
                 .Select(s => CreateAction(camera, s));
         }
 
-        protected override IEnumerable<ProductSource> GetSources(SoftwareProductInfo product)
+        protected override IEnumerable<ProductSource> GetSources(SoftwareProductInfo? product)
         {
-            var infoProduct = SoftwareViewModel.SelectedItem?.Info.Product;
+            var infoProduct = SoftwareViewModel?.SelectedItem?.Info?.Product;
             var infoSources = infoProduct == null
                 ? Enumerable.Empty<ProductSource>()
                 : base.GetSources(infoProduct);

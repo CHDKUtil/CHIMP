@@ -9,12 +9,12 @@ namespace Chimp.Resolvers
 {
     sealed class SoftwareProviderResolver : ProviderResolver<ISoftwareProvider, SoftwareProvider>
     {
-        public SoftwareProviderResolver(IServiceActivator serviceActivator, IDictionary<string, Distro> distros)
+        public SoftwareProviderResolver(IServiceActivator serviceActivator, IDictionary<string, Distro>? distros)
             : base(serviceActivator, distros)
         {
         }
 
-        protected override string GetTypeName(Distro distro)
+        protected override string? GetTypeName(Distro distro)
         {
             return distro.ProductType;
         }
@@ -28,7 +28,7 @@ namespace Chimp.Resolvers
         protected override IEnumerable<object> GetValues(string sourceName, SoftwareSourceInfo source, Distro distro)
         {
             yield return source;
-            yield return distro.Language;
+            yield return distro.Language!;
         }
     }
 }

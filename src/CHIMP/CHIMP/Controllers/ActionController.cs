@@ -11,14 +11,14 @@ namespace Chimp.Controllers
         protected override bool CanSkipStep => IsCanSkipStep(ViewModel);
         protected override bool SkipStep => IsSkipStep(ViewModel);
 
-        private static bool IsCanSkipStep(ActionViewModel viewModel)
+        private static bool IsCanSkipStep(ActionViewModel? viewModel)
         {
-            return viewModel.SelectedItem != null;
+            return viewModel?.SelectedItem != null;
         }
 
-        private bool IsSkipStep(ActionViewModel viewModel)
+        private bool IsSkipStep(ActionViewModel? viewModel)
         {
-            return viewModel.Items.Length == 1 || base.SkipStep;
+            return viewModel?.Items?.Length == 1 || base.SkipStep;
         }
 
         private IActionProvider ActionProvider { get; }
@@ -67,17 +67,17 @@ namespace Chimp.Controllers
 
         private void Subscribe2()
         {
-            ViewModel.PropertyChanged += Action_PropertyChanged;
+            ViewModel!.PropertyChanged += Action_PropertyChanged;
         }
 
         private void Unsubscribe2()
         {
-            ViewModel.PropertyChanged -= Action_PropertyChanged;
+            ViewModel!.PropertyChanged -= Action_PropertyChanged;
         }
 
         private void UpdateCanContinue()
         {
-            StepViewModel.CanContinue = ViewModel?.SelectedItem != null;
+            StepViewModel!.CanContinue = ViewModel?.SelectedItem != null;
         }
 
         private void UpdateIsPaused()
@@ -95,7 +95,7 @@ namespace Chimp.Controllers
             var viewModel = new ActionViewModel
             {
                 Items = items,
-                SelectedItem = items.FirstOrDefault(item => item.Action.IsDefault),
+                SelectedItem = items.FirstOrDefault(item => item.Action?.IsDefault == true),
             };
 
             var isSkip = IsCanSkipStep(viewModel) && IsSkipStep(viewModel);
@@ -122,7 +122,7 @@ namespace Chimp.Controllers
             switch (e.PropertyName)
             {
                 case nameof(ActionViewModel.SelectedItem):
-                    Logger.LogObject(LogLevel.Information, "Selected {0}", ViewModel.SelectedItem.DisplayName);
+                    Logger.LogObject(LogLevel.Information, "Selected {0}", ViewModel?.SelectedItem?.DisplayName);
                     UpdateCanContinue();
                     UpdateIsPaused();
                     break;

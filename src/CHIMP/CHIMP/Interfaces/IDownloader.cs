@@ -7,6 +7,6 @@ namespace Chimp
 {
     interface IDownloader
     {
-        Task<SoftwareData> DownloadAsync(SoftwareCameraInfo camera, SoftwareInfo software, CancellationToken cancellationToken);
+        Task<SoftwareData?> DownloadAsync(SoftwareCameraInfo camera, SoftwareInfo software, CancellationToken cancellationToken);
     }
 }

@@ -54,23 +54,21 @@ namespace Chimp.Providers
             var filePath = Path.Combine(Directories.Data, Directories.Product, ProductName, LanguagePath, fileName);
             if (File.Exists(filePath))
             {
-                using (var reader = File.OpenText(filePath))
+                using var reader = File.OpenText(filePath);
+                string line;
+                while ((line = reader.ReadLine()) != null)
                 {
-                    string line;
-                    while ((line = reader.ReadLine()) != null)
+                    if (line.Length > 0)
                     {
-                        if (line.Length > 0)
+                        line = line.TrimStart();
+                        if (!line.StartsWith("//"))
                         {
-                            line = line.TrimStart();
-                            if (!line.StartsWith("//"))
+                            var index = line.IndexOf(' ');
+                            if (index > 0)
                             {
-                                var index = line.IndexOf(' ');
-                                if (index > 0)
-                                {
-                                    var key = line.Substring(0, index);
-                                    var value = GetValue(line, index);
-                                    strings.Add(key, value);
-                                }
+                                var key = line.Substring(0, index);
+                                var value = GetValue(line, index);
+                                strings.Add(key, value);
                             }
                         }
                     }

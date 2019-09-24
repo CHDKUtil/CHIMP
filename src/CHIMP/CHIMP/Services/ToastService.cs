@@ -25,7 +25,7 @@ namespace Chimp.Services
 		{
 			get
 			{
-				if (OperatingSystem.OSType != 18 || OperatingSystem.Version.Major < 10)
+				if (OperatingSystem.OSType != 18 || OperatingSystem.Version?.Major < 10)
 					return false;
 
 				if (Settings.Default.ToastMaxDuration < 0)
@@ -35,7 +35,7 @@ namespace Chimp.Services
 			}
 		}
 
-		public async Task<bool> ShowEjectToastAsync(string displayName)
+		public async Task<bool> ShowEjectToastAsync(string? displayName)
 		{
 			if (displayName == null || !IsAvailable)
 				return false;

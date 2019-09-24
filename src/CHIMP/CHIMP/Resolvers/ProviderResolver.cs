@@ -12,26 +12,26 @@ namespace Chimp.Resolvers
         where TProviderImpl : TProvider
         where TProvider : class
     {
-        private ConcurrentDictionary<string, TProvider> Providers { get; }
-        private IDictionary<string, Distro> Distros { get; }
+        private ConcurrentDictionary<string, TProvider?> Providers { get; }
+        private IDictionary<string, Distro>? Distros { get; }
 
-        protected ProviderResolver(IServiceActivator serviceActivator, IDictionary<string, Distro> distros)
+        protected ProviderResolver(IServiceActivator serviceActivator, IDictionary<string, Distro>? distros)
             : base(serviceActivator)
         {
-            Providers = new ConcurrentDictionary<string, TProvider>();
+            Providers = new ConcurrentDictionary<string, TProvider?>();
             Distros = distros;
         }
 
-        public TProvider GetProvider(string sourceName, SoftwareSourceInfo source)
+        public TProvider? GetProvider(string sourceName, SoftwareSourceInfo source)
         {
             return Providers.GetOrAdd(sourceName, _ => CreateProvider(sourceName, source));
         }
 
-        protected override IDictionary<string, Distro> Data => Distros ?? base.Data;
+        protected override IDictionary<string, Distro>? Data => Distros ?? base.Data;
 
-        private TProvider CreateProvider(string sourceName, SoftwareSourceInfo source)
+        private TProvider? CreateProvider(string sourceName, SoftwareSourceInfo source)
         {
-            if (!Data.TryGetValue(sourceName, out Distro distro))
+            if (Data == null || !Data.TryGetValue(sourceName, out Distro distro))
                 return null;
 
             var typeName = GetTypeName(distro);
@@ -41,7 +41,7 @@ namespace Chimp.Resolvers
             return CreateProvider(sourceName, typeName, types, values);
         }
 
-        protected abstract string GetTypeName(Distro distro);
+        protected abstract string? GetTypeName(Distro distro);
         protected abstract IEnumerable<object> GetValues(string sourceName, SoftwareSourceInfo source, Distro distro);
         protected abstract IEnumerable<Type> GetTypes();
 

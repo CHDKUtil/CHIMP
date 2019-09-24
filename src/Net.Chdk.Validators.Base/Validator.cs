@@ -6,8 +6,9 @@ using System.Threading;
 namespace Net.Chdk.Validators
 {
     public abstract class Validator<T> : IValidator<T>
+        where T : class
     {
-        public void Validate(T value, string basePath, IProgress<double> progress, CancellationToken token)
+        public void Validate(T? value, string basePath, IProgress<double>? progress, CancellationToken token)
         {
             if (value == null)
                 throw new ArgumentNullException(nameof(value));
@@ -18,9 +19,9 @@ namespace Net.Chdk.Validators
             DoValidate(value, basePath, progress, token);
         }
 
-        protected abstract void DoValidate(T value, string basePath, IProgress<double> progress, CancellationToken token);
+        protected abstract void DoValidate(T value, string basePath, IProgress<double>? progress, CancellationToken token);
 
-        protected static void Validate(Version version)
+        protected static void Validate(Version? version)
         {
             if (version == null)
                 throw new ValidationException("Null version");
@@ -34,11 +35,11 @@ namespace Net.Chdk.Validators
             if (created == null)
                 ThrowValidationException("Null {0} created", formatter);
 
-            if (created.Value < new DateTime(2000, 1, 1) || created.Value > DateTime.Now)
+            if (created!.Value < new DateTime(2000, 1, 1) || created.Value > DateTime.Now)
                 ThrowValidationException("Invalid {0} created", formatter);
         }
 
-        protected static void ValidateChangeset(string changeset, Func<string> formatter)
+        protected static void ValidateChangeset(string? changeset, Func<string> formatter)
         {
             if (changeset == null)
                 return;

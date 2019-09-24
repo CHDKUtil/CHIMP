@@ -32,13 +32,18 @@ namespace Chimp.Actions
 
         public override string DisplayName { get; }
 
-        public override async Task<SoftwareData> PerformAsync(CancellationToken token)
+        public override async Task<SoftwareData?> PerformAsync(CancellationToken token)
         {
-            var software = SoftwareViewModel.SelectedItem?.Info;
-            return await GetDownloader().DownloadAsync(Camera, software, token);
+            var software = SoftwareViewModel?.SelectedItem?.Info;
+            if (software == null)
+                return null;
+            var downloader = GetDownloader();
+            if (downloader == null)
+                return null;
+            return await downloader.DownloadAsync(Camera, software, token);
         }
 
-        private IDownloader GetDownloader()
+        private IDownloader? GetDownloader()
         {
             return DownloaderProvider.GetDownloader(ProductName, SourceName, Source);
         }

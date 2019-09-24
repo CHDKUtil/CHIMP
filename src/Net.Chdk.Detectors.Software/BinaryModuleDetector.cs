@@ -14,7 +14,7 @@ namespace Net.Chdk.Detectors.Software
             Detectors = detectors;
         }
 
-        public ModuleInfo GetModule(SoftwareInfo software, byte[] buffer, string hashName)
+        public ModuleInfo? GetModule(SoftwareInfo software, byte[] buffer, string hashName)
         {
             var detectors = GetDetectors(software);
             var worker = new BinaryModuleDetectorWorker(detectors);
@@ -24,7 +24,7 @@ namespace Net.Chdk.Detectors.Software
         private IEnumerable<IProductBinaryModuleDetector> GetDetectors(SoftwareInfo software)
         {
             return Detectors
-                .Where(d => d.ProductName.Equals(software.Product.Name, StringComparison.Ordinal));
+                .Where(d => d.ProductName.Equals(software.Product?.Name, StringComparison.Ordinal));
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Chimp.Actions
     abstract class ScriptableAction : ActionBase
     {
         private IScriptService ScriptService { get; }
-        private CardInfo Card => CardViewModel.SelectedItem.Info;
+        private CardInfo? Card => CardViewModel?.SelectedItem?.Info;
         private bool Value { get; }
         protected abstract string CompletedTitle { get; }
 
@@ -19,14 +19,17 @@ namespace Chimp.Actions
             Value = value;
         }
 
-        protected override SoftwareData Perform()
+        protected override SoftwareData? Perform()
         {
-            if (ScriptService.SetScriptable(Card, Card.FileSystem, Value))
+            var fileSystem = Card?.FileSystem;
+            if (fileSystem != null && ScriptService.SetScriptable(Card!, fileSystem, Value))
             {
-                CardViewModel.SelectedItem.Scriptable = ScriptService.TestScriptable(Card, Card.FileSystem);
+                var card = CardViewModel?.SelectedItem;
+                if (card != null)
+                    card.Scriptable = ScriptService.TestScriptable(Card!, fileSystem);
                 //MainViewModel.Set<ActionViewModel>("Action", null);
                 //MainViewModel.Step.CanGoBack = true;
-                DownloadViewModel.Title = CompletedTitle;
+                SetTitle(CompletedTitle);
             }
             return null;
         }

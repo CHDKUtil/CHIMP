@@ -13,15 +13,15 @@ namespace Net.Chdk.Providers.Camera
         {
         }
 
-        protected override string GetRevision(CameraInfo cameraInfo)
+        protected override string? GetRevision(CameraInfo cameraInfo)
         {
-            var version = cameraInfo.Canon.FirmwareVersion;
+            var version = cameraInfo.Canon!.FirmwareVersion!;
             return $"{version.Major}{version.Minor}{version.Build}";
         }
 
-        protected override bool IsInvalid(CameraInfo cameraInfo)
+        protected override bool IsInvalid(CameraInfo? cameraInfo)
         {
-            return cameraInfo.Canon?.ModelId == null || cameraInfo.Canon?.FirmwareVersion == null;
+            return cameraInfo?.Canon?.ModelId == null || cameraInfo?.Canon?.FirmwareVersion == null;
         }
 
         protected override bool IsMultiPartition(EosCameraData camera)
@@ -39,10 +39,12 @@ namespace Net.Chdk.Providers.Camera
             return AltInfo.Empty;
         }
 
-        protected override uint GetFirmwareRevision(string revision) => 0;
+        protected override uint GetFirmwareRevision(string? revision) => 0;
 
-        protected override Version GetFirmwareVersion(string revision)
+        protected override Version? GetFirmwareVersion(string? revision)
         {
+            if (revision == null)
+                throw new ArgumentNullException(nameof(revision));
             string version = $"{revision[0]}.{revision[1]}.{revision[2]}";
             return Version.Parse(version);
         }

@@ -15,24 +15,27 @@ namespace Net.Chdk.Detectors.Software.Ml
 
         protected override int StringCount => 3;
 
-        protected override string GetVersionString(string[] strings)
+        protected override string? GetVersionString(string?[] strings)
         {
             return strings[2];
         }
 
-        protected override string GetCreationDateString(string[] strings)
+        protected override string? GetCreationDateString(string?[] strings)
         {
             return strings[0];
         }
 
-        protected override string GetCreator(string[] strings)
+        protected override string GetCreator(string?[] strings)
         {
             return "alex@thinkpad";
         }
 
-        protected override SoftwareCameraInfo GetCamera(string[] strings)
+        protected override SoftwareCameraInfo? GetCamera(string?[] strings)
         {
-            var split = strings[2].Split('.');
+            var versionStr = strings[2];
+            if (versionStr == null)
+                return null;
+            var split = versionStr.Split('.');
             var cameraStr = split[split.Length - 1];
             var startIndex = cameraStr.Length - 3;
             var platform = cameraStr.Substring(0, startIndex);
@@ -40,14 +43,14 @@ namespace Net.Chdk.Detectors.Software.Ml
             return GetCamera(platform, revision);
         }
 
-        protected override string GetStatus(string[] strings)
+        protected override string? GetStatus(string?[] strings)
         {
             return "beta";
         }
 
-        protected override string GetChangeset(string[] strings)
+        protected override string? GetChangeset(string?[] strings)
         {
-            return strings[1].Split(' ')[0];
+            return strings[1]?.Split(' ')[0];
         }
     }
 }

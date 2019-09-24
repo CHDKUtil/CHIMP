@@ -29,17 +29,17 @@ namespace Chimp.Controllers
 
         protected override void EnterStep()
         {
-            StepViewModel.CanGoBack = false;
+            StepViewModel!.CanGoBack = false;
 
-            if (ViewModel.IsEject)
+            if (ViewModel?.IsEject == true)
             {
                 //ViewModel = CreateViewModel();
                 ViewModel.Title = Resources.Eject_Ejecting_Text;
 
                 VolumeWatcher.Stop();
 
-                var card = CardViewModel.SelectedItem?.Info;
-                if (card != null)
+                var card = CardViewModel?.SelectedItem?.Info;
+                if (card?.DriveLetter != null)
                 {
                     EjectService.Eject(card.DriveLetter);
                     var card2 = CardDetector.GetCard(card.DriveLetter);
@@ -57,17 +57,9 @@ namespace Chimp.Controllers
                 MainViewModel.IsCompleted = true;
         }
 
-        private EjectViewModel CreateViewModel()
-        {
-            return new EjectViewModel
-            {
-                Title = Resources.Eject_Ejecting_Text,
-            };
-        }
-
         private async Task<bool> ShowToastAsync()
         {
-            var displayName = CardViewModel?.SelectedItem.DisplayName;
+            var displayName = CardViewModel?.SelectedItem?.DisplayName;
             return await ToastService.ShowEjectToastAsync(displayName);
         }
     }

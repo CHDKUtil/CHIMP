@@ -15,21 +15,21 @@ namespace Net.Chdk.Detectors.Software
         {
         }
 
-        public ModulesInfo GetModules(CardInfo card, CardInfo card2, SoftwareInfo software, IProgress<double> progress, CancellationToken token)
+        public ModulesInfo? GetModules(CardInfo card, CardInfo? card2, SoftwareInfo software, IProgress<double>? progress, CancellationToken token)
         {
             var rootPath = card.GetRootPath();
             var rootPath2 = card2?.GetRootPath();
             return GetModules(rootPath, rootPath2, software, progress, token);
         }
 
-        public ModulesInfo GetModules(string basePath, string basePath2, SoftwareInfo software, IProgress<double> progress, CancellationToken token)
+        public ModulesInfo? GetModules(string basePath, string? basePath2, SoftwareInfo software, IProgress<double>? progress, CancellationToken token)
         {
-            var productName = software.Product.Name;
+            var productName = software.Product?.Name;
             Logger.LogTrace("Detecting {0} modules from {1} metadata", productName, basePath);
 
-            var filePath = Path.Combine(basePath, Directories.Metadata, software.Category.Name, FileName);
+            var filePath = Path.Combine(basePath, Directories.Metadata, software.Category?.Name, FileName);
             var modules = GetValue(basePath2, filePath, progress, token);
-            if (!productName.Equals(modules?.Product.Name, StringComparison.Ordinal))
+            if (productName?.Equals(modules?.Product?.Name, StringComparison.Ordinal) != true)
                 return null;
 
             return modules;

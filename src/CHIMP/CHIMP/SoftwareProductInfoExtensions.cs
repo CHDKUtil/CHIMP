@@ -7,9 +7,18 @@ namespace Chimp
 {
     static class SoftwareProductInfoExtensions
     {
-        public static string GetVersionText(this SoftwareProductInfo product)
+        public static string? GetVersionText(this SoftwareProductInfo? product)
         {
+            if (product == null)
+                return null;
+
             var version = product.Version;
+            if (version == null)
+                return null;
+
+            if (product.Name == null)
+                return null;
+
             string format;
             if (version.MajorRevision < 0)
             {

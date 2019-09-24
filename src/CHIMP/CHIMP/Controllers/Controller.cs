@@ -9,7 +9,7 @@ namespace Chimp.Controllers
     abstract class Controller<T> : IController
         where T : Controller<T>
     {
-        protected CancellationTokenSource cts;
+        protected CancellationTokenSource? cts;
 
         protected Controller(MainViewModel mainViewModel, IStepProvider stepProvider, string stepName, ILoggerFactory loggerFactory)
         {
@@ -34,7 +34,7 @@ namespace Chimp.Controllers
 
 		protected virtual void Initialize()
 		{
-			StepViewModel.CanContinue = false;
+			StepViewModel!.CanContinue = false;
 		}
 
 		private void OnInitialized(Task task)
@@ -45,7 +45,7 @@ namespace Chimp.Controllers
 
         public virtual async Task EnterStepAsync()
         {
-            StepViewModel.CanContinue = false;
+            StepViewModel!.CanContinue = false;
 
             await Task.Run(() => EnterStep())
                 .ContinueWith(OnStepEntered, TaskScheduler.FromCurrentSynchronizationContext());
@@ -85,7 +85,7 @@ namespace Chimp.Controllers
             if (CanSkipStep && SkipStep)
             {
                 Logger.LogTrace("Skipping {0}", StepName);
-                StepViewModel.SelectedItem.IsSkipped = true;
+                StepViewModel!.SelectedItem!.IsSkipped = true;
                 StepViewModel.SelectedIndex++;
             }
         }
@@ -104,14 +104,14 @@ namespace Chimp.Controllers
 
         protected MainViewModel MainViewModel { get; }
 
-        protected StepViewModel StepViewModel => MainViewModel.Step;
-        protected CardViewModel CardViewModel => CardViewModel.Get(MainViewModel);
-        protected SoftwareViewModel SoftwareViewModel => SoftwareViewModel.Get(MainViewModel);
-        protected CameraViewModel CameraViewModel => CameraViewModel.Get(MainViewModel);
-        protected ActionViewModel ActionViewModel => ActionViewModel.Get(MainViewModel);
-        protected DownloadViewModel DownloadViewModel => DownloadViewModel.Get(MainViewModel);
-        protected InstallViewModel InstallViewModel => InstallViewModel.Get(MainViewModel);
-        protected EjectViewModel EjectViewModel => EjectViewModel.Get(MainViewModel);
+        protected StepViewModel? StepViewModel => MainViewModel.Step;
+        protected CardViewModel? CardViewModel => CardViewModel.Get(MainViewModel);
+        protected SoftwareViewModel? SoftwareViewModel => SoftwareViewModel.Get(MainViewModel);
+        protected CameraViewModel? CameraViewModel => CameraViewModel.Get(MainViewModel);
+        protected ActionViewModel? ActionViewModel => ActionViewModel.Get(MainViewModel);
+        protected DownloadViewModel? DownloadViewModel => DownloadViewModel.Get(MainViewModel);
+        protected InstallViewModel? InstallViewModel => InstallViewModel.Get(MainViewModel);
+        protected EjectViewModel? EjectViewModel => EjectViewModel.Get(MainViewModel);
     }
 
     abstract class Controller<TController, TViewModel> : Controller<TController>
@@ -171,7 +171,7 @@ namespace Chimp.Controllers
         {
         }
 
-        protected TViewModel ViewModel
+        protected TViewModel? ViewModel
         {
             get { return MainViewModel.Get<TViewModel>(StepName); }
             set { MainViewModel.Set(StepName, value); }

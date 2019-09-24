@@ -15,13 +15,13 @@ namespace Net.Chdk.Detectors.Software
         {
         }
 
-        public SoftwareInfo GetSoftware(CardInfo card, CategoryInfo category, IProgress<double> progress, CancellationToken token)
+        public SoftwareInfo? GetSoftware(CardInfo card, CategoryInfo category, IProgress<double>? progress, CancellationToken token)
         {
             var basePath = card.GetRootPath();
             return GetSoftware(basePath, category, progress, token);
         }
 
-        public SoftwareInfo GetSoftware(string basePath, CategoryInfo category, IProgress<double> progress, CancellationToken token)
+        public SoftwareInfo? GetSoftware(string basePath, CategoryInfo category, IProgress<double>? progress, CancellationToken token)
         {
             Logger.LogTrace("Detecting {0} software from {1} metadata", category.Name, basePath);
 

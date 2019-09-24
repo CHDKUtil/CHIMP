@@ -2,8 +2,8 @@
 {
     public sealed class LicensesViewModel : ViewModel
     {
-        public string Title { get; set; }
-        public LicensesItemViewModel[] Licenses { get; set; }
+        public string? Title { get; set; }
+        public LicensesItemViewModel[]? Licenses { get; set; }
 
         private bool _IsAllAccepted;
         public bool IsAllAccepted

@@ -31,7 +31,7 @@ namespace Net.Chdk.Detectors.Software.Sdm
 
         protected override string ProductName => "SDM";
 
-        protected override Version GetVersion(string rootPath)
+        protected override Version? GetVersion(string rootPath)
         {
             var version = GetVersionFromProperties(rootPath);
             if (version != null)
@@ -41,12 +41,12 @@ namespace Net.Chdk.Detectors.Software.Sdm
             return GetValue(txtPath, TextsVersions, Version.Parse);
         }
 
-        protected override CultureInfo GetLanguage(string rootPath)
+        protected override CultureInfo? GetLanguage(string rootPath)
         {
             return GetCultureInfo("en");
         }
 
-        private static Version GetVersionFromProperties(string rootPath)
+        private static Version? GetVersionFromProperties(string rootPath)
         {
             var propsPath = Path.Combine(rootPath, "sdmtable.properties");
             if (!File.Exists(propsPath))

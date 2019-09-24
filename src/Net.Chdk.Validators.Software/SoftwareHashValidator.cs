@@ -19,7 +19,7 @@ namespace Net.Chdk.Validators.Software
             HashProvider = hashProvider;
         }
 
-        protected override void DoValidate(SoftwareHashInfo hash, string basePath, IProgress<double> _, CancellationToken token)
+        protected override void DoValidate(SoftwareHashInfo hash, string basePath, IProgress<double>? _, CancellationToken token)
         {
             if (string.IsNullOrEmpty(hash.Name))
                 throw new ValidationException("Missing hash name");
@@ -34,7 +34,7 @@ namespace Net.Chdk.Validators.Software
                 throw new ValidationException("Missing hash values");
 
             foreach (var kvp in hash.Values)
-                Validate(kvp.Key, kvp.Value, basePath, hash.Name, token);
+                Validate(kvp.Key, kvp.Value, basePath, hash.Name!, token);
         }
 
         private void Validate(string key, string value, string basePath, string hashName, CancellationToken token)

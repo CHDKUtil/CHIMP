@@ -19,7 +19,7 @@ namespace Net.Chdk.Detectors.CameraModel
             CameraProvider = cameraProvider;
         }
 
-        public CameraModels GetCameraModels(string filePath, IProgress<double> progress, CancellationToken token)
+        public CameraModels? GetCameraModels(string filePath, IProgress<double>? progress, CancellationToken token)
         {
             Logger.LogTrace("Detecting camera models from {0}", filePath);
 

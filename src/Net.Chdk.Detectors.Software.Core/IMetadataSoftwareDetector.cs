@@ -7,6 +7,6 @@ namespace Net.Chdk.Detectors.Software
 {
     public interface IMetadataSoftwareDetector
     {
-        SoftwareInfo GetSoftware(string basePath, CategoryInfo category, IProgress<double> progress, CancellationToken token);
+        SoftwareInfo? GetSoftware(string basePath, CategoryInfo category, IProgress<double>? progress, CancellationToken token);
     }
 }

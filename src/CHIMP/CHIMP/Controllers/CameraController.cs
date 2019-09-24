@@ -9,7 +9,6 @@ using Net.Chdk.Providers.Camera;
 using System;
 using System.ComponentModel;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace Chimp.Controllers
@@ -17,8 +16,8 @@ namespace Chimp.Controllers
     sealed class CameraController : Controller<CameraController, CameraViewModel>
     {
         protected override bool CanSkipStep =>
-            ViewModel.SelectedItem != null
-            && SoftwareViewModel.SelectedItem?.Info?.Product?.Version?.MinorRevision >= 0;
+            ViewModel?.SelectedItem != null
+            && SoftwareViewModel?.SelectedItem?.Info?.Product?.Version?.MinorRevision >= 0;
 
         private ICameraModelDetector CameraModelDetector { get; }
         private IFileCameraModelDetector FileCameraModelDetector { get; }
@@ -76,7 +75,7 @@ namespace Chimp.Controllers
 
         private void UpdateCanContinue()
         {
-            StepViewModel.CanContinue = ViewModel?.SelectedItem != null;
+            StepViewModel!.CanContinue = ViewModel?.SelectedItem != null;
         }
 
         private void UpdateIsPaused()
@@ -96,9 +95,9 @@ namespace Chimp.Controllers
 
         private CameraViewModel CreateViewModel()
         {
-            var cardInfo = CardViewModel.SelectedItem.Info;
-            var softwareInfo = SoftwareViewModel.SelectedItem?.Info;
-            var camera = CameraModelDetector.GetCameraModels(cardInfo, softwareInfo, null, default(CancellationToken));
+            var cardInfo = CardViewModel!.SelectedItem!.Info!;
+            var softwareInfo = SoftwareViewModel!.SelectedItem!.Info!;
+            var camera = CameraModelDetector.GetCameraModels(cardInfo, softwareInfo, null, default);
             var viewModel = new CameraViewModel();
             Update(viewModel, camera);
             return viewModel;
@@ -106,7 +105,7 @@ namespace Chimp.Controllers
 
         private void SelectedItemChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (ViewModel.SelectedItem != null)
+            if (ViewModel?.SelectedItem != null)
                 Logger.LogInformation("Selected {0}", ViewModel.SelectedItem.DisplayName);
 
             UpdateCanContinue();
@@ -119,12 +118,12 @@ namespace Chimp.Controllers
                 .ContinueWith(UpdateCamera, TaskScheduler.FromCurrentSynchronizationContext());
         }
 
-        private CameraModels DetectCamera(string path)
+        private CameraModels? DetectCamera(string path)
         {
-            return FileCameraModelDetector.GetCameraModels(path, null, default(CancellationToken));
+            return FileCameraModelDetector.GetCameraModels(path, null, default);
         }
 
-        private void UpdateCamera(Task<CameraModels> task)
+        private void UpdateCamera(Task<CameraModels?> task)
         {
             if (task.Exception != null)
             {
@@ -145,11 +144,11 @@ namespace Chimp.Controllers
             }
             else
             {
-                Update(ViewModel, task.Result);
+                Update(ViewModel!, task.Result);
             }
         }
 
-        private void Update(CameraViewModel viewModel, CameraModels camera)
+        private void Update(CameraViewModel viewModel, CameraModels? camera)
         {
             Logger.LogObject(LogLevel.Information, "Detected {0}", camera);
 
@@ -186,7 +185,7 @@ namespace Chimp.Controllers
             viewModel.IsSelect = true;
         }
 
-        private static string GetError(CameraModels camera)
+        private static string? GetError(CameraModels camera)
         {
             if (camera.Info == null)
                 return null;
@@ -222,20 +221,14 @@ namespace Chimp.Controllers
         {
             return new[]
             {
-                new CameraModelInfo
-                {
-                    Names = new[]{ camera.Info.Base.Model }
-                }
+                new CameraModelInfo(new[]{ camera.Info!.Base!.Model! })
             };
         }
 
-        private static CameraItemViewModel CreateItem(CameraInfo info, CameraModelInfo model)
+        private static CameraItemViewModel CreateItem(CameraInfo? _, CameraModelInfo model)
         {
-            return new CameraItemViewModel
-            {
-                DisplayName = GetDisplayName(model),
-                Model = model,
-            };
+            var displayName = GetDisplayName(model);
+            return new CameraItemViewModel(displayName, model);
         }
 
         private static string GetDisplayName(CameraModelInfo model)

@@ -15,12 +15,12 @@ namespace Net.Chdk.Detectors.Software.Fhp
 
         protected override string ProductName => "400plus";
 
-        protected override Version GetVersion(string rootPath)
+        protected override Version? GetVersion(string rootPath)
         {
             return null;
         }
 
-        protected override CultureInfo GetLanguage(string rootPath)
+        protected override CultureInfo? GetLanguage(string rootPath)
         {
             return GetCultureInfo("en");
         }

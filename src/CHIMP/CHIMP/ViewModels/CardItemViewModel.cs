@@ -5,11 +5,11 @@ namespace Chimp.ViewModels
 {
     public sealed class CardItemViewModel
     {
-        public CardInfo Info { get; set; }
-        public string DisplayName { get; set; }
-        public string Bootable { get; set; }
+        public CardInfo? Info { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Bootable { get; set; }
         public bool Scriptable { get; set; }
-        public PartitionType[] PartitionTypes { get; set; }
+        public PartitionType[]? PartitionTypes { get; set; }
         public bool? Switched { get; set; }
     }
 }

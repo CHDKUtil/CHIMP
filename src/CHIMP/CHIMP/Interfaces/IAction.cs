@@ -6,9 +6,9 @@ namespace Chimp
 {
     public interface IAction
     {
-        string DisplayName { get; }
+        string? DisplayName { get; }
         bool IsDefault { get; }
 
-        Task<SoftwareData> PerformAsync(CancellationToken cancellationToken);
+        Task<SoftwareData?> PerformAsync(CancellationToken cancellationToken);
     }
 }

@@ -5,7 +5,7 @@ namespace Net.Chdk.Watchers.Volume
 {
     public sealed class VolumeWatcher : IVolumeWatcher
     {
-        private ManagementEventWatcher Watcher { get; set; }
+        private ManagementEventWatcher? Watcher { get; set; }
 
         public void Initialize()
         {
@@ -28,25 +28,25 @@ namespace Net.Chdk.Watchers.Volume
 
         public void Start()
         {
-            Watcher.Start();
+            Watcher?.Start();
         }
 
         public void Stop()
         {
-            Watcher.Stop();
+            Watcher?.Stop();
         }
 
         /// <summary>
         /// Raised when a volume is added.
         /// </summary>
         /// <value>Drive letter.</value>
-        public event EventHandler<string> VolumeAdded;
+        public event EventHandler<string>? VolumeAdded;
 
         /// <summary>
         /// Raised when a volume is removed.
         /// </summary>
         /// <value>Drive letter.</value>
-        public event EventHandler<string> VolumeRemoved;
+        public event EventHandler<string>? VolumeRemoved;
 
         private void Watcher_EventArrived(object sender, EventArrivedEventArgs e)
         {

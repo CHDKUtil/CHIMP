@@ -8,12 +8,12 @@ namespace Chimp.Resolvers
 {
     internal class DownloadProviderResolver : ProviderResolver<IDownloadProvider, DownloadProvider>
     {
-        public DownloadProviderResolver(IServiceActivator serviceActivator, IDictionary<string, Distro> distros)
+        public DownloadProviderResolver(IServiceActivator serviceActivator, IDictionary<string, Distro>? distros)
             : base(serviceActivator, distros)
         {
         }
 
-        protected override string GetTypeName(Distro distro)
+        protected override string? GetTypeName(Distro distro)
         {
             return distro.ProductType;
         }
@@ -25,7 +25,7 @@ namespace Chimp.Resolvers
 
         protected override IEnumerable<object> GetValues(string sourceName, SoftwareSourceInfo source, Distro distro)
         {
-            yield return distro.BaseUrl;
+            yield return distro.BaseUrl!;
         }
     }
 }

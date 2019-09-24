@@ -25,40 +25,40 @@ namespace Net.Chdk.Providers.Camera
             _reverseCameras = new Lazy<Dictionary<string, ReverseCameraData>>(GetReverseCameras);
         }
 
-        public SoftwareCameraInfo GetCamera(CameraInfo cameraInfo, CameraModelInfo cameraModelInfo)
+        public SoftwareCameraInfo? GetCamera(CameraInfo? cameraInfo, CameraModelInfo? cameraModelInfo)
         {
             var camera = GetCamera(cameraInfo);
             if (camera == null)
                 return null;
 
-            var model = camera.Models.SingleOrDefault(m => m.Names[0].Equals(cameraModelInfo.Names[0], StringComparison.Ordinal));
+            var model = camera.Models.SingleOrDefault(m => m.Names[0].Equals(cameraModelInfo?.Names?[0], StringComparison.Ordinal));
             if (model == null)
                 return null;
 
             return new SoftwareCameraInfo
             {
                 Platform = model.Platform,
-                Revision = GetRevision(cameraInfo),
+                Revision = GetRevision(cameraInfo!),
             };
         }
 
-        protected abstract string GetRevision(CameraInfo cameraInfo);
+        protected abstract string? GetRevision(CameraInfo cameraInfo);
 
-        public SoftwareEncodingInfo GetEncoding(SoftwareCameraInfo cameraInfo)
+        public SoftwareEncodingInfo? GetEncoding(SoftwareCameraInfo? cameraInfo)
         {
-            return GetCameraModel(cameraInfo, out ReverseCameraData camera)
-                ? camera.Encoding
+            return GetCameraModel(cameraInfo, out ReverseCameraData? camera)
+                ? camera?.Encoding
                 : null;
         }
 
-        public AltInfo GetAlt(SoftwareCameraInfo cameraInfo)
+        public AltInfo? GetAlt(SoftwareCameraInfo? cameraInfo)
         {
-            return GetCameraModel(cameraInfo, out ReverseCameraData reverse)
-                ? reverse.Alt
+            return GetCameraModel(cameraInfo, out ReverseCameraData? camera)
+                ? camera?.Alt
                 : null;
         }
 
-        public CameraModelsInfo GetCameraModels(CameraInfo cameraInfo)
+        public CameraModelsInfo? GetCameraModels(CameraInfo? cameraInfo)
         {
             var camera = GetCamera(cameraInfo);
             if (camera == null)
@@ -67,10 +67,7 @@ namespace Net.Chdk.Providers.Camera
             var models = new CameraModelInfo[camera.Models.Length];
             for (var i = 0; i < camera.Models.Length; i++)
             {
-                models[i] = new CameraModelInfo
-                {
-                    Names = camera.Models[i].Names
-                };
+                models[i] = new CameraModelInfo(camera.Models[i].Names);
             }
             return GetCameraModels(camera, models);
         }
@@ -87,15 +84,15 @@ namespace Net.Chdk.Providers.Camera
             };
         }
 
-        public CameraModelsInfo GetCameraModels(SoftwareCameraInfo camera)
+        public CameraModelsInfo? GetCameraModels(SoftwareCameraInfo? camera)
         {
-            if (!GetCameraModel(camera, out ReverseCameraData reverse))
+            if (!GetCameraModel(camera, out ReverseCameraData? reverse))
                 return null;
 
-            return GetCameraModels(reverse, camera.Revision);
+            return GetCameraModels(reverse, camera?.Revision);
         }
 
-        private CameraModelsInfo GetCameraModels(ReverseCameraData camera, string version)
+        private CameraModelsInfo GetCameraModels(ReverseCameraData? camera, string? version)
         {
             return new CameraModelsInfo
             {
@@ -106,50 +103,47 @@ namespace Net.Chdk.Providers.Camera
                 },
                 Models = new[]
                 {
-                    new CameraModelInfo
-                    {
-                        Names = camera.Models
-                    }
+                    new CameraModelInfo(camera?.Models)
                 },
             };
         }
 
-        private static BaseInfo CreateBaseInfo(ReverseCameraData camera)
+        private static BaseInfo CreateBaseInfo(ReverseCameraData? camera)
         {
             return new BaseInfo
             {
                 Make = "Canon",
-                Model = string.Join("\n", camera.Models)
+                Model = string.Join("\n", camera?.Models)
             };
         }
 
-        private CanonInfo CreateCanonInfo(ReverseCameraData camera, string revision)
+        private CanonInfo CreateCanonInfo(ReverseCameraData? camera, string? revision)
         {
             return new CanonInfo
             {
-                ModelId = camera.ModelId,
+                ModelId = camera?.ModelId ?? 0,
                 FirmwareRevision = GetFirmwareRevision(revision),
                 FirmwareVersion = GetFirmwareVersion(revision),
             };
         }
 
-        private TCamera GetCamera(CameraInfo cameraInfo)
+        private TCamera? GetCamera(CameraInfo? cameraInfo)
         {
             if (IsInvalid(cameraInfo))
                 return null;
 
-            var modelId = $"0x{cameraInfo.Canon.ModelId:x}";
+            var modelId = $"0x{cameraInfo!.Canon!.ModelId:x}";
             if (!Data.TryGetValue(modelId, out TCamera camera))
                 return null;
 
             return camera;
         }
 
-        protected bool GetCameraModel(SoftwareCameraInfo camera, out ReverseCameraData reverse)
+        protected bool GetCameraModel(SoftwareCameraInfo? camera, out ReverseCameraData? reverse)
         {
             reverse = null;
 
-            if (camera == null)
+            if (camera?.Platform == null)
                 return false;
 
             return ReverseCameras.TryGetValue(camera.Platform, out reverse);
@@ -160,13 +154,13 @@ namespace Net.Chdk.Providers.Camera
             return Path.Combine(Directories.Data, Directories.Product, ProductName, DataFileName);
         }
 
-        protected abstract bool IsInvalid(CameraInfo cameraInfo);
+        protected abstract bool IsInvalid(CameraInfo? cameraInfo);
 
         protected abstract bool IsMultiPartition(TCamera camera);
 
-        protected abstract uint GetFirmwareRevision(string revision);
+        protected abstract uint GetFirmwareRevision(string? revision);
 
-        protected abstract Version GetFirmwareVersion(string revision);
+        protected abstract Version? GetFirmwareVersion(string? revision);
 
         #region ReverseCameras
 

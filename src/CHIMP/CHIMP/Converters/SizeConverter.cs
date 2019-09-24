@@ -7,7 +7,7 @@ namespace Chimp.Converters
 {
     public sealed class SizeConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object? value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value == null)
                 return null;
@@ -32,7 +32,7 @@ namespace Chimp.Converters
             return string.Format(Resources.DiskSpace_GBytes_Format, gb);
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? ConvertBack(object? value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

@@ -22,7 +22,7 @@ namespace Chimp.Providers
 
         #region ILicenseProvider Members
 
-        public LicenseData[] GetLicenses()
+        public LicenseData[]? GetLicenses()
         {
             return LicensesData.Licenses;
         }

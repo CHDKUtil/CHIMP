@@ -19,7 +19,7 @@ namespace Net.Chdk.Detectors.Software
             ModulesDetectors = modulesDetectors;
         }
 
-        public ModulesInfo GetModules(CardInfo card, CardInfo card2, SoftwareInfo software, IProgress<double> progress, CancellationToken token)
+        public ModulesInfo? GetModules(CardInfo card, CardInfo? card2, SoftwareInfo software, IProgress<double>? progress, CancellationToken token)
         {
             var productName = software.Product?.Name;
             if (productName == null)

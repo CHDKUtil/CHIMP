@@ -12,14 +12,12 @@ namespace Chimp.Services
 	{
 		private ILogger Logger { get; }
 		private IVolumeContainer VolumeContainer { get; }
-		private IToastService ToastService { get; }
 		private ILoggerFactory LoggerFactory { get; }
 
-		public EjectService(IVolumeContainer volumeContainer, IToastService toastService, ILoggerFactory loggerFactory)
+		public EjectService(IVolumeContainer volumeContainer, ILoggerFactory loggerFactory)
 		{
 			Logger = loggerFactory.CreateLogger<EjectService>();
 			VolumeContainer = volumeContainer;
-			ToastService = toastService;
 			LoggerFactory = loggerFactory;
 		}
 
@@ -105,29 +103,29 @@ namespace Chimp.Services
 			return false;
 		}
 
-		private bool Online(SafeFileHandle hDevice)
-		{
-			if (Device.Invoke(hDevice, Device.IOCTL_VOLUME_ONLINE))
-				return true;
-			Logger.LogError("Online failed");
-			return false;
-		}
+        //private bool Online(SafeFileHandle hDevice)
+        //{
+        //	if (Device.Invoke(hDevice, Device.IOCTL_VOLUME_ONLINE))
+        //		return true;
+        //	Logger.LogError("Online failed");
+        //	return false;
+        //}
 
-        private bool Offline(SafeFileHandle hDevice)
-        {
-            if (Device.Invoke(hDevice, Device.IOCTL_VOLUME_OFFLINE))
-                return true;
-            Logger.LogError("Offline failed");
-            return false;
-        }
+        //private bool Offline(SafeFileHandle hDevice)
+        //{
+        //    if (Device.Invoke(hDevice, Device.IOCTL_VOLUME_OFFLINE))
+        //        return true;
+        //    Logger.LogError("Offline failed");
+        //    return false;
+        //}
 
-        private bool PreventRemoval(SafeFileHandle hDevice, bool prevent)
-		{
-			var value = prevent ? (byte)1 : (byte)0;
-			if (Device.Set(hDevice, Device.IOCTL_STORAGE_MEDIA_REMOVAL, value))
-				return true;
-			Logger.LogError("PreventRemoval failed");
-			return false;
-		}
-	}
+        //private bool PreventRemoval(SafeFileHandle hDevice, bool prevent)
+        //{
+        //	var value = prevent ? (byte)1 : (byte)0;
+        //	if (Device.Set(hDevice, Device.IOCTL_STORAGE_MEDIA_REMOVAL, value))
+        //		return true;
+        //	Logger.LogError("PreventRemoval failed");
+        //	return false;
+        //}
+    }
 }

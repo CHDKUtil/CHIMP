@@ -25,24 +25,22 @@ namespace Chimp
 
         private void GetDiskParams(out uint sectorSize, out ulong driveSectors, out ulong diskSize)
         {
-            using (var hDevice = Device.OpenRead(DeviceName))
+            using var hDevice = Device.OpenRead(DeviceName);
+            if (Device.TryGet(hDevice, Device.IOCTL_DISK_GET_DRIVE_GEOMETRY_EX, out Device.DISK_GEOMETRY_EX geometryEx))
             {
-                if (Device.TryGet(hDevice, Device.IOCTL_DISK_GET_DRIVE_GEOMETRY_EX, out Device.DISK_GEOMETRY_EX geometryEx))
-                {
-                    sectorSize = geometryEx.Geometry.BytesPerSector;
-                    driveSectors = geometryEx.DiskSize / sectorSize;
-                    diskSize = geometryEx.DiskSize;
-                    return;
-                }
-                if (Device.TryGet(hDevice, Device.IOCTL_DISK_GET_DRIVE_GEOMETRY, out Device.DISK_GEOMETRY geometry))
-                {
-                    sectorSize = geometry.BytesPerSector;
-                    driveSectors = geometry.SectorsPerTrack * geometry.TracksPerCylinder * geometry.Cylinders;
-                    diskSize = sectorSize * driveSectors;
-                    return;
-                }
-                throw Marshal.GetExceptionForHR(Marshal.GetHRForLastWin32Error());
+                sectorSize = geometryEx.Geometry.BytesPerSector;
+                driveSectors = geometryEx.DiskSize / sectorSize;
+                diskSize = geometryEx.DiskSize;
+                return;
             }
+            if (Device.TryGet(hDevice, Device.IOCTL_DISK_GET_DRIVE_GEOMETRY, out Device.DISK_GEOMETRY geometry))
+            {
+                sectorSize = geometry.BytesPerSector;
+                driveSectors = geometry.SectorsPerTrack * geometry.TracksPerCylinder * geometry.Cylinders;
+                diskSize = sectorSize * driveSectors;
+                return;
+            }
+            throw Marshal.GetExceptionForHR(Marshal.GetHRForLastWin32Error());
         }
 
         #region DeviceName
@@ -53,12 +51,9 @@ namespace Chimp
 
         private string GetDeviceName()
         {
-            Device.STORAGE_DEVICE_NUMBER storageDeviceNumber;
-            using (var hDevice = Device.OpenRead(Volume.DeviceName))
-            {
-                if (!Device.TryGet(hDevice, Device.IOCTL_STORAGE_GET_DEVICE_NUMBER, out storageDeviceNumber))
-                    throw Marshal.GetExceptionForHR(Marshal.GetHRForLastWin32Error());
-            }
+            using var hDevice = Device.OpenRead(Volume.DeviceName);
+            if (!Device.TryGet(hDevice, Device.IOCTL_STORAGE_GET_DEVICE_NUMBER, out Device.STORAGE_DEVICE_NUMBER storageDeviceNumber))
+                throw Marshal.GetExceptionForHR(Marshal.GetHRForLastWin32Error());
             return $"\\\\.\\PHYSICALDRIVE{storageDeviceNumber.DeviceNumber}";
         }
 

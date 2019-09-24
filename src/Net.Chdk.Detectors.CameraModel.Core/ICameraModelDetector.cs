@@ -7,6 +7,6 @@ namespace Net.Chdk.Detectors.CameraModel
 {
     public interface ICameraModelDetector
     {
-        CameraModels GetCameraModels(CardInfo cardInfo, SoftwareInfo softwareInfo, IProgress<double> progress, CancellationToken token);
+        CameraModels? GetCameraModels(CardInfo cardInfo, SoftwareInfo softwareInfo, IProgress<double>? progress, CancellationToken token);
     }
 }

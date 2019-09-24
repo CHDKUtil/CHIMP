@@ -17,8 +17,7 @@ namespace Net.Chdk.Providers.Software
 
         public override bool Equals(object obj)
         {
-            var source2 = obj as ProductSource;
-            if (source2 == null)
+            if (!(obj is ProductSource source2))
                 return false;
             return Source.Equals(source2.Source);
         }
