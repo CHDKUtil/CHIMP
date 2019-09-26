@@ -15,5 +15,8 @@ namespace Net.Chdk.Meta.Model.Address
         [JsonProperty("active_palette_buffer")]
         [JsonConverter(typeof(HexStringJsonConverter))]
         public uint? ActivePaletteBuffer { get; set; }
+
+        [JsonProperty("palette_to_zero")]
+        public uint PaletteToZero { get; set; }
     }
 }

@@ -2,20 +2,16 @@
 using Net.Chdk.Meta.Model.Camera.Ps;
 using Net.Chdk.Model.Camera;
 using Net.Chdk.Model.Software;
+using Net.Chdk.Providers.Firmware;
 using System;
 
 namespace Net.Chdk.Providers.Camera
 {
     sealed class PsProductCameraProvider : ProductCameraProvider<PsCameraData, PsCardData>
     {
-        public PsProductCameraProvider(string productName, ILoggerFactory loggerFactory)
-            : base(productName, loggerFactory.CreateLogger<PsProductCameraProvider>())
+        public PsProductCameraProvider(string productName, IFirmwareProvider firmwareProvider, ILoggerFactory loggerFactory)
+            : base(productName, firmwareProvider, loggerFactory.CreateLogger<PsProductCameraProvider>())
         {
-        }
-
-        protected override string GetRevision(CameraInfo cameraInfo)
-        {
-            return GetFirmwareRevision(cameraInfo.Canon.FirmwareRevision);
         }
 
         protected override bool IsInvalid(CameraInfo cameraInfo)
@@ -56,15 +52,5 @@ namespace Net.Chdk.Providers.Camera
         }
 
         protected override Version GetFirmwareVersion(string revision) => null;
-
-        private static string GetFirmwareRevision(uint revision)
-        {
-            return new string(new[] {
-                (char)(((revision >> 24) & 0x0f) + 0x30),
-                (char)(((revision >> 20) & 0x0f) + 0x30),
-                (char)(((revision >> 16) & 0x0f) + 0x30),
-                (char)(((revision >>  8) & 0x7f) + 0x60)
-            });
-        }
     }
 }

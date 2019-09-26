@@ -8,5 +8,6 @@
         public const string Data = "Data";
         public const string Category = "Category";
         public const string Product = "Product";
+        public const string Script = "Script";
     }
 }

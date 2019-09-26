@@ -13,7 +13,7 @@ namespace Net.Chdk.Meta.Generators.Platform
             Generators = generators;
         }
 
-        public string? GetPlatform(uint modelId, string[] models)
+        public string? GetPlatform(uint modelId, string[] models, bool isCanon = false)
         {
             if (models == null)
                 throw new ArgumentNullException(nameof(models));
@@ -23,6 +23,10 @@ namespace Net.Chdk.Meta.Generators.Platform
 
             if (models.Any(string.IsNullOrEmpty))
                 throw new ArgumentException("Model names cannot be null or empty", nameof(models));
+
+            if (isCanon)
+                for (int i = 0; i < models.Length; i++)
+                    models[i] = models[i].TrimStart("Canon ");
 
             return Generators
                 .Select(g => g.GetPlatform(modelId, models))

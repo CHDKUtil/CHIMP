@@ -1,0 +1,53 @@
+{
+  "m10": {
+    "id": "0x32a0",
+    "revisions": {
+      "110d": {
+        "palette_buffer_ptr": "0x13540",
+        "active_palette_buffer": "0x13538"
+      },
+      "110f": {
+        "palette_buffer_ptr": "0x13540",
+        "active_palette_buffer": "0x13538"
+      },
+      "110g": {
+        "palette_buffer_ptr": "0x13540",
+        "active_palette_buffer": "0x13538",
+        "source": {
+          "revision": "110f"
+        }
+      }
+    }
+  },
+  "m100": {
+    "id": "0x32d1",
+    "revisions": {
+      "100a": {
+        "palette_buffer_ptr": "0x116f4",
+        "active_palette_buffer": "0x116ec"
+      }
+    }
+  },
+  "m3": {
+    "id": "0x3299",
+    "revisions": {
+      "101a": {
+        "palette_buffer_ptr": "0x136c0",
+        "active_palette_buffer": "0x136b8"
+      },
+      "120f": {
+        "palette_buffer_ptr": "0x136e0",
+        "active_palette_buffer": "0x136d8"
+      }
+    }
+  },
+  "m6": {
+    "id": "0x32c5",
+    "revisions": {
+      "100b": {
+        "palette_buffer_ptr": "0x11d4c",
+        "active_palette_buffer": "0x11d44"
+      }
+    }
+  }
+}

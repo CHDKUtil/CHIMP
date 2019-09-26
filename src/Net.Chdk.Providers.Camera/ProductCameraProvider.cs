@@ -3,6 +3,7 @@ using Net.Chdk.Meta.Model.Camera;
 using Net.Chdk.Model.Camera;
 using Net.Chdk.Model.CameraModel;
 using Net.Chdk.Model.Software;
+using Net.Chdk.Providers.Firmware;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,11 +18,14 @@ namespace Net.Chdk.Providers.Camera
         private const string DataFileName = "cameras.json";
 
         private string ProductName { get; }
+        private IFirmwareProvider FirmwareProvider { get; }
 
-        protected ProductCameraProvider(string productName, ILogger logger)
+        protected ProductCameraProvider(string productName, IFirmwareProvider firmwareProvider, ILogger logger)
             : base(logger)
         {
             ProductName = productName;
+            FirmwareProvider = firmwareProvider;
+
             _reverseCameras = new Lazy<Dictionary<string, ReverseCameraData>>(GetReverseCameras);
         }
 
@@ -41,8 +45,6 @@ namespace Net.Chdk.Providers.Camera
                 Revision = GetRevision(cameraInfo),
             };
         }
-
-        protected abstract string GetRevision(CameraInfo cameraInfo);
 
         public SoftwareEncodingInfo GetEncoding(SoftwareCameraInfo cameraInfo)
         {
@@ -93,6 +95,11 @@ namespace Net.Chdk.Providers.Camera
                 return null;
 
             return GetCameraModels(reverse, camera.Revision);
+        }
+
+        private string GetRevision(CameraInfo cameraInfo)
+        {
+            return FirmwareProvider.GetFirmwareRevision(cameraInfo);
         }
 
         private CameraModelsInfo GetCameraModels(ReverseCameraData camera, string version)

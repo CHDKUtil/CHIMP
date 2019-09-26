@@ -2,6 +2,7 @@
 using Net.Chdk.Model.Camera;
 using Net.Chdk.Model.CameraModel;
 using Net.Chdk.Model.Software;
+using Net.Chdk.Providers.Firmware;
 using Net.Chdk.Providers.Product;
 using System;
 using System.Collections.Generic;
@@ -12,11 +13,13 @@ namespace Net.Chdk.Providers.Camera
     sealed class CameraProvider : ProviderResolver<IProductCameraProvider>, ICameraProvider
     {
         private IProductProvider ProductProvider { get; }
+        public IFirmwareProvider FirmwareProvider { get; }
 
-        public CameraProvider(IProductProvider productProvider, ILoggerFactory loggerFactory)
+        public CameraProvider(IProductProvider productProvider, IFirmwareProvider firmwareProvider, ILoggerFactory loggerFactory)
             : base(loggerFactory)
         {
             ProductProvider = productProvider;
+            FirmwareProvider = firmwareProvider;
         }
 
         public CameraModelsInfo GetCameraModels(SoftwareProductInfo productInfo, SoftwareCameraInfo cameraInfo)
@@ -64,9 +67,9 @@ namespace Net.Chdk.Providers.Camera
             switch (categoryName)
             {
                 case "EOS":
-                    return new EosProductCameraProvider(productName, LoggerFactory);
+                    return new EosProductCameraProvider(productName, FirmwareProvider, LoggerFactory);
                 case "PS":
-                    return new PsProductCameraProvider(productName, LoggerFactory);
+                    return new PsProductCameraProvider(productName, FirmwareProvider, LoggerFactory);
                 default:
                     throw new InvalidOperationException($"Unknown category: {categoryName}");
             }

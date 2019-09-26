@@ -72,7 +72,8 @@ namespace Chimp.Controllers
 
         private void Unsubscribe2()
         {
-            ViewModel.PropertyChanged -= Action_PropertyChanged;
+            if (ViewModel != null)
+                ViewModel.PropertyChanged -= Action_PropertyChanged;
         }
 
         private void UpdateCanContinue()

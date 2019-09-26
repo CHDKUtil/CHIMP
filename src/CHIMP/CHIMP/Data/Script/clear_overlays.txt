@@ -1,0 +1,37 @@
+' clean rec mode palette and disabled auto-off
+' {platform}, {revision}
+
+DIM palette_buffer_ptr = {palette_buffer_ptr}
+DIM active_palette_buffer = {active_palette_buffer}
+DIM palette_to_zero = {palette_to_zero}
+
+public sub check_compat()
+    if Peek16(0xe1f20270) = {platform_id} then
+        check_compat = 1
+    else
+        check_compat = 0
+    end if
+end sub
+
+private sub RegisterProcs()
+    System.Create()
+    UI.CreatePublic()
+end sub
+
+private sub palette_mod()
+    adr = *palette_buffer_ptr
+    adr = adr + (palette_to_zero * 4)
+    if *adr <> 0 then
+        adr = *adr + 4
+        memset(adr, 0, 256 * 4)
+    end if
+end sub
+
+private sub Initialize()
+    RegisterProcs()
+    ret = check_compat()
+    if ret=1 then
+        LockMainPower()
+        palette_mod()
+    end if
+end sub

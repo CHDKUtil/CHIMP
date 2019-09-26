@@ -2,21 +2,16 @@
 using Net.Chdk.Meta.Model.Camera.Eos;
 using Net.Chdk.Model.Camera;
 using Net.Chdk.Model.Software;
+using Net.Chdk.Providers.Firmware;
 using System;
 
 namespace Net.Chdk.Providers.Camera
 {
     sealed class EosProductCameraProvider : ProductCameraProvider<EosCameraData, EosCardData>
     {
-        public EosProductCameraProvider(string productName, ILoggerFactory loggerFactory)
-            : base(productName, loggerFactory.CreateLogger<EosProductCameraProvider>())
+        public EosProductCameraProvider(string productName, IFirmwareProvider firmwareProvider, ILoggerFactory loggerFactory)
+            : base(productName, firmwareProvider, loggerFactory.CreateLogger<EosProductCameraProvider>())
         {
-        }
-
-        protected override string GetRevision(CameraInfo cameraInfo)
-        {
-            var version = cameraInfo.Canon.FirmwareVersion;
-            return $"{version.Major}{version.Minor}{version.Build}";
         }
 
         protected override bool IsInvalid(CameraInfo cameraInfo)

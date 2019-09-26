@@ -17,15 +17,21 @@ using Net.Chdk.Detectors.Software.Fhp;
 using Net.Chdk.Detectors.Software.Ml;
 using Net.Chdk.Detectors.Software.Sdm;
 using Net.Chdk.Encoders.Binary;
+using Net.Chdk.Generators.Script;
+using Net.Chdk.Meta.Generators.Platform;
+using Net.Chdk.Meta.Generators.Platform.Eos;
+using Net.Chdk.Meta.Generators.Platform.Ps;
 using Net.Chdk.Providers.Boot;
 using Net.Chdk.Providers.Camera;
 using Net.Chdk.Providers.Category;
 using Net.Chdk.Providers.Crypto;
+using Net.Chdk.Providers.Firmware;
 using Net.Chdk.Providers.Product;
 using Net.Chdk.Providers.Software;
 using Net.Chdk.Providers.Software.Chdk;
 using Net.Chdk.Providers.Software.Ml;
 using Net.Chdk.Providers.Software.Sdm;
+using Net.Chdk.Providers.Substitute;
 using Net.Chdk.Validators.Software;
 using Net.Chdk.Watchers.Volume;
 using System;
@@ -62,6 +68,7 @@ namespace Chimp
 
             ConfigureValidators(serviceCollection);
             ConfigureDetectors(serviceCollection);
+            ConfigureGenerators(serviceCollection);
             ConfigureProviders(serviceCollection);
             ConfigureContainers(serviceCollection);
             ConfigureServices(serviceCollection);
@@ -155,6 +162,15 @@ namespace Chimp
                 .AddBinaryDecoder();
         }
 
+        private static void ConfigureGenerators(IServiceCollection serviceCollection)
+        {
+            serviceCollection
+                .AddPlatformGenerator()
+                .AddEosPlatformGenerator()
+                .AddPsPlatformGenerator()
+                .AddScriptGenerator();
+        }
+
         private static void ConfigureProviders(IServiceCollection serviceCollection)
         {
             serviceCollection
@@ -169,7 +185,9 @@ namespace Chimp
                 .AddSdmSourceProvider()
                 .AddMlSourceProvider()
                 .AddSoftwareHashProvider()
+                .AddFirmwareProvider()
                 .AddCameraProvider()
+                .AddSubstituteProvider()
                 .AddSingleton<IResourceProvider, ChdkResourceProvider>()
                 .AddSingleton<IStepProvider, StepProvider>()
                 .AddSingleton<IActionProvider, ActionContainer>()
