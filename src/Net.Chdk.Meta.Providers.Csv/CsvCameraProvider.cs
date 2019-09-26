@@ -35,13 +35,12 @@ namespace Net.Chdk.Meta.Providers.Csv
         {
             var platformData = GetOrAddPlatform(cameras, split[0]);
             var revisionData = GetRevisionData(split);
-            platformData.Revisions.Add(split[1], revisionData);
+            platformData.Revisions?.Add(split[1], revisionData);
         }
 
         private TPlatform GetOrAddPlatform(IDictionary<string, TPlatform> cameras, string platform)
         {
-            TPlatform platformData;
-            if (!cameras.TryGetValue(platform, out platformData))
+            if (!cameras.TryGetValue(platform, out TPlatform platformData))
             {
                 platformData = GetPlatformData(platform);
                 cameras.Add(platform, platformData);

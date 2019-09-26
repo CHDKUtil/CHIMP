@@ -4,6 +4,6 @@
         where TRevision : RevisionData<TRevision, TSource>
         where TSource : SourceData<TSource>
     {
-        public TSource Source { get; set; }
+        public TSource? Source { get; set; }
     }
 }

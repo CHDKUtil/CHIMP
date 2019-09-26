@@ -1,10 +1,9 @@
 ﻿namespace Net.Chdk.Meta.Model.CameraTree
 {
-    public sealed class TreePlatformData : PlatformData<TreePlatformData, TreeRevisionData, TreeSourceData>
+    public sealed class TreePlatformData : PlatformData<TreePlatformData, TreeRevisionData, PlatformSourceData>
     {
-        public ushort? Id { get; set; }
         public byte? Encoding { get; set; }
         public bool MultiCard { get; set; }
-        public string[] AltNames { get; set; }
+        public string[]? AltNames { get; set; }
     }
 }

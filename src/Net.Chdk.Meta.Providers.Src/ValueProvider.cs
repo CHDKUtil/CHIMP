@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
 using System.IO;
 
-namespace Net.Chdk.Meta.Providers.CameraTree.Src
+namespace Net.Chdk.Meta.Providers.Src
 {
-    abstract class ValueProvider
+    public abstract class ValueProvider
     {
         protected ILogger Logger { get; }
 
@@ -12,20 +12,20 @@ namespace Net.Chdk.Meta.Providers.CameraTree.Src
             Logger = logger;
         }
 
-        protected string GetFilePath(string platformPath, string platform, string revision)
+        protected string GetFilePath(string platformPath, string platform, string? revision)
         {
             var path = GetPath(platformPath, platform, revision);
             return Path.Combine(path, FileName);
         }
 
-        protected string GetPath(string platformPath, string platform, string revision)
+        protected string GetPath(string platformPath, string platform, string? revision)
         {
             return revision != null
                 ? Path.Combine(platformPath, platform, "sub", revision)
                 : Path.Combine(platformPath, platform);
         }
 
-        protected string GetName(string platform, string revision = null)
+        protected string GetName(string platform, string? revision = null)
         {
             return revision != null
                 ? $"{platform}-{revision}"

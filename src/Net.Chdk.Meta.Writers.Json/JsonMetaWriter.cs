@@ -29,10 +29,8 @@ namespace Net.Chdk.Meta.Writers.Json
 
         protected void WriteJson<T>(string path, T obj)
         {
-            using (var writer = File.CreateText(path))
-            {
-                Serializer.Serialize(writer, obj);
-            }
+            using var writer = File.CreateText(path);
+            Serializer.Serialize(writer, obj);
         }
 
         #endregion

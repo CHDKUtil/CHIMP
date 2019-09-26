@@ -155,6 +155,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Product", "Product", "{1C77
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Chdk.Json", "..\Net.Chdk.Json\Net.Chdk.Json.csproj", "{2C194E4D-33B0-45A9-8605-4F73A893B051}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Chdk.Meta.Providers.Src", "..\Net.Chdk.Meta.Providers.Src\Net.Chdk.Meta.Providers.Src.csproj", "{1C1A7408-6500-401D-8225-DA0850836976}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -397,6 +399,10 @@ Global
 		{2C194E4D-33B0-45A9-8605-4F73A893B051}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C194E4D-33B0-45A9-8605-4F73A893B051}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C194E4D-33B0-45A9-8605-4F73A893B051}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C1A7408-6500-401D-8225-DA0850836976}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C1A7408-6500-401D-8225-DA0850836976}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C1A7408-6500-401D-8225-DA0850836976}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C1A7408-6500-401D-8225-DA0850836976}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -471,6 +477,7 @@ Global
 		{76709205-7EC2-45D8-A484-E15365F90048} = {B3013C9A-3EFF-40DA-8633-0DC32AF504B7}
 		{C2393F31-D6E7-4E38-9173-8A2D85674919} = {B3013C9A-3EFF-40DA-8633-0DC32AF504B7}
 		{1C779908-4A78-45E2-8ECF-C8935C227ADA} = {B3013C9A-3EFF-40DA-8633-0DC32AF504B7}
+		{1C1A7408-6500-401D-8225-DA0850836976} = {FC6B203E-AE8A-4855-8010-5F43988FCC56}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E14DDD7C-63A8-4DAB-891F-D5E52EA10650}

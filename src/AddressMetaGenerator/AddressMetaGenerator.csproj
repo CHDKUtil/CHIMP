@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <Description>CHIMP address metadata generator</Description>
+    <AssemblyName>gen_meta_addresses</AssemblyName>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Version>0.1.0</Version>
+    <Product>CHIMP</Product>
+    <Authors>Dmitry Shechtman</Authors>
+    <Copyright>Copyright © 2019 Dmitry Shechtman</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <TreatSpecificWarningsAsErrors />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <TreatSpecificWarningsAsErrors />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="microsoft.extensions.dependencyinjection" Version="1.1.1" />
+    <PackageReference Include="microsoft.extensions.logging" Version="2.0.0" />
+    <PackageReference Include="microsoft.extensions.logging.console" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Net.Chdk.Meta.Model.Address\Net.Chdk.Meta.Model.Address.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Meta.Providers.Address.Json\Net.Chdk.Meta.Providers.Address.Json.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Meta.Providers.Address.Src\Net.Chdk.Meta.Providers.Address.Src.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Meta.Providers.Address\Net.Chdk.Meta.Providers.Address.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Meta.Writers.Address.Json\Net.Chdk.Meta.Writers.Address.Json.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Meta.Writers.Address\Net.Chdk.Meta.Writers.Address.csproj" />
+  </ItemGroup>
+  
+</Project>

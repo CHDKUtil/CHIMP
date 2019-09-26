@@ -5,7 +5,7 @@ namespace Net.Chdk.Meta.Generators.Platform.Ps
 {
     sealed class IxusPlatformGenerator : PsPlatformGeneratorBase, IIxusPlatformGenerator
     {
-        protected override IEnumerable<string> PreGenerate(uint modelId, string source)
+        protected override IEnumerable<string>? PreGenerate(uint modelId, string source)
         {
             var split = base.PreGenerate(modelId, source);
             if (split == null)

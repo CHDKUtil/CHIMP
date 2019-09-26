@@ -2,6 +2,6 @@
 {
     interface IIxusPlatformGenerator : IPlatformGenerator
     {
-        string Generate(uint modelId, string source);
+        string? Generate(uint modelId, string source);
     }
 }

@@ -23,11 +23,11 @@ namespace Net.Chdk.Meta.Providers.Platform
             var provider = GetInnerProvider(path, out string ext);
             if (provider == null)
                 throw new InvalidOperationException($"Unknown platform extension: {ext}");
-            using (var reader = File.OpenText(path))
-            {
-                var keys = provider.GetPlatforms(reader);
-                return GetPlatforms(keys);
-            }
+
+            using var reader = File.OpenText(path);
+
+            var keys = provider.GetPlatforms(reader);
+            return GetPlatforms(keys);
         }
 
         private IDictionary<string, PlatformData> GetPlatforms(IEnumerable<KeyValuePair<string, string>> values)
@@ -37,13 +37,14 @@ namespace Net.Chdk.Meta.Providers.Platform
             {
                 var modelId = uint.Parse(kvp.Key.TrimStart("0x"), NumberStyles.HexNumber);
                 var models = GetCameraModels(modelId, kvp.Value);
-                if (models.First() != null)
+                foreach (var model in models)
                 {
-                    foreach (var model in models)
-                    {
-                        var platform = GetPlatform(kvp.Key, model);
-                        platforms.Add(model.Platform, platform);
-                    }
+                    if (model == null)
+                        break;
+                    var platform = GetPlatform(kvp.Key, model);
+                    if (model.Platform == null)
+                        throw new InvalidOperationException("Platform cannot be null");
+                    platforms.Add(model.Platform, platform);
                 }
             }
             return platforms;
@@ -58,7 +59,7 @@ namespace Net.Chdk.Meta.Providers.Platform
             };
         }
 
-        private IEnumerable<CameraModel> GetCameraModels(uint modelId, string value)
+        private IEnumerable<CameraModel?> GetCameraModels(uint modelId, string value)
         {
             var models = GetModels(value)
                 .Select(m => m.TrimEnd(" (new)"))
@@ -68,7 +69,7 @@ namespace Net.Chdk.Meta.Providers.Platform
                 .Select(n => GetCameraModel(modelId, n));
         }
 
-        private CameraModel GetCameraModel(uint modelId, string[] names)
+        private CameraModel? GetCameraModel(uint modelId, string[] names)
         {
             var platform = GetPlatform(modelId, names);
             if (platform == null)
@@ -81,7 +82,7 @@ namespace Net.Chdk.Meta.Providers.Platform
             };
         }
 
-        private string GetPlatform(uint modelId, string[] names)
+        private string? GetPlatform(uint modelId, string[] names)
         {
             return PlatformGenerator.GetPlatform(modelId, names);
         }

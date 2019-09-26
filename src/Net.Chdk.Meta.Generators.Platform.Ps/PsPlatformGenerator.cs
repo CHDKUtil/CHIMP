@@ -17,7 +17,7 @@ namespace Net.Chdk.Meta.Generators.Platform.Ps
             IxusGenerator = ixusGenerator;
         }
 
-        public override string GetPlatform(uint modelId, string[] models)
+        public override string? GetPlatform(uint modelId, string[] models)
         {
             var ps = base.GetPlatform(modelId, models);
             if (ps != null && models.Length > 1)
@@ -31,7 +31,7 @@ namespace Net.Chdk.Meta.Generators.Platform.Ps
             return ps;
         }
 
-        protected override IEnumerable<string> PreGenerate(uint modelId, string source)
+        protected override IEnumerable<string>? PreGenerate(uint modelId, string source)
         {
             var split = base.PreGenerate(modelId, source);
             if (split == null)

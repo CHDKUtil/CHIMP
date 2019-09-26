@@ -2,7 +2,7 @@
 {
     public sealed class CameraModelData
     {
-        public string[] Names { get; set; }
-        public string Platform { get; set; }
+        public string[]? Names { get; set; }
+        public string? Platform { get; set; }
     }
 }

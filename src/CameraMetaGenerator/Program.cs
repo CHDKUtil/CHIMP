@@ -31,8 +31,8 @@ using Net.Chdk.Providers.Boot;
 using Net.Chdk.Providers.Product;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Diagnostics;
+using System.Reflection;
 
 namespace Net.Chdk.Meta.Providers.Camera
 {

@@ -1,10 +1,11 @@
-﻿using Net.Chdk.Meta.Model.CameraTree;
+﻿using Net.Chdk.Meta.Model;
+using Net.Chdk.Meta.Model.CameraTree;
 using Net.Chdk.Meta.Providers.Json;
 using System.Collections.Generic;
 
 namespace Net.Chdk.Meta.Providers.CameraTree.Json
 {
-    sealed class JsonCameraTreeProvider : JsonCameraProvider<TreePlatformData, TreeRevisionData, TreeSourceData>, IInnerCameraTreeProvider
+    sealed class JsonCameraTreeProvider : JsonCameraProvider<TreePlatformData, TreeRevisionData, PlatformSourceData>, IInnerCameraTreeProvider
     {
         #region IInnerCameraTreeProvider Members
 

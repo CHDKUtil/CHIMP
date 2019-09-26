@@ -33,11 +33,9 @@ namespace Net.Chdk.Meta.Providers.Json
 
         protected IDictionary<string, TPlatform> GetCameras(string path)
         {
-            using (var reader = File.OpenText(path))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                return Serializer.Deserialize<IDictionary<string, TPlatform>>(jsonReader);
-            }
+            using var reader = File.OpenText(path);
+            using var jsonReader = new JsonTextReader(reader);
+            return Serializer.Deserialize<IDictionary<string, TPlatform>>(jsonReader);
         }
 
         #endregion
@@ -59,7 +57,7 @@ namespace Net.Chdk.Meta.Providers.Json
 
         private readonly Lazy<JsonSerializerSettings> _settings;
 
-        private JsonSerializerSettings Settings { get; }
+        private JsonSerializerSettings Settings => _settings.Value;
 
         private JsonSerializerSettings GetSettings()
         {

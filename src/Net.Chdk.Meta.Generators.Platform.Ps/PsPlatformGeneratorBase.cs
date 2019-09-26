@@ -7,7 +7,7 @@ namespace Net.Chdk.Meta.Generators.Platform.Ps
     {
         private const int MinModelId = 0x1540000;
 
-        protected override IEnumerable<string> PreGenerate(uint modelId, string source)
+        protected override IEnumerable<string>? PreGenerate(uint modelId, string source)
         {
             if (modelId < MinModelId)
                 return null;

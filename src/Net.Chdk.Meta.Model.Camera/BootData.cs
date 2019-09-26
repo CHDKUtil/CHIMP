@@ -2,6 +2,6 @@
 {
     public sealed class BootData
     {
-        public string Fs { get; set; }
+        public string? Fs { get; set; }
     }
 }

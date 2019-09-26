@@ -28,7 +28,7 @@ namespace Net.Chdk.Meta.Providers.Platform.Xml
         private static KeyValuePair<string, string> GetValue(Key key)
         {
             var id = uint.Parse(key.Id);
-            return new KeyValuePair<string, string>($"0x{id:x}", key.Value);
+            return new KeyValuePair<string, string>($"0x{id:x}", key.Value!);
         }
     }
 }

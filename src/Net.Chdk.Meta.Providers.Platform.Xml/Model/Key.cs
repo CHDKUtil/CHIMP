@@ -6,9 +6,9 @@ namespace Net.Chdk.Meta.Providers.Platform.Xml.Model
     public sealed class Key
     {
         [XmlAttribute("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         [XmlElement("val")]
-        public string Value { get; set; }
+        public string? Value { get; set; }
     }
 }

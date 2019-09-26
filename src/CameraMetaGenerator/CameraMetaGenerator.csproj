@@ -6,10 +6,12 @@
     <Description>CHIMP camera metadata generator</Description>
     <RootNamespace>Net.Chdk.Meta.Providers.Camera</RootNamespace>
     <AssemblyName>gen_meta_cameras</AssemblyName>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>0.2.3</Version>
+    <Version>0.3.0</Version>
     <Product>CHIMP</Product>
     <Authors>Dmitry Shechtman</Authors>
     <Copyright>Copyright © 2017 Dmitry Shechtman</Copyright>

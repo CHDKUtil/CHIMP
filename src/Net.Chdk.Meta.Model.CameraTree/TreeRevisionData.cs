@@ -1,8 +1,7 @@
 ﻿namespace Net.Chdk.Meta.Model.CameraTree
 {
-    public sealed class TreeRevisionData : RevisionData<TreeRevisionData, TreeSourceData>
+    public sealed class TreeRevisionData : RevisionData<TreeRevisionData, PlatformSourceData>
     {
-        public ushort? Id { get; set; }
         public byte? Encoding { get; set; }
     }
 }

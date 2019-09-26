@@ -10,7 +10,7 @@ namespace Net.Chdk.Meta.Model.Camera.Ps
             Name = string.Empty
         };
 
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [JsonConverter(typeof(HexStringJsonConverter), "x8")]
         public uint? Data { get; set; }

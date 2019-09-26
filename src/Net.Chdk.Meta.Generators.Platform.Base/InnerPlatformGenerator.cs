@@ -6,12 +6,12 @@ namespace Net.Chdk.Meta.Generators.Platform
 {
     public abstract class InnerPlatformGenerator : IInnerPlatformGenerator
     {
-        public virtual string GetPlatform(uint modelId, string[] models)
+        public virtual string? GetPlatform(uint modelId, string[] models)
         {
             return Generate(modelId, models[0]);
         }
 
-        public string Generate(uint modelId, string source)
+        public string? Generate(uint modelId, string source)
         {
             var split = PreGenerate(modelId, source);
             if (split == null)
@@ -46,7 +46,7 @@ namespace Net.Chdk.Meta.Generators.Platform
             return split;
         }
 
-        protected virtual IEnumerable<string> Process(IEnumerable<string> split)
+        protected virtual IEnumerable<string>? Process(IEnumerable<string> split)
         {
             return split;
         }
@@ -61,7 +61,7 @@ namespace Net.Chdk.Meta.Generators.Platform
             return split.Take(split.Count() - 1);
         }
 
-        protected abstract IEnumerable<string> PreGenerate(uint modelId, string source);
+        protected abstract IEnumerable<string>? PreGenerate(uint modelId, string source);
 
         protected abstract string Keyword { get; }
 
@@ -69,19 +69,14 @@ namespace Net.Chdk.Meta.Generators.Platform
 
         private static int RomanToInteger(string roman)
         {
-            switch (roman)
+            return roman switch
             {
-                case "I":
-                    return 1;
-                case "II":
-                    return 2;
-                case "III":
-                    return 3;
-                case "IV":
-                    return 4;
-                default:
-                    throw new InvalidOperationException($"Invalid numeral {roman}");
-            }
+                "I" => 1,
+                "II" => 2,
+                "III" => 3,
+                "IV" => 4,
+                _ => throw new InvalidOperationException($"Invalid numeral {roman}"),
+            };
         }
     }
 }

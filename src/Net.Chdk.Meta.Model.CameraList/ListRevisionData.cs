@@ -2,7 +2,7 @@
 {
     public sealed class ListRevisionData : RevisionData<ListRevisionData, ListSourceData>
     {
-        public string Status { get; set; }
+        public string? Status { get; set; }
         public bool Skip { get; set; }
     }
 }

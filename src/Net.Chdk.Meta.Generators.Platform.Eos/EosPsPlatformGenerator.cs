@@ -7,7 +7,7 @@ namespace Net.Chdk.Meta.Generators.Platform.Eos
     {
         private const uint MaxModelId = 0x1000000;
 
-        protected override IEnumerable<string> PreGenerate(uint modelId, string source)
+        protected override IEnumerable<string>? PreGenerate(uint modelId, string source)
         {
             if (modelId > MaxModelId)
                 return null;

@@ -6,6 +6,6 @@ namespace Net.Chdk.Meta.Providers.Platform.Xml.Model
     public sealed class TagInfo
     {
         [XmlElement("table")]
-        public Table[] Tables { get; set; }
+        public Table[]? Tables { get; set; }
     }
 }

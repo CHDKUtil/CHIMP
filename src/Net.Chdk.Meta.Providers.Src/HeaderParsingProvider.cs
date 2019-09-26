@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
 
-namespace Net.Chdk.Meta.Providers.CameraTree.Src
+namespace Net.Chdk.Meta.Providers.Src
 {
-    abstract class HeaderParsingProvider<T> : ParsingProvider<T>
+    public abstract class HeaderParsingProvider<T> : ParsingProvider<T>
         where T : class
     {
         protected HeaderParsingProvider(ILogger logger)
@@ -11,7 +11,7 @@ namespace Net.Chdk.Meta.Providers.CameraTree.Src
         {
         }
 
-        protected override string TrimComments(string line, string platform, string revision)
+        protected sealed override string TrimComments(string line, string platform, string? revision)
         {
             var index = line.IndexOf("//");
             if (index >= 0)

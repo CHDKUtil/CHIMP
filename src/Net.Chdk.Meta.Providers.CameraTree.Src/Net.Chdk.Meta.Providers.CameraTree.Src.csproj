@@ -4,10 +4,12 @@
     <TargetFramework>netstandard1.3</TargetFramework>
     <Description>CHIMP source camera tree metadata provider</Description>
     <RootNamespace>Net.Chdk.Meta.Providers.CameraTree.Src</RootNamespace>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>0.5.0</Version>
+    <Version>0.6.0</Version>
     <VersionSuffix>alpha</VersionSuffix>
     <Product>CHIMP</Product>
     <Authors>Dmitry Shechtman</Authors>
@@ -26,11 +28,11 @@
 
   <ItemGroup>
     <PackageReference Include="microsoft.extensions.dependencyinjection.abstractions" Version="1.1.1" />
-    <PackageReference Include="microsoft.extensions.logging.abstractions" Version="1.1.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Net.Chdk.Meta.Providers.CameraTree.Core\Net.Chdk.Meta.Providers.CameraTree.Core.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Meta.Providers.Src\Net.Chdk.Meta.Providers.Src.csproj" />
   </ItemGroup>
   
 </Project>

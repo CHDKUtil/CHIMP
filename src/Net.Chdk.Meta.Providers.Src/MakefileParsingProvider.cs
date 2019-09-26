@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace Net.Chdk.Meta.Providers.CameraTree.Src
+namespace Net.Chdk.Meta.Providers.Src
 {
-    abstract class MakefileParsingProvider<T> : ParsingProvider<T>
+    public abstract class MakefileParsingProvider<T> : ParsingProvider<T>
         where T : class
     {
         protected MakefileParsingProvider(ILogger logger)
@@ -12,7 +12,7 @@ namespace Net.Chdk.Meta.Providers.CameraTree.Src
 
         protected sealed override string FileName => "makefile.inc";
 
-        protected sealed override string TrimComments(string line, string platform, string revision)
+        protected sealed override string TrimComments(string line, string platform, string? revision)
         {
             var index = line.IndexOf('#');
             if (index >= 0)

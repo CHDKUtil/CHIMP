@@ -25,26 +25,24 @@ namespace Net.Chdk.Meta.Providers.Zip
 
         public string Extension => ".zip";
 
-        protected IEnumerable<T> GetItems(string path, string productName)
+        protected IEnumerable<T?> GetItems(string path, string productName)
         {
             var categoryName = ProductProvider.GetCategoryName(productName);
             var bootFileName = BootProvider.GetFileName(categoryName);
-            using (var stream = File.OpenRead(path))
-            {
-                var fileName = Path.GetFileName(path);
-                return GetItems(stream, fileName, productName, bootFileName);
-            }
+            
+            using var stream = File.OpenRead(path);
+
+            var fileName = Path.GetFileName(path);
+            return GetItems(stream, fileName, productName, bootFileName);
         }
 
-        private IEnumerable<T> GetItems(Stream stream, string fileName, string productName, string bootFileName)
+        private IEnumerable<T?> GetItems(Stream stream, string fileName, string productName, string bootFileName)
         {
-            using (var zip = new ZipFile(stream))
-            {
-                return GetItems(zip, fileName, productName, bootFileName).ToArray();
-            }
+            using var zip = new ZipFile(stream);
+            return GetItems(zip, fileName, productName, bootFileName).ToArray();
         }
 
-        private IEnumerable<T> GetItems(ZipFile zip, string fileName, string productName, string bootFileName)
+        private IEnumerable<T?> GetItems(ZipFile zip, string fileName, string productName, string bootFileName)
         {
             Logger.LogInformation("Enter {0}", fileName);
             foreach (ZipEntry entry in zip)
@@ -57,7 +55,7 @@ namespace Net.Chdk.Meta.Providers.Zip
             Logger.LogInformation("Exit {0}", fileName);
         }
 
-        private IEnumerable<T> GetItems(ZipFile zip, ZipEntry entry, string productName, string bootFileName)
+        private IEnumerable<T?> GetItems(ZipFile zip, ZipEntry entry, string productName, string bootFileName)
         {
             if (!entry.IsFile)
                 return Enumerable.Empty<T>();
@@ -67,13 +65,13 @@ namespace Net.Chdk.Meta.Providers.Zip
                 return Enumerable.Empty<T>();
 
             var fileName = Path.GetFileName(entry.Name);
-            using (var stream = zip.GetInputStream(entry))
-            {
-                return GetItems(stream, fileName, productName, bootFileName);
-            }
+            
+            using var stream = zip.GetInputStream(entry);
+
+            return GetItems(stream, fileName, productName, bootFileName);
         }
 
-        private T GetItem(ZipFile zip, string fileName, string productName, ZipEntry entry, string bootFileName)
+        private T? GetItem(ZipFile zip, string fileName, string productName, ZipEntry entry, string bootFileName)
         {
             if (!entry.IsFile)
                 return null;

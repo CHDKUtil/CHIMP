@@ -26,23 +26,22 @@ namespace Net.Chdk.Meta.Providers.CameraList.Zip
             {
                 if (camera != null)
                 {
-                    AddCamera(cameraList, camera.Platform, camera.Revision, null);
+                    AddCamera(cameraList, camera.Platform!, camera.Revision!, null);
                 }
             }
             return cameraList;
         }
 
-        private static void AddCamera(IDictionary<string, ListPlatformData> cameras, string platform, string revision, string source)
+        private static void AddCamera(IDictionary<string, ListPlatformData> cameras, string platform, string revision, string? source)
         {
             var platformData = GetOrAddPlatform(cameras, platform);
             var revisionData = GetRevisionData(platform, revision, source);
-            platformData.Revisions.Add(revision, revisionData);
+            platformData.Revisions?.Add(revision, revisionData);
         }
 
         private static ListPlatformData GetOrAddPlatform(IDictionary<string, ListPlatformData> cameras, string platform)
         {
-            ListPlatformData platformData;
-            if (!cameras.TryGetValue(platform, out platformData))
+            if (!cameras.TryGetValue(platform, out ListPlatformData platformData))
             {
                 platformData = GetPlatformData();
                 cameras.Add(platform, platformData);
@@ -58,7 +57,7 @@ namespace Net.Chdk.Meta.Providers.CameraList.Zip
             };
         }
 
-        private static ListRevisionData GetRevisionData(string platform, string revision, string source)
+        private static ListRevisionData GetRevisionData(string platform, string revision, string? source)
         {
             return new ListRevisionData
             {
@@ -66,7 +65,7 @@ namespace Net.Chdk.Meta.Providers.CameraList.Zip
             };
         }
 
-        private static ListSourceData GetSourceData(string platform, string revision, string source)
+        private static ListSourceData GetSourceData(string _, string revision, string? source)
         {
             return new ListSourceData
             {
@@ -74,7 +73,7 @@ namespace Net.Chdk.Meta.Providers.CameraList.Zip
             };
         }
 
-        private static string GetRevision(string revision, string source)
+        private static string? GetRevision(string revision, string? source)
         {
             if (!string.IsNullOrEmpty(source))
                 return source;

@@ -19,27 +19,28 @@ namespace Net.Chdk.Json
 
         public override bool CanConvert(Type objectType)
         {
-            return typeof(uint).Equals(objectType) || typeof(ulong).Equals(objectType);
+            return typeof(ushort).Equals(objectType) || typeof(uint).Equals(objectType) || typeof(ulong).Equals(objectType);
         }
 
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
         {
             var str = string.Format(Format, value);
             writer.WriteValue(str);
         }
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        public override object? ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            var str = reader.Value as string;
-            if (str == null)
+            if (!(reader.Value is string str))
             {
-                if (objectType == typeof(uint?) || objectType == typeof(ulong?))
+                if (objectType == typeof(ushort?) || objectType == typeof(uint?) || objectType == typeof(ulong?))
                     return null;
                 throw new JsonSerializationException();
             }
             try
             {
                 var fromBase = GetBase(str);
+                if (objectType == typeof(ushort) || objectType == typeof(ushort?))
+                    return Convert.ToUInt16(str, fromBase);
                 if (objectType == typeof(uint) || objectType == typeof(uint?))
                     return Convert.ToUInt32(str, fromBase);
                 return Convert.ToUInt64(str, fromBase);

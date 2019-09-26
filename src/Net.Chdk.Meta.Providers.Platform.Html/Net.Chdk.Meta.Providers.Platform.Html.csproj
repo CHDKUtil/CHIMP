@@ -4,10 +4,12 @@
     <TargetFramework>netstandard1.3</TargetFramework>
     <Description>CHIMP HTML EXIF platform metadata provider</Description>
     <RootNamespace>Net.Chdk.Meta.Providers.Platform.Html</RootNamespace>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>0.5.2</Version>
+    <Version>0.6.0</Version>
     <VersionSuffix>alpha</VersionSuffix>
     <Product>CHIMP</Product>
     <Authors>Dmitry Shechtman</Authors>

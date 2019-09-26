@@ -7,6 +7,6 @@ namespace Net.Chdk.Meta.Model
         where TRevision : RevisionData<TRevision, TSource>
         where TSource : SourceData<TSource>
     {
-        public IDictionary<string, TRevision> Revisions { get; set; }
+        public IDictionary<string, TRevision>? Revisions { get; set; }
     }
 }

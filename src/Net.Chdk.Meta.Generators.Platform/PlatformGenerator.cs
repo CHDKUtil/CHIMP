@@ -13,7 +13,7 @@ namespace Net.Chdk.Meta.Generators.Platform
             Generators = generators;
         }
 
-        public string GetPlatform(uint modelId, string[] models)
+        public string? GetPlatform(uint modelId, string[] models)
         {
             if (models == null)
                 throw new ArgumentNullException(nameof(models));

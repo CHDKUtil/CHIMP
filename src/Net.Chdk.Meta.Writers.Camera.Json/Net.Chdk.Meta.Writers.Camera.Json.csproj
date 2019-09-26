@@ -4,10 +4,12 @@
     <TargetFramework>netstandard1.3</TargetFramework>
     <Description>CHIMP JSON camera metadata writer</Description>
     <RootNamespace>Net.Chdk.Meta.Writers.Camera.Json</RootNamespace>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>0.5.0</Version>
+    <Version>0.6.0</Version>
     <VersionSuffix>alpha</VersionSuffix>
     <Product>CHIMP</Product>
     <Authors>Dmitry Shechtman</Authors>
