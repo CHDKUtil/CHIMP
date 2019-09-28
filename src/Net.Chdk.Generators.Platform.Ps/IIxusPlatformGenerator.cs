@@ -1,4 +1,4 @@
-﻿namespace Net.Chdk.Meta.Generators.Platform.Ps
+﻿namespace Net.Chdk.Generators.Platform.Ps
 {
     interface IIxusPlatformGenerator
     {

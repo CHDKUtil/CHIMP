@@ -45,15 +45,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Chdk.Meta.Providers.Pla
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Chdk.Meta.Providers.Platform", "..\Net.Chdk.Meta.Providers.Platform\Net.Chdk.Meta.Providers.Platform.csproj", "{8DD9EAC8-FACC-4DB7-B4C4-C8E02DE69564}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Chdk.Meta.Generators.Platform.Core", "..\Net.Chdk.Meta.Generators.Platform.Core\Net.Chdk.Meta.Generators.Platform.Core.csproj", "{7027E58A-10B7-41EE-AD0E-8C70430CB220}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Chdk.Generators.Platform.Core", "..\Net.Chdk.Generators.Platform.Core\Net.Chdk.Generators.Platform.Core.csproj", "{7027E58A-10B7-41EE-AD0E-8C70430CB220}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Chdk.Meta.Generators.Platform", "..\Net.Chdk.Meta.Generators.Platform\Net.Chdk.Meta.Generators.Platform.csproj", "{6651A4D0-4E33-4087-A54F-ED0F53AAAFD9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Chdk.Generators.Platform", "..\Net.Chdk.Generators.Platform\Net.Chdk.Generators.Platform.csproj", "{6651A4D0-4E33-4087-A54F-ED0F53AAAFD9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Chdk.Meta.Generators.Platform.Base", "..\Net.Chdk.Meta.Generators.Platform.Base\Net.Chdk.Meta.Generators.Platform.Base.csproj", "{2F2E446D-40EE-47A5-B6BE-35D786DE8984}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Chdk.Generators.Platform.Base", "..\Net.Chdk.Generators.Platform.Base\Net.Chdk.Generators.Platform.Base.csproj", "{2F2E446D-40EE-47A5-B6BE-35D786DE8984}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Chdk.Meta.Generators.Platform.Eos", "..\Net.Chdk.Meta.Generators.Platform.Eos\Net.Chdk.Meta.Generators.Platform.Eos.csproj", "{5C9D2A04-AA0B-4F74-9ED1-01F58FA79B0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Chdk.Generators.Platform.Eos", "..\Net.Chdk.Generators.Platform.Eos\Net.Chdk.Generators.Platform.Eos.csproj", "{5C9D2A04-AA0B-4F74-9ED1-01F58FA79B0C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Chdk.Meta.Generators.Platform.Ps", "..\Net.Chdk.Meta.Generators.Platform.Ps\Net.Chdk.Meta.Generators.Platform.Ps.csproj", "{1E9A51E6-E7D2-4E17-8321-D7292120D994}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Chdk.Generators.Platform.Ps", "..\Net.Chdk.Generators.Platform.Ps\Net.Chdk.Generators.Platform.Ps.csproj", "{1E9A51E6-E7D2-4E17-8321-D7292120D994}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Chdk.Meta.Providers.Camera.Ps", "..\Net.Chdk.Meta.Providers.Camera.Ps\Net.Chdk.Meta.Providers.Camera.Ps.csproj", "{2109CF52-ECF2-4161-8F96-B9C332555EE8}"
 EndProject

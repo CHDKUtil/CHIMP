@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Net.Chdk.Meta.Generators.Platform.Ps
+namespace Net.Chdk.Generators.Platform.Ps
 {
     abstract class PsPlatformGeneratorBase : InnerPlatformGenerator
     {

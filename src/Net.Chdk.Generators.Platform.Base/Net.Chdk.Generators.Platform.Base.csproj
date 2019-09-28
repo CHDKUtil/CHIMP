@@ -2,14 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.0</TargetFramework>
-    <Description>CHIMP platform generator</Description>
-    <RootNamespace>Net.Chdk.Meta.Generators.Platform</RootNamespace>
+    <Description>CHIMP base platform generator</Description>
+    <RootNamespace>Net.Chdk.Generators.Platform</RootNamespace>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>0.3.0</Version>
+    <Version>0.6.0</Version>
+    <VersionSuffix>alpha</VersionSuffix>
     <Product>CHIMP</Product>
     <Authors>Dmitry Shechtman</Authors>
     <Copyright>Copyright © 2017 Dmitry Shechtman</Copyright>
@@ -26,12 +27,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="microsoft.extensions.dependencyinjection.abstractions" Version="1.1.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Net.Chdk.Core\Net.Chdk.Core.csproj" />
-    <ProjectReference Include="..\Net.Chdk.Meta.Generators.Platform.Core\Net.Chdk.Meta.Generators.Platform.Core.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Generators.Platform.Core\Net.Chdk.Generators.Platform.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-﻿namespace Net.Chdk.Meta.Generators.Platform
+﻿namespace Net.Chdk.Generators.Platform
 {
     public interface IPlatformGenerator
     {

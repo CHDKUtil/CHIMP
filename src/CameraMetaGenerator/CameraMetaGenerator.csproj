@@ -34,9 +34,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Net.Chdk.Meta.Generators.Platform.Eos\Net.Chdk.Meta.Generators.Platform.Eos.csproj" />
-    <ProjectReference Include="..\Net.Chdk.Meta.Generators.Platform.Ps\Net.Chdk.Meta.Generators.Platform.Ps.csproj" />
-    <ProjectReference Include="..\Net.Chdk.Meta.Generators.Platform\Net.Chdk.Meta.Generators.Platform.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Generators.Platform.Eos\Net.Chdk.Generators.Platform.Eos.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Generators.Platform.Ps\Net.Chdk.Generators.Platform.Ps.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Generators.Platform\Net.Chdk.Generators.Platform.csproj" />
     <ProjectReference Include="..\Net.Chdk.Meta.Providers.Camera.Chdk\Net.Chdk.Meta.Providers.Camera.Chdk.csproj" />
     <ProjectReference Include="..\Net.Chdk.Meta.Providers.Camera.Eos\Net.Chdk.Meta.Providers.Camera.Eos.csproj" />
     <ProjectReference Include="..\Net.Chdk.Meta.Providers.Camera.Fhp\Net.Chdk.Meta.Providers.Camera.Fhp.csproj" />

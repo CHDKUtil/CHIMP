@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Net.Chdk.Meta.Generators.Platform.Eos
+namespace Net.Chdk.Generators.Platform.Eos
 {
     sealed class EosPsPlatformGenerator : InnerPlatformGenerator
     {

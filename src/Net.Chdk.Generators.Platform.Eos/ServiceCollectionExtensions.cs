@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Net.Chdk.Meta.Generators.Platform.Eos
+namespace Net.Chdk.Generators.Platform.Eos
 {
     public static class ServiceCollectionExtensions
     {

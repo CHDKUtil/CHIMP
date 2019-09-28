@@ -810,6 +810,18 @@
       <Project>{1355b19b-44a5-45e0-a078-9b7c18a29e80}</Project>
       <Name>Net.Chdk.Encoders.Binary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Net.Chdk.Generators.Platform.Eos\Net.Chdk.Generators.Platform.Eos.csproj">
+      <Project>{9b4fa746-bf73-4fe4-9f4d-ad2d1ac8cb3f}</Project>
+      <Name>Net.Chdk.Generators.Platform.Eos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Net.Chdk.Generators.Platform.Ps\Net.Chdk.Generators.Platform.Ps.csproj">
+      <Project>{596c95e7-f15b-42c9-a130-a1a1f5f2e580}</Project>
+      <Name>Net.Chdk.Generators.Platform.Ps</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Net.Chdk.Generators.Platform\Net.Chdk.Generators.Platform.csproj">
+      <Project>{ff1148b9-8018-4f53-b7ff-c7170e16a4a4}</Project>
+      <Name>Net.Chdk.Generators.Platform</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Net.Chdk.Generators.Script.Core\Net.Chdk.Generators.Script.Core.csproj">
       <Project>{C3986C82-1B66-4ADD-B60A-D648C7BA367F}</Project>
       <Name>Net.Chdk.Generators.Script.Core</Name>
@@ -821,18 +833,6 @@
     <ProjectReference Include="..\..\Net.Chdk.Json\Net.Chdk.Json.csproj">
       <Project>{FA9447A9-7995-4D07-A203-BD096011B278}</Project>
       <Name>Net.Chdk.Json</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Net.Chdk.Meta.Generators.Platform.Eos\Net.Chdk.Meta.Generators.Platform.Eos.csproj">
-      <Project>{9b4fa746-bf73-4fe4-9f4d-ad2d1ac8cb3f}</Project>
-      <Name>Net.Chdk.Meta.Generators.Platform.Eos</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Net.Chdk.Meta.Generators.Platform.Ps\Net.Chdk.Meta.Generators.Platform.Ps.csproj">
-      <Project>{596c95e7-f15b-42c9-a130-a1a1f5f2e580}</Project>
-      <Name>Net.Chdk.Meta.Generators.Platform.Ps</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Net.Chdk.Meta.Generators.Platform\Net.Chdk.Meta.Generators.Platform.csproj">
-      <Project>{ff1148b9-8018-4f53-b7ff-c7170e16a4a4}</Project>
-      <Name>Net.Chdk.Meta.Generators.Platform</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Net.Chdk.Model.CameraModel\Net.Chdk.Model.CameraModel.csproj">
       <Project>{AD66B45E-5CF8-4E9C-8AE9-0E6D404920D7}</Project>

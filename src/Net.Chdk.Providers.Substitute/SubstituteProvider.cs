@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-using Net.Chdk.Meta.Generators.Platform;
+using Net.Chdk.Generators.Platform;
 using Net.Chdk.Model.Camera;
 using Net.Chdk.Model.CameraModel;
 using Net.Chdk.Providers.Firmware;

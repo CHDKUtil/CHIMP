@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Net.Chdk.Meta.Generators.Platform
+namespace Net.Chdk.Generators.Platform
 {
     sealed class PlatformGenerator : IPlatformGenerator
     {
