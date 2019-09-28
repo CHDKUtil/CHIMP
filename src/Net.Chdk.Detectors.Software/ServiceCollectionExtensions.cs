@@ -36,6 +36,12 @@ namespace Net.Chdk.Detectors.Software
                 .AddSingleton<IInnerBinarySoftwareDetector, PsHashSoftwareDetector>();
         }
 
+        public static IServiceCollection AddScriptHashSoftwareDetector(this IServiceCollection serviceCollection)
+        {
+            return serviceCollection
+                .AddSingleton<IInnerBinarySoftwareDetector, ScriptHashSoftwareDetector>();
+        }
+
         public static IServiceCollection AddEosBinarySoftwareDetector(this IServiceCollection serviceCollection)
         {
             return serviceCollection
@@ -52,6 +58,12 @@ namespace Net.Chdk.Detectors.Software
         {
             return serviceCollection
                 .AddSingleton<IInnerBinarySoftwareDetector, UnknownPsBinarySoftwareDetector>();
+        }
+
+        public static IServiceCollection AddScriptBinarySoftwareDetector(this IServiceCollection serviceCollection)
+        {
+            return serviceCollection
+                .AddSingleton<IInnerBinarySoftwareDetector, ScriptBinarySoftwareDetector>();
         }
 
         public static IServiceCollection AddFileSystemSoftwareDetector(this IServiceCollection serviceCollection)

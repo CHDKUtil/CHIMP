@@ -3,7 +3,6 @@ using Net.Chdk.Generators.Platform;
 using Net.Chdk.Model.Camera;
 using Net.Chdk.Model.CameraModel;
 using Net.Chdk.Providers.Firmware;
-using Net.Chdk.Providers.Product;
 using System;
 using System.Collections.Generic;
 
@@ -11,14 +10,12 @@ namespace Net.Chdk.Providers.Substitute
 {
     sealed class SubstituteProvider : ProviderResolver<ICategorySubstituteProvider>, ISubstituteProvider
     {
-        private IProductProvider ProductProvider { get; }
         private IPlatformGenerator PlatformGenerator { get; }
         private IFirmwareProvider FirmwareProvider { get; }
 
-        public SubstituteProvider(IProductProvider productProvider, IPlatformGenerator platformGenerator, IFirmwareProvider firmwareProvider, ILoggerFactory loggerFactory)
+        public SubstituteProvider(IPlatformGenerator platformGenerator, IFirmwareProvider firmwareProvider, ILoggerFactory loggerFactory)
             : base(loggerFactory)
         {
-            ProductProvider = productProvider;
             PlatformGenerator = platformGenerator;
             FirmwareProvider = firmwareProvider;
         }
@@ -42,7 +39,7 @@ namespace Net.Chdk.Providers.Substitute
 
         protected override IEnumerable<string> GetNames()
         {
-            return ProductProvider.GetCategoryNames();
+            return new[] { "EOS", "PS" };
         }
 
         protected override ICategorySubstituteProvider CreateProvider(string categoryName) => categoryName switch

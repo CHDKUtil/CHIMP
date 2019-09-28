@@ -70,6 +70,8 @@ namespace Net.Chdk.Providers.Camera
                     return new EosProductCameraProvider(productName, FirmwareProvider, LoggerFactory);
                 case "PS":
                     return new PsProductCameraProvider(productName, FirmwareProvider, LoggerFactory);
+                case "SCRIPT":
+                    return new ScriptCameraProvider(productName, FirmwareProvider, LoggerFactory);
                 default:
                     throw new InvalidOperationException($"Unknown category: {categoryName}");
             }

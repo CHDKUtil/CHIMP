@@ -17,20 +17,31 @@ namespace Chimp.Providers.Action
 
         public override IEnumerable<IAction> GetActions()
         {
+            var card = CardViewModel?.SelectedItem;
+            if (card?.Switched == true || (card?.Bootable != null && card?.Bootable != "SCRIPT"))
+                yield break;
+
+            var software = SoftwareViewModel?.SelectedItem?.Info;
+            if (software?.Product?.Name == "clear_overlays")
+                yield break;
+
             var substitues = GetSubstitutes();
             if (substitues == null)
                 yield break;
-            var types = new[] { typeof(IDictionary<string, string>) };
-            var values = new object[] { substitues };
+
+            var types = new[]
+            {
+                typeof(IDictionary<string, string>)
+            };
+            var values = new object[]
+            {
+                substitues
+            };
             yield return ServiceActivator.Create<ClearOverlaysAction>(types, values);
         }
 
         private IDictionary<string, string> GetSubstitutes()
         {
-            var card = CardViewModel?.SelectedItem;
-            if (card?.Switched == true || card?.Bootable != null)
-                return null;
-
             var camera = CameraViewModel?.Info;
             var cameraModel = CameraViewModel?.SelectedItem?.Model;
             if (camera == null || cameraModel == null)

@@ -266,6 +266,7 @@
     <Compile Include="Actions\InstallActionBase.cs" />
     <Compile Include="Actions\ScriptableAction.cs" />
     <Compile Include="Actions\SwitchAction.cs" />
+    <Compile Include="Installers\ScriptInstaller.cs" />
     <Compile Include="Interfaces\Providers\ILicenseProvider.cs" />
     <Compile Include="Model\ActionsData.cs" />
     <Compile Include="Providers\Action\ClearOverlaysActionProvider.cs" />
@@ -385,6 +386,7 @@
     <Compile Include="Providers\Software\MlSoftwareProvider.cs" />
     <Compile Include="Providers\Tips\LedTipProvider.cs" />
     <Compile Include="Providers\Tips\RemoveTipProvider.cs" />
+    <Compile Include="Providers\Tips\ScriptTipProvider.cs" />
     <Compile Include="Resolvers\BuildProviderResolver.cs" />
     <Compile Include="Providers\Build\BuildProvider.cs" />
     <Compile Include="Interfaces\Providers\IBuildProvider.cs" />
@@ -614,7 +616,25 @@
     <None Include="Data\categories.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Data\Category\SCRIPT\boot.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Category\SCRIPT\hash2sw.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Data\Product\400PLUS\components.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Product\clear_overlays\cameras.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Product\clear_overlays\software.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Product\clear_overlays\components.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Product\clear_overlays\tips.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Data\Product\ML\tips.json">

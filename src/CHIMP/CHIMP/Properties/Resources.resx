@@ -684,8 +684,17 @@ To continue, click OK. To quit, click CANCEL.</value>
   <data name="Action_ClearOverlays_Text" xml:space="preserve">
     <value>Clear Canon Overlays</value>
   </data>
-  <data name="Action_ClearOverlays_Completed_Text" xml:space="preserve">
-    <value>Script Installation Successful</value>
+  <data name="Product_clear_overlays" xml:space="preserve">
+    <value>Clear Canon Overlays</value>
+  </data>
+  <data name="Summary_Script_Format" xml:space="preserve">
+    <value>Press the Set button to execute {0}.</value>
+  </data>
+  <data name="Summary_Script_Header" xml:space="preserve">
+    <value>Canon BASIC</value>
+  </data>
+  <data name="Summary_Script_Text" xml:space="preserve">
+    <value>Start the camera in Playback mode.</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="intro_tips" type="System.Resources.ResXFileRef, System.Windows.Forms">

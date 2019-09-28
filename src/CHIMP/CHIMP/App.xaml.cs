@@ -127,6 +127,7 @@ namespace Chimp
                 .AddFileSystemSoftwareDetector()
                 .AddEosHashSoftwareDetector()
                 .AddPsHashSoftwareDetector()
+                .AddScriptHashSoftwareDetector()
                 .AddEosBinarySoftwareDetector()
                 .AddKnownPsBinarySoftwareDetector()
                 .AddUnkownPsBinarySoftwareDetector()

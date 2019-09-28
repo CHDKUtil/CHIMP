@@ -38,7 +38,6 @@
     <ProjectReference Include="..\Net.Chdk.Meta.Providers.Base\Net.Chdk.Meta.Providers.Base.csproj" />
     <ProjectReference Include="..\Net.Chdk.Providers.Base\Net.Chdk.Providers.Base.csproj" />
     <ProjectReference Include="..\Net.Chdk.Providers.Firmware.Core\Net.Chdk.Providers.Firmware.Core.csproj" />
-    <ProjectReference Include="..\Net.Chdk.Providers.Product.Core\Net.Chdk.Providers.Product.Core.csproj" />
     <ProjectReference Include="..\Net.Chdk.Providers.Substitute.Core\Net.Chdk.Providers.Substitute.Core.csproj" />
   </ItemGroup>
 

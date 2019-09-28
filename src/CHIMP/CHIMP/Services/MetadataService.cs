@@ -81,6 +81,8 @@ namespace Chimp.Services
                 return false;
 
             modules = FileSystemModulesDetector.GetModules(software, destPath, progress, token);
+            if (modules.Modules == null)
+                return false;
 
             Logger.LogObject(LogLevel.Information, "Detected {0}", modules);
 

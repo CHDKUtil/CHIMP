@@ -23,13 +23,13 @@ namespace Chimp.Providers.Action
         public override IEnumerable<IAction> GetActions()
         {
             var categoryName = CardViewModel.SelectedItem.Bootable;
-            if (categoryName != null)
+            if (categoryName != null && categoryName != "SCRIPT")
             {
                 var types = new[] { typeof(string) };
                 var values = new[] { categoryName };
                 yield return ServiceActivator.Create<ClearBootableAction>(types, values);
             }
-            else if ((categoryName = GetCategoryName()) != null)
+            else if ((categoryName = GetCategoryName()) != null && categoryName != "SCRIPT")
             {
                 var types = new[] { typeof(string) };
                 var values = new[] { categoryName };

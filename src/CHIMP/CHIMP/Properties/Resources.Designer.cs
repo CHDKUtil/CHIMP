@@ -124,15 +124,6 @@ namespace Chimp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Script Installation Successful.
-        /// </summary>
-        public static string Action_ClearOverlays_Completed_Text {
-            get {
-                return ResourceManager.GetString("Action_ClearOverlays_Completed_Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Clear Canon Overlays.
         /// </summary>
         public static string Action_ClearOverlays_Text {
@@ -1007,6 +998,15 @@ namespace Chimp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clear Canon Overlays.
+        /// </summary>
+        public static string Product_clear_overlays {
+            get {
+                return ResourceManager.GetString("Product_clear_overlays", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Magic Lantern.
         /// </summary>
         public static string Product_ML {
@@ -1651,6 +1651,33 @@ namespace Chimp.Properties {
         public static string Summary_Remove_Header {
             get {
                 return ResourceManager.GetString("Summary_Remove_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Press the Set button to execute {0}..
+        /// </summary>
+        public static string Summary_Script_Format {
+            get {
+                return ResourceManager.GetString("Summary_Script_Format", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Canon BASIC.
+        /// </summary>
+        public static string Summary_Script_Header {
+            get {
+                return ResourceManager.GetString("Summary_Script_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start the camera in Playback mode..
+        /// </summary>
+        public static string Summary_Script_Text {
+            get {
+                return ResourceManager.GetString("Summary_Script_Text", resourceCulture);
             }
         }
         

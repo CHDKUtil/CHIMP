@@ -71,7 +71,17 @@
         </TextBlock>
         
         <!-- Language -->
-        <Label Content="{x:Static properties:Resources.Software_Language_Content}" Grid.Row="3" />
+        <Label Content="{x:Static properties:Resources.Software_Language_Content}" Grid.Row="3">
+            <Label.Style>
+                <Style TargetType="Label" BasedOn="{StaticResource InfoLabel}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Product.Language}" Value="(Default)">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
         <TextBlock Grid.Row="3">
             <TextBlock.Style>
                 <Style TargetType="TextBlock" BasedOn="{StaticResource InfoTextBlock}">
@@ -79,6 +89,9 @@
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding Product.Language}" Value="{x:Null}">
                             <Setter Property="Text" Value="{x:Static properties:Resources.Software_Language_Unknown_Text}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Product.Language}" Value="(Default)">
+                            <Setter Property="Visibility" Value="Collapsed" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
@@ -148,10 +161,30 @@
         </TextBlock>
 
         <!-- Changeset -->
-        <Label Content="{x:Static properties:Resources.Software_Changeset_Content}" Grid.Row="8"
-               Visibility="{Binding Build, Converter={StaticResource NullToVisibilityConverter}}" />
-        <TextBlock Text="{Binding Build.Changeset}" Grid.Row="8"
-                   Visibility="{Binding Build, Converter={StaticResource NullToVisibilityConverter}}" />
+        <Label Content="{x:Static properties:Resources.Software_Changeset_Content}" Grid.Row="8">
+            <Label.Style>
+                <Style TargetType="Label" BasedOn="{StaticResource InfoLabel}">
+                    <Setter Property="Visibility" Value="{Binding Build, Converter={StaticResource NullToVisibilityConverter}}" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Build.Changeset}" Value="{x:Null}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+        <TextBlock Text="{Binding Build.Changeset}" Grid.Row="8">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource InfoTextBlock}">
+                    <Setter Property="Visibility" Value="{Binding Build, Converter={StaticResource NullToVisibilityConverter}}" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Build.Changeset}" Value="{x:Null}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
 
         <!-- Creator -->
         <Label Content="{x:Static properties:Resources.Software_Creator_Content}" Grid.Row="9">

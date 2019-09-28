@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
 using Net.Chdk.Model.Camera;
-using Net.Chdk.Providers.Product;
 using System;
 using System.Collections.Generic;
 
@@ -8,12 +7,9 @@ namespace Net.Chdk.Providers.Firmware
 {
     sealed class FirmwareProvider : ProviderResolver<IInnerFirmwareProvider>, IFirmwareProvider
     {
-        private IProductProvider ProductProvider { get; }
-
-        public FirmwareProvider(IProductProvider productProvider, ILoggerFactory loggerFactory)
+        public FirmwareProvider(ILoggerFactory loggerFactory)
             : base(loggerFactory)
         {
-            ProductProvider = productProvider;
         }
 
         public string? GetCategoryName(CameraInfo? cameraInfo)
@@ -34,7 +30,7 @@ namespace Net.Chdk.Providers.Firmware
 
         protected override IEnumerable<string> GetNames()
         {
-            return ProductProvider.GetCategoryNames();
+            return new[] { "EOS", "PS" };
         }
 
         protected override IInnerFirmwareProvider CreateProvider(string categoryName) => categoryName switch

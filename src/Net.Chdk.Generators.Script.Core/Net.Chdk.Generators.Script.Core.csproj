@@ -26,8 +26,4 @@
     <WarningsAsErrors />
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Net.Chdk.Model.Card\Net.Chdk.Model.Card.csproj" />
-  </ItemGroup>
-
 </Project>
