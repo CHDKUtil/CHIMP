@@ -10,12 +10,9 @@ namespace Chimp.Services
     {
         private const string CategoryName = "SCRIPT";
 
-        private IBootProvider BootProvider { get; }
-
         public ScriptService(IVolumeContainer volumeContainer, IBootProvider bootProvider)
-            : base(volumeContainer)
+            : base(volumeContainer, bootProvider)
         {
-            BootProvider = bootProvider;
         }
 
         public bool TestScriptable(CardInfo cardInfo, string fileSystem)
@@ -23,16 +20,11 @@ namespace Chimp.Services
             if (fileSystem == null)
                 return false;
 
-            var files = GetFiles();
+            var files = GetFiles(CategoryName);
             if (!TestScriptable(cardInfo, files))
                 return false;
 
-            var blockSize = GetBlockSize(fileSystem);
-            var bytes = GetBytes(fileSystem);
-            if (!Test(cardInfo, blockSize, bytes))
-                return false;
-
-            return true;
+            return Test(cardInfo, CategoryName, fileSystem);
         }
 
         public bool SetScriptable(CardInfo cardInfo, string fileSystem, bool value)
@@ -40,28 +32,11 @@ namespace Chimp.Services
             if (fileSystem == null)
                 return false;
 
-            var files = GetFiles();
+            var files = GetFiles(CategoryName);
             if (TestScriptable(cardInfo, files) != value)
                 SetScriptable(cardInfo, files, value);
 
-            var blockSize = GetBlockSize(fileSystem);
-            var bytes = GetBytes(fileSystem);
-            return Set(cardInfo, blockSize, bytes, value);
-        }
-
-        private IDictionary<string, byte[]> GetFiles()
-        {
-            return BootProvider.GetFiles(CategoryName);
-        }
-
-        private uint GetBlockSize(string fileSystem)
-        {
-            return BootProvider.GetBlockSize(CategoryName, fileSystem);
-        }
-
-        private IDictionary<int, byte[]> GetBytes(string fileSystem)
-        {
-            return BootProvider.GetBytes(CategoryName, fileSystem);
+            return Set(cardInfo, CategoryName, fileSystem, value);
         }
 
         private static bool TestScriptable(CardInfo cardInfo, IDictionary<string, byte[]> files)

@@ -8,13 +8,11 @@ namespace Chimp.Services
     sealed class BootService : BootServiceBase, IBootService
     {
         private IProductProvider ProductProvider { get; }
-        private IBootProvider BootProvider { get; }
 
         public BootService(IVolumeContainer volumeContainer, IProductProvider productProvider, IBootProvider bootProvider)
-            : base(volumeContainer)
+            : base(volumeContainer, bootProvider)
         {
             ProductProvider = productProvider;
-            BootProvider = bootProvider;
         }
 
         public string TestBootable(CardInfo cardInfo, string fileSystem)
@@ -24,12 +22,9 @@ namespace Chimp.Services
 
             var categoryNames = ProductProvider.GetCategoryNames();
             foreach (var categoryName in categoryNames)
-            {
-                var blockSize = BootProvider.GetBlockSize(categoryName, fileSystem);
-                var bytes = BootProvider.GetBytes(categoryName, fileSystem);
-                if (Test(cardInfo, blockSize, bytes))
+                if (Test(cardInfo, categoryName, fileSystem))
                     return categoryName;
-            }
+
             return null;
         }
 
@@ -40,14 +35,12 @@ namespace Chimp.Services
 
             if (value)
             {
-                var filePath = GetPath(cardInfo, BootProvider.GetFileName(categoryName));
+                var filePath = GetFileName(categoryName);
                 if (!File.Exists(filePath))
-                    return false;
+                    return false; 
             }
 
-            var blockSize = BootProvider.GetBlockSize(categoryName, fileSystem);
-            var bytes = BootProvider.GetBytes(categoryName, fileSystem);
-            return Set(cardInfo, blockSize, bytes, value);
+            return Set(cardInfo, categoryName, fileSystem, value);
         }
     }
 }

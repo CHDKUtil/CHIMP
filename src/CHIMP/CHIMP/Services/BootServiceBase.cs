@@ -1,4 +1,5 @@
 ﻿using Net.Chdk.Model.Card;
+using Net.Chdk.Providers.Boot;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,14 +10,18 @@ namespace Chimp.Services
     abstract class BootServiceBase
     {
         private IVolumeContainer VolumeContainer { get; }
+        private IBootProvider BootProvider { get; }
 
-        protected BootServiceBase(IVolumeContainer volumeContainer)
+        protected BootServiceBase(IVolumeContainer volumeContainer, IBootProvider bootProvider)
         {
             VolumeContainer = volumeContainer;
+            BootProvider = bootProvider;
         }
 
-        protected bool Test(CardInfo cardInfo, uint blockSize, IDictionary<int, byte[]> bytes)
+        protected bool Test(CardInfo cardInfo, string categoryName, string fileSystem)
         {
+            var blockSize = GetBlockSize(categoryName, fileSystem);
+            var bytes = GetBytes(categoryName, fileSystem);
             if (blockSize == 0 || bytes == null)
                 return false;
 
@@ -28,8 +33,10 @@ namespace Chimp.Services
             }
         }
 
-        protected bool Set(CardInfo cardInfo, uint blockSize, IDictionary<int, byte[]> bytes, bool value)
+        protected bool Set(CardInfo cardInfo, string categoryName, string fileSystem, bool value)
         {
+            var blockSize = GetBlockSize(categoryName, fileSystem);
+            var bytes = GetBytes(categoryName, fileSystem);
             if (blockSize == 0 || bytes == null)
                 return false;
 
@@ -47,6 +54,26 @@ namespace Chimp.Services
             }
 
             return true;
+        }
+
+        protected string GetFileName(string categoryName)
+        {
+            return BootProvider.GetFileName(categoryName);
+        }
+
+        protected IDictionary<string, byte[]> GetFiles(string categoryName)
+        {
+            return BootProvider.GetFiles(categoryName);
+        }
+
+        private uint GetBlockSize(string categoryName, string fileSystem)
+        {
+            return BootProvider.GetBlockSize(categoryName, fileSystem);
+        }
+
+        private IDictionary<int, byte[]> GetBytes(string categoryName, string fileSystem)
+        {
+            return BootProvider.GetBytes(categoryName, fileSystem);
         }
 
         private static bool Test(byte[] buffer, IDictionary<int, byte[]> bytes)
