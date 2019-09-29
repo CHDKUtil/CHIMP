@@ -8,12 +8,14 @@ namespace Chimp.Services
 {
     sealed class ScriptService : BootServiceBase, IScriptService
     {
-        private IScriptProvider ScriptProvider { get; }
+        private const string CategoryName = "SCRIPT";
 
-        public ScriptService(IVolumeContainer volumeContainer, IScriptProvider scriptProvider)
+        private IBootProvider BootProvider { get; }
+
+        public ScriptService(IVolumeContainer volumeContainer, IBootProvider bootProvider)
             : base(volumeContainer)
         {
-            ScriptProvider = scriptProvider;
+            BootProvider = bootProvider;
         }
 
         public bool TestScriptable(CardInfo cardInfo, string fileSystem)
@@ -21,12 +23,12 @@ namespace Chimp.Services
             if (fileSystem == null)
                 return false;
 
-            var files = ScriptProvider.GetFiles();
+            var files = GetFiles();
             if (!TestScriptable(cardInfo, files))
                 return false;
 
-            var blockSize = ScriptProvider.GetBlockSize(fileSystem);
-            var bytes = ScriptProvider.GetBytes(fileSystem);
+            var blockSize = GetBlockSize(fileSystem);
+            var bytes = GetBytes(fileSystem);
             if (!Test(cardInfo, blockSize, bytes))
                 return false;
 
@@ -38,16 +40,31 @@ namespace Chimp.Services
             if (fileSystem == null)
                 return false;
 
-            var files = ScriptProvider.GetFiles();
+            var files = GetFiles();
             if (TestScriptable(cardInfo, files) != value)
                 SetScriptable(cardInfo, files, value);
 
-            var blockSize = ScriptProvider.GetBlockSize(fileSystem);
-            var bytes = ScriptProvider.GetBytes(fileSystem);
+            var blockSize = GetBlockSize(fileSystem);
+            var bytes = GetBytes(fileSystem);
             return Set(cardInfo, blockSize, bytes, value);
         }
 
-        private bool TestScriptable(CardInfo cardInfo, IDictionary<string, byte[]> files)
+        private IDictionary<string, byte[]> GetFiles()
+        {
+            return BootProvider.GetFiles(CategoryName);
+        }
+
+        private uint GetBlockSize(string fileSystem)
+        {
+            return BootProvider.GetBlockSize(CategoryName, fileSystem);
+        }
+
+        private IDictionary<int, byte[]> GetBytes(string fileSystem)
+        {
+            return BootProvider.GetBytes(CategoryName, fileSystem);
+        }
+
+        private static bool TestScriptable(CardInfo cardInfo, IDictionary<string, byte[]> files)
         {
             if (files == null)
                 return false;

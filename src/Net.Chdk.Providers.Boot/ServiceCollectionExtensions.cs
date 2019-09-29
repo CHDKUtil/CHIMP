@@ -9,11 +9,5 @@ namespace Net.Chdk.Providers.Boot
             return serviceCollection
                 .AddSingleton<IBootProvider, BootProvider>();
         }
-
-        public static IServiceCollection AddScriptProvider(this IServiceCollection serviceCollection)
-        {
-            return serviceCollection
-                .AddSingleton<IScriptProvider, ScriptProvider>();
-        }
     }
 }

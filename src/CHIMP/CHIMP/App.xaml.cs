@@ -179,7 +179,6 @@ namespace Chimp
                 .AddProductProvider()
                 .AddBootProvider()
                 .AddModuleProvider()
-                .AddScriptProvider()
                 .AddHashProvider()
                 .AddSourceProvider()
                 .AddChdkSourceProvider()

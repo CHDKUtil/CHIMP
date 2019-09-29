@@ -713,9 +713,6 @@
     <None Include="Data\Product\SDM\tips.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\script.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Data\Product\SDM\distros.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

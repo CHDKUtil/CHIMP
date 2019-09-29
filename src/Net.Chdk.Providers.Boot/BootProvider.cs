@@ -24,29 +24,37 @@ namespace Net.Chdk.Providers.Boot
 
         #region IBootProvider Members
 
-        public string GetFileName(string categoryName)
+        public string? GetFileName(string categoryName)
         {
-            return Providers[categoryName].FileName;
+            return GetProvider(categoryName)?.FileName;
         }
 
-        public int[][] GetOffsets(string categoryName)
+        public int[][]? GetOffsets(string categoryName)
         {
-            return Providers[categoryName].Offsets;
+            return GetProvider(categoryName)?.Offsets;
         }
 
-        public byte[] GetPrefix(string categoryName)
+        public byte[]? GetPrefix(string categoryName)
         {
-            return Providers[categoryName].Prefix;
+            return GetProvider(categoryName)?.Prefix;
         }
 
         public uint GetBlockSize(string categoryName, string fileSystem)
         {
-            return Providers[categoryName].GetBlockSize(fileSystem);
+            var provider = GetProvider(categoryName);
+            return provider != null
+                ? provider.GetBlockSize(fileSystem)
+                : 0;
         }
 
-        public IDictionary<int, byte[]> GetBytes(string categoryName, string fileSystem)
+        public IDictionary<int, byte[]>? GetBytes(string categoryName, string fileSystem)
         {
-            return Providers[categoryName].GetBytes(fileSystem);
+            return GetProvider(categoryName)?.GetBytes(fileSystem);
+        }
+
+        public IDictionary<string, byte[]>? GetFiles(string categoryName)
+        {
+            return GetProvider(categoryName)?.Files;
         }
 
         #endregion
