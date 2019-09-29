@@ -23,7 +23,6 @@ using Net.Chdk.Generators.Platform.Eos;
 using Net.Chdk.Generators.Platform.Ps;
 using Net.Chdk.Providers.Boot;
 using Net.Chdk.Providers.Camera;
-using Net.Chdk.Providers.Category;
 using Net.Chdk.Providers.Crypto;
 using Net.Chdk.Providers.Firmware;
 using Net.Chdk.Providers.Product;
@@ -175,7 +174,6 @@ namespace Chimp
         private static void ConfigureProviders(IServiceCollection serviceCollection)
         {
             serviceCollection
-                .AddCategoryProvider()
                 .AddProductProvider()
                 .AddBootProvider()
                 .AddModuleProvider()

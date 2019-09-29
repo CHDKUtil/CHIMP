@@ -613,9 +613,6 @@
     <None Include="Data\appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\categories.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Data\Category\SCRIPT\boot.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -890,14 +887,6 @@
     <ProjectReference Include="..\..\Net.Chdk.Providers.Camera\Net.Chdk.Providers.Camera.csproj">
       <Project>{69e9787a-cfd5-4be8-9548-d929aeb3cf4d}</Project>
       <Name>Net.Chdk.Providers.Camera</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Net.Chdk.Providers.Category.Core\Net.Chdk.Providers.Category.Core.csproj">
-      <Project>{adc5efb5-9e37-4bb0-b905-2ff4631ab884}</Project>
-      <Name>Net.Chdk.Providers.Category.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Net.Chdk.Providers.Category\Net.Chdk.Providers.Category.csproj">
-      <Project>{a4f3df60-c032-4571-9bcf-574289435d54}</Project>
-      <Name>Net.Chdk.Providers.Category</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Net.Chdk.Providers.Crypto\Net.Chdk.Providers.Crypto.csproj">
       <Project>{8390aafa-7e78-470e-aabd-6c061e20d485}</Project>

@@ -37,8 +37,8 @@
     <ProjectReference Include="..\Net.Chdk.Encoders.Binary.Core\Net.Chdk.Encoders.Binary.Core.csproj" />
     <ProjectReference Include="..\Net.Chdk.Providers.Boot.Core\Net.Chdk.Providers.Boot.Core.csproj" />
     <ProjectReference Include="..\Net.Chdk.Providers.Camera.Core\Net.Chdk.Providers.Camera.Core.csproj" />
-    <ProjectReference Include="..\Net.Chdk.Providers.Category.Core\Net.Chdk.Providers.Category.Core.csproj" />
     <ProjectReference Include="..\Net.Chdk.Providers.Crypto.Core\Net.Chdk.Providers.Crypto.Core.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Providers.Product.Core\Net.Chdk.Providers.Product.Core.csproj" />
     <ProjectReference Include="..\Net.Chdk.Providers.Software.Core\Net.Chdk.Providers.Software.Core.csproj" />
     <ProjectReference Include="..\Net.Chdk.Validators.Core\Net.Chdk.Validators.Core.csproj" />
   </ItemGroup>

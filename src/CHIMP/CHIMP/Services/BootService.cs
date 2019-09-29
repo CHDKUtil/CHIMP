@@ -1,19 +1,19 @@
 ﻿using Net.Chdk.Model.Card;
 using Net.Chdk.Providers.Boot;
-using Net.Chdk.Providers.Category;
+using Net.Chdk.Providers.Product;
 using System.IO;
 
 namespace Chimp.Services
 {
     sealed class BootService : BootServiceBase, IBootService
     {
-        private ICategoryProvider CategoryProvider { get; }
+        private IProductProvider ProductProvider { get; }
         private IBootProvider BootProvider { get; }
 
-        public BootService(IVolumeContainer volumeContainer, ICategoryProvider categoryProvider, IBootProvider bootProvider)
+        public BootService(IVolumeContainer volumeContainer, IProductProvider productProvider, IBootProvider bootProvider)
             : base(volumeContainer)
         {
-            CategoryProvider = categoryProvider;
+            ProductProvider = productProvider;
             BootProvider = bootProvider;
         }
 
@@ -22,7 +22,7 @@ namespace Chimp.Services
             if (fileSystem == null)
                 return null;
 
-            var categoryNames = CategoryProvider.GetCategoryNames();
+            var categoryNames = ProductProvider.GetCategoryNames();
             foreach (var categoryName in categoryNames)
             {
                 var blockSize = BootProvider.GetBlockSize(categoryName, fileSystem);
