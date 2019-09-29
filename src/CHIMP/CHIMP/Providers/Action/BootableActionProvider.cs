@@ -2,7 +2,7 @@
 using Chimp.ViewModels;
 using Net.Chdk.Model.Card;
 using Net.Chdk.Providers.Boot;
-using Net.Chdk.Providers.Category;
+using Net.Chdk.Providers.Product;
 using System.Collections.Generic;
 using System.IO;
 
@@ -10,13 +10,13 @@ namespace Chimp.Providers.Action
 {
     sealed class BootableActionProvider : ActionProvider
     {
-        private ICategoryProvider CategoryProvider { get; }
+        private IProductProvider ProductProvider { get; }
         private IBootProvider BootProvider { get; }
 
-        public BootableActionProvider(MainViewModel mainViewModel, IServiceActivator serviceActivator, ICategoryProvider categoryProvider, IBootProvider bootProvider)
+        public BootableActionProvider(MainViewModel mainViewModel, IServiceActivator serviceActivator, IProductProvider productProvider, IBootProvider bootProvider)
             : base(mainViewModel, serviceActivator)
         {
-            CategoryProvider = categoryProvider;
+            ProductProvider = productProvider;
             BootProvider = bootProvider;
         }
 
@@ -51,7 +51,7 @@ namespace Chimp.Providers.Action
 
         private string DoGetCategoryName()
         {
-            var categoryNames = CategoryProvider.GetCategoryNames();
+            var categoryNames = ProductProvider.GetCategoryNames();
             foreach (var categoryName in categoryNames)
             {
                 var fileName = BootProvider.GetFileName(categoryName);

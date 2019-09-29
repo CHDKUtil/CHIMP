@@ -19,7 +19,6 @@ using Net.Chdk.Detectors.Software.Sdm;
 using Net.Chdk.Encoders.Binary;
 using Net.Chdk.Providers.Boot;
 using Net.Chdk.Providers.Camera;
-using Net.Chdk.Providers.Category;
 using Net.Chdk.Providers.Crypto;
 using Net.Chdk.Providers.Product;
 using Net.Chdk.Providers.Software;
@@ -158,7 +157,6 @@ namespace Chimp
         private static void ConfigureProviders(IServiceCollection serviceCollection)
         {
             serviceCollection
-                .AddCategoryProvider()
                 .AddProductProvider()
                 .AddBootProvider()
                 .AddModuleProvider()
