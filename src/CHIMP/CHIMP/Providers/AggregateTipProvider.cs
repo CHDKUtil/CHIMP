@@ -27,8 +27,8 @@ namespace Chimp.Providers
         public IEnumerable<Tip> GetTips(string productText)
         {
             var productName =
-                DownloadViewModel?.Software?.Product.Name
-                ?? SoftwareViewModel?.SelectedItem?.Info.Product?.Name;
+                DownloadViewModel?.Software?.Product?.Name
+                ?? SoftwareViewModel?.SelectedItem?.Info?.Product?.Name;
             ITipProvider provider = null;
             if (productName != null)
                 provider = GetProvider(productName);

@@ -13,7 +13,7 @@ namespace Net.Chdk.Generators.Platform
             Generators = generators;
         }
 
-        public string? GetPlatform(uint modelId, string[] models, bool isCanon = false)
+        public string? GetPlatform(uint modelId, string[] models, string? category = null, bool isCanon = false)
         {
             if (models == null)
                 throw new ArgumentNullException(nameof(models));
@@ -29,6 +29,7 @@ namespace Net.Chdk.Generators.Platform
                     models[i] = models[i].TrimStart("Canon ");
 
             return Generators
+                .Where(g => category?.Equals(g.CategoryName) != false)
                 .Select(g => g.GetPlatform(modelId, models))
                 .FirstOrDefault(r => r != null);
         }

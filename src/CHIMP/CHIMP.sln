@@ -125,8 +125,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Chdk.Providers.Substitu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Chdk.Providers.Substitute", "..\Net.Chdk.Providers.Substitute\Net.Chdk.Providers.Substitute.csproj", "{BCD86354-00A6-4632-B200-B5276E01E1BF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Chdk.Meta.Providers.Base", "..\Net.Chdk.Meta.Providers.Base\Net.Chdk.Meta.Providers.Base.csproj", "{77FF0180-E508-418E-8964-A3B51130951C}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Generators", "Generators", "{034203B9-845A-4826-A526-014FAF8EEF2D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Chdk.Generators.Platform.Core", "..\Net.Chdk.Generators.Platform.Core\Net.Chdk.Generators.Platform.Core.csproj", "{75B68AB4-FEA0-4C3B-B7C7-A103D926F899}"
@@ -141,11 +139,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Chdk.Generators.Platfor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Chdk.Providers.Firmware.Core", "..\Net.Chdk.Providers.Firmware.Core\Net.Chdk.Providers.Firmware.Core.csproj", "{B6E3CD25-FC25-43E5-95D7-C5452B7B3653}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net.Chdk.Providers.Firmware", "..\Net.Chdk.Providers.Firmware\Net.Chdk.Providers.Firmware.csproj", "{E69E00F0-C132-4130-A1A5-9F26D9B56FD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Chdk.Providers.Firmware", "..\Net.Chdk.Providers.Firmware\Net.Chdk.Providers.Firmware.csproj", "{E69E00F0-C132-4130-A1A5-9F26D9B56FD7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Chdk.Generators.Script.Core", "..\Net.Chdk.Generators.Script.Core\Net.Chdk.Generators.Script.Core.csproj", "{C3986C82-1B66-4ADD-B60A-D648C7BA367F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Chdk.Generators.Script", "..\Net.Chdk.Generators.Script\Net.Chdk.Generators.Script.csproj", "{56CA0D73-EE63-4687-9DFE-020284337F2A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Chdk.Detectors.Software.Script", "..\Net.Chdk.Detectors.Software.Script\Net.Chdk.Detectors.Software.Script.csproj", "{C56C2B57-E514-49F8-969A-E92E2F0B1364}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -361,10 +361,6 @@ Global
 		{BCD86354-00A6-4632-B200-B5276E01E1BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCD86354-00A6-4632-B200-B5276E01E1BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCD86354-00A6-4632-B200-B5276E01E1BF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{77FF0180-E508-418E-8964-A3B51130951C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{77FF0180-E508-418E-8964-A3B51130951C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{77FF0180-E508-418E-8964-A3B51130951C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{77FF0180-E508-418E-8964-A3B51130951C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{75B68AB4-FEA0-4C3B-B7C7-A103D926F899}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{75B68AB4-FEA0-4C3B-B7C7-A103D926F899}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75B68AB4-FEA0-4C3B-B7C7-A103D926F899}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -401,6 +397,10 @@ Global
 		{56CA0D73-EE63-4687-9DFE-020284337F2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56CA0D73-EE63-4687-9DFE-020284337F2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56CA0D73-EE63-4687-9DFE-020284337F2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C56C2B57-E514-49F8-969A-E92E2F0B1364}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C56C2B57-E514-49F8-969A-E92E2F0B1364}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C56C2B57-E514-49F8-969A-E92E2F0B1364}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C56C2B57-E514-49F8-969A-E92E2F0B1364}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -457,7 +457,6 @@ Global
 		{5672FDD1-C4D9-432E-A4E1-33E9A14D4F73} = {F29BEDE1-261D-4D75-99A3-A1CFB1F77477}
 		{2B8D36F7-D0C5-4F80-AC47-995020047094} = {C89E664D-D336-46CC-A926-3C8DCDD03938}
 		{BCD86354-00A6-4632-B200-B5276E01E1BF} = {C89E664D-D336-46CC-A926-3C8DCDD03938}
-		{77FF0180-E508-418E-8964-A3B51130951C} = {C89E664D-D336-46CC-A926-3C8DCDD03938}
 		{75B68AB4-FEA0-4C3B-B7C7-A103D926F899} = {034203B9-845A-4826-A526-014FAF8EEF2D}
 		{D3980075-3A18-46B4-B902-4CA1630902C7} = {034203B9-845A-4826-A526-014FAF8EEF2D}
 		{596C95E7-F15B-42C9-A130-A1A1F5F2E580} = {034203B9-845A-4826-A526-014FAF8EEF2D}
@@ -467,6 +466,7 @@ Global
 		{E69E00F0-C132-4130-A1A5-9F26D9B56FD7} = {C89E664D-D336-46CC-A926-3C8DCDD03938}
 		{C3986C82-1B66-4ADD-B60A-D648C7BA367F} = {034203B9-845A-4826-A526-014FAF8EEF2D}
 		{56CA0D73-EE63-4687-9DFE-020284337F2A} = {034203B9-845A-4826-A526-014FAF8EEF2D}
+		{C56C2B57-E514-49F8-969A-E92E2F0B1364} = {75160E6A-863B-48DB-8A63-1FBACD8B10D0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5EAE1EB1-5100-45E3-8C04-883C294FC191}

@@ -2,6 +2,6 @@
 {
     public interface IPlatformGenerator
     {
-        string? GetPlatform(uint modelId, string[] models, bool isCanon = false);
+        string? GetPlatform(uint modelId, string[] models, string? category = null, bool isCanon = false);
     }
 }

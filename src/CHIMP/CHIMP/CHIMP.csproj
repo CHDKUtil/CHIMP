@@ -616,9 +616,6 @@
     <None Include="Data\Category\SCRIPT\boot.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\Category\SCRIPT\hash2sw.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Data\Product\400PLUS\components.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -807,6 +804,10 @@
     <ProjectReference Include="..\..\Net.Chdk.Detectors.Software.Ml\Net.Chdk.Detectors.Software.Ml.csproj">
       <Project>{021aeec9-fd5d-42bd-bf06-d94e4192f245}</Project>
       <Name>Net.Chdk.Detectors.Software.Ml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Net.Chdk.Detectors.Software.Script\Net.Chdk.Detectors.Software.Script.csproj">
+      <Project>{c56c2b57-e514-49f8-969a-e92e2f0b1364}</Project>
+      <Name>Net.Chdk.Detectors.Software.Script</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Net.Chdk.Detectors.Software.Sdm\Net.Chdk.Detectors.Software.Sdm.csproj">
       <Project>{49d3fd11-affc-41ab-84b9-5c21bce15ae4}</Project>

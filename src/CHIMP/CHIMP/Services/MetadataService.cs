@@ -38,10 +38,13 @@ namespace Chimp.Services
 
         public SoftwareInfo Update(SoftwareInfo software, string destPath, IProgress<double> progress, CancellationToken token)
         {
+            var categoryName = software?.Category?.Name;
+            if (categoryName == null)
+                return null;
+
             var updateSoftware = UpdateSoftware(ref software, destPath, progress, token);
             var updateModules = UpdateModules(software, out ModulesInfo modules, destPath, progress, token);
 
-            var categoryName = software.Category.Name;
             var metadataPath = Path.Combine(destPath, Directories.Metadata, categoryName);
             Directory.CreateDirectory(metadataPath);
             if (updateSoftware)
@@ -62,7 +65,7 @@ namespace Chimp.Services
                 return false;
             }
 
-            software.Encoding = SoftwareViewModel.SelectedItem?.Info.Encoding;
+            software.Encoding = SoftwareViewModel.SelectedItem?.Info?.Encoding;
 
             var fileName = BootProvider.GetFileName(category.Name);
             var filePath = Path.Combine(destPath, fileName);

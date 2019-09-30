@@ -14,7 +14,7 @@ using System.Threading;
 
 namespace Net.Chdk.Detectors.Software
 {
-    abstract class BinarySoftwareDetectorBase : IInnerBinarySoftwareDetector
+    public abstract class BinarySoftwareDetectorBase : IInnerBinarySoftwareDetector
     {
         protected SoftwareDetectorSettings Settings { get; }
         protected ILogger Logger { get; }
@@ -69,9 +69,7 @@ namespace Net.Chdk.Detectors.Software
 
         public virtual SoftwareInfo GetSoftware(byte[] inBuffer, IProgress<double> progress, CancellationToken token)
         {
-            var detectors = GetDetectors();
-            var prefix = BootProvider.GetPrefix(CategoryName);
-            var software = GetSoftware(detectors, prefix, inBuffer, progress, token);
+            var software = DoGetSoftware(inBuffer, progress, token);
             if (software != null)
             {
                 var fileName = BootProvider.GetFileName(CategoryName);
@@ -108,6 +106,13 @@ namespace Net.Chdk.Detectors.Software
             }
 
             return false;
+        }
+
+        protected virtual SoftwareInfo DoGetSoftware(byte[] inBuffer, IProgress<double> progress, CancellationToken token)
+        {
+            var detectors = GetDetectors();
+            var prefix = BootProvider.GetPrefix(CategoryName);
+            return GetSoftware(detectors, prefix, inBuffer, progress, token);
         }
 
         private SoftwareInfo GetSoftware(IEnumerable<IProductBinarySoftwareDetector> detectors, byte[] inBuffer, SoftwareEncodingInfo encoding,

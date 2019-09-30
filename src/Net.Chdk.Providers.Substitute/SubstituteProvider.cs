@@ -26,15 +26,8 @@ namespace Net.Chdk.Providers.Substitute
             if (categoryName == null)
                 return null;
 
-            var platform = GetPlatform(camera, cameraModel);
-            if (platform == null)
-                return null;
-
-            var revision = FirmwareProvider.GetFirmwareRevision(camera);
-            if (revision == null)
-                return null;
-
-            return GetProvider(categoryName)?.GetSubstitutes(platform, revision);
+            return GetProvider(categoryName)?
+                .GetSubstitutes(camera, cameraModel);
         }
 
         protected override IEnumerable<string> GetNames()
@@ -44,23 +37,9 @@ namespace Net.Chdk.Providers.Substitute
 
         protected override ICategorySubstituteProvider CreateProvider(string categoryName) => categoryName switch
         {
-            "EOS" => new EosSubstituteProvider(LoggerFactory),
-            "PS" => new PsSubstituteProvider(LoggerFactory),
+            "EOS" => new EosSubstituteProvider(PlatformGenerator, FirmwareProvider, LoggerFactory),
+            "PS" => new PsSubstituteProvider(PlatformGenerator, FirmwareProvider, LoggerFactory),
             _ => throw new InvalidOperationException($"Unknown category: {categoryName}"),
         };
-
-        //TODO Move to PlatformProvider
-        private string? GetPlatform(CameraInfo camera, CameraModelInfo cameraModel)
-        {
-            var modelId = camera?.Canon?.ModelId;
-            if (modelId == null)
-                return null;
-
-            var models = cameraModel?.Names;
-            if (models == null)
-                return null;
-
-            return PlatformGenerator.GetPlatform(modelId.Value, models, true);
-        }
     }
 }

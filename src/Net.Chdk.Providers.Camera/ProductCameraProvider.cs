@@ -156,7 +156,7 @@ namespace Net.Chdk.Providers.Camera
         {
             reverse = null;
 
-            if (camera == null)
+            if (camera?.Platform == null)
                 return false;
 
             return ReverseCameras.TryGetValue(camera.Platform, out reverse);

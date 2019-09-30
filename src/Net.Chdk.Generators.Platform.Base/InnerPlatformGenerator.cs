@@ -28,6 +28,8 @@ namespace Net.Chdk.Generators.Platform
             return PostProcess(split);
         }
 
+        public abstract string CategoryName { get; }
+
         protected static string[] AdaptMark(string[] split)
         {
             var index = Array.IndexOf(split, "Mark");

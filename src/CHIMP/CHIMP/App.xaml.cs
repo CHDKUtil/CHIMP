@@ -15,12 +15,13 @@ using Net.Chdk.Detectors.Software;
 using Net.Chdk.Detectors.Software.Chdk;
 using Net.Chdk.Detectors.Software.Fhp;
 using Net.Chdk.Detectors.Software.Ml;
+using Net.Chdk.Detectors.Software.Script;
 using Net.Chdk.Detectors.Software.Sdm;
 using Net.Chdk.Encoders.Binary;
-using Net.Chdk.Generators.Script;
 using Net.Chdk.Generators.Platform;
 using Net.Chdk.Generators.Platform.Eos;
 using Net.Chdk.Generators.Platform.Ps;
+using Net.Chdk.Generators.Script;
 using Net.Chdk.Providers.Boot;
 using Net.Chdk.Providers.Camera;
 using Net.Chdk.Providers.Crypto;
@@ -126,7 +127,7 @@ namespace Chimp
                 .AddFileSystemSoftwareDetector()
                 .AddEosHashSoftwareDetector()
                 .AddPsHashSoftwareDetector()
-                .AddScriptHashSoftwareDetector()
+                .AddScriptSoftwareDetector()
                 .AddEosBinarySoftwareDetector()
                 .AddKnownPsBinarySoftwareDetector()
                 .AddUnkownPsBinarySoftwareDetector()

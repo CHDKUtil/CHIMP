@@ -6,7 +6,7 @@ using Net.Chdk;
 using Net.Chdk.Generators.Script;
 using Net.Chdk.Json;
 using Net.Chdk.Model.Software;
-using System;
+using Net.Chdk.Providers.Boot;
 using System.Collections.Generic;
 using System.IO;
 
@@ -14,20 +14,21 @@ namespace Chimp.Actions
 {
     sealed class ClearOverlaysAction : ActionBase
     {
+        private const string CategoryName = "SCRIPT";
         private const string ProductName = "clear_overlays";
 
-        private static readonly Version ProductVersion = new Version("1.0");
-
+        private IBootProvider BootProvider { get; }
         private IScriptGenerator ScriptGenerator { get; }
         private IMetadataService MetadataService { get; }
         private IDictionary<string, string> Substitutes { get; }
         private ILogger Logger { get; }
 
-        public ClearOverlaysAction(MainViewModel mainViewModel, IScriptGenerator scriptGenerator, IMetadataService metadataService, IDictionary<string, string> substitutes, ILogger<ClearOverlaysAction> logger)
+        public ClearOverlaysAction(MainViewModel mainViewModel, IBootProvider bootProvider, IScriptGenerator scriptGenerator, IMetadataService metadataService, IDictionary<string, string> substitutes, ILogger<ClearOverlaysAction> logger)
             : base(mainViewModel)
         {
-            MetadataService = metadataService;
+            BootProvider = bootProvider;
             ScriptGenerator = scriptGenerator;
+            MetadataService = metadataService;
             Substitutes = substitutes;
             Logger = logger;
         }
@@ -36,9 +37,9 @@ namespace Chimp.Actions
 
         protected override SoftwareData Perform()
         {
-            var destPath = GenerateScript();
             var software = GetSoftware();
-            MetadataService.Update(software, destPath, null, default);
+            var destPath = GenerateScript(software);
+            software = MetadataService.Update(software, destPath, null, default);
 
             return new SoftwareData
             {
@@ -47,12 +48,21 @@ namespace Chimp.Actions
             };
         }
 
-        private string GenerateScript()
+        private string GenerateScript(SoftwareInfo software)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), "CHIMP");
             Directory.CreateDirectory(tempPath);
 
-            var dirName = $"{ProductName}-{Platform}-{Revision}-{ProductVersion}";
+            var dirName = $"{ProductName}-{Platform}-{Revision}";
+            var version = software?.Product?.Version;
+            if (version != null)
+            {
+                dirName = $"{dirName}-{version}";
+                var status = software?.Build?.Status;
+                if (!string.IsNullOrEmpty(status))
+                    dirName = $"{dirName}-{status}";
+            }
+
             var dirPath = Path.Combine(tempPath, dirName);
             if (Directory.Exists(dirPath))
             {
@@ -61,7 +71,8 @@ namespace Chimp.Actions
             else
             {
                 Directory.CreateDirectory(dirPath);
-                ScriptGenerator.GenerateScript(dirPath, ProductName, Substitutes);
+                var filePath = Path.Combine(dirPath, BootProvider.GetFileName(CategoryName));
+                ScriptGenerator.GenerateScript(filePath, ProductName, Substitutes);
             }
 
             return dirPath;
@@ -69,23 +80,11 @@ namespace Chimp.Actions
 
         private SoftwareInfo GetSoftware()
         {
-            SoftwareInfo software;
             var filePath = Path.Combine(Directories.Data, Directories.Product, ProductName, "software.json");
             using (var stream = File.OpenRead(filePath))
             {
-                software = JsonObject.Deserialize<SoftwareInfo>(stream);
+                return JsonObject.Deserialize<SoftwareInfo>(stream);
             }
-            software.Camera = GetCamera();
-            return software;
-        }
-
-        private SoftwareCameraInfo GetCamera()
-        {
-            return new SoftwareCameraInfo
-            {
-                Platform = Platform,
-                Revision = Revision,
-            };
         }
 
         private string Platform => Substitutes["platform"];

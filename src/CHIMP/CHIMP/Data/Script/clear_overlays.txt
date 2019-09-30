@@ -1,5 +1,9 @@
 ' clean rec mode palette and disabled auto-off
-' {platform}, {revision}
+' {model}, {revision}
+'
+' @script clear_overlays-1.0.0-{platform}-{revision}-ALPHA
+' @author srsa_4c
+' @created 2019-09-28
 
 DIM palette_buffer_ptr = {palette_buffer_ptr}
 DIM active_palette_buffer = {active_palette_buffer}

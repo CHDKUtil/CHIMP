@@ -7,6 +7,8 @@ namespace Net.Chdk.Generators.Platform.Eos
     {
         private const uint MaxModelId = 0x1000000;
 
+        public override string CategoryName => "EOS";
+
         protected override IEnumerable<string>? PreGenerate(uint modelId, string source)
         {
             if (modelId > MaxModelId)

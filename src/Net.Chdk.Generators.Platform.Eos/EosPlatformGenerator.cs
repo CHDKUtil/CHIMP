@@ -7,6 +7,8 @@ namespace Net.Chdk.Generators.Platform.Eos
     {
         private static readonly string[] PsEosModels = new[] { "M3", "M5", "M6", "M10", "M100" };
 
+        public override string CategoryName => "EOS";
+
         public override string? GetPlatform(uint modelId, string[] models)
         {
             if (models[0].Contains("Rebel"))

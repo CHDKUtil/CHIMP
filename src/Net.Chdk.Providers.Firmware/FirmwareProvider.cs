@@ -15,17 +15,20 @@ namespace Net.Chdk.Providers.Firmware
         public string? GetCategoryName(CameraInfo? cameraInfo)
         {
             var canon = cameraInfo?.Canon;
-            return canon != null
-                ? canon.FirmwareRevision != 0
-                    ? "PS"
-                    : "EOS"
-                : null;
+            if (canon == null)
+                return null;
+            if (canon.FirmwareRevision != 0)
+                return "PS";
+            if (canon.FirmwareVersion != null)
+                return "EOS";
+            return null;
         }
 
-        public string? GetFirmwareRevision(CameraInfo? cameraInfo)
+        public string? GetFirmwareRevision(CameraInfo? cameraInfo, string? categoryName = null)
         {
-            var categoryName = GetCategoryName(cameraInfo);
-            return GetProvider(categoryName)?.GetFirmwareRevision(cameraInfo);
+            categoryName ??= GetCategoryName(cameraInfo);
+            return GetProvider(categoryName)?
+                .GetFirmwareRevision(cameraInfo);
         }
 
         protected override IEnumerable<string> GetNames()
