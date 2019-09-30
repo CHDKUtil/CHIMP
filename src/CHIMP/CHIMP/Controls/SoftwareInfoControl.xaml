@@ -146,7 +146,17 @@
         </TextBlock>
 
         <!-- Time -->
-        <Label Content="{x:Static properties:Resources.Software_Time_Content}" Grid.Row="7" />
+        <Label Content="{x:Static properties:Resources.Software_Time_Content}" Grid.Row="7">
+            <Label.Style>
+                <Style TargetType="Label" BasedOn="{StaticResource InfoLabel}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Product.Created.TimeOfDay}" Value="00:00:00">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
         <TextBlock Grid.Row="7">
             <TextBlock.Style>
                 <Style TargetType="TextBlock" BasedOn="{StaticResource InfoTextBlock}">
@@ -154,6 +164,9 @@
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding Product.Created}" Value="{x:Null}">
                             <Setter Property="Text" Value="{x:Static properties:Resources.Software_Time_Unknown_Text}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Product.Created.TimeOfDay}" Value="00:00:00">
+                            <Setter Property="Visibility" Value="Collapsed" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
