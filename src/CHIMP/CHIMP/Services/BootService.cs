@@ -35,7 +35,7 @@ namespace Chimp.Services
 
             if (value)
             {
-                var filePath = GetFileName(categoryName);
+                var filePath = GetPath(cardInfo, GetFileName(categoryName));
                 if (!File.Exists(filePath))
                     return false; 
             }
