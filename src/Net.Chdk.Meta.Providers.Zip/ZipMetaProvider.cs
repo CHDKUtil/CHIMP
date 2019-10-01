@@ -33,7 +33,7 @@ namespace Net.Chdk.Meta.Providers.Zip
             using var stream = File.OpenRead(path);
 
             var fileName = Path.GetFileName(path);
-            return GetItems(stream, fileName, productName, bootFileName);
+            return GetItems(stream, fileName, productName, bootFileName!);
         }
 
         private IEnumerable<T?> GetItems(Stream stream, string fileName, string productName, string bootFileName)
