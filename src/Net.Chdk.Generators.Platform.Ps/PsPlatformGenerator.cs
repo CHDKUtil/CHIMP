@@ -10,9 +10,9 @@ namespace Net.Chdk.Generators.Platform.Ps
 
         protected override string[] Suffixes => new[] { "IS" };
 
-        private IIxusPlatformGenerator IxusGenerator { get; }
+        private IxusPlatformGenerator IxusGenerator { get; }
 
-        public PsPlatformGenerator(IIxusPlatformGenerator ixusGenerator)
+        public PsPlatformGenerator(IxusPlatformGenerator ixusGenerator)
         {
             IxusGenerator = ixusGenerator;
         }

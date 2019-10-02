@@ -9,7 +9,7 @@ namespace Net.Chdk.Generators.Platform.Ps
             return serviceCollection
                 .AddSingleton<IInnerPlatformGenerator, PsPlatformGenerator>()
                 .AddSingleton<IInnerPlatformGenerator, IxusPlatformGenerator>()
-                .AddSingleton<IIxusPlatformGenerator, IxusPlatformGenerator>()
+                .AddSingleton<IxusPlatformGenerator>()
                 .AddSingleton<IInnerPlatformGenerator, PsEosPlatformGenerator>();
         }
     }
