@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Net.Chdk.Adapters.Platform;
 using Net.Chdk.Model.Software;
 using System;
 using System.Collections.Generic;
@@ -14,8 +15,8 @@ namespace Chimp.Providers.Matches
         
         private string error;
 
-        public ChdkMatchProvider(Uri baseUri, IDictionary<string, string> buildPaths, ILogger<ChdkMatchProvider> logger)
-            : base(baseUri, buildPaths, logger)
+        public ChdkMatchProvider(Uri baseUri, IDictionary<string, string> buildPaths, IPlatformAdapter platformAdapter, ILogger<ChdkMatchProvider> logger)
+            : base(baseUri, buildPaths, platformAdapter, logger)
         {
         }
 
@@ -42,5 +43,7 @@ namespace Chimp.Providers.Matches
                 ? error
                 : base.GetError();
         }
+
+        protected override string ProductName => "CHDK";
     }
 }

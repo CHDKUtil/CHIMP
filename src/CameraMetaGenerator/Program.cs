@@ -1,8 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Net.Chdk.Adapters.Platform;
 using Net.Chdk.Generators.Platform;
-using Net.Chdk.Generators.Platform.Eos;
-using Net.Chdk.Generators.Platform.Ps;
 using Net.Chdk.Meta.Model.Camera;
 using Net.Chdk.Meta.Model.CameraList;
 using Net.Chdk.Meta.Model.CameraTree;
@@ -32,6 +31,7 @@ using Net.Chdk.Providers.Product;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Reflection;
 
 namespace Net.Chdk.Meta.Providers.Camera
@@ -63,8 +63,6 @@ namespace Net.Chdk.Meta.Providers.Camera
                 .AddBootProvider()
 
                 .AddPlatformGenerator()
-                .AddEosPlatformGenerator()
-                .AddPsPlatformGenerator()
 
                 .AddBuildProvider()
                 .AddEosBuildProvider()
@@ -92,6 +90,12 @@ namespace Net.Chdk.Meta.Providers.Camera
                 .AddJsonCameraTreeProvider()
                 .AddSrcCameraTreeProvider()
 
+                .AddPlatformAdapter()
+                .AddChdkPlatformAdapter()
+                .AddSdmPlatformAdapter()
+                .AddMlPlatformAdapter()
+                .AddFhpPlatformAdapter()
+
                 .AddCameraWriter()
                 .AddJsonCameraWriter()
 
@@ -108,7 +112,9 @@ namespace Net.Chdk.Meta.Providers.Camera
                 : args[3];
             var outPath = args[args.Length - 1];
 
-            var platforms = GetPlatforms(serviceProvider, platformPath);
+            var models = GetModels(serviceProvider, platformPath, productName);
+            var platforms = GetPlatforms(models);
+
             var list = GetCameraList(serviceProvider, listPath, productName);
             var tree = GetCameraTree(serviceProvider, treePath);
 
@@ -119,10 +125,32 @@ namespace Net.Chdk.Meta.Providers.Camera
             logger.LogInformation("Completed in {0}", watch.Elapsed);
         }
 
-        private static IDictionary<string, PlatformData> GetPlatforms(IServiceProvider serviceProvider, string path)
+        private static IDictionary<string, CameraModel[]> GetModels(IServiceProvider serviceProvider, string path, string productName)
         {
+            var categoryName = serviceProvider.GetService<IProductProvider>()
+                .GetCategoryName(productName);
+
             return serviceProvider.GetService<IPlatformProvider>()
-                .GetPlatforms(path);
+                .GetPlatforms(path, categoryName);
+        }
+
+        private static IDictionary<string, PlatformData> GetPlatforms(IDictionary<string, CameraModel[]> models)
+        {
+            return models
+                .SelectMany(kvp => kvp.Value.Select(model => GetPlatform(kvp.Key, model)))
+                .ToDictionary(t => t.key, t => t.platform);
+        }
+
+        private static (string key, PlatformData platform) GetPlatform(string modelId, CameraModel model)
+        {
+            if (model.Platform == null)
+                throw new InvalidOperationException("Platform cannot be null");
+            var platform = new PlatformData
+            {
+                ModelId = modelId,
+                Names = model.Names
+            };
+            return (model.Platform, platform);
         }
 
         private static IDictionary<string, ListPlatformData> GetCameraList(IServiceProvider serviceProvider, string path, string productName)

@@ -22,14 +22,14 @@ namespace Net.Chdk.Meta.Providers.Camera.Chdk
 
         public override string ProductName => "CHDK";
 
-        protected override string GetAltButton(string platform, string[] altNames)
+        protected override string GetAltButton(string platform, string[]? altNames)
         {
             if (altNames == null)
                 return "Print";
             return GetAltButton(platform, altNames, 0);
         }
 
-        protected override string[] GetAltButtons(string platform, string[] altNames)
+        protected override string[]? GetAltButtons(string platform, string[]? altNames)
         {
             if (altNames == null)
                 return null;

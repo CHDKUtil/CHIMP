@@ -1,0 +1,464 @@
+{
+  "0x0000412": [
+    {
+      "names": [
+        "Canon EOS M50",
+        "Canon EOS Kiss M"
+      ],
+      "platform": "m50"
+    }
+  ],
+  "0x0000801": [
+    {
+      "names": [
+        "Canon PowerShot SX740 HS"
+      ],
+      "platform": "sx740"
+    }
+  ],
+  "0x0000804": [
+    {
+      "names": [
+        "Canon PowerShot G5 X Mark II"
+      ],
+      "platform": "g5x2"
+    }
+  ],
+  "0x0000805": [
+    {
+      "names": [
+        "Canon PowerShot SX70 HS"
+      ],
+      "platform": "sx70"
+    }
+  ],
+  "0x0000808": [
+    {
+      "names": [
+        "Canon PowerShot G7 X Mark III"
+      ],
+      "platform": "g7x3"
+    }
+  ],
+  "0x0000811": [
+    {
+      "names": [
+        "Canon EOS M6 Mark II"
+      ],
+      "platform": "m6_2"
+    }
+  ],
+  "0x1668000": [
+    {
+      "names": [
+        "Canon EOS D60"
+      ],
+      "platform": "d60"
+    }
+  ],
+  "0x80000168": [
+    {
+      "names": [
+        "Canon EOS 10D"
+      ],
+      "platform": "10d"
+    }
+  ],
+  "0x80000170": [
+    {
+      "names": [
+        "Canon EOS Digital Rebel",
+        "Canon EOS 300D",
+        "Canon EOS Kiss Digital"
+      ],
+      "platform": "300d"
+    }
+  ],
+  "0x80000175": [
+    {
+      "names": [
+        "Canon EOS 20D"
+      ],
+      "platform": "20d"
+    }
+  ],
+  "0x80000176": [
+    {
+      "names": [
+        "Canon EOS Digital Rebel XSi",
+        "Canon EOS 450D",
+        "Canon EOS Kiss X2"
+      ],
+      "platform": "450d"
+    }
+  ],
+  "0x80000189": [
+    {
+      "names": [
+        "Canon EOS Digital Rebel XT",
+        "Canon EOS 350D",
+        "Canon EOS Kiss Digital N"
+      ],
+      "platform": "350d"
+    }
+  ],
+  "0x80000190": [
+    {
+      "names": [
+        "Canon EOS 40D"
+      ],
+      "platform": "40d"
+    }
+  ],
+  "0x80000213": [
+    {
+      "names": [
+        "Canon EOS 5D"
+      ],
+      "platform": "5d"
+    }
+  ],
+  "0x80000218": [
+    {
+      "names": [
+        "Canon EOS 5D Mark II"
+      ],
+      "platform": "5d2"
+    }
+  ],
+  "0x80000234": [
+    {
+      "names": [
+        "Canon EOS 30D"
+      ],
+      "platform": "30d"
+    }
+  ],
+  "0x80000236": [
+    {
+      "names": [
+        "Canon EOS Digital Rebel XTi",
+        "Canon EOS 400D",
+        "Canon EOS Kiss Digital X"
+      ],
+      "platform": "400d"
+    }
+  ],
+  "0x80000250": [
+    {
+      "names": [
+        "Canon EOS 7D"
+      ],
+      "platform": "7d"
+    }
+  ],
+  "0x80000252": [
+    {
+      "names": [
+        "Canon EOS Rebel T1i",
+        "Canon EOS 500D",
+        "Canon EOS Kiss X3"
+      ],
+      "platform": "500d"
+    }
+  ],
+  "0x80000254": [
+    {
+      "names": [
+        "Canon EOS Rebel XS",
+        "Canon EOS 1000D",
+        "Canon EOS Kiss F"
+      ],
+      "platform": "1000d"
+    }
+  ],
+  "0x80000261": [
+    {
+      "names": [
+        "Canon EOS 50D"
+      ],
+      "platform": "50d"
+    }
+  ],
+  "0x80000270": [
+    {
+      "names": [
+        "Canon EOS Rebel T2i",
+        "Canon EOS 550D",
+        "Canon EOS Kiss X4"
+      ],
+      "platform": "550d"
+    }
+  ],
+  "0x80000285": [
+    {
+      "names": [
+        "Canon EOS 5D Mark III"
+      ],
+      "platform": "5d3"
+    }
+  ],
+  "0x80000286": [
+    {
+      "names": [
+        "Canon EOS Rebel T3i",
+        "Canon EOS 600D",
+        "Canon EOS Kiss X5"
+      ],
+      "platform": "600d"
+    }
+  ],
+  "0x80000287": [
+    {
+      "names": [
+        "Canon EOS 60D"
+      ],
+      "platform": "60d"
+    }
+  ],
+  "0x80000288": [
+    {
+      "names": [
+        "Canon EOS Rebel T3",
+        "Canon EOS 1100D",
+        "Canon EOS Kiss X50"
+      ],
+      "platform": "1100d"
+    }
+  ],
+  "0x80000289": [
+    {
+      "names": [
+        "Canon EOS 7D Mark II"
+      ],
+      "platform": "7d2"
+    }
+  ],
+  "0x80000301": [
+    {
+      "names": [
+        "Canon EOS Rebel T4i",
+        "Canon EOS 650D",
+        "Canon EOS Kiss X6i"
+      ],
+      "platform": "650d"
+    }
+  ],
+  "0x80000302": [
+    {
+      "names": [
+        "Canon EOS 6D"
+      ],
+      "platform": "6d"
+    }
+  ],
+  "0x80000325": [
+    {
+      "names": [
+        "Canon EOS 70D"
+      ],
+      "platform": "70d"
+    }
+  ],
+  "0x80000326": [
+    {
+      "names": [
+        "Canon EOS Rebel T5i",
+        "Canon EOS 700D",
+        "Canon EOS Kiss X7i"
+      ],
+      "platform": "700d"
+    }
+  ],
+  "0x80000327": [
+    {
+      "names": [
+        "Canon EOS Rebel T5",
+        "Canon EOS 1200D",
+        "Canon EOS Kiss X70",
+        "Canon EOS Hi"
+      ],
+      "platform": "1200d"
+    }
+  ],
+  "0x80000331": [
+    {
+      "names": [
+        "Canon EOS M"
+      ],
+      "platform": "m"
+    }
+  ],
+  "0x80000346": [
+    {
+      "names": [
+        "Canon EOS Rebel SL1",
+        "Canon EOS 100D",
+        "Canon EOS Kiss X7"
+      ],
+      "platform": "100d"
+    }
+  ],
+  "0x80000347": [
+    {
+      "names": [
+        "Canon EOS Rebel T6s",
+        "Canon EOS 760D",
+        "Canon EOS 8000D"
+      ],
+      "platform": "760d"
+    }
+  ],
+  "0x80000349": [
+    {
+      "names": [
+        "Canon EOS 5D Mark IV"
+      ],
+      "platform": "5d4"
+    }
+  ],
+  "0x80000350": [
+    {
+      "names": [
+        "Canon EOS 80D"
+      ],
+      "platform": "80d"
+    }
+  ],
+  "0x80000355": [
+    {
+      "names": [
+        "Canon EOS M2"
+      ],
+      "platform": "m2"
+    }
+  ],
+  "0x80000382": [
+    {
+      "names": [
+        "Canon EOS 5DS"
+      ],
+      "platform": "5ds"
+    }
+  ],
+  "0x80000393": [
+    {
+      "names": [
+        "Canon EOS Rebel T6i",
+        "Canon EOS 750D",
+        "Canon EOS Kiss X8i"
+      ],
+      "platform": "750d"
+    }
+  ],
+  "0x80000401": [
+    {
+      "names": [
+        "Canon EOS 5DS R"
+      ],
+      "platform": "5dsr"
+    }
+  ],
+  "0x80000404": [
+    {
+      "names": [
+        "Canon EOS Rebel T6",
+        "Canon EOS 1300D",
+        "Canon EOS Kiss X80"
+      ],
+      "platform": "1300d"
+    }
+  ],
+  "0x80000405": [
+    {
+      "names": [
+        "Canon EOS Rebel T7i",
+        "Canon EOS 800D",
+        "Canon EOS Kiss X9i"
+      ],
+      "platform": "800d"
+    }
+  ],
+  "0x80000406": [
+    {
+      "names": [
+        "Canon EOS 6D Mark II"
+      ],
+      "platform": "6d2"
+    }
+  ],
+  "0x80000408": [
+    {
+      "names": [
+        "Canon EOS 77D",
+        "Canon EOS 9000D"
+      ],
+      "platform": "77d"
+    }
+  ],
+  "0x80000417": [
+    {
+      "names": [
+        "Canon EOS Rebel SL2",
+        "Canon EOS 200D",
+        "Canon EOS Kiss X9"
+      ],
+      "platform": "200d"
+    }
+  ],
+  "0x80000422": [
+    {
+      "names": [
+        "Canon EOS Rebel T100",
+        "Canon EOS 4000D",
+        "Canon EOS 3000D"
+      ],
+      "platform": "4000d"
+    }
+  ],
+  "0x80000424": [
+    {
+      "names": [
+        "Canon EOS R"
+      ],
+      "platform": "r"
+    }
+  ],
+  "0x80000432": [
+    {
+      "names": [
+        "Canon EOS Rebel T7",
+        "Canon EOS 2000D",
+        "Canon EOS 1500D",
+        "Canon EOS Kiss X90"
+      ],
+      "platform": "2000d"
+    }
+  ],
+  "0x80000433": [
+    {
+      "names": [
+        "Canon EOS RP"
+      ],
+      "platform": "rp"
+    }
+  ],
+  "0x80000436": [
+    {
+      "names": [
+        "Canon EOS SL3",
+        "Canon EOS 250D",
+        "Canon EOS Kiss X10"
+      ],
+      "platform": "250d"
+    }
+  ],
+  "0x80000437": [
+    {
+      "names": [
+        "Canon EOS 90D"
+      ],
+      "platform": "90d"
+    }
+  ]
+}

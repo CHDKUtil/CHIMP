@@ -13,7 +13,7 @@ namespace Net.Chdk.Generators.Platform
             Generators = generators;
         }
 
-        public string? GetPlatform(uint modelId, string[] models, string? category = null, bool isCanon = false)
+        public string? GetPlatform(uint modelId, string[] models, string? category = null)
         {
             if (models == null)
                 throw new ArgumentNullException(nameof(models));
@@ -24,14 +24,17 @@ namespace Net.Chdk.Generators.Platform
             if (models.Any(string.IsNullOrEmpty))
                 throw new ArgumentException("Model names cannot be null or empty", nameof(models));
 
-            if (isCanon)
-                for (int i = 0; i < models.Length; i++)
-                    models[i] = models[i].TrimStart("Canon ");
-
+            var splits = models.Select(Split);
             return Generators
-                .Where(g => category?.Equals(g.CategoryName) != false)
-                .Select(g => g.GetPlatform(modelId, models))
+                .Select(g => g.GetPlatform(modelId, splits, category))
                 .FirstOrDefault(r => r != null);
+        }
+
+        private static string[] Split(string model)
+        {
+            return model
+                .TrimStart("Canon ")
+                .Split(' ');
         }
     }
 }

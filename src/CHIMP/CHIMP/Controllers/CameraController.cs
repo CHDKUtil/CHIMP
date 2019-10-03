@@ -5,7 +5,6 @@ using Net.Chdk.Detectors.Camera;
 using Net.Chdk.Detectors.CameraModel;
 using Net.Chdk.Model.Camera;
 using Net.Chdk.Model.CameraModel;
-using Net.Chdk.Providers.Camera;
 using System;
 using System.ComponentModel;
 using System.Linq;
@@ -22,16 +21,14 @@ namespace Chimp.Controllers
 
         private ICameraModelDetector CameraModelDetector { get; }
         private IFileCameraModelDetector FileCameraModelDetector { get; }
-        private ICameraProvider CameraProvider { get; }
         private IDialogService DialogService { get; }
 
-        public CameraController(ICameraModelDetector cameraModelDetector, IFileCameraModelDetector fileCameraModelDetector, ICameraProvider cameraProvider, IDialogService dialogService,
+        public CameraController(ICameraModelDetector cameraModelDetector, IFileCameraModelDetector fileCameraModelDetector, IDialogService dialogService,
             MainViewModel mainViewModel, IStepProvider stepProvider, string stepName, ILoggerFactory loggerFactory)
             : base(mainViewModel, stepProvider, stepName, loggerFactory)
         {
             CameraModelDetector = cameraModelDetector;
             FileCameraModelDetector = fileCameraModelDetector;
-            CameraProvider = cameraProvider;
             DialogService = dialogService;
         }
 
@@ -172,9 +169,6 @@ namespace Chimp.Controllers
             }
 
             viewModel.Items = CreateItems(camera);
-
-            var cameraModels = CameraProvider.GetCameraModels(camera.Info);
-            viewModel.CardType = cameraModels?.CardType;
 
             if (viewModel.Items.Length == 1)
             {

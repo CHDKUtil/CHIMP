@@ -4,6 +4,8 @@
     <TargetFramework>netstandard1.1</TargetFramework>
     <Description>CHIMP EOS camera metadata providers</Description>
     <RootNamespace>Net.Chdk.Meta.Providers.Camera.Eos</RootNamespace>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup>

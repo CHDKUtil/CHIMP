@@ -607,19 +607,22 @@
     <None Include="Data\Category\EOS\addresses.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Data\Category\EOS\platforms.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Data\Category\PS\addresses.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Data\appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Data\Category\PS\platforms.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Data\Category\SCRIPT\boot.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Data\Product\400PLUS\components.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Data\Product\clear_overlays\cameras.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Data\Product\clear_overlays\software.json">
@@ -761,6 +764,14 @@
       <Project>{8f631a8f-4ff2-4095-b9b0-ba611d7da1c6}</Project>
       <Name>MetadataExtractor</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Net.Chdk.Adapters.Platform.Core\Net.Chdk.Adapters.Platform.Core.csproj">
+      <Project>{9f64d799-3bfe-43d4-a50b-19df289cd61f}</Project>
+      <Name>Net.Chdk.Adapters.Platform.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Net.Chdk.Adapters.Platform\Net.Chdk.Adapters.Platform.csproj">
+      <Project>{af8d22f7-d378-407e-8e68-d809d060a34b}</Project>
+      <Name>Net.Chdk.Adapters.Platform</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Net.Chdk.Core\Net.Chdk.Core.csproj">
       <Project>{4efefd95-2ae3-4b1c-8fb1-eadc09ce8e7d}</Project>
       <Name>Net.Chdk.Core</Name>
@@ -825,14 +836,6 @@
       <Project>{1355b19b-44a5-45e0-a078-9b7c18a29e80}</Project>
       <Name>Net.Chdk.Encoders.Binary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Net.Chdk.Generators.Platform.Eos\Net.Chdk.Generators.Platform.Eos.csproj">
-      <Project>{9b4fa746-bf73-4fe4-9f4d-ad2d1ac8cb3f}</Project>
-      <Name>Net.Chdk.Generators.Platform.Eos</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Net.Chdk.Generators.Platform.Ps\Net.Chdk.Generators.Platform.Ps.csproj">
-      <Project>{596c95e7-f15b-42c9-a130-a1a1f5f2e580}</Project>
-      <Name>Net.Chdk.Generators.Platform.Ps</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Net.Chdk.Generators.Platform\Net.Chdk.Generators.Platform.csproj">
       <Project>{ff1148b9-8018-4f53-b7ff-c7170e16a4a4}</Project>
       <Name>Net.Chdk.Generators.Platform</Name>
@@ -885,6 +888,14 @@
       <Project>{82b1f515-eeb2-41de-9384-bc7f45af9ae5}</Project>
       <Name>Net.Chdk.Providers.Camera.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Net.Chdk.Providers.CameraModel.Core\Net.Chdk.Providers.CameraModel.Core.csproj">
+      <Project>{54A56E1F-8728-4078-AAD1-7CC07C36ED63}</Project>
+      <Name>Net.Chdk.Providers.CameraModel.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Net.Chdk.Providers.CameraModel\Net.Chdk.Providers.CameraModel.csproj">
+      <Project>{71f55cb4-fa44-4aaf-8225-9fee7c9ddbb3}</Project>
+      <Name>Net.Chdk.Providers.CameraModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Net.Chdk.Providers.Camera\Net.Chdk.Providers.Camera.csproj">
       <Project>{69e9787a-cfd5-4be8-9548-d929aeb3cf4d}</Project>
       <Name>Net.Chdk.Providers.Camera</Name>
@@ -896,6 +907,10 @@
     <ProjectReference Include="..\..\Net.Chdk.Providers.Firmware\Net.Chdk.Providers.Firmware.csproj">
       <Project>{e69e00f0-c132-4130-a1a5-9f26d9b56fd7}</Project>
       <Name>Net.Chdk.Providers.Firmware</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Net.Chdk.Providers.Platform\Net.Chdk.Providers.Platform.csproj">
+      <Project>{ed4dc598-3963-450d-9eac-7dcac0067e8b}</Project>
+      <Name>Net.Chdk.Providers.Platform</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Net.Chdk.Providers.Product.Core\Net.Chdk.Providers.Product.Core.csproj">
       <Project>{5d972de9-25eb-4348-8d9b-d829934b31a4}</Project>

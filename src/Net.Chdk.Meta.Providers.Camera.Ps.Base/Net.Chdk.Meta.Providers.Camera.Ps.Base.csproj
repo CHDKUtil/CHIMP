@@ -4,6 +4,8 @@
     <TargetFramework>netstandard1.1</TargetFramework>
     <Description>CHIMP PS camera metadata base providers</Description>
     <RootNamespace>Net.Chdk.Meta.Providers.Camera.Ps</RootNamespace>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -25,6 +27,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Net.Chdk.Core\Net.Chdk.Core.csproj" />
     <ProjectReference Include="..\Net.Chdk.Meta.Providers.Camera.Base\Net.Chdk.Meta.Providers.Camera.Base.csproj" />
     <ProjectReference Include="..\Net.Chdk.Meta.Providers.Camera.Ps.Core\Net.Chdk.Meta.Providers.Camera.Ps.Core.csproj" />
   </ItemGroup>

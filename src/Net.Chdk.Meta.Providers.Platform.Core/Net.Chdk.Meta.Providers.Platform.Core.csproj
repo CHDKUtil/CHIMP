@@ -27,7 +27,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Net.Chdk.Meta.Model.Platform\Net.Chdk.Meta.Model.Platform.csproj" />
     <ProjectReference Include="..\Net.Chdk.Meta.Providers.Core\Net.Chdk.Meta.Providers.Core.csproj" />
   </ItemGroup>
 

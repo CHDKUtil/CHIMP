@@ -42,6 +42,8 @@ namespace Net.Chdk.Meta.Providers.Camera
             string key, ListPlatformData list, string productName)
         {
             var platform = PlatformProvider.GetPlatform(key, platforms, productName);
+            if (platform.Names == null)
+                throw new InvalidOperationException($"{platform}: Null model names");
             var tree = PlatformProvider.GetTree(key, treeCameras, productName);
             var modelId = Convert.ToUInt32(platform.ModelId, 16);
             var camera = GetOrAddCamera(modelId, key, list, tree, cameras, productName);

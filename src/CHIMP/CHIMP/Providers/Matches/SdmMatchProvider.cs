@@ -1,5 +1,6 @@
 ﻿using Chimp.Properties;
 using Microsoft.Extensions.Logging;
+using Net.Chdk.Adapters.Platform;
 using Net.Chdk.Model.Software;
 using System;
 using System.Collections.Generic;
@@ -14,8 +15,8 @@ namespace Chimp.Providers.Matches
 
         private Match commonMatch;
 
-        public SdmMatchProvider(Uri baseUri, IDictionary<string, string> buildPaths, ILogger<SdmMatchProvider> logger)
-            : base(baseUri, buildPaths, logger)
+        public SdmMatchProvider(Uri baseUri, IDictionary<string, string> buildPaths, IPlatformAdapter platformAdapter, ILogger<SdmMatchProvider> logger)
+            : base(baseUri, buildPaths, platformAdapter, logger)
         {
         }
 
@@ -52,5 +53,7 @@ namespace Chimp.Providers.Matches
                 return nameof(Resources.Download_InvalidFormat_Text);
             return base.GetError();
         }
+
+        protected override string ProductName => "SDM";
     }
 }

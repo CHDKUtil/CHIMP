@@ -4,6 +4,8 @@
     <TargetFramework>netstandard1.1</TargetFramework>
     <Description>CHIMP CHDK camera metadata providers</Description>
     <RootNamespace>Net.Chdk.Meta.Providers.Camera.Chdk</RootNamespace>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup>

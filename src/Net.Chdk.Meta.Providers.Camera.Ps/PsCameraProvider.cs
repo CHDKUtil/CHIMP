@@ -25,14 +25,14 @@ namespace Net.Chdk.Meta.Providers.Camera.Ps
             return camera;
         }
 
-        private EncodingData GetEncoding(string platform, byte? encoding)
+        private EncodingData? GetEncoding(string platform, byte? encoding)
         {
             return encoding != null
                 ? EncodingProvider.GetEncoding(platform, encoding.Value)
                 : null;
         }
 
-        private AltData GetAlt(string platform, string[] altNames, string productName)
+        private AltData GetAlt(string platform, string[]? altNames, string productName)
         {
             return AltProvider.GetAlt(platform, altNames, productName);
         }

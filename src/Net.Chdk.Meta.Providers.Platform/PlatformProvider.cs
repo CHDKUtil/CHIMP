@@ -1,5 +1,4 @@
 ﻿using Net.Chdk.Generators.Platform;
-using Net.Chdk.Meta.Model.Platform;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -18,7 +17,7 @@ namespace Net.Chdk.Meta.Providers.Platform
             PlatformGenerator = platformGenerator;
         }
 
-        public IDictionary<string, PlatformData> GetPlatforms(string path)
+        public IDictionary<string, CameraModel[]> GetPlatforms(string path, string? category)
         {
             var provider = GetInnerProvider(path, out string ext);
             if (provider == null)
@@ -27,51 +26,42 @@ namespace Net.Chdk.Meta.Providers.Platform
             using var reader = File.OpenText(path);
 
             var keys = provider.GetPlatforms(reader);
-            return GetPlatforms(keys);
+            return GetPlatforms(keys, category);
         }
 
-        private IDictionary<string, PlatformData> GetPlatforms(IEnumerable<KeyValuePair<string, string>> values)
+        private IDictionary<string, CameraModel[]> GetPlatforms(IEnumerable<KeyValuePair<string, string>> values, string? category)
         {
-            var platforms = new SortedDictionary<string, PlatformData>();
+            var platforms = new SortedDictionary<string, CameraModel[]>();
             foreach (var kvp in values)
             {
                 var modelId = uint.Parse(kvp.Key.TrimStart("0x"), NumberStyles.HexNumber);
-                var models = GetCameraModels(modelId, kvp.Value);
-                foreach (var model in models)
+                var models = GetCameraModels(modelId, kvp.Value, category).ToArray();
+                if (models[0] != null)
                 {
-                    if (model == null)
-                        break;
-                    var platform = GetPlatform(kvp.Key, model);
-                    if (model.Platform == null)
-                        throw new InvalidOperationException("Platform cannot be null");
-                    platforms.Add(model.Platform, platform);
+                    var key = $"0x{modelId:x07}";
+                    if (!platforms.TryGetValue(key, out CameraModel?[] value))
+                        value = models.ToArray();
+                    else
+                        value = value.Concat(models).ToArray();
+                    platforms[key] = value!;
                 }
             }
             return platforms;
         }
 
-        private static PlatformData GetPlatform(string modelId, CameraModel model)
-        {
-            return new PlatformData
-            {
-                ModelId = modelId,
-                Names = model.Names
-            };
-        }
-
-        private IEnumerable<CameraModel?> GetCameraModels(uint modelId, string value)
+        private IEnumerable<CameraModel?> GetCameraModels(uint modelId, string value, string? category)
         {
             var models = GetModels(value)
                 .Select(m => m.TrimEnd(" (new)"))
                 .ToArray();
 
             return GetModelMatrix(models)
-                .Select(n => GetCameraModel(modelId, n));
+                .Select(n => GetCameraModel(modelId, n, category));
         }
 
-        private CameraModel? GetCameraModel(uint modelId, string[] names)
+        private CameraModel? GetCameraModel(uint modelId, string[] names, string? category)
         {
-            var platform = GetPlatform(modelId, names);
+            var platform = GetPlatform(modelId, names, category);
             if (platform == null)
                 return null;
 
@@ -82,9 +72,9 @@ namespace Net.Chdk.Meta.Providers.Platform
             };
         }
 
-        private string? GetPlatform(uint modelId, string[] names)
+        private string? GetPlatform(uint modelId, string[] names, string? category)
         {
-            return PlatformGenerator.GetPlatform(modelId, names);
+            return PlatformGenerator.GetPlatform(modelId, names, category);
         }
 
         private static IEnumerable<string> GetNames(string[] names)

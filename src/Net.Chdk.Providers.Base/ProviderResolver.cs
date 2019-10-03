@@ -27,11 +27,11 @@ namespace Net.Chdk.Providers
 
         #region Providers
 
-        protected TProvider GetProvider(string name)
+        protected TProvider? GetProvider(string? name)
         {
             if (name == null)
                 return null;
-            Providers.TryGetValue(name, out TProvider provider);
+            Providers.TryGetValue(name, out TProvider? provider);
             return provider;
         }
 
@@ -42,12 +42,20 @@ namespace Net.Chdk.Providers
         private Dictionary<string, TProvider> GetProviders()
         {
             return GetNames()
-                .ToDictionary(p => p, CreateProvider);
+                .Select(CreateKeyValuePair)
+                .Where(kvp => kvp.Value != null)
+                .ToDictionary(kvp => kvp.Key, kvp => kvp.Value!);
+        }
+
+        private KeyValuePair<string, TProvider?> CreateKeyValuePair(string name)
+        {
+            var provider = CreateProvider(name);
+            return new KeyValuePair<string, TProvider?>(name, provider);
         }
 
         protected abstract IEnumerable<string> GetNames();
 
-        protected abstract TProvider CreateProvider(string name);
+        protected abstract TProvider? CreateProvider(string name);
 
         #endregion
     }

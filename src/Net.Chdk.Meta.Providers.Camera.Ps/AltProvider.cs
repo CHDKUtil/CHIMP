@@ -10,7 +10,7 @@ namespace Net.Chdk.Meta.Providers.Camera.Ps
         {
         }
 
-        public AltData GetAlt(string platform, string[] altNames, string productName)
+        public AltData GetAlt(string platform, string[]? altNames, string productName)
         {
             return GetInnerProvider(productName).GetAlt(platform, altNames);
         }

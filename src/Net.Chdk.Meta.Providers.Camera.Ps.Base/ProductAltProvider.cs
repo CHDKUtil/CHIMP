@@ -12,7 +12,7 @@ namespace Net.Chdk.Meta.Providers.Camera.Ps
             Logger = logger;
         }
 
-        public AltData GetAlt(string platform, string[] altNames)
+        public AltData GetAlt(string platform, string[]? altNames)
         {
             return new AltData
             {
@@ -23,8 +23,8 @@ namespace Net.Chdk.Meta.Providers.Camera.Ps
 
         public abstract string ProductName { get; }
 
-        protected abstract string[] GetAltButtons(string platform, string[] altNames);
+        protected abstract string GetAltButton(string platform, string[]? altNames);
 
-        protected abstract string GetAltButton(string platform, string[] altNames);
+        protected abstract string[]? GetAltButtons(string platform, string[]? altNames);
     }
 }

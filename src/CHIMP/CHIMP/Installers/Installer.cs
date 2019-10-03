@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 using Net.Chdk.Model.Camera;
 using Net.Chdk.Model.Card;
 using Net.Chdk.Model.Software;
-using Net.Chdk.Providers.Camera;
+using Net.Chdk.Providers.CameraModel;
 using System;
 using System.Linq;
 using System.Threading;
@@ -45,16 +45,15 @@ namespace Chimp.Installers
         private CameraInfo Camera => CameraViewModel.Info;
         private SoftwareProductInfo Product => DownloadViewModel.Software.Product;
 
-        protected Installer(MainViewModel mainViewModel, IInstallService installService, ICameraProvider cameraProvider, ILogger logger)
+        protected Installer(MainViewModel mainViewModel, IInstallService installService, ICameraModelProvider cameraProvider, ILogger logger)
         {
             Logger = logger;
             MainViewModel = mainViewModel;
             InstallService = installService;
 
-            var cameraModels = cameraProvider.GetCameraModels(Camera);
-            CardSubtype = cameraModels?.CardSubtype;
-            BootFileSystem = cameraModels?.BootFileSystem;
-            IsCameraMultiPartition = cameraModels?.IsMultiPartition == true;
+            CardSubtype = cameraProvider.GetCardSubtype(Product, Camera);
+            BootFileSystem = cameraProvider.GetBootFileSystem(Product, Camera);
+            IsCameraMultiPartition = cameraProvider.IsMultiPartition(Product, Camera) == true;
         }
 
         public async Task<bool> InstallAsync(CancellationToken cancellationToken)

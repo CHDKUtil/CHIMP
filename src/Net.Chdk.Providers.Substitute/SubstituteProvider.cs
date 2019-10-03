@@ -1,23 +1,24 @@
 ﻿using Microsoft.Extensions.Logging;
-using Net.Chdk.Generators.Platform;
 using Net.Chdk.Model.Camera;
 using Net.Chdk.Model.CameraModel;
 using Net.Chdk.Providers.Firmware;
-using System;
+using Net.Chdk.Providers.Platform;
 using System.Collections.Generic;
 
 namespace Net.Chdk.Providers.Substitute
 {
     sealed class SubstituteProvider : ProviderResolver<ICategorySubstituteProvider>, ISubstituteProvider
     {
-        private IPlatformGenerator PlatformGenerator { get; }
+        private IPlatformProvider PlatformProvider { get; }
         private IFirmwareProvider FirmwareProvider { get; }
+        private ILogger Logger { get; }
 
-        public SubstituteProvider(IPlatformGenerator platformGenerator, IFirmwareProvider firmwareProvider, ILoggerFactory loggerFactory)
+        public SubstituteProvider(IPlatformProvider platformProvider, IFirmwareProvider firmwareProvider, ILoggerFactory loggerFactory)
             : base(loggerFactory)
         {
-            PlatformGenerator = platformGenerator;
+            PlatformProvider = platformProvider;
             FirmwareProvider = firmwareProvider;
+            Logger = loggerFactory.CreateLogger<SubstituteProvider>();
         }
 
         public IDictionary<string, string>? GetSubstitutes(CameraInfo camera, CameraModelInfo cameraModel)
@@ -35,11 +36,9 @@ namespace Net.Chdk.Providers.Substitute
             return new[] { "EOS", "PS" };
         }
 
-        protected override ICategorySubstituteProvider CreateProvider(string categoryName) => categoryName switch
+        protected override ICategorySubstituteProvider CreateProvider(string categoryName)
         {
-            "EOS" => new EosSubstituteProvider(PlatformGenerator, FirmwareProvider, LoggerFactory),
-            "PS" => new PsSubstituteProvider(PlatformGenerator, FirmwareProvider, LoggerFactory),
-            _ => throw new InvalidOperationException($"Unknown category: {categoryName}"),
-        };
+            return new CategorySubstituteProvider(categoryName, PlatformProvider, FirmwareProvider, Logger);
+        }
     }
 }

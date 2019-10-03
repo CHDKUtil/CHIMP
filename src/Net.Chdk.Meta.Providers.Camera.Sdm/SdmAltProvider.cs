@@ -12,12 +12,12 @@ namespace Net.Chdk.Meta.Providers.Camera.Sdm
 
         public override string ProductName => "SDM";
 
-        protected override string GetAltButton(string platform, string[] altNames)
+        protected override string GetAltButton(string platform, string[]? altNames)
         {
             return "Menu";
         }
 
-        protected override string[] GetAltButtons(string platform, string[] altNames)
+        protected override string[]? GetAltButtons(string platform, string[]? altNames)
         {
             return null;
         }

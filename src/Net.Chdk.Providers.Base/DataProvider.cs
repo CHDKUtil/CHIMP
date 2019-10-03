@@ -78,7 +78,7 @@ namespace Net.Chdk.Providers
 
         protected virtual LogLevel LogLevel => LogLevel.None;
 
-        protected virtual string Format => null;
+        protected virtual string? Format => null;
 
         #endregion
     }

@@ -17,6 +17,6 @@ namespace Net.Chdk.Meta.Providers.Camera
         public abstract string ProductName { get; }
 
         protected abstract string GetCardType(uint modelId);
-        protected abstract string GetCardSubtype(uint modelId);
+        protected abstract string? GetCardSubtype(uint modelId);
     }
 }

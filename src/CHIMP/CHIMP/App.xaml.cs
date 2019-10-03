@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Net.Chdk;
+using Net.Chdk.Adapters.Platform;
 using Net.Chdk.Detectors.Camera;
 using Net.Chdk.Detectors.CameraModel;
 using Net.Chdk.Detectors.Card;
@@ -19,13 +20,13 @@ using Net.Chdk.Detectors.Software.Script;
 using Net.Chdk.Detectors.Software.Sdm;
 using Net.Chdk.Encoders.Binary;
 using Net.Chdk.Generators.Platform;
-using Net.Chdk.Generators.Platform.Eos;
-using Net.Chdk.Generators.Platform.Ps;
 using Net.Chdk.Generators.Script;
 using Net.Chdk.Providers.Boot;
 using Net.Chdk.Providers.Camera;
+using Net.Chdk.Providers.CameraModel;
 using Net.Chdk.Providers.Crypto;
 using Net.Chdk.Providers.Firmware;
+using Net.Chdk.Providers.Platform;
 using Net.Chdk.Providers.Product;
 using Net.Chdk.Providers.Software;
 using Net.Chdk.Providers.Software.Chdk;
@@ -69,6 +70,7 @@ namespace Chimp
             ConfigureValidators(serviceCollection);
             ConfigureDetectors(serviceCollection);
             ConfigureGenerators(serviceCollection);
+            ConfigureAdapters(serviceCollection);
             ConfigureProviders(serviceCollection);
             ConfigureContainers(serviceCollection);
             ConfigureServices(serviceCollection);
@@ -167,9 +169,17 @@ namespace Chimp
         {
             serviceCollection
                 .AddPlatformGenerator()
-                .AddEosPlatformGenerator()
-                .AddPsPlatformGenerator()
                 .AddScriptGenerator();
+        }
+
+        private void ConfigureAdapters(IServiceCollection serviceCollection)
+        {
+            serviceCollection
+                .AddPlatformAdapter()
+                .AddChdkPlatformAdapter()
+                .AddSdmPlatformAdapter()
+                .AddMlPlatformAdapter()
+                .AddFhpPlatformAdapter();
         }
 
         private static void ConfigureProviders(IServiceCollection serviceCollection)
@@ -185,7 +195,9 @@ namespace Chimp
                 .AddMlSourceProvider()
                 .AddSoftwareHashProvider()
                 .AddFirmwareProvider()
+                .AddPlatformProvider()
                 .AddCameraProvider()
+                .AddCameraModelProvider()
                 .AddSubstituteProvider()
                 .AddSingleton<IResourceProvider, ChdkResourceProvider>()
                 .AddSingleton<IStepProvider, StepProvider>()

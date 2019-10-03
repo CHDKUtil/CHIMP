@@ -19,7 +19,5 @@ namespace Chimp.ViewModels
             get { return _Info; }
             set { SetProperty(ref _Info, value); }
         }
-
-        public string CardType { get; set; }
     }
 }

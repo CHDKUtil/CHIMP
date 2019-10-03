@@ -8,7 +8,6 @@ namespace Net.Chdk.Meta.Providers.Camera.Ml
         public static IServiceCollection AddMlCameraProviders(this IServiceCollection serviceCollection)
         {
             return serviceCollection
-                .AddSingleton<IProductCameraPlatformProvider, MlCameraPlatformProvider>()
                 .AddSingleton<IProductCameraBootProvider, MlCameraBootProvider>()
                 .AddSingleton<IProductCameraCardProvider<EosCardData>, MlCameraCardProvider>()
                 .AddSingleton<IProductCameraValidator, MlCameraValidator>()

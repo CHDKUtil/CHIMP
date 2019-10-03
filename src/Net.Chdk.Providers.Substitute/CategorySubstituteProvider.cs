@@ -1,23 +1,25 @@
 ﻿using Microsoft.Extensions.Logging;
-using Net.Chdk.Generators.Platform;
 using Net.Chdk.Meta.Model.Address;
 using Net.Chdk.Model.Camera;
 using Net.Chdk.Model.CameraModel;
 using Net.Chdk.Providers.Firmware;
+using Net.Chdk.Providers.Platform;
 using System.Collections.Generic;
 using System.IO;
 
 namespace Net.Chdk.Providers.Substitute
 {
-    abstract class CategorySubstituteProvider : DataProvider<Dictionary<string, AddressPlatformData>>, ICategorySubstituteProvider
+    sealed class CategorySubstituteProvider : DataProvider<Dictionary<string, AddressPlatformData>>, ICategorySubstituteProvider
     {
-        private IPlatformGenerator PlatformGenerator { get; }
+        private string CategoryName { get; }
+        private IPlatformProvider PlatformProvider { get; }
         private IFirmwareProvider FirmwareProvider { get; }
 
-        public CategorySubstituteProvider(IPlatformGenerator platformGenerator, IFirmwareProvider firmwareProvider, ILogger logger)
+        public CategorySubstituteProvider(string categoryName, IPlatformProvider platformProvider, IFirmwareProvider firmwareProvider, ILogger logger)
             : base(logger)
         {
-            PlatformGenerator = platformGenerator;
+            CategoryName = categoryName;
+            PlatformProvider = platformProvider;
             FirmwareProvider = firmwareProvider;
         }
 
@@ -48,25 +50,14 @@ namespace Net.Chdk.Providers.Substitute
             };
         }
 
-        protected abstract string CategoryName { get; }
-
         protected override string GetFilePath()
         {
             return Path.Combine(Directories.Data, Directories.Category, CategoryName, "addresses.json");
         }
 
-        //TODO Move to PlatformProvider
         private string? GetPlatform(CameraInfo camera, CameraModelInfo cameraModel)
         {
-            var modelId = camera?.Canon?.ModelId;
-            if (modelId == null)
-                return null;
-
-            var models = cameraModel?.Names;
-            if (models == null)
-                return null;
-
-            return PlatformGenerator.GetPlatform(modelId.Value, models, CategoryName, true);
+            return PlatformProvider.GetPlatform(camera, cameraModel, CategoryName);
         }
 
         private string? GetRevision(CameraInfo camera)

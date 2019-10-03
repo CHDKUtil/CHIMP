@@ -1,0 +1,1668 @@
+{
+  "0x1540000": [
+    {
+      "names": [
+        "Canon PowerShot SD300",
+        "Canon Digital IXUS 40",
+        "Canon IXY Digital 50"
+      ],
+      "platform": "ixus40"
+    }
+  ],
+  "0x1550000": [
+    {
+      "names": [
+        "Canon PowerShot SD200",
+        "Canon Digital IXUS 30",
+        "Canon IXY Digital 40"
+      ],
+      "platform": "ixus30"
+    }
+  ],
+  "0x1560000": [
+    {
+      "names": [
+        "Canon PowerShot A520"
+      ],
+      "platform": "a520"
+    }
+  ],
+  "0x1570000": [
+    {
+      "names": [
+        "Canon PowerShot A510"
+      ],
+      "platform": "a510"
+    }
+  ],
+  "0x1590000": [
+    {
+      "names": [
+        "Canon PowerShot SD20",
+        "Canon Digital IXUS i5",
+        "Canon IXY Digital L2"
+      ],
+      "platform": "ixusi5"
+    }
+  ],
+  "0x1640000": [
+    {
+      "names": [
+        "Canon PowerShot S2 IS"
+      ],
+      "platform": "s2"
+    }
+  ],
+  "0x1650000": [
+    {
+      "names": [
+        "Canon PowerShot SD430",
+        "Canon Digital IXUS Wireless",
+        "Canon IXY Digital Wireless"
+      ],
+      "platform": "ixuswireless"
+    }
+  ],
+  "0x1660000": [
+    {
+      "names": [
+        "Canon PowerShot SD500",
+        "Canon Digital IXUS 700",
+        "Canon IXY Digital 600"
+      ],
+      "platform": "ixus700"
+    }
+  ],
+  "0x1700000": [
+    {
+      "names": [
+        "Canon PowerShot SD30",
+        "Canon Digital IXUS i Zoom",
+        "Canon IXY Digital L3"
+      ],
+      "platform": "ixusizoom"
+    }
+  ],
+  "0x1740000": [
+    {
+      "names": [
+        "Canon PowerShot A430"
+      ],
+      "platform": "a430"
+    }
+  ],
+  "0x1750000": [
+    {
+      "names": [
+        "Canon PowerShot A410"
+      ],
+      "platform": "a410"
+    }
+  ],
+  "0x1760000": [
+    {
+      "names": [
+        "Canon PowerShot S80"
+      ],
+      "platform": "s80"
+    }
+  ],
+  "0x1780000": [
+    {
+      "names": [
+        "Canon PowerShot A620"
+      ],
+      "platform": "a620"
+    }
+  ],
+  "0x1790000": [
+    {
+      "names": [
+        "Canon PowerShot A610"
+      ],
+      "platform": "a610"
+    }
+  ],
+  "0x1800000": [
+    {
+      "names": [
+        "Canon PowerShot SD630",
+        "Canon Digital IXUS 65",
+        "Canon IXY Digital 80"
+      ],
+      "platform": "ixus65"
+    }
+  ],
+  "0x1810000": [
+    {
+      "names": [
+        "Canon PowerShot SD450",
+        "Canon Digital IXUS 55",
+        "Canon IXY Digital 60"
+      ],
+      "platform": "ixus55"
+    }
+  ],
+  "0x1820000": [
+    {
+      "names": [
+        "Canon PowerShot TX1"
+      ],
+      "platform": "tx1"
+    }
+  ],
+  "0x1870000": [
+    {
+      "names": [
+        "Canon PowerShot SD400",
+        "Canon Digital IXUS 50",
+        "Canon IXY Digital 55"
+      ],
+      "platform": "ixus50"
+    }
+  ],
+  "0x1880000": [
+    {
+      "names": [
+        "Canon PowerShot A420"
+      ],
+      "platform": "a420"
+    }
+  ],
+  "0x1890000": [
+    {
+      "names": [
+        "Canon PowerShot SD900",
+        "Canon Digital IXUS 900 Ti",
+        "Canon IXY Digital 1000"
+      ],
+      "platform": "ixus900"
+    }
+  ],
+  "0x1900000": [
+    {
+      "names": [
+        "Canon PowerShot SD550",
+        "Canon Digital IXUS 750",
+        "Canon IXY Digital 700"
+      ],
+      "platform": "ixus750"
+    }
+  ],
+  "0x1920000": [
+    {
+      "names": [
+        "Canon PowerShot A700"
+      ],
+      "platform": "a700"
+    }
+  ],
+  "0x1940000": [
+    {
+      "names": [
+        "Canon PowerShot SD700 IS",
+        "Canon Digital IXUS 800 IS",
+        "Canon IXY Digital 800 IS"
+      ],
+      "platform": "ixus800"
+    }
+  ],
+  "0x1950000": [
+    {
+      "names": [
+        "Canon PowerShot S3 IS"
+      ],
+      "platform": "s3"
+    }
+  ],
+  "0x1960000": [
+    {
+      "names": [
+        "Canon PowerShot A540"
+      ],
+      "platform": "a540"
+    }
+  ],
+  "0x1970000": [
+    {
+      "names": [
+        "Canon PowerShot SD600",
+        "Canon Digital IXUS 60",
+        "Canon IXY Digital 70"
+      ],
+      "platform": "ixus60"
+    }
+  ],
+  "0x1980000": [
+    {
+      "names": [
+        "Canon PowerShot G7"
+      ],
+      "platform": "g7"
+    }
+  ],
+  "0x1990000": [
+    {
+      "names": [
+        "Canon PowerShot A530"
+      ],
+      "platform": "a530"
+    }
+  ],
+  "0x2000000": [
+    {
+      "names": [
+        "Canon PowerShot SD800 IS",
+        "Canon Digital IXUS 850 IS",
+        "Canon IXY Digital 900 IS"
+      ],
+      "platform": "ixus850"
+    }
+  ],
+  "0x2010000": [
+    {
+      "names": [
+        "Canon PowerShot SD40",
+        "Canon Digital IXUS i7",
+        "Canon IXY Digital L4"
+      ],
+      "platform": "ixusi7"
+    }
+  ],
+  "0x2020000": [
+    {
+      "names": [
+        "Canon PowerShot A710 IS"
+      ],
+      "platform": "a710"
+    }
+  ],
+  "0x2030000": [
+    {
+      "names": [
+        "Canon PowerShot A640"
+      ],
+      "platform": "a640"
+    }
+  ],
+  "0x2040000": [
+    {
+      "names": [
+        "Canon PowerShot A630"
+      ],
+      "platform": "a630"
+    }
+  ],
+  "0x2090000": [
+    {
+      "names": [
+        "Canon PowerShot S5 IS"
+      ],
+      "platform": "s5"
+    }
+  ],
+  "0x2100000": [
+    {
+      "names": [
+        "Canon PowerShot A460"
+      ],
+      "platform": "a460"
+    }
+  ],
+  "0x2120000": [
+    {
+      "names": [
+        "Canon PowerShot SD850 IS",
+        "Canon Digital IXUS 950 IS",
+        "Canon IXY Digital 810 IS"
+      ],
+      "platform": "ixus950"
+    }
+  ],
+  "0x2130000": [
+    {
+      "names": [
+        "Canon PowerShot A570 IS"
+      ],
+      "platform": "a570"
+    }
+  ],
+  "0x2140000": [
+    {
+      "names": [
+        "Canon PowerShot A560"
+      ],
+      "platform": "a560"
+    }
+  ],
+  "0x2150000": [
+    {
+      "names": [
+        "Canon PowerShot SD750",
+        "Canon Digital IXUS 75",
+        "Canon IXY Digital 90"
+      ],
+      "platform": "ixus75"
+    }
+  ],
+  "0x2160000": [
+    {
+      "names": [
+        "Canon PowerShot SD1000",
+        "Canon Digital IXUS 70",
+        "Canon IXY Digital 10"
+      ],
+      "platform": "ixus70"
+    }
+  ],
+  "0x2180000": [
+    {
+      "names": [
+        "Canon PowerShot A550"
+      ],
+      "platform": "a550"
+    }
+  ],
+  "0x2190000": [
+    {
+      "names": [
+        "Canon PowerShot A450"
+      ],
+      "platform": "a450"
+    }
+  ],
+  "0x2230000": [
+    {
+      "names": [
+        "Canon PowerShot G9"
+      ],
+      "platform": "g9"
+    }
+  ],
+  "0x2240000": [
+    {
+      "names": [
+        "Canon PowerShot A650 IS"
+      ],
+      "platform": "a650"
+    }
+  ],
+  "0x2260000": [
+    {
+      "names": [
+        "Canon PowerShot A720 IS"
+      ],
+      "platform": "a720"
+    }
+  ],
+  "0x2290000": [
+    {
+      "names": [
+        "Canon PowerShot SX100 IS"
+      ],
+      "platform": "sx100"
+    }
+  ],
+  "0x2300000": [
+    {
+      "names": [
+        "Canon PowerShot SD950 IS",
+        "Canon Digital IXUS 960 IS",
+        "Canon IXY Digital 2000 IS"
+      ],
+      "platform": "ixus960"
+    }
+  ],
+  "0x2310000": [
+    {
+      "names": [
+        "Canon PowerShot SD870 IS",
+        "Canon Digital IXUS 860 IS",
+        "Canon IXY Digital 910 IS"
+      ],
+      "platform": "ixus860"
+    }
+  ],
+  "0x2320000": [
+    {
+      "names": [
+        "Canon PowerShot SD890 IS",
+        "Canon Digital IXUS 970 IS",
+        "Canon IXY Digital 820 IS"
+      ],
+      "platform": "ixus970"
+    }
+  ],
+  "0x2360000": [
+    {
+      "names": [
+        "Canon PowerShot SD790 IS",
+        "Canon Digital IXUS 90 IS",
+        "Canon IXY Digital 95 IS"
+      ],
+      "platform": "ixus90"
+    }
+  ],
+  "0x2370000": [
+    {
+      "names": [
+        "Canon PowerShot SD770 IS",
+        "Canon Digital IXUS 85 IS",
+        "Canon IXY Digital 25 IS"
+      ],
+      "platform": "ixus85"
+    }
+  ],
+  "0x2380000": [
+    {
+      "names": [
+        "Canon PowerShot A590 IS"
+      ],
+      "platform": "a590"
+    }
+  ],
+  "0x2390000": [
+    {
+      "names": [
+        "Canon PowerShot A580"
+      ],
+      "platform": "a580"
+    }
+  ],
+  "0x2420000": [
+    {
+      "names": [
+        "Canon PowerShot A470"
+      ],
+      "platform": "a470"
+    }
+  ],
+  "0x2430000": [
+    {
+      "names": [
+        "Canon PowerShot SD1100 IS",
+        "Canon Digital IXUS 80 IS",
+        "Canon IXY Digital 20 IS"
+      ],
+      "platform": "ixus80"
+    }
+  ],
+  "0x2460000": [
+    {
+      "names": [
+        "Canon PowerShot SX1 IS"
+      ],
+      "platform": "sx1"
+    }
+  ],
+  "0x2470000": [
+    {
+      "names": [
+        "Canon PowerShot SX10 IS"
+      ],
+      "platform": "sx10"
+    }
+  ],
+  "0x2480000": [
+    {
+      "names": [
+        "Canon PowerShot A1000 IS"
+      ],
+      "platform": "a1000"
+    }
+  ],
+  "0x2490000": [
+    {
+      "names": [
+        "Canon PowerShot G10"
+      ],
+      "platform": "g10"
+    }
+  ],
+  "0x2510000": [
+    {
+      "names": [
+        "Canon PowerShot A2000 IS"
+      ],
+      "platform": "a2000"
+    }
+  ],
+  "0x2520000": [
+    {
+      "names": [
+        "Canon PowerShot SX110 IS"
+      ],
+      "platform": "sx110"
+    }
+  ],
+  "0x2530000": [
+    {
+      "names": [
+        "Canon PowerShot SD990 IS",
+        "Canon Digital IXUS 980 IS",
+        "Canon IXY Digital 3000 IS"
+      ],
+      "platform": "ixus980"
+    }
+  ],
+  "0x2540000": [
+    {
+      "names": [
+        "Canon PowerShot SD880 IS",
+        "Canon Digital IXUS 870 IS",
+        "Canon IXY Digital 920 IS"
+      ],
+      "platform": "ixus870"
+    }
+  ],
+  "0x2550000": [
+    {
+      "names": [
+        "Canon PowerShot E1"
+      ],
+      "platform": "e1"
+    }
+  ],
+  "0x2560000": [
+    {
+      "names": [
+        "Canon PowerShot D10"
+      ],
+      "platform": "d10"
+    }
+  ],
+  "0x2570000": [
+    {
+      "names": [
+        "Canon PowerShot SD960 IS",
+        "Canon Digital IXUS 110 IS",
+        "Canon IXY Digital 510 IS"
+      ],
+      "platform": "ixus110"
+    }
+  ],
+  "0x2580000": [
+    {
+      "names": [
+        "Canon PowerShot A2100 IS"
+      ],
+      "platform": "a2100"
+    }
+  ],
+  "0x2590000": [
+    {
+      "names": [
+        "Canon PowerShot A480"
+      ],
+      "platform": "a480"
+    }
+  ],
+  "0x2600000": [
+    {
+      "names": [
+        "Canon PowerShot SX200 IS"
+      ],
+      "platform": "sx200"
+    }
+  ],
+  "0x2610000": [
+    {
+      "names": [
+        "Canon PowerShot SD970 IS",
+        "Canon Digital IXUS 990 IS",
+        "Canon IXY Digital 830 IS"
+      ],
+      "platform": "ixus990"
+    }
+  ],
+  "0x2620000": [
+    {
+      "names": [
+        "Canon PowerShot SD780 IS",
+        "Canon Digital IXUS 100 IS",
+        "Canon IXY Digital 210 IS"
+      ],
+      "platform": "ixus100"
+    }
+  ],
+  "0x2630000": [
+    {
+      "names": [
+        "Canon PowerShot A1100 IS"
+      ],
+      "platform": "a1100"
+    }
+  ],
+  "0x2640000": [
+    {
+      "names": [
+        "Canon PowerShot SD1200 IS",
+        "Canon Digital IXUS 95 IS",
+        "Canon IXY Digital 110 IS"
+      ],
+      "platform": "ixus95"
+    }
+  ],
+  "0x2700000": [
+    {
+      "names": [
+        "Canon PowerShot G11"
+      ],
+      "platform": "g11"
+    }
+  ],
+  "0x2710000": [
+    {
+      "names": [
+        "Canon PowerShot SX120 IS"
+      ],
+      "platform": "sx120"
+    }
+  ],
+  "0x2720000": [
+    {
+      "names": [
+        "Canon PowerShot S90"
+      ],
+      "platform": "s90"
+    }
+  ],
+  "0x2750000": [
+    {
+      "names": [
+        "Canon PowerShot SX20 IS"
+      ],
+      "platform": "sx20"
+    }
+  ],
+  "0x2760000": [
+    {
+      "names": [
+        "Canon PowerShot SD980 IS",
+        "Canon Digital IXUS 200 IS",
+        "Canon IXY Digital 930 IS"
+      ],
+      "platform": "ixus200"
+    }
+  ],
+  "0x2770000": [
+    {
+      "names": [
+        "Canon PowerShot SD940 IS",
+        "Canon Digital IXUS 120 IS",
+        "Canon IXY Digital 220 IS"
+      ],
+      "platform": "ixus120"
+    }
+  ],
+  "0x2800000": [
+    {
+      "names": [
+        "Canon PowerShot A495"
+      ],
+      "platform": "a495"
+    }
+  ],
+  "0x2810000": [
+    {
+      "names": [
+        "Canon PowerShot A490"
+      ],
+      "platform": "a490"
+    }
+  ],
+  "0x2820000": [
+    {
+      "names": [
+        "Canon PowerShot A3100 IS",
+        "Canon PowerShot A3150 IS"
+      ],
+      "platform": "a3100"
+    }
+  ],
+  "0x2830000": [
+    {
+      "names": [
+        "Canon PowerShot A3000 IS"
+      ],
+      "platform": "a3000"
+    }
+  ],
+  "0x2840000": [
+    {
+      "names": [
+        "Canon PowerShot SD1400 IS",
+        "Canon IXUS 130",
+        "Canon IXY 400F"
+      ],
+      "platform": "ixus130"
+    }
+  ],
+  "0x2850000": [
+    {
+      "names": [
+        "Canon PowerShot SD1300 IS",
+        "Canon IXUS 105",
+        "Canon IXY 200F"
+      ],
+      "platform": "ixus105"
+    }
+  ],
+  "0x2860000": [
+    {
+      "names": [
+        "Canon PowerShot SD3500 IS",
+        "Canon IXUS 210",
+        "Canon IXY 10S"
+      ],
+      "platform": "ixus210"
+    }
+  ],
+  "0x2870000": [
+    {
+      "names": [
+        "Canon PowerShot SX210 IS"
+      ],
+      "platform": "sx210"
+    }
+  ],
+  "0x2880000": [
+    {
+      "names": [
+        "Canon PowerShot SD4000 IS",
+        "Canon IXUS 300 HS",
+        "Canon IXY 30S"
+      ],
+      "platform": "ixus300"
+    }
+  ],
+  "0x2890000": [
+    {
+      "names": [
+        "Canon PowerShot SD4500 IS",
+        "Canon IXUS 1000 HS",
+        "Canon IXY 50S"
+      ],
+      "platform": "ixus1000"
+    }
+  ],
+  "0x2920000": [
+    {
+      "names": [
+        "Canon PowerShot G12"
+      ],
+      "platform": "g12"
+    }
+  ],
+  "0x2930000": [
+    {
+      "names": [
+        "Canon PowerShot SX30 IS"
+      ],
+      "platform": "sx30"
+    }
+  ],
+  "0x2940000": [
+    {
+      "names": [
+        "Canon PowerShot SX130 IS"
+      ],
+      "platform": "sx130"
+    }
+  ],
+  "0x2950000": [
+    {
+      "names": [
+        "Canon PowerShot S95"
+      ],
+      "platform": "s95"
+    }
+  ],
+  "0x2980000": [
+    {
+      "names": [
+        "Canon PowerShot A3300 IS"
+      ],
+      "platform": "a3300"
+    }
+  ],
+  "0x2990000": [
+    {
+      "names": [
+        "Canon PowerShot A3200 IS"
+      ],
+      "platform": "a3200"
+    }
+  ],
+  "0x3000000": [
+    {
+      "names": [
+        "Canon PowerShot ELPH 500 HS",
+        "Canon IXUS 310 HS",
+        "Canon IXY 31S"
+      ],
+      "platform": "ixus310"
+    }
+  ],
+  "0x3010000": [
+    {
+      "names": [
+        "Canon PowerShot Pro90 IS"
+      ],
+      "platform": "pro90"
+    }
+  ],
+  "0x3010001": [
+    {
+      "names": [
+        "Canon PowerShot A800"
+      ],
+      "platform": "a800"
+    }
+  ],
+  "0x3020000": [
+    {
+      "names": [
+        "Canon PowerShot ELPH 100 HS",
+        "Canon IXUS 115 HS",
+        "Canon IXY 210F"
+      ],
+      "platform": "ixus115"
+    }
+  ],
+  "0x3030000": [
+    {
+      "names": [
+        "Canon PowerShot SX230 HS"
+      ],
+      "platform": "sx230"
+    }
+  ],
+  "0x3040000": [
+    {
+      "names": [
+        "Canon PowerShot ELPH 300 HS",
+        "Canon IXUS 220 HS",
+        "Canon IXY 410F"
+      ],
+      "platform": "ixus220"
+    }
+  ],
+  "0x3050000": [
+    {
+      "names": [
+        "Canon PowerShot A2200"
+      ],
+      "platform": "a2200"
+    }
+  ],
+  "0x3060000": [
+    {
+      "names": [
+        "Canon PowerShot A1200"
+      ],
+      "platform": "a1200"
+    }
+  ],
+  "0x3070000": [
+    {
+      "names": [
+        "Canon PowerShot SX220 HS"
+      ],
+      "platform": "sx220"
+    }
+  ],
+  "0x3080000": [
+    {
+      "names": [
+        "Canon PowerShot G1 X"
+      ],
+      "platform": "g1x"
+    }
+  ],
+  "0x3090000": [
+    {
+      "names": [
+        "Canon PowerShot SX150 IS"
+      ],
+      "platform": "sx150"
+    }
+  ],
+  "0x3100000": [
+    {
+      "names": [
+        "Canon PowerShot ELPH 510 HS",
+        "Canon IXUS 1100 HS",
+        "Canon IXY 51S"
+      ],
+      "platform": "ixus1100"
+    }
+  ],
+  "0x3110000": [
+    {
+      "names": [
+        "Canon PowerShot S100"
+      ],
+      "platform": "s100"
+    }
+  ],
+  "0x3120000": [
+    {
+      "names": [
+        "Canon PowerShot ELPH 310 HS",
+        "Canon IXUS 230 HS",
+        "Canon IXY 600F"
+      ],
+      "platform": "ixus230"
+    }
+  ],
+  "0x3130000": [
+    {
+      "names": [
+        "Canon PowerShot SX40 HS"
+      ],
+      "platform": "sx40"
+    }
+  ],
+  "0x3160000": [
+    {
+      "names": [
+        "Canon PowerShot A1300"
+      ],
+      "platform": "a1300"
+    }
+  ],
+  "0x3170000": [
+    {
+      "names": [
+        "Canon PowerShot A810"
+      ],
+      "platform": "a810"
+    }
+  ],
+  "0x3180000": [
+    {
+      "names": [
+        "Canon PowerShot ELPH 320 HS",
+        "Canon IXUS 240 HS",
+        "Canon IXY 420F"
+      ],
+      "platform": "ixus240"
+    }
+  ],
+  "0x3190000": [
+    {
+      "names": [
+        "Canon PowerShot ELPH 110 HS",
+        "Canon IXUS 125 HS",
+        "Canon IXY 220F"
+      ],
+      "platform": "ixus125"
+    }
+  ],
+  "0x3200000": [
+    {
+      "names": [
+        "Canon PowerShot D20"
+      ],
+      "platform": "d20"
+    }
+  ],
+  "0x3210000": [
+    {
+      "names": [
+        "Canon PowerShot A4000 IS"
+      ],
+      "platform": "a4000"
+    }
+  ],
+  "0x3220000": [
+    {
+      "names": [
+        "Canon PowerShot SX260 HS"
+      ],
+      "platform": "sx260"
+    }
+  ],
+  "0x3230000": [
+    {
+      "names": [
+        "Canon PowerShot SX240 HS"
+      ],
+      "platform": "sx240"
+    }
+  ],
+  "0x3240000": [
+    {
+      "names": [
+        "Canon PowerShot ELPH 530 HS",
+        "Canon IXUS 510 HS",
+        "Canon IXY 1"
+      ],
+      "platform": "ixus510"
+    }
+  ],
+  "0x3250000": [
+    {
+      "names": [
+        "Canon PowerShot ELPH 520 HS",
+        "Canon IXUS 500 HS",
+        "Canon IXY 3"
+      ],
+      "platform": "ixus500"
+    }
+  ],
+  "0x3260000": [
+    {
+      "names": [
+        "Canon PowerShot A3400 IS"
+      ],
+      "platform": "a3400"
+    }
+  ],
+  "0x3270000": [
+    {
+      "names": [
+        "Canon PowerShot A2400 IS"
+      ],
+      "platform": "a2400"
+    }
+  ],
+  "0x3280000": [
+    {
+      "names": [
+        "Canon PowerShot A2300"
+      ],
+      "platform": "a2300"
+    }
+  ],
+  "0x3320000": [
+    {
+      "names": [
+        "Canon PowerShot S100V"
+      ],
+      "platform": "s100v"
+    }
+  ],
+  "0x3330000": [
+    {
+      "names": [
+        "Canon PowerShot G15"
+      ],
+      "platform": "g15"
+    }
+  ],
+  "0x3340000": [
+    {
+      "names": [
+        "Canon PowerShot SX50 HS"
+      ],
+      "platform": "sx50"
+    }
+  ],
+  "0x3350000": [
+    {
+      "names": [
+        "Canon PowerShot SX160 IS"
+      ],
+      "platform": "sx160"
+    }
+  ],
+  "0x3360000": [
+    {
+      "names": [
+        "Canon PowerShot S110"
+      ],
+      "platform": "s110"
+    }
+  ],
+  "0x3370000": [
+    {
+      "names": [
+        "Canon PowerShot SX500 IS"
+      ],
+      "platform": "sx500"
+    }
+  ],
+  "0x3380000": [
+    {
+      "names": [
+        "Canon PowerShot N"
+      ],
+      "platform": "n"
+    },
+    {
+      "names": [
+        "Canon PowerShot N Facebook"
+      ],
+      "platform": "nfacebook"
+    }
+  ],
+  "0x3390000": [
+    {
+      "names": [
+        "Canon IXUS 245 HS",
+        "Canon IXY 430F"
+      ],
+      "platform": "ixus245"
+    }
+  ],
+  "0x3400000": [
+    {
+      "names": [
+        "Canon PowerShot SX280 HS"
+      ],
+      "platform": "sx280"
+    }
+  ],
+  "0x3410000": [
+    {
+      "names": [
+        "Canon PowerShot SX270 HS"
+      ],
+      "platform": "sx270"
+    }
+  ],
+  "0x3420000": [
+    {
+      "names": [
+        "Canon PowerShot A3500 IS"
+      ],
+      "platform": "a3500"
+    }
+  ],
+  "0x3430000": [
+    {
+      "names": [
+        "Canon PowerShot A2600"
+      ],
+      "platform": "a2600"
+    }
+  ],
+  "0x3440000": [
+    {
+      "names": [
+        "Canon PowerShot SX275 HS"
+      ],
+      "platform": "sx275"
+    }
+  ],
+  "0x3450000": [
+    {
+      "names": [
+        "Canon PowerShot A1400"
+      ],
+      "platform": "a1400"
+    }
+  ],
+  "0x3460000": [
+    {
+      "names": [
+        "Canon PowerShot ELPH 130 IS",
+        "Canon IXUS 140",
+        "Canon IXY 110F"
+      ],
+      "platform": "ixus140"
+    }
+  ],
+  "0x3470000": [
+    {
+      "names": [
+        "Canon PowerShot ELPH 115 IS",
+        "Canon IXUS 132",
+        "Canon IXY 90F"
+      ],
+      "platform": "ixus132"
+    },
+    {
+      "names": [
+        "Canon PowerShot ELPH 120 IS",
+        "Canon IXUS 135",
+        "Canon IXY 100F"
+      ],
+      "platform": "ixus135"
+    }
+  ],
+  "0x3490000": [
+    {
+      "names": [
+        "Canon PowerShot ELPH 330 HS",
+        "Canon IXUS 255 HS",
+        "Canon IXY 610F"
+      ],
+      "platform": "ixus255"
+    }
+  ],
+  "0x3510000": [
+    {
+      "names": [
+        "Canon PowerShot A2500"
+      ],
+      "platform": "a2500"
+    }
+  ],
+  "0x3540000": [
+    {
+      "names": [
+        "Canon PowerShot G16"
+      ],
+      "platform": "g16"
+    }
+  ],
+  "0x3550000": [
+    {
+      "names": [
+        "Canon PowerShot S120"
+      ],
+      "platform": "s120"
+    }
+  ],
+  "0x3560000": [
+    {
+      "names": [
+        "Canon PowerShot SX170 IS"
+      ],
+      "platform": "sx170"
+    }
+  ],
+  "0x3580000": [
+    {
+      "names": [
+        "Canon PowerShot SX510 HS"
+      ],
+      "platform": "sx510"
+    }
+  ],
+  "0x3590000": [
+    {
+      "names": [
+        "Canon PowerShot S200"
+      ],
+      "platform": "s200"
+    }
+  ],
+  "0x3610000": [
+    {
+      "names": [
+        "Canon PowerShot N100"
+      ],
+      "platform": "n100"
+    }
+  ],
+  "0x3640000": [
+    {
+      "names": [
+        "Canon PowerShot G1 X Mark II"
+      ],
+      "platform": "g1x2"
+    }
+  ],
+  "0x3650000": [
+    {
+      "names": [
+        "Canon PowerShot D30"
+      ],
+      "platform": "d30"
+    }
+  ],
+  "0x3660000": [
+    {
+      "names": [
+        "Canon PowerShot SX700 HS"
+      ],
+      "platform": "sx700"
+    }
+  ],
+  "0x3670000": [
+    {
+      "names": [
+        "Canon PowerShot SX600 HS"
+      ],
+      "platform": "sx600"
+    }
+  ],
+  "0x3680000": [
+    {
+      "names": [
+        "Canon PowerShot ELPH 140 IS",
+        "Canon IXUS 150",
+        "Canon IXY 130"
+      ],
+      "platform": "ixus150"
+    }
+  ],
+  "0x3690000": [
+    {
+      "names": [
+        "Canon PowerShot ELPH 135",
+        "Canon IXUS 145",
+        "Canon IXY 120"
+      ],
+      "platform": "ixus145"
+    }
+  ],
+  "0x3700000": [
+    {
+      "names": [
+        "Canon PowerShot ELPH 340 HS",
+        "Canon IXUS 265 HS",
+        "Canon IXY 630"
+      ],
+      "platform": "ixus265"
+    }
+  ],
+  "0x3710000": [
+    {
+      "names": [
+        "Canon PowerShot ELPH 150 IS",
+        "Canon IXUS 155",
+        "Canon IXY 140"
+      ],
+      "platform": "ixus155"
+    }
+  ],
+  "0x3740000": [
+    {
+      "names": [
+        "Canon EOS M3"
+      ],
+      "platform": "m3"
+    }
+  ],
+  "0x3750000": [
+    {
+      "names": [
+        "Canon PowerShot SX60 HS"
+      ],
+      "platform": "sx60"
+    }
+  ],
+  "0x3760000": [
+    {
+      "names": [
+        "Canon PowerShot SX520 HS"
+      ],
+      "platform": "sx520"
+    }
+  ],
+  "0x3770000": [
+    {
+      "names": [
+        "Canon PowerShot SX400 IS"
+      ],
+      "platform": "sx400"
+    }
+  ],
+  "0x3780000": [
+    {
+      "names": [
+        "Canon PowerShot G7 X"
+      ],
+      "platform": "g7x"
+    }
+  ],
+  "0x3790000": [
+    {
+      "names": [
+        "Canon PowerShot N2"
+      ],
+      "platform": "n2"
+    }
+  ],
+  "0x3800000": [
+    {
+      "names": [
+        "Canon PowerShot SX530 HS"
+      ],
+      "platform": "sx530"
+    }
+  ],
+  "0x3820000": [
+    {
+      "names": [
+        "Canon PowerShot SX710 HS"
+      ],
+      "platform": "sx710"
+    }
+  ],
+  "0x3830000": [
+    {
+      "names": [
+        "Canon PowerShot SX610 HS"
+      ],
+      "platform": "sx610"
+    }
+  ],
+  "0x3840000": [
+    {
+      "names": [
+        "Canon EOS M10"
+      ],
+      "platform": "m10"
+    }
+  ],
+  "0x3850000": [
+    {
+      "names": [
+        "Canon PowerShot G3 X"
+      ],
+      "platform": "g3x"
+    }
+  ],
+  "0x3860000": [
+    {
+      "names": [
+        "Canon PowerShot ELPH 165 HS",
+        "Canon IXUS 165",
+        "Canon IXY 160"
+      ],
+      "platform": "ixus165"
+    }
+  ],
+  "0x3870000": [
+    {
+      "names": [
+        "Canon PowerShot ELPH 160",
+        "Canon IXUS 160"
+      ],
+      "platform": "ixus160"
+    }
+  ],
+  "0x3880000": [
+    {
+      "names": [
+        "Canon PowerShot ELPH 350 HS",
+        "Canon IXUS 275 HS",
+        "Canon IXY 640"
+      ],
+      "platform": "ixus275"
+    }
+  ],
+  "0x3890000": [
+    {
+      "names": [
+        "Canon PowerShot ELPH 170 IS",
+        "Canon IXUS 170"
+      ],
+      "platform": "ixus170"
+    }
+  ],
+  "0x3910000": [
+    {
+      "names": [
+        "Canon PowerShot SX410 IS"
+      ],
+      "platform": "sx410"
+    }
+  ],
+  "0x3930000": [
+    {
+      "names": [
+        "Canon PowerShot G9 X"
+      ],
+      "platform": "g9x"
+    }
+  ],
+  "0x3940000": [
+    {
+      "names": [
+        "Canon EOS M5"
+      ],
+      "platform": "m5"
+    }
+  ],
+  "0x3950000": [
+    {
+      "names": [
+        "Canon PowerShot G5 X"
+      ],
+      "platform": "g5x"
+    }
+  ],
+  "0x3970000": [
+    {
+      "names": [
+        "Canon PowerShot G7 X Mark II"
+      ],
+      "platform": "g7x2"
+    }
+  ],
+  "0x3980000": [
+    {
+      "names": [
+        "Canon EOS M100"
+      ],
+      "platform": "m100"
+    }
+  ],
+  "0x3990000": [
+    {
+      "names": [
+        "Canon PowerShot ELPH 360 HS",
+        "Canon IXUS 285 HS",
+        "Canon IXY 650"
+      ],
+      "platform": "ixus285"
+    }
+  ],
+  "0x4010000": [
+    {
+      "names": [
+        "Canon PowerShot SX540 HS"
+      ],
+      "platform": "sx540"
+    }
+  ],
+  "0x4020000": [
+    {
+      "names": [
+        "Canon PowerShot SX420 IS"
+      ],
+      "platform": "sx420"
+    }
+  ],
+  "0x4030000": [
+    {
+      "names": [
+        "Canon PowerShot ELPH 190 IS",
+        "Canon IXUS 180",
+        "Canon IXY 190"
+      ],
+      "platform": "ixus180"
+    }
+  ],
+  "0x4040000": [
+    {
+      "names": [
+        "Canon PowerShot G1"
+      ],
+      "platform": "g1"
+    }
+  ],
+  "0x4040001": [
+    {
+      "names": [
+        "Canon PowerShot ELPH 180 IS",
+        "Canon IXUS 175",
+        "Canon IXY 180"
+      ],
+      "platform": "ixus175"
+    }
+  ],
+  "0x4050000": [
+    {
+      "names": [
+        "Canon PowerShot SX720 HS"
+      ],
+      "platform": "sx720"
+    }
+  ],
+  "0x4060000": [
+    {
+      "names": [
+        "Canon PowerShot SX620 HS"
+      ],
+      "platform": "sx620"
+    }
+  ],
+  "0x4070000": [
+    {
+      "names": [
+        "Canon EOS M6"
+      ],
+      "platform": "m6"
+    }
+  ],
+  "0x4100000": [
+    {
+      "names": [
+        "Canon PowerShot G9 X Mark II"
+      ],
+      "platform": "g9x2"
+    }
+  ],
+  "0x4150000": [
+    {
+      "names": [
+        "Canon PowerShot ELPH 185",
+        "Canon IXUS 185",
+        "Canon IXY 200"
+      ],
+      "platform": "ixus185"
+    }
+  ],
+  "0x4160000": [
+    {
+      "names": [
+        "Canon PowerShot SX430 IS"
+      ],
+      "platform": "sx430"
+    }
+  ],
+  "0x4170000": [
+    {
+      "names": [
+        "Canon PowerShot SX730 HS"
+      ],
+      "platform": "sx730"
+    }
+  ],
+  "0x4180000": [
+    {
+      "names": [
+        "Canon PowerShot G1 X Mark III"
+      ],
+      "platform": "g1x3"
+    }
+  ],
+  "0x6040000": [
+    {
+      "names": [
+        "Canon PowerShot S100",
+        "Canon Digital IXUS",
+        "Canon IXY Digital"
+      ],
+      "platform": "ixus"
+    }
+  ]
+}

@@ -4,6 +4,6 @@ namespace Net.Chdk.Meta.Providers.Camera.Ps
 {
     public interface IProductAltProvider : IProductNameProvider
     {
-        AltData GetAlt(string platform, string[] altNames);
+        AltData GetAlt(string platform, string[]? altNames);
     }
 }

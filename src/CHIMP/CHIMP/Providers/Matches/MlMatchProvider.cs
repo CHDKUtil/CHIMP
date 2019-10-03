@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Net.Chdk.Adapters.Platform;
 using Net.Chdk.Model.Software;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,8 @@ namespace Chimp.Providers.Matches
     {
         private static readonly Regex regex = new Regex("\"artifacts\":\\[{\"relativePath\":\"(?<path>platform/(?<platform>[0-9A-Z]+).(?<revision>[0-9]+)/magiclantern-(?<prefix>Nightly).(?<date>[0-9A-Za-z]+).[0-9A-Z]+.zip)\"}],\"url\":\"(?<url>[^\"]+)\"");
 
-        public MlMatchProvider(Uri baseUri, IDictionary<string, string> buildPaths, ILogger<MlMatchProvider> logger)
-            : base(baseUri, buildPaths, logger)
+        public MlMatchProvider(Uri baseUri, IDictionary<string, string> buildPaths, IPlatformAdapter platformAdapter, ILogger<MlMatchProvider> logger)
+            : base(baseUri, buildPaths, platformAdapter, logger)
         {
         }
 
@@ -26,5 +27,7 @@ namespace Chimp.Providers.Matches
             }
             return null;
         }
+
+        protected override string ProductName => "ML";
     }
 }

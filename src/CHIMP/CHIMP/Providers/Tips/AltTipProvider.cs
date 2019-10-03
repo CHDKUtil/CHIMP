@@ -1,7 +1,7 @@
 ﻿using Chimp.Model;
 using Chimp.Properties;
 using Chimp.ViewModels;
-using Net.Chdk.Providers.Camera;
+using Net.Chdk.Providers.CameraModel;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,9 +9,9 @@ namespace Chimp.Providers.Tips
 {
     sealed class AltTipProvider : TipProvider
     {
-        private ICameraProvider CameraProvider { get; }
+        private ICameraModelProvider CameraProvider { get; }
 
-        public AltTipProvider(MainViewModel mainViewModel, ICameraProvider cameraProvider)
+        public AltTipProvider(MainViewModel mainViewModel, ICameraModelProvider cameraProvider)
             : base(mainViewModel)
         {
             CameraProvider = cameraProvider;
@@ -47,8 +47,7 @@ namespace Chimp.Providers.Tips
         {
             var software = DownloadViewModel.Software
                 ?? SoftwareViewModel?.SelectedItem?.Info;
-            var alt = CameraProvider.GetAlt(software?.Product, software?.Camera);
-            return alt?.Button;
+            return CameraProvider.GetAltButton(software?.Product, software?.Camera);
         }
     }
 }

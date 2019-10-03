@@ -3,7 +3,7 @@ using Microsoft.Extensions.Options;
 using Net.Chdk.Encoders.Binary;
 using Net.Chdk.Model.Software;
 using Net.Chdk.Providers.Boot;
-using Net.Chdk.Providers.Camera;
+using Net.Chdk.Providers.CameraModel;
 using Net.Chdk.Providers.Software;
 using System;
 using System.Collections.Generic;
@@ -27,9 +27,9 @@ namespace Net.Chdk.Detectors.Software
         protected int MaxThreads => Settings.MaxThreads;
 
         private IEnumerable<IProductBinarySoftwareDetector> SoftwareDetectors { get; }
-        private ICameraProvider CameraProvider { get; }
+        private ICameraModelProvider CameraProvider { get; }
 
-        protected BinarySoftwareDetectorBase(IEnumerable<IProductBinarySoftwareDetector> softwareDetectors, IBinaryDecoder binaryDecoder, IBootProvider bootProvider, ICameraProvider cameraProvider,
+        protected BinarySoftwareDetectorBase(IEnumerable<IProductBinarySoftwareDetector> softwareDetectors, IBinaryDecoder binaryDecoder, IBootProvider bootProvider, ICameraModelProvider cameraProvider,
             ISoftwareHashProvider hashProvider, IOptions<SoftwareDetectorSettings> settings, ILogger logger)
         {
             Settings = settings.Value;

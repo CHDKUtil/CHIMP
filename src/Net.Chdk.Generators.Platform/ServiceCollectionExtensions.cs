@@ -7,7 +7,11 @@ namespace Net.Chdk.Generators.Platform
         public static IServiceCollection AddPlatformGenerator(this IServiceCollection serviceCollection)
         {
             return serviceCollection
-                .AddSingleton<IPlatformGenerator, PlatformGenerator>();
+                .AddSingleton<IPlatformGenerator, PlatformGenerator>()
+                .AddSingleton<IInnerPlatformGenerator, EosPlatformGenerator>()
+                .AddSingleton<IInnerPlatformGenerator, IxusPlatformGenerator>()
+                .AddSingleton<IInnerPlatformGenerator, PsPlatformGenerator>()
+                ;
         }
     }
 }

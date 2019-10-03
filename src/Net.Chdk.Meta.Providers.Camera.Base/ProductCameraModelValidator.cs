@@ -26,26 +26,26 @@ namespace Net.Chdk.Meta.Providers.Camera
                 throw new InvalidOperationException($"{platform}: null tree/revisions");
 
             foreach (var kvp in tree.Revisions)
-                Validate(kvp, platform, list);
+                Validate(kvp, platform, list.Revisions);
 
             foreach (var kvp in list.Revisions)
-                Validate(kvp, platform, tree);
+                Validate(kvp, platform, tree.Revisions);
         }
 
-        private void Validate(KeyValuePair<string, TreeRevisionData> kvp, string platform, ListPlatformData list)
+        private void Validate(KeyValuePair<string, TreeRevisionData> kvp, string platform, IDictionary<string, ListRevisionData> listRevisions)
         {
             var revision = kvp.Key;
-            if (!list.Revisions.ContainsKey(revision))
+            if (!listRevisions.ContainsKey(revision))
                 OnListRevisionMissing(platform, revision);
         }
 
-        private void Validate(KeyValuePair<string, ListRevisionData> kvp, string platform, TreePlatformData tree)
+        private void Validate(KeyValuePair<string, ListRevisionData> kvp, string platform, IDictionary<string, TreeRevisionData> treeRevisions)
         {
             var revision = kvp.Key;
-            if (!tree.Revisions.ContainsKey(revision))
+            if (!treeRevisions.ContainsKey(revision))
                 OnTreeRevisionMissing(platform, revision);
             var sourceRevision = kvp.Value?.Source?.Revision;
-            if (sourceRevision != null && !tree.Revisions.ContainsKey(sourceRevision))
+            if (sourceRevision != null && !treeRevisions.ContainsKey(sourceRevision))
                 OnTreeRevisionMissing(platform, revision, sourceRevision);
         }
 

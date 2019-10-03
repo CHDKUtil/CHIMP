@@ -42,6 +42,8 @@ namespace Net.Chdk.Meta.Providers.Camera.Ps
         private EncodingData[] GetEncodings()
         {
             var offsets = BootProvider.GetOffsets("PS");
+            if (offsets == null)
+                throw new InvalidOperationException("PS: Null offsets");
             var encodings = new EncodingData[offsets.Length + 1];
             encodings[0] = EncodingData.Empty;
             for (int i = 0; i < offsets.Length; i++)
