@@ -29,7 +29,8 @@ namespace Chimp.Providers.Action
         public override IEnumerable<IAction> GetActions()
         {
             return GetProducts()
-                .SelectMany(GetActions);
+                .SelectMany(GetActions)
+                .Where(a => a != null);
         }
 
         protected virtual IEnumerable<IAction> GetActions(SoftwareProductInfo product)
@@ -51,6 +52,8 @@ namespace Chimp.Providers.Action
         private IAction CreateAction(ProductSource productSource)
         {
             var camera = CameraProvider.GetCamera(productSource.ProductName, CameraViewModel.Info, CameraViewModel.SelectedItem.Model);
+            if (camera == null)
+                return null;
             return CreateAction(camera, productSource);
         }
 

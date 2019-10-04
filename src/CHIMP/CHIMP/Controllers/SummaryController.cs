@@ -82,7 +82,7 @@ namespace Chimp.Controllers
         {
             var software = DownloadViewModel?.Software
                 ?? SoftwareViewModel?.SelectedItem?.Info;
-            var productName = software?.Product.Name;
+            var productName = software?.Product?.Name;
             var format = string.Format(keyFormat, productName);
             return Resources.ResourceManager.GetString(format);
         }

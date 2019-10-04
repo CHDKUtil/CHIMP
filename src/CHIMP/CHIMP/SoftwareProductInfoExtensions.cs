@@ -10,6 +10,8 @@ namespace Chimp
         public static string GetVersionText(this SoftwareProductInfo product)
         {
             var version = product.Version;
+            if (version == null)
+                return null;
             string format;
             if (version.MajorRevision < 0)
             {
