@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Net.Chdk.Adapters.Platform;
 using Net.Chdk.Model.Camera;
 using Net.Chdk.Model.CameraModel;
 using Net.Chdk.Model.Software;
@@ -14,21 +15,23 @@ namespace Net.Chdk.Providers.Camera
     sealed class CameraProvider : ProviderResolver<ICategoryCameraProvider>, ICameraProvider
     {
         private IProductProvider ProductProvider { get; }
+        private IPlatformAdapter PlatformAdapter { get; }
         private IPlatformProvider PlatformProvider { get; }
         private IFirmwareProvider FirmwareProvider { get; }
 
-        public CameraProvider(IProductProvider productProvider, IPlatformProvider platformProvider, IFirmwareProvider firmwareProvider, ILoggerFactory loggerFactory)
+        public CameraProvider(IProductProvider productProvider, IPlatformAdapter platformAdapter, IPlatformProvider platformProvider, IFirmwareProvider firmwareProvider, ILoggerFactory loggerFactory)
             : base(loggerFactory)
         {
             ProductProvider = productProvider;
+            PlatformAdapter = platformAdapter;
             PlatformProvider = platformProvider;
             FirmwareProvider = firmwareProvider;
         }
 
-        public CameraModelsInfo? GetCameraModels(SoftwareProductInfo? _, SoftwareCameraInfo? cameraInfo)
+        public CameraModelsInfo? GetCameraModels(SoftwareProductInfo? product, SoftwareCameraInfo? cameraInfo)
         {
             return Providers.Values
-                .Select(p => p.GetCameraModels(cameraInfo))
+                .Select(p => p.GetCameraModels(product, cameraInfo))
                 .FirstOrDefault(c => c != null);
         }
 
@@ -56,9 +59,9 @@ namespace Net.Chdk.Providers.Camera
             switch (categoryName)
             {
                 case "EOS":
-                    return new EosCameraProvider(PlatformProvider, FirmwareProvider);
+                    return new EosCameraProvider(PlatformAdapter, PlatformProvider, FirmwareProvider);
                 case "PS":
-                    return new PsCameraProvider(PlatformProvider, FirmwareProvider);
+                    return new PsCameraProvider(PlatformAdapter, PlatformProvider, FirmwareProvider);
                 default:
                     throw new InvalidOperationException($"Unknown category: {categoryName}");
             }

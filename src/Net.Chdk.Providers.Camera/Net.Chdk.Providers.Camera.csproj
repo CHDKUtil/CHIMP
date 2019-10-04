@@ -26,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Net.Chdk.Adapters.Platform.Core\Net.Chdk.Adapters.Platform.Core.csproj" />
     <ProjectReference Include="..\Net.Chdk.Core\Net.Chdk.Core.csproj" />
     <ProjectReference Include="..\Net.Chdk.Providers.Base\Net.Chdk.Providers.Base.csproj" />
     <ProjectReference Include="..\Net.Chdk.Providers.Camera.Core\Net.Chdk.Providers.Camera.Core.csproj" />

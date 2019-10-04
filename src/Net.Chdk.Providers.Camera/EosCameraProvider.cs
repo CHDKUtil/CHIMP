@@ -1,4 +1,5 @@
-﻿using Net.Chdk.Providers.Firmware;
+﻿using Net.Chdk.Adapters.Platform;
+using Net.Chdk.Providers.Firmware;
 using Net.Chdk.Providers.Platform;
 using System;
 
@@ -6,8 +7,8 @@ namespace Net.Chdk.Providers.Camera
 {
     sealed class EosCameraProvider : CategoryCameraProvider
     {
-        public EosCameraProvider(IPlatformProvider platformProvider, IFirmwareProvider firmwareProvider)
-            : base(platformProvider, firmwareProvider)
+        public EosCameraProvider(IPlatformAdapter platformAdapter, IPlatformProvider platformProvider, IFirmwareProvider firmwareProvider)
+            : base(platformAdapter, platformProvider, firmwareProvider)
         {
         }
 

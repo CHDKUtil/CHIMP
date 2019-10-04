@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Linq;
+using Net.Chdk.Adapters.Platform;
 using Net.Chdk.Meta.Model.Platform;
 using Net.Chdk.Model.Camera;
 using Net.Chdk.Model.CameraModel;
@@ -12,11 +13,13 @@ namespace Net.Chdk.Providers.Camera
 {
     abstract class CategoryCameraProvider : ICategoryCameraProvider
     {
+        private IPlatformAdapter PlatformAdapter { get; }
         private IPlatformProvider PlatformProvider { get; }
         private IFirmwareProvider FirmwareProvider { get; }
 
-        public CategoryCameraProvider(IPlatformProvider platformProvider, IFirmwareProvider firmwareProvider)
+        public CategoryCameraProvider(IPlatformAdapter platformAdapter, IPlatformProvider platformProvider, IFirmwareProvider firmwareProvider)
         {
+            PlatformAdapter = platformAdapter;
             PlatformProvider = platformProvider;
             FirmwareProvider = firmwareProvider;
         }
@@ -39,12 +42,13 @@ namespace Net.Chdk.Providers.Camera
             return GetCameraModels(camera, platforms);
         }
 
-        public CameraModelsInfo? GetCameraModels(SoftwareCameraInfo? cameraInfo)
+        public CameraModelsInfo? GetCameraModels(SoftwareProductInfo? product, SoftwareCameraInfo? cameraInfo)
         {
-            if (cameraInfo == null)
+            if (product == null || cameraInfo == null)
                 return null;
 
-            var platform = GetPlatform(cameraInfo);
+            var key = PlatformAdapter.NormalizePlatform(product.Name, cameraInfo.Platform);
+            var platform = GetPlatform(key);
             if (platform == null)
                 return null;
 
@@ -88,9 +92,9 @@ namespace Net.Chdk.Providers.Camera
             return FirmwareProvider.GetFirmwareRevision(camera, CategoryName);
         }
 
-        private PlatformData? GetPlatform(SoftwareCameraInfo camera)
+        private PlatformData? GetPlatform(string platform)
         {
-            return PlatformProvider.GetPlatform(camera.Platform, CategoryName);
+            return PlatformProvider.GetPlatform(platform, CategoryName);
         }
 
         private PlatformData[]? GetPlatforms(CameraInfo camera)

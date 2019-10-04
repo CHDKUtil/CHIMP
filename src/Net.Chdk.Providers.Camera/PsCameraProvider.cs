@@ -1,4 +1,5 @@
 ﻿using System;
+using Net.Chdk.Adapters.Platform;
 using Net.Chdk.Providers.Firmware;
 using Net.Chdk.Providers.Platform;
 
@@ -6,8 +7,8 @@ namespace Net.Chdk.Providers.Camera
 {
     sealed class PsCameraProvider : CategoryCameraProvider
     {
-        public PsCameraProvider(IPlatformProvider platformProvider, IFirmwareProvider firmwareProvider)
-            : base(platformProvider, firmwareProvider)
+        public PsCameraProvider(IPlatformAdapter platformAdapter, IPlatformProvider platformProvider, IFirmwareProvider firmwareProvider)
+            : base(platformAdapter, platformProvider, firmwareProvider)
         {
         }
 
