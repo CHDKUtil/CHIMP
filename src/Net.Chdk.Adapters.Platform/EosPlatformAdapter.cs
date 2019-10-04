@@ -4,7 +4,7 @@
     {
         public override string NormalizePlatform(string platform)
         {
-            return platform.ToUpper();
+            return platform.ToLower();
         }
     }
 }
