@@ -5,10 +5,10 @@ using Net.Chdk.Model.Software;
 
 namespace Net.Chdk.Providers.CameraModel
 {
-    sealed class EosProductCameraProvider : ProductCameraProvider<EosCameraData, EosCardData>
+    sealed class EosCameraModelProvider : ProductCameraModelProvider<EosCameraData, EosCardData>
     {
-        public EosProductCameraProvider(string productName, ILoggerFactory loggerFactory)
-            : base(productName, loggerFactory.CreateLogger<EosProductCameraProvider>())
+        public EosCameraModelProvider(string productName, ILoggerFactory loggerFactory)
+            : base(productName, loggerFactory.CreateLogger<EosCameraModelProvider>())
         {
         }
 

@@ -8,10 +8,10 @@ using System.Linq;
 
 namespace Net.Chdk.Providers.CameraModel
 {
-    sealed class PsProductCameraProvider : ProductCameraProvider<PsCameraData, PsCardData>
+    sealed class PsCameraModelProvider : ProductCameraModelProvider<PsCameraData, PsCardData>
     {
-        public PsProductCameraProvider(string productName, ILoggerFactory loggerFactory)
-            : base(productName, loggerFactory.CreateLogger<PsProductCameraProvider>())
+        public PsCameraModelProvider(string productName, ILoggerFactory loggerFactory)
+            : base(productName, loggerFactory.CreateLogger<PsCameraModelProvider>())
         {
             _reverseCameras = new Lazy<Dictionary<string, ReverseCameraData>>(GetReverseCameras);
         }

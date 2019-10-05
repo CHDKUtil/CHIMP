@@ -7,7 +7,7 @@ using Net.Chdk.Model.Software;
 
 namespace Net.Chdk.Providers.CameraModel
 {
-    abstract class ProductCameraProvider<TCamera, TCard> : DataProvider<Dictionary<string, TCamera>>, IProductCameraProvider
+    abstract class ProductCameraModelProvider<TCamera, TCard> : DataProvider<Dictionary<string, TCamera>>, IProductCameraModelProvider
         where TCamera : CameraData<TCamera, TCard>
         where TCard : CardData
     {
@@ -15,7 +15,7 @@ namespace Net.Chdk.Providers.CameraModel
 
         private string ProductName { get; }
 
-        protected ProductCameraProvider(string productName, ILogger logger)
+        protected ProductCameraModelProvider(string productName, ILogger logger)
             : base(logger)
         {
             ProductName = productName;

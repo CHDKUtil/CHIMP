@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Net.Chdk.Providers.CameraModel
 {
-    sealed class CameraModelProvider : ProviderResolver<IProductCameraProvider>, ICameraModelProvider
+    sealed class CameraModelProvider : ProviderResolver<IProductCameraModelProvider>, ICameraModelProvider
     {
         private IProductProvider ProductProvider { get; }
 
@@ -58,13 +58,13 @@ namespace Net.Chdk.Providers.CameraModel
             return ProductProvider.GetProductNames();
         }
 
-        protected override IProductCameraProvider? CreateProvider(string productName)
+        protected override IProductCameraModelProvider? CreateProvider(string productName)
         {
             var categoryName = ProductProvider.GetCategoryName(productName);
             return categoryName switch
             {
-                "EOS" => new EosProductCameraProvider(productName, LoggerFactory),
-                "PS" => new PsProductCameraProvider(productName, LoggerFactory),
+                "EOS" => new EosCameraModelProvider(productName, LoggerFactory),
+                "PS" => new PsCameraModelProvider(productName, LoggerFactory),
                 "SCRIPT" => null,
                 _ => throw new InvalidOperationException($"Unknown category: {categoryName}"),
             };
