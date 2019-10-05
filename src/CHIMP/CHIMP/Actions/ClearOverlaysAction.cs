@@ -39,9 +39,7 @@ namespace Chimp.Actions
         {
             if (!Substitutes.ContainsKey("revision"))
             {
-                var title = Resources.Download_UnsupportedFirmware_Text;
-                Logger.Log(LogLevel.Error, default, title, null, null);
-                DownloadViewModel.Title = title;
+                SetTitle(Resources.Download_UnsupportedFirmware_Text, LogLevel.Error);
                 return null;
             }
 
@@ -93,6 +91,13 @@ namespace Chimp.Actions
             {
                 return JsonObject.Deserialize<SoftwareInfo>(stream);
             }
+        }
+
+        private void SetTitle(string title, LogLevel logLevel = LogLevel.Information)
+        {
+            Logger.Log(logLevel, default, title, null, null);
+            DownloadViewModel.Title = title;
+            DownloadViewModel.FileName = string.Empty;
         }
 
         private string Platform => Substitutes["platform"];
