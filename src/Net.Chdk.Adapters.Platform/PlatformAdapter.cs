@@ -14,14 +14,15 @@ namespace Net.Chdk.Adapters.Platform
 
         public string NormalizePlatform(string productName, string platform)
         {
-            return GetInnerAdapter(productName)
-                .NormalizePlatform(platform);
+            return GetInnerAdapter(productName)?
+                .NormalizePlatform(platform)
+                ?? platform;
         }
 
-        private IProductPlatformAdapter GetInnerAdapter(string productName)
+        private IProductPlatformAdapter? GetInnerAdapter(string productName)
         {
             return InnerAdapters
-                .Single(a => a.ProductName == productName);
+                .SingleOrDefault(a => a.ProductName == productName);
         }
     }
 }
