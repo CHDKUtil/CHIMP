@@ -7,7 +7,7 @@ namespace Net.Chdk.Providers.CameraModel
     {
         SoftwareEncodingInfo? GetEncoding(SoftwareProductInfo product, SoftwareCameraInfo camera);
         string? GetAltButton(SoftwareProductInfo product, SoftwareCameraInfo camera);
-        string? GetCardType(SoftwareProductInfo? product, CameraInfo camera);
+        string? GetCardType(SoftwareProductInfo product, CameraInfo camera);
         string? GetCardSubtype(SoftwareProductInfo product, CameraInfo camera);
         string? GetBootFileSystem(SoftwareProductInfo product, CameraInfo camera);
         bool? IsMultiPartition(SoftwareProductInfo product, CameraInfo camera);

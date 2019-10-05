@@ -29,9 +29,9 @@ namespace Net.Chdk.Providers.CameraModel
                 .GetAltButton(camera);
         }
 
-        public string? GetCardType(SoftwareProductInfo? product, CameraInfo camera)
+        public string? GetCardType(SoftwareProductInfo product, CameraInfo camera)
         {
-            return GetProvider(product?.Name)?
+            return GetProvider(product.Name)?
                 .GetCardType(camera);
         }
 

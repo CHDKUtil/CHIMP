@@ -52,7 +52,10 @@ namespace Chimp.Providers.Tips
         {
             get
             {
-                var cardType = CameraProvider.GetCardType(DownloadViewModel?.Software?.Product, CameraViewModel?.Info);
+                var product = DownloadViewModel?.Software?.Product ?? SoftwareViewModel?.SelectedItem?.Info?.Product;
+                if (product == null)
+                    return false;
+                var cardType = CameraProvider.GetCardType(product, CameraViewModel?.Info);
                 return "microSD" == cardType;
             }
         }
