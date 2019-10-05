@@ -35,19 +35,23 @@ namespace Net.Chdk.Providers.Substitute
 
             if (!Data.TryGetValue(platform, out AddressPlatformData platformData))
                 return null;
-            if (platformData.Revisions == null || !platformData.Revisions.TryGetValue(revision, out AddressRevisionData revisionData))
-                return null;
 
-            return new Dictionary<string, string>
+            var subs = new Dictionary<string, string>
             {
                 ["model"] = cameraModel.Names[0],
                 ["platform"] = platform,
-                ["revision"] = revision,
                 ["platform_id"] = GetHexString(platformData.Id),
-                ["palette_buffer_ptr"] = GetHexString(revisionData.PaletteBufferPtr),
-                ["active_palette_buffer"] = GetHexString(revisionData.ActivePaletteBuffer),
-                ["palette_to_zero"] = revisionData.PaletteToZero.ToString(),
             };
+
+            if (platformData.Revisions != null && platformData.Revisions.TryGetValue(revision, out AddressRevisionData revisionData))
+            {
+                subs["revision"] = revision;
+                subs["palette_buffer_ptr"] = GetHexString(revisionData.PaletteBufferPtr);
+                subs["active_palette_buffer"] = GetHexString(revisionData.ActivePaletteBuffer);
+                subs["palette_to_zero"] = revisionData.PaletteToZero.ToString();
+            }
+
+            return subs;
         }
 
         protected override string GetFilePath()

@@ -37,6 +37,14 @@ namespace Chimp.Actions
 
         protected override SoftwareData Perform()
         {
+            if (!Substitutes.ContainsKey("revision"))
+            {
+                var title = Resources.Download_UnsupportedFirmware_Text;
+                Logger.Log(LogLevel.Error, default, title, null, null);
+                DownloadViewModel.Title = title;
+                return null;
+            }
+
             var software = GetSoftware();
             var destPath = GenerateScript(software);
             software = MetadataService.Update(software, destPath, null, default);
