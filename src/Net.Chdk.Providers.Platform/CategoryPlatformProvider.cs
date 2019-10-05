@@ -12,7 +12,7 @@ namespace Net.Chdk.Providers.Platform
         protected CategoryPlatformProvider(ILogger logger)
             : base(logger)
         {
-            reversePlatforms = new Lazy<Dictionary<string, PlatformData>>(GetReversePlatforms);
+            platforms = new Lazy<Dictionary<string, PlatformData>>(GetPlatforms);
         }
 
         public IEnumerable<KeyValuePair<string, PlatformData>>? GetPlatforms(uint modelId)
@@ -25,7 +25,7 @@ namespace Net.Chdk.Providers.Platform
 
         public PlatformData? GetPlatform(string platform)
         {
-            ReversePlatforms.TryGetValue(platform, out PlatformData? platformData);
+            Platforms.TryGetValue(platform, out PlatformData? platformData);
             return platformData;
         }
 
@@ -36,30 +36,27 @@ namespace Net.Chdk.Providers.Platform
 
         protected abstract string CategoryName { get; }
 
-        private static KeyValuePair<string, PlatformData> GetKeyValuePair(string key, CameraModel model)
+        private static KeyValuePair<string, PlatformData> GetKeyValuePair(string modelId, CameraModel model)
         {
-            return new KeyValuePair<string, PlatformData>(model.Platform!, GetPlatform(key, model));
+            return new KeyValuePair<string, PlatformData>(model.Platform!, GetPlatform(modelId, model));
         }
 
-        private static PlatformData GetPlatform(string key, CameraModel model)
+        private static PlatformData GetPlatform(string modelId, CameraModel model)
         {
-            return new PlatformData { ModelId = key, Names = model.Names };
+            return new PlatformData { ModelId = modelId, Names = model.Names };
         }
 
         #region ReversePlatforms
 
-        private readonly Lazy<Dictionary<string, PlatformData>> reversePlatforms;
+        private readonly Lazy<Dictionary<string, PlatformData>> platforms;
 
-        private Dictionary<string, PlatformData> ReversePlatforms => reversePlatforms.Value;
+        private Dictionary<string, PlatformData> Platforms => platforms.Value;
 
-        private Dictionary<string, PlatformData> GetReversePlatforms()
+        private Dictionary<string, PlatformData> GetPlatforms()
         {
-            var platforms = new Dictionary<string, PlatformData>();
-            foreach (var kvp in Data)
-                foreach (var platform in kvp.Value)
-                    if (platform.Platform != null)
-                        platforms.Add(platform.Platform, new PlatformData { ModelId = kvp.Key, Names = platform.Names });
-            return platforms;
+            return Data
+                .SelectMany(kvp => kvp.Value.Select(model => GetKeyValuePair(kvp.Key, model)))
+                .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
         }
 
         #endregion
