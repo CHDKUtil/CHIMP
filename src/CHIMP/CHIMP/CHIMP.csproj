@@ -266,9 +266,12 @@
     <Compile Include="Actions\InstallActionBase.cs" />
     <Compile Include="Actions\ScriptableAction.cs" />
     <Compile Include="Actions\SwitchAction.cs" />
+    <Compile Include="Downloaders\DownloaderBase.cs" />
+    <Compile Include="Downloaders\ScriptDownloader.cs" />
     <Compile Include="Installers\ScriptInstaller.cs" />
     <Compile Include="Interfaces\Providers\ILicenseProvider.cs" />
     <Compile Include="Model\ActionsData.cs" />
+    <Compile Include="Model\MatchData.cs" />
     <Compile Include="Providers\Action\ClearOverlaysActionProvider.cs" />
     <Compile Include="Providers\DataProvider.cs" />
     <Compile Include="Providers\LicenseProvider.cs" />
@@ -310,6 +313,9 @@
     </Compile>
     <Compile Include="Controls\SoftwareInfoControl.xaml.cs">
       <DependentUpon>SoftwareInfoControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SupportedControl.xaml.cs">
+      <DependentUpon>SupportedControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\TipsControl.xaml.cs">
       <DependentUpon>TipsControl.xaml</DependentUpon>
@@ -526,6 +532,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\SoftwareInfoControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SupportedControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

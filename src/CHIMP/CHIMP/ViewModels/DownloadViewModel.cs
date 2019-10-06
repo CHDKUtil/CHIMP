@@ -68,5 +68,19 @@ namespace Chimp.ViewModels
             get { return _Paths; }
             set { SetProperty(ref _Paths, value); }
         }
+
+        private string _SupportedTitle;
+        public string SupportedTitle
+        {
+            get => _SupportedTitle;
+            set => SetProperty(ref _SupportedTitle, value);
+        }
+
+        private string[] _SupportedItems;
+        public string[] SupportedItems
+        {
+            get => _SupportedItems;
+            set => SetProperty(ref _SupportedItems, value);
+        }
     }
 }

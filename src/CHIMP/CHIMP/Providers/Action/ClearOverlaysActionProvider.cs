@@ -1,5 +1,7 @@
 ﻿using Chimp.Actions;
 using Chimp.ViewModels;
+using Net.Chdk.Model.Software;
+using Net.Chdk.Providers.Camera;
 using Net.Chdk.Providers.Substitute;
 using System.Collections.Generic;
 
@@ -7,11 +9,15 @@ namespace Chimp.Providers.Action
 {
     sealed class ClearOverlaysActionProvider : ActionProvider
     {
+        private const string ProductName = "clear_overlays";
+
+        private ICameraProvider CameraProvider { get; }
         private ISubstituteProvider SubstituteProvider { get; }
 
-        public ClearOverlaysActionProvider(MainViewModel mainViewModel, ISubstituteProvider substituteProvider, IServiceActivator serviceActivator)
+        public ClearOverlaysActionProvider(MainViewModel mainViewModel, ISubstituteProvider substituteProvider, ICameraProvider cameraProvider, IServiceActivator serviceActivator)
             : base(mainViewModel, serviceActivator)
         {
+            CameraProvider = cameraProvider;
             SubstituteProvider = substituteProvider;
         }
 
@@ -22,7 +28,11 @@ namespace Chimp.Providers.Action
                 yield break;
 
             var software = SoftwareViewModel?.SelectedItem?.Info;
-            if (software?.Product?.Name == "clear_overlays")
+            if (software?.Product?.Name == ProductName)
+                yield break;
+
+            var camera = CameraProvider.GetCamera(ProductName, CameraViewModel?.Info, CameraViewModel?.SelectedItem?.Model);
+            if (camera == null)
                 yield break;
 
             var substitues = GetSubstitutes();
@@ -31,16 +41,18 @@ namespace Chimp.Providers.Action
 
             var types = new[]
             {
-                typeof(IDictionary<string, string>)
+                typeof(SoftwareCameraInfo),
+                typeof(IDictionary<string, object>)
             };
             var values = new object[]
             {
+                camera,
                 substitues
             };
             yield return ServiceActivator.Create<ClearOverlaysAction>(types, values);
         }
 
-        private IDictionary<string, string> GetSubstitutes()
+        private IDictionary<string, object> GetSubstitutes()
         {
             var camera = CameraViewModel?.Info;
             var cameraModel = CameraViewModel?.SelectedItem?.Model;

@@ -88,6 +88,8 @@
 
         </Grid>
 
+        <controls:SupportedControl Visibility="{Binding [Download].SupportedItems, Converter={StaticResource NullToVisibilityConverter}, ConverterParameter=Collapsed}" />
+        
         <controls:EjectControl Visibility="{Binding [Download].IsAborted, Converter={StaticResource BooleanToVisibilityConverter}}"
                                Grid.Row="1" />
 

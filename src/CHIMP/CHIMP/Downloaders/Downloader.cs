@@ -3,6 +3,7 @@ using Chimp.Properties;
 using Chimp.ViewModels;
 using Microsoft.Extensions.Logging;
 using Net.Chdk.Model.Software;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -10,12 +11,8 @@ using System.Threading.Tasks;
 
 namespace Chimp.Downloaders
 {
-    sealed class Downloader : IDownloader
+    sealed class Downloader : DownloaderBase
     {
-        private ILogger Logger { get; }
-
-        private MainViewModel MainViewModel { get; }
-        private DownloadViewModel ViewModel => DownloadViewModel.Get(MainViewModel);
         private SoftwareViewModel SoftwareViewModel => SoftwareViewModel.Get(MainViewModel);
 
         private IBuildProvider BuildProvider { get; }
@@ -30,11 +27,8 @@ namespace Chimp.Downloaders
         public Downloader(MainViewModel mainViewModel,
             IBuildProvider buildProvider, IMatchProvider matchProvider, ISoftwareProvider softwareProvider, IDownloadProvider downloadProvider,
             IDownloadService downloadService, IExtractService extractService, IMetadataService metadataService, ILogger<Downloader> logger)
+                : base(mainViewModel, logger)
         {
-            Logger = logger;
-
-            MainViewModel = mainViewModel;
-
             BuildProvider = buildProvider;
             MatchProvider = matchProvider;
             SoftwareProvider = softwareProvider;
@@ -45,7 +39,7 @@ namespace Chimp.Downloaders
             MetadataService = metadataService;
         }
 
-        public async Task<SoftwareData> DownloadAsync(SoftwareCameraInfo camera, SoftwareInfo softwareInfo, CancellationToken cancellationToken)
+        public override async Task<SoftwareData> DownloadAsync(SoftwareCameraInfo camera, SoftwareInfo softwareInfo, CancellationToken cancellationToken)
         {
             var software = await GetSoftwareAsync(camera, softwareInfo, cancellationToken);
             if (software == null)
@@ -69,11 +63,13 @@ namespace Chimp.Downloaders
             SetTitle(nameof(Resources.Download_FetchingData_Text));
 
             var buildName = BuildProvider.GetBuildName(softwareInfo);
-            var matches = await MatchProvider.GetMatchesAsync(camera, buildName, cancellationToken);
+            var result = await MatchProvider.GetMatchesAsync(camera, buildName, cancellationToken);
+            var matches = result.Matches;
             if (matches == null)
             {
-                var error = MatchProvider.GetError();
-                SetTitle(error, LogLevel.Error);
+                SetTitle(result.Error, LogLevel.Error);
+                ViewModel.SupportedItems = GetSupportedItems(result).ToArray();
+                ViewModel.SupportedTitle = GetSupportedTitle(result);
                 return null;
             }
 
@@ -255,11 +251,36 @@ namespace Chimp.Downloaders
             return int.TryParse(sizeStr, out size);
         }
 
-        private void SetTitle(string title, LogLevel logLevel = LogLevel.Information)
+        private IEnumerable<string> GetSupportedItems(MatchData result)
         {
-            Logger.Log(logLevel, default(EventId), title, null, null);
-            ViewModel.Title = title;
-            ViewModel.FileName = string.Empty;
+            if (result.Builds != null)
+                return GetSupportedBuilds(result.Builds);
+            if (result.Revisions != null)
+                return GetSupportedRevisions(result.Revisions);
+            if (result.Platforms != null)
+                return GetSupportedModels(result.Platforms);
+            return null;
+        }
+
+        private string GetSupportedTitle(MatchData result)
+        {
+            if (result.Builds != null)
+                return GetSupportedBuildsTitle(result.Builds);
+            if (result.Revisions != null)
+                return GetSupportedRevisionsTitle(result.Revisions);
+            if (result.Platforms != null)
+                return GetSupportedModelsTitle(result.Platforms);
+            return null;
+        }
+
+        private IEnumerable<string> GetSupportedBuilds(IEnumerable<string> _)
+        {
+            return null;
+        }
+
+        private string GetSupportedBuildsTitle(IEnumerable<string> _)
+        {
+            return null;
         }
     }
 }

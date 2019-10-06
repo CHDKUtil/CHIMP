@@ -21,7 +21,7 @@ namespace Net.Chdk.Providers.Substitute
             Logger = loggerFactory.CreateLogger<SubstituteProvider>();
         }
 
-        public IDictionary<string, string>? GetSubstitutes(CameraInfo camera, CameraModelInfo cameraModel)
+        public IDictionary<string, object>? GetSubstitutes(CameraInfo camera, CameraModelInfo cameraModel)
         {
             var categoryName = FirmwareProvider.GetCategoryName(camera);
             if (categoryName == null)

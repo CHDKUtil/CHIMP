@@ -1,4 +1,5 @@
-﻿using Chimp.Properties;
+﻿using Chimp.Model;
+using Chimp.Properties;
 using Microsoft.Extensions.Logging;
 using Net.Chdk.Adapters.Platform;
 using Net.Chdk.Model.Software;
@@ -20,7 +21,7 @@ namespace Chimp.Providers.Matches
         {
         }
 
-        protected override IEnumerable<Match> GetMatches(SoftwareCameraInfo camera, string buildName, string line)
+        protected override MatchData GetMatches(SoftwareCameraInfo camera, string buildName, string line)
         {
             var match = commonRegex.Match(line);
             if (match.Success)
@@ -40,18 +41,11 @@ namespace Chimp.Providers.Matches
             return null;
         }
 
-        protected override IEnumerable<Match> GetMatches(string buildName, Match match)
+        protected override MatchData GetMatches(string buildName, Match match)
         {
             if (commonMatch == null)
-                return null;
-            return new[] { commonMatch, match };
-        }
-
-        public override string GetError()
-        {
-            if (commonMatch == null)
-                return nameof(Resources.Download_InvalidFormat_Text);
-            return base.GetError();
+                return new MatchData(nameof(Resources.Download_InvalidFormat_Text));
+            return new MatchData(commonMatch, match);
         }
 
         protected override string ProductName => "SDM";
