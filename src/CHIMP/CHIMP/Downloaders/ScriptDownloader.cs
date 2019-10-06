@@ -7,6 +7,7 @@ using Net.Chdk.Generators.Script;
 using Net.Chdk.Json;
 using Net.Chdk.Model.Software;
 using Net.Chdk.Providers.Boot;
+using Net.Chdk.Providers.Camera;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -20,16 +21,18 @@ namespace Chimp.Downloaders
         private const string CategoryName = "SCRIPT";
 
         private string ProductName { get; }
+        private ICameraProvider CameraProvider { get; }
         private IBootProvider BootProvider { get; }
         private IScriptGenerator ScriptGenerator { get; }
         private IMetadataService MetadataService { get; }
         private IDictionary<string, object> Substitutes { get; }
 
-        public ScriptDownloader(string productName, MainViewModel mainViewModel, IBootProvider bootProvider, IScriptGenerator scriptGenerator, IMetadataService metadataService,
+        public ScriptDownloader(string productName, MainViewModel mainViewModel, ICameraProvider cameraProvider, IBootProvider bootProvider, IScriptGenerator scriptGenerator, IMetadataService metadataService,
             IDictionary<string, object> substitutes, ILogger logger)
                 : base(mainViewModel, logger)
         {
             ProductName = productName;
+            CameraProvider = cameraProvider;
             BootProvider = bootProvider;
             ScriptGenerator = scriptGenerator;
             MetadataService = metadataService;
@@ -44,16 +47,17 @@ namespace Chimp.Downloaders
 
         private SoftwareData Download(SoftwareCameraInfo camera)
         {
+            var software = GetSoftware(camera);
+
             if (!Substitutes.ContainsKey("revision"))
             {
                 var error = GetError(Substitutes);
                 SetTitle(error, LogLevel.Error);
-                ViewModel.SupportedItems = GetSupportedItems(Substitutes).ToArray();
+                ViewModel.SupportedItems = GetSupportedItems(Substitutes, software.Product, camera).ToArray();
                 ViewModel.SupportedTitle = GetSupportedTitle(Substitutes);
                 return null;
             }
 
-            var software = GetSoftware(camera);
             var destPath = GenerateScript(software);
             software = MetadataService.Update(software, destPath, null, default);
 
@@ -121,12 +125,12 @@ namespace Chimp.Downloaders
             return null;
         }
 
-        private static IEnumerable<string> GetSupportedItems(IDictionary<string, object> subs)
+        private IEnumerable<string> GetSupportedItems(IDictionary<string, object> subs, SoftwareProductInfo product, SoftwareCameraInfo camera)
         {
             if (TryGetValue(subs, "revisions", out var revisions))
                 return GetSupportedRevisions(revisions);
             if (TryGetValue(subs, "platforms", out var platforms))
-                return GetSupportedModels(platforms);
+                return GetSupportedModels(platforms, product, camera);
             return null;
         }
 
@@ -148,6 +152,30 @@ namespace Chimp.Downloaders
             }
             values = value as IEnumerable<string>;
             return values != null;
+        }
+
+        private IEnumerable<string> GetSupportedModels(IEnumerable<string> platforms, SoftwareProductInfo productInfo, SoftwareCameraInfo cameraInfo)
+        {
+            return platforms
+                .SelectMany(p => GetModels(p, productInfo, cameraInfo));
+        }
+
+        private IEnumerable<string> GetModels(string platform, SoftwareProductInfo productInfo, SoftwareCameraInfo cameraInfo)
+        {
+            var camera = GetCamera(platform, cameraInfo);
+            var data = CameraProvider.GetCameraModels(productInfo, camera);
+            if (data?.Models != null)
+                foreach (var model in data.Models)
+                    yield return model.Names[0].TrimStart("Canon ");
+        }
+
+        private static SoftwareCameraInfo GetCamera(string platform, SoftwareCameraInfo cameraInfo)
+        {
+            return new SoftwareCameraInfo
+            {
+                Platform = platform,
+                Revision = cameraInfo.Revision
+            };
         }
     }
 }

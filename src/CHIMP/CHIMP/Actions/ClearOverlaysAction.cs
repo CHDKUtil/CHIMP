@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using Net.Chdk.Generators.Script;
 using Net.Chdk.Model.Software;
 using Net.Chdk.Providers.Boot;
+using Net.Chdk.Providers.Camera;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace Chimp.Actions
     {
         private const string ProductName = "clear_overlays";
 
+        private ICameraProvider CameraProvider { get; }
         private IBootProvider BootProvider { get; }
         private IScriptGenerator ScriptGenerator { get; }
         private IMetadataService MetadataService { get; }
@@ -24,9 +26,10 @@ namespace Chimp.Actions
         private IDictionary<string, object> Substitutes { get; }
         private ILogger Logger { get; }
 
-        public ClearOverlaysAction(MainViewModel mainViewModel, IBootProvider bootProvider, IScriptGenerator scriptGenerator, IMetadataService metadataService, SoftwareCameraInfo camera, IDictionary<string, object> substitutes, ILogger<ClearOverlaysAction> logger)
+        public ClearOverlaysAction(MainViewModel mainViewModel, ICameraProvider cameraProvider, IBootProvider bootProvider, IScriptGenerator scriptGenerator, IMetadataService metadataService, SoftwareCameraInfo camera, IDictionary<string, object> substitutes, ILogger<ClearOverlaysAction> logger)
             : base(mainViewModel)
         {
+            CameraProvider = cameraProvider;
             BootProvider = bootProvider;
             ScriptGenerator = scriptGenerator;
             MetadataService = metadataService;
@@ -45,7 +48,7 @@ namespace Chimp.Actions
 
         private IDownloader GetDownloader()
         {
-            return new ScriptDownloader(ProductName, MainViewModel, BootProvider, ScriptGenerator, MetadataService, Substitutes, Logger);
+            return new ScriptDownloader(ProductName, MainViewModel, CameraProvider, BootProvider, ScriptGenerator, MetadataService, Substitutes, Logger);
         }
     }
 }
