@@ -1,0 +1,86 @@
+﻿using Chimp.Model;
+using Chimp.Properties;
+using Net.Chdk;
+using Net.Chdk.Model.CameraModel;
+using Net.Chdk.Model.Software;
+using Net.Chdk.Providers.Camera;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Chimp.Providers.Supported
+{
+    sealed class SupportedPlatformProvider : SupportedProviderBase
+    {
+        private ICameraProvider CameraProvider { get; }
+
+        public SupportedPlatformProvider(ICameraProvider cameraProvider)
+        {
+            CameraProvider = cameraProvider;
+        }
+
+        protected override bool IsMatch(MatchData data)
+        {
+            return data.Platforms != null;
+        }
+
+        protected override string DoGetError(MatchData data)
+        {
+            return Resources.Download_UnsupportedModel_Text;
+        }
+
+        protected override string[] DoGetItems(MatchData data, SoftwareProductInfo product, SoftwareCameraInfo camera)
+        {
+            return data.Platforms
+                .SelectMany(p => GetModels(p, product, camera))
+                .ToArray();
+        }
+
+        protected override string DoGetTitle(MatchData data)
+        {
+            return data.Platforms.Count() > 1
+                ? Resources.Download_SupportedModels_Content
+                : Resources.Download_SupportedModel_Content;
+        }
+
+        private IEnumerable<string> GetModels(string platform, SoftwareProductInfo product, SoftwareCameraInfo cameraInfo)
+        {
+            var camera = GetCamera(platform, cameraInfo);
+            var data = CameraProvider.GetCameraModels(product, camera);
+            if (data?.Models != null)
+                foreach (var model in data.Models)
+                    yield return GetModel(model);
+        }
+
+        private SoftwareCameraInfo GetCamera(string platform, SoftwareCameraInfo cameraInfo)
+        {
+            return new SoftwareCameraInfo
+            {
+                Platform = platform,
+                Revision = cameraInfo.Revision
+            };
+        }
+
+        private static string GetModel(CameraModelInfo model)
+        {
+            var models = Enumerable.Range(0, model.Names.Length)
+                .Select(i => GetModel(model.Names, i));
+            return string.Join(" / ", models);
+        }
+
+        private static string GetModel(string[] models, int index)
+        {
+            var model = models[index]
+                .TrimStart("Canon ")
+                .TrimEnd(" IS")
+                .TrimEnd(" HS")
+                .TrimEnd(" Ti");
+
+            if (index > 0)
+                model = model
+                    .TrimStart("EOS ")
+                    .TrimStart("PowerShot ");
+
+            return model;
+        }
+    }
+}

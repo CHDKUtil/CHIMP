@@ -6,7 +6,6 @@ using Net.Chdk.Generators.Script;
 using Net.Chdk.Json;
 using Net.Chdk.Model.Software;
 using Net.Chdk.Providers.Boot;
-using Net.Chdk.Providers.Camera;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
@@ -24,9 +23,9 @@ namespace Chimp.Downloaders
         private IMetadataService MetadataService { get; }
         private IDictionary<string, object> Substitutes { get; }
 
-        public ScriptDownloader(string productName, MainViewModel mainViewModel, ICameraProvider cameraProvider, IBootProvider bootProvider, IScriptGenerator scriptGenerator, IMetadataService metadataService,
+        public ScriptDownloader(string productName, MainViewModel mainViewModel, ISupportedProvider supportedProvider, IBootProvider bootProvider, IScriptGenerator scriptGenerator, IMetadataService metadataService,
             IDictionary<string, object> substitutes, ILogger logger)
-                : base(mainViewModel, cameraProvider, logger)
+                : base(mainViewModel, supportedProvider, logger)
         {
             ProductName = productName;
             BootProvider = bootProvider;

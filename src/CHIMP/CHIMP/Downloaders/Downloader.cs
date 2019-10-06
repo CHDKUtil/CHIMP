@@ -3,7 +3,6 @@ using Chimp.Properties;
 using Chimp.ViewModels;
 using Microsoft.Extensions.Logging;
 using Net.Chdk.Model.Software;
-using Net.Chdk.Providers.Camera;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -24,10 +23,10 @@ namespace Chimp.Downloaders
         private IExtractService ExtractService { get; }
         private IMetadataService MetadataService { get; }
 
-        public Downloader(MainViewModel mainViewModel, ICameraProvider cameraProvider,
+        public Downloader(MainViewModel mainViewModel, ISupportedProvider supportedProvider,
             IBuildProvider buildProvider, IMatchProvider matchProvider, ISoftwareProvider softwareProvider, IDownloadProvider downloadProvider,
             IDownloadService downloadService, IExtractService extractService, IMetadataService metadataService, ILogger<Downloader> logger)
-                : base(mainViewModel, cameraProvider, logger)
+                : base(mainViewModel, supportedProvider, logger)
         {
             BuildProvider = buildProvider;
             MatchProvider = matchProvider;

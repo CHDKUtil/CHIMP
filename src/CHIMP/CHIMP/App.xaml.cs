@@ -206,6 +206,7 @@ namespace Chimp
                 .AddSingleton<IDownloaderProvider, AggregateDownloaderProvider>()
                 .AddSingleton<IInstallerProvider, InstallerProvider>()
                 .AddSingleton<ITipProvider, AggregateTipProvider>()
+                .AddSingleton<ISupportedProvider, SupportedProvider>()
                 ;
         }
 
@@ -248,7 +249,8 @@ namespace Chimp
                 .Configure<StepsData>(configuration)
                 .Configure<ActionsData>(configuration)
                 .Configure<LicensesData>(configuration)
-                .Configure<InstallersData>(configuration);
+                .Configure<InstallersData>(configuration)
+                .Configure<SupportedData>(configuration);
         }
 
         protected override void OnStartup(StartupEventArgs e)
