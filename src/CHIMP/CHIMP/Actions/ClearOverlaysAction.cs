@@ -9,6 +9,7 @@ using Net.Chdk.Model.Software;
 using Net.Chdk.Providers.Boot;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Chimp.Actions
 {
@@ -40,6 +41,8 @@ namespace Chimp.Actions
             if (!Substitutes.ContainsKey("revision"))
             {
                 SetTitle(Resources.Download_UnsupportedFirmware_Text, LogLevel.Error);
+                DownloadViewModel.SupportedItems = GetSupportedItems(Substitutes).ToArray();
+                DownloadViewModel.SupportedTitle = GetSupportedTitle(Substitutes);
                 return null;
             }
 
@@ -98,6 +101,61 @@ namespace Chimp.Actions
             Logger.Log(logLevel, default, title, null, null);
             DownloadViewModel.Title = title;
             DownloadViewModel.FileName = string.Empty;
+        }
+
+        private static IEnumerable<string> GetSupportedItems(IDictionary<string, object> subs)
+        {
+            if (subs["revisions"] is IEnumerable<string> revisions)
+                return GetSupportedRevisions(revisions);
+            if (subs["platforms"] is IEnumerable<string> platforms)
+                return GetSupportedModels(platforms);
+            return null;
+        }
+
+        private static string GetSupportedTitle(IDictionary<string, object> subs)
+        {
+            if (subs["revisions"] is IEnumerable<string> revisions)
+                return GetSupportedRevisionsTitle(revisions);
+            if (subs["platforms"] is IEnumerable<string> platforms)
+                return GetSupportedModelsTitle(platforms);
+            return null;
+        }
+
+        private static IEnumerable<string> GetSupportedModels(IEnumerable<string> _)
+        {
+            return Enumerable.Empty<string>();
+        }
+
+        private static string GetSupportedModelsTitle(IEnumerable<string> platforms)
+        {
+            return platforms.Count() > 1
+                ? Resources.Download_SupportedModels_Content
+                : Resources.Download_SupportedModel_Content;
+        }
+
+        private static IEnumerable<string> GetSupportedRevisions(IEnumerable<string> revisions)
+        {
+            return revisions.Select(GetRevision);
+        }
+
+        private static string GetSupportedRevisionsTitle(IEnumerable<string> revisions)
+        {
+            return revisions.Count() > 1
+                ? Resources.Download_SupportedFirmwares_Content
+                : Resources.Download_SupportedFirmware_Content;
+        }
+
+        private static string GetRevision(string value)
+        {
+            switch (value.Length)
+            {
+                case 3:
+                    return $"{value[0]}.{value[1]}.{value[2]}";
+                case 4:
+                    return string.Format(Resources.Camera_FirmwareVersion_Format, value[0], value[1], value[2], value[3] - 'a' + 1, 0, 0);
+                default:
+                    return null;
+            }
         }
 
         private string Platform => Substitutes["platform"] as string;

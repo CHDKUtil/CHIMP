@@ -6,6 +6,7 @@ using Net.Chdk.Model.CameraModel;
 using Net.Chdk.Providers.Firmware;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Net.Chdk.Providers.Substitute
 {
@@ -31,23 +32,35 @@ namespace Net.Chdk.Providers.Substitute
             if (revision == null)
                 return null;
 
-            if (!Data.TryGetValue(platform, out AddressPlatformData platformData))
-                return null;
-
             var subs = new Dictionary<string, object>
             {
                 ["model"] = cameraModel.Names[0],
-                ["platform"] = platform,
-                ["platform_id"] = GetHexString(platformData.Id),
             };
 
-            if (platformData.Revisions != null && platformData.Revisions.TryGetValue(revision, out AddressRevisionData revisionData))
+            if (!Data.TryGetValue(platform, out AddressPlatformData platformData))
             {
-                subs["revision"] = revision;
-                subs["palette_buffer_ptr"] = GetHexString(revisionData.PaletteBufferPtr);
-                subs["active_palette_buffer"] = GetHexString(revisionData.ActivePaletteBuffer);
-                subs["palette_to_zero"] = revisionData.PaletteToZero;
+                subs["platforms"] = Data.Select(kvp => kvp.Key);
+                return subs;
             }
+
+            subs["platform"] = platform;
+            subs["platform_id"] = GetHexString(platformData.Id);
+
+            if (platformData.Revisions == null)
+            {
+                return subs;
+            }
+
+            if (!platformData.Revisions.TryGetValue(revision, out AddressRevisionData revisionData))
+            {
+                subs["revisions"] = platformData.Revisions.Select(kvp => kvp.Key);
+                return subs;
+            }
+
+            subs["revision"] = revision;
+            subs["palette_buffer_ptr"] = GetHexString(revisionData.PaletteBufferPtr);
+            subs["active_palette_buffer"] = GetHexString(revisionData.ActivePaletteBuffer);
+            subs["palette_to_zero"] = revisionData.PaletteToZero;
 
             return subs;
         }
