@@ -46,7 +46,8 @@ namespace Chimp.Downloaders
         {
             if (!Substitutes.ContainsKey("revision"))
             {
-                SetTitle(Resources.Download_UnsupportedFirmware_Text, LogLevel.Error);
+                var error = GetError(Substitutes);
+                SetTitle(error, LogLevel.Error);
                 ViewModel.SupportedItems = GetSupportedItems(Substitutes).ToArray();
                 ViewModel.SupportedTitle = GetSupportedTitle(Substitutes);
                 return null;
@@ -111,22 +112,42 @@ namespace Chimp.Downloaders
             }
         }
 
+        private static string GetError(IDictionary<string, object> subs)
+        {
+            if (subs.ContainsKey("revisions"))
+                return Resources.Download_UnsupportedFirmware_Text;
+            if (subs.ContainsKey("platforms"))
+                return Resources.Download_UnsupportedModel_Text;
+            return null;
+        }
+
         private static IEnumerable<string> GetSupportedItems(IDictionary<string, object> subs)
         {
-            if (subs["revisions"] is IEnumerable<string> revisions)
+            if (TryGetValue(subs, "revisions", out var revisions))
                 return GetSupportedRevisions(revisions);
-            if (subs["platforms"] is IEnumerable<string> platforms)
+            if (TryGetValue(subs, "platforms", out var platforms))
                 return GetSupportedModels(platforms);
             return null;
         }
 
         private static string GetSupportedTitle(IDictionary<string, object> subs)
         {
-            if (subs["revisions"] is IEnumerable<string> revisions)
+            if (TryGetValue(subs, "revisions", out var revisions))
                 return GetSupportedRevisionsTitle(revisions);
-            if (subs["platforms"] is IEnumerable<string> platforms)
+            if (TryGetValue(subs, "platforms", out var platforms))
                 return GetSupportedModelsTitle(platforms);
             return null;
+        }
+
+        private static bool TryGetValue(IDictionary<string, object> subs, string key, out IEnumerable<string> values)
+        {
+            if (!subs.TryGetValue(key, out object value))
+            {
+                values = null;
+                return false;
+            }
+            values = value as IEnumerable<string>;
+            return values != null;
         }
     }
 }
