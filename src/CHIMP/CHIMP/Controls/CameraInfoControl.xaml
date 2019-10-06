@@ -74,6 +74,9 @@
             <TextBlock.Style>
                 <Style TargetType="TextBlock" BasedOn="{StaticResource InfoTextBlock}">
                     <Style.Triggers>
+                        <DataTrigger Binding="{Binding [Camera].Info.Canon}" Value="{x:Null}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
                         <DataTrigger Binding="{Binding [Camera].Info.Canon.FirmwareVersion}" Value="{x:Null}">
                             <Setter Property="Visibility" Value="Collapsed" />
                         </DataTrigger>

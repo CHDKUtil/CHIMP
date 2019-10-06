@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Chimp.Model;
+using Microsoft.Extensions.Logging;
 using Net.Chdk.Model.Software;
 using System;
 using System.Collections.Generic;
@@ -12,14 +13,12 @@ namespace Chimp.Providers.Matches
 
         private static readonly Regex errorRegex = new Regex("<tr><td colspan=3><b><font color=red>(?<error>[^<]+)");
         
-        private string error;
-
         public ChdkMatchProvider(Uri baseUri, IDictionary<string, string> buildPaths, ILogger<ChdkMatchProvider> logger)
             : base(baseUri, buildPaths, logger)
         {
         }
 
-        protected override IEnumerable<Match> GetMatches(SoftwareCameraInfo camera, string buildName, string line)
+        protected override MatchData GetMatches(SoftwareCameraInfo camera, string buildName, string line)
         {
             var matches = regex.Matches(line);
             foreach (Match match in matches)
@@ -31,16 +30,9 @@ namespace Chimp.Providers.Matches
 
             var errorMatch = errorRegex.Match(line);
             if (errorMatch.Success)
-                error = errorMatch.Groups["error"].Value;
+                return new MatchData(errorMatch.Groups["error"].Value);
 
             return null;
-        }
-
-        public override string GetError()
-        {
-            return error != null
-                ? error
-                : base.GetError();
         }
     }
 }
