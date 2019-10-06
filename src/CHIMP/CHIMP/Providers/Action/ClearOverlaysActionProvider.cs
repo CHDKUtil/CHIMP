@@ -31,7 +31,7 @@ namespace Chimp.Providers.Action
 
             var types = new[]
             {
-                typeof(IDictionary<string, string>)
+                typeof(IDictionary<string, object>)
             };
             var values = new object[]
             {
@@ -40,7 +40,7 @@ namespace Chimp.Providers.Action
             yield return ServiceActivator.Create<ClearOverlaysAction>(types, values);
         }
 
-        private IDictionary<string, string> GetSubstitutes()
+        private IDictionary<string, object> GetSubstitutes()
         {
             var camera = CameraViewModel?.Info;
             var cameraModel = CameraViewModel?.SelectedItem?.Model;

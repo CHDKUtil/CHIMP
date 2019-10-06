@@ -6,6 +6,6 @@ namespace Net.Chdk.Providers.Substitute
 {
     interface ICategorySubstituteProvider
     {
-        IDictionary<string, string>? GetSubstitutes(CameraInfo camera, CameraModelInfo cameraModel);
+        IDictionary<string, object>? GetSubstitutes(CameraInfo camera, CameraModelInfo cameraModel);
     }
 }

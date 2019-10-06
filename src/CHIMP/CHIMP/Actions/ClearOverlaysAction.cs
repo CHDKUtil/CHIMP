@@ -20,10 +20,10 @@ namespace Chimp.Actions
         private IBootProvider BootProvider { get; }
         private IScriptGenerator ScriptGenerator { get; }
         private IMetadataService MetadataService { get; }
-        private IDictionary<string, string> Substitutes { get; }
+        private IDictionary<string, object> Substitutes { get; }
         private ILogger Logger { get; }
 
-        public ClearOverlaysAction(MainViewModel mainViewModel, IBootProvider bootProvider, IScriptGenerator scriptGenerator, IMetadataService metadataService, IDictionary<string, string> substitutes, ILogger<ClearOverlaysAction> logger)
+        public ClearOverlaysAction(MainViewModel mainViewModel, IBootProvider bootProvider, IScriptGenerator scriptGenerator, IMetadataService metadataService, IDictionary<string, object> substitutes, ILogger<ClearOverlaysAction> logger)
             : base(mainViewModel)
         {
             BootProvider = bootProvider;
@@ -100,7 +100,7 @@ namespace Chimp.Actions
             DownloadViewModel.FileName = string.Empty;
         }
 
-        private string Platform => Substitutes["platform"];
-        private string Revision => Substitutes["revision"];
+        private string Platform => Substitutes["platform"] as string;
+        private string Revision => Substitutes["revision"] as string;
     }
 }

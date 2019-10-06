@@ -21,7 +21,7 @@ namespace Net.Chdk.Providers.Substitute
             FirmwareProvider = firmwareProvider;
         }
 
-        public IDictionary<string, string>? GetSubstitutes(CameraInfo camera, CameraModelInfo cameraModel)
+        public IDictionary<string, object>? GetSubstitutes(CameraInfo camera, CameraModelInfo cameraModel)
         {
             var platform = GetPlatform(camera, cameraModel);
             if (platform == null)
@@ -34,7 +34,7 @@ namespace Net.Chdk.Providers.Substitute
             if (!Data.TryGetValue(platform, out AddressPlatformData platformData))
                 return null;
 
-            var subs = new Dictionary<string, string>
+            var subs = new Dictionary<string, object>
             {
                 ["model"] = cameraModel.Names[0],
                 ["platform"] = platform,
@@ -46,7 +46,7 @@ namespace Net.Chdk.Providers.Substitute
                 subs["revision"] = revision;
                 subs["palette_buffer_ptr"] = GetHexString(revisionData.PaletteBufferPtr);
                 subs["active_palette_buffer"] = GetHexString(revisionData.ActivePaletteBuffer);
-                subs["palette_to_zero"] = revisionData.PaletteToZero.ToString();
+                subs["palette_to_zero"] = revisionData.PaletteToZero;
             }
 
             return subs;
