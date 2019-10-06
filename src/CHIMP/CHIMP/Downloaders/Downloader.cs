@@ -11,12 +11,8 @@ using System.Threading.Tasks;
 
 namespace Chimp.Downloaders
 {
-    sealed class Downloader : IDownloader
+    sealed class Downloader : DownloaderBase
     {
-        private ILogger Logger { get; }
-
-        private MainViewModel MainViewModel { get; }
-        private DownloadViewModel ViewModel => DownloadViewModel.Get(MainViewModel);
         private SoftwareViewModel SoftwareViewModel => SoftwareViewModel.Get(MainViewModel);
 
         private IBuildProvider BuildProvider { get; }
@@ -31,11 +27,8 @@ namespace Chimp.Downloaders
         public Downloader(MainViewModel mainViewModel,
             IBuildProvider buildProvider, IMatchProvider matchProvider, ISoftwareProvider softwareProvider, IDownloadProvider downloadProvider,
             IDownloadService downloadService, IExtractService extractService, IMetadataService metadataService, ILogger<Downloader> logger)
+                : base(mainViewModel, logger)
         {
-            Logger = logger;
-
-            MainViewModel = mainViewModel;
-
             BuildProvider = buildProvider;
             MatchProvider = matchProvider;
             SoftwareProvider = softwareProvider;
@@ -46,7 +39,7 @@ namespace Chimp.Downloaders
             MetadataService = metadataService;
         }
 
-        public async Task<SoftwareData> DownloadAsync(SoftwareCameraInfo camera, SoftwareInfo softwareInfo, CancellationToken cancellationToken)
+        public override async Task<SoftwareData> DownloadAsync(SoftwareCameraInfo camera, SoftwareInfo softwareInfo, CancellationToken cancellationToken)
         {
             var software = await GetSoftwareAsync(camera, softwareInfo, cancellationToken);
             if (software == null)
@@ -258,13 +251,6 @@ namespace Chimp.Downloaders
             return int.TryParse(sizeStr, out size);
         }
 
-        private void SetTitle(string title, LogLevel logLevel = LogLevel.Information)
-        {
-            Logger.Log(logLevel, default(EventId), title, null, null);
-            ViewModel.Title = title;
-            ViewModel.FileName = string.Empty;
-        }
-
         private IEnumerable<string> GetSupportedItems(MatchData result)
         {
             if (result.Builds != null)
@@ -287,30 +273,6 @@ namespace Chimp.Downloaders
             return null;
         }
 
-        private IEnumerable<string> GetSupportedModels(IEnumerable<string> _)
-        {
-            return Enumerable.Empty<string>();
-        }
-
-        private static string GetSupportedModelsTitle(IEnumerable<string> platforms)
-        {
-            return platforms.Count() > 1
-                ? Resources.Download_SupportedModels_Content
-                : Resources.Download_SupportedModel_Content;
-        }
-
-        private IEnumerable<string> GetSupportedRevisions(IEnumerable<string> revisions)
-        {
-            return revisions.Select(GetRevision);
-        }
-
-        private static string GetSupportedRevisionsTitle(IEnumerable<string> revisions)
-        {
-            return revisions.Count() > 1
-                ? Resources.Download_SupportedFirmwares_Content
-                : Resources.Download_SupportedFirmware_Content;
-        }
-
         private IEnumerable<string> GetSupportedBuilds(IEnumerable<string> _)
         {
             return null;
@@ -319,19 +281,6 @@ namespace Chimp.Downloaders
         private string GetSupportedBuildsTitle(IEnumerable<string> _)
         {
             return null;
-        }
-
-        private string GetRevision(string value)
-        {
-            switch (value.Length)
-            {
-                case 3:
-                    return $"{value[0]}.{value[1]}.{value[2]}";
-                case 4:
-                    return string.Format(Resources.Camera_FirmwareVersion_Format, value[0], value[1], value[2], value[3] - 'a' + 1, 0, 0);
-                default:
-                    return null;
-            }
         }
     }
 }

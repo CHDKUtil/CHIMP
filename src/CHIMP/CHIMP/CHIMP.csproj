@@ -266,6 +266,8 @@
     <Compile Include="Actions\InstallActionBase.cs" />
     <Compile Include="Actions\ScriptableAction.cs" />
     <Compile Include="Actions\SwitchAction.cs" />
+    <Compile Include="Downloaders\DownloaderBase.cs" />
+    <Compile Include="Downloaders\ScriptDownloader.cs" />
     <Compile Include="Installers\ScriptInstaller.cs" />
     <Compile Include="Interfaces\Providers\ILicenseProvider.cs" />
     <Compile Include="Model\ActionsData.cs" />
