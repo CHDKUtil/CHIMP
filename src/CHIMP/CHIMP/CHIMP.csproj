@@ -918,6 +918,10 @@
       <Project>{e69e00f0-c132-4130-a1a5-9f26d9b56fd7}</Project>
       <Name>Net.Chdk.Providers.Firmware</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Net.Chdk.Providers.Platform.Core\Net.Chdk.Providers.Platform.Core.csproj">
+      <Project>{1AD547B8-BD20-4D86-A8D3-52D1F0780C5C}</Project>
+      <Name>Net.Chdk.Providers.Platform.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Net.Chdk.Providers.Platform\Net.Chdk.Providers.Platform.csproj">
       <Project>{ed4dc598-3963-450d-9eac-7dcac0067e8b}</Project>
       <Name>Net.Chdk.Providers.Platform</Name>
