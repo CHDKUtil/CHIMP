@@ -11,15 +11,22 @@ namespace Chimp.Model
             Matches = matches;
         }
 
-        public MatchData(string error, ICollection<string> platforms = null, ICollection<string> revisions = null, ICollection<string> builds = null)
+        public MatchData(string error)
         {
             Error = error;
-            if (platforms?.Count > 0)
-                Platforms = platforms.Distinct();
-            if (revisions?.Count > 0)
-                Revisions = revisions.Distinct();
-            if (builds?.Count > 0)
-                Builds = builds.Distinct();
+        }
+
+        public MatchData(IEnumerable<string> platforms, IEnumerable<string> revisions, IEnumerable<string> builds)
+        {
+            Platforms = platforms?.Count() > 0
+                ? platforms.Distinct()
+                : null;
+            Revisions = revisions?.Count() > 0
+                ? revisions.Distinct()
+                : null;
+            Builds = builds?.Count() > 0
+                ? builds.Distinct()
+                : null;
         }
 
         public Match[] Matches { get; }

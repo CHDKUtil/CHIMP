@@ -3,7 +3,7 @@ using Chimp.Properties;
 using Chimp.ViewModels;
 using Microsoft.Extensions.Logging;
 using Net.Chdk.Model.Software;
-using System.Collections.Generic;
+using Net.Chdk.Providers.Camera;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -24,10 +24,10 @@ namespace Chimp.Downloaders
         private IExtractService ExtractService { get; }
         private IMetadataService MetadataService { get; }
 
-        public Downloader(MainViewModel mainViewModel,
+        public Downloader(MainViewModel mainViewModel, ICameraProvider cameraProvider,
             IBuildProvider buildProvider, IMatchProvider matchProvider, ISoftwareProvider softwareProvider, IDownloadProvider downloadProvider,
             IDownloadService downloadService, IExtractService extractService, IMetadataService metadataService, ILogger<Downloader> logger)
-                : base(mainViewModel, logger)
+                : base(mainViewModel, cameraProvider, logger)
         {
             BuildProvider = buildProvider;
             MatchProvider = matchProvider;
@@ -67,9 +67,7 @@ namespace Chimp.Downloaders
             var matches = result.Matches;
             if (matches == null)
             {
-                SetTitle(result.Error, LogLevel.Error);
-                ViewModel.SupportedItems = GetSupportedItems(result).ToArray();
-                ViewModel.SupportedTitle = GetSupportedTitle(result);
+                SetSupportedItems(softwareInfo?.Product, camera, result);
                 return null;
             }
 
@@ -249,38 +247,6 @@ namespace Chimp.Downloaders
             }
 
             return int.TryParse(sizeStr, out size);
-        }
-
-        private IEnumerable<string> GetSupportedItems(MatchData result)
-        {
-            if (result.Builds != null)
-                return GetSupportedBuilds(result.Builds);
-            if (result.Revisions != null)
-                return GetSupportedRevisions(result.Revisions);
-            if (result.Platforms != null)
-                return GetSupportedModels(result.Platforms);
-            return null;
-        }
-
-        private string GetSupportedTitle(MatchData result)
-        {
-            if (result.Builds != null)
-                return GetSupportedBuildsTitle(result.Builds);
-            if (result.Revisions != null)
-                return GetSupportedRevisionsTitle(result.Revisions);
-            if (result.Platforms != null)
-                return GetSupportedModelsTitle(result.Platforms);
-            return null;
-        }
-
-        private IEnumerable<string> GetSupportedBuilds(IEnumerable<string> _)
-        {
-            return null;
-        }
-
-        private string GetSupportedBuildsTitle(IEnumerable<string> _)
-        {
-            return null;
         }
     }
 }

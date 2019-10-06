@@ -64,18 +64,12 @@ namespace Chimp.Providers.Matches
             }
         }
 
-        private string GetError()
+        private MatchData GetError()
         {
             if (platforms.Count == 0)
-                return nameof(Resources.Download_InvalidFormat_Text);
+                return new MatchData(Resources.Download_InvalidFormat_Text);
 
-            if (revisions.Count == 0)
-                return nameof(Resources.Download_UnsupportedModel_Text);
-
-            if (builds.Count == 0)
-                return nameof(Resources.Download_UnsupportedFirmware_Text);
-
-            return nameof(Resources.Download_UnsupportedFirmware_Text);
+            return new MatchData(platforms, revisions, builds);
         }
 
         private async Task<MatchData> GetMatchesAsync(SoftwareCameraInfo camera, string buildName, TextReader reader)
@@ -92,8 +86,7 @@ namespace Chimp.Providers.Matches
                     return matches;
             }
 
-            var error = GetError();
-            return new MatchData(error, platforms, revisions, builds);
+            return GetError();
         }
 
         protected abstract MatchData GetMatches(SoftwareCameraInfo camera, string buildName, string line);

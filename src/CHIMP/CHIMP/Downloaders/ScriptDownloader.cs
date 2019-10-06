@@ -1,5 +1,4 @@
 ﻿using Chimp.Model;
-using Chimp.Properties;
 using Chimp.ViewModels;
 using Microsoft.Extensions.Logging;
 using Net.Chdk;
@@ -10,7 +9,6 @@ using Net.Chdk.Providers.Boot;
 using Net.Chdk.Providers.Camera;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -21,7 +19,6 @@ namespace Chimp.Downloaders
         private const string CategoryName = "SCRIPT";
 
         private string ProductName { get; }
-        private ICameraProvider CameraProvider { get; }
         private IBootProvider BootProvider { get; }
         private IScriptGenerator ScriptGenerator { get; }
         private IMetadataService MetadataService { get; }
@@ -29,10 +26,9 @@ namespace Chimp.Downloaders
 
         public ScriptDownloader(string productName, MainViewModel mainViewModel, ICameraProvider cameraProvider, IBootProvider bootProvider, IScriptGenerator scriptGenerator, IMetadataService metadataService,
             IDictionary<string, object> substitutes, ILogger logger)
-                : base(mainViewModel, logger)
+                : base(mainViewModel, cameraProvider, logger)
         {
             ProductName = productName;
-            CameraProvider = cameraProvider;
             BootProvider = bootProvider;
             ScriptGenerator = scriptGenerator;
             MetadataService = metadataService;
@@ -51,10 +47,10 @@ namespace Chimp.Downloaders
 
             if (!Substitutes.ContainsKey("revision"))
             {
-                var error = GetError(Substitutes);
-                SetTitle(error, LogLevel.Error);
-                ViewModel.SupportedItems = GetSupportedItems(Substitutes, software.Product, camera).ToArray();
-                ViewModel.SupportedTitle = GetSupportedTitle(Substitutes);
+                TryGetValue("platforms", out var platforms);
+                TryGetValue("revisions", out var revisions);
+                var result = new MatchData(platforms, revisions, null);
+                SetSupportedItems(software.Product, camera, result);
                 return null;
             }
 
@@ -116,66 +112,15 @@ namespace Chimp.Downloaders
             }
         }
 
-        private static string GetError(IDictionary<string, object> subs)
+        private bool TryGetValue(string key, out IEnumerable<string> values)
         {
-            if (subs.ContainsKey("revisions"))
-                return Resources.Download_UnsupportedFirmware_Text;
-            if (subs.ContainsKey("platforms"))
-                return Resources.Download_UnsupportedModel_Text;
-            return null;
-        }
-
-        private IEnumerable<string> GetSupportedItems(IDictionary<string, object> subs, SoftwareProductInfo product, SoftwareCameraInfo camera)
-        {
-            if (TryGetValue(subs, "revisions", out var revisions))
-                return GetSupportedRevisions(revisions);
-            if (TryGetValue(subs, "platforms", out var platforms))
-                return GetSupportedModels(platforms, product, camera);
-            return null;
-        }
-
-        private static string GetSupportedTitle(IDictionary<string, object> subs)
-        {
-            if (TryGetValue(subs, "revisions", out var revisions))
-                return GetSupportedRevisionsTitle(revisions);
-            if (TryGetValue(subs, "platforms", out var platforms))
-                return GetSupportedModelsTitle(platforms);
-            return null;
-        }
-
-        private static bool TryGetValue(IDictionary<string, object> subs, string key, out IEnumerable<string> values)
-        {
-            if (!subs.TryGetValue(key, out object value))
+            if (!Substitutes.TryGetValue(key, out object value))
             {
                 values = null;
                 return false;
             }
             values = value as IEnumerable<string>;
             return values != null;
-        }
-
-        private IEnumerable<string> GetSupportedModels(IEnumerable<string> platforms, SoftwareProductInfo productInfo, SoftwareCameraInfo cameraInfo)
-        {
-            return platforms
-                .SelectMany(p => GetModels(p, productInfo, cameraInfo));
-        }
-
-        private IEnumerable<string> GetModels(string platform, SoftwareProductInfo productInfo, SoftwareCameraInfo cameraInfo)
-        {
-            var camera = GetCamera(platform, cameraInfo);
-            var data = CameraProvider.GetCameraModels(productInfo, camera);
-            if (data?.Models != null)
-                foreach (var model in data.Models)
-                    yield return model.Names[0].TrimStart("Canon ");
-        }
-
-        private static SoftwareCameraInfo GetCamera(string platform, SoftwareCameraInfo cameraInfo)
-        {
-            return new SoftwareCameraInfo
-            {
-                Platform = platform,
-                Revision = cameraInfo.Revision
-            };
         }
     }
 }
