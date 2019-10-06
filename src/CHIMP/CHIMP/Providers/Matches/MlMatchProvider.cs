@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Chimp.Model;
+using Microsoft.Extensions.Logging;
 using Net.Chdk.Model.Software;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace Chimp.Providers.Matches
         {
         }
 
-        protected override IEnumerable<Match> GetMatches(SoftwareCameraInfo camera, string buildName, string line)
+        protected override MatchData GetMatches(SoftwareCameraInfo camera, string buildName, string line)
         {
             var matches = regex.Matches(line);
             foreach (Match match in matches)

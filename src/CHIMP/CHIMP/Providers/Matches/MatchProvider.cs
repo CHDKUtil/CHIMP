@@ -1,10 +1,10 @@
-﻿using Chimp.Properties;
+﻿using Chimp.Model;
+using Chimp.Properties;
 using Microsoft.Extensions.Logging;
 using Net.Chdk.Model.Software;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -19,18 +19,22 @@ namespace Chimp.Providers.Matches
         protected Uri BaseUri { get; }
         protected IDictionary<string, string> BuildPaths { get; }
 
-        private bool hasMatch;
-        private bool hasPlatform;
-        private bool hasRevision;
+        private readonly List<string> platforms;
+        private readonly List<string> revisions;
+        private readonly List<string> builds;
 
         protected MatchProvider(Uri baseUri, IDictionary<string, string> buildPaths, ILogger logger)
         {
             Logger = logger;
             BaseUri = baseUri;
             BuildPaths = buildPaths;
+
+            platforms = new List<string>();
+            revisions = new List<string>();
+            builds = new List<string>();
         }
 
-        public async Task<Match[]> GetMatchesAsync(SoftwareCameraInfo camera, string buildName, CancellationToken cancellationToken)
+        public async Task<MatchData> GetMatchesAsync(SoftwareCameraInfo camera, string buildName, CancellationToken cancellationToken)
         {
             var buildUri = GetBuildUri(buildName);
 
@@ -56,58 +60,82 @@ namespace Chimp.Providers.Matches
             }
         }
 
-        public virtual string GetError()
+        private string GetError()
         {
-            if (!hasMatch)
+            if (platforms.Count == 0)
                 return nameof(Resources.Download_InvalidFormat_Text);
 
-            if (!hasPlatform)
+            if (revisions.Count == 0)
                 return nameof(Resources.Download_UnsupportedModel_Text);
 
-            if (!hasRevision)
+            if (builds.Count == 0)
                 return nameof(Resources.Download_UnsupportedFirmware_Text);
 
             return nameof(Resources.Download_UnsupportedFirmware_Text);
         }
 
-        private async Task<Match[]> GetMatchesAsync(SoftwareCameraInfo camera, string buildName, TextReader reader)
+        private async Task<MatchData> GetMatchesAsync(SoftwareCameraInfo camera, string buildName, TextReader reader)
         {
-            hasMatch = hasPlatform = hasRevision = false;
+            platforms.Clear();
+            revisions.Clear();
+            builds.Clear();
 
             string line;
             while ((line = await reader.ReadLineAsync()) != null)
             {
                 var matches = GetMatches(camera, buildName, line);
                 if (matches != null)
-                    return matches.ToArray();
+                    return matches;
             }
 
-            return null;
+            var error = GetError();
+            return new MatchData(error, platforms, revisions, builds);
         }
 
-        protected abstract IEnumerable<Match> GetMatches(SoftwareCameraInfo camera, string buildName, string line);
+        protected abstract MatchData GetMatches(SoftwareCameraInfo camera, string buildName, string line);
 
-        protected IEnumerable<Match> GetMatches(SoftwareCameraInfo camera, string buildName, Match match)
+        protected MatchData GetMatches(SoftwareCameraInfo camera, string buildName, Match match)
         {
-            hasMatch = true;
-            if (camera.Platform.Equals(match.Groups["platform"].Value))
+            var platform = match.Groups["platform"].Value;
+            if (camera.Platform.Equals(platform))
             {
-                hasPlatform = true;
-                if (camera.Revision.Equals(match.Groups["revision"].Value))
-                {
-                    hasRevision = true;
-                    if (buildName.Equals(match.Groups["buildName"].Value))
-                    {
-                        return GetMatches(buildName, match);
-                    }
-                }
+                var matches = GetPlatformMatches(camera, buildName, match);
+                if (matches != null)
+                    return matches;
             }
+            platforms.Add(platform);
             return null;
         }
 
-        protected virtual IEnumerable<Match> GetMatches(string buildName, Match match)
+        private MatchData GetPlatformMatches(SoftwareCameraInfo camera, string buildName, Match match)
         {
-            return new[] { match };
+            var revision = match.Groups["revision"].Value;
+            if (camera.Revision.Equals(revision))
+            {
+                var matches = GetRevisionMatches(camera, buildName, match);
+                if (matches != null)
+                    return matches;
+            }
+            revisions.Add(revision);
+            return null;
+        }
+
+        private MatchData GetRevisionMatches(SoftwareCameraInfo _, string buildName, Match match)
+        {
+            var build = match.Groups["buildName"].Value;
+            if (buildName.Equals(build))
+            {
+                var matches = GetMatches(buildName, match);
+                if (matches != null)
+                    return matches;
+            }
+            builds.Add(build);
+            return null;
+        }
+
+        protected virtual MatchData GetMatches(string buildName, Match match)
+        {
+            return new MatchData(match);
         }
 
         private Uri GetBuildUri(string buildName)

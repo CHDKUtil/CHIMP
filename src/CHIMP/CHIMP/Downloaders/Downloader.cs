@@ -3,6 +3,7 @@ using Chimp.Properties;
 using Chimp.ViewModels;
 using Microsoft.Extensions.Logging;
 using Net.Chdk.Model.Software;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -69,11 +70,13 @@ namespace Chimp.Downloaders
             SetTitle(nameof(Resources.Download_FetchingData_Text));
 
             var buildName = BuildProvider.GetBuildName(softwareInfo);
-            var matches = await MatchProvider.GetMatchesAsync(camera, buildName, cancellationToken);
+            var result = await MatchProvider.GetMatchesAsync(camera, buildName, cancellationToken);
+            var matches = result.Matches;
             if (matches == null)
             {
-                var error = MatchProvider.GetError();
-                SetTitle(error, LogLevel.Error);
+                SetTitle(result.Error, LogLevel.Error);
+                ViewModel.SupportedItems = GetSupportedItems(result).ToArray();
+                ViewModel.SupportedTitle = GetSupportedTitle(result);
                 return null;
             }
 
@@ -260,6 +263,75 @@ namespace Chimp.Downloaders
             Logger.Log(logLevel, default(EventId), title, null, null);
             ViewModel.Title = title;
             ViewModel.FileName = string.Empty;
+        }
+
+        private IEnumerable<string> GetSupportedItems(MatchData result)
+        {
+            if (result.Builds != null)
+                return GetSupportedBuilds(result.Builds);
+            if (result.Revisions != null)
+                return GetSupportedRevisions(result.Revisions);
+            if (result.Platforms != null)
+                return GetSupportedModels(result.Platforms);
+            return null;
+        }
+
+        private string GetSupportedTitle(MatchData result)
+        {
+            if (result.Builds != null)
+                return GetSupportedBuildsTitle(result.Builds);
+            if (result.Revisions != null)
+                return GetSupportedRevisionsTitle(result.Revisions);
+            if (result.Platforms != null)
+                return GetSupportedModelsTitle(result.Platforms);
+            return null;
+        }
+
+        private IEnumerable<string> GetSupportedModels(IEnumerable<string> _)
+        {
+            return Enumerable.Empty<string>();
+        }
+
+        private static string GetSupportedModelsTitle(IEnumerable<string> platforms)
+        {
+            return platforms.Count() > 1
+                ? Resources.Download_SupportedModels_Content
+                : Resources.Download_SupportedModel_Content;
+        }
+
+        private IEnumerable<string> GetSupportedRevisions(IEnumerable<string> revisions)
+        {
+            return revisions.Select(GetRevision);
+        }
+
+        private static string GetSupportedRevisionsTitle(IEnumerable<string> revisions)
+        {
+            return revisions.Count() > 1
+                ? Resources.Download_SupportedFirmwares_Content
+                : Resources.Download_SupportedFirmware_Content;
+        }
+
+        private IEnumerable<string> GetSupportedBuilds(IEnumerable<string> _)
+        {
+            return null;
+        }
+
+        private string GetSupportedBuildsTitle(IEnumerable<string> _)
+        {
+            return null;
+        }
+
+        private string GetRevision(string value)
+        {
+            switch (value.Length)
+            {
+                case 3:
+                    return $"{value[0]}.{value[1]}.{value[2]}";
+                case 4:
+                    return string.Format(Resources.Camera_FirmwareVersion_Format, value[0], value[1], value[2], value[3] - 'a' + 1, 0, 0);
+                default:
+                    return null;
+            }
         }
     }
 }

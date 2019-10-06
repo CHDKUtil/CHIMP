@@ -592,11 +592,20 @@ To continue, click OK. To quit, click CANCEL.</value>
   <data name="Summary_Remove_Header" xml:space="preserve">
     <value>Uninstalling</value>
   </data>
-  <data name="Camera_UnsupportedModel_Text" xml:space="preserve">
-    <value>Unsupported Model</value>
+  <data name="Download_SupportedModels_Content" xml:space="preserve">
+    <value>Supported Models:</value>
+  </data>
+  <data name="Download_SupportedModel_Content" xml:space="preserve">
+    <value>Supported Model:</value>
   </data>
   <data name="Download_UnsupportedFirmware_Text" xml:space="preserve">
     <value>Unsupported Firmware Version</value>
+  </data>
+  <data name="Download_SupportedFirmwares_Content" xml:space="preserve">
+    <value>Supported Versions:</value>
+  </data>
+  <data name="Download_SupportedFirmware_Content" xml:space="preserve">
+    <value>Supported Version:</value>
   </data>
   <data name="Action_Switch_1_Text" xml:space="preserve">
     <value>Switch to 2nd Partition</value>

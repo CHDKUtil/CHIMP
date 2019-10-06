@@ -19,7 +19,7 @@ namespace Chimp.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -412,15 +412,6 @@ namespace Chimp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unsupported Model.
-        /// </summary>
-        public static string Camera_UnsupportedModel_Text {
-            get {
-                return ResourceManager.GetString("Camera_UnsupportedModel_Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Card Detected.
         /// </summary>
         public static string Card_Detected_Title_Text {
@@ -660,6 +651,42 @@ namespace Chimp.Properties {
         public static string Download_Progress_Format {
             get {
                 return ResourceManager.GetString("Download_Progress_Format", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supported Version:.
+        /// </summary>
+        public static string Download_SupportedFirmware_Content {
+            get {
+                return ResourceManager.GetString("Download_SupportedFirmware_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supported Versions:.
+        /// </summary>
+        public static string Download_SupportedFirmwares_Content {
+            get {
+                return ResourceManager.GetString("Download_SupportedFirmwares_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supported Model:.
+        /// </summary>
+        public static string Download_SupportedModel_Content {
+            get {
+                return ResourceManager.GetString("Download_SupportedModel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supported Models:.
+        /// </summary>
+        public static string Download_SupportedModels_Content {
+            get {
+                return ResourceManager.GetString("Download_SupportedModels_Content", resourceCulture);
             }
         }
         

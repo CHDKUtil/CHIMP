@@ -591,11 +591,20 @@
   <data name="Summary_Remove_Header" xml:space="preserve">
     <value>Désinstallation</value>
   </data>
-  <data name="Camera_UnsupportedModel_Text" xml:space="preserve">
-    <value>Modèle non supporté</value>
+  <data name="Download_SupportedFirmwares_Content" xml:space="preserve">
+    <value>Versions supportées:</value>
+  </data>
+  <data name="Download_SupportedFirmware_Content" xml:space="preserve">
+    <value>Version supportée:</value>
   </data>
   <data name="Download_UnsupportedFirmware_Text" xml:space="preserve">
     <value>Version de logiciel non supportée</value>
+  </data>
+  <data name="Download_SupportedModels_Content" xml:space="preserve">
+    <value>Modèles supportés:</value>
+  </data>
+  <data name="Download_SupportedModel_Content" xml:space="preserve">
+    <value>Modèle supporté:</value>
   </data>
   <data name="Action_Switch_1_Text" xml:space="preserve">
     <value>Passer à la partition 2</value>

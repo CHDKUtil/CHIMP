@@ -415,9 +415,6 @@
   <data name="Camera_Title_Select_Text" xml:space="preserve">
     <value>Выбор модели фотоаппарата</value>
   </data>
-  <data name="Camera_UnsupportedModel_Text" xml:space="preserve">
-    <value>Неподдерживаемая модель</value>
-  </data>
   <data name="Card_FileSystem_None" xml:space="preserve">
     <value>Отсутствует</value>
   </data>
@@ -453,6 +450,18 @@
   </data>
   <data name="Download_UnsupportedModel_Text" xml:space="preserve">
     <value>Неподдерживаемая модель</value>
+  </data>
+  <data name="Download_SupportedFirmwares_Content" xml:space="preserve">
+    <value>Поддерживаемые прошивки</value>
+  </data>
+  <data name="Download_SupportedFirmware_Content" xml:space="preserve">
+    <value>Поддерживаемая прошивка</value>
+  </data>
+  <data name="Download_SupportedModels_Content" xml:space="preserve">
+    <value>Поддерживаемые модели</value>
+  </data>
+  <data name="Download_SupportedModel_Content" xml:space="preserve">
+    <value>Поддерживаемая модель</value>
   </data>
   <data name="Download_Updating_Text" xml:space="preserve">
     <value>Обновление метаданных</value>
