@@ -29,6 +29,9 @@ namespace Net.Chdk.Providers.Platform
 
         public PlatformData? GetPlatform(string platform, string categoryName)
         {
+            if (platform == null)
+                return null;
+
             return GetProvider(categoryName)?
                 .GetPlatform(platform);
         }
@@ -44,7 +47,7 @@ namespace Net.Chdk.Providers.Platform
         private IEnumerable<KeyValuePair<string, PlatformData>>? DoGetPlatforms(CameraInfo camera, string categoryName)
         {
             var modelId = camera?.Canon?.ModelId;
-            if (modelId == null)
+            if (modelId == null || modelId.Value == 0)
                 return null;
 
             return GetProvider(categoryName)?

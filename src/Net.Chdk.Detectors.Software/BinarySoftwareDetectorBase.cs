@@ -61,6 +61,8 @@ namespace Net.Chdk.Detectors.Software
             var software = GetSoftware(inBuffer, progress, token);
             if (software != null)
             {
+                if (software.Product == null)
+                    software.Product = new SoftwareProductInfo();
                 if (software.Product.Created == null)
                     software.Product.Created = File.GetCreationTimeUtc(diskbootPath);
             }

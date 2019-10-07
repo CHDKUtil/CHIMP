@@ -96,7 +96,7 @@ namespace Chimp.Providers.Matches
         protected MatchData GetMatches(SoftwareCameraInfo camera, string buildName, Match match)
         {
             var platform = NormalizePlatform(match.Groups["platform"].Value);
-            if (camera.Platform.Equals(platform))
+            if (platform.Equals(camera.Platform))
             {
                 var matches = GetPlatformMatches(camera, buildName, match);
                 if (matches != null)
@@ -109,7 +109,7 @@ namespace Chimp.Providers.Matches
         private MatchData GetPlatformMatches(SoftwareCameraInfo camera, string buildName, Match match)
         {
             var revision = match.Groups["revision"].Value;
-            if (camera.Revision.Equals(revision))
+            if (revision.Equals(camera.Revision))
             {
                 var matches = GetRevisionMatches(camera, buildName, match);
                 if (matches != null)
@@ -122,7 +122,7 @@ namespace Chimp.Providers.Matches
         private MatchData GetRevisionMatches(SoftwareCameraInfo _, string buildName, Match match)
         {
             var build = match.Groups["buildName"].Value;
-            if (buildName.Equals(build))
+            if (build.Equals(buildName))
             {
                 var matches = GetMatches(buildName, match);
                 if (matches != null)
