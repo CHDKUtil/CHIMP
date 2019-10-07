@@ -28,25 +28,32 @@ namespace Net.Chdk.Providers.Camera
             FirmwareProvider = firmwareProvider;
         }
 
-        public CameraModelsInfo? GetCameraModels(SoftwareProductInfo? product, SoftwareCameraInfo? cameraInfo)
+        public (CameraInfo, CameraModelInfo[])? GetCameraModels(SoftwareProductInfo? product, SoftwareCameraInfo? cameraInfo)
         {
             return Providers.Values
                 .Select(p => p.GetCameraModels(product, cameraInfo))
                 .FirstOrDefault(c => c != null);
         }
 
-        public SoftwareCameraInfo? GetCamera(string productName, CameraInfo cameraInfo, CameraModelInfo cameraModelInfo)
+        public (CameraInfo, CameraModelInfo[])? GetCameraModels(SoftwareCameraInfo? cameraInfo, SoftwareModelInfo? cameraModelInfo)
         {
-            var categoryName = ProductProvider.GetCategoryName(productName);
-            return GetProvider(categoryName)?
-                .GetCamera(cameraInfo, cameraModelInfo);
+            return Providers.Values
+                .Select(p => p.GetCameraModels(cameraInfo, cameraModelInfo))
+                .FirstOrDefault(c => c != null);
         }
 
-        public CameraModelsInfo? GetCameraModels(CameraInfo cameraInfo)
+        public (CameraInfo, CameraModelInfo[])? GetCameraModels(CameraInfo cameraInfo)
         {
             var categoryName = FirmwareProvider.GetCategoryName(cameraInfo);
             return GetProvider(categoryName)?
                 .GetCameraModels(cameraInfo);
+        }
+
+        public (SoftwareCameraInfo, SoftwareModelInfo)? GetCameraModel(string productName, CameraInfo cameraInfo, CameraModelInfo cameraModelInfo)
+        {
+            var categoryName = ProductProvider.GetCategoryName(productName);
+            return GetProvider(categoryName)?
+                .GetCameraModel(cameraInfo, cameraModelInfo);
         }
 
         protected override IEnumerable<string> GetNames()

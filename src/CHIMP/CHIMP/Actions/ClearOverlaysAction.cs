@@ -7,6 +7,7 @@ using Net.Chdk.Generators.Script;
 using Net.Chdk.Model.Software;
 using Net.Chdk.Providers.Boot;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -39,8 +40,9 @@ namespace Chimp.Actions
         public override Task<SoftwareData> PerformAsync(CancellationToken token)
         {
             var camera = GetCamera();
+            var model = GetModel();
             var software = SoftwareViewModel?.SelectedItem?.Info;
-            return GetDownloader().DownloadAsync(camera, software, token);
+            return GetDownloader().DownloadAsync(camera, model, software, token);
         }
 
         private IDownloader GetDownloader()
@@ -60,6 +62,24 @@ namespace Chimp.Actions
             {
                 Platform = platform,
                 Revision = revision
+            };
+        }
+
+        private SoftwareModelInfo GetModel()
+        {
+            if (!Substitutes.TryGetValue("model_id", out string modelIdStr))
+                return null;
+
+            if (!Substitutes.TryGetValue("model", out string model))
+                return null;
+
+            if (!uint.TryParse(modelIdStr.Substring(2), NumberStyles.HexNumber, null, out uint modelId))
+                return null;
+
+            return new SoftwareModelInfo
+            {
+                Id = modelId,
+                Name = model
             };
         }
     }

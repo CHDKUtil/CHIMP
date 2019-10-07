@@ -18,12 +18,16 @@ namespace Net.Chdk.Providers.CameraModel
 
         public override SoftwareEncodingInfo? GetEncoding(SoftwareCameraInfo cameraInfo)
         {
+            if (cameraInfo?.Platform == null)
+                return null;
             ReverseCameras.TryGetValue(cameraInfo.Platform, out ReverseCameraData? camera);
             return GetEncoding(camera?.EncodingData);
         }
 
         public override string? GetAltButton(SoftwareCameraInfo cameraInfo)
         {
+            if (cameraInfo?.Platform == null)
+                return null;
             ReverseCameras.TryGetValue(cameraInfo.Platform, out ReverseCameraData? camera);
             return camera?.AltButton;
         }

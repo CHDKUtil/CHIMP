@@ -1,5 +1,5 @@
 ﻿{
-  "version": "1.0",
+  "version": "2.0",
   "category": {
     "name": "SCRIPT"
   },
@@ -11,7 +11,7 @@
   },
   "build": {
     "name": "",
-    "status": "ALPHA",
+    "status": "alpha",
     "creator": "srsa_4c"
   }
 }

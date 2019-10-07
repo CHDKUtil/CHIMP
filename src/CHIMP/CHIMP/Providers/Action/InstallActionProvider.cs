@@ -23,7 +23,7 @@ namespace Chimp.Providers.Action
         {
             if (product == null)
                 return base.GetActions(product);
-            var camera = CameraProvider.GetCamera(product.Name, CameraViewModel.Info, CameraViewModel.SelectedItem.Model);
+            var camera = CameraProvider.GetCameraModel(product.Name, CameraViewModel.Info, CameraViewModel.SelectedItem.Model);
             if (camera == null)
                 return Enumerable.Empty<IAction>();
             return GetSources(product)

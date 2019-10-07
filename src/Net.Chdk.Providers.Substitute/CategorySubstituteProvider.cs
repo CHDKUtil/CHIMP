@@ -47,6 +47,7 @@ namespace Net.Chdk.Providers.Substitute
 
             subs["platform"] = platform;
             subs["platform_id"] = GetHexString(platformData.Id);
+            subs["model_id"] = GetHexString(camera.Canon.ModelId);
 
             if (platformData.Revisions == null)
             {

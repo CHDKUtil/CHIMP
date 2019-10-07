@@ -2,6 +2,6 @@
 {
     public sealed class ModulesProductInfo
     {
-        public string Name { get; set; }
+        public string? Name { get; set; }
     }
 }

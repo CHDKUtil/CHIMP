@@ -11,7 +11,7 @@ namespace Chimp.Downloaders
 {
     sealed class BrowseDownloader : IDownloader
     {
-        public Task<SoftwareData> DownloadAsync(SoftwareCameraInfo camera, SoftwareInfo software, CancellationToken cancellationToken)
+        public Task<SoftwareData> DownloadAsync(SoftwareCameraInfo camera, SoftwareModelInfo model, SoftwareInfo software, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

@@ -6,10 +6,13 @@ namespace Net.Chdk.Detectors.CameraModel
 {
     static class CameraModelInfosExtensions
     {
-        public static CameraModelInfo[] Collapse(this CameraModelInfo[] cameraModels, CameraInfo cameraInfo)
+        public static CameraModelInfo[]? Collapse(this CameraModelInfo[]? cameraModels, CameraInfo cameraInfo)
         {
+            if (cameraModels == null)
+                return null;
+
             // IXUS 132/135
-            if (cameraModels?.Length > 1 && cameraModels[0].Names.Length > 1)
+            if (cameraModels.Length > 1 && cameraModels[0].Names.Length > 1)
             {
                 for (int i = 0; i < cameraModels.Length; i++)
                 {

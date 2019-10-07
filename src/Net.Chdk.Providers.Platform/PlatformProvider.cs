@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Net.Chdk.Generators.Platform;
 using Net.Chdk.Meta.Model.Platform;
 using Net.Chdk.Model.Camera;
 using Net.Chdk.Model.CameraModel;
@@ -10,9 +11,12 @@ namespace Net.Chdk.Providers.Platform
 {
     sealed class PlatformProvider : ProviderResolver<IInnerPlatformProvider>, IPlatformProvider
     {
-        public PlatformProvider(ILoggerFactory loggerFactory)
+        private IPlatformGenerator PlatformGenerator { get; }
+
+        public PlatformProvider(IPlatformGenerator platformGenerator, ILoggerFactory loggerFactory)
             : base(loggerFactory)
         {
+            PlatformGenerator = platformGenerator;
         }
 
         public string? GetPlatform(CameraInfo camera, CameraModelInfo cameraModel, string categoryName)
@@ -22,9 +26,11 @@ namespace Net.Chdk.Providers.Platform
                 return null;
 
             var kvps = DoGetPlatforms(camera, categoryName);
-            return kvps?
-                .SingleOrDefault(kvp => model == kvp.Value.Names?[0])
-                .Key;
+            return kvps != null
+                ? kvps
+                    .SingleOrDefault(kvp => model == kvp.Value.Names?[0])
+                    .Key
+                : GeneratePlatform(camera, cameraModel, categoryName);
         }
 
         public PlatformData? GetPlatform(string platform, string categoryName)
@@ -44,7 +50,7 @@ namespace Net.Chdk.Providers.Platform
                 .ToArray();
         }
 
-        private IEnumerable<KeyValuePair<string, PlatformData>>? DoGetPlatforms(CameraInfo camera, string categoryName)
+        private IEnumerable<KeyValuePair<string, PlatformData>>? DoGetPlatforms(CameraInfo? camera, string categoryName)
         {
             var modelId = camera?.Canon?.ModelId;
             if (modelId == null || modelId.Value == 0)
@@ -52,6 +58,19 @@ namespace Net.Chdk.Providers.Platform
 
             return GetProvider(categoryName)?
                 .GetPlatforms(modelId.Value);
+        }
+
+        private string? GeneratePlatform(CameraInfo? camera, CameraModelInfo? cameraModel, string categoryName)
+        {
+            var modelId = camera?.Canon?.ModelId;
+            if (modelId == null || modelId.Value == 0)
+                return null;
+
+            var models = cameraModel?.Names;
+            if (models == null)
+                return null;
+
+            return PlatformGenerator.GetPlatform(modelId.Value, models, categoryName);
         }
 
         protected override IEnumerable<string> GetNames()

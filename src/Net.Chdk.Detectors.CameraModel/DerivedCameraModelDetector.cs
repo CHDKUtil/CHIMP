@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Net.Chdk.Detectors.Camera;
+using Net.Chdk.Model.Camera;
+using Net.Chdk.Model.CameraModel;
 using Net.Chdk.Model.Card;
 using Net.Chdk.Model.Software;
 using System;
@@ -22,7 +24,7 @@ namespace Net.Chdk.Detectors.CameraModel
             CameraDetector = cameraDetector;
         }
 
-        public CameraModels GetCameraModels(CardInfo cardInfo, SoftwareInfo softwareInfo, IProgress<double> progress, CancellationToken token)
+        public (CameraInfo, CameraModelInfo[]?)? GetCameraModels(CardInfo cardInfo, SoftwareInfo? softwareInfo, IProgress<double>? progress, CancellationToken token)
         {
             Logger.LogTrace("Detecting camera models from {0}", cardInfo.DriveLetter);
 
@@ -34,11 +36,7 @@ namespace Net.Chdk.Detectors.CameraModel
                 .Select(d => d.GetCameraModels(cardInfo, cameraInfo, progress, token))
                 .FirstOrDefault(c => c != null);
 
-            return new CameraModels
-            {
-                Info = cameraInfo,
-                Models = cameraModels.Collapse(cameraInfo)
-            };
+            return (cameraInfo, cameraModels.Collapse(cameraInfo));
         }
     }
 }

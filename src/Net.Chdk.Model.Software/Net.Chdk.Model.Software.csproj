@@ -4,10 +4,12 @@
     <TargetFramework>netstandard1.0</TargetFramework>
     <Description>CHIMP software model</Description>
     <RootNamespace>Net.Chdk.Model.Software</RootNamespace>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>0.2.2</Version>
+    <Version>0.2.3</Version>
     <VersionSuffix>alpha</VersionSuffix>
     <Product>CHIMP</Product>
     <Authors>Dmitry Shechtman</Authors>

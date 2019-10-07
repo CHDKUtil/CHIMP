@@ -48,7 +48,7 @@ namespace Net.Chdk.Detectors.Software
 
             return new ModulesInfo
             {
-                Version = new Version("1.0"),
+                Version = Version,
                 Product = new ModulesProductInfo
                 {
                     Name = productName

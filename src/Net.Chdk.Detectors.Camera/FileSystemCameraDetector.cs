@@ -27,6 +27,6 @@ namespace Net.Chdk.Detectors.Camera
 
         public override string PatternsDescription => "CanonImages";
 
-        protected override bool IsValid(CameraInfo camera) => camera != null;
+        protected override bool IsValid(CameraInfo? camera) => camera != null;
     }
 }

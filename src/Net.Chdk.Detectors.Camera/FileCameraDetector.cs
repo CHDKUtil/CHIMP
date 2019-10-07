@@ -20,7 +20,7 @@ namespace Net.Chdk.Detectors.Camera
             Logger = loggerFactory.CreateLogger<FileCameraDetector>();
         }
 
-        public CameraInfo GetCamera(string filePath)
+        public CameraInfo? GetCamera(string filePath)
         {
             Logger.LogInformation("Reading {0}", filePath);
 
@@ -30,7 +30,7 @@ namespace Net.Chdk.Detectors.Camera
             }
         }
 
-        private CameraInfo GetCamera(Stream stream)
+        private CameraInfo? GetCamera(Stream stream)
         {
             try
             {
@@ -56,7 +56,7 @@ namespace Net.Chdk.Detectors.Camera
             }
         }
 
-        private static BaseInfo GetBase(MetadataCollection metadata)
+        private static BaseInfo? GetBase(MetadataCollection metadata)
         {
             var ifd0 = metadata.OfType<ExifIfd0Directory>().SingleOrDefault();
             if (ifd0 == null)
@@ -69,20 +69,17 @@ namespace Net.Chdk.Detectors.Camera
             };
         }
 
-        private static CanonInfo GetCanon(MetadataCollection metadata)
+        private static CanonInfo? GetCanon(MetadataCollection metadata)
         {
             var canon = metadata.OfType<CanonMakernoteDirectory>().SingleOrDefault();
             if (canon == null)
                 return null;
 
-            uint modelId;
-            canon.TryGetUInt32(CanonMakernoteDirectory.TagModelId, out modelId);
+            canon.TryGetUInt32(CanonMakernoteDirectory.TagModelId, out uint modelId);
 
-            uint firmwareRevision;
-            Version firmwareVersion = null;
-            if (!canon.TryGetUInt32(CanonMakernoteDirectory.TagFirmwareRevision, out firmwareRevision))
-                firmwareVersion = GetFirmwareVersion(canon);
-
+            Version? firmwareVersion = !canon.TryGetUInt32(CanonMakernoteDirectory.TagFirmwareRevision, out uint firmwareRevision)
+                ? GetFirmwareVersion(canon)
+                : null;
             return new CanonInfo
             {
                 ModelId = modelId,
@@ -91,7 +88,7 @@ namespace Net.Chdk.Detectors.Camera
             };
         }
 
-        private static Version GetFirmwareVersion(CanonMakernoteDirectory canon)
+        private static Version? GetFirmwareVersion(CanonMakernoteDirectory canon)
         {
             var str = canon.GetString(CanonMakernoteDirectory.TagCanonFirmwareVersion);
             if (str == null)
@@ -101,8 +98,7 @@ namespace Net.Chdk.Detectors.Camera
             if (str == null)
                 return null;
 
-            Version firmwareVersion;
-            Version.TryParse(str, out firmwareVersion);
+            Version.TryParse(str, out Version firmwareVersion);
             return firmwareVersion;
         }
     }

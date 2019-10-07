@@ -24,7 +24,7 @@ namespace Chimp.Downloaders
             Logger = logger;
         }
 
-        public abstract Task<SoftwareData> DownloadAsync(SoftwareCameraInfo camera, SoftwareInfo software, CancellationToken cancellationToken);
+        public abstract Task<SoftwareData> DownloadAsync(SoftwareCameraInfo camera, SoftwareModelInfo model, SoftwareInfo software, CancellationToken cancellationToken);
 
         protected void SetTitle(string title, LogLevel logLevel = LogLevel.Information)
         {

@@ -19,7 +19,7 @@ namespace Net.Chdk.Detectors.Camera
             CameraDetectors = cameraDetectors;
         }
 
-        public CameraInfo GetCamera(CardInfo cardInfo, IProgress<double> progress, CancellationToken token)
+        public CameraInfo? GetCamera(CardInfo cardInfo, IProgress<double>? progress, CancellationToken token)
         {
             Logger.LogTrace("Detecting camera from {0}", cardInfo.DriveLetter);
 

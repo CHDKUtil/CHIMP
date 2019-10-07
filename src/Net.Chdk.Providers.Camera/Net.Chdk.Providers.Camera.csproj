@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.3</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <Description>CHIMP camera providers</Description>
     <RootNamespace>Net.Chdk.Providers.Camera</RootNamespace>
     <LangVersion>8.0</LangVersion>

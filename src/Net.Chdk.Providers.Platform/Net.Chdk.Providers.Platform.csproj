@@ -32,6 +32,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Net.Chdk.Core\Net.Chdk.Core.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Generators.Platform.Core\Net.Chdk.Generators.Platform.Core.csproj" />
     <ProjectReference Include="..\Net.Chdk.Providers.Base\Net.Chdk.Providers.Base.csproj" />
     <ProjectReference Include="..\Net.Chdk.Providers.Platform.Core\Net.Chdk.Providers.Platform.Core.csproj" />
   </ItemGroup>

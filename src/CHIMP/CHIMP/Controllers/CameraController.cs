@@ -8,16 +8,17 @@ using Net.Chdk.Model.CameraModel;
 using System;
 using System.ComponentModel;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
+
+#nullable enable
 
 namespace Chimp.Controllers
 {
     sealed class CameraController : Controller<CameraController, CameraViewModel>
     {
         protected override bool CanSkipStep =>
-            ViewModel.SelectedItem != null
-            && SoftwareViewModel.SelectedItem?.Info?.Product?.Version?.MinorRevision >= 0;
+            ViewModel?.SelectedItem != null
+            && SoftwareViewModel?.SelectedItem?.Info?.Product?.Version?.MinorRevision >= 0;
 
         private ICameraModelDetector CameraModelDetector { get; }
         private IFileCameraModelDetector FileCameraModelDetector { get; }
@@ -91,11 +92,13 @@ namespace Chimp.Controllers
             ViewModel = null;
         }
 
-        private CameraViewModel CreateViewModel()
+        private CameraViewModel? CreateViewModel()
         {
-            var cardInfo = CardViewModel.SelectedItem.Info;
-            var softwareInfo = SoftwareViewModel.SelectedItem?.Info;
-            var camera = CameraModelDetector.GetCameraModels(cardInfo, softwareInfo, null, default(CancellationToken));
+            var cardInfo = CardViewModel?.SelectedItem.Info;
+            if (cardInfo == null)
+                return null;
+            var softwareInfo = SoftwareViewModel?.SelectedItem?.Info;
+            var camera = CameraModelDetector.GetCameraModels(cardInfo, softwareInfo, null, default);
             var viewModel = new CameraViewModel();
             Update(viewModel, camera);
             return viewModel;
@@ -103,7 +106,7 @@ namespace Chimp.Controllers
 
         private void SelectedItemChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (ViewModel.SelectedItem != null)
+            if (ViewModel?.SelectedItem != null)
                 Logger.LogInformation("Selected {0}", ViewModel.SelectedItem.DisplayName);
 
             UpdateCanContinue();
@@ -116,12 +119,12 @@ namespace Chimp.Controllers
                 .ContinueWith(UpdateCamera, TaskScheduler.FromCurrentSynchronizationContext());
         }
 
-        private CameraModels DetectCamera(string path)
+        private (CameraInfo, CameraModelInfo[]?)? DetectCamera(string path)
         {
-            return FileCameraModelDetector.GetCameraModels(path, null, default(CancellationToken));
+            return FileCameraModelDetector.GetCameraModels(path, null, default);
         }
 
-        private void UpdateCamera(Task<CameraModels> task)
+        private void UpdateCamera(Task<(CameraInfo, CameraModelInfo[]?)?> task)
         {
             if (task.Exception != null)
             {
@@ -146,8 +149,11 @@ namespace Chimp.Controllers
             }
         }
 
-        private void Update(CameraViewModel viewModel, CameraModels camera)
+        private void Update(CameraViewModel? viewModel, (CameraInfo Info, CameraModelInfo[]? Models)? camera)
         {
+            if (viewModel == null)
+                return;
+
             Logger.LogObject(LogLevel.Information, "Detected {0}", camera);
 
             viewModel.IsSelect = false;
@@ -160,7 +166,7 @@ namespace Chimp.Controllers
                 return;
             }
 
-            viewModel.Info = camera.Info;
+            viewModel.Info = camera?.Info;
             viewModel.Error = GetError(camera);
             if (viewModel.Error != null)
             {
@@ -180,50 +186,50 @@ namespace Chimp.Controllers
             viewModel.IsSelect = true;
         }
 
-        private static string GetError(CameraModels camera)
+        private static string? GetError((CameraInfo Info, CameraModelInfo[]? Models)? camera)
         {
-            if (camera.Info == null)
+            if (camera?.Info == null)
                 return null;
 
-            if (camera.Info.Base == null)
+            if (camera?.Info.Base == null)
                 return Resources.Camera_NoMetadata_Text;
 
-            if (!"Canon".Equals(camera.Info.Base.Make, StringComparison.InvariantCulture))
+            if (!"Canon".Equals(camera?.Info.Base.Make, StringComparison.InvariantCulture))
                 return Resources.Camera_NonCanon_Text;
 
-            if (camera.Info.Canon == null)
+            if (camera?.Info.Canon == null)
                 return Resources.Camera_NoCanonMakernote_Text;
 
-            if (camera.Info.Canon.ModelId == 0)
+            if (camera?.Info.Canon.ModelId == 0)
                 return Resources.Camera_NoModelId_Text;
 
-            if (camera.Info.Canon.FirmwareRevision == 0 && camera.Info.Canon.FirmwareVersion == null)
+            if (camera?.Info.Canon.FirmwareRevision == 0 && camera?.Info.Canon.FirmwareVersion == null)
                 return Resources.Camera_NoFirmwareRevision_Text;
 
             return null;
         }
 
-        private static CameraItemViewModel[] CreateItems(CameraModels camera)
+        private static CameraItemViewModel[] CreateItems((CameraInfo Info, CameraModelInfo[]? Models)? camera)
         {
-            var models = camera.Models
+            var models = camera?.Models
                ?? CreateCameraModels(camera);
             return models
-                .Select(m => CreateItem(camera.Info, m))
+                .Select(CreateItem)
                 .ToArray();
         }
 
-        private static CameraModelInfo[] CreateCameraModels(CameraModels camera)
+        private static CameraModelInfo[] CreateCameraModels((CameraInfo Info, CameraModelInfo[]? Models)? camera)
         {
             return new[]
             {
                 new CameraModelInfo
                 {
-                    Names = new[]{ camera.Info.Base.Model }
+                    Names = new[]{ camera?.Info.Base.Model }
                 }
             };
         }
 
-        private static CameraItemViewModel CreateItem(CameraInfo info, CameraModelInfo model)
+        private static CameraItemViewModel CreateItem(CameraModelInfo model)
         {
             return new CameraItemViewModel
             {

@@ -24,27 +24,26 @@ namespace Net.Chdk.Providers.Camera
             FirmwareProvider = firmwareProvider;
         }
 
-        public SoftwareCameraInfo GetCamera(CameraInfo camera, CameraModelInfo cameraModel)
+        public (SoftwareCameraInfo, SoftwareModelInfo)? GetCameraModel(CameraInfo camera, CameraModelInfo cameraModel)
         {
-            return new SoftwareCameraInfo
-            {
-                Platform = GetPlatform(camera, cameraModel),
-                Revision = GetRevision(camera),
-            };
+            return (GetCamera(camera, cameraModel), GetCameraModel(camera));
         }
 
-        public CameraModelsInfo? GetCameraModels(CameraInfo camera)
+        public (CameraInfo, CameraModelInfo[])? GetCameraModels(SoftwareCameraInfo? cameraInfo, SoftwareModelInfo? cameraModel)
         {
-            var platforms = GetPlatforms(camera);
-            if (platforms == null)
+            if (cameraInfo is null || cameraModel is null || cameraModel.Name == null)
                 return null;
 
-            return GetCameraModels(camera, platforms);
+            var camera = GetCamera(cameraModel.Id, cameraInfo.Revision, cameraModel.Name);
+            if (camera == null)
+                return null;
+
+            return (camera, GetCameraModels(cameraModel.Name));
         }
 
-        public CameraModelsInfo? GetCameraModels(SoftwareProductInfo? product, SoftwareCameraInfo? cameraInfo)
+        public (CameraInfo, CameraModelInfo[])? GetCameraModels(SoftwareProductInfo? product, SoftwareCameraInfo? cameraInfo)
         {
-            if (product == null || cameraInfo == null)
+            if (product?.Name == null || cameraInfo?.Platform == null)
                 return null;
 
             var key = PlatformAdapter.NormalizePlatform(product.Name, cameraInfo.Platform);
@@ -53,21 +52,21 @@ namespace Net.Chdk.Providers.Camera
                 return null;
 
             var camera = GetCamera(platform, cameraInfo.Revision);
-            return GetCameraModels(camera, platform);
+            return (camera, GetCameraModels(platform));
+        }
+
+        public (CameraInfo, CameraModelInfo[])? GetCameraModels(CameraInfo camera)
+        {
+            var platforms = GetPlatforms(camera);
+            if (platforms == null)
+                return null;
+
+            return (camera, GetCameraModels(platforms));
         }
 
         protected abstract string CategoryName { get; }
 
-        private static CameraModelsInfo GetCameraModels(CameraInfo camera, params PlatformData[] platforms)
-        {
-            return new CameraModelsInfo
-            {
-                Info = camera,
-                Models = GetCameraModels(platforms),
-            };
-        }
-
-        private static CameraModelInfo[] GetCameraModels(PlatformData[] platforms)
+        private static CameraModelInfo[] GetCameraModels(params PlatformData[] platforms)
         {
             return platforms
                 .Select(GetCameraModel)
@@ -76,9 +75,40 @@ namespace Net.Chdk.Providers.Camera
 
         private static CameraModelInfo GetCameraModel(PlatformData platform)
         {
+            return GetCameraModel(platform.Names);
+        }
+
+        private static CameraModelInfo[] GetCameraModels(params string[]? names)
+        {
+            return new[]
+            {
+                GetCameraModel(names)
+            };
+        }
+
+        private static CameraModelInfo GetCameraModel(string[]? names)
+        {
             return new CameraModelInfo
             {
-                Names = platform.Names
+                Names = names
+            };
+        }
+
+        private SoftwareCameraInfo GetCamera(CameraInfo camera, CameraModelInfo cameraModel)
+        {
+            return new SoftwareCameraInfo
+            {
+                Platform = GetPlatform(camera, cameraModel),
+                Revision = GetRevision(camera),
+            };
+        }
+
+        private static SoftwareModelInfo GetCameraModel(CameraInfo camera)
+        {
+            return new SoftwareModelInfo
+            {
+                Id = camera.Canon.ModelId,
+                Name = camera.Base.Model
             };
         }
 
@@ -111,6 +141,19 @@ namespace Net.Chdk.Providers.Camera
             };
         }
 
+        private CameraInfo? GetCamera(uint modelId, string? revision, string? model)
+        {
+            var canon = CreateCanonInfo(modelId, revision);
+            if (canon == null)
+                return null;
+
+            return new CameraInfo
+            {
+                Base = CreateBaseInfo(model),
+                Canon = canon
+            };
+        }
+
         private static BaseInfo? CreateBaseInfo(PlatformData platform)
         {
             return new BaseInfo
@@ -120,20 +163,47 @@ namespace Net.Chdk.Providers.Camera
             };
         }
 
+        private static BaseInfo? CreateBaseInfo(string? model)
+        {
+            return new BaseInfo
+            {
+                Make = "Canon",
+                Model = model
+            };
+        }
+
         private CanonInfo? CreateCanonInfo(PlatformData platform, string? revision)
         {
-            if (platform?.ModelId == null)
+            if (platform?.ModelId == null || revision == null)
                 return null;
 
             return new CanonInfo
             {
                 ModelId = uint.Parse(platform.ModelId.Substring(2), NumberStyles.HexNumber),
                 FirmwareRevision = GetFirmwareRevision(revision),
-                FirmwareVersion = GetFirmwareVersion(revision),
+                FirmwareVersion = GetFirmwareVersion(revision)
             };
         }
 
-        protected abstract uint GetFirmwareRevision(string? revision);
-        protected abstract Version? GetFirmwareVersion(string? revision);
+        private CanonInfo? CreateCanonInfo(uint? modelId, string? revision)
+        {
+            if (modelId == null || revision == null)
+                return null;
+
+            var firmwareRevision = GetFirmwareRevision(revision);
+            var firmwareVersion = GetFirmwareVersion(revision);
+            if (firmwareRevision == 0 && firmwareVersion == null)
+                return null;
+
+            return new CanonInfo
+            {
+                ModelId = modelId.Value,
+                FirmwareRevision = firmwareRevision,
+                FirmwareVersion = firmwareVersion
+            };
+        }
+
+        protected abstract uint GetFirmwareRevision(string revision);
+        protected abstract Version? GetFirmwareVersion(string revision);
     }
 }

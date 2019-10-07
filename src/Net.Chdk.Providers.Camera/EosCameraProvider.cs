@@ -14,11 +14,11 @@ namespace Net.Chdk.Providers.Camera
 
         protected override string CategoryName => "EOS";
 
-        protected override uint GetFirmwareRevision(string? revision) => 0;
+        protected override uint GetFirmwareRevision(string revision) => 0;
 
-        protected override Version? GetFirmwareVersion(string? revision)
+        protected override Version? GetFirmwareVersion(string revision)
         {
-            if (revision == null)
+            if (revision.Length != 3)
                 return null;
             string version = $"{revision[0]}.{revision[1]}.{revision[2]}";
             return Version.Parse(version);

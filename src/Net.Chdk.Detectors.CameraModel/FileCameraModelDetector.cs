@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Net.Chdk.Detectors.Camera;
+using Net.Chdk.Model.Camera;
+using Net.Chdk.Model.CameraModel;
 using Net.Chdk.Providers.Camera;
 using System;
 using System.Threading;
@@ -19,7 +21,7 @@ namespace Net.Chdk.Detectors.CameraModel
             CameraProvider = cameraProvider;
         }
 
-        public CameraModels GetCameraModels(string filePath, IProgress<double> progress, CancellationToken token)
+        public (CameraInfo, CameraModelInfo[]?)? GetCameraModels(string filePath, IProgress<double>? progress, CancellationToken token)
         {
             Logger.LogTrace("Detecting camera models from {0}", filePath);
 
@@ -29,11 +31,7 @@ namespace Net.Chdk.Detectors.CameraModel
 
             var cameraModels = CameraProvider.GetCameraModels(cameraInfo);
 
-            return new CameraModels
-            {
-                Info = cameraInfo,
-                Models = cameraModels?.Models.Collapse(cameraInfo)
-            };
+            return (cameraInfo, cameraModels?.Models.Collapse(cameraInfo));
         }
     }
 }

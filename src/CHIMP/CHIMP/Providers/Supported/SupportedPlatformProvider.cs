@@ -47,7 +47,7 @@ namespace Chimp.Providers.Supported
             var camera = GetCamera(platform, revision);
             var data = CameraProvider.GetCameraModels(product, camera);
             if (data?.Models != null)
-                foreach (var model in data.Models)
+                foreach (var model in data?.Models)
                     yield return GetModel(model);
         }
 

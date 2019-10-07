@@ -9,6 +9,7 @@ using Net.Chdk.Providers.Software;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 using System.Threading;
 
@@ -16,7 +17,7 @@ namespace Net.Chdk.Detectors.Software.Script
 {
     sealed class ScriptSoftwareDetector : BinarySoftwareDetectorBase
     {
-        private static readonly Version Version = new Version("1.0");
+        private static readonly Version Version = new Version("2.0");
 
         public ScriptSoftwareDetector(IEnumerable<IProductBinarySoftwareDetector> softwareDetectors, IBinaryDecoder binaryDecoder, IBootProvider bootProvider, ICameraModelProvider cameraProvider, ISoftwareHashProvider hashProvider, IOptions<SoftwareDetectorSettings> settings, ILogger<ScriptSoftwareDetector> logger)
             : base(softwareDetectors, binaryDecoder, bootProvider, cameraProvider, hashProvider, settings, logger)
@@ -25,7 +26,7 @@ namespace Net.Chdk.Detectors.Software.Script
 
         public override bool UpdateSoftware(SoftwareInfo software, byte[] inBuffer)
         {
-            if (!CategoryName.Equals(software.Category.Name, StringComparison.Ordinal))
+            if (!CategoryName.Equals(software.Category?.Name, StringComparison.Ordinal))
                 return false;
 
             var software2 = GetSoftware(inBuffer, null, default);
@@ -34,6 +35,7 @@ namespace Net.Chdk.Detectors.Software.Script
                 software.Product = software2.Product;
                 software.Build = software2.Build;
                 software.Camera = software2.Camera;
+                software.Model = software2.Model;
                 software.Hash = software2.Hash;
                 return true;
             }
@@ -72,12 +74,24 @@ namespace Net.Chdk.Detectors.Software.Script
         {
             var split = line.Substring(1).Split(' ');
             if (split.Length == 2)
+            {
                 UpdateSoftware(ref software, split[0], split[1].Trim());
+            }
+            else
+            {
+                switch (split[0])
+                {
+                    case "model":
+                        UpdateModel(ref software, split);
+                        break;
+                }
+            }
         }
 
         private void UpdateSoftware(ref SoftwareInfo? software, string key, string value)
         {
             if (!string.IsNullOrEmpty(value))
+            {
                 switch (key)
                 {
                     case "script":
@@ -93,6 +107,25 @@ namespace Net.Chdk.Detectors.Software.Script
                         UpdateCreated(ref software, value);
                         break;
                 }
+            }
+        }
+
+        private void UpdateModel(ref SoftwareInfo? software, string[] split)
+        {
+            if (split.Length < 3 || split[1].Length < 3)
+                return;
+
+            var modelIdStr = split[1].Substring(2);
+            if (!uint.TryParse(modelIdStr, NumberStyles.HexNumber, null, out uint modelId))
+                return;
+
+            var name = string.Join(" ", split.Skip(2));
+
+            GetSoftware(ref software).Model = new SoftwareModelInfo
+            {
+                Id = modelId,
+                Name = name
+            };
         }
 
         private void UpdateProduct(ref SoftwareInfo? software, string[] split)

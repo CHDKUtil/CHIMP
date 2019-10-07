@@ -51,22 +51,24 @@ namespace Chimp.Providers.Action
 
         private IAction CreateAction(ProductSource productSource)
         {
-            var camera = CameraProvider.GetCamera(productSource.ProductName, CameraViewModel.Info, CameraViewModel.SelectedItem.Model);
+            var camera = CameraProvider.GetCameraModel(productSource.ProductName, CameraViewModel.Info, CameraViewModel.SelectedItem.Model);
             if (camera == null)
                 return null;
             return CreateAction(camera, productSource);
         }
 
-        protected IAction CreateAction(SoftwareCameraInfo camera, ProductSource productSource)
+        protected IAction CreateAction((SoftwareCameraInfo Camera, SoftwareModelInfo Model)? cameraModel, ProductSource productSource)
         {
             var types = new[]
             {
                 typeof(SoftwareCameraInfo),
+                typeof(SoftwareModelInfo),
                 typeof(ProductSource)
             };
             var values = new object[]
             {
-                camera,
+                cameraModel?.Camera,
+                cameraModel?.Model,
                 productSource
             };
             return ServiceActivator.Create<TAction>(types, values);

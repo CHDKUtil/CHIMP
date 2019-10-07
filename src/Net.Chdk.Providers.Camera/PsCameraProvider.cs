@@ -14,9 +14,9 @@ namespace Net.Chdk.Providers.Camera
 
         protected override string CategoryName => "PS";
 
-        protected override uint GetFirmwareRevision(string? revision)
+        protected override uint GetFirmwareRevision(string revision)
         {
-            if (revision == null)
+            if (revision.Length != 4)
                 return 0;
 
             return
@@ -26,6 +26,6 @@ namespace Net.Chdk.Providers.Camera
                 (uint)((revision[3] - 0x60) << 8);
         }
 
-        protected override Version? GetFirmwareVersion(string? revision) => null;
+        protected override Version? GetFirmwareVersion(string revision) => null;
     }
 }

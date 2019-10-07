@@ -2,6 +2,7 @@
 ' {model}, {revision}
 '
 ' @script clear_overlays-1.0.0-{platform}-{revision}-ALPHA
+' @model {model_id} {model}
 ' @author srsa_4c
 ' @created 2019-09-28
 

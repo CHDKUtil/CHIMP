@@ -9,7 +9,7 @@ namespace Chimp.Providers.Software
 {
     abstract class SoftwareProvider : ISoftwareProvider
     {
-        private static readonly Version Version = new Version("1.0");
+        private static readonly Version Version = new Version("2.0");
 
         private IProductProvider ProductProvider { get; }
         protected SoftwareSourceInfo Source { get; }
@@ -22,7 +22,7 @@ namespace Chimp.Providers.Software
             Language = language;
         }
 
-        public SoftwareInfo GetSoftware(Match match)
+        public SoftwareInfo GetSoftware(Match match, SoftwareModelInfo model)
         {
             return new SoftwareInfo
             {
@@ -31,6 +31,7 @@ namespace Chimp.Providers.Software
                 Source = Source,
                 Product = GetProduct(match),
                 Camera = GetCamera(match),
+                Model = model,
                 Build = GetBuild(match),
             };
         }

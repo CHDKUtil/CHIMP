@@ -78,6 +78,8 @@ namespace Chimp.Providers.Matches
             revisions.Clear();
             builds.Clear();
 
+            Logger.LogObject(LogLevel.Trace,"Matching {0}", camera);
+
             string line;
             while ((line = await reader.ReadLineAsync()) != null)
             {

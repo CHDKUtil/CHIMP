@@ -6,8 +6,9 @@ namespace Net.Chdk.Providers.Camera
 {
     interface ICategoryCameraProvider
     {
-        CameraModelsInfo? GetCameraModels(CameraInfo cameraInfo);
-        CameraModelsInfo? GetCameraModels(SoftwareProductInfo? product, SoftwareCameraInfo? cameraInfo);
-        SoftwareCameraInfo? GetCamera(CameraInfo cameraInfo, CameraModelInfo cameraModelInfo);
+        (CameraInfo, CameraModelInfo[])? GetCameraModels(CameraInfo cameraInfo);
+        (CameraInfo, CameraModelInfo[])? GetCameraModels(SoftwareCameraInfo? cameraInfo, SoftwareModelInfo? cameraModelInfo);
+        (CameraInfo, CameraModelInfo[])? GetCameraModels(SoftwareProductInfo? productInfo, SoftwareCameraInfo? cameraInfo);
+        (SoftwareCameraInfo, SoftwareModelInfo)? GetCameraModel(CameraInfo cameraInfo, CameraModelInfo cameraModelInfo);
     }
 }

@@ -1,4 +1,6 @@
-﻿using Net.Chdk.Model.Card;
+﻿using Net.Chdk.Model.Camera;
+using Net.Chdk.Model.CameraModel;
+using Net.Chdk.Model.Card;
 using Net.Chdk.Model.Software;
 using System;
 using System.Collections.Generic;
@@ -16,7 +18,7 @@ namespace Net.Chdk.Detectors.CameraModel
             CameraModelDetectors = cameraModelDetectors;
         }
 
-        public CameraModels GetCameraModels(CardInfo cardInfo, SoftwareInfo softwareInfo, IProgress<double> progress, CancellationToken token)
+        public (CameraInfo, CameraModelInfo[]?)? GetCameraModels(CardInfo cardInfo, SoftwareInfo? softwareInfo, IProgress<double>? progress, CancellationToken token)
         {
             return CameraModelDetectors
                 .Select(d => d.GetCameraModels(cardInfo, softwareInfo, progress, token))

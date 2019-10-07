@@ -30,27 +30,32 @@ namespace Net.Chdk.Validators.Software
 
         protected override void DoValidate(SoftwareInfo software, string basePath, IProgress<double> progress, CancellationToken token)
         {
-            Validate(software.Version);
-            Validate(software.Category);
-            Validate(software.Product);
-            Validate(software.Camera);
-            Validate(software.Build);
-            Validate(software.Compiler);
-            Validate(software.Source);
-            Validate(software.Encoding);
+            var version = software.Version;
+            Validate(version);
+            Validate(software.Category, version);
+            Validate(software.Product, version);
+            Validate(software.Camera, version);
+            Validate(software.Model, version);
+            Validate(software.Build, version);
+            Validate(software.Compiler, version);
+            Validate(software.Source, version);
+            Validate(software.Encoding, version);
             Validate(software.Hash, basePath, software.Category.Name, progress, token);
         }
 
-        private void Validate(CategoryInfo category)
+        private void Validate(CategoryInfo category, Version version)
         {
             if (category == null)
                 throw new ValidationException("Null category");
 
             if (string.IsNullOrEmpty(category.Name))
                 throw new ValidationException("Missing category name");
+
+            if (version.Major == 1 && category.Name != "EOS" && category.Name != "PS")
+                throw new ValidationException("Invalid category name");
         }
 
-        private static void Validate(SoftwareProductInfo product)
+        private static void Validate(SoftwareProductInfo product, Version version)
         {
             if (product == null)
                 throw new ValidationException("Null product");
@@ -72,25 +77,43 @@ namespace Net.Chdk.Validators.Software
 
             ValidateCreated(product.Created, () => "product");
 
-            if (product.Language == null)
+            // Optional in script
+            if (version.Major == 1 && product.Language == null)
                 throw new ValidationException("Invalid product language");
         }
 
-        private static void Validate(SoftwareCameraInfo camera)
+        private static void Validate(SoftwareCameraInfo camera, Version _)
         {
             if (camera == null)
                 throw new ValidationException("Null camera");
 
             if (string.IsNullOrEmpty(camera.Platform))
-                throw new ValidationException("Null camera platform");
+                throw new ValidationException("Missing camera platform");
 
             if (string.IsNullOrEmpty(camera.Revision))
-                throw new ValidationException("Null camera revision");
+                throw new ValidationException("Missing camera revision");
         }
 
-        private static void Validate(SoftwareBuildInfo build)
+        private void Validate(SoftwareModelInfo model, Version version)
         {
-            if (build == null)
+            if (model == null)
+            {
+                if (version.Major > 1)
+                    throw new ValidationException("Null model");
+                return;
+            }
+
+            if (model.Id == 0)
+                throw new ValidationException("Zero model ID");
+
+            if (string.IsNullOrEmpty(model.Name))
+                throw new ValidationException("Missing model name");
+        }
+
+        private static void Validate(SoftwareBuildInfo build, Version version)
+        {
+            // Optional in script
+            if (version.Major == 1 && build == null)
                 throw new ValidationException("Null build");
 
             // Empty in update
@@ -104,9 +127,9 @@ namespace Net.Chdk.Validators.Software
             ValidateChangeset(build.Changeset, () => "build");
         }
 
-        private static void Validate(SoftwareCompilerInfo compiler)
+        private static void Validate(SoftwareCompilerInfo compiler, Version _)
         {
-            // Unknown in download
+            // Unknown in download, missing in script
             if (compiler == null)
                 return;
 
@@ -120,9 +143,9 @@ namespace Net.Chdk.Validators.Software
                 throw new ValidationException("Null compiler version");
         }
 
-        private static void Validate(SoftwareSourceInfo source)
+        private static void Validate(SoftwareSourceInfo source, Version _)
         {
-            // Missing in manual build
+            // Missing in manual build / script
             if (source == null)
                 return;
 
@@ -136,9 +159,9 @@ namespace Net.Chdk.Validators.Software
                 throw new ValidationException("Missing source url");
         }
 
-        private void Validate(SoftwareEncodingInfo encoding)
+        private void Validate(SoftwareEncodingInfo encoding, Version _)
         {
-            // Missing if undetected
+            // Missing if undetected / in script
             if (encoding == null)
                 return;
 
@@ -154,11 +177,11 @@ namespace Net.Chdk.Validators.Software
             if (hash == null)
                 ThrowValidationException("Null hash");
 
-            HashValidator.Validate(hash, basePath, progress, token);
-
             var fileName = BootProvider.GetFileName(categoryName);
             if (!hash.Values.Keys.Contains(fileName, StringComparer.OrdinalIgnoreCase))
                 ThrowValidationException("Missing {0}", fileName);
+
+            HashValidator.Validate(hash, basePath, progress, token);
         }
     }
 }
