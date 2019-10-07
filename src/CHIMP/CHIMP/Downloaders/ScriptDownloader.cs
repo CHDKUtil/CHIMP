@@ -46,8 +46,8 @@ namespace Chimp.Downloaders
 
             if (!Substitutes.ContainsKey("revision"))
             {
-                TryGetValue("platforms", out var platforms);
-                TryGetValue("revisions", out var revisions);
+                Substitutes.TryGetValue("platforms", out IEnumerable<string> platforms);
+                Substitutes.TryGetValue("revisions", out IEnumerable<string> revisions);
                 var result = new MatchData(platforms, revisions, null);
                 SetSupportedItems(software.Product, camera, result);
                 return null;
@@ -109,17 +109,6 @@ namespace Chimp.Downloaders
             {
                 return JsonObject.Deserialize<SoftwareInfo>(stream);
             }
-        }
-
-        private bool TryGetValue(string key, out IEnumerable<string> values)
-        {
-            if (!Substitutes.TryGetValue(key, out object value))
-            {
-                values = null;
-                return false;
-            }
-            values = value as IEnumerable<string>;
-            return values != null;
         }
     }
 }
