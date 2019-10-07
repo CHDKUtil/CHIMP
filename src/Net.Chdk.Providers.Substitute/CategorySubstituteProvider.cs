@@ -50,6 +50,7 @@ namespace Net.Chdk.Providers.Substitute
 
             if (platformData.Revisions == null)
             {
+                subs["error"] = "Download_InvalidFormat_Text";
                 return subs;
             }
 

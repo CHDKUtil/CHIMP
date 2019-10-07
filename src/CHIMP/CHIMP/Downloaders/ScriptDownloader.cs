@@ -46,10 +46,8 @@ namespace Chimp.Downloaders
 
             if (!Substitutes.ContainsKey("revision"))
             {
-                Substitutes.TryGetValue("platforms", out IEnumerable<string> platforms);
-                Substitutes.TryGetValue("revisions", out IEnumerable<string> revisions);
-                var result = new MatchData(platforms, revisions, null);
-                SetSupportedItems(result, software.Product, camera);
+                var data = GetMatchData();
+                SetSupportedItems(data, software.Product, camera);
                 return null;
             }
 
@@ -61,6 +59,16 @@ namespace Chimp.Downloaders
                 Paths = new[] { destPath },
                 Info = software,
             };
+        }
+
+        private MatchData GetMatchData()
+        {
+            if (Substitutes.TryGetValue("error", out string error))
+                return new MatchData(error);
+
+            Substitutes.TryGetValue("platforms", out IEnumerable<string> platforms);
+            Substitutes.TryGetValue("revisions", out IEnumerable<string> revisions);
+            return new MatchData(platforms, revisions, null);
         }
 
         private string GenerateScript(SoftwareInfo software)

@@ -1,6 +1,5 @@
 ﻿using Chimp.Model;
 using Net.Chdk.Model.Software;
-using System;
 
 namespace Chimp.Providers.Supported
 {
@@ -18,12 +17,12 @@ namespace Chimp.Providers.Supported
 
         public string[] GetItems(MatchData data, SoftwareProductInfo product, SoftwareCameraInfo camera)
         {
-            return Array.Empty<string>();
+            return null;
         }
 
         public string GetTitle(MatchData data)
         {
-            return string.Empty;
+            return null;
         }
     }
 }
