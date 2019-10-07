@@ -102,7 +102,7 @@ namespace Net.Chdk.Providers.Camera
             return PlatformProvider.GetPlatforms(camera, CategoryName);
         }
 
-        private CameraInfo GetCamera(PlatformData platform, string revision)
+        private CameraInfo GetCamera(PlatformData platform, string? revision)
         {
             return new CameraInfo
             {
@@ -120,7 +120,7 @@ namespace Net.Chdk.Providers.Camera
             };
         }
 
-        private CanonInfo? CreateCanonInfo(PlatformData platform, string revision)
+        private CanonInfo? CreateCanonInfo(PlatformData platform, string? revision)
         {
             if (platform?.ModelId == null)
                 return null;
@@ -133,7 +133,7 @@ namespace Net.Chdk.Providers.Camera
             };
         }
 
-        protected abstract uint GetFirmwareRevision(string revision);
-        protected abstract Version? GetFirmwareVersion(string revision);
+        protected abstract uint GetFirmwareRevision(string? revision);
+        protected abstract Version? GetFirmwareVersion(string? revision);
     }
 }

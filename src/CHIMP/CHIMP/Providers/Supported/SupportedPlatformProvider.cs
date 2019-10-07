@@ -31,7 +31,7 @@ namespace Chimp.Providers.Supported
         protected override string[] DoGetItems(MatchData data, SoftwareProductInfo product, SoftwareCameraInfo camera)
         {
             return data.Platforms
-                .SelectMany(p => GetModels(p, product, camera))
+                .SelectMany(p => GetModels(p, camera?.Revision, product))
                 .ToArray();
         }
 
@@ -42,21 +42,21 @@ namespace Chimp.Providers.Supported
                 : Resources.Download_SupportedModel_Content;
         }
 
-        private IEnumerable<string> GetModels(string platform, SoftwareProductInfo product, SoftwareCameraInfo cameraInfo)
+        private IEnumerable<string> GetModels(string platform, string revision, SoftwareProductInfo product)
         {
-            var camera = GetCamera(platform, cameraInfo);
+            var camera = GetCamera(platform, revision);
             var data = CameraProvider.GetCameraModels(product, camera);
             if (data?.Models != null)
                 foreach (var model in data.Models)
                     yield return GetModel(model);
         }
 
-        private SoftwareCameraInfo GetCamera(string platform, SoftwareCameraInfo cameraInfo)
+        private SoftwareCameraInfo GetCamera(string platform, string revision)
         {
             return new SoftwareCameraInfo
             {
                 Platform = platform,
-                Revision = cameraInfo.Revision
+                Revision = revision
             };
         }
 
