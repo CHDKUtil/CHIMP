@@ -49,7 +49,7 @@ namespace Chimp.Downloaders
                 Substitutes.TryGetValue("platforms", out IEnumerable<string> platforms);
                 Substitutes.TryGetValue("revisions", out IEnumerable<string> revisions);
                 var result = new MatchData(platforms, revisions, null);
-                SetSupportedItems(software.Product, camera, result);
+                SetSupportedItems(result, software.Product, camera);
                 return null;
             }
 

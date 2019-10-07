@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace Chimp.Providers.Supported
 {
-    sealed class SupportedPlatformProvider : SupportedProviderBase
+    sealed class SupportedPlatformProvider : IInnerSupportedProvider
     {
         private ICameraProvider CameraProvider { get; }
 
@@ -18,24 +18,24 @@ namespace Chimp.Providers.Supported
             CameraProvider = cameraProvider;
         }
 
-        protected override bool IsMatch(MatchData data)
+        public bool IsMatch(MatchData data)
         {
             return data.Platforms != null;
         }
 
-        protected override string DoGetError(MatchData data)
+        public string GetError(MatchData data)
         {
             return Resources.Download_UnsupportedModel_Text;
         }
 
-        protected override string[] DoGetItems(MatchData data, SoftwareProductInfo product, SoftwareCameraInfo camera)
+        public string[] GetItems(MatchData data, SoftwareProductInfo product, SoftwareCameraInfo camera)
         {
             return data.Platforms
                 .SelectMany(p => GetModels(p, camera?.Revision, product))
                 .ToArray();
         }
 
-        protected override string DoGetTitle(MatchData data)
+        public string GetTitle(MatchData data)
         {
             return data.Platforms.Count() > 1
                 ? Resources.Download_SupportedModels_Content

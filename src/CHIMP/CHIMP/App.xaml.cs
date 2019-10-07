@@ -2,6 +2,7 @@
 using Chimp.Logging.Extensions;
 using Chimp.Model;
 using Chimp.Providers;
+using Chimp.Providers.Supported;
 using Chimp.Services;
 using Chimp.ViewModels;
 using Microsoft.Extensions.Configuration;
@@ -207,6 +208,10 @@ namespace Chimp
                 .AddSingleton<IInstallerProvider, InstallerProvider>()
                 .AddSingleton<ITipProvider, AggregateTipProvider>()
                 .AddSingleton<ISupportedProvider, SupportedProvider>()
+                .AddSingleton<IInnerSupportedProvider, SupportedErrorProvider>()
+                .AddSingleton<IInnerSupportedProvider, SupportedBuildProvider>()
+                .AddSingleton<IInnerSupportedProvider, SupportedRevisionProvider>()
+                .AddSingleton<IInnerSupportedProvider, SupportedPlatformProvider>()
                 ;
         }
 
@@ -249,8 +254,7 @@ namespace Chimp
                 .Configure<StepsData>(configuration)
                 .Configure<ActionsData>(configuration)
                 .Configure<LicensesData>(configuration)
-                .Configure<InstallersData>(configuration)
-                .Configure<SupportedData>(configuration);
+                .Configure<InstallersData>(configuration);
         }
 
         protected override void OnStartup(StartupEventArgs e)

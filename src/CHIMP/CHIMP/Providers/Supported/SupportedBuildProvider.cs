@@ -5,24 +5,24 @@ using System;
 
 namespace Chimp.Providers.Supported
 {
-    sealed class SupportedBuildProvider : SupportedProviderBase
+    sealed class SupportedBuildProvider : IInnerSupportedProvider
     {
-        protected override bool IsMatch(MatchData data)
+        public bool IsMatch(MatchData data)
         {
             return data.Builds != null;
         }
 
-        protected override string DoGetError(MatchData data)
+        public string GetError(MatchData data)
         {
             return Resources.Download_InvalidFormat_Text;
         }
 
-        protected override string[] DoGetItems(MatchData data, SoftwareProductInfo product, SoftwareCameraInfo camera)
+        public string[] GetItems(MatchData data, SoftwareProductInfo product, SoftwareCameraInfo camera)
         {
             return Array.Empty<string>();
         }
 
-        protected override string DoGetTitle(MatchData data)
+        public string GetTitle(MatchData data)
         {
             return string.Empty;
         }

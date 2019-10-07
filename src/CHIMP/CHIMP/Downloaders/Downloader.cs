@@ -66,7 +66,7 @@ namespace Chimp.Downloaders
             var matches = result.Matches;
             if (matches == null)
             {
-                SetSupportedItems(softwareInfo?.Product, camera, result);
+                SetSupportedItems(result, softwareInfo?.Product, camera);
                 return null;
             }
 

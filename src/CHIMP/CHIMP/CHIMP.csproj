@@ -273,7 +273,6 @@
     <Compile Include="Interfaces\Providers\ISupportedProvider.cs" />
     <Compile Include="Model\ActionsData.cs" />
     <Compile Include="Model\MatchData.cs" />
-    <Compile Include="Model\SupportedData.cs" />
     <Compile Include="Providers\Action\ClearOverlaysActionProvider.cs" />
     <Compile Include="Providers\DataProvider.cs" />
     <Compile Include="Providers\LicenseProvider.cs" />
@@ -396,7 +395,6 @@
     <Compile Include="Providers\Supported\SupportedBuildProvider.cs" />
     <Compile Include="Providers\Supported\SupportedErrorProvider.cs" />
     <Compile Include="Providers\Supported\SupportedPlatformProvider.cs" />
-    <Compile Include="Providers\Supported\SupportedProviderBase.cs" />
     <Compile Include="Providers\Supported\SupportedRevisionProvider.cs" />
     <Compile Include="Providers\Tips\LedTipProvider.cs" />
     <Compile Include="Providers\Tips\RemoveTipProvider.cs" />

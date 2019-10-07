@@ -33,7 +33,7 @@ namespace Chimp.Downloaders
             ViewModel.FileName = string.Empty;
         }
 
-        protected void SetSupportedItems(SoftwareProductInfo product, SoftwareCameraInfo camera, MatchData data)
+        protected void SetSupportedItems(MatchData data, SoftwareProductInfo product, SoftwareCameraInfo camera)
         {
             var error = SupportedProvider.GetError(data)
                 ?? Resources.Download_UnsupportedModel_Text;
