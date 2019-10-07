@@ -1,7 +1,5 @@
 ﻿using Chimp.Actions;
 using Chimp.ViewModels;
-using Net.Chdk.Model.Software;
-using Net.Chdk.Providers.Camera;
 using Net.Chdk.Providers.Substitute;
 using System.Collections.Generic;
 
@@ -11,13 +9,11 @@ namespace Chimp.Providers.Action
     {
         private const string ProductName = "clear_overlays";
 
-        private ICameraProvider CameraProvider { get; }
         private ISubstituteProvider SubstituteProvider { get; }
 
-        public ClearOverlaysActionProvider(MainViewModel mainViewModel, ISubstituteProvider substituteProvider, ICameraProvider cameraProvider, IServiceActivator serviceActivator)
+        public ClearOverlaysActionProvider(MainViewModel mainViewModel, ISubstituteProvider substituteProvider, IServiceActivator serviceActivator)
             : base(mainViewModel, serviceActivator)
         {
-            CameraProvider = cameraProvider;
             SubstituteProvider = substituteProvider;
         }
 
@@ -31,22 +27,16 @@ namespace Chimp.Providers.Action
             if (software?.Product?.Name == ProductName)
                 yield break;
 
-            var camera = CameraProvider.GetCamera(ProductName, CameraViewModel?.Info, CameraViewModel?.SelectedItem?.Model);
-            if (camera == null)
-                yield break;
-
             var substitues = GetSubstitutes();
             if (substitues == null)
                 yield break;
 
             var types = new[]
             {
-                typeof(SoftwareCameraInfo),
                 typeof(IDictionary<string, object>)
             };
             var values = new object[]
             {
-                camera,
                 substitues
             };
             yield return ServiceActivator.Create<ClearOverlaysAction>(types, values);
