@@ -12,20 +12,20 @@ namespace Net.Chdk.Meta.Providers.Src
             Logger = logger;
         }
 
-        protected string GetFilePath(string platformPath, string platform, string? revision)
+        protected string GetFilePath(string basePath, string platform, string? revision)
         {
-            var path = GetPath(platformPath, platform, revision);
+            var path = GetPath(basePath, platform, revision);
             return Path.Combine(path, FileName);
         }
 
-        protected string GetPath(string platformPath, string platform, string? revision)
+        protected static string GetPath(string basePath, string platform, string? revision)
         {
             return revision != null
-                ? Path.Combine(platformPath, platform, "sub", revision)
-                : Path.Combine(platformPath, platform);
+                ? Path.Combine(basePath, platform, "sub", revision)
+                : Path.Combine(basePath, platform);
         }
 
-        protected string GetName(string platform, string? revision = null)
+        protected static string GetName(string platform, string? revision = null)
         {
             return revision != null
                 ? $"{platform}-{revision}"

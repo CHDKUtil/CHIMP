@@ -20,7 +20,7 @@ namespace Net.Chdk.Meta.Providers.Src
             PlatformProvider = platformProvider;
         }
 
-        public string Extension => "";
+        public string Extension => string.Empty;
 
         protected IDictionary<string, TPlatform?> GetTree(string path)
         {

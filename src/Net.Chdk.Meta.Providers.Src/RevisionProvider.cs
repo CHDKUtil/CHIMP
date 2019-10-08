@@ -45,16 +45,12 @@ namespace Net.Chdk.Meta.Providers.Src
 
         private string GetPlatform(PlatformSourceData? source, string platform)
         {
-            return source != null
-                ? source.Platform ?? platform
-                : platform;
+            return source?.Platform ?? platform;
         }
 
         private string GetRevision(PlatformSourceData? source, string revision)
         {
-            return source != null
-                ? source.Revision ?? revision
-                : revision;
+            return source?.Revision ?? revision;
         }
 
         private TData? GetData(string platformPath, string platform, string revision)
