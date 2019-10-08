@@ -1,13 +1,13 @@
 ﻿using Chimp.ViewModels;
 using Microsoft.Extensions.Logging;
-using Net.Chdk.Providers.CameraModel;
+using Net.Chdk.Providers.Camera;
 using System.Threading;
 
 namespace Chimp.Installers
 {
     sealed class FormatInstaller : Installer
     {
-        public FormatInstaller(MainViewModel mainViewModel, IInstallService installService, ICameraModelProvider cameraProvider, ILogger<FormatInstaller> logger)
+        public FormatInstaller(MainViewModel mainViewModel, IInstallService installService, ICameraProvider cameraProvider, ILogger<FormatInstaller> logger)
             : base(mainViewModel, installService, cameraProvider, logger)
         {
         }

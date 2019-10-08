@@ -4,7 +4,7 @@ using Net.Chdk.Encoders.Binary;
 using Net.Chdk.Json;
 using Net.Chdk.Model.Software;
 using Net.Chdk.Providers.Boot;
-using Net.Chdk.Providers.CameraModel;
+using Net.Chdk.Providers.Camera;
 using Net.Chdk.Providers.Software;
 using System;
 using System.Collections;
@@ -29,7 +29,7 @@ namespace Net.Chdk.Detectors.Software
 
     abstract class HashSoftwareDetector : BinarySoftwareDetectorBase
     {
-        protected HashSoftwareDetector(IEnumerable<IProductBinarySoftwareDetector> softwareDetectors, IBinaryDecoder binaryDecoder, IBootProvider bootProvider, ICameraModelProvider cameraProvider, ISoftwareHashProvider hashProvider, IOptions<SoftwareDetectorSettings> settings, ILogger logger)
+        protected HashSoftwareDetector(IEnumerable<IProductBinarySoftwareDetector> softwareDetectors, IBinaryDecoder binaryDecoder, IBootProvider bootProvider, ICameraProvider cameraProvider, ISoftwareHashProvider hashProvider, IOptions<SoftwareDetectorSettings> settings, ILogger logger)
             : base(softwareDetectors, binaryDecoder, bootProvider, cameraProvider, hashProvider, settings, logger)
         {
             _hash2software = new Lazy<IDictionary<byte[], SoftwareInfo>>(GetHash2Software);

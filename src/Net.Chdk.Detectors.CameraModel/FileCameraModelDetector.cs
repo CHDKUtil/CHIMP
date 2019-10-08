@@ -2,7 +2,7 @@
 using Net.Chdk.Detectors.Camera;
 using Net.Chdk.Model.Camera;
 using Net.Chdk.Model.CameraModel;
-using Net.Chdk.Providers.Camera;
+using Net.Chdk.Providers.CameraModel;
 using System;
 using System.Threading;
 
@@ -12,9 +12,9 @@ namespace Net.Chdk.Detectors.CameraModel
     {
         private ILogger Logger { get; }
         private IFileCameraDetector FileCameraDetector { get; }
-        private ICameraProvider CameraProvider { get; }
+        private ICameraModelProvider CameraProvider { get; }
 
-        public FileCameraModelDetector(IFileCameraDetector fileCameraDetector, ICameraProvider cameraProvider, ILoggerFactory loggerFactory)
+        public FileCameraModelDetector(IFileCameraDetector fileCameraDetector, ICameraModelProvider cameraProvider, ILoggerFactory loggerFactory)
         {
             Logger = loggerFactory.CreateLogger<FileCameraModelDetector>();
             FileCameraDetector = fileCameraDetector;

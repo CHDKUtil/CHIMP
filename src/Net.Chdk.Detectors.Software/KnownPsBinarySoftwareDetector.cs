@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Options;
 using Net.Chdk.Encoders.Binary;
 using Net.Chdk.Providers.Boot;
-using Net.Chdk.Providers.CameraModel;
+using Net.Chdk.Providers.Camera;
 using Net.Chdk.Providers.Software;
 using System.Collections.Generic;
 
@@ -12,7 +12,7 @@ namespace Net.Chdk.Detectors.Software
     {
         private int[][] Offsets { get; }
 
-        public KnownPsBinarySoftwareDetector(IEnumerable<IProductBinarySoftwareDetector> softwareDetectors, IBinaryDecoder binaryDecoder, IBootProvider bootProvider, ICameraModelProvider cameraProvider, ISoftwareHashProvider hashProvider, IOptions<SoftwareDetectorSettings> settings, ILoggerFactory loggerFactory)
+        public KnownPsBinarySoftwareDetector(IEnumerable<IProductBinarySoftwareDetector> softwareDetectors, IBinaryDecoder binaryDecoder, IBootProvider bootProvider, ICameraProvider cameraProvider, ISoftwareHashProvider hashProvider, IOptions<SoftwareDetectorSettings> settings, ILoggerFactory loggerFactory)
             : base(softwareDetectors, binaryDecoder, bootProvider, cameraProvider, hashProvider, settings, loggerFactory.CreateLogger<KnownPsBinarySoftwareDetector>())
         {
             Offsets = bootProvider.GetOffsets(CategoryName);

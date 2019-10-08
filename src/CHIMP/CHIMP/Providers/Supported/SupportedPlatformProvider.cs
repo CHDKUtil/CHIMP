@@ -3,7 +3,7 @@ using Chimp.Properties;
 using Net.Chdk;
 using Net.Chdk.Model.CameraModel;
 using Net.Chdk.Model.Software;
-using Net.Chdk.Providers.Camera;
+using Net.Chdk.Providers.CameraModel;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,9 +11,9 @@ namespace Chimp.Providers.Supported
 {
     sealed class SupportedPlatformProvider : IInnerSupportedProvider
     {
-        private ICameraProvider CameraProvider { get; }
+        private ICameraModelProvider CameraProvider { get; }
 
-        public SupportedPlatformProvider(ICameraProvider cameraProvider)
+        public SupportedPlatformProvider(ICameraModelProvider cameraProvider)
         {
             CameraProvider = cameraProvider;
         }

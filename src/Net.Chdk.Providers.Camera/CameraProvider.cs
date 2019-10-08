@@ -1,77 +1,73 @@
 ﻿using Microsoft.Extensions.Logging;
-using Net.Chdk.Adapters.Platform;
 using Net.Chdk.Model.Camera;
-using Net.Chdk.Model.CameraModel;
 using Net.Chdk.Model.Software;
-using Net.Chdk.Providers.Firmware;
-using Net.Chdk.Providers.Platform;
 using Net.Chdk.Providers.Product;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Net.Chdk.Providers.Camera
 {
-    sealed class CameraProvider : ProviderResolver<ICategoryCameraProvider>, ICameraProvider
+    sealed class CameraProvider : ProviderResolver<IProductCameraProvider>, ICameraProvider
     {
         private IProductProvider ProductProvider { get; }
-        private IPlatformAdapter PlatformAdapter { get; }
-        private IPlatformProvider PlatformProvider { get; }
-        private IFirmwareProvider FirmwareProvider { get; }
 
-        public CameraProvider(IProductProvider productProvider, IPlatformAdapter platformAdapter, IPlatformProvider platformProvider, IFirmwareProvider firmwareProvider, ILoggerFactory loggerFactory)
+        public CameraProvider(IProductProvider productProvider, ILoggerFactory loggerFactory)
             : base(loggerFactory)
         {
             ProductProvider = productProvider;
-            PlatformAdapter = platformAdapter;
-            PlatformProvider = platformProvider;
-            FirmwareProvider = firmwareProvider;
         }
 
-        public (CameraInfo, CameraModelInfo[])? GetCameraModels(SoftwareProductInfo? product, SoftwareCameraInfo? cameraInfo)
+        public SoftwareEncodingInfo? GetEncoding(SoftwareProductInfo product, SoftwareCameraInfo camera)
         {
-            return Providers.Values
-                .Select(p => p.GetCameraModels(product, cameraInfo))
-                .FirstOrDefault(c => c != null);
+            return GetProvider(product.Name)?
+                .GetEncoding(camera);
         }
 
-        public (CameraInfo, CameraModelInfo[])? GetCameraModels(SoftwareCameraInfo? cameraInfo, SoftwareModelInfo? cameraModelInfo)
+        public string? GetAltButton(SoftwareProductInfo product, SoftwareCameraInfo camera)
         {
-            return Providers.Values
-                .Select(p => p.GetCameraModels(cameraInfo, cameraModelInfo))
-                .FirstOrDefault(c => c != null);
+            return GetProvider(product.Name)?
+                .GetAltButton(camera);
         }
 
-        public (CameraInfo, CameraModelInfo[])? GetCameraModels(CameraInfo cameraInfo)
+        public string? GetCardType(SoftwareProductInfo product, CameraInfo camera)
         {
-            var categoryName = FirmwareProvider.GetCategoryName(cameraInfo);
-            return GetProvider(categoryName)?
-                .GetCameraModels(cameraInfo);
+            return GetProvider(product.Name)?
+                .GetCardType(camera);
         }
 
-        public (SoftwareCameraInfo, SoftwareModelInfo)? GetCameraModel(string productName, CameraInfo cameraInfo, CameraModelInfo cameraModelInfo)
+        public string? GetCardSubtype(SoftwareProductInfo product, CameraInfo camera)
         {
-            var categoryName = ProductProvider.GetCategoryName(productName);
-            return GetProvider(categoryName)?
-                .GetCameraModel(cameraInfo, cameraModelInfo);
+            return GetProvider(product.Name)?
+                .GetCardSubtype(camera);
+        }
+
+        public bool? IsMultiPartition(SoftwareProductInfo product, CameraInfo camera)
+        {
+            return GetProvider(product.Name)?
+                .IsMultiPartition(camera);
+        }
+
+        public string? GetBootFileSystem(SoftwareProductInfo product, CameraInfo camera)
+        {
+            return GetProvider(product.Name)?
+                .GetBootFileSystem(camera);
         }
 
         protected override IEnumerable<string> GetNames()
         {
-            return new[] { "EOS", "PS" };
+            return ProductProvider.GetProductNames();
         }
 
-        protected override ICategoryCameraProvider CreateProvider(string categoryName)
+        protected override IProductCameraProvider? CreateProvider(string productName)
         {
-            switch (categoryName)
+            var categoryName = ProductProvider.GetCategoryName(productName);
+            return categoryName switch
             {
-                case "EOS":
-                    return new EosCameraProvider(PlatformAdapter, PlatformProvider, FirmwareProvider);
-                case "PS":
-                    return new PsCameraProvider(PlatformAdapter, PlatformProvider, FirmwareProvider);
-                default:
-                    throw new InvalidOperationException($"Unknown category: {categoryName}");
-            }
+                "EOS" => new EosCameraProvider(productName, LoggerFactory),
+                "PS" => new PsCameraProvider(productName, LoggerFactory),
+                "SCRIPT" => null,
+                _ => throw new InvalidOperationException($"Unknown category: {categoryName}"),
+            };
         }
     }
 }

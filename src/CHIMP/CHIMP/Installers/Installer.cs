@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 using Net.Chdk.Model.Camera;
 using Net.Chdk.Model.Card;
 using Net.Chdk.Model.Software;
-using Net.Chdk.Providers.CameraModel;
+using Net.Chdk.Providers.Camera;
 using System;
 using System.Linq;
 using System.Threading;
@@ -45,7 +45,7 @@ namespace Chimp.Installers
         private CameraInfo Camera => CameraViewModel.Info;
         private SoftwareProductInfo Product => DownloadViewModel.Software.Product;
 
-        protected Installer(MainViewModel mainViewModel, IInstallService installService, ICameraModelProvider cameraProvider, ILogger logger)
+        protected Installer(MainViewModel mainViewModel, IInstallService installService, ICameraProvider cameraProvider, ILogger logger)
         {
             Logger = logger;
             MainViewModel = mainViewModel;

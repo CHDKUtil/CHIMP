@@ -34,7 +34,7 @@
     <ProjectReference Include="..\Net.Chdk.Detectors.Base\Net.Chdk.Detectors.Base.csproj" />
     <ProjectReference Include="..\Net.Chdk.Detectors.Camera.Core\Net.Chdk.Detectors.Camera.Core.csproj" />
     <ProjectReference Include="..\Net.Chdk.Detectors.CameraModel.Core\Net.Chdk.Detectors.CameraModel.Core.csproj" />
-    <ProjectReference Include="..\Net.Chdk.Providers.Camera.Core\Net.Chdk.Providers.Camera.Core.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Providers.CameraModel.Core\Net.Chdk.Providers.CameraModel.Core.csproj" />
   </ItemGroup>
 
 </Project>

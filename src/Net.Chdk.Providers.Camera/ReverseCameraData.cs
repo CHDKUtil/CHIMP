@@ -1,4 +1,4 @@
-﻿namespace Net.Chdk.Providers.CameraModel
+﻿namespace Net.Chdk.Providers.Camera
 {
     sealed class ReverseCameraData
     {

@@ -2,9 +2,9 @@
 using Net.Chdk.Model.CameraModel;
 using Net.Chdk.Model.Software;
 
-namespace Net.Chdk.Providers.Camera
+namespace Net.Chdk.Providers.CameraModel
 {
-    interface ICategoryCameraProvider
+    interface ICategoryCameraModelProvider
     {
         (CameraInfo, CameraModelInfo[])? GetCameraModels(CameraInfo cameraInfo);
         (CameraInfo, CameraModelInfo[])? GetCameraModels(SoftwareCameraInfo? cameraInfo, SoftwareModelInfo? cameraModelInfo);

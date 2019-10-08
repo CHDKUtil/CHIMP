@@ -2,7 +2,7 @@
 using Chimp.ViewModels;
 using Net.Chdk.Model.Category;
 using Net.Chdk.Model.Software;
-using Net.Chdk.Providers.Camera;
+using Net.Chdk.Providers.CameraModel;
 using Net.Chdk.Providers.Software;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +13,10 @@ namespace Chimp.Providers.Action
         where TAction : InstallActionBase
     {
         protected ISourceProvider SourceProvider { get; }
-        protected ICameraProvider CameraProvider { get; }
+        protected ICameraModelProvider CameraProvider { get; }
         protected string CategoryName { get; }
 
-        public InstallActionProvider(MainViewModel mainViewModel, ISourceProvider sourceProvider, ICameraProvider cameraProvider, IServiceActivator serviceActivator)
+        public InstallActionProvider(MainViewModel mainViewModel, ISourceProvider sourceProvider, ICameraModelProvider cameraProvider, IServiceActivator serviceActivator)
             : base(mainViewModel, serviceActivator)
         {
             SourceProvider = sourceProvider;

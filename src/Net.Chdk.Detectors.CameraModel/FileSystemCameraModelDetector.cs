@@ -2,7 +2,7 @@
 using Net.Chdk.Model.Camera;
 using Net.Chdk.Model.CameraModel;
 using Net.Chdk.Model.Card;
-using Net.Chdk.Providers.Camera;
+using Net.Chdk.Providers.CameraModel;
 using System;
 using System.Threading;
 
@@ -11,9 +11,9 @@ namespace Net.Chdk.Detectors.CameraModel
     sealed class FileSystemCameraModelDetector : IInnerCameraModelDetector
     {
         private ILogger Logger { get; }
-        private ICameraProvider CameraProvider { get; }
+        private ICameraModelProvider CameraProvider { get; }
 
-        public FileSystemCameraModelDetector(ICameraProvider cameraProvider, ILoggerFactory loggerFactory)
+        public FileSystemCameraModelDetector(ICameraModelProvider cameraProvider, ILoggerFactory loggerFactory)
         {
             Logger = loggerFactory.CreateLogger<FileSystemCameraModelDetector>();
             CameraProvider = cameraProvider;

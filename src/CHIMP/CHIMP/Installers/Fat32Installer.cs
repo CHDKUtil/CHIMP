@@ -1,13 +1,13 @@
 ﻿using Chimp.ViewModels;
 using Microsoft.Extensions.Logging;
-using Net.Chdk.Providers.CameraModel;
+using Net.Chdk.Providers.Camera;
 using System.Threading;
 
 namespace Chimp.Installers
 {
     sealed class Fat32Installer : Installer
     {
-        public Fat32Installer(MainViewModel mainViewModel, IInstallService installService, ICameraModelProvider cameraProvider, ILogger<Fat32Installer> logger)
+        public Fat32Installer(MainViewModel mainViewModel, IInstallService installService, ICameraProvider cameraProvider, ILogger<Fat32Installer> logger)
             : base(mainViewModel, installService, cameraProvider, logger)
         {
         }

@@ -1,7 +1,7 @@
 ﻿using Chimp.Model;
 using Chimp.Properties;
 using Chimp.ViewModels;
-using Net.Chdk.Providers.CameraModel;
+using Net.Chdk.Providers.Camera;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,9 +9,9 @@ namespace Chimp.Providers.Tips
 {
     sealed class LockTipProvider : TipProvider
     {
-        private ICameraModelProvider CameraProvider { get; }
+        private ICameraProvider CameraProvider { get; }
 
-        public LockTipProvider(MainViewModel mainViewModel, ICameraModelProvider cameraProvider)
+        public LockTipProvider(MainViewModel mainViewModel, ICameraProvider cameraProvider)
             : base(mainViewModel)
         {
             CameraProvider = cameraProvider;

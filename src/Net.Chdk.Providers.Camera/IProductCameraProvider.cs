@@ -1,9 +1,9 @@
 ﻿using Net.Chdk.Model.Camera;
 using Net.Chdk.Model.Software;
 
-namespace Net.Chdk.Providers.CameraModel
+namespace Net.Chdk.Providers.Camera
 {
-    interface IProductCameraModelProvider
+    interface IProductCameraProvider
     {
         SoftwareEncodingInfo? GetEncoding(SoftwareCameraInfo cameraInfo);
         string? GetAltButton(SoftwareCameraInfo cameraInfo);

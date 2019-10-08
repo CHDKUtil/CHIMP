@@ -9,15 +9,15 @@ using Net.Chdk.Model.Software;
 using Net.Chdk.Providers.Firmware;
 using Net.Chdk.Providers.Platform;
 
-namespace Net.Chdk.Providers.Camera
+namespace Net.Chdk.Providers.CameraModel
 {
-    abstract class CategoryCameraProvider : ICategoryCameraProvider
+    abstract class CategoryCameraModelProvider : ICategoryCameraModelProvider
     {
         private IPlatformAdapter PlatformAdapter { get; }
         private IPlatformProvider PlatformProvider { get; }
         private IFirmwareProvider FirmwareProvider { get; }
 
-        public CategoryCameraProvider(IPlatformAdapter platformAdapter, IPlatformProvider platformProvider, IFirmwareProvider firmwareProvider)
+        public CategoryCameraModelProvider(IPlatformAdapter platformAdapter, IPlatformProvider platformProvider, IFirmwareProvider firmwareProvider)
         {
             PlatformAdapter = platformAdapter;
             PlatformProvider = platformProvider;

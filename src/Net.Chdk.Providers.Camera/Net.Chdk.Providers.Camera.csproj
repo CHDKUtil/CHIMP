@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard1.3</TargetFramework>
     <Description>CHIMP camera providers</Description>
     <RootNamespace>Net.Chdk.Providers.Camera</RootNamespace>
     <LangVersion>8.0</LangVersion>
@@ -9,29 +9,34 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>0.5.2</Version>
+    <Version>0.6.0</Version>
     <VersionSuffix>alpha</VersionSuffix>
     <Product>CHIMP</Product>
     <Authors>Dmitry Shechtman</Authors>
     <Copyright>Copyright © 2017 Dmitry Shechtman</Copyright>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
-    <TreatSpecificWarningsAsErrors />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="microsoft.extensions.dependencyinjection.abstractions" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="1.1.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Net.Chdk.Adapters.Platform.Core\Net.Chdk.Adapters.Platform.Core.csproj" />
     <ProjectReference Include="..\Net.Chdk.Core\Net.Chdk.Core.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Meta.Model.Camera.Eos\Net.Chdk.Meta.Model.Camera.Eos.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Meta.Model.Camera.Ps\Net.Chdk.Meta.Model.Camera.Ps.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Meta.Model.Camera\Net.Chdk.Meta.Model.Camera.csproj" />
     <ProjectReference Include="..\Net.Chdk.Providers.Base\Net.Chdk.Providers.Base.csproj" />
     <ProjectReference Include="..\Net.Chdk.Providers.Camera.Core\Net.Chdk.Providers.Camera.Core.csproj" />
-    <ProjectReference Include="..\Net.Chdk.Providers.Firmware.Core\Net.Chdk.Providers.Firmware.Core.csproj" />
-    <ProjectReference Include="..\Net.Chdk.Providers.Platform.Core\Net.Chdk.Providers.Platform.Core.csproj" />
     <ProjectReference Include="..\Net.Chdk.Providers.Product.Core\Net.Chdk.Providers.Product.Core.csproj" />
   </ItemGroup>
   

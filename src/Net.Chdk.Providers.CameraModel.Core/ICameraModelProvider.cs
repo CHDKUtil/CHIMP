@@ -1,15 +1,14 @@
 ﻿using Net.Chdk.Model.Camera;
+using Net.Chdk.Model.CameraModel;
 using Net.Chdk.Model.Software;
 
 namespace Net.Chdk.Providers.CameraModel
 {
     public interface ICameraModelProvider
     {
-        SoftwareEncodingInfo? GetEncoding(SoftwareProductInfo product, SoftwareCameraInfo camera);
-        string? GetAltButton(SoftwareProductInfo product, SoftwareCameraInfo camera);
-        string? GetCardType(SoftwareProductInfo product, CameraInfo camera);
-        string? GetCardSubtype(SoftwareProductInfo product, CameraInfo camera);
-        string? GetBootFileSystem(SoftwareProductInfo product, CameraInfo camera);
-        bool? IsMultiPartition(SoftwareProductInfo product, CameraInfo camera);
+        (CameraInfo Info, CameraModelInfo[] Models)? GetCameraModels(CameraInfo cameraInfo);
+        (CameraInfo Info, CameraModelInfo[] Models)? GetCameraModels(SoftwareCameraInfo? cameraInfo, SoftwareModelInfo? cameraModelInfo);
+        (CameraInfo Info, CameraModelInfo[] Models)? GetCameraModels(SoftwareProductInfo? productInfo, SoftwareCameraInfo? cameraInfo);
+        (SoftwareCameraInfo Camera, SoftwareModelInfo Model)? GetCameraModel(string productName, CameraInfo cameraInfo, CameraModelInfo cameraModelInfo);
     }
 }

@@ -36,7 +36,7 @@
     <ProjectReference Include="..\Net.Chdk.Detectors.Software.Core\Net.Chdk.Detectors.Software.Core.csproj" />
     <ProjectReference Include="..\Net.Chdk.Encoders.Binary.Core\Net.Chdk.Encoders.Binary.Core.csproj" />
     <ProjectReference Include="..\Net.Chdk.Providers.Boot.Core\Net.Chdk.Providers.Boot.Core.csproj" />
-    <ProjectReference Include="..\Net.Chdk.Providers.CameraModel.Core\Net.Chdk.Providers.CameraModel.Core.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Providers.Camera.Core\Net.Chdk.Providers.Camera.Core.csproj" />
     <ProjectReference Include="..\Net.Chdk.Providers.Crypto.Core\Net.Chdk.Providers.Crypto.Core.csproj" />
     <ProjectReference Include="..\Net.Chdk.Providers.Product.Core\Net.Chdk.Providers.Product.Core.csproj" />
     <ProjectReference Include="..\Net.Chdk.Providers.Software.Core\Net.Chdk.Providers.Software.Core.csproj" />

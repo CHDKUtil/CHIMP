@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.3</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <Description>CHIMP camera model providers</Description>
     <RootNamespace>Net.Chdk.Providers.CameraModel</RootNamespace>
     <LangVersion>8.0</LangVersion>
@@ -31,12 +31,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Net.Chdk.Adapters.Platform.Core\Net.Chdk.Adapters.Platform.Core.csproj" />
     <ProjectReference Include="..\Net.Chdk.Core\Net.Chdk.Core.csproj" />
-    <ProjectReference Include="..\Net.Chdk.Meta.Model.Camera.Eos\Net.Chdk.Meta.Model.Camera.Eos.csproj" />
-    <ProjectReference Include="..\Net.Chdk.Meta.Model.Camera.Ps\Net.Chdk.Meta.Model.Camera.Ps.csproj" />
-    <ProjectReference Include="..\Net.Chdk.Meta.Model.Camera\Net.Chdk.Meta.Model.Camera.csproj" />
     <ProjectReference Include="..\Net.Chdk.Providers.Base\Net.Chdk.Providers.Base.csproj" />
     <ProjectReference Include="..\Net.Chdk.Providers.CameraModel.Core\Net.Chdk.Providers.CameraModel.Core.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Providers.Firmware.Core\Net.Chdk.Providers.Firmware.Core.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Providers.Platform.Core\Net.Chdk.Providers.Platform.Core.csproj" />
     <ProjectReference Include="..\Net.Chdk.Providers.Product.Core\Net.Chdk.Providers.Product.Core.csproj" />
   </ItemGroup>
 

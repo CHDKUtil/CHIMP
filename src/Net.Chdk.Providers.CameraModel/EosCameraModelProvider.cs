@@ -1,35 +1,27 @@
-﻿using Microsoft.Extensions.Logging;
-using Net.Chdk.Meta.Model.Camera.Eos;
-using Net.Chdk.Model.Camera;
-using Net.Chdk.Model.Software;
+﻿using Net.Chdk.Adapters.Platform;
+using Net.Chdk.Providers.Firmware;
+using Net.Chdk.Providers.Platform;
+using System;
 
 namespace Net.Chdk.Providers.CameraModel
 {
-    sealed class EosCameraModelProvider : ProductCameraModelProvider<EosCameraData, EosCardData>
+    sealed class EosCameraModelProvider : CategoryCameraModelProvider
     {
-        public EosCameraModelProvider(string productName, ILoggerFactory loggerFactory)
-            : base(productName, loggerFactory.CreateLogger<EosCameraModelProvider>())
+        public EosCameraModelProvider(IPlatformAdapter platformAdapter, IPlatformProvider platformProvider, IFirmwareProvider firmwareProvider)
+            : base(platformAdapter, platformProvider, firmwareProvider)
         {
         }
 
-        protected override bool IsInvalid(CameraInfo cameraInfo)
-        {
-            return cameraInfo.Canon?.ModelId == null || cameraInfo.Canon?.FirmwareVersion == null;
-        }
+        protected override string CategoryName => "EOS";
 
-        public override SoftwareEncodingInfo? GetEncoding(SoftwareCameraInfo _)
-        {
-            return SoftwareEncodingInfo.Empty;
-        }
+        protected override uint GetFirmwareRevision(string revision) => 0;
 
-        public override string? GetAltButton(SoftwareCameraInfo _)
+        protected override Version? GetFirmwareVersion(string revision)
         {
-            return null;
-        }
-
-        protected override bool IsMultiPartition(EosCameraData? _)
-        {
-            return false;
+            if (revision.Length != 3)
+                return null;
+            string version = $"{revision[0]}.{revision[1]}.{revision[2]}";
+            return Version.Parse(version);
         }
     }
 }
