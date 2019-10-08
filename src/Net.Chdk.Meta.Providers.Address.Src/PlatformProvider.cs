@@ -15,12 +15,10 @@ namespace Net.Chdk.Meta.Providers.Address.Src
 
         protected override AddressPlatformData? GetPlatformData(string platformPath, string platform, string? sourcePlatform, IDictionary<string, AddressRevisionData> revisions, CameraData? camera)
         {
-            if (camera?.CleanOverlay != true)
-                return null;
-
             return new AddressPlatformData
             {
-                Id = GetId(platformPath, platform, sourcePlatform, revisions)
+                Id = GetId(platformPath, platform, sourcePlatform, revisions),
+                ClearOverlay = camera?.CleanOverlay == true
             };
         }
 
