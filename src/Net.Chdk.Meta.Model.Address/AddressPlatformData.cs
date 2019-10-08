@@ -7,5 +7,9 @@ namespace Net.Chdk.Meta.Model.Address
     {
         [JsonConverter(typeof(HexStringJsonConverter))]
         public ushort Id { get; set; }
+
+        [JsonProperty("id_address")]
+        [JsonConverter(typeof(HexStringJsonConverter))]
+        public uint IdAddress { get; set; }
     }
 }
