@@ -1,6 +1,7 @@
 {
   "m10": {
     "id": "0x32a0",
+    "id_address": "0xfff20270",
     "revisions": {
       "110d": {
         "palette_buffer_ptr": "0x13540",
@@ -21,6 +22,7 @@
   },
   "m100": {
     "id": "0x32d1",
+    "id_address": "0xe1f20270",
     "revisions": {
       "100a": {
         "palette_buffer_ptr": "0x116f4",
@@ -30,6 +32,7 @@
   },
   "m3": {
     "id": "0x3299",
+    "id_address": "0xfff20040",
     "revisions": {
       "101a": {
         "palette_buffer_ptr": "0x136c0",
@@ -43,6 +46,7 @@
   },
   "m6": {
     "id": "0x32c5",
+    "id_address": "0xe1f20270",
     "revisions": {
       "100b": {
         "palette_buffer_ptr": "0x11d4c",

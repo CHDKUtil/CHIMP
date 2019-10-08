@@ -45,6 +45,7 @@ namespace Net.Chdk.Providers.Substitute
 
             subs["platform"] = platform;
             subs["platform_id"] = GetHexString(platformData.Id);
+            subs["platform_id_address"] = GetHexString(platformData.IdAddress);
 
             if (platformData.Revisions == null)
             {

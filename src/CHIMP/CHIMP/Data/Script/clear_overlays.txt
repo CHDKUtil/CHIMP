@@ -10,7 +10,7 @@ DIM active_palette_buffer = {active_palette_buffer}
 DIM palette_to_zero = {palette_to_zero}
 
 public sub check_compat()
-    if Peek16(0xe1f20270) = {platform_id} then
+    if Peek16({platform_id_address}) = {platform_id} then
         check_compat = 1
     else
         check_compat = 0
