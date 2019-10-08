@@ -13,11 +13,11 @@ namespace Net.Chdk.Meta.Providers.Src
         {
         }
 
-        protected T? GetValue(string platformPath, string platform, string? revision)
+        protected T? GetValue(string basePath, string platform, string? revision)
         {
             T? value = default;
 
-            var filePath = GetFilePath(platformPath, platform, revision);
+            var filePath = GetFilePath(basePath, platform, revision);
             using (var reader = File.OpenText(filePath))
             {
                 string line;
@@ -28,12 +28,17 @@ namespace Net.Chdk.Meta.Providers.Src
                     {
                         line = TrimComments(line, platform, revision);
                         line = line.Substring(Prefix.Length).TrimStart();
-                        UpdateValue(ref value, line, platform);
+                        UpdateValue(ref value, line, platform, revision);
                     }
                 }
             }
 
             return value;
+        }
+
+        protected virtual void UpdateValue(ref T? value, string line, string platform, string? revision)
+        {
+            UpdateValue(ref value, line, platform);
         }
 
         protected abstract string Prefix { get; }

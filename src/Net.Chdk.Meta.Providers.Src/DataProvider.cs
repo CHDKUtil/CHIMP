@@ -10,9 +10,9 @@ namespace Net.Chdk.Meta.Providers.Src
         {
         }
 
-        public T? GetData(string platformPath, string platform, string? revision = null)
+        public T? GetData(string basePath, string platform, string? revision = null)
         {
-            return GetValue(platformPath, platform, revision);
+            return GetValue(basePath, platform, revision);
         }
 
         protected override string Prefix => string.Empty;

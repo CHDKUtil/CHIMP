@@ -11,5 +11,8 @@ namespace Net.Chdk.Meta.Model.Address
         [JsonProperty("id_address")]
         [JsonConverter(typeof(HexStringJsonConverter))]
         public uint IdAddress { get; set; }
+
+        [JsonIgnore]
+        public bool ClearOverlay { get; set; }
     }
 }
