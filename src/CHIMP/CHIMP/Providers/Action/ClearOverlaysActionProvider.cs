@@ -23,8 +23,8 @@ namespace Chimp.Providers.Action
             if (card?.Switched == true || (card?.Bootable != null && card?.Bootable != "SCRIPT"))
                 yield break;
 
-            var software = SoftwareViewModel?.SelectedItem?.Info;
-            if (software?.Product?.Name == ProductName)
+            var softwareInfo = SoftwareViewModel?.SelectedItem?.Info;
+            if (softwareInfo?.Product?.Name == ProductName)
                 yield break;
 
             var substitues = GetSubstitutes();

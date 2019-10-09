@@ -28,10 +28,10 @@ namespace Chimp.Providers.Supported
             return Resources.Download_UnsupportedModel_Text;
         }
 
-        public string[] GetItems(MatchData data, SoftwareProductInfo product, SoftwareCameraInfo camera)
+        public string[] GetItems(MatchData data, SoftwareInfo software)
         {
             return data.Platforms
-                .SelectMany(p => GetModels(p, camera?.Revision, product))
+                .SelectMany(p => GetModels(p, software))
                 .ToArray();
         }
 
@@ -42,10 +42,10 @@ namespace Chimp.Providers.Supported
                 : Resources.Download_SupportedModel_Content;
         }
 
-        private IEnumerable<string> GetModels(string platform, string revision, SoftwareProductInfo product)
+        private IEnumerable<string> GetModels(string platform, SoftwareInfo software)
         {
-            var camera = GetCamera(platform, revision);
-            var data = CameraProvider.GetCameraModels(product, camera);
+            var camera = GetCamera(platform, software.Camera?.Revision);
+            var data = CameraProvider.GetCameraModels(software.Product, camera);
             if (data?.Models != null)
                 foreach (var model in data?.Models)
                     yield return GetModel(model);

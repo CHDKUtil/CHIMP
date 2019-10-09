@@ -34,20 +34,20 @@ namespace Chimp.Downloaders
             Substitutes = substitutes;
         }
 
-        public override Task<SoftwareData> DownloadAsync(SoftwareCameraInfo camera, SoftwareModelInfo model, SoftwareInfo software, CancellationToken cancellationToken)
+        public override Task<SoftwareData> DownloadAsync(SoftwareInfo software, CancellationToken cancellationToken)
         {
-            var result = Download(camera, model);
+            var result = Download(software);
             return Task.FromResult(result);
         }
 
-        private SoftwareData Download(SoftwareCameraInfo camera, SoftwareModelInfo model)
+        private SoftwareData Download(SoftwareInfo softwareInfo)
         {
-            var software = GetSoftware(camera, model);
+            var software = GetSoftware(softwareInfo);
 
             if (!Substitutes.ContainsKey("revision"))
             {
                 var data = GetMatchData();
-                SetSupportedItems(data, software.Product, camera);
+                SetSupportedItems(data, software);
                 return null;
             }
 
@@ -103,11 +103,11 @@ namespace Chimp.Downloaders
             return dirPath;
         }
 
-        private SoftwareInfo GetSoftware(SoftwareCameraInfo camera, SoftwareModelInfo model)
+        private SoftwareInfo GetSoftware(SoftwareInfo softwareInfo)
         {
             var software = GetSoftware();
-            software.Camera = camera;
-            software.Model = model;
+            software.Camera = softwareInfo.Camera;
+            software.Model = softwareInfo.Model;
             return software;
         }
 

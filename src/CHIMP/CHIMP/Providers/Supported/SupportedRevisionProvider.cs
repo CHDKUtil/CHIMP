@@ -17,7 +17,7 @@ namespace Chimp.Providers.Supported
             return Resources.Download_UnsupportedFirmware_Text;
         }
 
-        public string[] GetItems(MatchData data, SoftwareProductInfo product, SoftwareCameraInfo camera)
+        public string[] GetItems(MatchData data, SoftwareInfo software)
         {
             return data.Revisions
                 .Select(GetRevision)

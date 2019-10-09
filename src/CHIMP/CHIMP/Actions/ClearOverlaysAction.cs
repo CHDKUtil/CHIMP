@@ -39,10 +39,13 @@ namespace Chimp.Actions
 
         public override Task<SoftwareData> PerformAsync(CancellationToken token)
         {
-            var camera = GetCamera();
-            var model = GetModel();
-            var software = SoftwareViewModel?.SelectedItem?.Info;
-            return GetDownloader().DownloadAsync(camera, model, software, token);
+            var software = new SoftwareInfo
+            {
+                Product = new SoftwareProductInfo { Name = ProductName },
+                Camera = GetCamera(),
+                Model = GetModel(),
+            };
+            return GetDownloader().DownloadAsync(software, token);
         }
 
         private IDownloader GetDownloader()

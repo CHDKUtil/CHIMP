@@ -20,10 +20,10 @@ namespace Chimp.Providers
                 .GetError(data);
         }
 
-        public string[] GetItems(MatchData data, SoftwareProductInfo product, SoftwareCameraInfo camera)
+        public string[] GetItems(MatchData data, SoftwareInfo software)
         {
             return GetProvider(data)?
-                .GetItems(data, product, camera);
+                .GetItems(data, software);
         }
 
         public string GetTitle(MatchData data)

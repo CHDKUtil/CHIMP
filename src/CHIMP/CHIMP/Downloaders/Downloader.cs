@@ -38,9 +38,9 @@ namespace Chimp.Downloaders
             MetadataService = metadataService;
         }
 
-        public override async Task<SoftwareData> DownloadAsync(SoftwareCameraInfo camera, SoftwareModelInfo model, SoftwareInfo softwareInfo, CancellationToken cancellationToken)
+        public override async Task<SoftwareData> DownloadAsync(SoftwareInfo softwareInfo, CancellationToken cancellationToken)
         {
-            var software = await GetSoftwareAsync(camera, model, softwareInfo, cancellationToken);
+            var software = await GetSoftwareAsync(softwareInfo, cancellationToken);
             if (software == null)
                 return null;
 
@@ -57,20 +57,22 @@ namespace Chimp.Downloaders
             return software;
         }
 
-        private async Task<SoftwareData> GetSoftwareAsync(SoftwareCameraInfo camera, SoftwareModelInfo model, SoftwareInfo softwareInfo, CancellationToken cancellationToken)
+        private async Task<SoftwareData> GetSoftwareAsync(SoftwareInfo softwareInfo, CancellationToken cancellationToken)
         {
             SetTitle(nameof(Resources.Download_FetchingData_Text));
 
+            var camera = softwareInfo.Camera;
             var buildName = BuildProvider.GetBuildName(softwareInfo);
             var result = await MatchProvider.GetMatchesAsync(camera, buildName, cancellationToken);
             var matches = result.Matches;
             if (matches == null)
             {
-                SetSupportedItems(result, softwareInfo?.Product, camera);
+                SetSupportedItems(result, softwareInfo);
                 return null;
             }
 
             var match = matches.Last();
+            var model = softwareInfo.Model;
             var info = SoftwareProvider.GetSoftware(match, model);
             var downloads = DownloadProvider.GetDownloads(matches, info).ToArray();
 

@@ -24,7 +24,7 @@ namespace Chimp.Downloaders
             Logger = logger;
         }
 
-        public abstract Task<SoftwareData> DownloadAsync(SoftwareCameraInfo camera, SoftwareModelInfo model, SoftwareInfo software, CancellationToken cancellationToken);
+        public abstract Task<SoftwareData> DownloadAsync(SoftwareInfo software, CancellationToken cancellationToken);
 
         protected void SetTitle(string title, LogLevel logLevel = LogLevel.Information)
         {
@@ -33,12 +33,12 @@ namespace Chimp.Downloaders
             ViewModel.FileName = string.Empty;
         }
 
-        protected void SetSupportedItems(MatchData data, SoftwareProductInfo product, SoftwareCameraInfo camera)
+        protected void SetSupportedItems(MatchData data, SoftwareInfo software)
         {
             var error = SupportedProvider.GetError(data)
                 ?? Resources.Download_UnsupportedModel_Text;
             SetTitle(error, LogLevel.Error);
-            ViewModel.SupportedItems = SupportedProvider.GetItems(data, product, camera);
+            ViewModel.SupportedItems = SupportedProvider.GetItems(data, software);
             ViewModel.SupportedTitle = SupportedProvider.GetTitle(data);
         }
     }

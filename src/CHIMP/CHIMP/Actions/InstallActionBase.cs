@@ -10,8 +10,7 @@ namespace Chimp.Actions
 {
     abstract class InstallActionBase : ActionBase
     {
-        private SoftwareCameraInfo Camera { get; }
-        private SoftwareModelInfo Model { get; }
+        private SoftwareInfo Software { get; }
         private IDownloaderProvider DownloaderProvider { get; }
         private ProductSource ProductSource { get; }
 
@@ -19,11 +18,10 @@ namespace Chimp.Actions
         private string SourceName => ProductSource.SourceName;
         private SoftwareSourceInfo Source => ProductSource.Source;
 
-        protected InstallActionBase(MainViewModel mainViewModel, IDownloaderProvider downloaderProvider, SoftwareCameraInfo camera, SoftwareModelInfo model, ProductSource productSource)
+        protected InstallActionBase(MainViewModel mainViewModel, IDownloaderProvider downloaderProvider, SoftwareInfo software, ProductSource productSource)
             : base(mainViewModel)
         {
-            Camera = camera;
-            Model = model;
+            Software = software;
             DownloaderProvider = downloaderProvider;
             ProductSource = productSource;
 
@@ -36,8 +34,7 @@ namespace Chimp.Actions
 
         public override async Task<SoftwareData> PerformAsync(CancellationToken token)
         {
-            var software = SoftwareViewModel.SelectedItem?.Info;
-            return await GetDownloader().DownloadAsync(Camera, Model, software, token);
+            return await GetDownloader().DownloadAsync(Software, token);
         }
 
         private IDownloader GetDownloader()
@@ -50,8 +47,8 @@ namespace Chimp.Actions
 
     sealed class InstallAction : InstallActionBase
     {
-        public InstallAction(MainViewModel mainViewModel, IDownloaderProvider downloaderProvider, SoftwareCameraInfo camera, SoftwareModelInfo model, ProductSource productSource)
-            : base(mainViewModel, downloaderProvider, camera, model, productSource)
+        public InstallAction(MainViewModel mainViewModel, IDownloaderProvider downloaderProvider, SoftwareInfo software, ProductSource productSource)
+            : base(mainViewModel, downloaderProvider, software, productSource)
         {
         }
 
@@ -60,8 +57,8 @@ namespace Chimp.Actions
 
     sealed class UpdateAction : InstallActionBase
     {
-        public UpdateAction(MainViewModel mainViewModel, IDownloaderProvider downloaderProvider, SoftwareCameraInfo camera, SoftwareModelInfo model, ProductSource productSource)
-            : base(mainViewModel, downloaderProvider, camera, model, productSource)
+        public UpdateAction(MainViewModel mainViewModel, IDownloaderProvider downloaderProvider, SoftwareInfo software, ProductSource productSource)
+            : base(mainViewModel, downloaderProvider, software, productSource)
         {
         }
 
