@@ -3,6 +3,7 @@ using Chimp.ViewModels;
 using Net.Chdk.Model.Category;
 using Net.Chdk.Model.Software;
 using Net.Chdk.Providers.CameraModel;
+using Net.Chdk.Providers.Firmware;
 using Net.Chdk.Providers.Software;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,14 +17,12 @@ namespace Chimp.Providers.Action
         protected ICameraModelProvider CameraProvider { get; }
         protected string CategoryName { get; }
 
-        public InstallActionProvider(MainViewModel mainViewModel, ISourceProvider sourceProvider, ICameraModelProvider cameraProvider, IServiceActivator serviceActivator)
+        protected InstallActionProvider(MainViewModel mainViewModel, ISourceProvider sourceProvider, ICameraModelProvider cameraProvider, IFirmwareProvider firmwareProvider, IServiceActivator serviceActivator)
             : base(mainViewModel, serviceActivator)
         {
             SourceProvider = sourceProvider;
             CameraProvider = cameraProvider;
-            CategoryName = CameraViewModel.Info.Canon.FirmwareRevision > 0
-                ? "PS"
-                : "EOS";
+            CategoryName = firmwareProvider.GetCategoryName(CameraViewModel?.Info);
         }
 
         public override IEnumerable<IAction> GetActions()
@@ -51,21 +50,21 @@ namespace Chimp.Providers.Action
 
         private IAction CreateAction(ProductSource productSource)
         {
-            var camera = CameraProvider.GetCameraModel(productSource.ProductName, CameraViewModel.Info, CameraViewModel.SelectedItem.Model);
-            if (camera == null)
+            var cameraModel = CameraProvider.GetCameraModel(productSource.ProductName, CameraViewModel.Info, CameraViewModel.SelectedItem.Model);
+            if (cameraModel == null)
                 return null;
-            return CreateAction(camera, productSource);
+            return CreateAction(cameraModel?.Camera, cameraModel?.Model, productSource);
         }
 
-        protected IAction CreateAction((SoftwareCameraInfo Camera, SoftwareModelInfo Model)? cameraModel, ProductSource productSource)
+        protected IAction CreateAction(SoftwareCameraInfo camera, SoftwareModelInfo model, ProductSource productSource)
         {
             var softwareInfo = SoftwareViewModel?.SelectedItem?.Info;
             var software = new SoftwareInfo
             {
                 Product = softwareInfo?.Product,
                 Source = softwareInfo?.Source,
-                Camera = cameraModel?.Camera,
-                Model = cameraModel?.Model,
+                Camera = camera,
+                Model = model,
             };
             var types = new[]
             {

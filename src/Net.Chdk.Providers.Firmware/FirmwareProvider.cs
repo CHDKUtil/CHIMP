@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Net.Chdk.Model.Camera;
+using Net.Chdk.Model.Software;
 using System;
 using System.Collections.Generic;
 
@@ -22,6 +23,18 @@ namespace Net.Chdk.Providers.Firmware
             if (canon.FirmwareVersion != null)
                 return "EOS";
             return null;
+        }
+
+        public string? GetCategoryName(SoftwareCameraInfo? camera)
+        {
+            if (camera?.Revision == null)
+                return null;
+            return camera.Revision.Length switch
+            {
+                3 => "EOS",
+                4 => "PS",
+                _ => null,
+            };
         }
 
         public string? GetFirmwareRevision(CameraInfo? cameraInfo, string? categoryName = null)

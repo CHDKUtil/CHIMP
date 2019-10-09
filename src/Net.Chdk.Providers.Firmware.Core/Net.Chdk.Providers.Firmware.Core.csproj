@@ -28,6 +28,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Net.Chdk.Model.Camera\Net.Chdk.Model.Camera.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Model.Software\Net.Chdk.Model.Software.csproj" />
   </ItemGroup>
 
 </Project>

@@ -124,15 +124,6 @@ namespace Chimp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Clear Canon Overlays.
-        /// </summary>
-        public static string Action_ClearOverlays_Text {
-            get {
-                return ResourceManager.GetString("Action_ClearOverlays_Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Eject Card.
         /// </summary>
         public static string Action_Eject_Text {
@@ -588,6 +579,15 @@ namespace Chimp.Properties {
         public static string Distro_CHDK_trunk {
             get {
                 return ResourceManager.GetString("Distro_CHDK_trunk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear Canon Overlays.
+        /// </summary>
+        public static string Distro_clear_overlays {
+            get {
+                return ResourceManager.GetString("Distro_clear_overlays", resourceCulture);
             }
         }
         

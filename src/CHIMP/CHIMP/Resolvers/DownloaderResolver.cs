@@ -27,6 +27,8 @@ namespace Chimp.Resolvers
         {
             if (productName != null && !ProductName.Equals(productName))
                 return null;
+            if (sourceName == null)
+                return GetScriptDownloader();
             return GetProvider(sourceName, source);
         }
 
@@ -111,5 +113,18 @@ namespace Chimp.Resolvers
         }
 
         #endregion
+
+        private IDownloader GetScriptDownloader()
+        {
+            var types = new[]
+            {
+                typeof(string)
+            };
+            var values = new object[]
+            {
+                ProductName
+            };
+            return ServiceActivator.Create<ScriptDownloader>(types, values);
+        }
     }
 }

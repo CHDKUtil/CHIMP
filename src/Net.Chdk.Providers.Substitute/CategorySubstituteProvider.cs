@@ -1,9 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Net.Chdk.Meta.Model.Address;
-using Net.Chdk.Model.Camera;
-using Net.Chdk.Model.CameraModel;
-using Net.Chdk.Providers.Firmware;
-using Net.Chdk.Providers.Platform;
+using Net.Chdk.Model.Software;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,30 +10,30 @@ namespace Net.Chdk.Providers.Substitute
     sealed class CategorySubstituteProvider : DataProvider<Dictionary<string, AddressPlatformData>>, ICategorySubstituteProvider
     {
         private string CategoryName { get; }
-        private IPlatformProvider PlatformProvider { get; }
-        private IFirmwareProvider FirmwareProvider { get; }
 
-        public CategorySubstituteProvider(string categoryName, IPlatformProvider platformProvider, IFirmwareProvider firmwareProvider, ILogger logger)
+        public CategorySubstituteProvider(string categoryName, ILogger logger)
             : base(logger)
         {
             CategoryName = categoryName;
-            PlatformProvider = platformProvider;
-            FirmwareProvider = firmwareProvider;
         }
 
-        public IDictionary<string, object>? GetSubstitutes(CameraInfo camera, CameraModelInfo cameraModel)
+        public IDictionary<string, object>? GetSubstitutes(SoftwareInfo software)
         {
-            var platform = GetPlatform(camera, cameraModel);
-            if (platform == null)
+            if (software.Model == null || software.Camera == null)
                 return null;
 
-            var revision = GetRevision(camera);
-            if (revision == null)
+            var name = software.Model.Name;
+            if (name == null)
+                return null;
+
+            var platform = software.Camera.Platform;
+            var revision = software.Camera.Revision;
+            if (platform == null || revision == null)
                 return null;
 
             var subs = new Dictionary<string, object>
             {
-                ["model"] = cameraModel.Names[0],
+                ["model"] = name
             };
 
             if (!Data.TryGetValue(platform, out AddressPlatformData platformData))
@@ -48,7 +45,7 @@ namespace Net.Chdk.Providers.Substitute
             subs["platform"] = platform;
             subs["platform_id"] = GetHexString(platformData.Id);
             subs["platform_id_address"] = GetHexString(platformData.IdAddress);
-            subs["model_id"] = GetHexString(camera.Canon.ModelId);
+            subs["model_id"] = GetHexString(software.Model.Id);
 
             if (platformData.Revisions == null)
             {
@@ -75,16 +72,6 @@ namespace Net.Chdk.Providers.Substitute
         protected override string GetFilePath()
         {
             return Path.Combine(Directories.Data, Directories.Category, CategoryName, "addresses.json");
-        }
-
-        private string? GetPlatform(CameraInfo camera, CameraModelInfo cameraModel)
-        {
-            return PlatformProvider.GetPlatform(camera, cameraModel, CategoryName);
-        }
-
-        private string? GetRevision(CameraInfo camera)
-        {
-            return FirmwareProvider.GetFirmwareRevision(camera, CategoryName);
         }
 
         private string GetRevisionString(string revision)

@@ -265,7 +265,6 @@
     </ApplicationDefinition>
     <Compile Include="Actions\ActionBase.cs" />
     <Compile Include="Actions\BootableAction.cs" />
-    <Compile Include="Actions\ClearOverlaysAction.cs" />
     <Compile Include="Actions\EjectAction.cs" />
     <Compile Include="Actions\InstallActionBase.cs" />
     <Compile Include="Actions\ScriptableAction.cs" />
@@ -872,6 +871,10 @@
       <Project>{FA9447A9-7995-4D07-A203-BD096011B278}</Project>
       <Name>Net.Chdk.Json</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Net.Chdk.Meta.Model.Platform\Net.Chdk.Meta.Model.Platform.csproj">
+      <Project>{EAB3A9B9-30B5-47F0-919F-EA821DDD2FE2}</Project>
+      <Name>Net.Chdk.Meta.Model.Platform</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Net.Chdk.Model.CameraModel\Net.Chdk.Model.CameraModel.csproj">
       <Project>{AD66B45E-5CF8-4E9C-8AE9-0E6D404920D7}</Project>
       <Name>Net.Chdk.Model.CameraModel</Name>
@@ -923,6 +926,10 @@
     <ProjectReference Include="..\..\Net.Chdk.Providers.Crypto\Net.Chdk.Providers.Crypto.csproj">
       <Project>{8390aafa-7e78-470e-aabd-6c061e20d485}</Project>
       <Name>Net.Chdk.Providers.Crypto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Net.Chdk.Providers.Firmware.Core\Net.Chdk.Providers.Firmware.Core.csproj">
+      <Project>{B6E3CD25-FC25-43E5-95D7-C5452B7B3653}</Project>
+      <Name>Net.Chdk.Providers.Firmware.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Net.Chdk.Providers.Firmware\Net.Chdk.Providers.Firmware.csproj">
       <Project>{e69e00f0-c132-4130-a1a5-9f26d9b56fd7}</Project>

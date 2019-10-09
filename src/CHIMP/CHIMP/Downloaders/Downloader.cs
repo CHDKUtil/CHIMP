@@ -12,8 +12,6 @@ namespace Chimp.Downloaders
 {
     sealed class Downloader : DownloaderBase
     {
-        private SoftwareViewModel SoftwareViewModel => SoftwareViewModel.Get(MainViewModel);
-
         private IBuildProvider BuildProvider { get; }
         private IMatchProvider MatchProvider { get; }
         private ISoftwareProvider SoftwareProvider { get; }
@@ -21,12 +19,11 @@ namespace Chimp.Downloaders
 
         private IDownloadService DownloadService { get; }
         private IExtractService ExtractService { get; }
-        private IMetadataService MetadataService { get; }
 
         public Downloader(MainViewModel mainViewModel, ISupportedProvider supportedProvider,
             IBuildProvider buildProvider, IMatchProvider matchProvider, ISoftwareProvider softwareProvider, IDownloadProvider downloadProvider,
             IDownloadService downloadService, IExtractService extractService, IMetadataService metadataService, ILogger<Downloader> logger)
-                : base(mainViewModel, supportedProvider, logger)
+                : base(mainViewModel, metadataService, supportedProvider, logger)
         {
             BuildProvider = buildProvider;
             MatchProvider = matchProvider;
@@ -35,29 +32,9 @@ namespace Chimp.Downloaders
 
             DownloadService = downloadService;
             ExtractService = extractService;
-            MetadataService = metadataService;
         }
 
-        public override async Task<SoftwareData> DownloadAsync(SoftwareInfo softwareInfo, CancellationToken cancellationToken)
-        {
-            var software = await GetSoftwareAsync(softwareInfo, cancellationToken);
-            if (software == null)
-                return null;
-
-            if (TrySkipUpToDate(software))
-                return null;
-
-            var paths = await DownloadExtractAsync(software, cancellationToken);
-            if (paths == null || paths.Any(p => p == null))
-                return null;
-
-            software.Info = await UpdateAsync(software.Info, paths.Last(), cancellationToken);
-            software.Paths = paths;
-
-            return software;
-        }
-
-        private async Task<SoftwareData> GetSoftwareAsync(SoftwareInfo softwareInfo, CancellationToken cancellationToken)
+        protected override async Task<SoftwareData> GetSoftwareAsync(SoftwareInfo softwareInfo, CancellationToken cancellationToken)
         {
             SetTitle(nameof(Resources.Download_FetchingData_Text));
 
@@ -83,7 +60,7 @@ namespace Chimp.Downloaders
             };
         }
 
-        private async Task<string[]> DownloadExtractAsync(SoftwareData software, CancellationToken cancellationToken)
+        protected override async Task<string[]> DownloadExtractAsync(SoftwareData software, CancellationToken cancellationToken)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), "CHIMP");
             Directory.CreateDirectory(tempPath);
@@ -184,43 +161,6 @@ namespace Chimp.Downloaders
                 //cts = null;
                 return null;
             }
-        }
-
-        private async Task<SoftwareInfo> UpdateAsync(SoftwareInfo softwareInfo, string destPath, CancellationToken cancellationToken)
-        {
-            SetTitle(nameof(Resources.Download_Updating_Text));
-            ViewModel.ProgressMaximum = 0;
-
-            try
-            {
-                return await Task.Run(() => MetadataService.Update(softwareInfo, destPath, null, cancellationToken), cancellationToken);
-            }
-            catch (TaskCanceledException ex)
-            {
-                Logger.LogWarning(0, ex, "Canceled");
-                //cts = null;
-                return null;
-            }
-        }
-
-        private bool TrySkipUpToDate(SoftwareData software)
-        {
-            var currentInfo = SoftwareViewModel.SelectedItem?.Info;
-            var version = currentInfo?.Product?.Version;
-            var language = currentInfo?.Product?.Language;
-            if (software.Info.Product.Version.Equals(version) && software.Info.Product.Language.Equals(language))
-            {
-                //For status
-                currentInfo.Build = currentInfo.Build ?? software.Info.Build;
-
-                SetTitle(nameof(Resources.Download_UpToDate_Text));
-                ViewModel.Software = currentInfo;
-                ViewModel.IsUpToDate = true;
-
-                return true;
-            }
-
-            return false;
         }
 
         private static bool TryParseSize(string sizeStr, out int size)

@@ -1,11 +1,10 @@
-﻿using Net.Chdk.Model.Camera;
-using Net.Chdk.Model.CameraModel;
+﻿using Net.Chdk.Model.Software;
 using System.Collections.Generic;
 
 namespace Net.Chdk.Providers.Substitute
 {
     interface ICategorySubstituteProvider
     {
-        IDictionary<string, object>? GetSubstitutes(CameraInfo camera, CameraModelInfo cameraModel);
+        IDictionary<string, object>? GetSubstitutes(SoftwareInfo software);
     }
 }

@@ -25,7 +25,7 @@ namespace Chimp.Actions
             DownloaderProvider = downloaderProvider;
             ProductSource = productSource;
 
-            var distroName = string.Format("Distro_{0}", SourceName);
+            var distroName = string.Format("Distro_{0}", SourceName ?? ProductName);
             var distroDisplayName = Resources.ResourceManager.GetString(distroName);
             DisplayName = string.Format(ActionFormat, distroDisplayName);
         }

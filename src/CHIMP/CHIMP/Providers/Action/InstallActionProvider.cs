@@ -2,6 +2,7 @@
 using Chimp.ViewModels;
 using Net.Chdk.Model.Software;
 using Net.Chdk.Providers.CameraModel;
+using Net.Chdk.Providers.Firmware;
 using Net.Chdk.Providers.Product;
 using Net.Chdk.Providers.Software;
 using System.Collections.Generic;
@@ -13,8 +14,8 @@ namespace Chimp.Providers.Action
     {
         private IProductProvider ProductProvider { get; }
 
-        public InstallActionProvider(MainViewModel mainViewModel, IProductProvider productProvider, ISourceProvider sourceProvider, ICameraModelProvider cameraProvider, IServiceActivator serviceActivator)
-            : base(mainViewModel, sourceProvider, cameraProvider, serviceActivator)
+        public InstallActionProvider(MainViewModel mainViewModel, IProductProvider productProvider, ISourceProvider sourceProvider, ICameraModelProvider cameraProvider, IFirmwareProvider firmwareProvider, IServiceActivator serviceActivator)
+            : base(mainViewModel, sourceProvider, cameraProvider, firmwareProvider, serviceActivator)
         {
             ProductProvider = productProvider;
         }
@@ -23,11 +24,11 @@ namespace Chimp.Providers.Action
         {
             if (product == null)
                 return base.GetActions(product);
-            var camera = CameraProvider.GetCameraModel(product.Name, CameraViewModel.Info, CameraViewModel.SelectedItem.Model);
-            if (camera == null)
+            var cameraModel = CameraProvider.GetCameraModel(product.Name, CameraViewModel.Info, CameraViewModel.SelectedItem.Model);
+            if (cameraModel == null)
                 return Enumerable.Empty<IAction>();
             return GetSources(product)
-                .Select(s => CreateAction(camera, s));
+                .Select(s => CreateAction(cameraModel?.Camera, cameraModel?.Model, s));
         }
 
         protected override IEnumerable<ProductSource> GetSources(SoftwareProductInfo product)

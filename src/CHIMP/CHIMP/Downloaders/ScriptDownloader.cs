@@ -6,6 +6,7 @@ using Net.Chdk.Generators.Script;
 using Net.Chdk.Json;
 using Net.Chdk.Model.Software;
 using Net.Chdk.Providers.Boot;
+using Net.Chdk.Providers.Substitute;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
@@ -20,58 +21,64 @@ namespace Chimp.Downloaders
         private string ProductName { get; }
         private IBootProvider BootProvider { get; }
         private IScriptGenerator ScriptGenerator { get; }
-        private IMetadataService MetadataService { get; }
-        private IDictionary<string, object> Substitutes { get; }
+        private ISubstituteProvider SubstituteProvider { get; }
 
         public ScriptDownloader(string productName, MainViewModel mainViewModel, ISupportedProvider supportedProvider, IBootProvider bootProvider, IScriptGenerator scriptGenerator, IMetadataService metadataService,
-            IDictionary<string, object> substitutes, ILogger logger)
-                : base(mainViewModel, supportedProvider, logger)
+            ISubstituteProvider substituteProvider, ILogger<ScriptDownloader> logger)
+                : base(mainViewModel, metadataService, supportedProvider, logger)
         {
             ProductName = productName;
             BootProvider = bootProvider;
             ScriptGenerator = scriptGenerator;
-            MetadataService = metadataService;
-            Substitutes = substitutes;
+            SubstituteProvider = substituteProvider;
         }
 
-        public override Task<SoftwareData> DownloadAsync(SoftwareInfo software, CancellationToken cancellationToken)
+        protected override Task<SoftwareData> GetSoftwareAsync(SoftwareInfo softwareInfo, CancellationToken _)
         {
-            var result = Download(software);
+            var result = GetSoftware(softwareInfo);
+            return Task.FromResult<SoftwareData>(result);
+        }
+
+        protected override Task<string[]> DownloadExtractAsync(SoftwareData softwareData, CancellationToken _)
+        {
+            var result = DownloadExtract(softwareData);
             return Task.FromResult(result);
         }
 
-        private SoftwareData Download(SoftwareInfo softwareInfo)
+        private SoftwareData GetSoftware(SoftwareInfo softwareInfo)
         {
-            var software = GetSoftware(softwareInfo);
-
-            if (!Substitutes.ContainsKey("revision"))
+            return new SoftwareData
             {
-                var data = GetMatchData();
+                Info = GetSoftwareInfo(softwareInfo)
+            };
+        }
+
+        private string[] DownloadExtract(SoftwareData softwareData)
+        {
+            var software = softwareData.Info;
+            var substitutes = SubstituteProvider.GetSubstitutes(software);
+            if (!substitutes.ContainsKey("revision"))
+            {
+                var data = GetMatchData(substitutes);
                 SetSupportedItems(data, software);
                 return null;
             }
 
-            var destPath = GenerateScript(software);
-            software = MetadataService.Update(software, destPath, null, default);
-
-            return new SoftwareData
-            {
-                Paths = new[] { destPath },
-                Info = software,
-            };
+            var destPath = GenerateScript(software, substitutes);
+            return new[] { destPath };
         }
 
-        private MatchData GetMatchData()
+        private MatchData GetMatchData(IDictionary<string, object> substitutes)
         {
-            if (Substitutes.TryGetValue("error", out string error))
+            if (substitutes.TryGetValue("error", out string error))
                 return new MatchData(error);
 
-            Substitutes.TryGetValue("platforms", out IEnumerable<string> platforms);
-            Substitutes.TryGetValue("revisions", out IEnumerable<string> revisions);
+            substitutes.TryGetValue("platforms", out IEnumerable<string> platforms);
+            substitutes.TryGetValue("revisions", out IEnumerable<string> revisions);
             return new MatchData(platforms, revisions, null);
         }
 
-        private string GenerateScript(SoftwareInfo software)
+        private string GenerateScript(SoftwareInfo software, IDictionary<string, object> substitutes)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), "CHIMP");
             Directory.CreateDirectory(tempPath);
@@ -97,13 +104,13 @@ namespace Chimp.Downloaders
             {
                 Directory.CreateDirectory(dirPath);
                 var filePath = Path.Combine(dirPath, BootProvider.GetFileName(CategoryName));
-                ScriptGenerator.GenerateScript(filePath, ProductName, Substitutes);
+                ScriptGenerator.GenerateScript(filePath, ProductName, substitutes);
             }
 
             return dirPath;
         }
 
-        private SoftwareInfo GetSoftware(SoftwareInfo softwareInfo)
+        private SoftwareInfo GetSoftwareInfo(SoftwareInfo softwareInfo)
         {
             var software = GetSoftware();
             software.Camera = softwareInfo.Camera;

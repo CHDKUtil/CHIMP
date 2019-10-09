@@ -690,7 +690,7 @@ To continue, click OK. To quit, click CANCEL.</value>
   <data name="Summary_AltMode_Playback_Text" xml:space="preserve">
     <value>In order to switch to Playback mode, hold the Playback button for 1 sec.</value>
   </data>
-  <data name="Action_ClearOverlays_Text" xml:space="preserve">
+  <data name="Distro_clear_overlays" xml:space="preserve">
     <value>Clear Canon Overlays</value>
   </data>
   <data name="Product_clear_overlays" xml:space="preserve">

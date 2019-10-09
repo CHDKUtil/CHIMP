@@ -1,34 +1,30 @@
 ﻿using Microsoft.Extensions.Logging;
-using Net.Chdk.Model.Camera;
-using Net.Chdk.Model.CameraModel;
+using Net.Chdk.Model.Software;
 using Net.Chdk.Providers.Firmware;
-using Net.Chdk.Providers.Platform;
 using System.Collections.Generic;
 
 namespace Net.Chdk.Providers.Substitute
 {
     sealed class SubstituteProvider : ProviderResolver<ICategorySubstituteProvider>, ISubstituteProvider
     {
-        private IPlatformProvider PlatformProvider { get; }
         private IFirmwareProvider FirmwareProvider { get; }
         private ILogger Logger { get; }
 
-        public SubstituteProvider(IPlatformProvider platformProvider, IFirmwareProvider firmwareProvider, ILoggerFactory loggerFactory)
+        public SubstituteProvider(IFirmwareProvider firmwareProvider, ILoggerFactory loggerFactory)
             : base(loggerFactory)
         {
-            PlatformProvider = platformProvider;
             FirmwareProvider = firmwareProvider;
             Logger = loggerFactory.CreateLogger<SubstituteProvider>();
         }
 
-        public IDictionary<string, object>? GetSubstitutes(CameraInfo camera, CameraModelInfo cameraModel)
+        public IDictionary<string, object>? GetSubstitutes(SoftwareInfo software)
         {
-            var categoryName = FirmwareProvider.GetCategoryName(camera);
+            var categoryName = FirmwareProvider.GetCategoryName(software.Camera);
             if (categoryName == null)
                 return null;
 
             return GetProvider(categoryName)?
-                .GetSubstitutes(camera, cameraModel);
+                .GetSubstitutes(software);
         }
 
         protected override IEnumerable<string> GetNames()
@@ -38,7 +34,7 @@ namespace Net.Chdk.Providers.Substitute
 
         protected override ICategorySubstituteProvider CreateProvider(string categoryName)
         {
-            return new CategorySubstituteProvider(categoryName, PlatformProvider, FirmwareProvider, Logger);
+            return new CategorySubstituteProvider(categoryName, Logger);
         }
     }
 }
