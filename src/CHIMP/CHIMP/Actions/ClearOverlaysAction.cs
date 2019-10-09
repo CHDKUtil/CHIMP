@@ -20,17 +20,17 @@ namespace Chimp.Actions
         private IScriptGenerator ScriptGenerator { get; }
         private IMetadataService MetadataService { get; }
 
-        private SoftwareCameraInfo Camera { get; }
+        private SoftwareInfo Software { get; }
         private IDictionary<string, object> Substitutes { get; }
         private ILogger Logger { get; }
 
-        public ClearOverlaysAction(MainViewModel mainViewModel, IBootProvider bootProvider, IScriptGenerator scriptGenerator, IMetadataService metadataService, SoftwareCameraInfo camera, IDictionary<string, object> substitutes, ILogger<ClearOverlaysAction> logger)
+        public ClearOverlaysAction(MainViewModel mainViewModel, IBootProvider bootProvider, IScriptGenerator scriptGenerator, IMetadataService metadataService, SoftwareInfo software, IDictionary<string, object> substitutes, ILogger<ClearOverlaysAction> logger)
             : base(mainViewModel)
         {
             BootProvider = bootProvider;
             ScriptGenerator = scriptGenerator;
             MetadataService = metadataService;
-            Camera = camera;
+            Software = software;
             Substitutes = substitutes;
             Logger = logger;
         }
@@ -39,8 +39,7 @@ namespace Chimp.Actions
 
         public override Task<SoftwareData> PerformAsync(CancellationToken token)
         {
-            var software = SoftwareViewModel?.SelectedItem?.Info;
-            return GetDownloader().DownloadAsync(Camera, software, token);
+            return GetDownloader().DownloadAsync(Software, token);
         }
 
         private IDownloader GetDownloader()

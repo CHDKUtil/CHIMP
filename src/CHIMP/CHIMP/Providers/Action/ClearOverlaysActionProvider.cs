@@ -27,13 +27,19 @@ namespace Chimp.Providers.Action
             if (card?.Switched == true || (card?.Bootable != null && card?.Bootable != "SCRIPT"))
                 yield break;
 
-            var software = SoftwareViewModel?.SelectedItem?.Info;
-            if (software?.Product?.Name == ProductName)
+            var softwareInfo = SoftwareViewModel?.SelectedItem?.Info;
+            if (softwareInfo?.Product?.Name == ProductName)
                 yield break;
 
             var camera = CameraProvider.GetCamera(ProductName, CameraViewModel?.Info, CameraViewModel?.SelectedItem?.Model);
             if (camera == null)
                 yield break;
+
+            var software = new SoftwareInfo
+            {
+                Product = new SoftwareProductInfo { Name = ProductName },
+                Camera = camera
+            };
 
             var substitues = GetSubstitutes();
             if (substitues == null)
@@ -41,12 +47,12 @@ namespace Chimp.Providers.Action
 
             var types = new[]
             {
-                typeof(SoftwareCameraInfo),
+                typeof(SoftwareInfo),
                 typeof(IDictionary<string, object>)
             };
             var values = new object[]
             {
-                camera,
+                software,
                 substitues
             };
             yield return ServiceActivator.Create<ClearOverlaysAction>(types, values);

@@ -59,14 +59,21 @@ namespace Chimp.Providers.Action
 
         protected IAction CreateAction(SoftwareCameraInfo camera, ProductSource productSource)
         {
+            var softwareInfo = SoftwareViewModel?.SelectedItem?.Info;
+            var software = new SoftwareInfo
+            {
+                Product = softwareInfo?.Product,
+                Source = softwareInfo?.Source,
+                Camera = camera
+            };
             var types = new[]
             {
-                typeof(SoftwareCameraInfo),
+                typeof(SoftwareInfo),
                 typeof(ProductSource)
             };
             var values = new object[]
             {
-                camera,
+                software,
                 productSource
             };
             return ServiceActivator.Create<TAction>(types, values);
