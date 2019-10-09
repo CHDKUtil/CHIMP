@@ -8,6 +8,10 @@ namespace Net.Chdk.Meta.Model.Address
         [JsonConverter(typeof(HexStringJsonConverter))]
         public ushort? Id { get; set; }
 
+        [JsonProperty("revision_str_address")]
+        [JsonConverter(typeof(HexStringJsonConverter))]
+        public uint RevisionAddress { get; set; }
+
         [JsonProperty("palette_buffer_ptr")]
         [JsonConverter(typeof(HexStringJsonConverter))]
         public uint? PaletteBufferPtr { get; set; }

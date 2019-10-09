@@ -14,6 +14,7 @@ namespace Net.Chdk.Meta.Providers.Address.Src
                 .AddSingleton<AddressProvider>()
                 .AddSingleton<PlatformProvider>()
                 .AddSingleton<CameraProvider>()
+                .AddSingleton<RevisionAddressProvider>()
                 .AddSingleton<RevisionProvider>();
         }
     }

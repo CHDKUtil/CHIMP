@@ -1,9 +1,9 @@
 ' clean rec mode palette and disabled auto-off
 ' {model}, {revision}
 '
-' @script clear_overlays-1.0.0-{platform}-{revision}-ALPHA
+' @script clear_overlays-1.0.1-{platform}-{revision}-ALPHA
 ' @author srsa_4c
-' @created 2019-09-28
+' @created 2019-10-09
 
 DIM palette_buffer_ptr = {palette_buffer_ptr}
 DIM active_palette_buffer = {active_palette_buffer}
@@ -13,6 +13,9 @@ public sub check_compat()
     if Peek16({platform_id_address}) = {platform_id} then
         check_compat = 1
     else
+        check_compat = 0
+    end if
+    if strcmp("{revision_str}", {revision_str_address}) <> 0 then
         check_compat = 0
     end if
 end sub

@@ -59,6 +59,8 @@ namespace Net.Chdk.Providers.Substitute
             }
 
             subs["revision"] = revision;
+            subs["revision_str"] = GetRevisionString(revision);
+            subs["revision_str_address"] = GetHexString(revisionData.RevisionAddress);
             subs["palette_buffer_ptr"] = GetHexString(revisionData.PaletteBufferPtr);
             subs["active_palette_buffer"] = GetHexString(revisionData.ActivePaletteBuffer);
             subs["palette_to_zero"] = revisionData.PaletteToZero;
@@ -90,6 +92,11 @@ namespace Net.Chdk.Providers.Substitute
         private string? GetRevision(CameraInfo camera)
         {
             return FirmwareProvider.GetFirmwareRevision(camera, CategoryName);
+        }
+
+        private string GetRevisionString(string revision)
+        {
+            return $"{revision[0]}.{revision[1]}{revision[2]}{char.ToUpper(revision[3])}";
         }
 
         private static string GetHexString<T>(T value)
