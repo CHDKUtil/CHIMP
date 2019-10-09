@@ -4,7 +4,7 @@
 ' @script clear_overlays-1.0.1-{platform}-{revision}-ALPHA
 ' @model {model_id} {model}
 ' @author srsa_4c
-' @created 2019-09-28
+' @created 2019-10-09
 
 DIM palette_buffer_ptr = {palette_buffer_ptr}
 DIM active_palette_buffer = {active_palette_buffer}
