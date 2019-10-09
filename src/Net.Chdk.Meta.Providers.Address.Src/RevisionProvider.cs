@@ -6,11 +6,13 @@ namespace Net.Chdk.Meta.Providers.Address.Src
 {
     sealed class RevisionProvider : RevisionProvider<AddressRevisionData, RevisionData>
     {
+        private RevisionAddressProvider RevisionAddressProvider { get; }
         private AddressProvider AddressProvider { get; }
 
-        public RevisionProvider(SourceProvider sourceProvider, DataProvider dataProvider, AddressProvider addressProvider, ILogger<RevisionProvider> logger)
+        public RevisionProvider(SourceProvider sourceProvider, DataProvider dataProvider, RevisionAddressProvider revisionAddressProvider, AddressProvider addressProvider, ILogger<RevisionProvider> logger)
             : base(sourceProvider, dataProvider, logger)
         {
+            RevisionAddressProvider = revisionAddressProvider;
             AddressProvider = addressProvider;
         }
 
@@ -20,6 +22,7 @@ namespace Net.Chdk.Meta.Providers.Address.Src
             if (id != null)
                 Logger.LogTrace("ID: {0}", id);
 
+            var revisionAddress = GetRevisionAddress(platformPath, platform, revision);
             var addresses = GetAddresses(platformPath, platform, revision);
             var paletteBufferPtr = addresses?.PaletteBufferPtr;
             if (paletteBufferPtr != null)
@@ -31,9 +34,15 @@ namespace Net.Chdk.Meta.Providers.Address.Src
             return new AddressRevisionData
             {
                 Id = id,
+                RevisionAddress = revisionAddress,
                 PaletteBufferPtr = paletteBufferPtr,
                 ActivePaletteBuffer = activePaletteBuffer
             };
+        }
+
+        private uint GetRevisionAddress(string platformPath, string platform, string revision)
+        {
+            return RevisionAddressProvider.GetRevisionAddress(platformPath, platform, revision);
         }
 
         private AddressData? GetAddresses(string platformPath, string platform, string revision)

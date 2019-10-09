@@ -1,7 +1,7 @@
 ' clean rec mode palette and disabled auto-off
 ' {model}, {revision}
 '
-' @script clear_overlays-1.0.0-{platform}-{revision}-ALPHA
+' @script clear_overlays-1.0.1-{platform}-{revision}-ALPHA
 ' @model {model_id} {model}
 ' @author srsa_4c
 ' @created 2019-09-28
@@ -14,6 +14,9 @@ public sub check_compat()
     if Peek16({platform_id_address}) = {platform_id} then
         check_compat = 1
     else
+        check_compat = 0
+    end if
+    if strcmp("{revision_str}", {revision_str_address}) <> 0 then
         check_compat = 0
     end if
 end sub

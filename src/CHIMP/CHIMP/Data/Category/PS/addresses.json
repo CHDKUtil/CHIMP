@@ -4,14 +4,17 @@
     "id_address": "0xfff20270",
     "revisions": {
       "110d": {
+        "revision_str_address": "0xfc1fb04b",
         "palette_buffer_ptr": "0x13540",
         "active_palette_buffer": "0x13538"
       },
       "110f": {
+        "revision_str_address": "0xfc1fb04b",
         "palette_buffer_ptr": "0x13540",
         "active_palette_buffer": "0x13538"
       },
       "110g": {
+        "revision_str_address": "0xfc1fb04b",
         "palette_buffer_ptr": "0x13540",
         "active_palette_buffer": "0x13538",
         "source": {
@@ -25,6 +28,7 @@
     "id_address": "0xe1f20270",
     "revisions": {
       "100a": {
+        "revision_str_address": "0xe047b5b3",
         "palette_buffer_ptr": "0x116f4",
         "active_palette_buffer": "0x116ec"
       }
@@ -35,10 +39,12 @@
     "id_address": "0xfff20040",
     "revisions": {
       "101a": {
+        "revision_str_address": "0xfc1fcea7",
         "palette_buffer_ptr": "0x136c0",
         "active_palette_buffer": "0x136b8"
       },
       "120f": {
+        "revision_str_address": "0xfc1fcf17",
         "palette_buffer_ptr": "0x136e0",
         "active_palette_buffer": "0x136d8"
       }
@@ -49,6 +55,7 @@
     "id_address": "0xe1f20270",
     "revisions": {
       "100b": {
+        "revision_str_address": "0xe0431217",
         "palette_buffer_ptr": "0x11d4c",
         "active_palette_buffer": "0x11d44"
       }
