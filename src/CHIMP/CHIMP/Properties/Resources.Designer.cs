@@ -304,7 +304,7 @@ namespace Chimp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}.{1}{2} rev {3}.{4}{5}.
+        ///   Looks up a localized string similar to {0}.{1}{2}{3}.
         /// </summary>
         public static string Camera_FirmwareVersion_Format {
             get {

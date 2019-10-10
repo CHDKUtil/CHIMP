@@ -238,7 +238,7 @@
     <value>Version Firmware:</value>
   </data>
   <data name="Camera_FirmwareVersion_Format" xml:space="preserve">
-    <value>{0}.{1}{2} rev {3}.{4}{5}</value>
+    <value>{0}.{1}{2}{3}</value>
   </data>
   <data name="_FontFamily" xml:space="preserve">
     <value>Default</value>
