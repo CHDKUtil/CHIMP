@@ -30,6 +30,9 @@ namespace Net.Chdk.Meta.Providers.Address.Src
             if (value != null)
                 throw new InvalidOperationException($"{platform}-{revision}: Duplicate revision address");
 
+            if (revision == null)
+                throw new ArgumentNullException(nameof(revision));
+
             var split = line.TrimStart("sion").TrimStart().Split(' ');
 
             var revisionStr = split[0];
@@ -41,7 +44,7 @@ namespace Net.Chdk.Meta.Providers.Address.Src
                 revisionAddress += 2;
             }
 
-            if (revisionStr.Length != 5 || revisionStr[1] != '.')
+            if (revisionStr != GetRevisionString(revision))
                 throw new InvalidOperationException($"{platform}-{revision}: Invalid revision string");
 
             value = new RevisionAddressData
@@ -63,5 +66,10 @@ namespace Net.Chdk.Meta.Providers.Address.Src
         protected override string Prefix => "//   Firmware Ver";
 
         protected override string FileName => "stubs_entry.S";
+
+        private static string GetRevisionString(string r)
+        {
+            return $"{r[0]}.{r[1]}{r[2]}{char.ToUpper(r[3])}";
+        }
     }
 }
