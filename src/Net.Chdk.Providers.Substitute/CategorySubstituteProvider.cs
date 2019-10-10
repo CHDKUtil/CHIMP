@@ -4,7 +4,6 @@ using Net.Chdk.Model.Software;
 using Net.Chdk.Providers.Firmware;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
 namespace Net.Chdk.Providers.Substitute
 {
@@ -45,7 +44,7 @@ namespace Net.Chdk.Providers.Substitute
 
             if (!Data.TryGetValue(platform, out AddressPlatformData platformData))
             {
-                subs["platforms"] = Data.Select(kvp => kvp.Key);
+                subs["platforms"] = Data.Keys;
                 return subs;
             }
 
@@ -62,7 +61,7 @@ namespace Net.Chdk.Providers.Substitute
 
             if (!platformData.Revisions.TryGetValue(revision, out AddressRevisionData revisionData))
             {
-                subs["revisions"] = platformData.Revisions.Select(kvp => kvp.Key);
+                subs["revisions"] = platformData.Revisions.Keys;
                 return subs;
             }
 

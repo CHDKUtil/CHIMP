@@ -8,6 +8,7 @@ namespace Chimp.Model
     {
         public string MatchType { get; set; }
         public string ProductType { get; set; }
+        public string DownloadType { get; set; }
         public CultureInfo Language { get; set; }
         public Uri BaseUrl { get; set; }
         public Dictionary<string, string> Builds { get; set; }

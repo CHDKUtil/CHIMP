@@ -38,7 +38,7 @@ namespace Chimp.Providers.Matches
             builds = new List<string>();
         }
 
-        public async Task<MatchData> GetMatchesAsync(SoftwareCameraInfo camera, string buildName, CancellationToken cancellationToken)
+        public async Task<MatchData> GetMatchesAsync(SoftwareInfo software, string buildName, CancellationToken cancellationToken)
         {
             var buildUri = GetBuildUri(buildName);
 
@@ -59,7 +59,7 @@ namespace Chimp.Providers.Matches
                 using (var stream = await resp.Content.ReadAsStreamAsync())
                 using (var reader = new StreamReader(stream))
                 {
-                    return await GetMatchesAsync(camera, buildName, reader);
+                    return await GetMatchesAsync(software.Camera, buildName, reader);
                 }
             }
         }

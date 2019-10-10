@@ -6,7 +6,7 @@ namespace Chimp
     interface ISupportedProvider
     {
         string GetError(MatchData data);
-        string[] GetItems(MatchData data, SoftwareInfo software);
+        string[] GetItems(MatchData data);
         string GetTitle(MatchData data);
     }
 

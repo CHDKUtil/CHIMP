@@ -275,10 +275,15 @@
     <Compile Include="Interfaces\Providers\ILicenseProvider.cs" />
     <Compile Include="Interfaces\Providers\ISupportedProvider.cs" />
     <Compile Include="Model\ActionsData.cs" />
+    <Compile Include="Model\ExtractData.cs" />
     <Compile Include="Model\MatchData.cs" />
     <Compile Include="Providers\Action\ClearOverlaysActionProvider.cs" />
+    <Compile Include="Providers\Build\ScriptBuildProvider.cs" />
     <Compile Include="Providers\DataProvider.cs" />
+    <Compile Include="Providers\Downloads\ScriptDownloadProvider.cs" />
     <Compile Include="Providers\LicenseProvider.cs" />
+    <Compile Include="Providers\Matches\ScriptMatchProvider.cs" />
+    <Compile Include="Providers\Software\ScriptSoftwareProvider.cs" />
     <Compile Include="Providers\StepProvider.cs" />
     <Compile Include="Controllers\Controller.cs" />
     <Compile Include="Controllers\CameraController.cs" />
@@ -642,6 +647,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Data\Product\400PLUS\components.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Product\clear_overlays\distros.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Data\Product\clear_overlays\software.json">

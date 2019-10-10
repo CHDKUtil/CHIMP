@@ -17,6 +17,8 @@ namespace Chimp.Providers.Software
 
         protected override Version GetVersion(Match match)
         {
+            if (match == null)
+                return null;
             var version = match.Groups["version"].Value;
             return Version.Parse(version);
         }

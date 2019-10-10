@@ -25,7 +25,7 @@ namespace Chimp.Providers.Software
 
         protected override string GetVersionPrefix(Match match)
         {
-            return match.Groups["prefix"].Value;
+            return match?.Groups["prefix"].Value;
         }
     }
 }

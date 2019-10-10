@@ -15,7 +15,7 @@ namespace Chimp.Providers.Supported
             return data.Error;
         }
 
-        public string[] GetItems(MatchData data, SoftwareInfo software)
+        public string[] GetItems(MatchData data)
         {
             return null;
         }

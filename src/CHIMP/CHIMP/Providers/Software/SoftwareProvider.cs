@@ -22,7 +22,7 @@ namespace Chimp.Providers.Software
             Language = language;
         }
 
-        public SoftwareInfo GetSoftware(Match match, SoftwareModelInfo model)
+        public SoftwareInfo GetSoftware(Match match, SoftwareInfo software)
         {
             return new SoftwareInfo
             {
@@ -30,8 +30,8 @@ namespace Chimp.Providers.Software
                 Category = GetCategory(match),
                 Source = Source,
                 Product = GetProduct(match),
-                Camera = GetCamera(match),
-                Model = model,
+                Camera = software.Camera,
+                Model = software.Model,
                 Build = GetBuild(match),
             };
         }
@@ -67,26 +67,19 @@ namespace Chimp.Providers.Software
             };
         }
 
-        private static SoftwareCameraInfo GetCamera(Match match)
-        {
-            return new SoftwareCameraInfo
-            {
-                Platform = match.Groups["platform"].Value,
-                Revision = match.Groups["revision"].Value,
-            };
-        }
-
         private static SoftwareBuildInfo GetBuild(Match match)
         {
             return new SoftwareBuildInfo
             {
-                Name = match.Groups["buildName"].Value,
-                Status = match.Groups["status"].Value.ToLowerInvariant(),
+                Name = match?.Groups["buildName"].Value,
+                Status = match?.Groups["status"].Value.ToLowerInvariant(),
             };
         }
 
         protected static DateTime? GetCreationDate(Match match)
         {
+            if (match == null)
+                return null;
             var created = match.Groups["date"].Value;
             if (created.Length == 0)
                 return null;

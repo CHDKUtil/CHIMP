@@ -5,6 +5,6 @@ namespace Chimp
 {
     interface ISoftwareProvider
     {
-        SoftwareInfo GetSoftware(Match match, SoftwareModelInfo model);
+        SoftwareInfo GetSoftware(Match match, SoftwareInfo software);
     }
 }

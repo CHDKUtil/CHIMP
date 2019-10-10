@@ -28,10 +28,10 @@ namespace Chimp.Providers.Supported
             return Resources.Download_UnsupportedModel_Text;
         }
 
-        public string[] GetItems(MatchData data, SoftwareInfo software)
+        public string[] GetItems(MatchData data)
         {
             return data.Platforms
-                .SelectMany(p => GetModels(p, software))
+                .SelectMany(p => GetModels(p, data.Software))
                 .ToArray();
         }
 

@@ -4,7 +4,7 @@ using Chimp.Model;
 
 namespace Chimp
 {
-    public interface IAction
+    interface IAction
     {
         string DisplayName { get; }
         bool IsDefault { get; }

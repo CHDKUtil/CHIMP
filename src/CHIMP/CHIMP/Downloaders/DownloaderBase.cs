@@ -3,6 +3,7 @@ using Chimp.Properties;
 using Chimp.ViewModels;
 using Microsoft.Extensions.Logging;
 using Net.Chdk.Model.Software;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,6 +15,11 @@ namespace Chimp.Downloaders
         protected ILogger Logger { get; }
 
         private MainViewModel MainViewModel { get; }
+        private IBuildProvider BuildProvider { get; }
+        private IMatchProvider MatchProvider { get; }
+        private ISoftwareProvider SoftwareProvider { get; }
+        private IDownloadProvider DownloadProvider { get; }
+
         private SoftwareViewModel SoftwareViewModel => SoftwareViewModel.Get(MainViewModel);
         
         protected DownloadViewModel ViewModel => DownloadViewModel.Get(MainViewModel);
@@ -21,9 +27,14 @@ namespace Chimp.Downloaders
         private IMetadataService MetadataService { get; }
         private ISupportedProvider SupportedProvider { get; }
 
-        protected DownloaderBase(MainViewModel mainViewModel, IMetadataService metadataService, ISupportedProvider supportedProvider, ILogger logger)
+        protected DownloaderBase(MainViewModel mainViewModel, IBuildProvider buildProvider, IMatchProvider matchProvider, ISoftwareProvider softwareProvider, IDownloadProvider downloadProvider,
+            IMetadataService metadataService, ISupportedProvider supportedProvider, ILogger logger)
         {
             MainViewModel = mainViewModel;
+            BuildProvider = buildProvider;
+            MatchProvider = matchProvider;
+            SoftwareProvider = softwareProvider;
+            DownloadProvider = downloadProvider;
             MetadataService = metadataService;
             SupportedProvider = supportedProvider;
             Logger = logger;
@@ -48,9 +59,86 @@ namespace Chimp.Downloaders
             return software;
         }
 
-        protected abstract Task<SoftwareData> GetSoftwareAsync(SoftwareInfo softwareInfo, CancellationToken cancellationToken);
+        private async Task<SoftwareData> GetSoftwareAsync(SoftwareInfo softwareInfo, CancellationToken cancellationToken)
+        {
+            SetTitle(nameof(Resources.Download_FetchingData_Text));
 
-        protected abstract Task<string[]> DownloadExtractAsync(SoftwareData software, CancellationToken cancellationToken);
+            var buildName = BuildProvider.GetBuildName(softwareInfo);
+            var result = await MatchProvider.GetMatchesAsync(softwareInfo, buildName, cancellationToken);
+            var matches = result.Matches;
+            if (matches == null)
+            {
+                SetSupportedItems(result, softwareInfo);
+                return null;
+            }
+
+            var match = matches.LastOrDefault();
+            var info = SoftwareProvider.GetSoftware(match, softwareInfo);
+
+            var software = new SoftwareData
+            {
+                Info = info,
+                Match = result
+            };
+            
+            software.Downloads = DownloadProvider.GetDownloads(software)?.ToArray();
+
+            return software;
+        }
+
+        private async Task<string[]> DownloadExtractAsync(SoftwareData software, CancellationToken cancellationToken)
+        {
+            var tempPath = Path.Combine(Path.GetTempPath(), "CHIMP");
+            Directory.CreateDirectory(tempPath);
+
+            var paths = new string[software.Downloads.Length];
+            for (var i = 0; i < software.Downloads.Length; i++)
+            {
+                var download = software.Downloads[i];
+                var path = await DownloadExtractAsync(download, tempPath, cancellationToken);
+                if (path == null)
+                    return null;
+                paths[i] = path;
+            }
+
+            return paths;
+        }
+
+        private async Task<string> DownloadExtractAsync(DownloadData download, string tempPath, CancellationToken cancellationToken)
+        {
+            var path = download.Path;
+            var targetPath = download.TargetPath ?? path;
+
+            var destPath = await DownloadExtractAsync(download, path: path, targetPath: targetPath, tempPath: tempPath, cancellationToken: cancellationToken);
+            if (destPath == null)
+                return null;
+
+            return download.RootDir != null
+                ? Path.Combine(destPath, download.RootDir)
+                : destPath;
+        }
+
+        private async Task<string> DownloadExtractAsync(DownloadData download, string path, string targetPath, string tempPath, CancellationToken cancellationToken)
+        {
+            var dirName = Path.GetFileNameWithoutExtension(targetPath);
+            var dirPath = Path.Combine(tempPath, dirName);
+
+            if (Directory.Exists(dirPath))
+            {
+                Logger.LogTrace("Skipping {0}", dirPath);
+                return dirPath;
+            }
+
+            var extract = await DownloadAsync(download, path: path, targetPath: targetPath, dirPath: dirPath, tempPath: tempPath, cancellationToken: cancellationToken);
+            if (extract == null)
+                return null;
+
+            return await ExtractAsync(extract, targetPath: targetPath, dirPath: dirPath, tempPath: tempPath, cancellationToken: cancellationToken);
+        }
+
+        protected abstract Task<ExtractData> DownloadAsync(DownloadData download, string path, string targetPath, string dirPath, string tempPath, CancellationToken cancellationToken);
+
+        protected abstract Task<string> ExtractAsync(ExtractData extract, string targetPath, string dirPath, string tempPath, CancellationToken cancellationToken);
 
         protected bool TrySkipUpToDate(SoftwareData software)
         {
@@ -98,10 +186,11 @@ namespace Chimp.Downloaders
 
         protected void SetSupportedItems(MatchData data, SoftwareInfo software)
         {
+            data.Software = SoftwareProvider.GetSoftware(null, software);
             var error = SupportedProvider.GetError(data)
                 ?? Resources.Download_UnsupportedModel_Text;
             SetTitle(error, LogLevel.Error);
-            ViewModel.SupportedItems = SupportedProvider.GetItems(data, software);
+            ViewModel.SupportedItems = SupportedProvider.GetItems(data);
             ViewModel.SupportedTitle = SupportedProvider.GetTitle(data);
         }
     }

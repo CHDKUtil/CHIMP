@@ -16,7 +16,7 @@ namespace Chimp.Providers.Downloads
         {
         }
 
-        public override IEnumerable<DownloadData> GetDownloads(Match[] matches, SoftwareInfo info)
+        protected override IEnumerable<DownloadData> GetDownloads(Match[] matches, SoftwareInfo info)
         {
             yield return GetCommonDownload(matches[0], info);
             yield return GetDownload(matches[1]);

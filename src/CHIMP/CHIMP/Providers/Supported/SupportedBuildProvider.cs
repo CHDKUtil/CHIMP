@@ -17,7 +17,7 @@ namespace Chimp.Providers.Supported
             return Resources.Download_InvalidFormat_Text;
         }
 
-        public string[] GetItems(MatchData data, SoftwareInfo software)
+        public string[] GetItems(MatchData data)
         {
             return Array.Empty<string>();
         }

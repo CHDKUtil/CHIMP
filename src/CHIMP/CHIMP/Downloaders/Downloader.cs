@@ -2,9 +2,7 @@
 using Chimp.Properties;
 using Chimp.ViewModels;
 using Microsoft.Extensions.Logging;
-using Net.Chdk.Model.Software;
 using System.IO;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -12,111 +10,26 @@ namespace Chimp.Downloaders
 {
     sealed class Downloader : DownloaderBase
     {
-        private IBuildProvider BuildProvider { get; }
-        private IMatchProvider MatchProvider { get; }
-        private ISoftwareProvider SoftwareProvider { get; }
-        private IDownloadProvider DownloadProvider { get; }
-
         private IDownloadService DownloadService { get; }
         private IExtractService ExtractService { get; }
 
         public Downloader(MainViewModel mainViewModel, ISupportedProvider supportedProvider,
             IBuildProvider buildProvider, IMatchProvider matchProvider, ISoftwareProvider softwareProvider, IDownloadProvider downloadProvider,
             IDownloadService downloadService, IExtractService extractService, IMetadataService metadataService, ILogger<Downloader> logger)
-                : base(mainViewModel, metadataService, supportedProvider, logger)
+                : base(mainViewModel, buildProvider, matchProvider, softwareProvider, downloadProvider, metadataService, supportedProvider, logger)
         {
-            BuildProvider = buildProvider;
-            MatchProvider = matchProvider;
-            SoftwareProvider = softwareProvider;
-            DownloadProvider = downloadProvider;
-
             DownloadService = downloadService;
             ExtractService = extractService;
         }
 
-        protected override async Task<SoftwareData> GetSoftwareAsync(SoftwareInfo softwareInfo, CancellationToken cancellationToken)
-        {
-            SetTitle(nameof(Resources.Download_FetchingData_Text));
-
-            var camera = softwareInfo.Camera;
-            var buildName = BuildProvider.GetBuildName(softwareInfo);
-            var result = await MatchProvider.GetMatchesAsync(camera, buildName, cancellationToken);
-            var matches = result.Matches;
-            if (matches == null)
-            {
-                SetSupportedItems(result, softwareInfo);
-                return null;
-            }
-
-            var match = matches.Last();
-            var model = softwareInfo.Model;
-            var info = SoftwareProvider.GetSoftware(match, model);
-            var downloads = DownloadProvider.GetDownloads(matches, info).ToArray();
-
-            return new SoftwareData
-            {
-                Info = info,
-                Downloads = downloads,
-            };
-        }
-
-        protected override async Task<string[]> DownloadExtractAsync(SoftwareData software, CancellationToken cancellationToken)
-        {
-            var tempPath = Path.Combine(Path.GetTempPath(), "CHIMP");
-            Directory.CreateDirectory(tempPath);
-
-            var paths = new string[software.Downloads.Length];
-            for (var i = 0; i < software.Downloads.Length; i++)
-            {
-                var download = software.Downloads[i];
-                var path = await DownloadExtractAsync(download, tempPath, cancellationToken);
-                if (path == null)
-                    return null;
-                paths[i] = path;
-            }
-            return paths;
-        }
-
-        private async Task<string> DownloadExtractAsync(DownloadData download, string tempPath, CancellationToken cancellationToken)
-        {
-            var path = download.Path;
-            var targetPath = download.TargetPath ?? path;
-
-            var destPath = await DownloadExtractAsync(download, path: path, targetPath: targetPath, tempPath: tempPath, cancellationToken: cancellationToken);
-            if (destPath == null)
-                return null;
-
-            return download.RootDir != null
-                ? Path.Combine(destPath, download.RootDir)
-                : destPath;
-        }
-
-        private async Task<string> DownloadExtractAsync(DownloadData download, string path, string targetPath, string tempPath, CancellationToken cancellationToken)
-        {
-            var dirName = Path.GetFileNameWithoutExtension(targetPath);
-            var dirPath = Path.Combine(tempPath, dirName);
-
-            if (Directory.Exists(dirPath))
-            {
-                Logger.LogTrace("Skipping {0}", dirPath);
-                return dirPath;
-            }
-
-            var filePath = await DownloadAsync(download, path: path, targetPath: targetPath, tempPath: tempPath, cancellationToken: cancellationToken);
-            if (filePath == null)
-                return null;
-
-            return await ExtractAsync(targetPath: targetPath, filePath: filePath, dirPath: dirPath, tempPath: tempPath, cancellationToken: cancellationToken);
-        }
-
-        private async Task<string> DownloadAsync(DownloadData download, string path, string targetPath, string tempPath, CancellationToken cancellationToken)
+        protected override async Task<ExtractData> DownloadAsync(DownloadData download, string path, string targetPath, string dirPath, string tempPath, CancellationToken cancellationToken)
         {
             var fileName = Path.GetFileName(targetPath);
             var filePath = Path.Combine(tempPath, fileName);
             if (File.Exists(filePath))
             {
                 Logger.LogTrace("Skipping {0}", filePath);
-                return filePath;
+                return new ExtractData(filePath);
             }
 
             SetTitle(nameof(Resources.Download_Downloading_Text));
@@ -126,11 +39,12 @@ namespace Chimp.Downloaders
 
             try
             {
-                return await DownloadService.DownloadAsync(
+                filePath = await DownloadService.DownloadAsync(
                     baseUri: download.BaseUri,
                     path: path,
                     filePath: filePath,
                     cancellationToken: cancellationToken);
+                return new ExtractData(filePath);
             }
             catch (TaskCanceledException ex)
             {
@@ -140,7 +54,7 @@ namespace Chimp.Downloaders
             }
         }
 
-        private async Task<string> ExtractAsync(string targetPath, string filePath, string dirPath, string tempPath, CancellationToken cancellationToken)
+        protected override async Task<string> ExtractAsync(ExtractData extract, string targetPath, string dirPath, string tempPath, CancellationToken cancellationToken)
         {
             SetTitle(nameof(Resources.Download_Extracting_Text));
             ViewModel.ProgressMaximum = 0;
@@ -149,7 +63,7 @@ namespace Chimp.Downloaders
             {
                 return await Task.Run(() => ExtractService.Extract(
                     path: targetPath,
-                    filePath: filePath,
+                    filePath: extract.FilePath,
                     dirPath: dirPath,
                     tempPath: tempPath,
                     cancellationToken: cancellationToken),

@@ -65,7 +65,7 @@ namespace Chimp.Providers.Action
 
         private ProductSource GetProductSource()
         {
-            return new ProductSource(ProductName, null, null);
+            return new ProductSource(ProductName, ProductName, new SoftwareSourceInfo { Name = ProductName });
         }
 
         private SoftwareCameraInfo GetCamera()

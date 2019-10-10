@@ -7,6 +7,6 @@ namespace Chimp
 {
     interface IMatchProvider
     {
-        Task<MatchData> GetMatchesAsync(SoftwareCameraInfo camera, string buildName, CancellationToken cancellationToken);
+        Task<MatchData> GetMatchesAsync(SoftwareInfo software, string buildName, CancellationToken cancellationToken);
     }
 }
