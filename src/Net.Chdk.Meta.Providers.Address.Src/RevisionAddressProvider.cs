@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Net.Chdk.Meta.Providers.Src;
+using Net.Chdk.Providers.Firmware;
 using System;
 using System.Globalization;
 
@@ -12,9 +13,14 @@ namespace Net.Chdk.Meta.Providers.Address.Src
 
     sealed class RevisionAddressProvider : ParsingProvider<RevisionAddressData>
     {
-        public RevisionAddressProvider(ILogger<RevisionAddressProvider> logger)
+        private const string CategoryName = "PS";
+
+        private IFirmwareProvider FirmwareProvider { get; }
+
+        public RevisionAddressProvider(IFirmwareProvider firmwareProvider, ILogger<RevisionAddressProvider> logger)
             : base(logger)
         {
+            FirmwareProvider = firmwareProvider;
         }
 
         public uint GetRevisionAddress(string platformPath, string platform, string? revision)
@@ -67,9 +73,9 @@ namespace Net.Chdk.Meta.Providers.Address.Src
 
         protected override string FileName => "stubs_entry.S";
 
-        private static string GetRevisionString(string r)
+        private string? GetRevisionString(string revision)
         {
-            return $"{r[0]}.{r[1]}{r[2]}{char.ToUpper(r[3])}";
+            return FirmwareProvider.GetRevisionString(revision, CategoryName);
         }
     }
 }

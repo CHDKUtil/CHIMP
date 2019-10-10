@@ -8,5 +8,6 @@ namespace Net.Chdk.Providers.Firmware
         string? GetCategoryName(CameraInfo? cameraInfo);
         string? GetCategoryName(SoftwareCameraInfo? camera);
         string? GetFirmwareRevision(CameraInfo? cameraInfo, string? categoryName = null);
+        string? GetRevisionString(string revision, string categoryName);
     }
 }

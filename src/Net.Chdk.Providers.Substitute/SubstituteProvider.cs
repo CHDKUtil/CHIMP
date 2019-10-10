@@ -34,7 +34,7 @@ namespace Net.Chdk.Providers.Substitute
 
         protected override ICategorySubstituteProvider CreateProvider(string categoryName)
         {
-            return new CategorySubstituteProvider(categoryName, Logger);
+            return new CategorySubstituteProvider(FirmwareProvider, categoryName, Logger);
         }
     }
 }

@@ -44,6 +44,12 @@ namespace Net.Chdk.Providers.Firmware
                 .GetFirmwareRevision(cameraInfo);
         }
 
+        public string? GetRevisionString(string revision, string categoryName)
+        {
+            return GetProvider(categoryName)?
+                .GetRevisionString(revision);
+        }
+
         protected override IEnumerable<string> GetNames()
         {
             return new[] { "EOS", "PS" };
