@@ -11,5 +11,12 @@ namespace Net.Chdk.Providers.Firmware
                 return null;
             return $"{version.Major}{version.Minor}{version.Build}";
         }
+
+        public string? GetRevisionString(string revision)
+        {
+            if (revision?.Length != 3)
+                return null;
+            return $"{revision[0]}.{revision[1]}.{revision[2]}";
+        }
     }
 }

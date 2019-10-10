@@ -32,6 +32,10 @@ namespace Net.Chdk.Providers.Substitute
             if (revision == null)
                 return null;
 
+            var revisionStr = GetRevisionString(revision);
+            if (revisionStr == null)
+                return null;
+
             var subs = new Dictionary<string, object>
             {
                 ["model"] = cameraModel.Names[0],
@@ -59,7 +63,7 @@ namespace Net.Chdk.Providers.Substitute
             }
 
             subs["revision"] = revision;
-            subs["revision_str"] = GetRevisionString(revision);
+            subs["revision_str"] = revisionStr;
             subs["revision_str_address"] = GetHexString(revisionData.RevisionAddress);
             subs["palette_buffer_ptr"] = GetHexString(revisionData.PaletteBufferPtr);
             subs["active_palette_buffer"] = GetHexString(revisionData.ActivePaletteBuffer);
@@ -94,9 +98,9 @@ namespace Net.Chdk.Providers.Substitute
             return FirmwareProvider.GetFirmwareRevision(camera, CategoryName);
         }
 
-        private string GetRevisionString(string revision)
+        private string? GetRevisionString(string revision)
         {
-            return $"{revision[0]}.{revision[1]}{revision[2]}{char.ToUpper(revision[3])}";
+            return FirmwareProvider.GetRevisionString(revision, CategoryName);
         }
 
         private static string GetHexString<T>(T value)

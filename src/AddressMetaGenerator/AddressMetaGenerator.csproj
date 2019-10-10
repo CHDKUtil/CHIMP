@@ -39,6 +39,7 @@
     <ProjectReference Include="..\Net.Chdk.Meta.Providers.Address\Net.Chdk.Meta.Providers.Address.csproj" />
     <ProjectReference Include="..\Net.Chdk.Meta.Writers.Address.Json\Net.Chdk.Meta.Writers.Address.Json.csproj" />
     <ProjectReference Include="..\Net.Chdk.Meta.Writers.Address\Net.Chdk.Meta.Writers.Address.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Providers.Firmware\Net.Chdk.Providers.Firmware.csproj" />
   </ItemGroup>
   
 </Project>

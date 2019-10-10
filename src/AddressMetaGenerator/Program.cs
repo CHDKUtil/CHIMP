@@ -6,6 +6,7 @@ using Net.Chdk.Meta.Providers.Address.Json;
 using Net.Chdk.Meta.Providers.Address.Src;
 using Net.Chdk.Meta.Writers.Address;
 using Net.Chdk.Meta.Writers.Address.Json;
+using Net.Chdk.Providers.Firmware;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,8 @@ namespace AddressMetaGenerator
 
             var serviceProvider = new ServiceCollection()
                 .AddLogging(cfg => cfg.AddConsole())
+
+                .AddFirmwareProvider()
 
                 .AddAddressTreeProvider()
                 .AddJsonAddressTreeProvider()
