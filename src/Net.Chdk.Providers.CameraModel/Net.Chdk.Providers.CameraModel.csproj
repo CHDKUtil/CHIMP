@@ -37,7 +37,6 @@
     <ProjectReference Include="..\Net.Chdk.Providers.CameraModel.Core\Net.Chdk.Providers.CameraModel.Core.csproj" />
     <ProjectReference Include="..\Net.Chdk.Providers.Firmware.Core\Net.Chdk.Providers.Firmware.Core.csproj" />
     <ProjectReference Include="..\Net.Chdk.Providers.Platform.Core\Net.Chdk.Providers.Platform.Core.csproj" />
-    <ProjectReference Include="..\Net.Chdk.Providers.Product.Core\Net.Chdk.Providers.Product.Core.csproj" />
   </ItemGroup>
 
 </Project>

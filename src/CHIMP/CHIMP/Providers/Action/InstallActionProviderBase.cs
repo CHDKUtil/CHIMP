@@ -50,7 +50,7 @@ namespace Chimp.Providers.Action
 
         private IAction CreateAction(ProductSource productSource)
         {
-            var cameraModel = CameraProvider.GetCameraModel(productSource.ProductName, CameraViewModel.Info, CameraViewModel.SelectedItem.Model);
+            var cameraModel = CameraProvider.GetCameraModel(CameraViewModel.Info, CameraViewModel.SelectedItem.Model);
             if (cameraModel == null)
                 return null;
             return CreateAction(cameraModel?.Camera, cameraModel?.Model, productSource);

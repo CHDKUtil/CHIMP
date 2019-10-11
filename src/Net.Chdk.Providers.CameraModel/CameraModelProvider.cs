@@ -5,7 +5,6 @@ using Net.Chdk.Model.CameraModel;
 using Net.Chdk.Model.Software;
 using Net.Chdk.Providers.Firmware;
 using Net.Chdk.Providers.Platform;
-using Net.Chdk.Providers.Product;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,15 +13,13 @@ namespace Net.Chdk.Providers.CameraModel
 {
     sealed class CameraModelProvider : ProviderResolver<ICategoryCameraModelProvider>, ICameraModelProvider
     {
-        private IProductProvider ProductProvider { get; }
         private IPlatformAdapter PlatformAdapter { get; }
         private IPlatformProvider PlatformProvider { get; }
         private IFirmwareProvider FirmwareProvider { get; }
 
-        public CameraModelProvider(IProductProvider productProvider, IPlatformAdapter platformAdapter, IPlatformProvider platformProvider, IFirmwareProvider firmwareProvider, ILoggerFactory loggerFactory)
+        public CameraModelProvider(IPlatformAdapter platformAdapter, IPlatformProvider platformProvider, IFirmwareProvider firmwareProvider, ILoggerFactory loggerFactory)
             : base(loggerFactory)
         {
-            ProductProvider = productProvider;
             PlatformAdapter = platformAdapter;
             PlatformProvider = platformProvider;
             FirmwareProvider = firmwareProvider;
@@ -49,11 +46,11 @@ namespace Net.Chdk.Providers.CameraModel
                 .GetCameraModels(cameraInfo);
         }
 
-        public (SoftwareCameraInfo, SoftwareModelInfo)? GetCameraModel(string productName, CameraInfo cameraInfo, CameraModelInfo cameraModelInfo)
+        public (SoftwareCameraInfo, SoftwareModelInfo)? GetCameraModel(CameraInfo cameraInfo, CameraModelInfo cameraModelInfo)
         {
-            var categoryName = ProductProvider.GetCategoryName(productName);
-            return GetProvider(categoryName)?
-                .GetCameraModel(cameraInfo, cameraModelInfo);
+            return Providers.Values
+                .Select(p => p.GetCameraModel(cameraInfo, cameraModelInfo))
+                .FirstOrDefault(r => r != null);
         }
 
         protected override IEnumerable<string> GetNames()
