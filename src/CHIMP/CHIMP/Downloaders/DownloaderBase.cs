@@ -63,7 +63,7 @@ namespace Chimp.Downloaders
                 case 3:
                     return $"{value[0]}.{value[1]}.{value[2]}";
                 case 4:
-                    return string.Format(Resources.Camera_FirmwareVersion_Format, value[0], value[1], value[2], (char)(value[3] - 0x20));
+                    return $"{value[0]}.{value[1]}{value[2]}{(char)(value[3] - 0x20)}";
                 default:
                     return null;
             }
