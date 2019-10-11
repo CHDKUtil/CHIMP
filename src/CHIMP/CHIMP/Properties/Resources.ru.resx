@@ -376,9 +376,6 @@
   <data name="Camera_FirmwareVersion_Content" xml:space="preserve">
     <value>Версия прошивки</value>
   </data>
-  <data name="Camera_FirmwareVersion_Format" xml:space="preserve">
-    <value>{0}.{1}{2}{3}</value>
-  </data>
   <data name="Camera_Make_Content" xml:space="preserve">
     <value>Производитель</value>
   </data>
