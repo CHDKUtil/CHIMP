@@ -26,7 +26,15 @@ namespace Net.Chdk.Providers.CameraModel
 
         public (SoftwareCameraInfo, SoftwareModelInfo)? GetCameraModel(CameraInfo camera, CameraModelInfo cameraModel)
         {
-            return (GetCamera(camera, cameraModel), GetCameraModel(camera));
+            var cameraInfo = GetCamera(camera, cameraModel);
+            if (cameraInfo == null)
+                return null;
+
+            var modelInfo = GetModel(camera, cameraModel);
+            if (modelInfo == null)
+                return null;
+
+            return (cameraInfo, modelInfo);
         }
 
         public (CameraInfo, CameraModelInfo[])? GetCameraModels(SoftwareCameraInfo? cameraInfo, SoftwareModelInfo? cameraModel)
@@ -94,21 +102,32 @@ namespace Net.Chdk.Providers.CameraModel
             };
         }
 
-        private SoftwareCameraInfo GetCamera(CameraInfo camera, CameraModelInfo cameraModel)
+        private SoftwareCameraInfo? GetCamera(CameraInfo camera, CameraModelInfo cameraModel)
         {
+            var platform = GetPlatform(camera, cameraModel);
+            if (platform == null)
+                return null;
+
+            var revision = GetRevision(camera);
+            if (revision == null)
+                return null;
+
             return new SoftwareCameraInfo
             {
-                Platform = GetPlatform(camera, cameraModel),
-                Revision = GetRevision(camera),
+                Platform = platform,
+                Revision = revision,
             };
         }
 
-        private static SoftwareModelInfo GetCameraModel(CameraInfo camera)
+        private static SoftwareModelInfo? GetModel(CameraInfo camera, CameraModelInfo cameraModel)
         {
+            if (camera.Canon.ModelId == 0)
+                return null;
+
             return new SoftwareModelInfo
             {
                 Id = camera.Canon.ModelId,
-                Name = camera.Base.Model
+                Name = GetName(camera, cameraModel)
             };
         }
 
@@ -120,6 +139,14 @@ namespace Net.Chdk.Providers.CameraModel
         private string? GetRevision(CameraInfo camera)
         {
             return FirmwareProvider.GetFirmwareRevision(camera, CategoryName);
+        }
+
+        // For N / N Facebook
+        private static string GetName(CameraInfo camera, CameraModelInfo cameraModel)
+        {
+            return cameraModel.Names.Length == 1
+                ? cameraModel.Names[0]
+                : camera.Base.Model;
         }
 
         private PlatformData? GetPlatform(string platform)
