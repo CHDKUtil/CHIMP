@@ -31,6 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Net.Chdk.Adapters.Platform.Core\Net.Chdk.Adapters.Platform.Core.csproj" />
     <ProjectReference Include="..\Net.Chdk.Core\Net.Chdk.Core.csproj" />
     <ProjectReference Include="..\Net.Chdk.Meta.Providers.Address.Core\Net.Chdk.Meta.Providers.Address.Core.csproj" />
     <ProjectReference Include="..\Net.Chdk.Meta.Providers.Src\Net.Chdk.Meta.Providers.Src.csproj" />

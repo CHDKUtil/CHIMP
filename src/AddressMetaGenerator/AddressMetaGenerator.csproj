@@ -33,6 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Net.Chdk.Adapters.Platform\Net.Chdk.Adapters.Platform.csproj" />
     <ProjectReference Include="..\Net.Chdk.Meta.Model.Address\Net.Chdk.Meta.Model.Address.csproj" />
     <ProjectReference Include="..\Net.Chdk.Meta.Providers.Address.Json\Net.Chdk.Meta.Providers.Address.Json.csproj" />
     <ProjectReference Include="..\Net.Chdk.Meta.Providers.Address.Src\Net.Chdk.Meta.Providers.Address.Src.csproj" />

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Net.Chdk.Adapters.Platform;
 using Net.Chdk.Meta.Model.Address;
 using Net.Chdk.Meta.Providers.Address;
 using Net.Chdk.Meta.Providers.Address.Json;
@@ -29,6 +30,9 @@ namespace AddressMetaGenerator
                 .AddLogging(cfg => cfg.AddConsole())
 
                 .AddFirmwareProvider()
+
+                .AddPlatformAdapter()
+                .AddChdkPlatformAdapter()
 
                 .AddAddressTreeProvider()
                 .AddJsonAddressTreeProvider()
