@@ -12,7 +12,7 @@ namespace Net.Chdk.Meta.Providers.Src
 
         protected sealed override string FileName => "makefile.inc";
 
-        protected sealed override string TrimComments(string line, string platform, string? revision)
+        protected override string TrimComments(string line, string platform, string? revision)
         {
             var index = line.IndexOf('#');
             if (index >= 0)

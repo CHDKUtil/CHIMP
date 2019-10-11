@@ -3,6 +3,7 @@ using Net.Chdk.Meta.Model.Address;
 using Net.Chdk.Meta.Providers.Src;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Net.Chdk.Meta.Providers.Address.Src
 {
@@ -15,9 +16,11 @@ namespace Net.Chdk.Meta.Providers.Address.Src
 
         protected override AddressPlatformData? GetPlatformData(string platformPath, string platform, string? sourcePlatform, IDictionary<string, AddressRevisionData> revisions, CameraData? camera)
         {
+            var data = GetData(platformPath, sourcePlatform, platform);
             return new AddressPlatformData
             {
-                Id = GetId(platformPath, platform, sourcePlatform, revisions),
+                Id = GetId(data, revisions, platform),
+                IdAddress = GetAddress(data, revisions, platform),
                 ClearOverlay = camera?.CleanOverlay == true
             };
         }
@@ -27,12 +30,28 @@ namespace Net.Chdk.Meta.Providers.Address.Src
             return kvp.Value.Id;
         }
 
-        private ushort GetId(string platformPath, string platform, string? sourcePlatform, IDictionary<string, AddressRevisionData> revisions)
+        private ushort GetId(RevisionData? data, IDictionary<string, AddressRevisionData> revisions, string platform)
         {
-            var data = GetData(platformPath, sourcePlatform, platform);
             return data?.Id
                 ?? GetRevisionValue(revisions, platform)
                 ?? throw new InvalidOperationException($"{platform}: Missing ID");
+        }
+
+        private uint GetAddress(RevisionData? data, IDictionary<string, AddressRevisionData> revisions, string platform)
+        {
+            return data?.Address
+                ?? GetRevisionAddress(revisions, platform)
+                ?? throw new InvalidOperationException($"{platform}: Missing ID address");
+        }
+
+        private uint? GetRevisionAddress(IDictionary<string, AddressRevisionData> revisions, string platform)
+        {
+            var value = revisions
+                .Select(kvp => kvp.Value.IdAddress)
+                .FirstOrDefault(v => v != null);
+            if (revisions.Any(kvp => kvp.Value.IdAddress?.Equals(value) == false))
+                throw new InvalidOperationException($"{platform}: Mismatching ID address");
+            return value;
         }
     }
 }
