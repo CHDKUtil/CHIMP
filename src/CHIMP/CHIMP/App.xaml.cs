@@ -32,6 +32,7 @@ using Net.Chdk.Providers.Product;
 using Net.Chdk.Providers.Software;
 using Net.Chdk.Providers.Software.Chdk;
 using Net.Chdk.Providers.Software.Ml;
+using Net.Chdk.Providers.Software.Script;
 using Net.Chdk.Providers.Software.Sdm;
 using Net.Chdk.Providers.Substitute;
 using Net.Chdk.Validators.Software;
@@ -194,6 +195,7 @@ namespace Chimp
                 .AddChdkSourceProvider()
                 .AddSdmSourceProvider()
                 .AddMlSourceProvider()
+                .AddClearOverlaysSourceProvider()
                 .AddSoftwareHashProvider()
                 .AddFirmwareProvider()
                 .AddPlatformProvider()
