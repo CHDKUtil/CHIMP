@@ -21,7 +21,18 @@
         <TextBlock Text="{Binding [Camera].Info.Base.Make}" />
 
         <Label Content="{x:Static properties:Resources.Camera_Model_Content}" Grid.Row="1" />
-        <TextBlock Text="{Binding [Camera].Info.Base.Model}" Grid.Row="1" />
+        <TextBlock Grid.Row="1">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource InfoTextBlock}">
+                    <Setter Property="Text" Value="{Binding [Camera].Info.Base.Model}" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding [Camera].SelectedItem.Model.Names.Length}" Value="1">
+                            <Setter Property="Text" Value="{Binding [Camera].SelectedItem.Model.Names[0]}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
 
         <Label Content="{x:Static properties:Resources.Camera_FirmwareVersion_Content}" Grid.Row="2" />
         <TextBlock Text="{Binding [Camera].Info.Canon.FirmwareRevision, Converter={StaticResource FirmwareVersionConverter}}" Grid.Row="2">

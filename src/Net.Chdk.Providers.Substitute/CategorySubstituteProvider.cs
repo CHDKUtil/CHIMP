@@ -37,12 +37,16 @@ namespace Net.Chdk.Providers.Substitute
             if (revisionStr == null)
                 return null;
 
+            var name = GetModelName(camera, cameraModel);
+            if (name == null)
+                return null;
+
             if (!Data.TryGetValue(platform, out AddressPlatformData platformData))
                 return null;
 
             var subs = new Dictionary<string, object>
             {
-                ["model"] = cameraModel.Names[0],
+                ["model"] = name,
                 ["platform"] = platform,
                 ["platform_id"] = GetHexString(platformData.Id),
                 ["platform_id_address"] = GetHexString(platformData.IdAddress),
@@ -103,6 +107,11 @@ namespace Net.Chdk.Providers.Substitute
         private string? GetRevisionString(string revision)
         {
             return FirmwareProvider.GetRevisionString(revision, CategoryName);
+        }
+
+        private string? GetModelName(CameraInfo camera, CameraModelInfo cameraModel)
+        {
+            return FirmwareProvider.GetModelName(camera, cameraModel);
         }
 
         private static string GetHexString<T>(T value)

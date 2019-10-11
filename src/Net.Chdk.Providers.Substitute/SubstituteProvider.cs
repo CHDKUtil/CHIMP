@@ -35,7 +35,7 @@ namespace Net.Chdk.Providers.Substitute
 
         private IDictionary<string, object>? GetDefaultSubstitutes(CameraInfo camera, CameraModelInfo cameraModel)
         {
-            var name = cameraModel.Names[0];
+            var name = GetModelName(camera, cameraModel);
             if (name == null)
                 return null;
 
@@ -44,6 +44,11 @@ namespace Net.Chdk.Providers.Substitute
                 ["model"] = name,
                 ["platforms"] = GetSupportedPlatforms()
             };
+        }
+
+        private string? GetModelName(CameraInfo camera, CameraModelInfo cameraModel)
+        {
+            return FirmwareProvider.GetModelName(camera, cameraModel);
         }
 
         private IEnumerable<string> GetSupportedPlatforms()

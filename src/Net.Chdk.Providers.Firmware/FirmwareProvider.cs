@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Net.Chdk.Model.Camera;
+using Net.Chdk.Model.CameraModel;
 using System;
 using System.Collections.Generic;
 
@@ -35,6 +36,13 @@ namespace Net.Chdk.Providers.Firmware
         {
             return GetProvider(categoryName)?
                 .GetRevisionString(revision);
+        }
+
+        public string? GetModelName(CameraInfo camera, CameraModelInfo cameraModel)
+        {
+            return cameraModel.Names.Length == 1
+                ? cameraModel.Names[0]
+                : camera.Base.Model;
         }
 
         protected override IEnumerable<string> GetNames()
