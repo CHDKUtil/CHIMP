@@ -45,7 +45,7 @@ namespace Chimp.Providers.Action
             var softwareInfo = SoftwareViewModel?.SelectedItem?.Info;
             var software = new SoftwareInfo
             {
-                Product = softwareInfo?.Product,
+                Product = GetProduct(),
                 Source = softwareInfo?.Source,
                 Camera = camera,
                 Model = model,
@@ -66,6 +66,11 @@ namespace Chimp.Providers.Action
         private ProductSource GetProductSource()
         {
             return new ProductSource(ProductName, ProductName, new SoftwareSourceInfo { Name = ProductName });
+        }
+
+        private SoftwareProductInfo GetProduct()
+        {
+            return new SoftwareProductInfo { Name = ProductName };
         }
 
         private SoftwareCameraInfo GetCamera()

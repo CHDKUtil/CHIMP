@@ -4,6 +4,7 @@ using Net.Chdk.Model.Software;
 using Net.Chdk.Providers.Firmware;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Net.Chdk.Providers.Substitute
 {
@@ -37,7 +38,7 @@ namespace Net.Chdk.Providers.Substitute
             if (revisionStr == null)
                 return null;
 
-            if (!Data.TryGetValue(platform, out AddressPlatformData platformData))
+            if (!Data.TryGetValue(platform, out AddressPlatformData platformData) || !IsValid(software, platformData))
                 return null;
 
             var subs = new Dictionary<string, object>
@@ -74,12 +75,21 @@ namespace Net.Chdk.Providers.Substitute
 
         public IEnumerable<string> GetSupportedPlatforms(SoftwareInfo software)
         {
-            return Data.Keys;
+            return Data.Where(kvp => IsValid(software, kvp.Value)).Select(kvp => kvp.Key);
         }
 
         protected override string GetFilePath()
         {
             return Path.Combine(Directories.Data, Directories.Category, CategoryName, "addresses.json");
+        }
+
+        private bool IsValid(SoftwareInfo software, AddressPlatformData platformData)
+        {
+            return software.Product?.Name switch
+            {
+                "clear_overlays" => platformData.ClearOverlay,
+                _ => true,
+            };
         }
 
         private string? GetRevisionString(string revision)
