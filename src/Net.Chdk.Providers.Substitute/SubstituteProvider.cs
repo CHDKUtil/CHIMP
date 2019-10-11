@@ -4,6 +4,7 @@ using Net.Chdk.Model.Camera;
 using Net.Chdk.Model.CameraModel;
 using Net.Chdk.Providers.Firmware;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Net.Chdk.Providers.Substitute
 {
@@ -28,7 +29,27 @@ namespace Net.Chdk.Providers.Substitute
                 return null;
 
             return GetProvider(categoryName)?
-                .GetSubstitutes(camera, cameraModel);
+                .GetSubstitutes(camera, cameraModel)
+                ?? GetDefaultSubstitutes(camera, cameraModel);
+        }
+
+        private IDictionary<string, object>? GetDefaultSubstitutes(CameraInfo camera, CameraModelInfo cameraModel)
+        {
+            var name = cameraModel.Names[0];
+            if (name == null)
+                return null;
+
+            return new Dictionary<string, object>
+            {
+                ["model"] = name,
+                ["platforms"] = GetSupportedPlatforms()
+            };
+        }
+
+        private IEnumerable<string> GetSupportedPlatforms()
+        {
+            return Providers.Values
+                .SelectMany(p => p.GetSupportedPlatforms());
         }
 
         protected override IEnumerable<string> GetNames()

@@ -37,21 +37,17 @@ namespace Net.Chdk.Providers.Substitute
             if (revisionStr == null)
                 return null;
 
+            if (!Data.TryGetValue(platform, out AddressPlatformData platformData))
+                return null;
+
             var subs = new Dictionary<string, object>
             {
                 ["model"] = cameraModel.Names[0],
+                ["platform"] = platform,
+                ["platform_id"] = GetHexString(platformData.Id),
+                ["platform_id_address"] = GetHexString(platformData.IdAddress),
+                ["clear_overlays"] = platformData.ClearOverlay
             };
-
-            if (!Data.TryGetValue(platform, out AddressPlatformData platformData))
-            {
-                subs["platforms"] = Data.Keys;
-                return subs;
-            }
-
-            subs["platform"] = platform;
-            subs["platform_id"] = GetHexString(platformData.Id);
-            subs["platform_id_address"] = GetHexString(platformData.IdAddress);
-            subs["clear_overlays"] = platformData.ClearOverlay;
 
             if (platformData.Revisions == null)
             {
@@ -73,6 +69,11 @@ namespace Net.Chdk.Providers.Substitute
             subs["palette_to_zero"] = revisionData.PaletteToZero;
 
             return subs;
+        }
+
+        public IEnumerable<string> GetSupportedPlatforms()
+        {
+            return Data.Keys;
         }
 
         protected override string GetFilePath()
