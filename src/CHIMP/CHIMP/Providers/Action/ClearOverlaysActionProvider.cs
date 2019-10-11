@@ -1,8 +1,7 @@
 ﻿using Chimp.Actions;
 using Chimp.ViewModels;
 using Net.Chdk.Model.Software;
-using Net.Chdk.Providers.Firmware;
-using Net.Chdk.Providers.Platform;
+using Net.Chdk.Providers.CameraModel;
 using Net.Chdk.Providers.Software;
 using System.Collections.Generic;
 
@@ -12,14 +11,12 @@ namespace Chimp.Providers.Action
     {
         private const string ProductName = "clear_overlays";
 
-        private IPlatformProvider PlatformProvider { get; }
-        private IFirmwareProvider FirmwareProvider { get; }
+        private ICameraModelProvider CameraProvider { get; }
 
-        public ClearOverlaysActionProvider(MainViewModel mainViewModel, IPlatformProvider platformProvider, IFirmwareProvider firmwareProvider, IServiceActivator serviceActivator)
+        public ClearOverlaysActionProvider(MainViewModel mainViewModel, ICameraModelProvider cameraProvider, IServiceActivator serviceActivator)
             : base(mainViewModel, serviceActivator)
         {
-            PlatformProvider = platformProvider;
-            FirmwareProvider = firmwareProvider;
+            CameraProvider = cameraProvider;
         }
 
         public override IEnumerable<IAction> GetActions()
@@ -28,8 +25,11 @@ namespace Chimp.Providers.Action
             if (card?.Switched == true || (card?.Bootable != null && card?.Bootable != "SCRIPT"))
                 yield break;
 
-            var camera = GetCamera();
-            var model = GetModel();
+            var cameraModel = CameraProvider.GetCameraModel(CameraViewModel?.Info, CameraViewModel?.SelectedItem?.Model);
+            if (cameraModel == null)
+                yield break;
+
+            (var camera, var model) = cameraModel.Value;
             var productSource = GetProductSource();
 
             var softwareInfo = SoftwareViewModel?.SelectedItem?.Info;
@@ -71,28 +71,6 @@ namespace Chimp.Providers.Action
         private SoftwareProductInfo GetProduct()
         {
             return new SoftwareProductInfo { Name = ProductName };
-        }
-
-        private SoftwareCameraInfo GetCamera()
-        {
-            var camera = CameraViewModel?.Info;
-            var model = CameraViewModel?.SelectedItem?.Model;
-            var categoryName = FirmwareProvider.GetCategoryName(camera);
-            return new SoftwareCameraInfo
-            {
-                Platform = PlatformProvider.GetPlatform(camera, model, categoryName),
-                Revision = FirmwareProvider.GetFirmwareRevision(camera, categoryName)
-            };
-        }
-
-        private SoftwareModelInfo GetModel()
-        {
-            var camera = CameraViewModel?.Info;
-            return new SoftwareModelInfo
-            {
-                Id = camera.Canon.ModelId,
-                Name = camera.Base.Model
-            };
         }
     }
 }
