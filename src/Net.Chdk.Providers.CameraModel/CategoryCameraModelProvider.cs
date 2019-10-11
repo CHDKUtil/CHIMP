@@ -119,15 +119,19 @@ namespace Net.Chdk.Providers.CameraModel
             };
         }
 
-        private static SoftwareModelInfo? GetModel(CameraInfo camera, CameraModelInfo cameraModel)
+        private SoftwareModelInfo? GetModel(CameraInfo camera, CameraModelInfo cameraModel)
         {
             if (camera.Canon.ModelId == 0)
+                return null;
+
+            var name = GetModelName(camera, cameraModel);
+            if (name == null)
                 return null;
 
             return new SoftwareModelInfo
             {
                 Id = camera.Canon.ModelId,
-                Name = GetName(camera, cameraModel)
+                Name = name
             };
         }
 
@@ -141,12 +145,9 @@ namespace Net.Chdk.Providers.CameraModel
             return FirmwareProvider.GetFirmwareRevision(camera, CategoryName);
         }
 
-        // For N / N Facebook
-        private static string GetName(CameraInfo camera, CameraModelInfo cameraModel)
+        private string? GetModelName(CameraInfo camera, CameraModelInfo cameraModel)
         {
-            return cameraModel.Names.Length == 1
-                ? cameraModel.Names[0]
-                : camera.Base.Model;
+            return FirmwareProvider.GetModelName(camera, cameraModel);
         }
 
         private PlatformData? GetPlatform(string platform)
