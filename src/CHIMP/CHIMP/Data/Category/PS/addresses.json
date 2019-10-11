@@ -2,6 +2,7 @@
   "m10": {
     "id": "0x32a0",
     "id_address": "0xfff20270",
+    "clear_overlays": true,
     "revisions": {
       "110d": {
         "revision_str_address": "0xfc1fb04b",
@@ -26,6 +27,7 @@
   "m100": {
     "id": "0x32d1",
     "id_address": "0xe1f20270",
+    "clear_overlays": true,
     "revisions": {
       "100a": {
         "revision_str_address": "0xe047b5b3",
@@ -37,6 +39,7 @@
   "m3": {
     "id": "0x3299",
     "id_address": "0xfff20040",
+    "clear_overlays": true,
     "revisions": {
       "101a": {
         "revision_str_address": "0xfc1fcea7",
@@ -53,6 +56,7 @@
   "m6": {
     "id": "0x32c5",
     "id_address": "0xe1f20270",
+    "clear_overlays": true,
     "revisions": {
       "100b": {
         "revision_str_address": "0xe0431217",
