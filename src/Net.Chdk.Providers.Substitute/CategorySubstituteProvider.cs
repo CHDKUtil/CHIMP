@@ -6,20 +6,21 @@ using Net.Chdk.Model.CameraModel;
 using Net.Chdk.Providers.Firmware;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
 namespace Net.Chdk.Providers.Substitute
 {
-    abstract class CategorySubstituteProvider : DataProvider<Dictionary<string, AddressPlatformData>>, ICategorySubstituteProvider
+    sealed class CategorySubstituteProvider : DataProvider<Dictionary<string, AddressPlatformData>>, ICategorySubstituteProvider
     {
         private IPlatformGenerator PlatformGenerator { get; }
         private IFirmwareProvider FirmwareProvider { get; }
+        private string CategoryName { get; }
 
-        public CategorySubstituteProvider(IPlatformGenerator platformGenerator, IFirmwareProvider firmwareProvider, ILogger logger)
+        public CategorySubstituteProvider(IPlatformGenerator platformGenerator, IFirmwareProvider firmwareProvider, string categoryName, ILogger logger)
             : base(logger)
         {
             PlatformGenerator = platformGenerator;
             FirmwareProvider = firmwareProvider;
+            CategoryName = categoryName;
         }
 
         public IDictionary<string, object>? GetSubstitutes(CameraInfo camera, CameraModelInfo cameraModel)
@@ -43,7 +44,7 @@ namespace Net.Chdk.Providers.Substitute
 
             if (!Data.TryGetValue(platform, out AddressPlatformData platformData))
             {
-                subs["platforms"] = Data.Select(kvp => kvp.Key);
+                subs["platforms"] = Data.Keys;
                 return subs;
             }
 
@@ -54,12 +55,13 @@ namespace Net.Chdk.Providers.Substitute
 
             if (platformData.Revisions == null)
             {
+                subs["error"] = "Download_InvalidFormat_Text";
                 return subs;
             }
 
             if (!platformData.Revisions.TryGetValue(revision, out AddressRevisionData revisionData))
             {
-                subs["revisions"] = platformData.Revisions.Select(kvp => kvp.Key);
+                subs["revisions"] = platformData.Revisions.Keys;
                 return subs;
             }
 
@@ -72,8 +74,6 @@ namespace Net.Chdk.Providers.Substitute
 
             return subs;
         }
-
-        protected abstract string CategoryName { get; }
 
         protected override string GetFilePath()
         {
