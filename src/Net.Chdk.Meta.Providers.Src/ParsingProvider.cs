@@ -43,7 +43,10 @@ namespace Net.Chdk.Meta.Providers.Src
 
         protected abstract string Prefix { get; }
 
-        protected abstract void UpdateValue(ref T? value, string line, string platform);
+        protected virtual void UpdateValue(ref T? value, string line, string platform)
+        {
+            throw new NotImplementedException();
+        }
 
         protected abstract string TrimComments(string line, string platform, string? revision);
 

@@ -5,8 +5,11 @@ namespace Net.Chdk.Meta.Model.Address
 {
     public sealed class AddressRevisionData : RevisionData<AddressRevisionData, PlatformSourceData>
     {
-        [JsonConverter(typeof(HexStringJsonConverter))]
+        [JsonIgnore]
         public ushort? Id { get; set; }
+
+        [JsonIgnore]
+        public uint? IdAddress { get; set; }
 
         [JsonProperty("revision_str_address")]
         [JsonConverter(typeof(HexStringJsonConverter))]

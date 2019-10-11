@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Net.Chdk.Meta.Providers.Src;
+using System.Globalization;
 
 namespace Net.Chdk.Meta.Providers.Address.Src
 {
@@ -10,9 +11,16 @@ namespace Net.Chdk.Meta.Providers.Address.Src
         {
         }
 
-        protected override void UpdateValue(ref RevisionData? value, string line, string platform)
+        protected override void UpdateValue(ref RevisionData? value, string line, string platform, string? revision)
         {
-            var split = line.Split('=');
+            var address = GetAddress(line);
+            if (address != null)
+            {
+                value ??= new RevisionData();
+                value.Address = address;
+            }
+
+            var split = base.TrimComments(line, platform, revision).Split('=');
             switch (split[0].Trim())
             {
                 case "PLATFORMID":
@@ -24,7 +32,21 @@ namespace Net.Chdk.Meta.Providers.Address.Src
             }
         }
 
-        private ushort GetIdValue(string version)
+        protected override string TrimComments(string line, string platform, string? revision)
+        {
+            return line;
+        }
+
+        private static uint? GetAddress(string line)
+        {
+            if (!line.Contains("PLATFORMID") || !line.Contains("@"))
+                return null;
+            var split = line.Split(' ');
+            var index = System.Array.IndexOf(split, "@");
+            return uint.Parse(split[index + 1].Substring(2), NumberStyles.HexNumber);
+        }
+
+        private static ushort GetIdValue(string version)
         {
             return ushort.Parse(version);
         }

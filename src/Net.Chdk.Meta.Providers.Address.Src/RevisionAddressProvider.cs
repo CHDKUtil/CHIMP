@@ -59,11 +59,6 @@ namespace Net.Chdk.Meta.Providers.Address.Src
             };
         }
 
-        protected override void UpdateValue(ref RevisionAddressData? value, string line, string platform)
-        {
-            throw new NotImplementedException();
-        }
-
         protected override string TrimComments(string line, string platform, string? revision)
         {
             return line;
