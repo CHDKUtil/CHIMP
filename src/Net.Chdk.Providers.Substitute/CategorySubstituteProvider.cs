@@ -52,6 +52,7 @@ namespace Net.Chdk.Providers.Substitute
             subs["platform_id"] = GetHexString(platformData.Id);
             subs["platform_id_address"] = GetHexString(platformData.IdAddress);
             subs["model_id"] = GetHexString(software.Model.Id);
+            subs["clear_overlays"] = platformData.ClearOverlay;
 
             if (platformData.Revisions == null)
             {

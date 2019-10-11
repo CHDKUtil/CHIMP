@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using Net.Chdk.Adapters.Platform;
+﻿using Net.Chdk.Adapters.Platform;
 using Net.Chdk.Meta.Model.Address;
 using Net.Chdk.Meta.Providers.Src;
 using System.Collections.Generic;
@@ -12,25 +11,33 @@ namespace Net.Chdk.Meta.Providers.Address.Src
         private const string ProductName = "CHDK";
 
         private IPlatformAdapter PlatformAdapter { get; }
-        private ILogger Logger { get; }
 
-        public SrcAddressTreeProvider(PlatformProvider platformProvider, IPlatformAdapter platformAdapter, ILogger<SrcAddressTreeProvider> logger)
+        public SrcAddressTreeProvider(PlatformProvider platformProvider, IPlatformAdapter platformAdapter)
             : base(platformProvider)
         {
             PlatformAdapter = platformAdapter;
-            Logger = logger;
         }
 
         public IDictionary<string, AddressPlatformData> GetAddresses(string path)
         {
             return GetTree(path)
-                .Where(kvp => kvp.Value!.ClearOverlay)
+                .Where(HasAddresses)
                 .ToDictionary(Normalize, kvp => kvp.Value!);
         }
 
         private string Normalize(KeyValuePair<string, AddressPlatformData?> kvp)
         {
             return PlatformAdapter.NormalizePlatform(ProductName, kvp.Key);
+        }
+
+        private static bool HasAddresses(KeyValuePair<string, AddressPlatformData?> kvp)
+        {
+            return kvp.Value!.Revisions.Any(HasAddresses);
+        }
+
+        private static bool HasAddresses(KeyValuePair<string, AddressRevisionData> kvp)
+        {
+            return kvp.Value.PaletteBufferPtr != null;
         }
     }
 }
