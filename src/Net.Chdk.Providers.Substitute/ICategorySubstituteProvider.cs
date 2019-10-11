@@ -6,5 +6,6 @@ namespace Net.Chdk.Providers.Substitute
     interface ICategorySubstituteProvider
     {
         IDictionary<string, object>? GetSubstitutes(SoftwareInfo software);
+        IEnumerable<string> GetSupportedPlatforms(SoftwareInfo software);
     }
 }

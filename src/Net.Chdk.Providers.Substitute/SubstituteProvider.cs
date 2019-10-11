@@ -2,6 +2,7 @@
 using Net.Chdk.Model.Software;
 using Net.Chdk.Providers.Firmware;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Net.Chdk.Providers.Substitute
 {
@@ -24,7 +25,27 @@ namespace Net.Chdk.Providers.Substitute
                 return null;
 
             return GetProvider(categoryName)?
-                .GetSubstitutes(software);
+                .GetSubstitutes(software)
+                ?? GetDefaultSubstitutes(software);
+        }
+
+        private IDictionary<string, object>? GetDefaultSubstitutes(SoftwareInfo software)
+        {
+            var name = software.Model?.Name;
+            if (name == null)
+                return null;
+
+            return new Dictionary<string, object>
+            {
+                ["model"] = name,
+                ["platforms"] = GetSupportedPlatforms(software)
+            };
+        }
+
+        private IEnumerable<string> GetSupportedPlatforms(SoftwareInfo software)
+        {
+            return Providers.Values
+                .SelectMany(p => p.GetSupportedPlatforms(software));
         }
 
         protected override IEnumerable<string> GetNames()

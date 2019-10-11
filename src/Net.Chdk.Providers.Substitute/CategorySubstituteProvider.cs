@@ -37,22 +37,18 @@ namespace Net.Chdk.Providers.Substitute
             if (revisionStr == null)
                 return null;
 
+            if (!Data.TryGetValue(platform, out AddressPlatformData platformData))
+                return null;
+
             var subs = new Dictionary<string, object>
             {
-                ["model"] = name
+                ["model"] = name,
+                ["platform"] = platform,
+                ["platform_id"] = GetHexString(platformData.Id),
+                ["platform_id_address"] = GetHexString(platformData.IdAddress),
+                ["model_id"] = GetHexString(software.Model.Id),
+                ["clear_overlays"] = platformData.ClearOverlay
             };
-
-            if (!Data.TryGetValue(platform, out AddressPlatformData platformData))
-            {
-                subs["platforms"] = Data.Keys;
-                return subs;
-            }
-
-            subs["platform"] = platform;
-            subs["platform_id"] = GetHexString(platformData.Id);
-            subs["platform_id_address"] = GetHexString(platformData.IdAddress);
-            subs["model_id"] = GetHexString(software.Model.Id);
-            subs["clear_overlays"] = platformData.ClearOverlay;
 
             if (platformData.Revisions == null)
             {
@@ -74,6 +70,11 @@ namespace Net.Chdk.Providers.Substitute
             subs["palette_to_zero"] = revisionData.PaletteToZero;
 
             return subs;
+        }
+
+        public IEnumerable<string> GetSupportedPlatforms(SoftwareInfo software)
+        {
+            return Data.Keys;
         }
 
         protected override string GetFilePath()
