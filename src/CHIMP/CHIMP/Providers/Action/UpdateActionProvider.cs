@@ -18,7 +18,7 @@ namespace Chimp.Providers.Action
         protected override IEnumerable<SoftwareProductInfo> GetProducts()
         {
             var product = SoftwareViewModel.SelectedItem?.Info.Product;
-            if (product != null)
+            if (product?.Name != null)
                 yield return product;
         }
     }
