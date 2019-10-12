@@ -21,6 +21,7 @@ namespace Net.Chdk.Meta.Providers.Address.Src
             {
                 Id = GetId(data, revisions, platform),
                 IdAddress = GetIdAddress(data, revisions, platform),
+                Thumb = GetThumb(data, revisions, platform),
                 ClearOverlay = camera?.CleanOverlay == true
             };
         }
@@ -44,6 +45,12 @@ namespace Net.Chdk.Meta.Providers.Address.Src
                 ?? throw new InvalidOperationException($"{platform}: Missing ID address");
         }
 
+        private bool? GetThumb(RevisionData? data, IDictionary<string, AddressRevisionData> revisions, string platform)
+        {
+            return data?.Thumb
+                ?? GetRevisionThumb(revisions, platform);
+        }
+
         private uint? GetRevisionIdAddress(IDictionary<string, AddressRevisionData> revisions, string platform)
         {
             var value = revisions
@@ -51,6 +58,16 @@ namespace Net.Chdk.Meta.Providers.Address.Src
                 .FirstOrDefault(v => v != null);
             if (revisions.Any(kvp => kvp.Value.IdAddress?.Equals(value) == false))
                 throw new InvalidOperationException($"{platform}: Mismatching ID address");
+            return value;
+        }
+
+        private bool? GetRevisionThumb(IDictionary<string, AddressRevisionData> revisions, string platform)
+        {
+            var value = revisions
+                .Select(kvp => kvp.Value.Thumb)
+                .FirstOrDefault(v => v != null);
+            if (revisions.Any(kvp => kvp.Value.Thumb?.Equals(value) == false))
+                throw new InvalidOperationException($"{platform}: Mismatching Thumb value");
             return value;
         }
     }

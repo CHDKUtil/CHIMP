@@ -50,6 +50,17 @@ namespace Net.Chdk.Meta.Providers.Src
 
         protected abstract string TrimComments(string line, string platform, string? revision);
 
+        protected bool GetBoolean(string[] split, string platform, string? revision = null)
+        {
+            var value = split[split.Length - 1];
+            if (!"1".Equals(value))
+            {
+                var name = GetName(platform, revision);
+                throw new InvalidOperationException($"{name}: Unexpected value {value}");
+            }
+            return true;
+        }
+
         protected string[] ParseArray(string[] split, string platform)
         {
             var skip = split.SkipWhile(s => s.Length == 0 || s[0] != '{');

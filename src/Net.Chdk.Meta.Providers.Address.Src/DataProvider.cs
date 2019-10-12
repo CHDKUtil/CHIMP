@@ -23,6 +23,10 @@ namespace Net.Chdk.Meta.Providers.Address.Src
             var split = base.TrimComments(line, platform, revision).Split('=');
             switch (split[0].Trim())
             {
+                case "THUMB_FW":
+                    value ??= new RevisionData();
+                    value.Thumb = GetBoolean(split, platform, revision);
+                    break;
                 case "PLATFORMID":
                     value ??= new RevisionData();
                     value.Id = GetIdValue(split[1].Trim());

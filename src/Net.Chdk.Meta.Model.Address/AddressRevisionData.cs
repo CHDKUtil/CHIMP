@@ -11,6 +11,9 @@ namespace Net.Chdk.Meta.Model.Address
         [JsonIgnore]
         public uint? IdAddress { get; set; }
 
+        [JsonIgnore]
+        public bool? Thumb { get; set; }
+
         [JsonProperty("revision_str_address")]
         [JsonConverter(typeof(HexStringJsonConverter))]
         public uint RevisionAddress { get; set; }
