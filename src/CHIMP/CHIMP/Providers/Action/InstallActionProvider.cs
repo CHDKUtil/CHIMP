@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace Chimp.Providers.Action
 {
-    sealed class InstallActionProvider : InstallActionProvider<InstallAction>
+    class InstallActionProvider : InstallActionProvider<InstallAction>
     {
         private IProductProvider ProductProvider { get; }
 
@@ -24,7 +24,7 @@ namespace Chimp.Providers.Action
         {
             if (product == null)
                 return base.GetActions(product);
-            var cameraModel = CameraProvider.GetCameraModel(CameraViewModel.Info, CameraViewModel.SelectedItem.Model);
+            var cameraModel = CameraProvider.GetCameraModel(CameraViewModel?.Info, CameraViewModel?.SelectedItem?.Model);
             if (cameraModel == null)
                 return Enumerable.Empty<IAction>();
             return GetSources(product)
@@ -53,7 +53,7 @@ namespace Chimp.Providers.Action
             return ProductProvider.GetCategoryName(productName).Equals(CategoryName);
         }
 
-        private static SoftwareProductInfo CreateProduct(string productName)
+        protected static SoftwareProductInfo CreateProduct(string productName)
         {
             return new SoftwareProductInfo
             {

@@ -15,14 +15,16 @@ namespace Chimp.Providers.Action
     {
         protected ISourceProvider SourceProvider { get; }
         protected ICameraModelProvider CameraProvider { get; }
-        protected string CategoryName { get; }
+        private IFirmwareProvider FirmwareProvider { get; }
+
+        protected virtual string CategoryName => FirmwareProvider.GetCategoryName(CameraViewModel?.Info);
 
         protected InstallActionProvider(MainViewModel mainViewModel, ISourceProvider sourceProvider, ICameraModelProvider cameraProvider, IFirmwareProvider firmwareProvider, IServiceActivator serviceActivator)
             : base(mainViewModel, serviceActivator)
         {
             SourceProvider = sourceProvider;
             CameraProvider = cameraProvider;
-            CategoryName = firmwareProvider.GetCategoryName(CameraViewModel?.Info);
+            FirmwareProvider = firmwareProvider;
         }
 
         public override IEnumerable<IAction> GetActions()
