@@ -75,9 +75,9 @@ namespace Net.Chdk.Providers.Software.Product
 
         protected abstract string ProductName { get; }
 
-        protected virtual string GetChannelName(SoftwareProductInfo product) => null;
+        protected virtual string? GetChannelName(SoftwareProductInfo product) => null;
 
-        protected virtual CultureInfo GetLanguage(SoftwareSourceInfo source) => null;
+        protected virtual CultureInfo? GetLanguage(SoftwareSourceInfo source) => null;
 
         #endregion
 

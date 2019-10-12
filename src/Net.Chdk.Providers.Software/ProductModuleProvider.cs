@@ -33,9 +33,9 @@ namespace Net.Chdk.Providers.Software
 
         #region IProductModuleProvider Members
 
-        public string Path => Data.Modules?.Path;
+        public string? Path => Data.Modules?.Path;
 
-        public string Extension => Data.Modules?.Extension;
+        public string? Extension => Data.Modules?.Extension;
 
         public string GetModuleName(string filePath)
         {
@@ -43,14 +43,14 @@ namespace Net.Chdk.Providers.Software
             return moduleName;
         }
 
-        public string GetModuleTitle(string moduleName)
+        public string? GetModuleTitle(string moduleName)
         {
             if (!Modules.TryGetValue(moduleName, out ModuleData module))
                 return null;
             return module.Title;
         }
 
-        public string GetModuleId(string moduleName)
+        public string? GetModuleId(string moduleName)
         {
             if (!Modules.TryGetValue(moduleName, out ModuleData module))
                 return null;
@@ -63,22 +63,22 @@ namespace Net.Chdk.Providers.Software
 
         internal sealed class ModulesData
         {
-            public string Path { get; set; }
-            public string Extension { get; set; }
-            public IDictionary<string, ModuleData> Children { get; set; }
+            public string? Path { get; set; }
+            public string? Extension { get; set; }
+            public IDictionary<string, ModuleData>? Children { get; set; }
         }
 
         internal sealed class ModuleData
         {
-            public string Id { get; set; }
-            public string Title { get; set; }
-            public IDictionary<string, ModuleData> Children { get; set; }
-            public string[] Files { get; set; }
+            public string? Id { get; set; }
+            public string? Title { get; set; }
+            public IDictionary<string, ModuleData>? Children { get; set; }
+            public string[]? Files { get; set; }
         }
 
         internal sealed class ComponentsData
         {
-            public ModulesData Modules { get; set; }
+            public ModulesData? Modules { get; set; }
         }
 
         protected override string GetFilePath()
@@ -101,7 +101,7 @@ namespace Net.Chdk.Providers.Software
             return modules;
         }
 
-        private void GetModules(IDictionary<string, ModuleData> children, Dictionary<string, ModuleData> modules)
+        private void GetModules(IDictionary<string, ModuleData>? children, Dictionary<string, ModuleData> modules)
         {
             if (children != null)
             {
@@ -131,7 +131,7 @@ namespace Net.Chdk.Providers.Software
             return moduleNames;
         }
 
-        private static void GetModuleNames(IDictionary<string, ModuleData> modules, Dictionary<string, string> moduleNames)
+        private static void GetModuleNames(IDictionary<string, ModuleData>? modules, Dictionary<string, string> moduleNames)
         {
             if (modules != null)
             {

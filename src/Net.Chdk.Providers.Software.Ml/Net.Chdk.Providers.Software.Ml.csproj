@@ -4,10 +4,12 @@
     <TargetFramework>netstandard1.3</TargetFramework>
     <Description>CHIMP Magic Lantern software providers</Description>
     <RootNamespace>Net.Chdk.Providers.Software.Ml</RootNamespace>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>0.5.0</Version>
+    <Version>0.5.1</Version>
     <VersionSuffix>alpha</VersionSuffix>
     <Product>CHIMP</Product>
     <Authors>Dmitry Shechtman</Authors>

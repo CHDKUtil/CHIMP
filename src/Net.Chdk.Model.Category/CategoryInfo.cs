@@ -2,17 +2,19 @@
 {
     public sealed class CategoryInfo
     {
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         public override bool Equals(object obj)
         {
-            var categoryInfo2 = obj as CategoryInfo;
-            return Name.Equals(categoryInfo2?.Name);
+            return obj is CategoryInfo categoryInfo2
+                && Name?.Equals(categoryInfo2.Name) == true;
         }
 
         public override int GetHashCode()
         {
-            return Name.GetHashCode();
+            return Name != null
+                ? Name.GetHashCode()
+                : 0;
         }
 
         public static bool operator ==(CategoryInfo categoryInfo1, CategoryInfo categoryInfo2)

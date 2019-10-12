@@ -20,7 +20,7 @@ namespace Net.Chdk.Providers.Software.Chdk
 
         protected override string ProductName => "CHDK";
 
-        protected override string GetChannelName(SoftwareProductInfo product)
+        protected override string? GetChannelName(SoftwareProductInfo product)
         {
             var version = product?.Version;
             if (version == null)
@@ -30,7 +30,7 @@ namespace Net.Chdk.Providers.Software.Chdk
             return Release;
         }
 
-        protected override CultureInfo GetLanguage(SoftwareSourceInfo source)
+        protected override CultureInfo? GetLanguage(SoftwareSourceInfo source)
         {
             if (source.Name.Equals(DeSourceName, StringComparison.Ordinal))
                 return new CultureInfo("de");
