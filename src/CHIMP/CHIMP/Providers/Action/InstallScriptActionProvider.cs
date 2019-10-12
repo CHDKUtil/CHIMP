@@ -45,16 +45,16 @@ namespace Chimp.Providers.Action
             if (card?.Switched == true || (card?.Bootable != null && card?.Bootable != CategoryName))
                 return null;
 
+            var softwareInfo = SoftwareViewModel?.SelectedItem?.Info;
+            if (softwareInfo?.Product?.Name == productSource.ProductName)
+                return null;
+
             var cameraModel = CameraProvider.GetCameraModel(CameraViewModel?.Info, CameraViewModel?.SelectedItem?.Model);
             if (cameraModel == null)
                 return null;
 
             (var camera, var model) = cameraModel.Value;
-            var softwareInfo = SoftwareViewModel?.SelectedItem?.Info;
-            if (softwareInfo?.Product?.Name == productSource.ProductName)
-                return CreateAction<UpdateAction>(camera, model, productSource);
-            else
-                return CreateAction<InstallAction>(camera, model, productSource);
+            return CreateAction<InstallAction>(camera, model, productSource);
         }
 
         private TAction CreateAction<TAction>(SoftwareCameraInfo camera, SoftwareModelInfo model, ProductSource productSource)
