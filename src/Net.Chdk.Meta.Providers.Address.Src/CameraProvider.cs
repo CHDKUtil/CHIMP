@@ -10,13 +10,13 @@ namespace Net.Chdk.Meta.Providers.Address.Src
         {
         }
 
-        protected override void UpdateValue(ref CameraData? camera, string line, string platform)
+        protected override void UpdateValue(ref CameraData? camera, string line, string platform, string? revision)
         {
             var split = line.Split();
             switch (split[0])
             {
                 case "CAM_CLEAN_OVERLAY":
-                    GetCamera(ref camera).CleanOverlay = GetBoolean(split, platform);
+                    GetCamera(ref camera).CleanOverlay = GetBoolean(split, platform, revision);
                     break;
             }
         }

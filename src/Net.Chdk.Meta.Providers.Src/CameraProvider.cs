@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using System;
 
 namespace Net.Chdk.Meta.Providers.Src
 {
@@ -17,16 +16,5 @@ namespace Net.Chdk.Meta.Providers.Src
         }
 
         protected override string FileName => "platform_camera.h";
-
-        protected bool GetBoolean(string[] split, string platform)
-        {
-            var value = split[split.Length - 1];
-            if (!"1".Equals(value))
-            {
-                var name = GetName(platform);
-                throw new InvalidOperationException($"{name}: Unexpected value {value}");
-            }
-            return true;
-        }
     }
 }
