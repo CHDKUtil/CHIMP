@@ -9,7 +9,7 @@ using Net.Chdk.Providers.Software;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
+using System.IO;
 using System.Threading;
 
 namespace Net.Chdk.Detectors.Software.Script
@@ -43,22 +43,25 @@ namespace Net.Chdk.Detectors.Software.Script
 
         protected override SoftwareInfo? DoGetSoftware(byte[] inBuffer, IProgress<double>? progress, CancellationToken token)
         {
-            var text = Encoding.ASCII.GetString(inBuffer);
-            var lines = text.Split('\n');
-            SoftwareInfo? software = null;
-            for (int i = 0; i < lines.Length; i++)
+            using (var stream = new MemoryStream(inBuffer))
+            using (var reader = new StreamReader(stream))
             {
-                var line = lines[i].TrimStart();
-                if (!string.IsNullOrEmpty(line))
+                SoftwareInfo? software = null;
+                string line;
+                while ((line = reader.ReadLine()) != null)
                 {
-                    if (line[0] != '\'')
-                        break;
-                    line = line.Substring(1).TrimStart().TrimEnd('\r');
-                    if (line.Length > 0 && line[0] == '@')
-                        UpdateSoftware(ref software, line);
+                    line = line.TrimStart();
+                    if (!string.IsNullOrEmpty(line))
+                    {
+                        if (line[0] != '\'')
+                            break;
+                        line = line.Substring(1).TrimStart();
+                        if (line.Length > 0 && line[0] == '@')
+                            UpdateSoftware(ref software, line);
+                    }
                 }
+                return software;
             }
-            return software;
         }
 
         protected override uint?[] GetOffsets()
