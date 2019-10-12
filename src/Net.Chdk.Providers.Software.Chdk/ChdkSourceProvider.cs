@@ -2,7 +2,6 @@
 using Net.Chdk.Model.Software;
 using Net.Chdk.Providers.Product;
 using Net.Chdk.Providers.Software.Product;
-using System;
 using System.Globalization;
 
 namespace Net.Chdk.Providers.Software.Chdk
@@ -32,7 +31,7 @@ namespace Net.Chdk.Providers.Software.Chdk
 
         protected override CultureInfo? GetLanguage(SoftwareSourceInfo source)
         {
-            if (source.Name.Equals(DeSourceName, StringComparison.Ordinal))
+            if (source.Name == DeSourceName)
                 return new CultureInfo("de");
             return null;
         }
