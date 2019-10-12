@@ -17,7 +17,7 @@ namespace Net.Chdk.Meta.Providers.Address.Src
             if (address != null)
             {
                 value ??= new RevisionData();
-                value.Address = address;
+                value.IdAddress = address;
             }
 
             var split = base.TrimComments(line, platform, revision).Split('=');
