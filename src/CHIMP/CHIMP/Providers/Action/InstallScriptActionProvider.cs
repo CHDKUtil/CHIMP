@@ -64,7 +64,7 @@ namespace Chimp.Providers.Action
             var software = new SoftwareInfo
             {
                 Category = GetCategory(),
-                Product = GetProduct(productSource),
+                Product = softwareInfo?.Product,
                 Source = softwareInfo?.Source,
                 Camera = camera,
                 Model = model,
@@ -108,11 +108,6 @@ namespace Chimp.Providers.Action
             {
                 Name = productName,
             };
-        }
-
-        private static SoftwareProductInfo GetProduct(ProductSource productSource)
-        {
-            return CreateProduct(productSource.ProductName);
         }
 
         private IEnumerable<ProductSource> GetSources(SoftwareProductInfo product)
