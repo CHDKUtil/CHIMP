@@ -1,38 +1,84 @@
 ﻿using Microsoft.Extensions.Logging;
 using Net.Chdk.Meta.Providers.Src;
+using Net.Chdk.Providers.Firmware;
 using System;
 using System.Globalization;
 
 namespace Net.Chdk.Meta.Providers.Address.Src
 {
-    sealed class StubsDataProvider : ParsingProvider<RevisionData>
+    sealed class StubsDataProvider : ParsingProvider<StubsData>
     {
-        public StubsDataProvider(ILogger<StubsDataProvider> logger)
+        private const string CategoryName = "PS";
+
+        private IFirmwareProvider FirmwareProvider { get; }
+
+        public StubsDataProvider(IFirmwareProvider firmwareProvider, ILogger<StubsDataProvider> logger)
             : base(logger)
         {
+            FirmwareProvider = firmwareProvider;
         }
 
-        public RevisionData? GetData(string platformPath, string platform, string? revision)
+        public StubsData GetData(string platformPath, string platform, string? revision)
         {
-            return GetValue(platformPath, platform, revision);
+            var value = GetValue(platformPath, platform, revision);
+            if (value == null)
+                throw new InvalidOperationException($"{platform}-{revision}: Missing revision data");
+            return value;
         }
 
-        protected override void UpdateValue(ref RevisionData? value, string line, string platform, string? revision)
+        protected override void UpdateValue(ref StubsData? value, string line, string platform, string? revision)
         {
-            if (value != null)
+            var split = line.Split(' ');
+            switch (split[0])
+            {
+                case "PLATFORMID":
+                    UpdatePlatformId(ref value, split, platform, revision);
+                    break;
+                case "Firmware" when split[1].StartsWith("Ver"):
+                    UpdateRevision(ref value, split, platform, revision);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private static void UpdatePlatformId(ref StubsData? value, string[] split, string platform, string? revision)
+        {
+            if (value?.IdAddress != null)
                 throw new InvalidOperationException($"{platform}-{revision}: Duplicate platform ID address");
 
-            var split = line.Split(' ');
-            var id = ushort.TryParse(split[0], out var idValue)
+            if (revision == null)
+                throw new ArgumentNullException(nameof(revision));
+
+            value ??= new StubsData();
+            value.Id = ushort.TryParse(split[2], out var idValue)
                 ? idValue
                 : (ushort?)null;
-            var idAddress = uint.Parse(split[split.Length - 1].Substring(2), NumberStyles.HexNumber);
+            value.IdAddress = GetAddress(split, platform, revision);
+        }
 
-            value = new RevisionData
+        private void UpdateRevision(ref StubsData? value, string[] split, string platform, string? revision)
+        {
+            if (value?.RevisionAddress != null)
+                throw new InvalidOperationException($"{platform}-{revision}: Duplicate revision address");
+
+            if (revision == null)
+                throw new ArgumentNullException(nameof(revision));
+
+            var revisionStr = split[2];
+            var revisionAddress = GetAddress(split, platform, revision);
+
+            if (revisionStr.StartsWith("GM"))
             {
-                Id = id,
-                Address = idAddress
-            };
+                revisionStr = revisionStr.Substring(2);
+                revisionAddress += 2;
+            }
+
+            if (revisionStr != GetRevisionString(revision))
+                throw new InvalidOperationException($"{platform}-{revision}: Invalid revision string");
+
+            value ??= new StubsData();
+            value.RevisionAddress = revisionAddress;
         }
 
         protected override string TrimComments(string line, string platform, string? revision)
@@ -40,8 +86,20 @@ namespace Net.Chdk.Meta.Providers.Address.Src
             return line;
         }
 
-        protected override string Prefix => "//   PLATFORMID = ";
+        protected override string Prefix => "//   ";
 
         protected override string FileName => "stubs_entry.S";
+
+        private static uint GetAddress(string[] split, string platform, string revision)
+        {
+            if (split[split.Length - 2] != "@")
+                throw new InvalidOperationException($"{platform}-{revision}: Invalid address string");
+            return uint.Parse(split[split.Length - 1].Substring(2), NumberStyles.HexNumber);
+        }
+
+        private string? GetRevisionString(string revision)
+        {
+            return FirmwareProvider.GetRevisionString(revision, CategoryName);
+        }
     }
 }

@@ -20,7 +20,7 @@ namespace Net.Chdk.Meta.Providers.Address.Src
             return new AddressPlatformData
             {
                 Id = GetId(data, revisions, platform),
-                IdAddress = GetAddress(data, revisions, platform),
+                IdAddress = GetIdAddress(data, revisions, platform),
                 ClearOverlay = camera?.CleanOverlay == true
             };
         }
@@ -37,14 +37,14 @@ namespace Net.Chdk.Meta.Providers.Address.Src
                 ?? throw new InvalidOperationException($"{platform}: Missing ID");
         }
 
-        private uint GetAddress(RevisionData? data, IDictionary<string, AddressRevisionData> revisions, string platform)
+        private uint GetIdAddress(RevisionData? data, IDictionary<string, AddressRevisionData> revisions, string platform)
         {
-            return data?.Address
-                ?? GetRevisionAddress(revisions, platform)
+            return data?.IdAddress
+                ?? GetRevisionIdAddress(revisions, platform)
                 ?? throw new InvalidOperationException($"{platform}: Missing ID address");
         }
 
-        private uint? GetRevisionAddress(IDictionary<string, AddressRevisionData> revisions, string platform)
+        private uint? GetRevisionIdAddress(IDictionary<string, AddressRevisionData> revisions, string platform)
         {
             var value = revisions
                 .Select(kvp => kvp.Value.IdAddress)
