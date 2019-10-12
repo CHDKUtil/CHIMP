@@ -1,5 +1,6 @@
 ﻿using Chimp.Actions;
 using Chimp.ViewModels;
+using Net.Chdk.Model.Category;
 using Net.Chdk.Model.Software;
 using Net.Chdk.Providers.CameraModel;
 using Net.Chdk.Providers.Product;
@@ -62,6 +63,7 @@ namespace Chimp.Providers.Action
             var softwareInfo = SoftwareViewModel?.SelectedItem?.Info;
             var software = new SoftwareInfo
             {
+                Category = GetCategory(),
                 Product = GetProduct(productSource),
                 Source = softwareInfo?.Source,
                 Camera = camera,
@@ -78,6 +80,14 @@ namespace Chimp.Providers.Action
                 productSource
             };
             return ServiceActivator.Create<TAction>(types, values);
+        }
+
+        private CategoryInfo GetCategory()
+        {
+            return new CategoryInfo
+            {
+                Name = CategoryName
+            };
         }
 
         private IEnumerable<SoftwareProductInfo> GetProducts()

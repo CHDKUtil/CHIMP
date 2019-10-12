@@ -61,6 +61,7 @@ namespace Chimp.Providers.Action
             var softwareInfo = SoftwareViewModel?.SelectedItem?.Info;
             var software = new SoftwareInfo
             {
+                Category = GetCategory(),
                 Product = softwareInfo?.Product,
                 Source = softwareInfo?.Source,
                 Camera = camera,

@@ -1,5 +1,4 @@
 ﻿using Net.Chdk.Model.Software;
-using Net.Chdk.Providers.Product;
 using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
@@ -8,8 +7,8 @@ namespace Chimp.Providers.Software
 {
     sealed class MlSoftwareProvider : SoftwareProvider
     {
-        public MlSoftwareProvider(IProductProvider productProvider, SoftwareSourceInfo source, CultureInfo language)
-            : base(productProvider, source, language)
+        public MlSoftwareProvider(SoftwareSourceInfo source, CultureInfo language)
+            : base(source, language)
         {
         }
 
