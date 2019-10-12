@@ -2,6 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.3</TargetFramework>
+    <Description>CHIMP script software providers</Description>
+    <RootNamespace>Net.Chdk.Providers.Software.Script</RootNamespace>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -27,7 +31,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Net.Chdk.Providers.Software.Product\Net.Chdk.Providers.Software.Product.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Providers.Product.Core\Net.Chdk.Providers.Product.Core.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Providers.Software.Core\Net.Chdk.Providers.Software.Core.csproj" />
   </ItemGroup>
 
 </Project>

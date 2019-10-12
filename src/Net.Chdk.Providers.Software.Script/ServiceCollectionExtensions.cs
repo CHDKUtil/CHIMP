@@ -4,10 +4,10 @@ namespace Net.Chdk.Providers.Software.Script
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddClearOverlaysSourceProvider(this IServiceCollection serviceCollection)
+        public static IServiceCollection AddScriptSourceProvider(this IServiceCollection serviceCollection)
         {
             return serviceCollection
-                .AddSingleton<IProductSourceProvider, ClearOverlaysSourceProvider>();
+                .AddSingleton<IProductSourceProvider, ScriptSourceProvider>();
         }
     }
 }

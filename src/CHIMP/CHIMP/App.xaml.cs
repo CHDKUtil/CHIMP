@@ -195,7 +195,7 @@ namespace Chimp
                 .AddChdkSourceProvider()
                 .AddSdmSourceProvider()
                 .AddMlSourceProvider()
-                .AddClearOverlaysSourceProvider()
+                .AddScriptSourceProvider()
                 .AddSoftwareHashProvider()
                 .AddFirmwareProvider()
                 .AddPlatformProvider()
