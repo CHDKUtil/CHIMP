@@ -5,6 +5,7 @@ using Net.Chdk.Model.Software;
 using Net.Chdk.Providers.CameraModel;
 using Net.Chdk.Providers.Firmware;
 using Net.Chdk.Providers.Software;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,14 +18,15 @@ namespace Chimp.Providers.Action
         protected ICameraModelProvider CameraProvider { get; }
         private IFirmwareProvider FirmwareProvider { get; }
 
-        protected virtual string CategoryName => FirmwareProvider.GetCategoryName(CameraViewModel?.Info);
-
         protected InstallActionProvider(MainViewModel mainViewModel, ISourceProvider sourceProvider, ICameraModelProvider cameraProvider, IFirmwareProvider firmwareProvider, IServiceActivator serviceActivator)
             : base(mainViewModel, serviceActivator)
         {
             SourceProvider = sourceProvider;
             CameraProvider = cameraProvider;
             FirmwareProvider = firmwareProvider;
+
+            category = new Lazy<CategoryInfo>(GetCategory);
+            categoryName = new Lazy<string>(GetCategoryName);
         }
 
         public override IEnumerable<IAction> GetActions()
@@ -46,8 +48,7 @@ namespace Chimp.Providers.Action
         {
             if (product?.Name != null)
                 return SourceProvider.GetSources(product);
-            var category = GetCategory();
-            return SourceProvider.GetSources(category);
+            return SourceProvider.GetSources(Category);
         }
 
         private IAction CreateAction(ProductSource productSource)
@@ -63,7 +64,7 @@ namespace Chimp.Providers.Action
             var softwareInfo = SoftwareViewModel?.SelectedItem?.Info;
             var software = new SoftwareInfo
             {
-                Category = GetCategory(),
+                Category = Category,
                 Product = softwareInfo?.Product,
                 Source = softwareInfo?.Source,
                 Camera = camera,
@@ -82,6 +83,10 @@ namespace Chimp.Providers.Action
             return ServiceActivator.Create<TAction>(types, values);
         }
 
+        #region Category
+
+        private readonly Lazy<CategoryInfo> category;
+        private CategoryInfo Category => category.Value;
         private CategoryInfo GetCategory()
         {
             return new CategoryInfo
@@ -89,5 +94,18 @@ namespace Chimp.Providers.Action
                 Name = CategoryName
             };
         }
+
+        #endregion
+
+        #region CategoryName
+
+        private readonly Lazy<string> categoryName;
+        protected virtual string CategoryName => categoryName.Value;
+        private string GetCategoryName()
+        {
+            return FirmwareProvider.GetCategoryName(CameraViewModel?.Info);
+        }
+
+        #endregion
     }
 }
