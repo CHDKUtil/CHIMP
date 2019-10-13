@@ -123,8 +123,8 @@ namespace Net.Chdk.Detectors.Software.Script
             {
                 split = split[4].Split('_');
                 build.Status = split.Length > 1
-                    ? split[1]
-                    : split[0];
+                    ? split[1].ToLower()
+                    : split[0].ToLower();
                 if (split.Length > 1)
                     build.Name = split[0];
             }
