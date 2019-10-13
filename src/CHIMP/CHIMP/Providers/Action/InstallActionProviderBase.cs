@@ -100,7 +100,7 @@ namespace Chimp.Providers.Action
         #region CategoryName
 
         private readonly Lazy<string> categoryName;
-        protected virtual string CategoryName => categoryName.Value;
+        protected string CategoryName => categoryName.Value;
         private string GetCategoryName()
         {
             return FirmwareProvider.GetCategoryName(CameraViewModel?.Info);

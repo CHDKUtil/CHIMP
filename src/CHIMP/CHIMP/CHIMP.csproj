@@ -277,7 +277,6 @@
     <Compile Include="Model\ActionsData.cs" />
     <Compile Include="Model\ExtractData.cs" />
     <Compile Include="Model\MatchData.cs" />
-    <Compile Include="Providers\Action\InstallScriptActionProvider.cs" />
     <Compile Include="Providers\Build\ScriptBuildProvider.cs" />
     <Compile Include="Providers\DataProvider.cs" />
     <Compile Include="Providers\Downloads\ScriptDownloadProvider.cs" />

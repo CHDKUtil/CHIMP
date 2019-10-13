@@ -10,8 +10,10 @@ using System.Linq;
 
 namespace Chimp.Providers.Action
 {
-    class InstallActionProvider : InstallActionProvider<InstallAction>
+    sealed class InstallActionProvider : InstallActionProvider<InstallAction>
     {
+        private const string ScriptCategoryName = "SCRIPT";
+
         private IProductProvider ProductProvider { get; }
 
         public InstallActionProvider(MainViewModel mainViewModel, IProductProvider productProvider, ISourceProvider sourceProvider, ICameraModelProvider cameraProvider, IFirmwareProvider firmwareProvider, IServiceActivator serviceActivator)
@@ -50,10 +52,23 @@ namespace Chimp.Providers.Action
 
         private bool IsValidProduct(string productName)
         {
-            return ProductProvider.GetCategoryName(productName).Equals(CategoryName);
+            var categoryName = ProductProvider.GetCategoryName(productName);
+            if (categoryName == CategoryName)
+                return true;
+            if (categoryName == ScriptCategoryName)
+                return IsScriptInstallable();
+            return false;
         }
 
-        protected static SoftwareProductInfo CreateProduct(string productName)
+        private bool IsScriptInstallable()
+        {
+            var card = CardViewModel?.SelectedItem;
+            if (card?.Switched == true || (card?.Bootable != null && card?.Bootable != ScriptCategoryName))
+                return false;
+            return true;
+        }
+
+        private static SoftwareProductInfo CreateProduct(string productName)
         {
             return new SoftwareProductInfo
             {
