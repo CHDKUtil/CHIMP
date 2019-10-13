@@ -1,11 +1,9 @@
 ﻿using Chimp.Actions;
+using Chimp.Providers.Action.Install;
 using Chimp.ViewModels;
-using Net.Chdk.Model.Category;
 using Net.Chdk.Model.Software;
 using Net.Chdk.Providers.CameraModel;
-using Net.Chdk.Providers.Firmware;
 using Net.Chdk.Providers.Software;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,98 +12,64 @@ namespace Chimp.Providers.Action
     abstract class InstallActionProvider<TAction> : ActionProvider
         where TAction : InstallActionBase
     {
-        protected ISourceProvider SourceProvider { get; }
         protected ICameraModelProvider CameraProvider { get; }
-        private IFirmwareProvider FirmwareProvider { get; }
 
-        protected InstallActionProvider(MainViewModel mainViewModel, ISourceProvider sourceProvider, ICameraModelProvider cameraProvider, IFirmwareProvider firmwareProvider, IServiceActivator serviceActivator)
+        protected InstallActionProvider(MainViewModel mainViewModel, ICameraModelProvider cameraProvider, IServiceActivator serviceActivator)
             : base(mainViewModel, serviceActivator)
         {
-            SourceProvider = sourceProvider;
             CameraProvider = cameraProvider;
-            FirmwareProvider = firmwareProvider;
-
-            category = new Lazy<CategoryInfo>(GetCategory);
-            categoryName = new Lazy<string>(GetCategoryName);
         }
 
         public override IEnumerable<IAction> GetActions()
         {
-            return GetProducts()
-                .SelectMany(GetActions)
-                .Where(a => a != null);
+            return GetCreators()
+                .SelectMany(GetActions);
         }
 
-        protected virtual IEnumerable<IAction> GetActions(SoftwareProductInfo product)
+        private IEnumerable<IActionCreator> GetCreators()
         {
-            return GetSources(product)
-                .Select(CreateAction);
-        }
-
-        protected abstract IEnumerable<SoftwareProductInfo> GetProducts();
-
-        protected virtual IEnumerable<ProductSource> GetSources(SoftwareProductInfo product)
-        {
-            if (product?.Name != null)
-                return SourceProvider.GetSources(product);
-            return SourceProvider.GetSources(Category);
-        }
-
-        private IAction CreateAction(ProductSource productSource)
-        {
-            var cameraModel = CameraProvider.GetCameraModel(CameraViewModel.Info, CameraViewModel.SelectedItem.Model);
+            var cameraModel = CameraProvider.GetCameraModel(CameraViewModel?.Info, CameraViewModel?.SelectedItem?.Model);
             if (cameraModel == null)
-                return null;
-            return CreateAction(cameraModel?.Camera, cameraModel?.Model, productSource);
-        }
+                yield break;
 
-        protected IAction CreateAction(SoftwareCameraInfo camera, SoftwareModelInfo model, ProductSource productSource)
-        {
             var softwareInfo = SoftwareViewModel?.SelectedItem?.Info;
-            var software = new SoftwareInfo
-            {
-                Category = Category,
-                Product = softwareInfo?.Product,
-                Source = softwareInfo?.Source,
-                Camera = camera,
-                Model = model,
-            };
             var types = new[]
             {
-                typeof(SoftwareInfo),
-                typeof(ProductSource)
+                typeof(SoftwareProductInfo),
+                typeof(SoftwareSourceInfo),
+                typeof(SoftwareCameraInfo),
+                typeof(SoftwareModelInfo)
             };
             var values = new object[]
             {
-                software,
-                productSource
+                softwareInfo?.Product,
+                softwareInfo?.Source,
+                cameraModel?.Camera,
+                cameraModel?.Model
             };
-            return ServiceActivator.Create<TAction>(types, values);
+
+            yield return ServiceActivator.Create<EosInstallActionCreator>(types, values);
+            yield return ServiceActivator.Create<PsInstallActionCreator>(types, values);
+            yield return ServiceActivator.Create<ScriptActionCreator>(types, values);
         }
 
-        #region Category
-
-        private readonly Lazy<CategoryInfo> category;
-        private CategoryInfo Category => category.Value;
-        private CategoryInfo GetCategory()
+        private IEnumerable<IAction> GetActions(IActionCreator creator)
         {
-            return new CategoryInfo
-            {
-                Name = CategoryName
-            };
+            return creator.GetProducts(CardViewModel?.SelectedItem, CameraViewModel?.Info)
+                .SelectMany(p => GetActions(creator, p));
         }
 
-        #endregion
-
-        #region CategoryName
-
-        private readonly Lazy<string> categoryName;
-        protected string CategoryName => categoryName.Value;
-        private string GetCategoryName()
+        protected virtual IEnumerable<IAction> GetActions(IActionCreator creator, SoftwareProductInfo product)
         {
-            return FirmwareProvider.GetCategoryName(CameraViewModel?.Info);
+            return GetSources(creator, product)
+                .Select(s => CreateAction(creator, s));
         }
 
-        #endregion
+        protected abstract IEnumerable<ProductSource> GetSources(IActionCreator creator, SoftwareProductInfo product);
+
+        protected static TAction CreateAction(IActionCreator creator, ProductSource s)
+        {
+            return creator.CreateAction<TAction>(s);
+        }
     }
 }

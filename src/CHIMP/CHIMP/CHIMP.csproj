@@ -277,6 +277,10 @@
     <Compile Include="Model\ActionsData.cs" />
     <Compile Include="Model\ExtractData.cs" />
     <Compile Include="Model\MatchData.cs" />
+    <Compile Include="Providers\Action\Install\ActionCreator.cs" />
+    <Compile Include="Providers\Action\Install\ActionCreatorBase.cs" />
+    <Compile Include="Providers\Action\Install\IActionCreator.cs" />
+    <Compile Include="Providers\Action\Install\ScriptActionCreator.cs" />
     <Compile Include="Providers\Build\ScriptBuildProvider.cs" />
     <Compile Include="Providers\DataProvider.cs" />
     <Compile Include="Providers\Downloads\ScriptDownloadProvider.cs" />
@@ -969,10 +973,6 @@
     <ProjectReference Include="..\..\Net.Chdk.Providers.Software.Ml\Net.Chdk.Providers.Software.Ml.csproj">
       <Project>{c0c422d4-841d-47a6-953a-8d9e1702d954}</Project>
       <Name>Net.Chdk.Providers.Software.Ml</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Net.Chdk.Providers.Software.Script\Net.Chdk.Providers.Software.Script.csproj">
-      <Project>{B86C24CF-C573-4F73-B4CE-694F5EB2B346}</Project>
-      <Name>Net.Chdk.Providers.Software.Script</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Net.Chdk.Providers.Software.Sdm\Net.Chdk.Providers.Software.Sdm.csproj">
       <Project>{4f72ff77-d68f-4ebe-a8c1-150c3b13de4d}</Project>
