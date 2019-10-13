@@ -42,6 +42,12 @@ namespace Chimp.Downloaders
             if (!(extract is ScriptExtractData data))
                 return null;
             ScriptGenerator.GenerateScript(extract.FilePath, data.ProductName, data.Substitutes);
+            var files = BootProvider.GetFiles(CategoryName);
+            foreach (var kvp in files)
+            {
+                var path = Path.Combine(dirPath, kvp.Key);
+                File.WriteAllBytes(path, kvp.Value);
+            }
             return dirPath;
         }
 

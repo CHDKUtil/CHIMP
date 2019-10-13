@@ -27,7 +27,7 @@ namespace Chimp.Providers.Downloads
                 dirName = $"{dirName}-{version}";
                 var status = software?.Build?.Status;
                 if (!string.IsNullOrEmpty(status))
-                    dirName = $"{dirName}-{status}";
+                    dirName = $"{dirName}-{status.ToUpper()}";
             }
             return $"{dirName}.zip";
         }
