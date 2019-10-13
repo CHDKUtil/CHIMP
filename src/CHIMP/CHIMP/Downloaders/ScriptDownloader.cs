@@ -78,7 +78,7 @@ namespace Chimp.Downloaders
                 dirName = $"{dirName}-{version}";
                 var status = software?.Build?.Status;
                 if (!string.IsNullOrEmpty(status))
-                    dirName = $"{dirName}-{status}";
+                    dirName = $"{dirName}-{status.ToUpper()}";
             }
 
             var dirPath = Path.Combine(tempPath, dirName);
