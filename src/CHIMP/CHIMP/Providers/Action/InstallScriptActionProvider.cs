@@ -21,11 +21,6 @@ namespace Chimp.Providers.Action
             var card = CardViewModel?.SelectedItem;
             if (card?.Switched == true || (card?.Bootable != null && card?.Bootable != CategoryName))
                 return Enumerable.Empty<IAction>();
-
-            var softwareInfo = SoftwareViewModel?.SelectedItem?.Info;
-            if (softwareInfo?.Product?.Name == product.Name)
-                return Enumerable.Empty<IAction>();
-
             return base.GetActions(product);
         }
 
