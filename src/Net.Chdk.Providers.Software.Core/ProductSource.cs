@@ -17,15 +17,27 @@ namespace Net.Chdk.Providers.Software
 
         public override bool Equals(object obj)
         {
-            var source2 = obj as ProductSource;
-            if (source2 == null)
-                return false;
-            return Source.Equals(source2.Source);
+            return obj is ProductSource source2 
+                && Source == source2.Source;
         }
 
         public override int GetHashCode()
         {
             return Source.GetHashCode();
+        }
+
+        public static bool operator ==(ProductSource? source1, ProductSource? source2)
+        {
+            if (ReferenceEquals(source1, source2))
+                return true;
+            if (source1 is null || source2 is null)
+                return false;
+            return source1.Equals(source2);
+        }
+
+        public static bool operator !=(ProductSource? source1, ProductSource? source2)
+        {
+            return !(source1 == source2);
         }
     }
 }
