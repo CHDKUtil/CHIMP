@@ -89,11 +89,22 @@ namespace Chimp.Downloaders
             else
             {
                 Directory.CreateDirectory(dirPath);
-                var filePath = Path.Combine(dirPath, BootProvider.GetFileName(CategoryName));
-                ScriptGenerator.GenerateScript(filePath, ProductName, Substitutes);
+                GenerateScript(dirPath);
             }
 
             return dirPath;
+        }
+
+        private void GenerateScript(string dirPath)
+        {
+            var filePath = Path.Combine(dirPath, BootProvider.GetFileName(CategoryName));
+            ScriptGenerator.GenerateScript(filePath, ProductName, Substitutes);
+            var files = BootProvider.GetFiles(CategoryName);
+            foreach (var kvp in files)
+            {
+                var path = Path.Combine(dirPath, kvp.Key);
+                File.WriteAllBytes(path, kvp.Value);
+            }
         }
 
         private SoftwareInfo GetSoftware(SoftwareInfo softwareInfo)
