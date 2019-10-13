@@ -11,8 +11,8 @@ namespace Net.Chdk.Model.Software
         public override bool Equals(object obj)
         {
             return obj is SoftwareCameraInfo camera2
-                && Platform?.Equals(camera2.Platform) == true
-                && Revision?.Equals(camera2.Revision) == true;
+                && Platform == camera2.Platform
+                && Revision == camera2.Revision;
         }
 
         public override int GetHashCode()
