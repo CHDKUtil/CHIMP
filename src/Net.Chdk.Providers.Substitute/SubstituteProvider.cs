@@ -25,27 +25,19 @@ namespace Net.Chdk.Providers.Substitute
                 return null;
 
             return GetProvider(categoryName)?
-                .GetSubstitutes(software)
-                ?? GetDefaultSubstitutes(software);
+                .GetSubstitutes(software);
         }
 
-        private IDictionary<string, object>? GetDefaultSubstitutes(SoftwareInfo software)
-        {
-            var name = software.Model?.Name;
-            if (name == null)
-                return null;
-
-            return new Dictionary<string, object>
-            {
-                ["model"] = name,
-                ["platforms"] = GetSupportedPlatforms(software)
-            };
-        }
-
-        private IEnumerable<string> GetSupportedPlatforms(SoftwareInfo software)
+        public IEnumerable<string> GetSupportedPlatforms(SoftwareInfo software)
         {
             return Providers.Values
                 .SelectMany(p => p.GetSupportedPlatforms(software));
+        }
+
+        public IEnumerable<string> GetSupportedRevisions(SoftwareInfo software)
+        {
+            return Providers.Values
+                .SelectMany(p => p.GetSupportedRevisions(software));
         }
 
         protected override IEnumerable<string> GetNames()

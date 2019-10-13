@@ -19,12 +19,22 @@ namespace Chimp.Providers.Matches
         public Task<MatchData> GetMatchesAsync(SoftwareInfo software, string buildName, CancellationToken cancellationToken)
         {
             var substitutes = SubstituteProvider.GetSubstitutes(software);
-            var result = GetMatches(substitutes);
+            var result = GetMatches(software, substitutes);
             return Task.FromResult(result);
         }
 
-        private static MatchData GetMatches(IDictionary<string, object> substitutes)
+        private MatchData GetMatches(SoftwareInfo software, IDictionary<string, object> substitutes)
         {
+            if (!substitutes.ContainsKey("platform"))
+            {
+                var platforms = SubstituteProvider.GetSupportedPlatforms(software);
+                return new ScriptMatchData(platforms: platforms);
+            }
+            if (!substitutes.ContainsKey("revision"))
+            {
+                var revisions = SubstituteProvider.GetSupportedRevisions(software);
+                return new ScriptMatchData(revisions: revisions);
+            }
             return new ScriptMatchData(substitutes);
         }
     }

@@ -1,5 +1,4 @@
-﻿using Net.Chdk.Generators.Script;
-using Net.Chdk.Model.Software;
+﻿using Net.Chdk.Model.Software;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -44,19 +43,15 @@ namespace Chimp.Model
         public ScriptMatchData(IDictionary<string, object> substitutes)
         {
             Substitutes = substitutes;
+        }
 
+        public ScriptMatchData(IEnumerable<string> platforms = null, IEnumerable<string> revisions = null)
+        {
             // Matches is empty by default
-            if (!Substitutes.ContainsKey("revision"))
-                Matches = null;
+            Matches = null;
 
-            if (Substitutes.TryGetValue("error", out string error))
-                Error = error;
-            if (Substitutes.TryGetValue("platforms", out IEnumerable<string> platforms))
-                Platforms = platforms;
-            if (Substitutes.TryGetValue("revisions", out IEnumerable<string> revisions))
-                Revisions = revisions;
-            if (Substitutes.TryGetValue("builds", out IEnumerable<string> builds))
-                Builds = builds;
+            Platforms = platforms;
+            Revisions = revisions;
         }
 
         public IDictionary<string, object> Substitutes { get; }

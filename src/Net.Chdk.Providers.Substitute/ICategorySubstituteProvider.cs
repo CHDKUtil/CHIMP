@@ -7,5 +7,6 @@ namespace Net.Chdk.Providers.Substitute
     {
         IDictionary<string, object>? GetSubstitutes(SoftwareInfo software);
         IEnumerable<string> GetSupportedPlatforms(SoftwareInfo software);
+        IEnumerable<string> GetSupportedRevisions(SoftwareInfo software);
     }
 }

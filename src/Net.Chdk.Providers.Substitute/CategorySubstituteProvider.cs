@@ -4,6 +4,7 @@ using Net.Chdk.Model.Software;
 using Net.Chdk.Providers.Firmware;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Net.Chdk.Providers.Substitute
 {
@@ -21,15 +22,13 @@ namespace Net.Chdk.Providers.Substitute
 
         public IDictionary<string, object>? GetSubstitutes(SoftwareInfo software)
         {
-            if (software.Model == null || software.Camera == null)
+            var name = software.Model?.Name;
+            var modelId = software.Model?.Id;
+            if (name == null || modelId == null)
                 return null;
 
-            var name = software.Model.Name;
-            if (name == null)
-                return null;
-
-            var platform = software.Camera.Platform;
-            var revision = software.Camera.Revision;
+            var platform = software.Camera?.Platform;
+            var revision = software.Camera?.Revision;
             if (platform == null || revision == null)
                 return null;
 
@@ -37,30 +36,25 @@ namespace Net.Chdk.Providers.Substitute
             if (revisionStr == null)
                 return null;
 
-            if (!Data.TryGetValue(platform, out AddressPlatformData platformData))
-                return null;
-
             var subs = new Dictionary<string, object>
             {
                 ["model"] = name,
-                ["platform"] = platform,
-                ["platform_id"] = GetHexString(platformData.Id),
-                ["platform_id_address"] = GetHexString(platformData.IdAddress),
-                ["model_id"] = GetHexString(software.Model.Id),
-                ["clear_overlays"] = platformData.ClearOverlay
             };
 
-            if (platformData.Revisions == null)
-            {
-                subs["error"] = "Download_InvalidFormat_Text";
+            if (!Data.TryGetValue(platform, out AddressPlatformData platformData))
                 return subs;
-            }
+
+            subs["platform"] = platform;
+            subs["platform_id"] = GetHexString(platformData.Id);
+            subs["platform_id_address"] = GetHexString(platformData.IdAddress);
+            subs["model_id"] = GetHexString(modelId);
+            subs["clear_overlays"] = platformData.ClearOverlay;
+
+            if (platformData.Revisions == null)
+                return subs;
 
             if (!platformData.Revisions.TryGetValue(revision, out AddressRevisionData revisionData))
-            {
-                subs["revisions"] = platformData.Revisions.Keys;
                 return subs;
-            }
 
             subs["revision"] = revision;
             subs["revision_str"] = revisionStr;
@@ -77,9 +71,25 @@ namespace Net.Chdk.Providers.Substitute
             return Data.Keys;
         }
 
+        public IEnumerable<string> GetSupportedRevisions(SoftwareInfo software)
+        {
+            var platformData = GetPlatformData(software);
+            return platformData?.Revisions != null
+                ? platformData.Revisions.Keys
+                : Enumerable.Empty<string>();
+        }
+
         protected override string GetFilePath()
         {
             return Path.Combine(Directories.Data, Directories.Category, CategoryName, "addresses.json");
+        }
+
+        private AddressPlatformData? GetPlatformData(SoftwareInfo software)
+        {
+            var platform = software.Camera?.Platform;
+            if (platform == null || !Data.TryGetValue(platform, out AddressPlatformData platformData))
+                return null;
+            return platformData;
         }
 
         private string? GetRevisionString(string revision)
