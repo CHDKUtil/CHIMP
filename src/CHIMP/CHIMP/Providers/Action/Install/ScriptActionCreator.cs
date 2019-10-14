@@ -17,7 +17,7 @@ namespace Chimp.Providers.Action.Install
 
         public override IEnumerable<SoftwareProductInfo> GetProducts(CardItemViewModel card, CameraInfo camera)
         {
-            if (card?.Switched == true || card?.Bootable != null && card?.Bootable != CategoryName)
+            if (card?.Bootable != null && card?.Bootable != CategoryName)
                 return Enumerable.Empty<SoftwareProductInfo>();
             return GetProducts();
         }
