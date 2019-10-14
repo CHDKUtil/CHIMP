@@ -78,21 +78,14 @@ namespace Chimp.Controllers
         {
             ViewModel = await CreateViewModelAsync();
 
-            var fileSystem = GetFileSystem();
-            var installer = InstallerProvider.GetInstaller(fileSystem);
+            var card = CardViewModel?.SelectedItem?.Info;
+            var installer = InstallerProvider.GetInstaller(card?.FileSystem);
             if (installer == null)
                 return false;
 
             VolumeWatcher.Stop();
 
             return await installer.InstallAsync(cancellationToken);
-        }
-
-        private string GetFileSystem()
-        {
-            return DownloadViewModel.Software.Category.Name == "SCRIPT"
-                ? "SCRIPT"
-                : CardViewModel?.SelectedItem?.Info?.FileSystem;
         }
 
         private async Task<InstallViewModel> CreateViewModelAsync()
