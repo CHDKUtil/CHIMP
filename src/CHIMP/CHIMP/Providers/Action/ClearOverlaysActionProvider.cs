@@ -24,7 +24,7 @@ namespace Chimp.Providers.Action
         public override IEnumerable<IAction> GetActions()
         {
             var card = CardViewModel?.SelectedItem;
-            if (card?.Switched == true || (card?.Bootable != null && card?.Bootable != "SCRIPT"))
+            if (card?.Bootable != null && card?.Bootable != "SCRIPT")
                 yield break;
 
             var softwareInfo = SoftwareViewModel?.SelectedItem?.Info;
