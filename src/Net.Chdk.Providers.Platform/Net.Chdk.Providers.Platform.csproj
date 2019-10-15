@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.3</TargetFramework>
+    <TargetFrameworks>netstandard1.3;net461</TargetFrameworks>
     <Description>CHIMP platform providers</Description>
     <RootNamespace>Net.Chdk.Providers.Platform</RootNamespace>
     <LangVersion>8.0</LangVersion>

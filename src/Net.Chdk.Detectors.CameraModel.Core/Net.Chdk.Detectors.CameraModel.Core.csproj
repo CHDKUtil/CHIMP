@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
     <Description>CHIMP camera model detectors API</Description>
     <RootNamespace>Net.Chdk.Detectors.CameraModel</RootNamespace>
     <LangVersion>8.0</LangVersion>
@@ -25,6 +25,10 @@
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
     <TreatSpecificWarningsAsErrors />
   </PropertyGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Net.Chdk.Detectors.Camera.Core\Net.Chdk.Detectors.Camera.Core.csproj" />
