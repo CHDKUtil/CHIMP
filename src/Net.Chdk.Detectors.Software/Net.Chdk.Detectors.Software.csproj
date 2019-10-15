@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.3</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
     <Description>CHIMP software detectors</Description>
     <RootNamespace>Net.Chdk.Detectors.Software</RootNamespace>
   </PropertyGroup>
@@ -28,7 +28,6 @@
     <PackageReference Include="microsoft.extensions.dependencyinjection.abstractions" Version="1.1.1" />
     <PackageReference Include="microsoft.extensions.logging.abstractions" Version="1.1.2" />
     <PackageReference Include="microsoft.extensions.options" Version="1.1.2" />
-    <PackageReference Include="System.Threading.Thread" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>
