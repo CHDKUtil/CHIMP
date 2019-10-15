@@ -1,13 +1,11 @@
-﻿using Chimp.Model;
-using Chimp.Properties;
-using Net.Chdk;
-using Net.Chdk.Model.CameraModel;
+﻿using Net.Chdk.Model.CameraModel;
 using Net.Chdk.Model.Software;
 using Net.Chdk.Providers.CameraModel;
+using Net.Chdk.Providers.Software;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Chimp.Providers.Supported
+namespace Net.Chdk.Providers.Supported
 {
     sealed class SupportedPlatformProvider : IInnerSupportedProvider
     {
@@ -18,40 +16,41 @@ namespace Chimp.Providers.Supported
             CameraProvider = cameraProvider;
         }
 
-        public bool IsMatch(MatchData data)
+        public bool IsMatch(IMatchData data)
         {
             return data.Platforms != null;
         }
 
-        public string GetError(MatchData data)
+        public string GetError(IMatchData data)
         {
-            return Resources.Download_UnsupportedModel_Text;
+            return "Download_UnsupportedModel_Text";
         }
 
-        public string[] GetItems(MatchData data)
+        public string[] GetItems(IMatchData data, SoftwareInfo software)
         {
             return data.Platforms
-                .SelectMany(p => GetModels(p, data.Software))
+                .SelectMany(p => GetModels(p, software))
                 .ToArray();
         }
 
-        public string GetTitle(MatchData data)
+        public string GetTitle(IMatchData data)
         {
             return data.Platforms.Count() > 1
-                ? Resources.Download_SupportedModels_Content
-                : Resources.Download_SupportedModel_Content;
+                ? "Download_SupportedModels_Content"
+                : "Download_SupportedModel_Content";
         }
 
         private IEnumerable<string> GetModels(string platform, SoftwareInfo software)
         {
-            var camera = GetCamera(platform, software.Camera?.Revision);
-            var data = CameraProvider.GetCameraModels(software.Product, camera);
-            if (data?.Models != null)
-                foreach (var model in data?.Models)
+            var camera = GetCamera(platform, software?.Camera?.Revision);
+            var data = CameraProvider.GetCameraModels(software?.Product, camera);
+            var models = data?.Models;
+            if (models != null)
+                foreach (var model in models)
                     yield return GetModel(model);
         }
 
-        private SoftwareCameraInfo GetCamera(string platform, string revision)
+        private SoftwareCameraInfo GetCamera(string platform, string? revision)
         {
             return new SoftwareCameraInfo
             {

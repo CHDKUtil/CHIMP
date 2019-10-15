@@ -273,7 +273,6 @@
     <Compile Include="Downloaders\ScriptDownloader.cs" />
     <Compile Include="Installers\ScriptInstaller.cs" />
     <Compile Include="Interfaces\Providers\ILicenseProvider.cs" />
-    <Compile Include="Interfaces\Providers\ISupportedProvider.cs" />
     <Compile Include="Model\ActionsData.cs" />
     <Compile Include="Model\ExtractData.cs" />
     <Compile Include="Model\MatchData.cs" />
@@ -402,11 +401,6 @@
     <Compile Include="Containers\ActionContainer.cs" />
     <Compile Include="Providers\ProductTipProvider.cs" />
     <Compile Include="Providers\Software\MlSoftwareProvider.cs" />
-    <Compile Include="Providers\SupportedProvider.cs" />
-    <Compile Include="Providers\Supported\SupportedBuildProvider.cs" />
-    <Compile Include="Providers\Supported\SupportedErrorProvider.cs" />
-    <Compile Include="Providers\Supported\SupportedPlatformProvider.cs" />
-    <Compile Include="Providers\Supported\SupportedRevisionProvider.cs" />
     <Compile Include="Providers\Tips\LedTipProvider.cs" />
     <Compile Include="Providers\Tips\RemoveTipProvider.cs" />
     <Compile Include="Providers\Tips\ScriptTipProvider.cs" />
@@ -989,6 +983,14 @@
     <ProjectReference Include="..\..\Net.Chdk.Providers.Substitute\Net.Chdk.Providers.Substitute.csproj">
       <Project>{bcd86354-00a6-4632-b200-b5276e01e1bf}</Project>
       <Name>Net.Chdk.Providers.Substitute</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Net.Chdk.Providers.Supported.Core\Net.Chdk.Providers.Supported.Core.csproj">
+      <Project>{3396c4df-053c-4d1e-aa11-edd811c57691}</Project>
+      <Name>Net.Chdk.Providers.Supported.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Net.Chdk.Providers.Supported\Net.Chdk.Providers.Supported.csproj">
+      <Project>{e7f7b3bf-a6d9-490a-bc3c-0502a1b9a258}</Project>
+      <Name>Net.Chdk.Providers.Supported</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Net.Chdk.Validators.Software\Net.Chdk.Validators.Software.csproj">
       <Project>{eba6c0dc-238a-455a-b192-745d53ef8b36}</Project>

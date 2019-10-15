@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Chimp.Model;
 using Net.Chdk.Model.Software;
+using Net.Chdk.Providers.Software;
 using Net.Chdk.Providers.Substitute;
 
 namespace Chimp.Providers.Matches
@@ -16,14 +17,14 @@ namespace Chimp.Providers.Matches
             SubstituteProvider = substituteProvider;
         }
 
-        public Task<MatchData> GetMatchesAsync(SoftwareInfo software, string buildName, CancellationToken cancellationToken)
+        public Task<IMatchData> GetMatchesAsync(SoftwareInfo software, string buildName, CancellationToken cancellationToken)
         {
             var substitutes = SubstituteProvider.GetSubstitutes(software);
             var result = GetMatches(software, substitutes);
             return Task.FromResult(result);
         }
 
-        private MatchData GetMatches(SoftwareInfo software, IDictionary<string, object> substitutes)
+        private IMatchData GetMatches(SoftwareInfo software, IDictionary<string, object> substitutes)
         {
             if (!substitutes.ContainsKey("platform"))
             {

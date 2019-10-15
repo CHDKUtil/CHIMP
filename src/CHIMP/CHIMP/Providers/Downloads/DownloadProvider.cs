@@ -15,9 +15,11 @@ namespace Chimp.Providers.Downloads
             BaseUri = baseUri;
         }
 
-        public virtual IEnumerable<DownloadData> GetDownloads(SoftwareData software)
+        public IEnumerable<DownloadData> GetDownloads(SoftwareData software)
         {
-            return GetDownloads(software.Match.Matches, software.Info);
+            if (!(software.Match is MatchData matchData))
+                return null;
+            return GetDownloads(matchData.Matches, software.Info);
         }
 
         protected virtual IEnumerable<DownloadData> GetDownloads(Match[] matches, SoftwareInfo info)

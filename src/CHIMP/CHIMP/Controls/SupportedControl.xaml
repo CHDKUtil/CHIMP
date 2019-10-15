@@ -58,7 +58,7 @@
             </TextBlock.Style>
         </TextBlock>
 
-        <Label Content="{Binding [Download].SupportedTitle}" Grid.Row="3">
+        <Label Content="{Binding [Download].SupportedTitle, Converter={StaticResource ResourceConverter}}" Grid.Row="3">
             <Label.Style>
                 <Style TargetType="Label" BasedOn="{StaticResource InfoLabel}">
                     <Style.Triggers>

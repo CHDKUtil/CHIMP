@@ -1,8 +1,8 @@
 ﻿using System.IO;
-using System.Text.RegularExpressions;
 using Net.Chdk;
 using Net.Chdk.Json;
 using Net.Chdk.Model.Software;
+using Net.Chdk.Providers.Software;
 
 namespace Chimp.Providers.Software
 {
@@ -15,7 +15,7 @@ namespace Chimp.Providers.Software
             ProductName = source.Name;
         }
 
-        public SoftwareInfo GetSoftware(Match match, SoftwareInfo softwareInfo)
+        public SoftwareInfo GetSoftware(IMatchData _, SoftwareInfo softwareInfo)
         {
             var software = GetSoftware();
             software.Camera = softwareInfo.Camera;

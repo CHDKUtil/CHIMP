@@ -1,9 +1,9 @@
-﻿using Chimp.Model;
-using Net.Chdk.Model.Software;
+﻿using Net.Chdk.Model.Software;
+using Net.Chdk.Providers.Software;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Chimp.Providers
+namespace Net.Chdk.Providers.Supported
 {
     sealed class SupportedProvider : ISupportedProvider
     {
@@ -14,25 +14,25 @@ namespace Chimp.Providers
             Providers = providers;
         }
 
-        public string GetError(MatchData data)
+        public string? GetError(IMatchData data)
         {
             return GetProvider(data)?
                 .GetError(data);
         }
 
-        public string[] GetItems(MatchData data)
+        public string[]? GetItems(IMatchData data, SoftwareInfo software)
         {
             return GetProvider(data)?
-                .GetItems(data);
+                .GetItems(data, software);
         }
 
-        public string GetTitle(MatchData data)
+        public string? GetTitle(IMatchData data)
         {
             return GetProvider(data)?
                 .GetTitle(data);
         }
 
-        private IInnerSupportedProvider GetProvider(MatchData data)
+        private IInnerSupportedProvider? GetProvider(IMatchData data)
         {
             return Providers
                 .FirstOrDefault(p => p.IsMatch(data));

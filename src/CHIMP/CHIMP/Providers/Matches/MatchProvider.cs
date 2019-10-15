@@ -3,6 +3,7 @@ using Chimp.Properties;
 using Microsoft.Extensions.Logging;
 using Net.Chdk.Adapters.Platform;
 using Net.Chdk.Model.Software;
+using Net.Chdk.Providers.Software;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -38,7 +39,7 @@ namespace Chimp.Providers.Matches
             builds = new List<string>();
         }
 
-        public async Task<MatchData> GetMatchesAsync(SoftwareInfo software, string buildName, CancellationToken cancellationToken)
+        public async Task<IMatchData> GetMatchesAsync(SoftwareInfo software, string buildName, CancellationToken cancellationToken)
         {
             var buildUri = GetBuildUri(buildName);
 

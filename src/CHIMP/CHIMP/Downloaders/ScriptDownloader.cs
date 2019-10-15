@@ -3,6 +3,7 @@ using Chimp.ViewModels;
 using Microsoft.Extensions.Logging;
 using Net.Chdk.Generators.Script;
 using Net.Chdk.Providers.Boot;
+using Net.Chdk.Providers.Supported;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;

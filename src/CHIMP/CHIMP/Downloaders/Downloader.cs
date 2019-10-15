@@ -2,6 +2,7 @@
 using Chimp.Properties;
 using Chimp.ViewModels;
 using Microsoft.Extensions.Logging;
+using Net.Chdk.Providers.Supported;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;

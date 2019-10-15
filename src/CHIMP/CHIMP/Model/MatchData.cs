@@ -1,11 +1,11 @@
-﻿using Net.Chdk.Model.Software;
+﻿using Net.Chdk.Providers.Software;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Chimp.Model
 {
-    class MatchData
+    class MatchData : IMatchData
     {
         public MatchData(params Match[] matches)
         {
@@ -30,12 +30,12 @@ namespace Chimp.Model
                 : null;
         }
 
+        public bool Success => Matches != null;
         public Match[] Matches { get; protected set; }
         public string Error { get; protected set; }
         public IEnumerable<string> Platforms { get; protected set; }
         public IEnumerable<string> Revisions { get; protected set; }
         public IEnumerable<string> Builds { get; protected set; }
-        public SoftwareInfo Software { get; set; }
     }
 
     sealed class ScriptMatchData : MatchData

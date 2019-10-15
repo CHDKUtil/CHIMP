@@ -1,6 +1,9 @@
-﻿using Net.Chdk.Model.Software;
+﻿using Chimp.Model;
+using Net.Chdk.Model.Software;
+using Net.Chdk.Providers.Software;
 using System;
 using System.Globalization;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Chimp.Providers.Software
@@ -18,8 +21,9 @@ namespace Chimp.Providers.Software
             Language = language;
         }
 
-        public SoftwareInfo GetSoftware(Match match, SoftwareInfo software)
+        public SoftwareInfo GetSoftware(IMatchData data, SoftwareInfo software)
         {
+            var match = (data as MatchData)?.Matches?.LastOrDefault();
             return new SoftwareInfo
             {
                 Version = Version,

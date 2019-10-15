@@ -3,6 +3,8 @@ using Chimp.Properties;
 using Chimp.ViewModels;
 using Microsoft.Extensions.Logging;
 using Net.Chdk.Model.Software;
+using Net.Chdk.Providers.Software;
+using Net.Chdk.Providers.Supported;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -65,15 +67,13 @@ namespace Chimp.Downloaders
 
             var buildName = BuildProvider.GetBuildName(softwareInfo);
             var result = await MatchProvider.GetMatchesAsync(softwareInfo, buildName, cancellationToken);
-            var matches = result.Matches;
-            if (matches == null)
+            if (!result.Success)
             {
                 SetSupportedItems(result, softwareInfo);
                 return null;
             }
 
-            var match = matches.LastOrDefault();
-            var info = SoftwareProvider.GetSoftware(match, softwareInfo);
+            var info = SoftwareProvider.GetSoftware(result, softwareInfo);
 
             var software = new SoftwareData
             {
@@ -184,13 +184,13 @@ namespace Chimp.Downloaders
             ViewModel.FileName = string.Empty;
         }
 
-        protected void SetSupportedItems(MatchData data, SoftwareInfo software)
+        protected void SetSupportedItems(IMatchData data, SoftwareInfo softwareInfo)
         {
-            data.Software = SoftwareProvider.GetSoftware(null, software);
+            var software = SoftwareProvider.GetSoftware(null, softwareInfo);
             var error = SupportedProvider.GetError(data)
                 ?? Resources.Download_UnsupportedModel_Text;
             SetTitle(error, LogLevel.Error);
-            ViewModel.SupportedItems = SupportedProvider.GetItems(data);
+            ViewModel.SupportedItems = SupportedProvider.GetItems(data, software);
             ViewModel.SupportedTitle = SupportedProvider.GetTitle(data);
         }
     }

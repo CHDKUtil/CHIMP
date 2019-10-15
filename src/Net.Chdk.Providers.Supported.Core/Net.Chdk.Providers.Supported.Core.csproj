@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard1.0;net461</TargetFrameworks>
+    <Description>CHIMP supported items providers API</Description>
+    <RootNamespace>Net.Chdk.Providers.Supported</RootNamespace>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Version>0.1.0</Version>
+    <VersionSuffix>alpha</VersionSuffix>
+    <Authors>Dmitry Shechtman</Authors>
+    <Product>CHIMP</Product>
+    <Copyright>Copyright © 2019 Dmitry Shechtman</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Net.Chdk.Providers.Software.Core\Net.Chdk.Providers.Software.Core.csproj" />
+  </ItemGroup>
+
+</Project>

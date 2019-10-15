@@ -2,7 +2,6 @@
 using Chimp.Logging.Extensions;
 using Chimp.Model;
 using Chimp.Providers;
-using Chimp.Providers.Supported;
 using Chimp.Services;
 using Chimp.ViewModels;
 using Microsoft.Extensions.Configuration;
@@ -34,6 +33,7 @@ using Net.Chdk.Providers.Software.Chdk;
 using Net.Chdk.Providers.Software.Ml;
 using Net.Chdk.Providers.Software.Sdm;
 using Net.Chdk.Providers.Substitute;
+using Net.Chdk.Providers.Supported;
 using Net.Chdk.Validators.Software;
 using Net.Chdk.Watchers.Volume;
 using System;
@@ -200,6 +200,7 @@ namespace Chimp
                 .AddCameraProvider()
                 .AddCameraModelProvider()
                 .AddSubstituteProvider()
+                .AddSupportedProvider()
                 .AddSingleton<IResourceProvider, ChdkResourceProvider>()
                 .AddSingleton<IStepProvider, StepProvider>()
                 .AddSingleton<IActionProvider, ActionContainer>()
@@ -207,11 +208,6 @@ namespace Chimp
                 .AddSingleton<IDownloaderProvider, AggregateDownloaderProvider>()
                 .AddSingleton<IInstallerProvider, InstallerProvider>()
                 .AddSingleton<ITipProvider, AggregateTipProvider>()
-                .AddSingleton<ISupportedProvider, SupportedProvider>()
-                .AddSingleton<IInnerSupportedProvider, SupportedErrorProvider>()
-                .AddSingleton<IInnerSupportedProvider, SupportedBuildProvider>()
-                .AddSingleton<IInnerSupportedProvider, SupportedRevisionProvider>()
-                .AddSingleton<IInnerSupportedProvider, SupportedPlatformProvider>()
                 ;
         }
 
