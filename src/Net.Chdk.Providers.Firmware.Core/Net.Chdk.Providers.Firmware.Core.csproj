@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.0</TargetFramework>
+    <TargetFrameworks>netstandard1.0;net461</TargetFrameworks>
     <Description>CHIMP firmware providers API</Description>
     <RootNamespace>Net.Chdk.Providers.Firmware</RootNamespace>
     <LangVersion>8.0</LangVersion>
