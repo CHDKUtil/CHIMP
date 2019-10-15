@@ -1,5 +1,6 @@
 {
   "clear_overlays": {
+    "assembly": "Net.Chdk.Providers.Software.Script",
     "downloadType": "Script",
     "matchType": "Script",
     "productType": "Script"

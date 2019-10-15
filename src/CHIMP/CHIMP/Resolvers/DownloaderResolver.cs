@@ -2,6 +2,7 @@
 using Chimp.Model;
 using Net.Chdk;
 using Net.Chdk.Model.Software;
+using Net.Chdk.Providers.Software;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -33,6 +34,16 @@ namespace Chimp.Resolvers
         protected override string GetTypeName(Distro distro)
         {
             return distro.DownloadType;
+        }
+
+        protected override string GetAssemblyName(Distro distro)
+        {
+            return null;
+        }
+
+        protected override string GetNamespace(string product)
+        {
+            return typeof(Downloader).Namespace;
         }
 
         protected override IEnumerable<Type> GetTypes()

@@ -34,11 +34,17 @@ namespace Chimp.Resolvers
             if (!Data.TryGetValue(sourceName, out Distro distro))
                 return null;
 
+            var assemblyName = GetAssemblyName(distro);
             var typeName = GetTypeName(distro);
             var types = GetTypes().ToArray();
             var values = GetValues(sourceName, source, distro).ToArray();
 
-            return CreateProvider(sourceName, typeName, types, values);
+            return CreateProvider(distro.ProductType, assemblyName, typeName, types, values);
+        }
+
+        protected virtual string GetAssemblyName(Distro distro)
+        {
+            return distro.Assembly;
         }
 
         protected abstract string GetTypeName(Distro distro);
@@ -50,8 +56,14 @@ namespace Chimp.Resolvers
             throw new NotImplementedException();
         }
 
-        protected sealed override string Namespace => typeof(TProviderImpl).Namespace;
+        protected override string GetNamespace(string product)
+        {
+            return $"{typeof(TProvider).Namespace}.{product}";
+        }
 
-        protected sealed override string TypeSuffix => typeof(TProviderImpl).Name;
+        protected sealed override string GetTypeSuffix()
+        {
+            return typeof(TProviderImpl).Name;
+        }
     }
 }

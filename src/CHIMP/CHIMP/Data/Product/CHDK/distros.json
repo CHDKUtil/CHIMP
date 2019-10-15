@@ -1,29 +1,34 @@
 ﻿{
   "CHDK_release": {
+    "assembly": "Net.Chdk.Providers.Software.Chdk",
     "matchType": "Chdk",
     "productType": "Chdk",
     "baseUrl": "http://mighty-hoernsche.de/",
     "language": "en"
   },
   "CHDK_trunk": {
+    "assembly": "Net.Chdk.Providers.Software.Chdk",
     "matchType": "Chdk",
     "productType": "Chdk",
     "baseUrl": "http://mighty-hoernsche.de/trunk/",
     "language": "en"
   },
   "CHDK_mirror_release": {
+    "assembly": "Net.Chdk.Providers.Software.Chdk",
     "matchType": "Chdk",
     "productType": "Chdk",
     "baseUrl": "http://hacki.someserver.de/",
     "language": "en"
   },
   "CHDK_mirror_trunk": {
+    "assembly": "Net.Chdk.Providers.Software.Chdk",
     "matchType": "Chdk",
     "productType": "Chdk",
     "baseUrl": "http://hacki.someserver.de/trunk/",
     "language": "en"
   },
   "CHDK_DE_release": {
+    "assembly": "Net.Chdk.Providers.Software.Chdk",
     "matchType": "ChdkDe",
     "productType": "Chdk",
     "baseUrl": "http://autobuild.akalab.de/",
@@ -34,6 +39,7 @@
     "language": "de"
   },
   "CHDK_DE_trunk": {
+    "assembly": "Net.Chdk.Providers.Software.Chdk",
     "matchType": "ChdkDe",
     "productType": "Chdk",
     "baseUrl": "http://autobuild.akalab.de/",

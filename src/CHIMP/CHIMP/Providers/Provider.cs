@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace Chimp.Providers
 {
@@ -15,16 +16,15 @@ namespace Chimp.Providers
 
         protected abstract IDictionary<string, TData> Data { get; }
 
-        protected TValue CreateProvider(string key, string type, Type[] argTypes = null, object[] argValues = null)
+        protected TValue CreateProvider(string product, string assembly, string type, Type[] argTypes = null, object[] argValues = null)
         {
-            var @namespace = GetNamespace(key);
-            return ServiceActivator.Create<TValue>($"{@namespace}.{type}{TypeSuffix}", argTypes, argValues);
+            var @namespace = GetNamespace(product);
+            assembly ??= Assembly.GetExecutingAssembly().FullName;
+            return ServiceActivator.Create<TValue>(assembly, $"{@namespace}.{type}{GetTypeSuffix()}", argTypes, argValues);
         }
 
-        protected virtual string Namespace => throw new NotImplementedException();
+        protected virtual string GetNamespace(string product) => throw new NotImplementedException();
 
-        protected virtual string TypeSuffix => throw new NotImplementedException();
-
-        protected virtual string GetNamespace(string key) => Namespace;
+        protected virtual string GetTypeSuffix() => throw new NotImplementedException();
     }
 }

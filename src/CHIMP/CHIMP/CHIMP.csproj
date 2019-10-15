@@ -275,17 +275,12 @@
     <Compile Include="Interfaces\Providers\ILicenseProvider.cs" />
     <Compile Include="Model\ActionsData.cs" />
     <Compile Include="Model\ExtractData.cs" />
-    <Compile Include="Model\MatchData.cs" />
     <Compile Include="Providers\Action\Install\ActionCreator.cs" />
     <Compile Include="Providers\Action\Install\ActionCreatorBase.cs" />
     <Compile Include="Providers\Action\Install\IActionCreator.cs" />
     <Compile Include="Providers\Action\Install\ScriptActionCreator.cs" />
-    <Compile Include="Providers\Build\ScriptBuildProvider.cs" />
     <Compile Include="Providers\DataProvider.cs" />
-    <Compile Include="Providers\Downloads\ScriptDownloadProvider.cs" />
     <Compile Include="Providers\LicenseProvider.cs" />
-    <Compile Include="Providers\Matches\ScriptMatchProvider.cs" />
-    <Compile Include="Providers\Software\ScriptSoftwareProvider.cs" />
     <Compile Include="Providers\StepProvider.cs" />
     <Compile Include="Controllers\Controller.cs" />
     <Compile Include="Controllers\CameraController.cs" />
@@ -348,7 +343,6 @@
     <Compile Include="Downloaders\BrowseDownloader.cs" />
     <Compile Include="Interfaces\IAction.cs" />
     <Compile Include="Interfaces\Providers\IActionProvider.cs" />
-    <Compile Include="Interfaces\Providers\IMatchProvider.cs" />
     <Compile Include="Interfaces\Services\IBootService.cs" />
     <Compile Include="Interfaces\Services\IMetadataService.cs" />
     <Compile Include="Interfaces\Services\IExtractService.cs" />
@@ -369,7 +363,6 @@
     <Compile Include="Interfaces\Services\IScriptService.cs" />
     <Compile Include="Interfaces\Providers\IResourceProvider.cs" />
     <Compile Include="Model\Distro.cs" />
-    <Compile Include="Model\DownloadData.cs" />
     <Compile Include="Model\InstallersData.cs" />
     <Compile Include="Model\PartitionType.cs" />
     <Compile Include="Pages\EjectPage.xaml.cs">
@@ -385,30 +378,14 @@
     <Compile Include="Providers\Action\ScriptableActionProvider.cs" />
     <Compile Include="Providers\Action\SwitchActionProvider.cs" />
     <Compile Include="Providers\Action\UpdateActionProvider.cs" />
-    <Compile Include="Providers\Build\MlBuildProvider.cs" />
     <Compile Include="Providers\ChdkResourceProvider.cs" />
-    <Compile Include="Providers\Downloads\ChdkDownloadProvider.cs" />
-    <Compile Include="Providers\Downloads\DownloadProvider.cs" />
-    <Compile Include="Interfaces\Providers\IDownloadProvider.cs" />
-    <Compile Include="Providers\Downloads\MlDownloadProvider.cs" />
-    <Compile Include="Providers\Downloads\SdmDownloadProvider.cs" />
-    <Compile Include="Providers\Matches\ChdkDeMatchProvider.cs" />
-    <Compile Include="Providers\Matches\ChdkMatchProvider.cs" />
-    <Compile Include="Providers\Matches\MatchProvider.cs" />
-    <Compile Include="Providers\Matches\MlMatchProvider.cs" />
-    <Compile Include="Providers\Matches\SdmMatchProvider.cs" />
     <Compile Include="Providers\Action\ActionProvider.cs" />
     <Compile Include="Containers\ActionContainer.cs" />
     <Compile Include="Providers\ProductTipProvider.cs" />
-    <Compile Include="Providers\Software\MlSoftwareProvider.cs" />
     <Compile Include="Providers\Tips\LedTipProvider.cs" />
     <Compile Include="Providers\Tips\RemoveTipProvider.cs" />
     <Compile Include="Providers\Tips\ScriptTipProvider.cs" />
     <Compile Include="Resolvers\BuildProviderResolver.cs" />
-    <Compile Include="Providers\Build\BuildProvider.cs" />
-    <Compile Include="Interfaces\Providers\IBuildProvider.cs" />
-    <Compile Include="Providers\Build\ChdkBuildProvider.cs" />
-    <Compile Include="Providers\Build\SdmBuildProvider.cs" />
     <Compile Include="Providers\AggregateDownloaderProvider.cs" />
     <Compile Include="Providers\InstallerProvider.cs" />
     <Compile Include="Interfaces\IInstaller.cs" />
@@ -423,10 +400,6 @@
     <Compile Include="Downloaders\Downloader.cs" />
     <Compile Include="Interfaces\IDownloader.cs" />
     <Compile Include="Resolvers\ProviderResolver.cs" />
-    <Compile Include="Providers\Software\ChdkSoftwareProvider.cs" />
-    <Compile Include="Interfaces\Providers\ISoftwareProvider.cs" />
-    <Compile Include="Providers\Software\SdmSoftwareProvider.cs" />
-    <Compile Include="Providers\Software\SoftwareProvider.cs" />
     <Compile Include="Providers\Tips\EjectTipProvider.cs" />
     <Compile Include="Containers\VolumeContainer.cs" />
     <Compile Include="ServiceActivator.cs" />
@@ -967,6 +940,14 @@
     <ProjectReference Include="..\..\Net.Chdk.Providers.Software.Ml\Net.Chdk.Providers.Software.Ml.csproj">
       <Project>{c0c422d4-841d-47a6-953a-8d9e1702d954}</Project>
       <Name>Net.Chdk.Providers.Software.Ml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Net.Chdk.Providers.Software.Product\Net.Chdk.Providers.Software.Product.csproj">
+      <Project>{768720f7-02dc-4f36-81ec-2eea69253851}</Project>
+      <Name>Net.Chdk.Providers.Software.Product</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Net.Chdk.Providers.Software.Script\Net.Chdk.Providers.Software.Script.csproj">
+      <Project>{cf7d7f63-0359-4f17-92b2-6bf7143848ca}</Project>
+      <Name>Net.Chdk.Providers.Software.Script</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Net.Chdk.Providers.Software.Sdm\Net.Chdk.Providers.Software.Sdm.csproj">
       <Project>{4f72ff77-d68f-4ebe-a8c1-150c3b13de4d}</Project>

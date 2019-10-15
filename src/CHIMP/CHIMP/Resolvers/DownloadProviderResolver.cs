@@ -1,12 +1,12 @@
 ﻿using Chimp.Model;
-using Chimp.Providers.Downloads;
 using Net.Chdk.Model.Software;
+using Net.Chdk.Providers.Software;
 using System;
 using System.Collections.Generic;
 
 namespace Chimp.Resolvers
 {
-    internal class DownloadProviderResolver : ProviderResolver<IDownloadProvider, DownloadProvider>
+    sealed class DownloadProviderResolver : ProviderResolver<IDownloadProvider, DownloadProvider>
     {
         public DownloadProviderResolver(IServiceActivator serviceActivator, IDictionary<string, Distro> distros)
             : base(serviceActivator, distros)

@@ -3,6 +3,8 @@ using Chimp.ViewModels;
 using Microsoft.Extensions.Logging;
 using Net.Chdk.Generators.Script;
 using Net.Chdk.Providers.Boot;
+using Net.Chdk.Providers.Software;
+using Net.Chdk.Providers.Software.Script;
 using Net.Chdk.Providers.Supported;
 using System.IO;
 using System.Threading;
@@ -26,7 +28,7 @@ namespace Chimp.Downloaders
             ScriptGenerator = scriptGenerator;
         }
 
-        protected override Task<ExtractData> DownloadAsync(DownloadData download, string path, string targetPath, string dirPath, string tempPath, CancellationToken cancellationToken)
+        protected override Task<ExtractData> DownloadAsync(IDownloadData download, string targetPath, string dirPath, string tempPath, CancellationToken cancellationToken)
         {
             var filePath = Download(download, dirPath: dirPath);
             return Task.FromResult(filePath);
@@ -52,9 +54,9 @@ namespace Chimp.Downloaders
             return dirPath;
         }
 
-        private ExtractData Download(DownloadData download, string dirPath)
+        private ExtractData Download(IDownloadData data, string dirPath)
         {
-            if (!(download is ScriptDownloadData data))
+            if (!(data is ScriptDownloadData download))
                 return null;
 
             Directory.CreateDirectory(dirPath);
@@ -62,8 +64,8 @@ namespace Chimp.Downloaders
             var fileName = BootProvider.GetFileName(CategoryName);
             var filePath = Path.Combine(dirPath, fileName);
 
-            var productName = data.Software.Product.Name;
-            return new ScriptExtractData(data.Substitutes, productName: productName, filePath: filePath);
+            var productName = download.Software.Product.Name;
+            return new ScriptExtractData(download.Substitutes, productName: productName, filePath: filePath);
         }
     }
 }

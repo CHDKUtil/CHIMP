@@ -22,7 +22,7 @@ namespace Chimp.Providers
         public IEnumerable<Tip> GetTips(string productText)
         {
             return Data
-                .Select(kvp => CreateProvider(kvp.Key, kvp.Key))
+                .Select(kvp => CreateProvider(kvp.Key, kvp.Value, kvp.Key))
                 .SelectMany(p => p.GetTips(productText));
         }
 
@@ -33,8 +33,8 @@ namespace Chimp.Providers
                 : Path.Combine(Directories.Data, DataFileName);
         }
 
-        protected override string Namespace => typeof(TipProvider).Namespace;
+        protected override string GetNamespace(string _) => typeof(TipProvider).Namespace;
 
-        protected override string TypeSuffix => nameof(TipProvider);
+        protected override string GetTypeSuffix() => nameof(TipProvider);
     }
 }

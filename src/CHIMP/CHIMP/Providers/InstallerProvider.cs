@@ -19,13 +19,13 @@ namespace Chimp.Providers
         {
             if (!Data.TryGetValue(fileSystem ?? string.Empty, out InstallerData data))
                 return null;
-            return CreateProvider(fileSystem, data.Type);
+            return CreateProvider(fileSystem, data.Assembly, data.Type);
         }
 
         protected override IDictionary<string, InstallerData> Data => InstallersData.Installers;
 
-        protected override string Namespace => typeof(Installer).Namespace;
+        protected override string GetNamespace(string _) => typeof(Installer).Namespace;
 
-        protected override string TypeSuffix => nameof(Installer);
+        protected override string GetTypeSuffix() => nameof(Installer);
     }
 }

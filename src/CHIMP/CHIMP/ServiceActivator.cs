@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
 
 namespace Chimp
 {
@@ -12,9 +13,10 @@ namespace Chimp
             ServiceProvider = serviceProvider;
         }
 
-        public T Create<T>(string typeName, Type[] argTypes, object[] argValues)
+        public T Create<T>(string assemblyName, string typeName, Type[] argTypes, object[] argValues)
         {
-            var type = Type.GetType(typeName);
+            var assembly = Assembly.Load(assemblyName);
+            var type = assembly.GetType(typeName);
             if (type == null)
                 throw new TypeInitializationException(typeName, new TypeLoadException());
             return Create<T>(type, typeName, argTypes, argValues);

@@ -1,6 +1,6 @@
 ﻿using Chimp.Model;
-using Chimp.Providers.Matches;
 using Net.Chdk.Model.Software;
+using Net.Chdk.Providers.Software;
 using System;
 using System.Collections.Generic;
 

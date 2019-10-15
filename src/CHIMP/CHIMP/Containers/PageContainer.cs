@@ -30,7 +30,7 @@ namespace Chimp.Containers
 
         private Page CreatePage(string name)
         {
-            var page = CreateProvider(name, name);
+            var page = CreateProvider(name, Data[name].Assembly, name);
             page.DataContext = MainViewModel;
             return page;
         }
@@ -46,6 +46,6 @@ namespace Chimp.Containers
                 ?? "Chimp.Pages";
         }
 
-        protected override string TypeSuffix => "Page";
+        protected override string GetTypeSuffix() => "Page";
     }
 }

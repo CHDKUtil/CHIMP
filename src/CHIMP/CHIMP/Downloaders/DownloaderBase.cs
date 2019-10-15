@@ -104,12 +104,11 @@ namespace Chimp.Downloaders
             return paths;
         }
 
-        private async Task<string> DownloadExtractAsync(DownloadData download, string tempPath, CancellationToken cancellationToken)
+        private async Task<string> DownloadExtractAsync(IDownloadData download, string tempPath, CancellationToken cancellationToken)
         {
-            var path = download.Path;
-            var targetPath = download.TargetPath ?? path;
+            var targetPath = download.TargetPath ?? download.Path;
 
-            var destPath = await DownloadExtractAsync(download, path: path, targetPath: targetPath, tempPath: tempPath, cancellationToken: cancellationToken);
+            var destPath = await DownloadExtractAsync(download, targetPath: targetPath, tempPath: tempPath, cancellationToken: cancellationToken);
             if (destPath == null)
                 return null;
 
@@ -118,7 +117,7 @@ namespace Chimp.Downloaders
                 : destPath;
         }
 
-        private async Task<string> DownloadExtractAsync(DownloadData download, string path, string targetPath, string tempPath, CancellationToken cancellationToken)
+        private async Task<string> DownloadExtractAsync(IDownloadData download, string targetPath, string tempPath, CancellationToken cancellationToken)
         {
             var dirName = Path.GetFileNameWithoutExtension(targetPath);
             var dirPath = Path.Combine(tempPath, dirName);
@@ -129,14 +128,14 @@ namespace Chimp.Downloaders
                 return dirPath;
             }
 
-            var extract = await DownloadAsync(download, path: path, targetPath: targetPath, dirPath: dirPath, tempPath: tempPath, cancellationToken: cancellationToken);
+            var extract = await DownloadAsync(download, targetPath: targetPath, dirPath: dirPath, tempPath: tempPath, cancellationToken: cancellationToken);
             if (extract == null)
                 return null;
 
             return await ExtractAsync(extract, targetPath: targetPath, dirPath: dirPath, tempPath: tempPath, cancellationToken: cancellationToken);
         }
 
-        protected abstract Task<ExtractData> DownloadAsync(DownloadData download, string path, string targetPath, string dirPath, string tempPath, CancellationToken cancellationToken);
+        protected abstract Task<ExtractData> DownloadAsync(IDownloadData download, string targetPath, string dirPath, string tempPath, CancellationToken cancellationToken);
 
         protected abstract Task<string> ExtractAsync(ExtractData extract, string targetPath, string dirPath, string tempPath, CancellationToken cancellationToken);
 

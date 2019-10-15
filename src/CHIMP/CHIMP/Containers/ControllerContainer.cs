@@ -41,7 +41,7 @@ namespace Chimp.Containers
         {
             var types = new[] { typeof(string) };
             var values = new[] { name };
-            var controller = CreateProvider(name, name, types, values);
+            var controller = CreateProvider(name, Data[name].Assembly, name, types, values);
             await controller.InitializeAsync();
             return controller;
         }
@@ -57,6 +57,6 @@ namespace Chimp.Containers
                 ?? typeof(Controller<>).Namespace;
         }
 
-        protected override string TypeSuffix => "Controller";
+        protected override string GetTypeSuffix() => "Controller";
     }
 }

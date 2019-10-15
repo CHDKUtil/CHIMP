@@ -1,5 +1,6 @@
 ﻿{
   "SDM": {
+    "assembly": "Net.Chdk.Providers.Software.Sdm",
     "matchType": "Sdm",
     "productType": "Sdm",
     "baseUrl": "http://sdm.camera/sdm/builds/",

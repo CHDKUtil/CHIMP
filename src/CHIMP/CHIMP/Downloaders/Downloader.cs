@@ -2,6 +2,7 @@
 using Chimp.Properties;
 using Chimp.ViewModels;
 using Microsoft.Extensions.Logging;
+using Net.Chdk.Providers.Software;
 using Net.Chdk.Providers.Supported;
 using System.IO;
 using System.Threading;
@@ -23,8 +24,12 @@ namespace Chimp.Downloaders
             ExtractService = extractService;
         }
 
-        protected override async Task<ExtractData> DownloadAsync(DownloadData download, string path, string targetPath, string dirPath, string tempPath, CancellationToken cancellationToken)
+        protected override async Task<ExtractData> DownloadAsync(IDownloadData data, string targetPath, string dirPath, string tempPath, CancellationToken cancellationToken)
         {
+            if (!(data is DownloadData download))
+                return null;
+
+            var path = download.Path;
             var fileName = Path.GetFileName(targetPath);
             var filePath = Path.Combine(tempPath, fileName);
             if (File.Exists(filePath))

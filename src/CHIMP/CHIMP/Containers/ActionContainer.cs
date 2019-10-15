@@ -26,7 +26,7 @@ namespace Chimp.Containers
 
         private IActionProvider CreateProvider(KeyValuePair<string, ActionData> kvp)
         {
-            return CreateProvider(kvp.Key, kvp.Key);
+            return CreateProvider(kvp.Key, kvp.Value.Assembly, kvp.Key);
         }
 
         protected override IDictionary<string, ActionData> Data =>
@@ -40,7 +40,7 @@ namespace Chimp.Containers
                 ?? typeof(ActionProvider).Namespace;
         }
 
-        protected override string TypeSuffix => nameof(ActionProvider);
+        protected override string GetTypeSuffix() => nameof(ActionProvider);
 
         #region Actions
 
