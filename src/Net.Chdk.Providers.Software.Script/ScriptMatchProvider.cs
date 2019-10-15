@@ -6,7 +6,7 @@ using Net.Chdk.Providers.Substitute;
 
 namespace Net.Chdk.Providers.Software.Script
 {
-    public sealed class ScriptMatchProvider : IMatchProvider
+    public sealed class ScriptMatchProvider : IMatchProvider<ScriptMatchData>
     {
         private ISubstituteProvider SubstituteProvider { get; }
 
@@ -15,14 +15,14 @@ namespace Net.Chdk.Providers.Software.Script
             SubstituteProvider = substituteProvider;
         }
 
-        public Task<IMatchData> GetMatchesAsync(SoftwareInfo software, string buildName, CancellationToken cancellationToken)
+        public Task<ScriptMatchData> GetMatchesAsync(SoftwareInfo software, string buildName, CancellationToken cancellationToken)
         {
             var substitutes = SubstituteProvider.GetSubstitutes(software);
             var result = GetMatches(software, substitutes);
             return Task.FromResult(result);
         }
 
-        private IMatchData GetMatches(SoftwareInfo software, IDictionary<string, object>? substitutes)
+        private ScriptMatchData GetMatches(SoftwareInfo software, IDictionary<string, object>? substitutes)
         {
             if (substitutes == null)
                 return new ScriptMatchData("Download_InvalidFormat_Text");

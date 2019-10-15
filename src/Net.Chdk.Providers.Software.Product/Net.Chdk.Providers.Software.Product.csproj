@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard1.3;net461</TargetFrameworks>
     <Description>CHIMP software product providers</Description>
-    <RootNamespace>Net.Chdk.Providers.Software.Product</RootNamespace>
+    <RootNamespace>Net.Chdk.Providers.Software</RootNamespace>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
   </PropertyGroup>

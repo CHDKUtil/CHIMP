@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Net.Chdk.Providers.Software
 {
-    public abstract class MatchProvider : IMatchProvider
+    public abstract class MatchProvider : IMatchProvider<MatchData>
     {
         private ILogger Logger { get; }
 
@@ -36,7 +36,7 @@ namespace Net.Chdk.Providers.Software
             builds = new List<string>();
         }
 
-        public async Task<IMatchData> GetMatchesAsync(SoftwareInfo software, string buildName, CancellationToken cancellationToken)
+        public async Task<MatchData> GetMatchesAsync(SoftwareInfo software, string buildName, CancellationToken cancellationToken)
         {
             if (software?.Camera == null)
                 throw new InvalidOperationException("Null camera");

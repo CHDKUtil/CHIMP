@@ -1,6 +1,8 @@
 ﻿using Chimp.Model;
 using Chimp.Providers;
 using Net.Chdk.Model.Software;
+using Net.Chdk.Providers.Software;
+using Net.Chdk.Providers.Software.Script;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -36,7 +38,7 @@ namespace Chimp.Resolvers
 
             var assemblyName = GetAssemblyName(distro);
             var typeName = GetTypeName(distro);
-            var types = GetTypes().ToArray();
+            var types = GetTypes(distro).ToArray();
             var values = GetValues(sourceName, source, distro).ToArray();
 
             return CreateProvider(distro.ProductType, assemblyName, typeName, types, values);
@@ -49,7 +51,7 @@ namespace Chimp.Resolvers
 
         protected abstract string GetTypeName(Distro distro);
         protected abstract IEnumerable<object> GetValues(string sourceName, SoftwareSourceInfo source, Distro distro);
-        protected abstract IEnumerable<Type> GetTypes();
+        protected abstract IEnumerable<Type> GetTypes(Distro distro);
 
         protected override string GetFilePath()
         {
@@ -64,6 +66,17 @@ namespace Chimp.Resolvers
         protected sealed override string GetTypeSuffix()
         {
             return typeof(TProviderImpl).Name;
+        }
+
+        protected static Type GetType(Distro distro, string typeSuffix)
+        {
+            var baseType = distro.MatchType == "Script"
+                ? typeof(ScriptMatchData)
+                : typeof(MatchData);
+            var typeName = distro.MatchType == "Script"
+                ? "Script"
+                : "";
+            return baseType.Assembly.GetType($"{baseType.Namespace}.{typeName}{typeSuffix}");
         }
     }
 }

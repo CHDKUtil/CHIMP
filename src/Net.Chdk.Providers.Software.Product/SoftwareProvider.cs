@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace Net.Chdk.Providers.Software
 {
-    public abstract class SoftwareProvider : ISoftwareProvider
+    public abstract class SoftwareProvider : ISoftwareProvider<MatchData>
     {
         private static readonly Version Version = new Version("2.0");
 
@@ -19,9 +19,9 @@ namespace Net.Chdk.Providers.Software
             Language = language;
         }
 
-        public SoftwareInfo GetSoftware(IMatchData? data, SoftwareInfo software)
+        public SoftwareInfo GetSoftware(MatchData? data, SoftwareInfo software)
         {
-            var match = (data as MatchData)?.Payload?.LastOrDefault();
+            var match = data?.Payload?.LastOrDefault();
             return new SoftwareInfo
             {
                 Version = Version,

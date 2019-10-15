@@ -46,12 +46,12 @@ namespace Chimp.Resolvers
             return typeof(Downloader).Namespace;
         }
 
-        protected override IEnumerable<Type> GetTypes()
+        protected override IEnumerable<Type> GetTypes(Distro distro)
         {
-            yield return typeof(IBuildProvider);
-            yield return typeof(IMatchProvider);
-            yield return typeof(ISoftwareProvider);
-            yield return typeof(IDownloadProvider);
+            yield return Build.GetProviderType(distro);
+            yield return Match.GetProviderType(distro);
+            yield return Software.GetProviderType(distro);
+            yield return Download.GetProviderType(distro);
         }
 
         protected override IEnumerable<object> GetValues(string sourceName, SoftwareSourceInfo source, Distro distro)

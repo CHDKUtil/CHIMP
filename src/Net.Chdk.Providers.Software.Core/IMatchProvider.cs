@@ -6,6 +6,11 @@ namespace Net.Chdk.Providers.Software
 {
     public interface IMatchProvider
     {
-        Task<IMatchData> GetMatchesAsync(SoftwareInfo software, string buildName, CancellationToken cancellationToken);
+    }
+
+    public interface IMatchProvider<TMatchData> : IMatchProvider
+        where TMatchData : IMatchData
+    {
+        Task<TMatchData> GetMatchesAsync(SoftwareInfo software, string buildName, CancellationToken cancellationToken);
     }
 }

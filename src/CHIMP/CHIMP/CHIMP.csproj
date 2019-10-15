@@ -274,6 +274,7 @@
     <Compile Include="Installers\ScriptInstaller.cs" />
     <Compile Include="Interfaces\Providers\ILicenseProvider.cs" />
     <Compile Include="Model\ActionsData.cs" />
+    <Compile Include="Model\DownloadsData.cs" />
     <Compile Include="Model\ExtractData.cs" />
     <Compile Include="Providers\Action\Install\ActionCreator.cs" />
     <Compile Include="Providers\Action\Install\ActionCreatorBase.cs" />

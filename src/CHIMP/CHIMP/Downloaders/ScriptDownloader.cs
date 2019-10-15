@@ -6,13 +6,14 @@ using Net.Chdk.Providers.Boot;
 using Net.Chdk.Providers.Software;
 using Net.Chdk.Providers.Software.Script;
 using Net.Chdk.Providers.Supported;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Chimp.Downloaders
 {
-    sealed class ScriptDownloader : DownloaderBase
+    sealed class ScriptDownloader : Downloader<ScriptMatchData, ScriptDownloadData, ScriptExtractData, IDictionary<string, object>>
     {
         private const string CategoryName = "SCRIPT";
 
@@ -20,7 +21,7 @@ namespace Chimp.Downloaders
         private IScriptGenerator ScriptGenerator { get; }
 
         public ScriptDownloader(MainViewModel mainViewModel, ISupportedProvider supportedProvider, IBuildProvider buildProvider,
-            IMatchProvider matchProvider, ISoftwareProvider softwareProvider, IDownloadProvider downloadProvider, IBootProvider bootProvider,
+            IMatchProvider<ScriptMatchData> matchProvider, ISoftwareProvider<ScriptMatchData> softwareProvider, IDownloadProvider<ScriptMatchData, ScriptDownloadData> downloadProvider, IBootProvider bootProvider,
             IScriptGenerator scriptGenerator, IMetadataService metadataService, ILogger<ScriptDownloader> logger)
                 : base(mainViewModel, buildProvider, matchProvider, softwareProvider, downloadProvider, metadataService, supportedProvider, logger)
         {
@@ -28,37 +29,20 @@ namespace Chimp.Downloaders
             ScriptGenerator = scriptGenerator;
         }
 
-        protected override Task<ExtractData> DownloadAsync(IDownloadData download, string targetPath, string dirPath, string tempPath, CancellationToken cancellationToken)
+        protected override Task<ScriptExtractData> DownloadAsync(ScriptDownloadData download, string targetPath, string dirPath, string tempPath, CancellationToken cancellationToken)
         {
             var filePath = Download(download, dirPath: dirPath);
             return Task.FromResult(filePath);
         }
 
-        protected override Task<string> ExtractAsync(ExtractData extract, string targetPath, string dirPath, string tempPath, CancellationToken cancellationToken)
+        protected override Task<string> ExtractAsync(ScriptExtractData extract, string targetPath, string dirPath, string tempPath, CancellationToken cancellationToken)
         {
             var result = Extract(extract, dirPath: dirPath);
             return Task.FromResult(result);
         }
 
-        private string Extract(ExtractData extract, string dirPath)
+        private ScriptExtractData Download(ScriptDownloadData download, string dirPath)
         {
-            if (!(extract is ScriptExtractData data))
-                return null;
-            ScriptGenerator.GenerateScript(extract.FilePath, data.ProductName, data.Substitutes);
-            var files = BootProvider.GetFiles(CategoryName);
-            foreach (var kvp in files)
-            {
-                var path = Path.Combine(dirPath, kvp.Key);
-                File.WriteAllBytes(path, kvp.Value);
-            }
-            return dirPath;
-        }
-
-        private ExtractData Download(IDownloadData data, string dirPath)
-        {
-            if (!(data is ScriptDownloadData download))
-                return null;
-
             Directory.CreateDirectory(dirPath);
 
             var fileName = BootProvider.GetFileName(CategoryName);
@@ -66,6 +50,18 @@ namespace Chimp.Downloaders
 
             var productName = download.Software.Product.Name;
             return new ScriptExtractData(download.Substitutes, productName: productName, filePath: filePath);
+        }
+
+        private string Extract(ScriptExtractData extract, string dirPath)
+        {
+            ScriptGenerator.GenerateScript(extract.FilePath, extract.ProductName, extract.Substitutes);
+            var files = BootProvider.GetFiles(CategoryName);
+            foreach (var kvp in files)
+            {
+                var path = Path.Combine(dirPath, kvp.Key);
+                File.WriteAllBytes(path, kvp.Value);
+            }
+            return dirPath;
         }
     }
 }

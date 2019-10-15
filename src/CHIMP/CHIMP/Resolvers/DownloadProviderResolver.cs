@@ -13,12 +13,20 @@ namespace Chimp.Resolvers
         {
         }
 
+        public Type GetProviderType(Distro distro)
+        {
+            var type = typeof(IDownloadProvider<,>);
+            var dataType = GetType(distro, nameof(MatchData));
+            var downloadType = GetType(distro, nameof(DownloadData));
+            return type.MakeGenericType(dataType, downloadType);
+        }
+
         protected override string GetTypeName(Distro distro)
         {
             return distro.ProductType;
         }
 
-        protected override IEnumerable<Type> GetTypes()
+        protected override IEnumerable<Type> GetTypes(Distro distro)
         {
             yield return typeof(Uri);
         }

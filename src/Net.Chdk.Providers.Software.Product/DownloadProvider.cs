@@ -1,11 +1,12 @@
 ﻿using Net.Chdk.Model.Software;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Net.Chdk.Providers.Software
 {
-    public abstract class DownloadProvider : IDownloadProvider
+    public abstract class DownloadProvider : IDownloadProvider<MatchData, DownloadData>
     {
         private Uri BaseUri { get; }
 
@@ -14,15 +15,15 @@ namespace Net.Chdk.Providers.Software
             BaseUri = baseUri;
         }
 
-        public IEnumerable<IDownloadData>? GetDownloads(ISoftwareData software)
+        public IEnumerable<DownloadData> GetDownloads(MatchData data, SoftwareInfo software)
         {
-            var matches = (software.Match as MatchData)?.Payload;
+            var matches = data.Payload;
             if (matches == null)
-                return null;
-            return GetDownloads(matches, software.Info);
+                return Enumerable.Empty<DownloadData>();
+            return GetDownloads(matches, software);
         }
 
-        protected virtual IEnumerable<DownloadData> GetDownloads(Match[] matches, SoftwareInfo info)
+        protected virtual IEnumerable<DownloadData> GetDownloads(Match[] matches, SoftwareInfo software)
         {
             yield return GetDownload(matches[0]);
         }

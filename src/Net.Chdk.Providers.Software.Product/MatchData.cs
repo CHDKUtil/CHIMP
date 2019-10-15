@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace Net.Chdk.Providers.Software
 {
-    public abstract class MatchData<T> : IMatchData
+    public abstract class MatchData<T> : IMatchData<T>
         where T : class
     {
         protected MatchData(T payload)

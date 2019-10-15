@@ -5,7 +5,7 @@ using Net.Chdk.Model.Software;
 
 namespace Net.Chdk.Providers.Software.Script
 {
-    public sealed class ScriptSoftwareProvider : ISoftwareProvider
+    public sealed class ScriptSoftwareProvider : ISoftwareProvider<ScriptMatchData>
     {
         private string ProductName { get; }
 
@@ -16,7 +16,7 @@ namespace Net.Chdk.Providers.Software.Script
             ProductName = source.Name;
         }
 
-        public SoftwareInfo GetSoftware(IMatchData? _, SoftwareInfo softwareInfo)
+        public SoftwareInfo GetSoftware(ScriptMatchData? _, SoftwareInfo softwareInfo)
         {
             var software = GetSoftware();
             software.Camera = softwareInfo.Camera;

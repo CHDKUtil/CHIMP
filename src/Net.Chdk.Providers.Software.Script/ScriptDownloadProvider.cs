@@ -3,16 +3,15 @@ using Net.Chdk.Model.Software;
 
 namespace Net.Chdk.Providers.Software.Script
 {
-    public sealed class ScriptDownloadProvider : IDownloadProvider
+    public sealed class ScriptDownloadProvider : IDownloadProvider<ScriptMatchData, ScriptDownloadData>
     {
-        public IEnumerable<IDownloadData> GetDownloads(ISoftwareData software)
+        public IEnumerable<ScriptDownloadData> GetDownloads(ScriptMatchData data, SoftwareInfo software)
         {
-            if (software.Match is ScriptMatchData data)
+            var substitutes = data.Payload;
+            if (substitutes != null)
             {
-                var path = GetPath(software.Info);
-                var substitutes = data.Payload;
-                if (substitutes != null)
-                    yield return new ScriptDownloadData(substitutes, software.Info, path);
+                var path = GetPath(software);
+                yield return new ScriptDownloadData(substitutes, software, path);
             }
         }
 

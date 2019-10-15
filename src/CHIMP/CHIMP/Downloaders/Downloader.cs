@@ -5,18 +5,19 @@ using Microsoft.Extensions.Logging;
 using Net.Chdk.Providers.Software;
 using Net.Chdk.Providers.Supported;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Chimp.Downloaders
 {
-    sealed class Downloader : DownloaderBase
+    sealed class Downloader : Downloader<MatchData, DownloadData, ExtractData, Match[]>
     {
         private IDownloadService DownloadService { get; }
         private IExtractService ExtractService { get; }
 
         public Downloader(MainViewModel mainViewModel, ISupportedProvider supportedProvider,
-            IBuildProvider buildProvider, IMatchProvider matchProvider, ISoftwareProvider softwareProvider, IDownloadProvider downloadProvider,
+            IBuildProvider buildProvider, IMatchProvider<MatchData> matchProvider, ISoftwareProvider<MatchData> softwareProvider, IDownloadProvider<MatchData, DownloadData> downloadProvider,
             IDownloadService downloadService, IExtractService extractService, IMetadataService metadataService, ILogger<Downloader> logger)
                 : base(mainViewModel, buildProvider, matchProvider, softwareProvider, downloadProvider, metadataService, supportedProvider, logger)
         {
@@ -24,11 +25,8 @@ namespace Chimp.Downloaders
             ExtractService = extractService;
         }
 
-        protected override async Task<ExtractData> DownloadAsync(IDownloadData data, string targetPath, string dirPath, string tempPath, CancellationToken cancellationToken)
+        protected override async Task<ExtractData> DownloadAsync(DownloadData download, string targetPath, string dirPath, string tempPath, CancellationToken cancellationToken)
         {
-            if (!(data is DownloadData download))
-                return null;
-
             var path = download.Path;
             var fileName = Path.GetFileName(targetPath);
             var filePath = Path.Combine(tempPath, fileName);

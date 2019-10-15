@@ -12,15 +12,19 @@ using System.Threading.Tasks;
 
 namespace Chimp.Downloaders
 {
-    abstract class DownloaderBase : IDownloader
+    abstract class Downloader<TMatchData, TDownloadData, TExtractData, TPayload> : IDownloader
+        where TMatchData : MatchData<TPayload>
+        where TDownloadData : IDownloadData
+        where TExtractData : ExtractData
+        where TPayload : class
     {
         protected ILogger Logger { get; }
 
         private MainViewModel MainViewModel { get; }
         private IBuildProvider BuildProvider { get; }
-        private IMatchProvider MatchProvider { get; }
-        private ISoftwareProvider SoftwareProvider { get; }
-        private IDownloadProvider DownloadProvider { get; }
+        private IMatchProvider<TMatchData> MatchProvider { get; }
+        private ISoftwareProvider<TMatchData> SoftwareProvider { get; }
+        private IDownloadProvider<TMatchData, TDownloadData> DownloadProvider { get; }
 
         private SoftwareViewModel SoftwareViewModel => SoftwareViewModel.Get(MainViewModel);
         
@@ -29,7 +33,7 @@ namespace Chimp.Downloaders
         private IMetadataService MetadataService { get; }
         private ISupportedProvider SupportedProvider { get; }
 
-        protected DownloaderBase(MainViewModel mainViewModel, IBuildProvider buildProvider, IMatchProvider matchProvider, ISoftwareProvider softwareProvider, IDownloadProvider downloadProvider,
+        protected Downloader(MainViewModel mainViewModel, IBuildProvider buildProvider, IMatchProvider<TMatchData> matchProvider, ISoftwareProvider<TMatchData> softwareProvider, IDownloadProvider<TMatchData, TDownloadData> downloadProvider,
             IMetadataService metadataService, ISupportedProvider supportedProvider, ILogger logger)
         {
             MainViewModel = mainViewModel;
@@ -48,20 +52,23 @@ namespace Chimp.Downloaders
             if (software == null)
                 return null;
 
-            if (TrySkipUpToDate(software))
+            if (TrySkipUpToDate(software.Info))
                 return null;
 
-            var paths = await DownloadExtractAsync(software, cancellationToken);
+            var paths = await DownloadExtractAsync(software.Downloads, cancellationToken);
             if (paths == null)
                 return null;
 
-            software.Info = await UpdateAsync(software.Info, paths.Last(), cancellationToken);
-            software.Paths = paths;
+            var info = await UpdateAsync(software.Info, paths.Last(), cancellationToken);
 
-            return software;
+            return new SoftwareData
+            {
+                Info = info,
+                Paths = paths
+            };
         }
 
-        private async Task<SoftwareData> GetSoftwareAsync(SoftwareInfo softwareInfo, CancellationToken cancellationToken)
+        private async Task<DownloadsData<TDownloadData>> GetSoftwareAsync(SoftwareInfo softwareInfo, CancellationToken cancellationToken)
         {
             SetTitle(nameof(Resources.Download_FetchingData_Text));
 
@@ -74,27 +81,24 @@ namespace Chimp.Downloaders
             }
 
             var info = SoftwareProvider.GetSoftware(result, softwareInfo);
+            var downloads = DownloadProvider.GetDownloads(result, info)?.ToArray();
 
-            var software = new SoftwareData
+            return new DownloadsData<TDownloadData>
             {
                 Info = info,
-                Match = result
+                Downloads = downloads
             };
-            
-            software.Downloads = DownloadProvider.GetDownloads(software)?.ToArray();
-
-            return software;
         }
 
-        private async Task<string[]> DownloadExtractAsync(SoftwareData software, CancellationToken cancellationToken)
+        private async Task<string[]> DownloadExtractAsync(TDownloadData[] downloads, CancellationToken cancellationToken)
         {
             var tempPath = Path.Combine(Path.GetTempPath(), "CHIMP");
             Directory.CreateDirectory(tempPath);
 
-            var paths = new string[software.Downloads.Length];
-            for (var i = 0; i < software.Downloads.Length; i++)
+            var paths = new string[downloads.Length];
+            for (var i = 0; i < downloads.Length; i++)
             {
-                var download = software.Downloads[i];
+                var download = downloads[i];
                 var path = await DownloadExtractAsync(download, tempPath, cancellationToken);
                 if (path == null)
                     return null;
@@ -104,7 +108,7 @@ namespace Chimp.Downloaders
             return paths;
         }
 
-        private async Task<string> DownloadExtractAsync(IDownloadData download, string tempPath, CancellationToken cancellationToken)
+        private async Task<string> DownloadExtractAsync(TDownloadData download, string tempPath, CancellationToken cancellationToken)
         {
             var targetPath = download.TargetPath ?? download.Path;
 
@@ -117,7 +121,7 @@ namespace Chimp.Downloaders
                 : destPath;
         }
 
-        private async Task<string> DownloadExtractAsync(IDownloadData download, string targetPath, string tempPath, CancellationToken cancellationToken)
+        private async Task<string> DownloadExtractAsync(TDownloadData download, string targetPath, string tempPath, CancellationToken cancellationToken)
         {
             var dirName = Path.GetFileNameWithoutExtension(targetPath);
             var dirPath = Path.Combine(tempPath, dirName);
@@ -135,19 +139,19 @@ namespace Chimp.Downloaders
             return await ExtractAsync(extract, targetPath: targetPath, dirPath: dirPath, tempPath: tempPath, cancellationToken: cancellationToken);
         }
 
-        protected abstract Task<ExtractData> DownloadAsync(IDownloadData download, string targetPath, string dirPath, string tempPath, CancellationToken cancellationToken);
+        protected abstract Task<TExtractData> DownloadAsync(TDownloadData download, string targetPath, string dirPath, string tempPath, CancellationToken cancellationToken);
 
-        protected abstract Task<string> ExtractAsync(ExtractData extract, string targetPath, string dirPath, string tempPath, CancellationToken cancellationToken);
+        protected abstract Task<string> ExtractAsync(TExtractData extract, string targetPath, string dirPath, string tempPath, CancellationToken cancellationToken);
 
-        protected bool TrySkipUpToDate(SoftwareData software)
+        protected bool TrySkipUpToDate(SoftwareInfo software)
         {
             var currentInfo = SoftwareViewModel.SelectedItem?.Info;
             var version = currentInfo?.Product?.Version;
             var language = currentInfo?.Product?.Language;
-            if (software.Info.Product.Version.Equals(version) && software.Info.Product.Language.Equals(language))
+            if (software.Product.Version.Equals(version) && software.Product.Language.Equals(language))
             {
                 //For status
-                currentInfo.Build = currentInfo.Build ?? software.Info.Build;
+                currentInfo.Build ??= software.Build;
 
                 SetTitle(nameof(Resources.Download_UpToDate_Text));
                 ViewModel.Software = currentInfo;

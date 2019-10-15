@@ -10,4 +10,10 @@ namespace Net.Chdk.Providers.Software
         IEnumerable<string>? Revisions { get; }
         IEnumerable<string>? Builds { get; }
     }
+
+    public interface IMatchData<T> : IMatchData
+        where T : class
+    {
+        T? Payload { get; }
+    }
 }

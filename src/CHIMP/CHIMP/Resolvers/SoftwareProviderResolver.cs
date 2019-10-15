@@ -14,12 +14,19 @@ namespace Chimp.Resolvers
         {
         }
 
+        public Type GetProviderType(Distro distro)
+        {
+            var type = typeof(ISoftwareProvider<>);
+            var dataType = GetType(distro, nameof(MatchData));
+            return type.MakeGenericType(dataType);
+        }
+
         protected override string GetTypeName(Distro distro)
         {
             return distro.ProductType;
         }
 
-        protected override IEnumerable<Type> GetTypes()
+        protected override IEnumerable<Type> GetTypes(Distro distro)
         {
             yield return typeof(SoftwareSourceInfo);
             yield return typeof(CultureInfo);

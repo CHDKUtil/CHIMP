@@ -1,9 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using Net.Chdk.Model.Software;
+using System.Collections.Generic;
 
 namespace Net.Chdk.Providers.Software
 {
     public interface IDownloadProvider
     {
-        IEnumerable<IDownloadData>? GetDownloads(ISoftwareData software);
+    }
+
+    public interface IDownloadProvider<TMatchData, TDownloadData> : IDownloadProvider
+        where TMatchData : IMatchData
+        where TDownloadData : IDownloadData
+    {
+        IEnumerable<TDownloadData> GetDownloads(TMatchData data, SoftwareInfo software);
     }
 }
