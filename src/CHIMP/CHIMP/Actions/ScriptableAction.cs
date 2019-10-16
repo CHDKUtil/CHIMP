@@ -23,6 +23,8 @@ namespace Chimp.Actions
         {
             if (ScriptService.SetScriptable(Card, Card.FileSystem, Value))
             {
+                DownloadViewModel.ProgressMaximum = 1;
+                DownloadViewModel.ProgressValue = 1;
                 CardViewModel.SelectedItem.Scriptable = ScriptService.TestScriptable(Card, Card.FileSystem);
                 //MainViewModel.Set<ActionViewModel>("Action", null);
                 //MainViewModel.Step.CanGoBack = true;
