@@ -2,14 +2,13 @@
 using Chimp.Model;
 using Net.Chdk;
 using Net.Chdk.Model.Software;
-using Net.Chdk.Providers.Software;
 using System;
 using System.Collections.Generic;
 using System.IO;
 
 namespace Chimp.Resolvers
 {
-    sealed class DownloaderResolver : ProviderResolver<IDownloader, Downloader>, IDownloaderProvider
+    sealed class DownloaderResolver : ProviderResolver<IDownloader>, IDownloaderProvider
     {
         private string ProductName { get; }
 

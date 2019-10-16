@@ -3,7 +3,6 @@ using Chimp.ViewModels;
 using Microsoft.Extensions.Logging;
 using Net.Chdk.Generators.Script;
 using Net.Chdk.Providers.Boot;
-using Net.Chdk.Providers.Software;
 using Net.Chdk.Providers.Software.Script;
 using Net.Chdk.Providers.Supported;
 using System.Collections.Generic;
@@ -20,9 +19,9 @@ namespace Chimp.Downloaders
         private IBootProvider BootProvider { get; }
         private IScriptGenerator ScriptGenerator { get; }
 
-        public ScriptDownloader(MainViewModel mainViewModel, ISupportedProvider supportedProvider, IBuildProvider buildProvider,
-            IMatchProvider<ScriptMatchData> matchProvider, ISoftwareProvider<ScriptMatchData> softwareProvider, IDownloadProvider<ScriptMatchData, ScriptDownloadData> downloadProvider, IBootProvider bootProvider,
-            IScriptGenerator scriptGenerator, IMetadataService metadataService, ILogger<ScriptDownloader> logger)
+        public ScriptDownloader(MainViewModel mainViewModel, ISupportedProvider supportedProvider,
+            ScriptBuildProvider buildProvider, ScriptMatchProvider matchProvider, ScriptSoftwareProvider softwareProvider, ScriptDownloadProvider downloadProvider,
+            IBootProvider bootProvider, IScriptGenerator scriptGenerator, IMetadataService metadataService, ILogger<ScriptDownloader> logger)
                 : base(mainViewModel, buildProvider, matchProvider, softwareProvider, downloadProvider, metadataService, supportedProvider, logger)
         {
             BootProvider = bootProvider;

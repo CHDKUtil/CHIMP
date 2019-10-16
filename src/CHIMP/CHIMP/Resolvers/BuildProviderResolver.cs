@@ -1,21 +1,17 @@
 ﻿using Chimp.Model;
 using Net.Chdk.Model.Software;
 using Net.Chdk.Providers.Software;
+using Net.Chdk.Providers.Software.Script;
 using System;
 using System.Collections.Generic;
 
 namespace Chimp.Resolvers
 {
-    sealed class BuildProviderResolver : ProviderResolver<IBuildProvider, BuildProvider>
+    sealed class BuildProviderResolver : ProviderResolver<IBuildProvider, BuildProvider, ScriptBuildProvider>
     {
         public BuildProviderResolver(IServiceActivator serviceActivator, IDictionary<string, Distro> distros)
             : base(serviceActivator, distros)
         {
-        }
-
-        public Type GetProviderType(Distro distro)
-        {
-            return typeof(IBuildProvider);
         }
 
         protected override string GetTypeName(Distro distro)

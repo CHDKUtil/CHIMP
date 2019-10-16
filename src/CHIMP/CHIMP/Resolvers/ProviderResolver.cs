@@ -1,8 +1,6 @@
 ﻿using Chimp.Model;
 using Chimp.Providers;
 using Net.Chdk.Model.Software;
-using Net.Chdk.Providers.Software;
-using Net.Chdk.Providers.Software.Script;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -10,8 +8,7 @@ using System.Linq;
 
 namespace Chimp.Resolvers
 {
-    abstract class ProviderResolver<TProvider, TProviderImpl> : DataProvider<Distro, TProvider>
-        where TProviderImpl : TProvider
+    abstract class ProviderResolver<TProvider> : DataProvider<Distro, TProvider>
         where TProvider : class
     {
         private ConcurrentDictionary<string, TProvider> Providers { get; }
@@ -65,18 +62,25 @@ namespace Chimp.Resolvers
 
         protected sealed override string GetTypeSuffix()
         {
-            return typeof(TProviderImpl).Name;
+            return typeof(TProvider).Name.Substring(1);
+        }
+    }
+
+    abstract class ProviderResolver<TProvider, TProvider1, TProvider2> : ProviderResolver<TProvider>
+        where TProvider : class
+        where TProvider1 : TProvider
+        where TProvider2 : TProvider
+    {
+        protected ProviderResolver(IServiceActivator serviceActivator, IDictionary<string, Distro> distros)
+            : base(serviceActivator, distros)
+        {
         }
 
-        protected static Type GetType(Distro distro, string typeSuffix)
+        public Type GetProviderType(Distro distro)
         {
-            var baseType = distro.MatchType == "Script"
-                ? typeof(ScriptMatchData)
-                : typeof(MatchData);
-            var typeName = distro.MatchType == "Script"
-                ? "Script"
-                : "";
-            return baseType.Assembly.GetType($"{baseType.Namespace}.{typeName}{typeSuffix}");
+            return distro.MatchType != "Script"
+                ? typeof(TProvider1)
+                : typeof(TProvider2);
         }
     }
 }

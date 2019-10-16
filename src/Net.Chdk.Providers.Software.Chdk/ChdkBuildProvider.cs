@@ -2,7 +2,7 @@
 
 namespace Net.Chdk.Providers.Software.Chdk
 {
-    public sealed class ChdkBuildProvider : IBuildProvider
+    public sealed class ChdkBuildProvider : BuildProvider
     {
         private SoftwareSourceInfo Source { get; }
 
@@ -11,7 +11,7 @@ namespace Net.Chdk.Providers.Software.Chdk
             Source = source;
         }
 
-        public string GetBuildName(SoftwareInfo software)
+        public override string GetBuildName(SoftwareInfo software)
         {
             var product = software?.Product;
             var source = software?.Source;

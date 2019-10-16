@@ -17,7 +17,7 @@ namespace Chimp.Downloaders
         private IExtractService ExtractService { get; }
 
         public Downloader(MainViewModel mainViewModel, ISupportedProvider supportedProvider,
-            IBuildProvider buildProvider, IMatchProvider<MatchData> matchProvider, ISoftwareProvider<MatchData> softwareProvider, IDownloadProvider<MatchData, DownloadData> downloadProvider,
+            BuildProvider buildProvider, MatchProvider matchProvider, SoftwareProvider softwareProvider, DownloadProvider downloadProvider,
             IDownloadService downloadService, IExtractService extractService, IMetadataService metadataService, ILogger<Downloader> logger)
                 : base(mainViewModel, buildProvider, matchProvider, softwareProvider, downloadProvider, metadataService, supportedProvider, logger)
         {
