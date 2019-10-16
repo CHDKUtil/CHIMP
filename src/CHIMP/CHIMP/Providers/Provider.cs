@@ -19,12 +19,13 @@ namespace Chimp.Providers
         protected TValue CreateProvider(string product, string assembly, string type, Type[] argTypes = null, object[] argValues = null)
         {
             var @namespace = GetNamespace(product);
+            var typeSuffix = GetTypeSuffix();
             assembly ??= Assembly.GetExecutingAssembly().FullName;
-            return ServiceActivator.Create<TValue>(assembly, $"{@namespace}.{type}{GetTypeSuffix()}", argTypes, argValues);
+            return ServiceActivator.Create<TValue>(assembly, $"{@namespace}.{type}{typeSuffix}", argTypes, argValues);
         }
 
-        protected virtual string GetNamespace(string product) => throw new NotImplementedException();
+        protected abstract string GetNamespace(string product);
 
-        protected virtual string GetTypeSuffix() => throw new NotImplementedException();
+        protected abstract string GetTypeSuffix();
     }
 }
