@@ -27,8 +27,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Net.Chdk.Core\Net.Chdk.Core.csproj" />
     <ProjectReference Include="..\Net.Chdk.Providers.Product.Core\Net.Chdk.Providers.Product.Core.csproj" />
-    <ProjectReference Include="..\Net.Chdk.Providers.Software.Product\Net.Chdk.Providers.Software.Product.csproj" />
+    <ProjectReference Include="..\Net.Chdk.Providers.Software.Core\Net.Chdk.Providers.Software.Core.csproj" />
     <ProjectReference Include="..\Net.Chdk.Providers.Substitute.Core\Net.Chdk.Providers.Substitute.Core.csproj" />
   </ItemGroup>
 

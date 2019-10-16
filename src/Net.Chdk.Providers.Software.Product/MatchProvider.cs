@@ -4,6 +4,7 @@ using Net.Chdk.Model.Software;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -67,9 +68,12 @@ namespace Net.Chdk.Providers.Software
 
         private MatchData GetError()
         {
-            if (platforms.Count == 0)
+            if (this.platforms.Count == 0)
                 return new MatchData("Download_InvalidFormat_Text");
 
+            var platforms = GetItems(this.platforms);
+            var revisions = GetItems(this.revisions);
+            var builds = GetItems(this.builds);
             return new MatchData(platforms, revisions, builds);
         }
 
@@ -152,6 +156,13 @@ namespace Net.Chdk.Providers.Software
         private string NormalizePlatform(string platform)
         {
             return PlatformAdapter.NormalizePlatform(ProductName, platform);
+        }
+
+        private static IEnumerable<string>? GetItems(List<string> items)
+        {
+            return items?.Count > 0
+                ? items.Distinct()
+                : null;
         }
     }
 }

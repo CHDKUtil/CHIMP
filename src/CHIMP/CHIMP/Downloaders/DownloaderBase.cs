@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace Chimp.Downloaders
 {
     abstract class Downloader<TMatchData, TDownloadData, TExtractData, TPayload> : IDownloader
-        where TMatchData : MatchData<TPayload>
+        where TMatchData : class, IMatchData<TPayload>
         where TDownloadData : IDownloadData
         where TExtractData : ExtractData
         where TPayload : class
@@ -74,7 +74,7 @@ namespace Chimp.Downloaders
 
             var buildName = BuildProvider.GetBuildName(softwareInfo);
             var result = await MatchProvider.GetMatchesAsync(softwareInfo, buildName, cancellationToken);
-            if (!result.Success)
+            if (result.Payload == null)
             {
                 SetSupportedItems(result, softwareInfo);
                 return null;
