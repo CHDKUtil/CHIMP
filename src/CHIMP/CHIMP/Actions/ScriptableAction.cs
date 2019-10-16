@@ -2,8 +2,6 @@
 using Chimp.Properties;
 using Chimp.ViewModels;
 using Net.Chdk.Model.Card;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Chimp.Actions
 {
@@ -21,11 +19,10 @@ namespace Chimp.Actions
             Value = value;
         }
 
-        public override async Task<SoftwareData> PerformAsync(CancellationToken token)
+        protected override SoftwareData Perform()
         {
             if (ScriptService.SetScriptable(Card, Card.FileSystem, Value))
             {
-                await Task.Delay(Settings.Default.ScriptableTestDelay);
                 CardViewModel.SelectedItem.Scriptable = ScriptService.TestScriptable(Card, Card.FileSystem);
                 //MainViewModel.Set<ActionViewModel>("Action", null);
                 //MainViewModel.Step.CanGoBack = true;

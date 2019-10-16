@@ -8,9 +8,6 @@
     <Setting Name="DownloadBufferSize" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">8192</Value>
     </Setting>
-    <Setting Name="ScriptableTestDelay" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">100</Value>
-    </Setting>
     <Setting Name="VolumeLockDelay" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">100</Value>
     </Setting>
