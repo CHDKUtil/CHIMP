@@ -14,15 +14,25 @@
         <controls:TipsControl DataContext="{Binding [Summary]}"
                               Grid.Row="0" Margin="4" />
 
-        <CheckBox Content="{x:Static properties:Resources.Summary_UserManual_Content}"
-                  Visibility="{Binding [Summary].UserManualUrl, Converter={StaticResource NullToVisibilityConverter}}"
-                  IsChecked="{Binding [Summary].IsOpenUserManual}"
-                  Grid.Row="1" Margin="8" />
-
-        <CheckBox Content="{x:Static properties:Resources.Summary_CameraNotes_Content}"
-                  Visibility="{Binding [Summary].CameraNotesFileName, Converter={StaticResource NullToVisibilityConverter}}"
-                  IsChecked="{Binding [Summary].IsShowCameraNotes}"
-                  Grid.Row="1" Margin="8" />
+        <CheckBox Grid.Row="1" Margin="8">
+            <CheckBox.Style>
+                <Style TargetType="CheckBox">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding [Summary].UserManualUrl, Converter={StaticResource NullToVisibilityConverter}}" Value="Visible">
+                            <Setter Property="Content" Value="{x:Static properties:Resources.Summary_UserManual_Content}" />
+                            <Setter Property="IsChecked" Value="{Binding [Summary].IsOpenUserManual}" />
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding [Summary].CameraNotesFileName, Converter={StaticResource NullToVisibilityConverter}}" Value="Visible">
+                            <Setter Property="Content" Value="{x:Static properties:Resources.Summary_CameraNotes_Content}" />
+                            <Setter Property="IsChecked" Value="{Binding [Summary].IsShowCameraNotes}" />
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </CheckBox.Style>
+        </CheckBox>
 
     </Grid>
 </UserControl>
