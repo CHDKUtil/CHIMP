@@ -34,7 +34,7 @@ namespace Net.Chdk.Providers.Camera
 
         protected override bool IsInvalid(CameraInfo cameraInfo)
         {
-            return cameraInfo.Canon?.ModelId == null || cameraInfo.Canon?.FirmwareRevision == 0;
+            return cameraInfo?.Canon?.ModelId == null || cameraInfo?.Canon?.FirmwareRevision == 0;
         }
 
         protected override bool IsMultiPartition(PsCameraData? camera)

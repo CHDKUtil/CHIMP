@@ -53,9 +53,10 @@ namespace Chimp.Providers.Tips
             get
             {
                 var product = DownloadViewModel?.Software?.Product ?? SoftwareViewModel?.SelectedItem?.Info?.Product;
-                if (product == null)
+                var camera = CameraViewModel?.Info;
+                if (product == null || camera == null)
                     return false;
-                var cardType = CameraProvider.GetCardType(product, CameraViewModel?.Info);
+                var cardType = CameraProvider.GetCardType(product, camera);
                 return "microSD" == cardType;
             }
         }

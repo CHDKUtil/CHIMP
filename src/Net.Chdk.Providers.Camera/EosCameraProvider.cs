@@ -14,7 +14,7 @@ namespace Net.Chdk.Providers.Camera
 
         protected override bool IsInvalid(CameraInfo cameraInfo)
         {
-            return cameraInfo.Canon?.ModelId == null || cameraInfo.Canon?.FirmwareVersion == null;
+            return cameraInfo?.Canon?.ModelId == null || cameraInfo?.Canon?.FirmwareVersion == null;
         }
 
         public override SoftwareEncodingInfo? GetEncoding(SoftwareCameraInfo _)
