@@ -134,9 +134,10 @@ namespace Net.Chdk.Detectors.Software.Script
         private void UpdateProduct(ref SoftwareInfo? software, string[] split)
         {
             var product = GetProduct(ref software);
-            product.Name = split[0];
-            if (split.Length > 1)
-                product.Version = Version.Parse(split[1]);
+            if (!string.IsNullOrWhiteSpace(split[0]))
+                product.Name = split[0];
+            if (split.Length > 1 && Version.TryParse(split[1], out var version))
+                product.Version = version;
         }
 
         private void UpdateCamera(ref SoftwareInfo? software, string[] split)
@@ -144,8 +145,10 @@ namespace Net.Chdk.Detectors.Software.Script
             var camera = GetCamera(ref software);
             if (split.Length > 3)
             {
-                camera.Platform = split[2];
-                camera.Revision = split[3];
+                if (!string.IsNullOrWhiteSpace(split[2]))
+                    camera.Platform = split[2];
+                if (!string.IsNullOrWhiteSpace(split[3]))
+                    camera.Revision = split[3];
             }
         }
 
@@ -155,17 +158,20 @@ namespace Net.Chdk.Detectors.Software.Script
             if (split.Length > 4)
             {
                 split = split[4].Split('_');
-                build.Status = split.Length > 1
-                    ? split[1].ToLower()
-                    : split[0].ToLower();
-                if (split.Length > 1)
+                var status = split.Length > 1
+                    ? split[1]
+                    : split[0];
+                if (!string.IsNullOrWhiteSpace(status))
+                    build.Status = status.ToLower();
+                if (split.Length > 1 && !string.IsNullOrWhiteSpace(split[0]))
                     build.Name = split[0];
             }
         }
 
         private void UpdateAuthor(ref SoftwareInfo? software, string value)
         {
-            GetBuild(ref software).Creator = value;
+            if (!string.IsNullOrWhiteSpace(value))
+                GetBuild(ref software).Creator = value;
         }
 
         private void UpdateCreated(ref SoftwareInfo? software, string value)
