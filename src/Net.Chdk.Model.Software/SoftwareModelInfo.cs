@@ -9,6 +9,6 @@ namespace Net.Chdk.Model.Software
         [JsonConverter(typeof(HexStringJsonConverter))]
         public uint Id { get; set; }
 
-        public string? Name { get; set; }
+        public string[]? Names { get; set; }
     }
 }

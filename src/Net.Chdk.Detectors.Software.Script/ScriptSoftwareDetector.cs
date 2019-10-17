@@ -127,7 +127,7 @@ namespace Net.Chdk.Detectors.Software.Script
             GetSoftware(ref software).Model = new SoftwareModelInfo
             {
                 Id = modelId,
-                Name = name
+                Names = new[] { name }
             };
         }
 

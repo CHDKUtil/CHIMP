@@ -106,8 +106,8 @@ namespace Net.Chdk.Validators.Software
             if (model.Id == 0)
                 throw new ValidationException("Zero model ID");
 
-            if (string.IsNullOrEmpty(model.Name))
-                throw new ValidationException("Missing model name");
+            if (model.Names == null || model.Names.Length == 0)
+                throw new ValidationException("Missing model names");
         }
 
         private static void Validate(SoftwareBuildInfo build, Version version)

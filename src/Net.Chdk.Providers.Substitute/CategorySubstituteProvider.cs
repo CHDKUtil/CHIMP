@@ -22,7 +22,7 @@ namespace Net.Chdk.Providers.Substitute
 
         public IDictionary<string, object>? GetSubstitutes(SoftwareInfo software)
         {
-            var name = software.Model?.Name;
+            var name = software.Model?.Names?[0];
             var modelId = software.Model?.Id;
             if (name == null || modelId == null)
                 return null;
