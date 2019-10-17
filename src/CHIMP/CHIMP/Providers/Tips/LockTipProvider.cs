@@ -1,7 +1,10 @@
 ﻿using Chimp.Model;
 using Chimp.Properties;
 using Chimp.ViewModels;
+using Net.Chdk.Model.Camera;
+using Net.Chdk.Model.Software;
 using Net.Chdk.Providers.Camera;
+using Net.Chdk.Providers.CameraModel;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,11 +13,13 @@ namespace Chimp.Providers.Tips
     sealed class LockTipProvider : TipProvider
     {
         private ICameraProvider CameraProvider { get; }
+        private ICameraModelProvider CameraModelProvider { get; }
 
-        public LockTipProvider(MainViewModel mainViewModel, ICameraProvider cameraProvider)
+        public LockTipProvider(MainViewModel mainViewModel, ICameraProvider cameraProvider, ICameraModelProvider cameraModelProvider)
             : base(mainViewModel)
         {
             CameraProvider = cameraProvider;
+            CameraModelProvider = cameraModelProvider;
         }
 
         public override IEnumerable<Tip> GetTips(string productText)
@@ -52,13 +57,21 @@ namespace Chimp.Providers.Tips
         {
             get
             {
-                var product = DownloadViewModel?.Software?.Product ?? SoftwareViewModel?.SelectedItem?.Info?.Product;
-                var camera = CameraViewModel?.Info;
+                var product = DownloadViewModel?.Software?.Product
+                    ?? SoftwareViewModel?.SelectedItem?.Info?.Product;
+                var camera = CameraViewModel?.Info
+                    ?? GetCamera(DownloadViewModel?.Software)
+                    ?? GetCamera(SoftwareViewModel?.SelectedItem?.Info);
                 if (product == null || camera == null)
                     return false;
                 var cardType = CameraProvider.GetCardType(product, camera);
                 return "microSD" == cardType;
             }
+        }
+
+        private CameraInfo GetCamera(SoftwareInfo software)
+        {
+            return CameraModelProvider.GetCameraModels(software?.Camera, software?.Model)?.Info;
         }
     }
 }
