@@ -115,7 +115,10 @@ namespace Net.Chdk.Detectors.Software.Script
 
         private void UpdateModel(ref SoftwareInfo? software, string[] split)
         {
-            if (split.Length < 3 || split[1].Length < 3)
+            if (split.Length < 5 || split[2] != "Canon")
+                return;
+
+            if (split[1].Length < 3 || !split[1].StartsWith("0x"))
                 return;
 
             var modelIdStr = split[1].Substring(2);
