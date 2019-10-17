@@ -8,6 +8,7 @@ using Net.Chdk.Providers.Camera;
 using Net.Chdk.Providers.Software;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Threading;
 
@@ -150,7 +151,10 @@ namespace Net.Chdk.Detectors.Software.Script
 
         private SoftwareProductInfo GetProduct(ref SoftwareInfo? software)
         {
-            return GetSoftware(ref software).Product ??= new SoftwareProductInfo();
+            return GetSoftware(ref software).Product ??= new SoftwareProductInfo
+            {
+                Language = CultureInfo.InvariantCulture
+            };
         }
 
         private SoftwareBuildInfo GetBuild(ref SoftwareInfo? software)
