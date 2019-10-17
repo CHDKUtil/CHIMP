@@ -5,6 +5,7 @@ using Net.Chdk.Model.Camera;
 using Net.Chdk.Model.Software;
 using Net.Chdk.Providers.Camera;
 using Net.Chdk.Providers.CameraModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -20,6 +21,8 @@ namespace Chimp.Providers.Tips
         {
             CameraProvider = cameraProvider;
             CameraModelProvider = cameraModelProvider;
+
+            isDoor = new Lazy<bool>(GetIsDoor);
         }
 
         public override IEnumerable<Tip> GetTips(string productText)
@@ -53,20 +56,19 @@ namespace Chimp.Providers.Tips
             }
         }
 
-        private bool IsDoor
+        private readonly Lazy<bool> isDoor;
+        private bool IsDoor => isDoor.Value;
+        private bool GetIsDoor()
         {
-            get
-            {
-                var product = DownloadViewModel?.Software?.Product
-                    ?? SoftwareViewModel?.SelectedItem?.Info?.Product;
-                var camera = CameraViewModel?.Info
-                    ?? GetCamera(DownloadViewModel?.Software)
-                    ?? GetCamera(SoftwareViewModel?.SelectedItem?.Info);
-                if (product == null || camera == null)
-                    return false;
-                var cardType = CameraProvider.GetCardType(product, camera);
-                return "microSD" == cardType;
-            }
+            var product = DownloadViewModel?.Software?.Product
+                ?? SoftwareViewModel?.SelectedItem?.Info?.Product;
+            var camera = CameraViewModel?.Info
+                ?? GetCamera(DownloadViewModel?.Software)
+                ?? GetCamera(SoftwareViewModel?.SelectedItem?.Info);
+            if (product == null || camera == null)
+                return false;
+            var cardType = CameraProvider.GetCardType(product, camera);
+            return "microSD" == cardType;
         }
 
         private CameraInfo GetCamera(SoftwareInfo software)
