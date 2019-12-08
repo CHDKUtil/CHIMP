@@ -49,6 +49,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Chdk.Adapters.Platform.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Chdk.Adapters.Platform", "..\Net.Chdk.Adapters.Platform\Net.Chdk.Adapters.Platform.csproj", "{D3A62815-C045-4AC5-8CA4-056BEECFAA2C}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Chdk.Model.Camera", "..\Net.Chdk.Model.Camera\Net.Chdk.Model.Camera.csproj", "{3928EE18-DDB2-4CEB-865C-7FD1E98A560F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Net.Chdk.Model.Category", "..\Net.Chdk.Model.Category\Net.Chdk.Model.Category.csproj", "{34BAFCFE-C5AF-407E-BEEE-162C2D86B062}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -147,6 +151,14 @@ Global
 		{D3A62815-C045-4AC5-8CA4-056BEECFAA2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3A62815-C045-4AC5-8CA4-056BEECFAA2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3A62815-C045-4AC5-8CA4-056BEECFAA2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3928EE18-DDB2-4CEB-865C-7FD1E98A560F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3928EE18-DDB2-4CEB-865C-7FD1E98A560F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3928EE18-DDB2-4CEB-865C-7FD1E98A560F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3928EE18-DDB2-4CEB-865C-7FD1E98A560F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34BAFCFE-C5AF-407E-BEEE-162C2D86B062}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34BAFCFE-C5AF-407E-BEEE-162C2D86B062}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34BAFCFE-C5AF-407E-BEEE-162C2D86B062}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34BAFCFE-C5AF-407E-BEEE-162C2D86B062}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
