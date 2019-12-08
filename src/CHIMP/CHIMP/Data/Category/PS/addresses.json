@@ -1,4 +1,39 @@
 {
+  "g5x": {
+    "id": "0x32b3",
+    "id_address": "0xfdf20270",
+    "clear_overlays": true,
+    "revisions": {
+      "100c": {
+        "revision_str_address": "0xfc4546d7",
+        "palette_buffer_ptr": "0x15af8",
+        "active_palette_buffer": "0x15af0"
+      },
+      "101a": {
+        "revision_str_address": "0xfc4546ef",
+        "palette_buffer_ptr": "0x15af8",
+        "active_palette_buffer": "0x15af0"
+      },
+      "101b": {
+        "revision_str_address": "0xfc454713",
+        "palette_buffer_ptr": "0x15af8",
+        "active_palette_buffer": "0x15af0"
+      },
+      "101c": {
+        "revision_str_address": "0xfc454713",
+        "palette_buffer_ptr": "0x15af8",
+        "active_palette_buffer": "0x15af0",
+        "source": {
+          "revision": "101b"
+        }
+      },
+      "101d": {
+        "revision_str_address": "0xfc45473b",
+        "palette_buffer_ptr": "0x15af8",
+        "active_palette_buffer": "0x15af0"
+      }
+    }
+  },
   "m10": {
     "id": "0x32a0",
     "id_address": "0xfff20270",
