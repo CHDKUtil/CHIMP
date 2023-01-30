@@ -1717,6 +1717,33 @@
       "fs": "FAT"
     }
   },
+  "0x2610000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x40721635"
+    },
+    "alt": {
+      "button": "Print"
+    },
+    "card": {
+      "multi": true,
+      "type": "SD",
+      "subtype": "SDHC"
+    },
+    "models": [
+      {
+        "names": [
+          "Canon PowerShot SD970 IS",
+          "Canon Digital IXUS 990 IS",
+          "Canon IXY Digital 830 IS"
+        ],
+        "platform": "ixus990_sd970"
+      }
+    ],
+    "boot": {
+      "fs": "FAT"
+    }
+  },
   "0x2620000": {
     "encoding": {
       "name": "dancingbits",
@@ -2514,7 +2541,6 @@
       "button": "Playback",
       "buttons": [
         "Playback",
-        "Display",
         "Video"
       ]
     },
@@ -3729,6 +3755,67 @@
       "fs": "FAT32"
     }
   },
+  "0x3700000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x45136072"
+    },
+    "alt": {
+      "button": "Playback",
+      "buttons": [
+        "Playback",
+        "Video",
+        "Wifi"
+      ]
+    },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
+    "models": [
+      {
+        "names": [
+          "Canon PowerShot ELPH 340 HS",
+          "Canon IXUS 265 HS",
+          "Canon IXY 630"
+        ],
+        "platform": "ixus265_elph340hs"
+      }
+    ],
+    "boot": {
+      "fs": "FAT32"
+    }
+  },
+  "0x3710000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x45136072"
+    },
+    "alt": {
+      "button": "Playback",
+      "buttons": [
+        "Playback",
+        "Help"
+      ]
+    },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
+    "models": [
+      {
+        "names": [
+          "Canon PowerShot ELPH 150 IS",
+          "Canon IXUS 155",
+          "Canon IXY 140"
+        ],
+        "platform": "ixus155_elph150"
+      }
+    ],
+    "boot": {
+      "fs": "FAT32"
+    }
+  },
   "0x3740000": {
     "encoding": {
       "name": "dancingbits",
@@ -4019,6 +4106,37 @@
       "fs": "FAT32"
     }
   },
+  "0x3880000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x14207356"
+    },
+    "alt": {
+      "button": "Playback",
+      "buttons": [
+        "Playback",
+        "Video",
+        "Wifi"
+      ]
+    },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
+    "models": [
+      {
+        "names": [
+          "Canon PowerShot ELPH 350 HS",
+          "Canon IXUS 275 HS",
+          "Canon IXY 640"
+        ],
+        "platform": "ixus275_elph350hs"
+      }
+    ],
+    "boot": {
+      "fs": "FAT32"
+    }
+  },
   "0x3890000": {
     "encoding": {
       "name": "dancingbits",
@@ -4117,7 +4235,6 @@
       "buttons": [
         "Wifi",
         "Video",
-        "Display",
         "Playback"
       ]
     },
@@ -4177,7 +4294,8 @@
       "button": "Playback",
       "buttons": [
         "Playback",
-        "Video"
+        "Video",
+        "Wifi"
       ]
     },
     "card": {
@@ -4221,6 +4339,35 @@
           "Canon IXY 180"
         ],
         "platform": "ixus175_elph180"
+      }
+    ],
+    "boot": {
+      "fs": "FAT32"
+    }
+  },
+  "0x4060000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x20654731"
+    },
+    "alt": {
+      "button": "Playback",
+      "buttons": [
+        "Playback",
+        "Video",
+        "Wifi"
+      ]
+    },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
+    "models": [
+      {
+        "names": [
+          "Canon PowerShot SX620 HS"
+        ],
+        "platform": "sx620hs"
       }
     ],
     "boot": {
@@ -4280,6 +4427,35 @@
           "Canon PowerShot SX430 IS"
         ],
         "platform": "sx430is"
+      }
+    ],
+    "boot": {
+      "fs": "FAT32"
+    }
+  },
+  "0x4170000": {
+    "encoding": {
+      "name": "dancingbits",
+      "data": "0x02316574"
+    },
+    "alt": {
+      "button": "Playback",
+      "buttons": [
+        "Playback",
+        "Video",
+        "Wifi"
+      ]
+    },
+    "card": {
+      "type": "SD",
+      "subtype": "SDXC"
+    },
+    "models": [
+      {
+        "names": [
+          "Canon PowerShot SX730 HS"
+        ],
+        "platform": "sx730hs"
       }
     ],
     "boot": {
