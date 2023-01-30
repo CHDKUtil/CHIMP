@@ -59,7 +59,7 @@ namespace Net.Chdk.Meta.Providers.Json
 
         private readonly Lazy<JsonSerializerSettings> _settings;
 
-        private JsonSerializerSettings Settings { get; }
+        private JsonSerializerSettings Settings => _settings.Value;
 
         private JsonSerializerSettings GetSettings()
         {
