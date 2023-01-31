@@ -33,7 +33,7 @@ namespace Chimp.Services
             var sb = new StringBuilder();
             sb.Append(driveLetter);
             sb.Append($" /fs:{fileSystem}");
-            if (string.IsNullOrEmpty(label))
+            if (!string.IsNullOrEmpty(label))
                 sb.Append($" /v:{label}");
             sb.Append(" /y /q");
             var args = sb.ToString();
