@@ -732,10 +732,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\metadata-extractor-dotnet\MetadataExtractor\MetadataExtractor.csproj">
-      <Project>{8f631a8f-4ff2-4095-b9b0-ba611d7da1c6}</Project>
-      <Name>MetadataExtractor</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Net.Chdk.Core\Net.Chdk.Core.csproj">
       <Project>{4efefd95-2ae3-4b1c-8fb1-eadc09ce8e7d}</Project>
       <Name>Net.Chdk.Core</Name>
