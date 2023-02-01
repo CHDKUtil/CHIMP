@@ -224,9 +224,11 @@ namespace Chimp.Controllers
 
             // Catch pCloud drive error
             PartitionType[] partTypes;
+            bool? switched;
             try
             {
                 partTypes = PartitionService.GetPartitionTypes(card.DriveLetter);
+                switched = PartitionService.TestSwitchedPartitions(partTypes);
             }
             catch (COMException)
             {
@@ -238,7 +240,7 @@ namespace Chimp.Controllers
                 Info = card,
                 DisplayName = GetDisplayName(card),
                 PartitionTypes = partTypes,
-                Switched = PartitionService.TestSwitchedPartitions(partTypes),
+                Switched = switched,
                 Bootable = BootService.TestBootable(card, card.FileSystem),
                 Scriptable = ScriptService.TestScriptable(card, card.FileSystem),
             };
