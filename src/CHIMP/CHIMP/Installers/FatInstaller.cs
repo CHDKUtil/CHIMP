@@ -12,19 +12,13 @@ namespace Chimp.Installers
         {
         }
 
-        protected override bool Install(CancellationToken cancellationToken)
+        protected override bool InstallSingle(CancellationToken cancellationToken)
         {
             var switched = TestSwitchedPartitions();
             if (switched == null)
                 return CopySingle();
 
-            if (!IsCameraMultiPartition)
-                return CopyFormat(FAT32);
-
-            if (switched == false)
-                return CopyDual();
-
-            return CopySwitchedDual();
+            return CopyFormat(FAT32);
         }
     }
 }

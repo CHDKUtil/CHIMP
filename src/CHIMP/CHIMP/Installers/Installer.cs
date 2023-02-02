@@ -92,7 +92,28 @@ namespace Chimp.Installers
             }
         }
 
-        protected abstract bool Install(CancellationToken cancellationToken);
+        protected virtual bool Install(CancellationToken cancellationToken)
+        {
+            if (IsCameraMultiPartition)
+            {
+                var switched = TestSwitchedPartitions();
+                switch (switched)
+                {
+                    case false:
+                        return CopyDual();
+                    case true:
+                        return CopySwitchedDual();
+                    default:
+                        break;
+                }
+            }
+            return InstallSingle(cancellationToken);
+        }
+
+        protected virtual bool InstallSingle(CancellationToken cancellationToken)
+        {
+            return CopySingle();
+        }
 
         protected bool IsCameraMultiPartition { get; }
 

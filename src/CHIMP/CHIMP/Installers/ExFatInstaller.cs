@@ -15,7 +15,7 @@ namespace Chimp.Installers
         protected override bool Install(CancellationToken cancellationToken)
         {
             if (IsCameraExFatBootable)
-                return CopySingle();
+                return base.Install(cancellationToken);
 
             if (IsCameraFat32Bootable)
                 return CopyFormat(FAT32);
