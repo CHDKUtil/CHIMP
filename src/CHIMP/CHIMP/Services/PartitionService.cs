@@ -132,18 +132,25 @@ namespace Chimp.Services
         public bool? TestSwitchedPartitions(PartitionType[] partTypes)
         {
             if (partTypes[0] == PartitionType.PrimaryFAT
-                && (partTypes[1] == PartitionType.PrimaryFAT32 || partTypes[1] == PartitionType.PrimaryFAT32_2)
+                && IsSecondary(partTypes[1])
                 && partTypes[2] == PartitionType.None)
             {
                 return false;
             }
-            if ((partTypes[0] == PartitionType.PrimaryFAT32 || partTypes[0] == PartitionType.PrimaryFAT32_2)
+            if (IsSecondary(partTypes[0])
                 && partTypes[1] == PartitionType.PrimaryFAT
                 && partTypes[2] == PartitionType.None)
             {
                 return true;
             }
             return null;
+        }
+
+        private static bool IsSecondary(PartitionType partType)
+        {
+            return partType == PartitionType.PrimaryFAT32
+                || partType == PartitionType.PrimaryFAT32_2
+                || partType == PartitionType.ExFAT;
         }
 
         private static PartitionType[] GetPartitionTypes(byte[] buffer)
