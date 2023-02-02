@@ -15,7 +15,7 @@ namespace Chimp.Providers.Action
         public override IEnumerable<IAction> GetActions()
         {
             PartitionType[] partTypes = CardViewModel.SelectedItem.PartitionTypes;
-            if (partTypes == null || partTypes[0] == PartitionType.None)
+            if (partTypes[0] == PartitionType.None)
                 yield break;
             for (int i = 1; i < partTypes.Length; i++)
                 if (partTypes[i] != PartitionType.None)
