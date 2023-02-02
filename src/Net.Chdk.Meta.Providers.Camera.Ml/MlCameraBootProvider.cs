@@ -4,6 +4,6 @@
     {
         public override string ProductName => "ML";
 
-        protected override string GetBootFileSystem(uint modelId) => "exFAT";
+        protected override string GetBootFileSystem(uint modelId, bool multi) => "exFAT";
     }
 }

@@ -4,6 +4,6 @@ namespace Net.Chdk.Meta.Providers.Camera
 {
     public interface IProductCameraBootProvider : IProductNameProvider
     {
-        BootData GetBoot(uint modelId);
+        BootData GetBoot(uint modelId, bool multi);
     }
 }

@@ -4,6 +4,6 @@
     {
         public override string ProductName => "400plus";
 
-        protected override string GetBootFileSystem(uint modelId) => "FAT32";
+        protected override string GetBootFileSystem(uint modelId, bool multi) => "FAT32";
     }
 }

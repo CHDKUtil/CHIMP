@@ -10,9 +10,9 @@ namespace Net.Chdk.Meta.Providers.Camera
         {
         }
 
-        public BootData GetBoot(uint modelId, string productName)
+        public BootData GetBoot(uint modelId, bool multi, string productName)
         {
-            return GetInnerProvider(productName).GetBoot(modelId);
+            return GetInnerProvider(productName).GetBoot(modelId, multi);
         }
     }
 }

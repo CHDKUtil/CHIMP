@@ -22,14 +22,14 @@ namespace Net.Chdk.Meta.Providers.Camera
             return new TCamera
             {
                 Models = new CameraModelData[0],
-                Boot = GetBoot(modelId, productName),
+                Boot = GetBoot(modelId, tree.MultiCard, productName),
                 Card = GetCard(modelId, tree.MultiCard, productName),
             };
         }
 
-        private BootData GetBoot(uint modelId, string productName)
+        private BootData GetBoot(uint modelId, bool multi, string productName)
         {
-            return BootProvider.GetBoot(modelId, productName);
+            return BootProvider.GetBoot(modelId, multi, productName);
         }
 
         private TCard GetCard(uint modelId, bool multi, string productName)
