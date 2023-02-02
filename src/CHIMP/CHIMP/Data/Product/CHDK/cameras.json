@@ -2665,6 +2665,7 @@
       ]
     },
     "card": {
+      "multi": true,
       "type": "SD",
       "subtype": "SDXC"
     },
@@ -2677,7 +2678,7 @@
       }
     ],
     "boot": {
-      "fs": "FAT32"
+      "fs": "exFAT"
     }
   },
   "0x3090000": {
@@ -2722,6 +2723,7 @@
       ]
     },
     "card": {
+      "multi": true,
       "type": "SD",
       "subtype": "SDXC"
     },
@@ -2734,7 +2736,7 @@
       }
     ],
     "boot": {
-      "fs": "FAT32"
+      "fs": "exFAT"
     }
   },
   "0x3120000": {
@@ -3212,6 +3214,7 @@
       ]
     },
     "card": {
+      "multi": true,
       "type": "SD",
       "subtype": "SDXC"
     },
@@ -3224,7 +3227,7 @@
       }
     ],
     "boot": {
-      "fs": "FAT32"
+      "fs": "exFAT"
     }
   },
   "0x3370000": {
@@ -3830,6 +3833,7 @@
       ]
     },
     "card": {
+      "multi": true,
       "type": "SD",
       "subtype": "SDXC"
     },
@@ -3842,7 +3846,7 @@
       }
     ],
     "boot": {
-      "fs": "FAT32"
+      "fs": "exFAT"
     }
   },
   "0x3750000": {
@@ -4210,6 +4214,7 @@
       ]
     },
     "card": {
+      "multi": true,
       "type": "SD",
       "subtype": "SDXC"
     },
@@ -4222,7 +4227,7 @@
       }
     ],
     "boot": {
-      "fs": "FAT32"
+      "fs": "exFAT"
     }
   },
   "0x3970000": {
@@ -4239,6 +4244,7 @@
       ]
     },
     "card": {
+      "multi": true,
       "type": "SD",
       "subtype": "SDXC"
     },
@@ -4251,7 +4257,7 @@
       }
     ],
     "boot": {
-      "fs": "FAT32"
+      "fs": "exFAT"
     }
   },
   "0x3990000": {
