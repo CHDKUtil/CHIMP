@@ -5,8 +5,7 @@ namespace Net.Chdk.Meta.Providers.Camera.Ps
 {
     public abstract class PsCameraCardProvider : ProductCameraCardProvider<PsCardData>
     {
-        private const uint MinModelId = 0x1010000;
-        private const uint MinFat32ModelId = 0x2980000;
+        private const uint MinModelID = 0x1010000;
         private const uint MinSdhcModelId = 0x2000000;
         private const uint MinSdxcModelId = 0x2800000;
 
@@ -16,7 +15,7 @@ namespace Net.Chdk.Meta.Providers.Camera.Ps
         public override PsCardData GetCard(uint modelId, bool multi)
         {
             var cardData = base.GetCard(modelId, multi);
-            cardData.Multi = IsMultiCard(modelId, multi);
+            cardData.Multi = multi;
             return cardData;
         }
 
@@ -29,18 +28,13 @@ namespace Net.Chdk.Meta.Providers.Camera.Ps
 
         protected override string GetCardSubtype(uint modelId)
         {
-            if (modelId < MinModelId)
+            if (modelId < MinModelID)
                 return "SDXC";
             if (modelId < MinSdhcModelId && !SdhcModelIds.Contains(modelId))
                 return "SDSC";
             if (modelId < MinSdxcModelId)
                 return "SDHC";
             return "SDXC";
-        }
-
-        private static bool IsMultiCard(uint modelId, bool multi)
-        {
-            return multi && modelId >= MinModelId && modelId < MinFat32ModelId;
         }
     }
 }
