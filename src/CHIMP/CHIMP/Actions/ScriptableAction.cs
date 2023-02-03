@@ -25,7 +25,7 @@ namespace Chimp.Actions
             {
                 DownloadViewModel.ProgressMaximum = 1;
                 DownloadViewModel.ProgressValue = 1;
-                CardViewModel.SelectedItem.Scriptable = ScriptService.TestScriptable(Card, Card.FileSystem);
+                //CardViewModel.SelectedItem.Scriptable = ScriptService.TestScriptable(Card, Card.FileSystem);
                 //MainViewModel.Set<ActionViewModel>("Action", null);
                 //MainViewModel.Step.CanGoBack = true;
                 DownloadViewModel.Title = CompletedTitle;
