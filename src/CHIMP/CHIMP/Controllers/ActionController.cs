@@ -55,12 +55,41 @@ namespace Chimp.Controllers
             Unsubscribe2();
         }
 
+        protected override void Subscribe()
+        {
+            base.Subscribe();
+            CameraViewModel.PropertyChanged += CameraViewModel_PropertyChanged;
+        }
+
+        protected override void Unsubscribe()
+        {
+            base.Unsubscribe();
+            CameraViewModel.PropertyChanged -= CameraViewModel_PropertyChanged;
+        }
+
         protected override void Card_SelectedItemChanged()
         {
             ViewModel = null;
         }
 
         protected override void Software_SelectedItemChanged()
+        {
+            ViewModel = null;
+        }
+
+        private void CameraViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(CameraViewModel.SelectedItem):
+                    Camera_SelectedItemChanged();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void Camera_SelectedItemChanged()
         {
             ViewModel = null;
         }
