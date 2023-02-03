@@ -21,7 +21,7 @@ namespace Chimp.Actions
 
         protected override SoftwareData Perform()
         {
-            if (ScriptService.SetScriptable(Card, Card.FileSystem, Value))
+            if (ScriptService.SetScriptable(Card, Card.FileSystem, Value) == true)
             {
                 DownloadViewModel.ProgressMaximum = 1;
                 DownloadViewModel.ProgressValue = 1;

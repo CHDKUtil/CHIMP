@@ -8,7 +8,7 @@ namespace Chimp.ViewModels
         public CardInfo Info { get; set; }
         public string DisplayName { get; set; }
         public string Bootable { get; set; }
-        public bool Scriptable { get; set; }
+        public bool? Scriptable { get; set; }
         public PartitionType[] PartitionTypes { get; set; }
         public bool? Switched { get; set; }
         public string FileSystem { get; set; }

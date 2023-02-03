@@ -16,34 +16,34 @@ namespace Chimp.Services
             ScriptProvider = scriptProvider;
         }
 
-        public bool TestScriptable(CardInfo cardInfo, string fileSystem)
+        public bool? TestScriptable(CardInfo cardInfo, string fileSystem)
         {
-            if (fileSystem == null)
-                return false;
+            var bytes = ScriptProvider.GetBytes(fileSystem);
+            if (bytes == null)
+                return null;
 
             var files = ScriptProvider.GetFiles();
             if (!TestScriptable(cardInfo, files))
                 return false;
 
             var blockSize = ScriptProvider.GetBlockSize(fileSystem);
-            var bytes = ScriptProvider.GetBytes(fileSystem);
             if (!Test(cardInfo, blockSize, bytes))
                 return false;
 
             return true;
         }
 
-        public bool SetScriptable(CardInfo cardInfo, string fileSystem, bool value)
+        public bool? SetScriptable(CardInfo cardInfo, string fileSystem, bool value)
         {
-            if (fileSystem == null)
-                return false;
+            var bytes = ScriptProvider.GetBytes(fileSystem);
+            if (bytes == null)
+                return null;
 
             var files = ScriptProvider.GetFiles();
             if (TestScriptable(cardInfo, files) != value)
                 SetScriptable(cardInfo, files, value);
 
             var blockSize = ScriptProvider.GetBlockSize(fileSystem);
-            var bytes = ScriptProvider.GetBytes(fileSystem);
             return Set(cardInfo, blockSize, bytes, value);
         }
 

@@ -43,7 +43,7 @@ namespace Chimp.Providers.Action
                 return null;
 
             var card = CardViewModel.SelectedItem;
-            if (card.Switched == true || card.Scriptable)
+            if (card.Switched == true || card.Scriptable != false)
                 return null;
 
             return DoGetCategoryName();

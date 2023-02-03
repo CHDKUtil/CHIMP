@@ -13,9 +13,9 @@ namespace Chimp.Providers.Action
 
         public override IEnumerable<IAction> GetActions()
         {
-            if (CardViewModel.SelectedItem.Scriptable)
+            if (CardViewModel.SelectedItem.Scriptable == true)
                 yield return ServiceActivator.Create<ClearScriptableAction>();
-            else if (CanSetScriptable)
+            if (CardViewModel.SelectedItem.Scriptable == false && CanSetScriptable)
                 yield return ServiceActivator.Create<SetScriptableAction>();
         }
 
