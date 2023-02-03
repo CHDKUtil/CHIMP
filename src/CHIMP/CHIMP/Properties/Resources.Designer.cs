@@ -466,6 +466,24 @@ namespace Chimp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unknown.
+        /// </summary>
+        public static string Card_FileSystem_Unknown_Text {
+            get {
+                return ResourceManager.GetString("Card_FileSystem_Unknown_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File Systems:.
+        /// </summary>
+        public static string Card_FileSystems_Content {
+            get {
+                return ResourceManager.GetString("Card_FileSystems_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This page will refresh automatically after the card is inserted..
         /// </summary>
         public static string Card_NoCard_Text {
@@ -835,7 +853,7 @@ namespace Chimp.Properties {
         ///    &quot;contents&quot;: [ &quot;Connecting the camera with a cable is unsupported.&quot; ]
         ///  },
         ///  {
-        ///   [rest of string was truncated]&quot;;.
+        ///    &quot;header&quot;: &quot;Back  [rest of string was truncated]&quot;;.
         /// </summary>
         public static string intro_tips {
             get {

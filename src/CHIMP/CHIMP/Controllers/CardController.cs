@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using Net.Chdk.Detectors.Card;
 using Net.Chdk.Model.Card;
 using Net.Chdk.Watchers.Volume;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
@@ -224,9 +225,11 @@ namespace Chimp.Controllers
 
             // Catch pCloud drive error
             PartitionType[] partTypes;
+            bool? switched;
             try
             {
                 partTypes = PartitionService.GetPartitionTypes(card.DriveLetter);
+                switched = PartitionService.TestSwitchedPartitions(partTypes);
             }
             catch (COMException)
             {
@@ -238,9 +241,10 @@ namespace Chimp.Controllers
                 Info = card,
                 DisplayName = GetDisplayName(card),
                 PartitionTypes = partTypes,
-                Switched = PartitionService.TestSwitchedPartitions(partTypes),
+                Switched = switched,
                 Bootable = BootService.TestBootable(card, card.FileSystem),
                 Scriptable = ScriptService.TestScriptable(card, card.FileSystem),
+                FileSystem = GetFileSystem(card, partTypes, switched),
             };
         }
 
@@ -249,6 +253,39 @@ namespace Chimp.Controllers
             return !string.IsNullOrEmpty(card.Label)
                 ? string.Format(Resources.Card_Drive_Format, card.Label, card.DriveLetter)
                 : card.DriveLetter;
+        }
+
+        private static string GetFileSystem(CardInfo card, PartitionType[] partTypes, bool? switched)
+        {
+            return switched == null
+                ? card.FileSystem
+                : string.Join("\n", GetFileSystems(partTypes));
+        }
+
+        private static IEnumerable<string> GetFileSystems(PartitionType[] partTypes)
+        {
+            return partTypes
+                .Select(GetFileSystem)
+                .Where(s => s != null);
+        }
+
+        private static string GetFileSystem(PartitionType partType)
+        {
+            switch (partType)
+            {
+                case PartitionType.None:
+                    return null;
+                case PartitionType.PrimaryFAT:
+                case PartitionType.PrimaryFAT_0:
+                    return "FAT";
+                case PartitionType.PrimaryFAT32:
+                case PartitionType.PrimaryFAT32_2:
+                    return "FAT32";
+                case PartitionType.ExFAT:
+                    return "exFAT";
+                default:
+                    return Resources.Card_FileSystem_Unknown_Text;
+            }
         }
     }
 }

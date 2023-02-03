@@ -11,5 +11,6 @@ namespace Chimp.ViewModels
         public bool Scriptable { get; set; }
         public PartitionType[] PartitionTypes { get; set; }
         public bool? Switched { get; set; }
+        public string FileSystem { get; set; }
     }
 }

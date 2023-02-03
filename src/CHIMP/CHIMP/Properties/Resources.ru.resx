@@ -156,6 +156,12 @@
   <data name="Card_FileSystem_Content" xml:space="preserve">
     <value>Файловая система</value>
   </data>
+  <data name="Card_FileSystems_Content" xml:space="preserve">
+    <value>Файловые системы</value>
+  </data>
+  <data name="Card_FileSystem_Unknown_Text" xml:space="preserve">
+    <value>неизвестна</value>
+  </data>
   <data name="Wizard_Finish" xml:space="preserve">
     <value>Завершить</value>
   </data>

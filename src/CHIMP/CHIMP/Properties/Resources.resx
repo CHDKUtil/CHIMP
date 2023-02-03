@@ -195,6 +195,12 @@
   <data name="Card_FileSystem_Content" xml:space="preserve">
     <value>File System:</value>
   </data>
+  <data name="Card_FileSystems_Content" xml:space="preserve">
+    <value>File Systems:</value>
+  </data>
+  <data name="Card_FileSystem_Unknown_Text" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
   <data name="Wizard_Finish" xml:space="preserve">
     <value>Finish</value>
   </data>

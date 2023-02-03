@@ -36,16 +36,46 @@
                                     Visibility="{Binding IsSelect, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
         <!-- File System -->
-        <Label Content="{x:Static properties:Resources.Card_FileSystem_Content}" Grid.Row="1"
-               Visibility="{Binding SelectedItem, Converter={StaticResource NullToVisibilityConverter}, ConverterParameter=Hidden}" />
+        <Label Content="{x:Static properties:Resources.Card_FileSystem_Content}" Grid.Row="1">
+            <Label.Style>
+                <Style TargetType="Label" BasedOn="{StaticResource InfoLabel}">
+                    <Setter Property="Visibility" Value="Hidden" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding SelectedItem}" Value="{x:Null}">
+                            <Setter Property="Visibility" Value="Hidden" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding SelectedItem.Switched}" Value="{x:Null}">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
 
+        <!-- File Systems -->
+        <!-- Separate control to prevent resizing on selection change -->
+        <Label Content="{x:Static properties:Resources.Card_FileSystems_Content}" Grid.Row="1">
+            <Label.Style>
+                <Style TargetType="Label" BasedOn="{StaticResource InfoLabel}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding SelectedItem}" Value="{x:Null}">
+                            <Setter Property="Visibility" Value="Hidden" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding SelectedItem.Switched}" Value="{x:Null}">
+                            <Setter Property="Visibility" Value="Hidden" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+        
         <TextBlock Grid.Row="1"
                    Visibility="{Binding SelectedItem, Converter={StaticResource NullToVisibilityConverter}}">
             <TextBlock.Style>
                 <Style TargetType="TextBlock" BasedOn="{StaticResource InfoTextBlock}">
-                    <Setter Property="Text" Value="{Binding SelectedItem.Info.FileSystem}" />
+                    <Setter Property="Text" Value="{Binding SelectedItem.FileSystem}" />
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding SelectedItem.Info.FileSystem}" Value="{x:Null}">
+                        <DataTrigger Binding="{Binding SelectedItem.FileSystem}" Value="">
                             <Setter Property="Text" Value="{x:Static properties:Resources.Card_FileSystem_None}" />
                         </DataTrigger>
                     </Style.Triggers>
