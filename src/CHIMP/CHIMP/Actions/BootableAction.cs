@@ -23,7 +23,7 @@ namespace Chimp.Actions
 
         protected override SoftwareData Perform()
         {
-            if (BootService.SetBootable(Card, Card.FileSystem, CategoryName, Value))
+            if (BootService.SetBootable(Card, Card.FileSystem, CategoryName, Value) == true)
             {
                 DownloadViewModel.ProgressMaximum = 1;
                 DownloadViewModel.ProgressValue = 1;

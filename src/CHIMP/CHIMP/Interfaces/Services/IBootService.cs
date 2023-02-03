@@ -5,6 +5,6 @@ namespace Chimp
     interface IBootService
     {
         string TestBootable(CardInfo cardInfo, string fileSystem);
-        bool SetBootable(CardInfo cardInfo, string fileSystem, string categoryName, bool value);
+        bool? SetBootable(CardInfo cardInfo, string fileSystem, string categoryName, bool value);
     }
 }

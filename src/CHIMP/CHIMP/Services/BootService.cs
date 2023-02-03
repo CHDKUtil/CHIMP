@@ -33,10 +33,11 @@ namespace Chimp.Services
             return null;
         }
 
-        public bool SetBootable(CardInfo cardInfo, string fileSystem, string categoryName, bool value)
+        public bool? SetBootable(CardInfo cardInfo, string fileSystem, string categoryName, bool value)
         {
-            if (fileSystem == null)
-                return false;
+            var bytes = BootProvider.GetBytes(categoryName, fileSystem);
+            if (bytes == null)
+                return null;
 
             if (value)
             {
@@ -46,7 +47,6 @@ namespace Chimp.Services
             }
 
             var blockSize = BootProvider.GetBlockSize(categoryName, fileSystem);
-            var bytes = BootProvider.GetBytes(categoryName, fileSystem);
             return Set(cardInfo, blockSize, bytes, value);
         }
     }

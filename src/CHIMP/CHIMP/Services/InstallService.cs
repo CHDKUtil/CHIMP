@@ -68,7 +68,7 @@ namespace Chimp.Services
 
         public bool SetBootable(string fileSystem)
         {
-            return BootService.SetBootable(Card, fileSystem, CategoryName, true);
+            return BootService.SetBootable(Card, fileSystem, CategoryName, true) == true;
         }
 
         public bool CopyPrimaryFiles()
