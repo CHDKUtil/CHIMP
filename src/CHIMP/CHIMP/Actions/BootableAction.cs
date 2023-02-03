@@ -27,7 +27,7 @@ namespace Chimp.Actions
             {
                 DownloadViewModel.ProgressMaximum = 1;
                 DownloadViewModel.ProgressValue = 1;
-                CardViewModel.SelectedItem.Bootable = BootService.TestBootable(Card, Card.FileSystem);
+                //CardViewModel.SelectedItem.Bootable = BootService.TestBootable(Card, Card.FileSystem);
                 //MainViewModel.Set<ActionViewModel>("Action", null);
                 //MainViewModel.Step.CanGoBack = true;
                 DownloadViewModel.Title = CompletedTitle;
