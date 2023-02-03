@@ -45,6 +45,7 @@ namespace Net.Chdk.Detectors.Card
             {
                 return volumes
                     .Cast<ManagementObject>()
+                    .Where(IsSafe)
                     .Select(GetCard)
                     .SingleOrDefault();
             }
