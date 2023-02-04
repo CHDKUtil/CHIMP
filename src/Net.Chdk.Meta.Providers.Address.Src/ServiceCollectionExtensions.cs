@@ -8,9 +8,10 @@ namespace Net.Chdk.Meta.Providers.Address.Src
         {
             return serviceCollection
                 .AddSingleton<IInnerAddressTreeProvider, SrcAddressTreeProvider>()
+                .AddSingleton<IAddressProvider, MinAddressProvider>()
+                .AddSingleton<IAddressProvider, EntryAddressProvider>()
                 .AddSingleton<SourceProvider>()
                 .AddSingleton<DataProvider>()
-                .AddSingleton<AddressProvider>()
                 .AddSingleton<PlatformProvider>()
                 .AddSingleton<CameraProvider>()
                 .AddSingleton<StubsDataProvider>()

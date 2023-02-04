@@ -2,19 +2,22 @@
 using Net.Chdk.Meta.Model.Address;
 using Net.Chdk.Meta.Providers.Src;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Net.Chdk.Meta.Providers.Address.Src
 {
     sealed class RevisionProvider : RevisionProvider<AddressRevisionData, RevisionData>
     {
         private StubsDataProvider StubsDataProvider { get; }
-        private AddressProvider AddressProvider { get; }
+        private IEnumerable<IAddressProvider> AddressProviders { get; }
 
-        public RevisionProvider(SourceProvider sourceProvider, DataProvider dataProvider, StubsDataProvider stubsDataProvider, AddressProvider addressProvider, ILogger<RevisionProvider> logger)
+        public RevisionProvider(SourceProvider sourceProvider, DataProvider dataProvider, StubsDataProvider stubsDataProvider,
+            IEnumerable<IAddressProvider> addressProviders, ILogger<RevisionProvider> logger)
             : base(sourceProvider, dataProvider, logger)
         {
             StubsDataProvider = stubsDataProvider;
-            AddressProvider = addressProvider;
+            AddressProviders = addressProviders;
         }
 
         protected override AddressRevisionData GetRevisionData(string platformPath, string platform, string revision, RevisionData? data)
@@ -55,7 +58,9 @@ namespace Net.Chdk.Meta.Providers.Address.Src
 
         private AddressData? GetAddresses(string platformPath, string platform, string revision)
         {
-            return AddressProvider.GetAddresses(platformPath, platform, revision);
+            return AddressProviders
+                .Select(p => p.GetAddresses(platformPath, platform, revision))
+                .FirstOrDefault(a => a != null);
         }
     }
 }
