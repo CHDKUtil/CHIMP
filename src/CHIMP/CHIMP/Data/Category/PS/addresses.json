@@ -1,4 +1,102 @@
 {
+  "g5x": {
+    "id": "0x32b3",
+    "id_address": "0xfdf20270",
+    "clear_overlays": true,
+    "revisions": {
+      "100c": {
+        "revision_str_address": "0xfc4546d7",
+        "palette_buffer_ptr": "0x15af8",
+        "active_palette_buffer": "0x15af0"
+      },
+      "101a": {
+        "revision_str_address": "0xfc4546ef",
+        "palette_buffer_ptr": "0x15af8",
+        "active_palette_buffer": "0x15af0"
+      },
+      "101b": {
+        "revision_str_address": "0xfc454713",
+        "palette_buffer_ptr": "0x15af8",
+        "active_palette_buffer": "0x15af0"
+      },
+      "101c": {
+        "revision_str_address": "0xfc454713",
+        "palette_buffer_ptr": "0x15af8",
+        "active_palette_buffer": "0x15af0",
+        "source": {
+          "revision": "101b"
+        }
+      },
+      "101d": {
+        "revision_str_address": "0xfc45473b",
+        "palette_buffer_ptr": "0x15af8",
+        "active_palette_buffer": "0x15af0"
+      },
+      "101e": {
+        "revision_str_address": "0xfc45473b",
+        "palette_buffer_ptr": "0x15af8",
+        "active_palette_buffer": "0x15af0",
+        "source": {
+          "revision": "101d"
+        }
+      },
+      "110a": {
+        "revision_str_address": "0xfc45473b",
+        "palette_buffer_ptr": "0x15af8",
+        "active_palette_buffer": "0x15af0",
+        "source": {
+          "revision": "101d"
+        }
+      }
+    }
+  },
+  "g7x": {
+    "id": "0x329d",
+    "id_address": "0xfff20040",
+    "clear_overlays": true,
+    "revisions": {
+      "100b": {
+        "revision_str_address": "0xfc159207",
+        "palette_buffer_ptr": "0x14b84",
+        "active_palette_buffer": "0x14b7c"
+      },
+      "100c": {
+        "revision_str_address": "0xfc159207",
+        "palette_buffer_ptr": "0x14b84",
+        "active_palette_buffer": "0x14b7c"
+      },
+      "100d": {
+        "revision_str_address": "0xfc159207",
+        "palette_buffer_ptr": "0x14b84",
+        "active_palette_buffer": "0x14b7c"
+      }
+    }
+  },
+  "g7x2": {
+    "id": "0x32bc",
+    "id_address": "0xe1f20270",
+    "clear_overlays": true,
+    "revisions": {
+      "101a": {
+        "revision_str_address": "0xe0503c4f",
+        "palette_buffer_ptr": "0x12594",
+        "active_palette_buffer": "0x1258c"
+      },
+      "101b": {
+        "revision_str_address": "0xe0503c4f",
+        "palette_buffer_ptr": "0x12594",
+        "active_palette_buffer": "0x1258c",
+        "source": {
+          "revision": "101a"
+        }
+      },
+      "110b": {
+        "revision_str_address": "0xe0503c4b",
+        "palette_buffer_ptr": "0x12594",
+        "active_palette_buffer": "0x1258c"
+      }
+    }
+  },
   "m10": {
     "id": "0x32a0",
     "id_address": "0xfff20270",
@@ -21,6 +119,11 @@
         "source": {
           "revision": "110f"
         }
+      },
+      "111a": {
+        "revision_str_address": "0xfc1fb053",
+        "palette_buffer_ptr": "0x13540",
+        "active_palette_buffer": "0x13538"
       }
     }
   },
@@ -58,6 +161,11 @@
       },
       "120f": {
         "revision_str_address": "0xfc1fcf17",
+        "palette_buffer_ptr": "0x136e0",
+        "active_palette_buffer": "0x136d8"
+      },
+      "121a": {
+        "revision_str_address": "0xfc1fcf1f",
         "palette_buffer_ptr": "0x136e0",
         "active_palette_buffer": "0x136d8"
       }
