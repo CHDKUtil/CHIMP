@@ -63,6 +63,18 @@
       }
     }
   },
+  "m5": {
+    "id": "0x32bb",
+    "id_address": "0xe1f20270",
+    "clear_overlays": true,
+    "revisions": {
+      "102a": {
+        "revision_str_address": "0xe0429fcc",
+        "palette_buffer_ptr": "0x11e24",
+        "active_palette_buffer": "0x11e1c"
+      }
+    }
+  },
   "m6": {
     "id": "0x32c5",
     "id_address": "0xe1f20270",
