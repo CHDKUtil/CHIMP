@@ -30,7 +30,17 @@
     "clear_overlays": true,
     "revisions": {
       "100a": {
-        "revision_str_address": "0xe047b5b3",
+        "revision_str_address": "0xe047b5b1",
+        "palette_buffer_ptr": "0x116f4",
+        "active_palette_buffer": "0x116ec"
+      },
+      "101a": {
+        "revision_str_address": "0xe047b5cd",
+        "palette_buffer_ptr": "0x116f4",
+        "active_palette_buffer": "0x116ec"
+      },
+      "110b": {
+        "revision_str_address": "0xe047b5cd",
         "palette_buffer_ptr": "0x116f4",
         "active_palette_buffer": "0x116ec"
       }
