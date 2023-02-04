@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Net.Chdk.Meta.Providers.Src;
+using System;
 using System.Globalization;
 
 namespace Net.Chdk.Meta.Providers.Address.Src
@@ -23,9 +24,9 @@ namespace Net.Chdk.Meta.Providers.Address.Src
             var split = base.TrimComments(line, platform, revision).Split('=');
             switch (split[0].Trim())
             {
-                case "THUMB_FW":
+                case "DIGIC":
                     value ??= new RevisionData();
-                    value.Thumb = GetBoolean(split, platform, revision);
+                    value.Digic = GetDigicValue(split[1], platform, revision);
                     break;
                 case "PLATFORMID":
                     value ??= new RevisionData();
@@ -46,8 +47,16 @@ namespace Net.Chdk.Meta.Providers.Address.Src
             if (!line.Contains("PLATFORMID") || !line.Contains("@"))
                 return null;
             var split = line.Split(' ');
-            var index = System.Array.IndexOf(split, "@");
+            var index = Array.IndexOf(split, "@");
             return uint.Parse(split[index + 1].Substring(2), NumberStyles.HexNumber);
+        }
+
+        private static Version GetDigicValue(string version, string platform, string? revision)
+        {
+            version = version.Trim();
+            if (version.Length != 2)
+                throw new InvalidOperationException($"{platform}-{revision}: Invalid version format");
+            return Version.Parse($"{version[0]}.{version[1]}");
         }
 
         private static ushort GetIdValue(string version)

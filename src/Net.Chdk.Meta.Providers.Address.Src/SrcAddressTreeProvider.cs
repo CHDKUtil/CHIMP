@@ -21,7 +21,9 @@ namespace Net.Chdk.Meta.Providers.Address.Src
 
         private static bool HasAddresses(KeyValuePair<string, AddressPlatformData?> kvp)
         {
-            return kvp.Value?.Thumb == true && kvp.Value!.Revisions.Any(HasAddresses);
+            return kvp.Value!.ClearOverlay
+                && kvp.Value!.Digic >= System.Version.Parse("6.0")
+                && kvp.Value!.Revisions.Any(HasAddresses);
         }
 
         private static bool HasAddresses(KeyValuePair<string, AddressRevisionData> kvp)

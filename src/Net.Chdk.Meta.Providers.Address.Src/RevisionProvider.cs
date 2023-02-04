@@ -39,7 +39,6 @@ namespace Net.Chdk.Meta.Providers.Address.Src
             {
                 Id = id,
                 IdAddress = idAddress,
-                Thumb = data?.Thumb,
                 RevisionAddress = revisionAddress,
                 PaletteBufferPtr = paletteBufferPtr,
                 ActivePaletteBuffer = activePaletteBuffer

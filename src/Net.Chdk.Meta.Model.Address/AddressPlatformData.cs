@@ -1,5 +1,6 @@
 ﻿using Net.Chdk.Json;
 using Newtonsoft.Json;
+using System;
 
 namespace Net.Chdk.Meta.Model.Address
 {
@@ -13,7 +14,7 @@ namespace Net.Chdk.Meta.Model.Address
         public uint IdAddress { get; set; }
 
         [JsonIgnore]
-        public bool? Thumb { get; set; }
+        public Version? Digic { get; set; }
 
         [JsonProperty("clear_overlays")]
         public bool ClearOverlay { get; set; }
