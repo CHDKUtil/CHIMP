@@ -53,8 +53,11 @@ namespace Chimp.Installers
 
             var cameraModels = cameraProvider.GetCameraModels(Camera);
             CardSubtype = cameraModels?.CardSubtype;
-            BootFileSystem = cameraModels?.BootFileSystem;
+            BootFileSystem = DownloadViewModel.Software.Category.Name != "SCRIPT" 
+                ? cameraModels?.BootFileSystem
+                : FAT32;
             IsCameraMultiPartition = cameraModels?.IsMultiPartition == true;
+            
         }
 
         public async Task<bool> InstallAsync(CancellationToken cancellationToken)
