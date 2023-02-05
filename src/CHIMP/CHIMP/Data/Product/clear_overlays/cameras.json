@@ -15,6 +15,30 @@
       }
     ]
   },
+  "0x3940000": {
+    "models": [
+      {
+        "names": [ "Canon EOS M5" ],
+        "platform": "m5"
+      }
+    ]
+  },
+  "0x3950000": {
+    "models": [
+      {
+        "names": [ "Canon PowerShot G5 X" ],
+        "platform": "g5x"
+      }
+    ]
+  },
+  "0x3970000": {
+    "models": [
+      {
+        "names": [ "Canon PowerShot G7 X Mark II" ],
+        "platform": "g7x2"
+      }
+    ]
+  },
   "0x3980000": {
     "models": [
       {
