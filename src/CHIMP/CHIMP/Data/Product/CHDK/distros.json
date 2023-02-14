@@ -2,31 +2,31 @@
   "CHDK_release": {
     "matchType": "Chdk",
     "productType": "Chdk",
-    "baseUrl": "http://mighty-hoernsche.de/",
+    "baseUrl": "https://mighty-hoernsche.de/",
     "language": "en"
   },
   "CHDK_trunk": {
     "matchType": "Chdk",
     "productType": "Chdk",
-    "baseUrl": "http://mighty-hoernsche.de/trunk/",
+    "baseUrl": "https://mighty-hoernsche.de/trunk/",
     "language": "en"
   },
   "CHDK_mirror_release": {
     "matchType": "Chdk",
     "productType": "Chdk",
-    "baseUrl": "http://hacki.someserver.de/",
+    "baseUrl": "https://hacki.someserver.de/",
     "language": "en"
   },
   "CHDK_mirror_trunk": {
     "matchType": "Chdk",
     "productType": "Chdk",
-    "baseUrl": "http://hacki.someserver.de/trunk/",
+    "baseUrl": "https://hacki.someserver.de/trunk/",
     "language": "en"
   },
   "CHDK_DE_release": {
     "matchType": "ChdkDe",
     "productType": "Chdk",
-    "baseUrl": "http://autobuild.akalab.de/",
+    "baseUrl": "https://autobuild.akalab.de/",
     "builds": {
       "": "release.txt",
       "full": "release_full.txt"
@@ -36,7 +36,7 @@
   "CHDK_DE_trunk": {
     "matchType": "ChdkDe",
     "productType": "Chdk",
-    "baseUrl": "http://autobuild.akalab.de/",
+    "baseUrl": "https://autobuild.akalab.de/",
     "builds": {
       "": "trunk.txt",
       "full": "trunk_full.txt"
