@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.0;net461</TargetFrameworks>
+    <TargetFrameworks>netstandard1.0;net462</TargetFrameworks>
     <Description>CHIMP binary encoder/decoder API</Description>
     <AssemblyName>Net.Chdk.Encoders.Binary.Core</AssemblyName>
     <RootNamespace>Net.Chdk.Encoders.Binary</RootNamespace>

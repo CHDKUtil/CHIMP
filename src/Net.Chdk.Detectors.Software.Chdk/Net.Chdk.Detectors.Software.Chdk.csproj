@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.3;net461</TargetFrameworks>
+    <TargetFrameworks>netstandard1.3;net462</TargetFrameworks>
     <Description>CHIMP CHDK software detectors</Description>
     <RootNamespace>Net.Chdk.Detectors.Software.Chdk</RootNamespace>
   </PropertyGroup>
