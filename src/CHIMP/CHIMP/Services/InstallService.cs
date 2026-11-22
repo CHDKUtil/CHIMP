@@ -1,8 +1,10 @@
-﻿using Chimp.Properties;
+﻿using Chimp.Model;
+using Chimp.Properties;
 using Chimp.ViewModels;
 using Microsoft.Extensions.Logging;
 using Net.Chdk;
 using Net.Chdk.Model.Card;
+using System;
 using System.IO;
 
 namespace Chimp.Services
@@ -46,18 +48,55 @@ namespace Chimp.Services
             return CardViewModel.SelectedItem.Switched;
         }
 
-        public void CreatePartitions()
+        public bool CreatePartitions()
         {
             SetTitle(nameof(Resources.Install_Partitioning_Text));
             PartitionService.CreatePartitions(Card.DriveLetter);
             PartitionService.UpdateProperties(Card.DriveLetter);
+            return UpdateDriveLetter();
         }
 
-        public void SwitchPartitions()
+        public bool SwitchPartitions()
         {
             SetTitle(nameof(Resources.Install_Switching_Text));
             PartitionService.SwitchPartitions(Card.DriveLetter, 1);
             PartitionService.UpdateProperties(Card.DriveLetter);
+            return UpdateDriveLetter();
+        }
+
+        /// <summary>
+        /// Restores the partition types written by <see cref="CreatePartitions"/>,
+        /// since format.com may change them (e.g. to 0x0E/0x0C) when formatting a RAW volume.
+        /// </summary>
+        public bool RestorePartitionTypes()
+        {
+            var partTypes = new[] { PartitionType.PrimaryFAT, PartitionType.PrimaryFAT32 };
+            if (!PartitionService.SetPartitionTypes(Card.DriveLetter, partTypes))
+                return true;
+
+            PartitionService.UpdateProperties(Card.DriveLetter);
+            return UpdateDriveLetter();
+        }
+
+        /// <summary>
+        /// Points the card to the volume of the first partition.
+        /// Since Windows 10 1703 all partitions on removable media are mounted (so the selected
+        /// volume may not be the first partition), and after the partition table is modified
+        /// the volumes are re-enumerated asynchronously (so the drive letter may change or vanish).
+        /// </summary>
+        public bool UpdateDriveLetter()
+        {
+            var driveLetter = PartitionService.WaitForPartitionVolume(Card.DriveLetter, 0);
+            if (driveLetter == null)
+                return false;
+
+            if (!driveLetter.Equals(Card.DriveLetter, StringComparison.OrdinalIgnoreCase))
+            {
+                Logger.LogInformation("Drive letter changed from {0} to {1}", Card.DriveLetter, driveLetter);
+                Card.DriveLetter = driveLetter;
+            }
+
+            return true;
         }
 
         public bool Format(string fileSystem, string label)

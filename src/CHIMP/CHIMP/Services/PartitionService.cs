@@ -2,7 +2,9 @@
 using Chimp.Properties;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace Chimp.Services
 {
@@ -22,6 +24,9 @@ namespace Chimp.Services
         private const ushort Signature = 0xaa55;
 
         private const uint SinglePartStart = 249; //TODO Why not 1?
+
+        private const int VolumeWaitTimeoutMs = 30000;
+        private const int VolumeWaitIntervalMs = 250;
 
         private ILogger Logger { get; }
         private IVolumeContainer VolumeContainer { get; }
@@ -104,17 +109,108 @@ namespace Chimp.Services
             return true;
         }
 
+        public bool SetPartitionTypes(string driveLetter, PartitionType[] partTypes)
+        {
+            var volume = VolumeContainer.GetVolume(driveLetter);
+            var sectorSize = volume.Disk.SectorSize;
+
+            using (var hDevice = Device.OpenReadWrite(volume.Disk.DeviceName))
+            {
+                var buffer = Device.ReadBlock(hDevice, sectorSize);
+
+                var oldTypes = GetPartitionTypes(buffer);
+                var changed = false;
+                for (var part = 0; part < partTypes.Length; part++)
+                {
+                    if (oldTypes[part] != partTypes[part])
+                    {
+                        Logger.LogInformation("Changing type of partition {0} on {1} from {2} to {3}", part, driveLetter, oldTypes[part], partTypes[part]);
+                        SetValue(buffer, (byte)partTypes[part], PartStart + part * PartLength + TypeOffset);
+                        changed = true;
+                    }
+                }
+
+                if (!changed)
+                    return false;
+
+                Device.MoveToStart(hDevice);
+
+                Device.WriteBlock(hDevice, buffer, sectorSize);
+            }
+
+            return true;
+        }
+
         public void UpdateProperties(string driveLetter)
         {
             Logger.LogInformation("Updating properties of {0}", driveLetter);
 
             var volume = VolumeContainer.GetVolume(driveLetter);
 
-            using (var hDevice = Device.OpenReadWrite(volume.DeviceName))
+            // Send IOCTL_DISK_UPDATE_PROPERTIES to the disk itself, so that
+            // the partition table is re-read and the volumes are re-enumerated.
+            using (var hDevice = Device.OpenReadWrite(volume.Disk.DeviceName))
             {
-                if (!Device.Invoke(hDevice, Device.IOCTL_VOLUME_UPDATE_PROPERTIES))
+                if (!Device.Invoke(hDevice, Device.IOCTL_DISK_UPDATE_PROPERTIES))
                     Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
             }
+        }
+
+        public string WaitForPartitionVolume(string driveLetter, int part)
+        {
+            var volume = VolumeContainer.GetVolume(driveLetter);
+            var disk = volume.Disk;
+            var sectorSize = disk.SectorSize;
+
+            byte[] buffer;
+            using (var hDevice = Device.OpenRead(disk.DeviceName))
+            {
+                buffer = Device.ReadBlock(hDevice, sectorSize);
+            }
+
+            var partOffset = PartStart + part * PartLength;
+            var offset = (long)GetUInt32(buffer, partOffset + StartOffset) * sectorSize;
+            var length = (long)GetUInt32(buffer, partOffset + LengthOffset) * sectorSize;
+
+            Logger.LogInformation("Waiting for partition {0} of disk {1} (offset {2}, length {3})", part, disk.DeviceNumber, offset, length);
+
+            var stopwatch = Stopwatch.StartNew();
+            while (true)
+            {
+                var partDriveLetter = FindVolume(disk.DeviceNumber, offset, length);
+                if (partDriveLetter != null)
+                {
+                    Logger.LogInformation("Found partition {0} at {1} after {2} ms", part, partDriveLetter, stopwatch.ElapsedMilliseconds);
+                    return partDriveLetter;
+                }
+                if (stopwatch.ElapsedMilliseconds >= VolumeWaitTimeoutMs)
+                {
+                    Logger.LogError("Partition {0} of disk {1} not mounted after {2} ms", part, disk.DeviceNumber, stopwatch.ElapsedMilliseconds);
+                    return null;
+                }
+                Thread.Sleep(VolumeWaitIntervalMs);
+            }
+        }
+
+        private static string FindVolume(uint diskNumber, long offset, long length)
+        {
+            foreach (var rootPath in Environment.GetLogicalDrives())
+            {
+                var driveLetter = rootPath.TrimEnd('\\');
+                using (var hVolume = Device.TryOpenQuery($"\\\\.\\{driveLetter}"))
+                {
+                    if (hVolume != null
+                        && Device.TryGet(hVolume, Device.IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS, out Device.VOLUME_DISK_EXTENTS extents)
+                        && extents.NumberOfDiskExtents == 1
+                        && extents.DiskNumber == diskNumber
+                        && extents.StartingOffset == offset
+                        && extents.ExtentLength == length)
+                    {
+                        return driveLetter;
+                    }
+                }
+            }
+            return null;
         }
 
         public PartitionType[] GetPartitionTypes(string driveLetter)
@@ -201,6 +297,14 @@ namespace Chimp.Services
             buffer[offset + 1] = (byte)(value >> 8);
             buffer[offset + 2] = (byte)(value >> 16);
             buffer[offset + 3] = (byte)(value >> 24);
+        }
+
+        private static uint GetUInt32(byte[] buffer, int offset)
+        {
+            return (uint)buffer[offset]
+                | (uint)buffer[offset + 1] << 8
+                | (uint)buffer[offset + 2] << 16
+                | (uint)buffer[offset + 3] << 24;
         }
     }
 }

@@ -11,6 +11,7 @@ namespace Chimp
         {
             Volume = volume;
 
+            _deviceNumber = new Lazy<uint>(GetDeviceNumber);
             _deviceName = new Lazy<string>(GetDeviceName);
 
             GetDiskParams(out uint sectorSize, out ulong driveSectors, out ulong diskSize);
@@ -45,6 +46,25 @@ namespace Chimp
             }
         }
 
+        #region DeviceNumber
+
+        private readonly Lazy<uint> _deviceNumber;
+
+        public uint DeviceNumber => _deviceNumber.Value;
+
+        private uint GetDeviceNumber()
+        {
+            Device.STORAGE_DEVICE_NUMBER storageDeviceNumber;
+            using (var hDevice = Device.OpenRead(Volume.DeviceName))
+            {
+                if (!Device.TryGet(hDevice, Device.IOCTL_STORAGE_GET_DEVICE_NUMBER, out storageDeviceNumber))
+                    throw Marshal.GetExceptionForHR(Marshal.GetHRForLastWin32Error());
+            }
+            return storageDeviceNumber.DeviceNumber;
+        }
+
+        #endregion
+
         #region DeviceName
 
         private readonly Lazy<string> _deviceName;
@@ -53,13 +73,7 @@ namespace Chimp
 
         private string GetDeviceName()
         {
-            Device.STORAGE_DEVICE_NUMBER storageDeviceNumber;
-            using (var hDevice = Device.OpenRead(Volume.DeviceName))
-            {
-                if (!Device.TryGet(hDevice, Device.IOCTL_STORAGE_GET_DEVICE_NUMBER, out storageDeviceNumber))
-                    throw Marshal.GetExceptionForHR(Marshal.GetHRForLastWin32Error());
-            }
-            return $"\\\\.\\PHYSICALDRIVE{storageDeviceNumber.DeviceNumber}";
+            return $"\\\\.\\PHYSICALDRIVE{DeviceNumber}";
         }
 
         #endregion
