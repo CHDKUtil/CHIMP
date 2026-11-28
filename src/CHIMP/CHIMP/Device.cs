@@ -8,8 +8,10 @@ namespace Chimp
     {
         public static SafeFileHandle OpenRead(string deviceName)
         {
+            // FILE_SHARE_WRITE lets the open succeed while another process holds a
+            // write handle (seen on a newly mounted volume); it grants us no write access.
             var hDevice = CreateFile(deviceName,
-                EAccessMode.Read, EShareMode.Read,
+                EAccessMode.Read, EShareMode.Read | EShareMode.Write,
                 IntPtr.Zero, ECreationDisposition.OpenExisting, 0, IntPtr.Zero);
             if (hDevice.IsInvalid)
                 Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
@@ -23,6 +25,23 @@ namespace Chimp
                 IntPtr.Zero, ECreationDisposition.OpenExisting, 0, IntPtr.Zero);
             if (hDevice.IsInvalid)
                 Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
+            return hDevice;
+        }
+
+        /// <summary>
+        /// Opens a device for querying attributes only (no read/write access).
+        /// </summary>
+        /// <returns>Device handle, or <c>null</c> if the device could not be opened.</returns>
+        public static SafeFileHandle TryOpenQuery(string deviceName)
+        {
+            var hDevice = CreateFile(deviceName,
+                EAccessMode.None, EShareMode.Read | EShareMode.Write,
+                IntPtr.Zero, ECreationDisposition.OpenExisting, 0, IntPtr.Zero);
+            if (hDevice.IsInvalid)
+            {
+                hDevice.Dispose();
+                return null;
+            }
             return hDevice;
         }
 
@@ -164,12 +183,30 @@ namespace Chimp
             public bool WriteCacheEnableOverride;
         }
 
+        [StructLayout(LayoutKind.Sequential)]
+        public struct DISK_EXTENT
+        {
+            public uint DiskNumber;
+            public long StartingOffset;
+            public long ExtentLength;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct VOLUME_DISK_EXTENTS
+        {
+            public uint NumberOfDiskExtents;
+
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 1)]
+            public DISK_EXTENT[] Extents;
+        }
+
         public const int FSCTL_LOCK_VOLUME = 0x00090018;
         public const int FSCTL_DISMOUNT_VOLUME = 0x00090020;
 
         public const int IOCTL_DISK_GET_DRIVE_GEOMETRY = 0x70000;
         public const int IOCTL_DISK_GET_DRIVE_GEOMETRY_EX = 0x700a0;
-        public const int IOCTL_VOLUME_UPDATE_PROPERTIES = 0x70140;
+        public const int IOCTL_DISK_UPDATE_PROPERTIES = 0x70140;
+        public const int IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS = 0x00560000;
         public const int IOCTL_VOLUME_ONLINE = 0x0056c008;
         public const int IOCTL_VOLUME_OFFLINE = 0x0056c00c;
         public const int IOCTL_STORAGE_GET_HOTPLUG_INFO = 0x2d0c14;

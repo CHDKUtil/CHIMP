@@ -2,8 +2,10 @@
 {
     interface IInstallService
     {
-        void CreatePartitions();
-        void SwitchPartitions();
+        bool CreatePartitions();
+        bool SwitchPartitions();
+        bool UpdateDriveLetter();
+        bool RestorePartitionTypes();
         bool Format(string fileSystem, string label);
         bool SetBootable(string fileSystem);
         bool CopyAllFiles();

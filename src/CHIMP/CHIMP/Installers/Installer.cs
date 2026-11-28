@@ -138,24 +138,38 @@ namespace Chimp.Installers
 
         protected bool CopyDual()
         {
+            if (!UpdateDriveLetter())
+                return false;
+
             if (!CopyPrimaryFiles())
                 return false;
 
-            SwitchPartitions();
+            if (!SwitchPartitions())
+                return false;
+
             CopySecondaryFiles();
-            SwitchPartitions();
+
+            if (!SwitchPartitions())
+                return false;
 
             return true;
         }
 
         protected bool CopySwitchedDual()
         {
+            if (!UpdateDriveLetter())
+                return false;
+
             if (!CopySecondaryFiles())
                 return false;
 
-            SwitchPartitions();
+            if (!SwitchPartitions())
+                return false;
+
             CopyPrimaryFiles();
-            SwitchPartitions();
+
+            if (!SwitchPartitions())
+                return false;
 
             return true;
         }
@@ -181,21 +195,27 @@ namespace Chimp.Installers
             if (!ShowFormatWarning())
                 return false;
 
-            CreatePartitions();
+            if (!CreatePartitions())
+                return false;
 
             if (!Format(FAT, Card.Label ?? DefaultSmallLabel))
                 return false;
 
             CopyPrimaryFiles();
 
-            SwitchPartitions();
+            if (!SwitchPartitions())
+                return false;
 
             if (!Format(FAT32, DefaultLargeLabel))
                 return false;
 
             CopySecondaryFiles();
 
-            SwitchPartitions();
+            if (!SwitchPartitions())
+                return false;
+
+            if (!RestorePartitionTypes())
+                return false;
 
             return true;
         }
@@ -205,14 +225,24 @@ namespace Chimp.Installers
             return InstallService.TestSwitchedPartitions();
         }
 
-        private void CreatePartitions()
+        private bool CreatePartitions()
         {
-            InstallService.CreatePartitions();
+            return InstallService.CreatePartitions();
         }
 
-        private void SwitchPartitions()
+        private bool SwitchPartitions()
         {
-            InstallService.SwitchPartitions();
+            return InstallService.SwitchPartitions();
+        }
+
+        private bool UpdateDriveLetter()
+        {
+            return InstallService.UpdateDriveLetter();
+        }
+
+        private bool RestorePartitionTypes()
+        {
+            return InstallService.RestorePartitionTypes();
         }
 
         private bool Format(string fileSystem, string label)

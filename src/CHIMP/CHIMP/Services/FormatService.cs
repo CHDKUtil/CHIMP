@@ -30,15 +30,36 @@ namespace Chimp.Services
         {
             Logger.LogTrace("Format");
 
+            // The label is not passed via /v: since format.com does not strip quotes,
+            // so a label containing spaces (e.g. "CANON 105") cannot be passed reliably.
+            // An invalid label makes format.com prompt for a new one and wait for input.
             var sb = new StringBuilder();
             sb.Append(driveLetter);
             sb.Append($" /fs:{fileSystem}");
-            if (!string.IsNullOrEmpty(label))
-                sb.Append($" /v:{label}");
             sb.Append(" /y /q");
             var args = sb.ToString();
 
-            return Run(Environment.SystemDirectory, "format.com", args);
+            if (!Run(Environment.SystemDirectory, "format.com", args))
+                return false;
+
+            SetLabel(driveLetter, label);
+            return true;
+        }
+
+        private void SetLabel(string driveLetter, string label)
+        {
+            if (string.IsNullOrEmpty(label))
+                return;
+
+            Logger.LogInformation("Setting label of {0} to {1}", driveLetter, label);
+            try
+            {
+                new DriveInfo(driveLetter).VolumeLabel = label;
+            }
+            catch (Exception ex)
+            {
+                Logger.LogWarning(0, ex, "Cannot set label of {0}", driveLetter);
+            }
         }
 
         private bool FormatFat32(string driveLetter, string label)
@@ -65,6 +86,7 @@ namespace Chimp.Services
                 process.StartInfo.Arguments = args;
                 process.StartInfo.UseShellExecute = false;
                 process.StartInfo.CreateNoWindow = true;
+                process.StartInfo.RedirectStandardInput = true;
                 process.StartInfo.RedirectStandardOutput = true;
                 process.StartInfo.RedirectStandardError = true;
                 return Run(process);
@@ -80,6 +102,9 @@ namespace Chimp.Services
                 Logger.LogError("Start failed");
                 return false;
             }
+
+            // Never wait for user input (the window is hidden).
+            process.StandardInput.Close();
 
             string line;
             while ((line = process.StandardOutput.ReadLine()) != null)
