@@ -202,9 +202,9 @@ namespace Chimp.Services
                     if (hVolume != null
                         && Device.TryGet(hVolume, Device.IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS, out Device.VOLUME_DISK_EXTENTS extents)
                         && extents.NumberOfDiskExtents == 1
-                        && extents.DiskNumber == diskNumber
-                        && extents.StartingOffset == offset
-                        && extents.ExtentLength == length)
+                        && extents.Extents[0].DiskNumber == diskNumber
+                        && extents.Extents[0].StartingOffset == offset
+                        && extents.Extents[0].ExtentLength == length)
                     {
                         return driveLetter;
                     }

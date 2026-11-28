@@ -56,7 +56,7 @@ namespace Chimp.Services
             {
                 new DriveInfo(driveLetter).VolumeLabel = label;
             }
-            catch (Exception ex) when (ex is IOException || ex is UnauthorizedAccessException || ex is ArgumentException)
+            catch (Exception ex)
             {
                 Logger.LogWarning(0, ex, "Cannot set label of {0}", driveLetter);
             }

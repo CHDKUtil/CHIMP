@@ -8,8 +8,8 @@ namespace Chimp
     {
         public static SafeFileHandle OpenRead(string deviceName)
         {
-            // Share write access as well, since other processes (e.g. Explorer
-            // reacting to a newly mounted volume) may have the device open.
+            // FILE_SHARE_WRITE lets the open succeed while another process holds a
+            // write handle (seen on a newly mounted volume); it grants us no write access.
             var hDevice = CreateFile(deviceName,
                 EAccessMode.Read, EShareMode.Read | EShareMode.Write,
                 IntPtr.Zero, ECreationDisposition.OpenExisting, 0, IntPtr.Zero);
@@ -183,23 +183,21 @@ namespace Chimp
             public bool WriteCacheEnableOverride;
         }
 
-        /// <summary>
-        /// VOLUME_DISK_EXTENTS with a single DISK_EXTENT.
-        /// </summary>
-        [StructLayout(LayoutKind.Explicit, Size = 32)]
+        [StructLayout(LayoutKind.Sequential)]
+        public struct DISK_EXTENT
+        {
+            public uint DiskNumber;
+            public long StartingOffset;
+            public long ExtentLength;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
         public struct VOLUME_DISK_EXTENTS
         {
-            [FieldOffset(0)]
             public uint NumberOfDiskExtents;
 
-            [FieldOffset(8)]
-            public uint DiskNumber;
-
-            [FieldOffset(16)]
-            public long StartingOffset;
-
-            [FieldOffset(24)]
-            public long ExtentLength;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 1)]
+            public DISK_EXTENT[] Extents;
         }
 
         public const int FSCTL_LOCK_VOLUME = 0x00090018;
